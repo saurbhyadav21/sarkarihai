@@ -30,7 +30,7 @@
         .job-title {
             font-weight: 600;
             font-size: clamp(11px, 1.2vw, 14px);
-            white-space: nowrap;
+            /* white-space: nowrap; */
             overflow: hidden;
             text-overflow: ellipsis;
         }
@@ -87,6 +87,7 @@
             .job-logo {
                 width: 40px;
                 height: 40px;
+                display: none;
             }
 
             .job-title {
@@ -103,34 +104,44 @@
             }
 
         }
+
+        .job-link{
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.job-box{
+    cursor: pointer;
+}
     </style>
 
 
     <div class="container mt-3">
 
-        <h2 class="mb-3 c-t">
+    <h2 class="mb-3 c-t">
+        <span><b>Latest Jobs</b></span>
 
-            <span><b>Latest Jobs</b></span>
+        <span class="last-update">
+            Last Updated : {{ now()->format('d-m-Y H:i') }}
+            <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
+        </span>
+    </h2>
 
-            <span class="last-update">
-                Last Updated : {{ now()->format('d-m-Y H:i') }}
-                <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
-            </span>
+    <div class="row">
 
-        </h2>
+        @foreach ($jobs as $job)
+            @php
+                $names = explode(',', $job->post_name);
+                $salaries = explode(',', $job->post_salary);
+                $eligibilities = explode(',', $job->min_qulification);
+                $count = max(count($names), count($salaries), count($eligibilities));
+            @endphp
 
-        <div class="row">
+            @for ($i = 0; $i < $count; $i++)
+                <div class="col-6 col-md-4">
 
-            @foreach ($jobs as $job)
-                @php
-                    $names = explode(',', $job->post_name);
-                    $salaries = explode(',', $job->post_salary);
-                    $eligibilities = explode(',', $job->min_qulification);
-                    $count = max(count($names), count($salaries), count($eligibilities));
-                @endphp
-
-                @for ($i = 0; $i < $count; $i++)
-                    <div class="col-6 col-md-4"> <!-- mobile 2 column | desktop 3 -->
+                    <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
 
                         <div class="job-box">
 
@@ -138,7 +149,6 @@
                                 class="job-logo">
 
                             <div>
-
                                 <div class="job-title">
                                     {{ ucfirst($job->title) }}
                                 </div>
@@ -149,24 +159,18 @@
                                     {{ $eligibilities[$i] ?? '' }} |
                                     {{ date('d M Y', strtotime($job->end_date)) }}
                                 </div>
-
-                            </div>
-
-                            <div class="ms-auto">
-                                <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}"
-                                    class="btn btn-sm btn-primary">
-                                    View
-                                </a>
                             </div>
 
                         </div>
 
-                    </div>
-                @endfor
-            @endforeach
+                    </a>
 
-        </div>
+                </div>
+            @endfor
+        @endforeach
+
     </div>
+</div>
 
     {{-- <div class="container mt-3">
         <h2 class="mb-3 text-center">Latest Jobs</h2>
