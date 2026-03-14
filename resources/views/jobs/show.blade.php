@@ -189,7 +189,7 @@
                                 </li>
 
                                 <li class="list-group-item">
-                                    <b>Age Relaxation :</b> Extra as per Govt. Recruitment Rules.
+                                    <b>Age Relaxation :</b> {{ $job->relaxation }}
                                 </li>
                             </ul>
 
