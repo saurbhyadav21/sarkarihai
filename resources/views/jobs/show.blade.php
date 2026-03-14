@@ -21,12 +21,51 @@
                     <div class="card h-100">
                         <div class="card-body">
 
-                            <h2 class="card-title">{{ $job->title }}</h2>
+                            {{-- <h2 class="card-title">{{ $job->title }}</h2> --}}
+                            <div class="container my-5">
 
-                            <p class="mb-0">
-                                {{ $job->desce }}
-                            </p>
+                                <div class="card shadow">
+                                    <div class="card-header bg-primary text-white">
+                                        <h4 class="mb-0">
+                                            {{ $job->title }}
+                                        </h4>
+                                    </div>
+                                    <div class="card-body">
 
+                                        <p>
+                                            <strong>{{ $job->title }}</strong> has released notification for various
+                                            <strong>{{ $job->post_name ?? 'POSTS' }}</strong>.
+                                            Interested candidates can apply online from
+                                            <strong>{{ \Carbon\Carbon::parse($job->start_date)->format('d-m-Y') ?? 'START DATE' }}</strong>
+                                            to
+                                            <strong>{{ \Carbon\Carbon::parse($job->end_date)->format('d-m-Y') ?? 'END DATE' }}</strong>
+                                        </p>
+
+                                        <h5>Post Details:</h5>
+                                        <ul>
+                                            <li><strong>Post Name:</strong> {{ $job->post_name ?? 'POST' }}</li>
+                                            <li><strong>Salary:</strong> ₹{{ $job->min_salary ?? 'N/A' }} -
+                                                ₹{{ $job->max_salary ?? 'N/A' }}</li>
+                                            <li><strong>Minimum Qualification:</strong> {{ $job->min_qulification ?? 'N/A' }}
+                                            </li>
+                                            <li><strong>Minimum Age:</strong> {{ $job->min_age ?? 'N/A' }} years</li>
+                                            <li><strong>Total Vacancies:</strong> {{ $job->total_vacancies ?? 'N/A' }}</li>
+                                            <li><strong>Exam Date:</strong> {{ $job->exam_date ?? 'Update Soon' }}</li>
+                                        </ul>
+
+                                        <p>
+                                            Candidates should read the official notification for <strong>eligibility, post
+                                                information, selection procedure, age limits, pay scale, and other important
+                                                details</strong>.
+                                        </p>
+
+                                        <a href="{{ $notification_link ?? '#' }}" class="btn btn-success">Read Official
+                                            Notification / Apply Online</a>
+
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -273,8 +312,7 @@
                         </h2>
 
                         <!-- Header -->
-                        <div class="row mb-3 text-center"
-                            style="border-bottom:3px solid #ff7a18; padding-bottom:10px;">
+                        <div class="row mb-3 text-center" style="border-bottom:3px solid #ff7a18; padding-bottom:10px;">
 
                             <div class="col-md-4">
                                 <span
@@ -389,8 +427,7 @@
                                 <div class="col-md-4 mb-3">
                                     <div class="border p-3 rounded">
                                         <h5>{{ $parts[0] ?? 'Link Title' }}</h5>
-                                        <a href="{{ $parts[1] ?? '#' }}" class="btn btn-danger mt-2"
-                                            target="_blank">
+                                        <a href="{{ $parts[1] ?? '#' }}" class="btn btn-danger mt-2" target="_blank">
                                             Click Here
                                         </a>
                                         @if (isset($parts[2]))
@@ -587,6 +624,6 @@
                 </div>
             </div>
         </div>
-        
+
     </main>
-  @endsection
+@endsection
