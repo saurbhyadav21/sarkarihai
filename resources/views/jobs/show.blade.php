@@ -189,7 +189,7 @@
                                 </li>
 
                                 <li class="list-group-item">
-                                    <b>Age Relaxation :</b> As per rules
+                                    <b>Age Relaxation :</b> Extra as per Govt. Recruitment Rules.
                                 </li>
                             </ul>
 
