@@ -139,6 +139,26 @@
                     <label class="form-label">Max Salary</label>
                     <input type="text" name="max_salary" value="{{ $job->max_salary }}" class="form-control">
                 </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">genral_post</label>
+                    <input type="text" name="genral_post" value="{{ $job->genral_post }}" class="form-control">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">ews_post</label>
+                    <input type="text" name="ews_post" value="{{ $job->ews_post }}" class="form-control">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">obc_post</label>
+                    <input type="text" name="obc_post" value="{{ $job->obc_post }}" class="form-control">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">sc_post</label>
+                    <input type="text" name="sc_post" value="{{ $job->sc_post }}" class="form-control">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">st_post</label>
+                    <input type="text" name="st_post" value="{{ $job->st_post }}" class="form-control">
+                </div>
             </div>
 
             <div class="row">
