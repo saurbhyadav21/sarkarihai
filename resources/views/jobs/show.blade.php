@@ -307,7 +307,7 @@
                     <div class="card-body text-center">
 
                         <h2 class="card-title mb-4" id="eligibility">
-                            {{ $job->title }} – Post & Eligibility
+                            {{ $job->title }} – Post & Eligibility Criteria
 
                         </h2>
 
@@ -335,7 +335,7 @@
                             <div class="card shadow-sm">
                                 <div class="card-body">
 
-                                    <h2 class="card-title mb-4 text-center">Post & Eligibility</h2>
+                                    {{-- <h2 class="card-title mb-4 text-center">Post & Eligibility</h2> --}}
 
                                     @php
                                         // explode comma-separated values into arrays
@@ -353,9 +353,9 @@
 
                                             <div class="col-md-8">
                                                 {{ trim($eligibilities[$i]) }}
-                                                <br><br>
-                                                <span class="fw-bold text-success">Pay Scale :
-                                                    ₹{!! trim($salaries[$i]) !!}</span>
+                                                
+                                                <span class="fw-bold text-success">( Pay Scale :
+                                                    ₹{!! trim($salaries[$i]) !!})</span>
                                             </div>
                                         </div>
                                     @endfor
