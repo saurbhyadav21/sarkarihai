@@ -128,6 +128,11 @@
                     <input type="text" name="max_age_female" value="{{ $job->max_age_female }}" class="form-control">
                 </div>
                 <div class="col-md-3 mb-3">
+                    <label class="form-label">relaxation info</label>
+                    <input type="text" name="relaxation" value="{{ $job->relaxation }}" class="form-control">
+                </div>
+                
+                <div class="col-md-3 mb-3">
                     <label class="form-label">Total Vacancies</label>
                     <input type="text" name="total_vacancies" value="{{ $job->total_vacancies }}" class="form-control">
                 </div>
