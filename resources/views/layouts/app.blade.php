@@ -103,7 +103,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="#">Sarakrihai</a>
+                <a class="navbar-brand" href="/">Sarakrihai</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent">

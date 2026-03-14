@@ -150,11 +150,11 @@
 
                             <div>
                                 <div class="job-title">
-                                    {{ ucfirst($job->title) }}
+                                   {{ ucfirst($job->title) . ' - ' . ucfirst($names[$i] ?? '') }}
                                 </div>
 
                                 <div class="job-meta">
-                                    {{ ucfirst($names[$i] ?? '') }} |
+                                    {{-- {{ ucfirst($names[$i] ?? '') }} | --}}
                                     ₹{{ $salaries[$i] ?? '' }} |
                                     {{ $eligibilities[$i] ?? '' }} |
                                     {{ date('d M Y', strtotime($job->end_date)) }}

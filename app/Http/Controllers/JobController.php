@@ -81,6 +81,93 @@ class JobController extends Controller
     {
         $jobs = Job::all(); // Sabhi jobs fetch karo
         return view('welcome', compact('jobs'));
-       
+    }
+
+
+    public function edit($id)
+    {
+        $job = Job::findOrFail($id);
+        return view('jobs/job_edit', compact('job'));
+    }
+
+    public function editList()
+    {
+        $jobs = Job::latest()->get();
+        return view('jobs/job_edit_list', compact('jobs'));
+    }
+
+
+    // Update Data
+    public function update(Request $request, $id)
+    {
+    
+    $request->validate([
+            'title' => 'required|string',
+            'desce' => 'nullable|string',
+            'start_date' => 'nullable|string',
+            'end_date' => 'nullable|string',
+            'last_fee_date' => 'nullable|string',
+            'correction_date' => 'nullable|string',
+            'exam_date' => 'nullable|string',
+            'admit_card' => 'nullable|string',
+            'result_date' => 'nullable|string',
+            'info_date' => 'nullable|string',
+            'genral_fees' => 'nullable|string',
+            'obc_fees' => 'nullable|string',
+            'sc_fees' => 'nullable|string',
+            'st_fees' => 'nullable|string',
+            'min_age' => 'nullable|string',
+            'max_age_genral' => 'nullable|string',
+            'max_age_obc' => 'nullable|string',
+            'max_age_sc_st' => 'nullable|string',
+            'max_age_female' => 'nullable|string',
+            'total_vacancies' => 'nullable|string',
+            'min_salary' => 'nullable|string',
+            'max_salary' => 'nullable|string',
+            'mode_selection' => 'nullable|string',
+            'post_name' => 'nullable|string',
+            'post_eligibility' => 'nullable|string',
+            'post_salary' => 'nullable|string',
+            'instruction' => 'nullable|string',
+            'link' => 'nullable|string',
+            'doc' => 'nullable|string',
+        ]);
+
+        $job = Job::findOrFail($id);
+
+        // Update only allowed fields
+        $job->update($request->only([
+            'title',
+            'desce',
+            'start_date',
+            'end_date',
+            'last_fee_date',
+            'correction_date',
+            'exam_date',
+            'admit_card',
+            'result_date',
+            'info_date',
+            'genral_fees',
+            'obc_fees',
+            'sc_fees',
+            'st_fees',
+            'min_age',
+            'max_age_genral',
+            'max_age_obc',
+            'max_age_sc_st',
+            'max_age_female',
+            'total_vacancies',
+            'min_salary',
+            'max_salary',
+            'mode_selection',
+            'post_name',
+            'post_eligibility',
+            'post_salary',
+            'instruction',
+            'link',
+            'doc'
+        ]));
+
+        return redirect()->back()->with('success', 'Job Updated Successfully');
     }
 }
