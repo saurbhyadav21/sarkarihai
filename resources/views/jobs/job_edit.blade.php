@@ -97,6 +97,10 @@
                     <label class="form-label">ST Fees</label>
                     <input type="text" name="st_fees" value="{{ $job->st_fees }}" class="form-control">
                 </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Extra_charge</label>
+                    <input type="text" name="extra_charge" value="{{ $job->extra_charge }}" class="form-control">
+                </div>
             </div>
 
             <div class="row">
