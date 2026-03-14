@@ -383,7 +383,7 @@
                         <ul class="list-group list-group-flush">
                             @php
                                 // Split the comma-separated instruction string into array
-                                $instructions = explode(',', $job->instruction);
+                                $instructions = explode('#', $job->instruction);
                             @endphp
 
                             @foreach ($instructions as $instruction)

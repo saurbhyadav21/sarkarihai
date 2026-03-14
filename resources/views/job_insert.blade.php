@@ -142,7 +142,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="instruction" class="form-label">Instructions (comma separated)</label>
+                    <label for="instruction" class="form-label">Instructions (# separated)</label>
                     <textarea name="instruction" id="instruction" class="form-control" rows="3"></textarea>
                 </div>
 
