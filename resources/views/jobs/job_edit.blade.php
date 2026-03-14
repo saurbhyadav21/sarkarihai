@@ -173,6 +173,11 @@
                     <textarea name="post_eligibility" class="form-control" rows="3">{{ $job->post_eligibility }}</textarea>
                 </div>
                 <div class="col-md-4 mb-3">
+                    <label class="form-label">min_qulification</label>
+                    {{-- <input type="text" name="post_eligibility" value="{{ $job->post_eligibility }}" class="form-control"> --}}
+                    <textarea name="min_qulification" class="form-control" rows="3">{{ $job->min_qulification }}</textarea>
+                </div>
+                <div class="col-md-4 mb-3">
                     <label class="form-label">Post Salary</label>
                     {{-- <input type="text" name="post_salary" value="{{ $job->post_salary }}" class="form-control"> --}}
                     <textarea name="post_salary" class="form-control" rows="3">{{ $job->post_salary }}</textarea>
