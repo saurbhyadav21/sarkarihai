@@ -59,7 +59,7 @@
                                                 details</strong>.
                                         </p>
 
-                                        <a href="{{ $notification_link ?? '#' }}" class="btn btn-success">Read Official
+                                        <a href="#date-fee" class="btn btn-success">Read Official
                                             Notification / Apply Online</a>
 
                                     </div>
