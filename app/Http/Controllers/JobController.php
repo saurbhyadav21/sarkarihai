@@ -79,8 +79,8 @@ class JobController extends Controller
 
     public function landing()
     {
-        // $jobs = Job::all(); // Sabhi jobs fetch karo
-        // return view('welcome', compact('jobs'));
-        echo 'd';
+        $jobs = Job::all(); // Sabhi jobs fetch karo
+        return view('welcome', compact('jobs'));
+       
     }
 }
