@@ -16,17 +16,29 @@ class JobController extends Controller
     }
 
     // Single job show
+    // public function show($slug)
+    // {
+    //     // Sabhi jobs ke saath slug generate kar ke match kare
+    //     $job = Job::all()->firstWhere(fn($j) => Str::slug($j->title, '-') === $slug);
+
+    //     if (!$job) {
+    //         abort(404); // Agar slug match na ho
+    //     }
+
+    //     return view('jobs.show', compact('job'));
+    // }
     public function show($slug)
-    {
-        // Sabhi jobs ke saath slug generate kar ke match kare
-        $job = Job::all()->firstWhere(fn($j) => Str::slug($j->title, '-') === $slug);
+{
+    $job = Job::where('slug',$slug)->firstOrFail();
 
-        if (!$job) {
-            abort(404); // Agar slug match na ho
-        }
+    $seo = [
+        'title' => $job->title.' Recruitment '.$job->year.' – '.$job->vacancy.' Posts | Apply Online',
+        'description' => 'Apply online for '.$job->title.' Recruitment '.$job->year.'. Check vacancy details, eligibility, age limit, important dates and direct apply link.',
+        'keywords' => $job->title.' recruitment '.$job->year.', railway jobs, apprentice jobs'
+    ];
 
-        return view('jobs.show', compact('job'));
-    }
+    return view('jobs.show', compact('job','seo'));
+}
 
     // Show insert form
     public function create()
