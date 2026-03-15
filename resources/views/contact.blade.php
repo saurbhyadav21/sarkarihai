@@ -24,7 +24,7 @@
             For general queries, support, corrections or feedback please contact us through email:
         </p>
 
-        <p><strong>Email:</strong> sarkariresultcm@gmail.com</p>
+        <p><strong>Email:</strong> official.sarkarihai@gmail.com</p>
 
         <hr>
 
@@ -41,7 +41,7 @@
             a content writer on <strong>Sarkarihai.com</strong>.
         </p>
 
-        <p><strong>Email:</strong> sarkariresultcm@gmail.com</p>
+        <p><strong>Email:</strong> official.sarkarihai@gmail.com</p>
 
         <hr>
 
@@ -61,7 +61,7 @@
         <p>
             For any corrections or suggestions, please contact us at:
             <br>
-            <strong>Email:</strong> sarkariresultcm@gmail.com
+            <strong>Email:</strong> official.sarkarihai@gmail.com
         </p>
 
         <hr>
@@ -86,7 +86,7 @@
             सामान्य प्रश्न, सहायता, सुधार या सुझाव के लिए आप हमें ईमेल कर सकते हैं:
         </p>
 
-        <p><strong>Email:</strong> sarkariresultcm@gmail.com</p>
+        <p><strong>Email:</strong> official.sarkarihai@gmail.com</p>
 
         <h4 class="mt-4">लेखक के बारे में</h4>
         <p>
@@ -116,7 +116,7 @@
         <p>
             किसी भी सुधार या सुझाव के लिए आप हमें इस ईमेल पर संपर्क कर सकते हैं:
             <br>
-            <strong>Email:</strong> sarkariresultcm@gmail.com
+            <strong>Email:</strong> official.sarkarihai@gmail.com
         </p>
 
     </div>
