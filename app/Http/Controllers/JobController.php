@@ -16,29 +16,34 @@ class JobController extends Controller
     }
 
     // Single job show
-    // public function show($slug)
-    // {
-    //     // Sabhi jobs ke saath slug generate kar ke match kare
-    //     $job = Job::all()->firstWhere(fn($j) => Str::slug($j->title, '-') === $slug);
-
-    //     if (!$job) {
-    //         abort(404); // Agar slug match na ho
-    //     }
-
-    //     return view('jobs.show', compact('job'));
-    // }
     public function show($slug)
-{
-    $job = Job::where('slug',$slug)->firstOrFail();
+    {
+        // Sabhi jobs ke saath slug generate kar ke match kare
+        $job = Job::all()->firstWhere(fn($j) => Str::slug($j->title, '-') === $slug);
+        $seo = [
+            'title' => $job->title . ' Recruitment ' . $job->year . ' – ' . $job->vacancy . ' Posts | Apply Online',
+            'description' => 'Apply online for ' . $job->title . ' Recruitment ' . $job->year . '. Check vacancy details, eligibility, age limit, important dates and direct apply link.',
+            'keywords' => $job->title . ' recruitment ' . $job->year . ', railway jobs, apprentice jobs'
+        ];
 
-    $seo = [
-        'title' => $job->title.' Recruitment '.$job->year.' – '.$job->vacancy.' Posts | Apply Online',
-        'description' => 'Apply online for '.$job->title.' Recruitment '.$job->year.'. Check vacancy details, eligibility, age limit, important dates and direct apply link.',
-        'keywords' => $job->title.' recruitment '.$job->year.', railway jobs, apprentice jobs'
-    ];
+        if (!$job) {
+            abort(404); // Agar slug match na ho
+        }
 
-    return view('jobs.show', compact('job','seo'));
-}
+        return view('jobs.show', compact('job','seo'));
+    }
+    //     public function show($slug)
+    // {
+    //     $job = Job::where('slug',$slug)->firstOrFail();
+
+    //     $seo = [
+    //         'title' => $job->title.' Recruitment '.$job->year.' – '.$job->vacancy.' Posts | Apply Online',
+    //         'description' => 'Apply online for '.$job->title.' Recruitment '.$job->year.'. Check vacancy details, eligibility, age limit, important dates and direct apply link.',
+    //         'keywords' => $job->title.' recruitment '.$job->year.', railway jobs, apprentice jobs'
+    //     ];
+
+    //     return view('jobs.show', compact('job','seo'));
+    // }
 
     // Show insert form
     public function create()
@@ -112,8 +117,8 @@ class JobController extends Controller
     // Update Data
     public function update(Request $request, $id)
     {
-    
-    $request->validate([
+
+        $request->validate([
             'title' => 'required|string',
             'desce' => 'nullable|string',
             'start_date' => 'nullable|string',
@@ -128,25 +133,25 @@ class JobController extends Controller
             'obc_fees' => 'nullable|string',
             'sc_fees' => 'nullable|string',
             'st_fees' => 'nullable|string',
-            'extra_charge'=>'nullable|string',
+            'extra_charge' => 'nullable|string',
             'min_age' => 'nullable|string',
             'max_age_genral' => 'nullable|string',
             'max_age_obc' => 'nullable|string',
             'max_age_sc_st' => 'nullable|string',
             'max_age_female' => 'nullable|string',
             'relaxation' => 'nullable|string',
-            'genral_post'=> 'nullable|string',
-            'ews_post'=> 'nullable|string',
-            'obc_post'=> 'nullable|string',
-            'sc_post'=> 'nullable|string',
-            'st_post'=> 'nullable|string',
+            'genral_post' => 'nullable|string',
+            'ews_post' => 'nullable|string',
+            'obc_post' => 'nullable|string',
+            'sc_post' => 'nullable|string',
+            'st_post' => 'nullable|string',
             'total_vacancies' => 'nullable|string',
             'min_salary' => 'nullable|string',
             'max_salary' => 'nullable|string',
             'mode_selection' => 'nullable|string',
             'post_name' => 'nullable|string',
             'post_eligibility' => 'nullable|string',
-            'min_qulification'=>'nullable|string',
+            'min_qulification' => 'nullable|string',
             'post_salary' => 'nullable|string',
             'instruction' => 'nullable|string',
             'link' => 'nullable|string',
