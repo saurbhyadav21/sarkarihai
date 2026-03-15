@@ -37,7 +37,7 @@
         </p>
 
         <p>
-            He holds a <strong>Master’s Degree in English Literature</strong> and currently contributes as
+            He holds a <strong>Bachelor Degree in Computer Science & Engineering</strong> and currently contributes as
             a content writer on <strong>Sarkarihai.com</strong>.
         </p>
 
