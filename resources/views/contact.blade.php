@@ -30,8 +30,8 @@
 
         <h4>About the Author</h4>
         <p>
-            <strong>Sanjay Singh</strong> has been writing content related to education and competitive exams
-            for several years. With nearly <strong>6 years of experience in content writing</strong>, he focuses
+            <strong>Saurbh Yadav</strong> has been writing content related to education and competitive exams
+            for several years. With nearly <strong>10 years+ of experience in content writing</strong>, he focuses
             on providing clear and useful information related to government job notifications, exam updates,
             admit cards and results.
         </p>
