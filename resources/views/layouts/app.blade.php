@@ -13,7 +13,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tools Website</title>
+    <title>@yield('title', 'Latest Sarkari Naukri')</title>
+
+    <meta name="description" content="@yield('meta_description', 'Latest government jobs updates, results and admit cards.')">
+
+    <meta name="keywords" content="@yield('meta_keywords', 'sarkari naukri, govt jobs, railway jobs')">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 

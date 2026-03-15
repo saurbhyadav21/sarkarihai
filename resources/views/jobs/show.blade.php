@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Latest Recruitment Jobs')
+@section('title')
+{{ $job->title }} Recruitment {{ $job->year }} – {{ $job->vacancy }} Posts | Apply Online
+@endsection
+
+@section('meta_description')
+Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->vacancy }} vacancy, eligibility, age limit, selection process and important dates.
+@endsection
+
+@section('meta_keywords')
+{{ $job->title }} recruitment {{ $job->year }}, railway apprentice jobs, ITI jobs
+@endsection
 
 @section('content')
     <main class="flex-shrink-0">
