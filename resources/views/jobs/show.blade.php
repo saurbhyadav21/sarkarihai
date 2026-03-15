@@ -26,9 +26,9 @@
 
                                 <div class="card shadow">
                                     <div class="card-header bg-primary text-white">
-                                        <h4 class="mb-0">
+                                        <h1 class="mb-0">
                                             {{ $job->title }}
-                                        </h4>
+                                        </h1>
                                     </div>
                                     <div class="card-body">
 
