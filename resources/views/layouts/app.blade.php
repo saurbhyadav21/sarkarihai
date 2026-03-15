@@ -234,15 +234,13 @@
                     <li><a href="#" class="text-light text-decoration-none">Admit Card</a></li>
                     <li><a href="#" class="text-light text-decoration-none">Results</a></li>
                     <li><a href="#" class="text-light text-decoration-none">Answer Key</a></li>
-                    <li><a href="#" class="text-light text-decoration-none">Contact Us</a></li>
+                    <li><a href="/contact" class="text-light text-decoration-none">Contact Us</a></li>
                 </ul>
             </div>
 
             <!-- Contact Info -->
             <div class="col-md-4 mb-4">
-                <h5 class="mb-3">
-                    <a href="/contact">Contact Info</a>
-                </h5>
+                <h5 class="mb-3">Contact Info</h5>
                 <p>Email: info@example.com</p>
                 <p>Phone: +91 9876543210</p>
 
