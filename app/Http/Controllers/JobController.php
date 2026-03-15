@@ -21,7 +21,8 @@ class JobController extends Controller
         // Sabhi jobs ke saath slug generate kar ke match kare
         $job = Job::all()->firstWhere(fn($j) => Str::slug($j->title, '-') === $slug);
         $seo = [
-            'title' => $job->title . ' Recruitment ' . $job->year . ' – ' . $job->vacancy . ' Posts | Apply Online',
+            'title' => $job->title . ' – ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date',
+            //South Central Railway Apprentice Recruitment 2026 – 2000+ Posts | Apply Online, Eligibility, Last Date
             'description' => 'Apply online for ' . $job->title . ' Recruitment ' . $job->year . '. Check vacancy details, eligibility, age limit, important dates and direct apply link.',
             'keywords' => $job->title . ' recruitment ' . $job->year . ', railway jobs, apprentice jobs'
         ];
