@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-5">
+    <div class="container py-5" style="    color: #fff;">
 
         <h1 class="mb-4">Contact Us</h1>
 
