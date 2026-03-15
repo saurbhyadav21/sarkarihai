@@ -24,15 +24,15 @@ class JobController extends Controller
             'title' => $job->title . ' - ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date, Salary',
             'description' => 'Apply online for ' . $job->title . ' for ' . $job->total_vacancies . ' posts. Check eligibility, application fee, age limit, important dates and direct apply link.',
 
-          
-            
+
+
             'keywords' => $job->title . ', ' . $job->title . ' vacancy ' . ', ' . $job->title . ' apply online, ' .
                 $job->title . ' notification ' . ', ' . $job->category . ' recruitment'
 
 
-            
+
         ];
-        
+
 
         if (!$job) {
             abort(404); // Agar slug match na ho
@@ -114,9 +114,10 @@ class JobController extends Controller
             'title' => 'disclaimer',
             'description' => 'disclaimer',
 
-           
-            
-            'keywords' => 'dd'];
+
+
+            'keywords' => 'dd'
+        ];
         return view('contact', compact('seo'));
     }
 
@@ -126,26 +127,43 @@ class JobController extends Controller
             'title' => 'disclaimer',
             'description' => 'disclaimer',
 
-           
-            
-            'keywords' => 'dd'];
+
+
+            'keywords' => 'dd'
+        ];
         return view('privacy', compact('seo'));
     }
 
     public function disclaimer()
     {
-       $seo = [
+        $seo = [
             'title' => 'disclaimer',
             'description' => 'disclaimer',
 
-           
-            
+
+
             'keywords' => 'dd'
 
 
-            
+
         ];
         return view('disclaimer', compact('seo'));
+    }
+
+    public function policy()
+    {
+        $seo = [
+            'title' => 'disclaimer',
+            'description' => 'disclaimer',
+
+
+
+            'keywords' => 'dd'
+
+
+
+        ];
+        return view('policy', compact('seo'));
     }
 
 

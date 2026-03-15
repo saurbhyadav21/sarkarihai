@@ -6,6 +6,7 @@ Route::get('/', [JobController::class, 'landing'])->name('landing'); // Landing 
 Route::get('/contact', [JobController::class, 'contact'])->name('contact'); // Landing page
 Route::get('/privacy-policy', [JobController::class, 'privacy'])->name('privacy'); // Landing page
 Route::get('/disclaimer', [JobController::class, 'disclaimer'])->name('disclaimer'); // Landing page
+Route::get('/fact-checking-policy', [JobController::class, 'policy'])->name('policy'); // Landing page
 
 
 Route::get('/job/create', [JobController::class, 'create'])->name('job.create');
