@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 Route::get('/', [JobController::class, 'landing'])->name('landing'); // Landing page
+Route::get('/contact', [JobController::class, 'contact'])->name('contact'); // Landing page
+Route::get('/privacy-policy', [JobController::class, 'privacy'])->name('privacy'); // Landing page
+Route::get('/disclaimer', [JobController::class, 'disclaimer'])->name('disclaimer'); // Landing page
 
 
 Route::get('/job/create', [JobController::class, 'create'])->name('job.create');
@@ -15,3 +18,6 @@ Route::get('/sarkari-naukri/{slug}', [JobController::class, 'show'])->name('job.
 Route::get('/job/{id}/edit', [JobController::class, 'edit'])->name('job.edit');
 Route::post('/job/{id}/update', [JobController::class, 'update'])->name('job.update');
 Route::get('/job/edit-list', [JobController::class, 'editList'])->name('job.edit.list');
+
+
+

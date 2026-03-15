@@ -108,6 +108,24 @@ class JobController extends Controller
         return view('welcome', compact('jobs'));
     }
 
+    public function contact()
+    {
+       
+        return view('contact');
+    }
+
+    public function privacy()
+    {
+       
+        return view('privacy');
+    }
+
+    public function disclaimer()
+    {
+       
+        return view('disclaimer');
+    }
+
 
     public function edit($id)
     {
