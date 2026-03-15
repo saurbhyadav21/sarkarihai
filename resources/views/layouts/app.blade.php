@@ -13,11 +13,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $seo['title'] ?? 'Latest Sarkari Naukri, Results, Admit Card Updates' }}</title>
+    <title>{{ $seo['title'] ?? 'Sarkarihai Latest Sarkari Naukri, Results, Admit Card Updates' }}</title>
 
-    <meta name="description" content="{{ $seo['description'] ?? 'Latest government jobs updates, results and admit cards in India.' }}">
+    <meta name="description" content="{{ $seo['description'] ?? 'Sarkarihai Latest government jobs updates, results and admit cards in India.' }}">
 
-    <meta name="keywords" content="{{ $seo['keywords'] ?? 'sarkari naukri, govt jobs, railway jobs' }}">
+    <meta name="keywords" content="{{ $seo['keywords'] ?? 'Sarkarihai sarkari naukri, govt jobs, railway jobs' }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
