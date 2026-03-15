@@ -55,7 +55,8 @@
     <p>
         For corrections or suggestions, please contact us at:
         <br>
-        <strong>Email:</strong> sarkariresultcm@gmail.com
+        <strong>Email:</strong> official.sarkarihai@gmail.com
+
     </p>
 
     <h3>6. Continuous Review</h3>
@@ -115,7 +116,8 @@
     <p>
         सुधार या सुझाव के लिए हमें ईमेल करें:
         <br>
-        <strong>Email:</strong> sarkariresultcm@gmail.com
+        <strong>Email:</strong> official.sarkarihai@gmail.com
+
     </p>
 
 </div>
