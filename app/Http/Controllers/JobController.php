@@ -21,17 +21,18 @@ class JobController extends Controller
         // Sabhi jobs ke saath slug generate kar ke match kare
         $job = Job::all()->firstWhere(fn($j) => Str::slug($j->title, '-') === $slug);
         $seo = [
-            'title' => $job->title . ' – ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date',
-            //South Central Railway Apprentice Recruitment 2026 – 2000+ Posts | Apply Online, Eligibility, Last Date
-            'description' => 'Apply online for ' . $job->title . ' Recruitment ' . $job->year . '. Check vacancy details, eligibility, age limit, important dates and direct apply link.',
-            'keywords' => $job->title . ' recruitment ' . $job->year . ', railway jobs, apprentice jobs'
+            'title' => $job->title . ' | ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date, Salary',
+            'description' => 'Apply online for ' . $job->title . ' for ' . $job->total_vacancies . ' posts. Check eligibility, application fee, age limit, important dates and direct apply link.',
+            'keywords' => $job->title . ', ' . $job->title . ' vacancy ' . ', ' . $job->title . ' apply online, ' .
+                $job->title . ' notification ' . ', ' .$job->category . ' recruitment ' . ', ' .'railway apprentice recruitment ' . ', ' .
+                'ITI apprentice jobs ' . ', ' .'10th pass railway jobs'
         ];
 
         if (!$job) {
             abort(404); // Agar slug match na ho
         }
 
-        return view('jobs.show', compact('job','seo'));
+        return view('jobs.show', compact('job', 'seo'));
     }
     //     public function show($slug)
     // {
