@@ -238,6 +238,7 @@
                     <li><a href="#" class="text-light text-decoration-none">Admit Card</a></li>
                     <li><a href="#" class="text-light text-decoration-none">Results</a></li>
                     <li><a href="#" class="text-light text-decoration-none">Answer Key</a></li>
+                    <li><a href="/privacy-policy" class="text-light text-decoration-none">Privacy Policy</a></li>
                     <li><a href="/contact" class="text-light text-decoration-none">Contact Us</a></li>
                     <li><a href="/fact-checking-policy" class="text-light text-decoration-none">Fact Checking Policy</a></li>
                 </ul>
