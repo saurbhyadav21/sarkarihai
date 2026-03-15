@@ -194,59 +194,77 @@
     </main>
 
     <footer class="bg-dark text-light pt-5 pb-3 mt-5">
-        <div class="container">
-            <div class="row">
+    <div class="container">
 
-                <!-- About Website -->
-                <div class="col-md-4 mb-4">
-                    <h5 class="mb-3">About Us</h5>
-                    <p>
-                        Our website provides the latest updates on government jobs, admit cards,
-                        results, answer keys and online forms. Stay updated with the latest
-                        recruitment notifications across India.
-                    </p>
-                </div>
-
-                <!-- Important Links -->
-                <div class="col-md-4 mb-4">
-                    <h5 class="mb-3">Important Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-light text-decoration-none">Latest Jobs</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Admit Card</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Results</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Answer Key</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Contact Us</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="col-md-4 mb-4">
-                    <h5 class="mb-3">Contact Info</h5>
-                    <p>Email: info@example.com</p>
-                    <p>Phone: +91 9876543210</p>
-
-                    <!-- Social Media -->
-                    <div>
-                        <a href="#" class="text-light me-3">Facebook</a>
-                        <a href="#" class="text-light me-3">Twitter</a>
-                        <a href="#" class="text-light me-3">Instagram</a>
-                        <a href="#" class="text-light">YouTube</a>
-                    </div>
-                </div>
-
+        <!-- Disclaimer -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h5 class="mb-3">Disclaimer</h5>
+                <p style="font-size:14px; line-height:1.6;">
+                    Information regarding any exam form, results/marks, answer key published on this website
+                    is provided only for the immediate information of the examinees and should not be
+                    considered as a legal document. While every effort has been made by the Sarkarihai team
+                    to ensure the accuracy of the information provided, including official links, we are
+                    not responsible for any inadvertent errors that may appear in the examination
+                    results/marks, answer key, timetable, or admission dates. Additionally, we disclaim
+                    any liability for any loss or damage caused by any shortcomings, defects, or
+                    inaccuracies in the information available on this website. In case of any correction
+                    is needed, feel free to contact us through the Contact Us page.
+                </p>
             </div>
+        </div>
 
-            <hr class="border-light">
+        <div class="row">
 
-            <!-- Copyright -->
-            <div class="text-center">
-                <p class="mb-0">
-                    © 2026 YourWebsiteName.com | All Rights Reserved
+            <!-- About Website -->
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-3">About Us</h5>
+                <p>
+                    Our website provides the latest updates on government jobs, admit cards,
+                    results, answer keys and online forms. Stay updated with the latest
+                    recruitment notifications across India.
                 </p>
             </div>
 
+            <!-- Important Links -->
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-3">Important Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light text-decoration-none">Latest Jobs</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Admit Card</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Results</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Answer Key</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-3">Contact Info</h5>
+                <p>Email: info@example.com</p>
+                <p>Phone: +91 9876543210</p>
+
+                <div>
+                    <a href="#" class="text-light me-3">Facebook</a>
+                    <a href="#" class="text-light me-3">Twitter</a>
+                    <a href="#" class="text-light me-3">Instagram</a>
+                    <a href="#" class="text-light">YouTube</a>
+                </div>
+            </div>
+
         </div>
-    </footer>
+
+        <hr class="border-light">
+
+        <!-- Copyright -->
+        <div class="text-center">
+            <p class="mb-0">
+                © 2026 Sarkarihai.com | All Rights Reserved
+            </p>
+        </div>
+
+    </div>
+</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
