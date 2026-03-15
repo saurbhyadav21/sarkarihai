@@ -25,26 +25,26 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="start_date" class="form-label">Start Date</label>
-                        <input type="date" name="start_date" id="start_date" class="form-control">
+                        <input type="text" name="start_date" id="start_date" class="form-control">
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="end_date" class="form-label">End Date</label>
-                        <input type="date" name="end_date" id="end_date" class="form-control">
+                        <input type="text" name="end_date" id="end_date" class="form-control">
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="last_fee_date" class="form-label">Last Date For Fee</label>
-                        <input type="date" name="last_fee_date" id="last_fee_date" class="form-control">
+                        <input type="text" name="last_fee_date" id="last_fee_date" class="form-control">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="correction_date" class="form-label">Correction Last Date</label>
-                        <input type="date" name="correction_date" id="correction_date" class="form-control">
+                        <input type="text" name="correction_date" id="correction_date" class="form-control">
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="exam_date" class="form-label">Exam Date</label>
-                        <input type="date" name="exam_date" id="exam_date" class="form-control">
+                        <input type="text" name="exam_date" id="exam_date" class="form-control">
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="admit_card" class="form-label">Admit Card Info</label>
@@ -56,11 +56,11 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="result_date" class="form-label">Result Date</label>
-                        <input type="date" name="result_date" id="result_date" class="form-control">
+                        <input type="text" name="result_date" id="result_date" class="form-control">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="info_date" class="form-label">Information Date</label>
-                        <input type="date" name="info_date" id="info_date" class="form-control">
+                        <input type="text" name="info_date" id="info_date" class="form-control">
                     </div>
                 </div>
 
