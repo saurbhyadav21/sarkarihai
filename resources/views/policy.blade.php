@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container py-5">
+<div class="container py-5" style="    color: #fff;">
 
     <h1 class="mb-4">Fact Checking Policy</h1>
 
