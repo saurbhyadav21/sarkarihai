@@ -156,23 +156,23 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Home</a>
+                            <a class="nav-link active" href="/">Home</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Admit Card</a>
+                            <a class="nav-link" href="/">Admit Card</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Result</a>
+                            <a class="nav-link" href="/">Result</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Syllabus</a>
+                            <a class="nav-link" href="/">Syllabus</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Answer Key</a>
+                            <a class="nav-link" href="/">Answer Key</a>
                         </li>
 
                         <li class="nav-item">
