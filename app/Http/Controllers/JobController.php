@@ -110,34 +110,25 @@ class JobController extends Controller
 
     public function contact()
     {
-       $seo = [
-            'title' => $job->title . ' - ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date, Salary',
-            'description' => 'Apply online for ' . $job->title . ' for ' . $job->total_vacancies . ' posts. Check eligibility, application fee, age limit, important dates and direct apply link.',
+        $seo = [
+            'title' => 'disclaimer',
+            'description' => 'disclaimer',
 
+           
             
-            'keywords' => $job->title . ', ' . $job->title . ' vacancy ' . ', ' . $job->title . ' apply online, ' .
-                $job->title . ' notification ' . ', ' . $job->category . ' recruitment'
-
-
-            
-        ];
+            'keywords' => 'dd'];
         return view('contact', compact('seo'));
     }
 
     public function privacy()
     {
-       $seo = [
-            'title' => $job->title . ' - ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date, Salary',
-            'description' => 'Apply online for ' . $job->title . ' for ' . $job->total_vacancies . ' posts. Check eligibility, application fee, age limit, important dates and direct apply link.',
+        $seo = [
+            'title' => 'disclaimer',
+            'description' => 'disclaimer',
 
-            'description' => $job->title.' for ' . $job->total_vacancies . ' posts. Apply online, check eligibility, age limit, application fee, important dates, notification and direct apply link.',
+           
             
-            'keywords' => $job->title . ', ' . $job->title . ' vacancy ' . ', ' . $job->title . ' apply online, ' .
-                $job->title . ' notification ' . ', ' . $job->category . ' recruitment'
-
-
-            
-        ];
+            'keywords' => 'dd'];
         return view('privacy', compact('seo'));
     }
 
@@ -149,8 +140,7 @@ class JobController extends Controller
 
            
             
-            'keywords' => $job->title . ', ' . $job->title . ' vacancy ' . ', ' . $job->title . ' apply online, ' .
-                $job->title . ' notification ' . ', ' . $job->category . ' recruitment'
+            'keywords' => 'dd'
 
 
             
