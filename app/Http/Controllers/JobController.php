@@ -24,7 +24,7 @@ class JobController extends Controller
             'title' => $job->title . ' - ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date, Salary',
             'description' => 'Apply online for ' . $job->title . ' for ' . $job->total_vacancies . ' posts. Check eligibility, application fee, age limit, important dates and direct apply link.',
 
-            'description' => $job->title.' for ' . $job->total_vacancies . ' posts. Apply online, check eligibility, age limit, application fee, important dates, notification and direct apply link.',
+          
             
             'keywords' => $job->title . ', ' . $job->title . ' vacancy ' . ', ' . $job->title . ' apply online, ' .
                 $job->title . ' notification ' . ', ' . $job->category . ' recruitment'
@@ -110,20 +110,52 @@ class JobController extends Controller
 
     public function contact()
     {
-       
-        return view('contact');
+       $seo = [
+            'title' => $job->title . ' - ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date, Salary',
+            'description' => 'Apply online for ' . $job->title . ' for ' . $job->total_vacancies . ' posts. Check eligibility, application fee, age limit, important dates and direct apply link.',
+
+            
+            'keywords' => $job->title . ', ' . $job->title . ' vacancy ' . ', ' . $job->title . ' apply online, ' .
+                $job->title . ' notification ' . ', ' . $job->category . ' recruitment'
+
+
+            
+        ];
+        return view('contact', compact('seo'));
     }
 
     public function privacy()
     {
-       
-        return view('privacy');
+       $seo = [
+            'title' => $job->title . ' - ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date, Salary',
+            'description' => 'Apply online for ' . $job->title . ' for ' . $job->total_vacancies . ' posts. Check eligibility, application fee, age limit, important dates and direct apply link.',
+
+            'description' => $job->title.' for ' . $job->total_vacancies . ' posts. Apply online, check eligibility, age limit, application fee, important dates, notification and direct apply link.',
+            
+            'keywords' => $job->title . ', ' . $job->title . ' vacancy ' . ', ' . $job->title . ' apply online, ' .
+                $job->title . ' notification ' . ', ' . $job->category . ' recruitment'
+
+
+            
+        ];
+        return view('privacy', compact('seo'));
     }
 
     public function disclaimer()
     {
-       
-        return view('disclaimer');
+       $seo = [
+            'title' => 'disclaimer',
+            'description' => 'disclaimer',
+
+           
+            
+            'keywords' => $job->title . ', ' . $job->title . ' vacancy ' . ', ' . $job->title . ' apply online, ' .
+                $job->title . ' notification ' . ', ' . $job->category . ' recruitment'
+
+
+            
+        ];
+        return view('disclaimer', compact('seo'));
     }
 
 
