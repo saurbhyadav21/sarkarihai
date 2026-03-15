@@ -1,23 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WZX7WPHT');</script>
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WZX7WPHT');
+    </script>
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ isset($seo['title']) ? $seo['title'].' | Sarkarihai' : 'Sarkarihai – Latest Sarkari Naukri, Results, Admit Card Updates' }}</title>
+    <title>
+        {{ isset($seo['title']) ? $seo['title'] . ' | Sarkarihai' : 'Sarkarihai – Latest Sarkari Naukri, Results, Admit Card Updates' }}
+    </title>
 
-<meta name="description" content="{{ $seo['description'] ?? 'Latest government jobs updates, results and admit cards in India at Sarkarihai.' }}">
+    <meta name="description"
+        content="{{ $seo['description'] ?? 'Latest government jobs updates, results and admit cards in India at Sarkarihai.' }}">
 
-<meta name="keywords" content="{{ $seo['keywords'] ?? 'sarkari naukri, govt jobs, railway jobs' }}">
+    <meta name="keywords" content="{{ $seo['keywords'] ?? 'sarkari naukri, govt jobs, railway jobs' }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -107,18 +120,21 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NC8JS92QP7"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('config', 'G-NC8JS92QP7');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NC8JS92QP7');
     </script>
 </head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZX7WPHT"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZX7WPHT" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <header>
@@ -177,60 +193,60 @@
         @yield('content')
     </main>
 
-      <footer class="bg-dark text-light pt-5 pb-3 mt-5">
-            <div class="container">
-                <div class="row">
+    <footer class="bg-dark text-light pt-5 pb-3 mt-5">
+        <div class="container">
+            <div class="row">
 
-                    <!-- About Website -->
-                    <div class="col-md-4 mb-4">
-                        <h5 class="mb-3">About Us</h5>
-                        <p>
-                            Our website provides the latest updates on government jobs, admit cards,
-                            results, answer keys and online forms. Stay updated with the latest
-                            recruitment notifications across India.
-                        </p>
-                    </div>
-
-                    <!-- Important Links -->
-                    <div class="col-md-4 mb-4">
-                        <h5 class="mb-3">Important Links</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-light text-decoration-none">Latest Jobs</a></li>
-                            <li><a href="#" class="text-light text-decoration-none">Admit Card</a></li>
-                            <li><a href="#" class="text-light text-decoration-none">Results</a></li>
-                            <li><a href="#" class="text-light text-decoration-none">Answer Key</a></li>
-                            <li><a href="#" class="text-light text-decoration-none">Contact Us</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Contact Info -->
-                    <div class="col-md-4 mb-4">
-                        <h5 class="mb-3">Contact Info</h5>
-                        <p>Email: info@example.com</p>
-                        <p>Phone: +91 9876543210</p>
-
-                        <!-- Social Media -->
-                        <div>
-                            <a href="#" class="text-light me-3">Facebook</a>
-                            <a href="#" class="text-light me-3">Twitter</a>
-                            <a href="#" class="text-light me-3">Instagram</a>
-                            <a href="#" class="text-light">YouTube</a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <hr class="border-light">
-
-                <!-- Copyright -->
-                <div class="text-center">
-                    <p class="mb-0">
-                        © 2026 YourWebsiteName.com | All Rights Reserved
+                <!-- About Website -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">About Us</h5>
+                    <p>
+                        Our website provides the latest updates on government jobs, admit cards,
+                        results, answer keys and online forms. Stay updated with the latest
+                        recruitment notifications across India.
                     </p>
                 </div>
 
+                <!-- Important Links -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">Important Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Latest Jobs</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Admit Card</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Results</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Answer Key</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">Contact Info</h5>
+                    <p>Email: info@example.com</p>
+                    <p>Phone: +91 9876543210</p>
+
+                    <!-- Social Media -->
+                    <div>
+                        <a href="#" class="text-light me-3">Facebook</a>
+                        <a href="#" class="text-light me-3">Twitter</a>
+                        <a href="#" class="text-light me-3">Instagram</a>
+                        <a href="#" class="text-light">YouTube</a>
+                    </div>
+                </div>
+
             </div>
-        </footer>
+
+            <hr class="border-light">
+
+            <!-- Copyright -->
+            <div class="text-center">
+                <p class="mb-0">
+                    © 2026 YourWebsiteName.com | All Rights Reserved
+                </p>
+            </div>
+
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
