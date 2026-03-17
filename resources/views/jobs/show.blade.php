@@ -14,9 +14,35 @@
 @endsection
 
 @section('content')
+    <style>
+        .banner-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Tablet */
+        @media(max-width:992px) {
+            .banner-img {
+                height: 180px;
+            }
+        }
+
+        /* Mobile */
+        @media(max-width:576px) {
+            .banner-img {
+                height: 140px;
+            }
+        }
+    </style>
     <main class="flex-shrink-0">
         <div class="container mt-3">
-            <img src="{{ asset('public/job-images/' . $job->image) }}" class="img-fluid banner-img" alt="Job Image">
+            <img src="{{ asset('job-images/' . $job->image) }}" class="img-fluid banner-img" alt="Job Image">
+        </div>
+
+        <div class="container mt-3">
+            <img src="{{ asset('job-images/' . $job->image) }}" class="img-fluid banner-img" alt="Job Image">
         </div>
 
 
