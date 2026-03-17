@@ -24,14 +24,14 @@
         /* Tablet */
         @media(max-width:992px) {
             .banner-img {
-                height: 180px;
+                height: auto;
             }
         }
 
         /* Mobile */
         @media(max-width:576px) {
             .banner-img {
-                height: 140px;
+                height: auto;
             }
         }
     </style>
