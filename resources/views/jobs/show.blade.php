@@ -17,8 +17,7 @@
     <style>
         .banner-img {
             width: 100%;
-            height: 220px;
-            object-fit: cover;
+            height: auto;
             border-radius: 8px;
         }
 
@@ -38,8 +37,10 @@
     </style>
     <main class="flex-shrink-0">
         <div class="container mt-3">
-            <img src="{{ asset('public/job-images/' . $job->image) }}" class="img-fluid banner-img" alt="Job Image">
-        </div>
+    <img src="{{ asset('job-images/'.$job->image) }}" 
+         class="img-fluid banner-img" 
+         alt="Job Image">
+</div>
 
         {{-- <div class="container mt-3">
             <img src="{{ asset('job-images/' . $job->image) }}" class="img-fluid banner-img" alt="Job Image">
