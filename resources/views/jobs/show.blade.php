@@ -37,7 +37,7 @@
     </style>
     <main class="flex-shrink-0">
         <div class="container mt-3">
-    <img src="{{ asset('job-images/'.$job->image) }}" 
+    <img src="{{ asset('public/job-images/'.$job->image) }}" 
          class="img-fluid banner-img" 
          alt="Job Image">
 </div>
