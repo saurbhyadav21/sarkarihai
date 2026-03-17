@@ -9,7 +9,7 @@
 
 <div class="container mt-5">
 
-<form action="{{ route('job.update', $job->id) }}" method="POST">
+<form action="{{ route('job.update', $job->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     {{-- 
     @method('PUT') --}}
@@ -32,6 +32,14 @@
                     <label class="form-label">Description</label>
                     <textarea name="desce" class="form-control" rows="2">{{ $job->desce }}</textarea>
                 </div>
+
+                <!-- old image -->
+@if($job->image)
+<img src="{{ asset('public/job-images/'.$job->image) }}" width="100" class="mb-2" style="width: 1296px;height: 300px;">
+@endif
+
+<!-- new image -->
+<input type="file" name="image" class="form-control mb-2">
             </div>
 
             <div class="row">

@@ -43,12 +43,12 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
                                     <div class="card-body">
 
                                         <p>
-                                            <strong>{{ $job->title }}</strong> has released notification for various
-                                            <strong>{{ $job->post_name ?? 'POSTS' }}</strong>.
+                                            <strong>{{ $job->title }}</strong> has released notification for various posts
+                                            <strong>{{ $job->post_name }}</strong> under {{ $job->category }}.
                                             Interested candidates can apply online from
-                                            <strong>{{ \Carbon\Carbon::parse($job->start_date)->format('d-m-Y') ?? 'START DATE' }}</strong>
+                                            <strong>{{ \Carbon\Carbon::parse($job->start_date)->format('d-m-Y') ?? 'START DATE' }}</strong> 
                                             to
-                                            <strong>{{ \Carbon\Carbon::parse($job->end_date)->format('d-m-Y') ?? 'END DATE' }}</strong>
+                                            <strong>{{ \Carbon\Carbon::parse($job->end_date)->format('d-m-Y') ?? 'END DATE' }}</strong> at offical website : https://google.com.
                                         </p>
 
                                         <h5>Post Details:</h5>
@@ -64,9 +64,7 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
                                         </ul>
 
                                         <p>
-                                            Candidates should read the official notification for <strong>eligibility, post
-                                                information, selection procedure, age limits, pay scale, and other important
-                                                details</strong>.
+                                            Read the notification for recruitment eligibility, post information, selection procedure, Physical Eligibility, pay scale and all other information.</strong>.
                                         </p>
 
                                         <a href="#date-fee" class="btn btn-success">Read Official
@@ -81,7 +79,8 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
                 </div>
 
             </div>
-            <div class="row align-items-stretch gy-4" id="date-fee">
+           
+            {{-- <div class="row align-items-stretch gy-4" id="date-fee">
 
                 <!-- Important Dates -->
                 <div class="col-md-6">
@@ -345,10 +344,10 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
                             <div class="card shadow-sm">
                                 <div class="card-body">
 
-                                    {{-- <h2 class="card-title mb-4 text-center">Post & Eligibility</h2> --}}
+                                    
 
                                     @php
-                                        // explode comma-separated values into arrays
+                                        
                                         $names = explode(',', $job->post_name);
                                         $eligibilities = explode(',', $job->post_eligibility);
                                         $salaries = explode(',', $job->post_salary);
@@ -404,7 +403,7 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
 
 
 
@@ -412,7 +411,7 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
 
 
 
-            <div class="container mt-4">
+            {{-- <div class="container mt-4">
 
                 <div class="card shadow-sm">
                     <div class="card-body">
@@ -453,10 +452,10 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
 
 
-            <div class="container mt-4">
+            {{-- <div class="container mt-4">
 
                 <div class="card shadow-sm">
                     <div class="card-body">
@@ -496,10 +495,10 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
 
 
-            <div class="container mt-5">
+            {{-- <div class="container mt-5">
                 <div class="card shadow-sm">
                     <div class="card-body">
 
@@ -632,7 +631,7 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
     </main>

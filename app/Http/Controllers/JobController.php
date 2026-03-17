@@ -62,6 +62,8 @@ class JobController extends Controller
     // Store data
     public function store(Request $request)
     {
+
+
         // Validation (optional but recommended)
         $request->validate([
             'title' => 'required|string',
@@ -93,10 +95,20 @@ class JobController extends Controller
             'instruction' => 'nullable|string',
             'link' => 'nullable|string',
             'doc' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
+        $data = $request->all(); // pehle data lo
+        if ($request->hasFile('image')) {
 
-        // Create new record
-        Job::create($request->all());
+            $file = $request->file('image');
+
+            $name = time() . '.' . $file->getClientOriginalExtension();
+            // dd(public_path('job-images'), $name);
+            $file->move(public_path('job-images'), $name);
+        }
+
+        $data['image'] = $name;
+        Job::create($data);
 
         return redirect()->back()->with('success', 'Job added successfully!');
     }
@@ -183,7 +195,7 @@ class JobController extends Controller
     // Update Data
     public function update(Request $request, $id)
     {
-
+        $job = Job::findOrFail($id);
         $request->validate([
             'title' => 'required|string',
             'desce' => 'nullable|string',
@@ -222,51 +234,29 @@ class JobController extends Controller
             'instruction' => 'nullable|string',
             'link' => 'nullable|string',
             'doc' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        $job = Job::findOrFail($id);
+        $data = $request->all();
 
-        // Update only allowed fields
-        $job->update($request->only([
-            'title',
-            'desce',
-            'start_date',
-            'end_date',
-            'last_fee_date',
-            'correction_date',
-            'exam_date',
-            'admit_card',
-            'result_date',
-            'info_date',
-            'genral_fees',
-            'obc_fees',
-            'sc_fees',
-            'st_fees',
-            'min_age',
-            'extra_charge',
-            'max_age_genral',
-            'max_age_obc',
-            'max_age_sc_st',
-            'max_age_female',
-            'relaxation',
-            'genral_post',
-            'ews_post',
-            'obc_post',
-            'sc_post',
-            'st_post',
-            'total_vacancies',
-            'min_salary',
-            'max_salary',
-            'mode_selection',
-            'post_name',
-            'post_eligibility',
-            'min_qulification',
-            'post_salary',
-            'instruction',
-            'link',
-            'doc'
-        ]));
+        // 🔥 image update logic
+        if ($request->hasFile('image')) {
+            // dd(public_path('job-images' . $job->image));
+            // old image delete
+            if ($job->image && file_exists(public_path('job-images/' . $job->image))) {
+                unlink(public_path('job-images/' . $job->image));
+            }
 
-        return redirect()->back()->with('success', 'Job Updated Successfully');
+            // new image upload
+            $file = $request->file('image');
+            $name = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('job-images'), $name);
+
+            $data['image'] = $name;
+        }
+
+        $job->update($data);
+
+        return redirect()->back()->with('success', 'Job updated successfully!');
     }
 }

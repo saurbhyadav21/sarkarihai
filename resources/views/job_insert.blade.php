@@ -6,7 +6,7 @@
         <div class="card-body">
             <h2 class="card-title text-center mb-4">Add New Job / Recruitment</h2>
 
-            <form action="{{ route('job.store') }}" method="POST">
+            <form action="{{ route('job.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Title -->
@@ -20,6 +20,14 @@
                     <label for="desce" class="form-label">Description</label>
                     <textarea name="desce" id="desce" class="form-control" rows="3"></textarea>
                 </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">image</label>
+                    {{-- <textarea name="desce" id="desce" class="form-control" rows="3"></textarea> --}}
+                    <input type="file" name="image" id="image" class="form-control" required>
+                </div>
+
+                
 
                 <!-- Dates -->
                 <div class="row">
