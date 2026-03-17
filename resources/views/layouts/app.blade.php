@@ -160,6 +160,12 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link active" href="/">Latest Jobs</a>
+                        </li>
+
+                       
+
+                        <li class="nav-item">
                             <a class="nav-link" href="/">Admit Card</a>
                         </li>
 
