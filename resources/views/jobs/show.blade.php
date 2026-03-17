@@ -1,22 +1,22 @@
 @extends('layouts.app')
 
 @section('title')
-{{ $job->title }} Recruitment {{ $job->year }} – {{ $job->vacancy }} Posts | Apply Online
+    {{ $job->title }} Recruitment {{ $job->year }} – {{ $job->vacancy }} Posts | Apply Online
 @endsection
 
 @section('meta_description')
-Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->vacancy }} vacancy, eligibility, age limit, selection process and important dates.
+    Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->vacancy }} vacancy, eligibility,
+    age limit, selection process and important dates.
 @endsection
 
 @section('meta_keywords')
-{{ $job->title }} recruitment {{ $job->year }}, railway apprentice jobs, ITI jobs
+    {{ $job->title }} recruitment {{ $job->year }}, railway apprentice jobs, ITI jobs
 @endsection
 
 @section('content')
     <main class="flex-shrink-0">
         <div class="container mt-3">
-            <img src="https://sarkariresult.com.cm/wp-content/uploads/2026/03/UPPSC-PCS-Result-2025-1764589055980.jpg"
-                class="img-fluid banner-img" alt="Result Banner">
+            <img src="{{ asset('job-images/' . $job->image) }}" class="img-fluid banner-img" alt="Job Image">
         </div>
 
 
@@ -43,12 +43,14 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
                                     <div class="card-body">
 
                                         <p>
-                                            <strong>{{ $job->title }}</strong> has released notification for various posts
+                                            <strong>{{ $job->title }}</strong> has released notification for various
+                                            posts
                                             <strong>{{ $job->post_name }}</strong> under {{ $job->category }}.
                                             Interested candidates can apply online from
-                                            <strong>{{ \Carbon\Carbon::parse($job->start_date)->format('d-m-Y') ?? 'START DATE' }}</strong> 
+                                            <strong>{{ \Carbon\Carbon::parse($job->start_date)->format('d-m-Y') ?? 'START DATE' }}</strong>
                                             to
-                                            <strong>{{ \Carbon\Carbon::parse($job->end_date)->format('d-m-Y') ?? 'END DATE' }}</strong> at offical website : https://google.com.
+                                            <strong>{{ \Carbon\Carbon::parse($job->end_date)->format('d-m-Y') ?? 'END DATE' }}</strong>
+                                            at offical website : https://google.com.
                                         </p>
 
                                         <h5>Post Details:</h5>
@@ -56,7 +58,8 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
                                             <li><strong>Post Name:</strong> {{ $job->post_name ?? 'POST' }}</li>
                                             <li><strong>Salary:</strong> ₹{{ $job->min_salary ?? 'N/A' }} -
                                                 ₹{{ $job->max_salary ?? 'N/A' }}</li>
-                                            <li><strong>Minimum Qualification:</strong> {{ $job->min_qulification ?? 'N/A' }}
+                                            <li><strong>Minimum Qualification:</strong>
+                                                {{ $job->min_qulification ?? 'N/A' }}
                                             </li>
                                             <li><strong>Minimum Age:</strong> {{ $job->min_age ?? 'N/A' }} years</li>
                                             <li><strong>Total Vacancies:</strong> {{ $job->total_vacancies ?? 'N/A' }}</li>
@@ -64,7 +67,8 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
                                         </ul>
 
                                         <p>
-                                            Read the notification for recruitment eligibility, post information, selection procedure, Physical Eligibility, pay scale and all other information.</strong>.
+                                            Read the notification for recruitment eligibility, post information, selection
+                                            procedure, Physical Eligibility, pay scale and all other information.</strong>.
                                         </p>
 
                                         <a href="#date-fee" class="btn btn-success">Read Official
@@ -79,7 +83,7 @@ Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->
                 </div>
 
             </div>
-           
+
             {{-- <div class="row align-items-stretch gy-4" id="date-fee">
 
                 <!-- Important Dates -->
