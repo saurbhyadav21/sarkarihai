@@ -234,7 +234,7 @@
                     results, answer keys and online forms. Stay updated with the latest
                     recruitment notifications across India.
                 </p>
-                <a href="//www.dmca.com/Protection/Status.aspx?ID=659c3c64-4259-4515-b7ce-7895b73b7f7b" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca_protected_25_120.png?ID=659c3c64-4259-4515-b7ce-7895b73b7f7b"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
+                <a href="//www.dmca.com/Protection/Status.aspx?ID=ef60ce3f-6888-44e5-af7e-cfede662ea9c" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=ef60ce3f-6888-44e5-af7e-cfede662ea9c"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
             </div>
 
             <!-- Important Links -->
