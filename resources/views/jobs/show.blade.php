@@ -77,7 +77,7 @@
                                             <strong>{{ \Carbon\Carbon::parse($job->start_date)->format('d-m-Y') ?? 'START DATE' }}</strong>
                                             to
                                             <strong>{{ \Carbon\Carbon::parse($job->end_date)->format('d-m-Y') ?? 'END DATE' }}</strong>
-                                            at offical website : https://google.com.
+                                            at offical website : {{ $job->website ?? 'Update Soon' }}
                                         </p>
 
                                         <h5>Post Details:</h5>
