@@ -37,11 +37,26 @@
                             <label class="form-label">End Date</label>
                             <input type="text" name="end_date" value="{{ $job->end_date }}" class="form-control">
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Description</label>
-                            <textarea name="desce" class="form-control" rows="2">{{ $job->desce }}</textarea>
+                       
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label">Min Salary</label>
+                            <input type="text" name="min_salary" value="{{ $job->min_salary }}"
+                                class="form-control">
                         </div>
-
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label">Max Salary</label>
+                            <input type="text" name="max_salary" value="{{ $job->max_salary }}"
+                                class="form-control">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label">Min Age</label>
+                            <input type="text" name="min_age" value="{{ $job->min_age }}" class="form-control">
+                        </div>
+                         <div class="col-md-4 mb-3">
+                            <label class="form-label">min_qulification</label>
+                            {{-- <input type="text" name="post_eligibility" value="{{ $job->post_eligibility }}" class="form-control"> --}}
+                            <textarea name="min_qulification" class="form-control" rows="3">{{ $job->min_qulification }}</textarea>
+                        </div>
                         <!-- old image -->
                         @if ($job->image)
                             <img src="{{ asset('public/job-images/' . $job->image) }}" width="100" class="mb-2"
@@ -50,6 +65,23 @@
 
                         <!-- new image -->
                         <input type="file" name="image" class="form-control mb-2">
+
+                         <div class="col-md-3 mb-3">
+                            <label class="form-label">Total Vacancies</label>
+                            <input type="text" name="total_vacancies" value="{{ $job->total_vacancies }}"
+                                class="form-control">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Exam Date</label>
+                            <input type="text" name="exam_date" value="{{ $job->exam_date }}" class="form-control">
+                        </div>
+                        --------------------------------------------
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea name="desce" class="form-control" rows="2">{{ $job->desce }}</textarea>
+                        </div>
+
+                        
                     </div>
 
                     <div class="row">
@@ -67,10 +99,7 @@
                             <input type="text" name="correction_date" value="{{ $job->correction_date }}"
                                 class="form-control">
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Exam Date</label>
-                            <input type="text" name="exam_date" value="{{ $job->exam_date }}" class="form-control">
-                        </div>
+                        
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Admit Card Date</label>
                             <input type="text" name="admit_card" value="{{ $job->admit_card }}"
@@ -121,10 +150,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label">Min Age</label>
-                            <input type="text" name="min_age" value="{{ $job->min_age }}" class="form-control">
-                        </div>
+                        
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Max Age General</label>
                             <input type="text" name="max_age_genral" value="{{ $job->max_age_genral }}"
@@ -154,21 +180,7 @@
                                 class="form-control">
                         </div>
 
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label">Total Vacancies</label>
-                            <input type="text" name="total_vacancies" value="{{ $job->total_vacancies }}"
-                                class="form-control">
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label">Min Salary</label>
-                            <input type="text" name="min_salary" value="{{ $job->min_salary }}"
-                                class="form-control">
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label">Max Salary</label>
-                            <input type="text" name="max_salary" value="{{ $job->max_salary }}"
-                                class="form-control">
-                        </div>
+                        
                         <div class="col-md-3 mb-3">
                             <label class="form-label">genral_post</label>
                             <input type="text" name="genral_post" value="{{ $job->genral_post }}"
@@ -205,11 +217,7 @@
                             {{-- <input type="text" name="post_eligibility" value="{{ $job->post_eligibility }}" class="form-control"> --}}
                             <textarea name="post_eligibility" class="form-control" rows="3">{{ $job->post_eligibility }}</textarea>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">min_qulification</label>
-                            {{-- <input type="text" name="post_eligibility" value="{{ $job->post_eligibility }}" class="form-control"> --}}
-                            <textarea name="min_qulification" class="form-control" rows="3">{{ $job->min_qulification }}</textarea>
-                        </div>
+                       
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Post Salary</label>
                             {{-- <input type="text" name="post_salary" value="{{ $job->post_salary }}" class="form-control"> --}}
