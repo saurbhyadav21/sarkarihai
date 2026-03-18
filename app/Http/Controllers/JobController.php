@@ -117,7 +117,10 @@ class JobController extends Controller
 
     public function landing()
     {
-        $jobs = Job::orderBy('end_date', 'asc')->get(); // 👈 yaha change
+         $jobs = Job::whereDate('end_date', '>=', now())
+                ->orderBy('end_date', 'asc')
+                ->get();
+
         return view('welcome', compact('jobs'));
     }
 
