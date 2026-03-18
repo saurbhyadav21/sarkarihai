@@ -75,17 +75,17 @@
                             <label class="form-label">Exam Date</label>
                             <input type="text" name="exam_date" value="{{ $job->exam_date }}" class="form-control">
                         </div>
-                        --------------------------------------------
+                        
+                        
+                        
+                    </div>
+--------------------------------------------
+                    <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Description</label>
                             <textarea name="desce" class="form-control" rows="2">{{ $job->desce }}</textarea>
                         </div>
 
-                        
-                    </div>
-
-                    <div class="row">
-                        
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Last Fee Date</label>
                             <input type="text" name="last_fee_date" value="{{ $job->last_fee_date }}"
