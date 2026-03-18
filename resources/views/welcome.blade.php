@@ -155,7 +155,8 @@
 
                                 <div class="job-meta">
                                     {{-- {{ ucfirst($names[$i] ?? '') }} | --}}
-                                    <span style="color: green; font-weight:600;">₹{{ $salaries[$i] ?? '' }} |</span>
+                                    {{-- <span style="color: green; font-weight:600;">₹{{ $salaries[$i] ?? '' }} |</span> --}}
+                                    <span style="color: green; font-weight:600;">₹{{ $job->min_salary ?? '' }} | {{ $job->max_salary ?? '' }}</span>
                                     {{ $job->min_qulification ?? '' }} |
                                     <span style="color: red;font-weight:600;">{{ date('d M Y', strtotime($job->end_date)) }}</span>
                                 </div>
