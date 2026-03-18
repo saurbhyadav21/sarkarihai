@@ -37,10 +37,8 @@
     </style>
     <main class="flex-shrink-0">
         <div class="container mt-3">
-    <img src="{{ asset('public/job-images/'.$job->image) }}" 
-         class="img-fluid banner-img" 
-         alt="Job Image">
-</div>
+            <img src="{{ asset('public/job-images/' . $job->image) }}" class="img-fluid banner-img" alt="Job Image">
+        </div>
 
         {{-- <div class="container mt-3">
             <img src="{{ asset('job-images/' . $job->image) }}" class="img-fluid banner-img" alt="Job Image">
@@ -77,7 +75,9 @@
                                             <strong>{{ \Carbon\Carbon::parse($job->start_date)->format('d-m-Y') ?? 'START DATE' }}</strong>
                                             to
                                             <strong>{{ \Carbon\Carbon::parse($job->end_date)->format('d-m-Y') ?? 'END DATE' }}</strong>
-                                            at offical website : {{ $job->website ?? 'Update Soon' }}
+                                            at offical website : <a href="{{ $job->website }}" target="_blank">
+                                                {{ 'Click Here' }}
+                                            </a>
                                         </p>
 
                                         <h5>Post Details:</h5>
