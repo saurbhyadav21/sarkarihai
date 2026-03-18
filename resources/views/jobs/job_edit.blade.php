@@ -75,6 +75,11 @@
                             <label class="form-label">Exam Date</label>
                             <input type="text" name="exam_date" value="{{ $job->exam_date }}" class="form-control">
                         </div>
+
+                         <div class="col-md-4 mb-3">
+                            <label class="form-label">website</label>
+                            <input type="text" name="website" value="{{ $job->website }}" class="form-control">
+                        </div>
                         
                         
                         

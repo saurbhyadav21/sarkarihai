@@ -95,6 +95,7 @@ class JobController extends Controller
             'instruction' => 'nullable|string',
             'link' => 'nullable|string',
             'doc' => 'nullable|string',
+            'website' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
         $data = $request->all(); // pehle data lo
@@ -234,6 +235,7 @@ class JobController extends Controller
             'instruction' => 'nullable|string',
             'link' => 'nullable|string',
             'doc' => 'nullable|string',
+            'website' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
