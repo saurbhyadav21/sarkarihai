@@ -117,7 +117,7 @@ class JobController extends Controller
 
     public function landing()
     {
-        $jobs = Job::all(); // Sabhi jobs fetch karo
+        $jobs = Job::orderBy('end_date', 'asc')->get(); // 👈 yaha change
         return view('welcome', compact('jobs'));
     }
 
