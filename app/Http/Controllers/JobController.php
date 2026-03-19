@@ -264,4 +264,36 @@ class JobController extends Controller
 
         return redirect()->back()->with('success', 'Job updated successfully!');
     }
+
+
+    public function storeJson(Request $request)
+{
+    // Validate JSON
+    $request->validate([
+        'job_json' => 'required|json'
+    ]);
+
+    // Decode JSON
+    $json = json_decode($request->job_json, true);
+
+    // Map fields
+    $data = [
+        'title'            => $json['title'] ?? null,
+        'start_date'       => $json['start_date'] ?? null,
+        'end_date'         => $json['last_date'] ?? null,
+        'exam_date'        => $json['exam_date'] ?? null,
+        'min_salary'       => $json['salary_min'] ?? null,
+        'max_salary'       => $json['salary_max'] ?? null,
+        'min_age'          => $json['age_min'] ?? null,
+        'max_age_genral'   => $json['age_max'] ?? null,
+        'total_vacancies'  => $json['total_vacancy'] ?? null,
+        'post_eligibility' => $json['qualification'] ?? null,
+        'website'          => $json['website'] ?? null,
+    ];
+
+    // Save
+    Job::create($data);
+
+    return back()->with('success', 'Job added via JSON!');
+}
 }

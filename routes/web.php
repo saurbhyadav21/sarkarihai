@@ -21,4 +21,9 @@ Route::post('/job/{id}/update', [JobController::class, 'update'])->name('job.upd
 Route::get('/job/edit-list', [JobController::class, 'editList'])->name('job.edit.list');
 
 
+Route::get('/add-job', function () {
+    return view('jobs/add-job');
+});
+
+Route::post('/add-job', [JobController::class, 'storeJson'])->name('job.store.json');
 
