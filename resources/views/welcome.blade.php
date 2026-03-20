@@ -40,7 +40,7 @@
             color: #555;
             /* white-space: nowrap; */
             overflow: hidden;
-            text-overflow: ellipsis;
+            text-overflow: ellipsis;    background-color: #fff;
         }
 
         .c-t {
