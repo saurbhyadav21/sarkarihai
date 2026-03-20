@@ -318,8 +318,7 @@
     {{-- <div class="container mt-4">
         <h2 class="mb-3 text-center">Latest Jobs</h2>
     </div> --}}
-    <div class="container mt-4">
-        {{-- <h2 class="mb-4 text-center">Upcoming Job Apply Deadlines</h2> --}}
+    {{-- <div class="container mt-4">
         <h2 class="mb-3 c-t">
 
             <span><b>Upcoming Job Deadlines</b></span>
@@ -350,7 +349,7 @@
                     <div class="card h-100 shadow-sm {{ $cardColor }}">
                         <div class="card-body p-2 text-center">
                             <h6 class="card-title fw-bold mb-2" style="font-size:14px;">
-                                {{-- {{ Str::limit($job->title, 25) }} --}}
+                        
                                 {{ $job->title }}
                             </h6>
                             <p class="mb-1" style="font-size:12px;">
@@ -368,5 +367,5 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </div> --}}
 @endsection
