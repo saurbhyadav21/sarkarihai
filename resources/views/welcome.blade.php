@@ -240,7 +240,7 @@
                             </div>
                             @php
                                 $endDate = \Carbon\Carbon::parse($job->end_date);
-    $today = \Carbon\Carbon::now();
+                                $today = \Carbon\Carbon::now();
 
                                 $daysLeft = $today->diffInDays($endDate, false); // negative bhi allow
 
