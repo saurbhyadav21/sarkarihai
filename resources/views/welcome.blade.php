@@ -237,7 +237,7 @@
                                         @endphp
 
                                         @if ($isNew)
-                                            <span style="color:red; font-weight:bold; margin-left:5px;">NEW</span>
+                                            {{-- <span style="color:red; font-weight:bold; margin-left:5px;">NEW</span> --}}
                                             <img src="https://www.facultyplus.com/wp-content/uploads/2020/07/new-flash-gif.gif" width="30">
                                         @endif
                                     </div>
