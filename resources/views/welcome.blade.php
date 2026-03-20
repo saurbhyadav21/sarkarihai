@@ -29,7 +29,7 @@
 
         .job-title {
             font-weight: 600;
-            font-size: clamp(11px, 1.2vw, 14px);
+            font-size: clamp(11px, 1.2vw, 12px);
             /* white-space: nowrap; */
             overflow: hidden;
             text-overflow: ellipsis;
