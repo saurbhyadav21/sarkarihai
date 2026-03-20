@@ -12,11 +12,11 @@
 
         .job-box {
             border: 1px solid #eee;
-            padding: 8px;
+            padding:0px;
             display: flex;
             align-items: center;
             background: #fff;
-            height: 65px;
+            height: 55px;
             overflow: hidden;
         }
 
@@ -233,17 +233,15 @@
                                    {{ ucfirst($job->title) . ' - ' . ucfirst($names[$i] ?? '') }}
                                 </div>
 
-                                <div class="job-meta">
-                                    {{-- {{ ucfirst($names[$i] ?? '') }} | --}}
-                                    {{-- <span style="color: green; font-weight:600;">₹{{ $salaries[$i] ?? '' }} |</span> --}}
+                                
+                            </div>
+
+                        </div>
+                        <div class="job-meta">
                                     <span style="color: green; font-weight:600;">₹{{ $job->min_salary ?? '' }} | {{ $job->max_salary ?? '' }}</span>
                                     {{ $job->min_qulification ?? '' }} |
                                     <span style="color: red;font-weight:600;">{{ date('d M Y', strtotime($job->end_date)) }}</span>
                                 </div>
-                            </div>
-
-                        </div>
-
                     </a>
 
                 </div>
