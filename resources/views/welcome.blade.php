@@ -9,7 +9,13 @@
         .col-md-4 {
             padding: 4px;
         }
-
+        .new-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 40px;
+    z-index: 10;
+}
         .job-box {
             border: 1px solid #eee;
             padding: 0px;
@@ -230,22 +236,17 @@
                                 <img src="{{ asset('public/job-images/' . $job->image) }}" class="job-logo">
 
                                 <div>
-                                    <div class="job-title">
-                                        {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
-                                        @php
-                                            $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
-                                        @endphp
+                                    <div class="job-title position-relative">
+    {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
 
-                                        @if ($isNew)
-                                            {{-- <span style="color:red; font-weight:bold; margin-left:5px;">NEW</span> --}}
-                                            <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif" style="    width: 40px;
-    position: absolute;
-    z-index: 9999;
-        margin-left
-: 18px;
-    margin-top: -43px;">
-                                        @endif
-                                    </div>
+    @php
+        $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
+    @endphp
+
+    @if ($isNew)
+        <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif" class="new-badge">
+    @endif
+</div>
 
 
                                 </div>
