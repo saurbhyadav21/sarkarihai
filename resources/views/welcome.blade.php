@@ -11,11 +11,11 @@
         }
 
         .new-badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 40px;
-            z-index: 10;
+                position: absolute;
+    top: 30px;
+    width: 39px;
+    z-index: 10;
+    right: -3px;
         }
 
         .job-box {
