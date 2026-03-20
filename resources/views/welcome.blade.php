@@ -255,8 +255,9 @@
 
                             <div class="job-meta">
                                 <span style="color: green; font-weight:600;">
-    ₹{{ number_format($job->min_salary ?? 0) }} - ₹{{ number_format($job->max_salary ?? 0) }}
-</span>
+                                    ₹{{ number_format($job->min_salary ?? 0) }} -
+                                    ₹{{ number_format($job->max_salary ?? 0) }}
+                                </span>
                                 |
                                 <span style="color: green; font-weight:600;">
                                     {{ $job->min_qulification ?? '' }}
