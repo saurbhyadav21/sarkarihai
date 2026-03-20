@@ -231,7 +231,7 @@
 
                                 <div>
                                     <div class="job-title">
-                                        {{ ucfirst($job->title) . ' - ' . ucfirst($names[$i] ?? '') }}
+                                        {{ ucfirst($job->small_title) . ' - ' . ucfirst($names[$i] ?? '') }}
                                     </div>
 
 
