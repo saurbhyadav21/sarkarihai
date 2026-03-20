@@ -12,7 +12,7 @@
 
         .job-box {
             border: 1px solid #eee;
-            padding:0px;
+            padding: 0px;
             display: flex;
             align-items: center;
             background: #fff;
@@ -24,7 +24,8 @@
             width: 55px;
             height: 55px;
             object-fit: cover;
-            margin-right: 8px;object-position: 0%;
+            margin-right: 8px;
+            object-position: 0%;
         }
 
         .job-title {
@@ -40,7 +41,8 @@
             color: #555;
             /* white-space: nowrap; */
             overflow: hidden;
-            text-overflow: ellipsis;    background-color: #fff;
+            text-overflow: ellipsis;
+            background-color: #fff;
         }
 
         .c-t {
@@ -105,20 +107,20 @@
 
         }
 
-        .job-link{
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
+        .job-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
 
-.job-box{
-    cursor: pointer;
-}
+        .job-box {
+            cursor: pointer;
+        }
     </style>
 
 
 
-{{-- <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    {{-- <script src="https://code.highcharts.com/maps/highmaps.js"></script>
 <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
 <style>#container {
     height: 500px;
@@ -199,57 +201,56 @@
 
     <div class="container mt-3">
 
-    <h2 class="mb-3 c-t">
-        <span><b>Latest Jobs</b></span>
+        <h2 class="mb-3 c-t">
+            <span><b>Latest Jobs</b></span>
 
-        <span class="last-update">
-            Last Updated : {{ now()->format('d-m-Y H:i') }}
-            <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
-        </span>
-    </h2>
+            <span class="last-update">
+                Last Updated : {{ now()->format('d-m-Y H:i') }}
+                <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
+            </span>
+        </h2>
 
-    <div class="row">
+        <div class="row">
 
-        @foreach ($jobs as $job)
-            @php
-                $names = explode(',', $job->post_name);
-                $salaries = explode(',', $job->post_salary);
-                $eligibilities = explode(',', $job->min_qulification);
-                $count = max(count($names), count($salaries), count($eligibilities));
-            @endphp
+            @foreach ($jobs as $job)
+                @php
+                    $names = explode(',', $job->post_name);
+                    $salaries = explode(',', $job->post_salary);
+                    $eligibilities = explode(',', $job->min_qulification);
+                    $count = max(count($names), count($salaries), count($eligibilities));
+                @endphp
 
-            @for ($i = 0; $i < $count; $i++)
-                <div class="col-6 col-md-2">
+                @for ($i = 0; $i < $count; $i++)
+                    <div class="col-6 col-md-2">
 
-                    <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
+                        <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
 
-                        <div class="job-box">
+                            <div class="job-box">
 
-                            <img src="{{ asset('public/job-images/' . $job->image) }}"
-                                class="job-logo">
+                                <img src="{{ asset('public/job-images/' . $job->image) }}" class="job-logo">
 
-                            <div>
-                                <div class="job-title">
-                                   {{ ucfirst($job->title) . ' - ' . ucfirst($names[$i] ?? '') }}
+                                <div>
+                                    <div class="job-title">
+                                        {{ ucfirst($job->title) . ' - ' . ucfirst($names[$i] ?? '') }}
+                                    </div>
+
+
                                 </div>
 
-                                
                             </div>
+                            <div class="job-meta">
+                                <span style="color: green; font-weight:600;">₹{{ $job->min_salary ?? '' }} - ₹{{ $job->max_salary ?? '' }}</span>
+                                <span style="color: green; font-weight:600;">{{ $job->min_qulification ?? '' }}</span>
+                                <span style="color: red;font-weight:600;">{{ date('d M Y', strtotime($job->end_date)) }}</span>
+                            </div>
+                        </a>
 
-                        </div>
-                        <div class="job-meta">
-                                    <span style="color: green; font-weight:600;">₹{{ $job->min_salary ?? '' }} | {{ $job->max_salary ?? '' }}</span>
-                                    {{ $job->min_qulification ?? '' }} |
-                                    <span style="color: red;font-weight:600;">{{ date('d M Y', strtotime($job->end_date)) }}</span>
-                                </div>
-                    </a>
+                    </div>
+                @endfor
+            @endforeach
 
-                </div>
-            @endfor
-        @endforeach
-
+        </div>
     </div>
-</div>
 
     {{-- <div class="container mt-3">
         <h2 class="mb-3 text-center">Latest Jobs</h2>
