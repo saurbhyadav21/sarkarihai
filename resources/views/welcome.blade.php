@@ -211,7 +211,7 @@
         </h2>
 
         <div class="row">
-
+            
             @foreach ($jobs as $job)
                 @php
                     $names = explode(',', $job->post_name);
@@ -232,6 +232,14 @@
                                 <div>
                                     <div class="job-title">
                                         {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
+                                        @php
+        $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
+    @endphp
+
+    @if($isNew)
+        <span style="color:red; font-weight:bold; margin-left:5px;">NEW</span>
+        <img src="{{ asset('images/new.gif') }}" width="30">
+    @endif
                                     </div>
 
 
