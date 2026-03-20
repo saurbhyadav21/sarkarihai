@@ -118,7 +118,7 @@
 
 
 
-<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+{{-- <script src="https://code.highcharts.com/maps/highmaps.js"></script>
 <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
 <style>#container {
     height: 500px;
@@ -140,9 +140,7 @@
         'https://code.highcharts.com/mapdata/countries/in/in-all.topo.json'
     ).then(response => response.json());
 
-    // Prepare demo data. The data is joined to map using value of 'hc-key'
-    // property by default. See API docs for 'joinBy' for more info on linking
-    // data and map.
+   
     const data = [
         ['in-tn', 10], ['in-py', 11], ['in-hp', 12], ['in-sk', 13],
         ['in-dl', 14], ['in-up', 15], ['in-hr', 16], ['in-pb', 17],
@@ -155,7 +153,7 @@
         ['in-ts', 42], ['in-la', 43], ['in-uk', 44], ['in-ga', 45]
     ];
 
-    // Create the chart
+  
     Highcharts.mapChart('container', {
         chart: {
             map: topology
@@ -196,7 +194,7 @@
     });
 
 })();
-</script>
+</script> --}}
 
 
     <div class="container mt-3">
