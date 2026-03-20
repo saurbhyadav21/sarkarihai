@@ -121,10 +121,10 @@
 
     <h2 class="mb-3 c-t">
         <span><b>Latest Jobs</b></span>
-{{ asset('public/job-images/' . $job->image) }}
+
         <span class="last-update">
             Last Updated : {{ now()->format('d-m-Y H:i') }}
-            <img src="{{ asset('public/job-images/' . $job->image) }}">
+            <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
         </span>
     </h2>
 
@@ -145,7 +145,7 @@
 
                         <div class="job-box">
 
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHlnsXyN43ISgoYhT9J31_lzOUODyeQVx3Nw&s"
+                            <img src="{{ asset('public/job-images/' . $job->image) }}"
                                 class="job-logo">
 
                             <div>
