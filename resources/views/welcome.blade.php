@@ -121,12 +121,10 @@
 
     <h2 class="mb-3 c-t">
         <span><b>Latest Jobs</b></span>
-
+{{ asset('public/job-images/' . $job->image) }}
         <span class="last-update">
             Last Updated : {{ now()->format('d-m-Y H:i') }}
-            <img src="{{ asset('images/loader.gif') }}"
-         onerror="this.onerror=null;this.src='{{ asset('images/default.gif') }}';"
-         alt="Loading" width="20">
+            <img src="{{ asset('public/job-images/' . $job->image) }}">
         </span>
     </h2>
 
