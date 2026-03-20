@@ -9,13 +9,15 @@
         .col-md-4 {
             padding: 4px;
         }
+
         .new-badge {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 40px;
-    z-index: 10;
-}
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 40px;
+            z-index: 10;
+        }
+
         .job-box {
             border: 1px solid #eee;
             padding: 0px;
@@ -231,22 +233,23 @@
 
                         <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
 
-                            <div class="job-box">
+                            <div class="job-box position-relative">
+                                @php
+                                            $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
+                                        @endphp
 
+                                        @if ($isNew)
+                                            <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                                                class="new-badge">
+                                        @endif
                                 <img src="{{ asset('public/job-images/' . $job->image) }}" class="job-logo">
 
                                 <div>
-                                    <div class="job-title position-relative">
-    {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
+                                    <div class="job-title ">
+                                        {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
 
-    @php
-        $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
-    @endphp
-
-    @if ($isNew)
-        <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif" class="new-badge">
-    @endif
-</div>
+                                        
+                                    </div>
 
 
                                 </div>
