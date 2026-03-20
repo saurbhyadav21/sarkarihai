@@ -238,10 +238,35 @@
                                 </div>
 
                             </div>
+                            @php
+                                use Carbon\Carbon;
+
+                                $endDate = Carbon::parse($job->end_date);
+                                $today = Carbon::now();
+
+                                $daysLeft = $today->diffInDays($endDate, false); // negative bhi allow
+
+                                if ($daysLeft <= 7) {
+                                    $color = 'red'; // 1 week
+                                } elseif ($daysLeft <= 14) {
+                                    $color = 'orange'; // 2 week
+                                } else {
+                                    $color = 'green'; // more than 2 week
+                                }
+                            @endphp
+
                             <div class="job-meta">
-                                <span style="color: green; font-weight:600;">₹{{ $job->min_salary ?? '' }} - ₹{{ $job->max_salary ?? '' }}</span>
-                                | <span style="color: green; font-weight:600;">{{ $job->min_qulification ?? '' }}</span>
-                                | <span style="color: red;font-weight:600;">{{ date('d M Y', strtotime($job->end_date)) }}</span>
+                                <span style="color: green; font-weight:600;">
+                                    ₹{{ $job->min_salary ?? '' }} - ₹{{ $job->max_salary ?? '' }}
+                                </span>
+                                |
+                                <span style="color: green; font-weight:600;">
+                                    {{ $job->min_qulification ?? '' }}
+                                </span>
+                                |
+                                <span style="color: {{ $color }}; font-weight:600;">
+                                    {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+                                </span>
                             </div>
                         </a>
 
