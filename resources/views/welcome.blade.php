@@ -240,8 +240,8 @@
                             </div>
                             <div class="job-meta">
                                 <span style="color: green; font-weight:600;">₹{{ $job->min_salary ?? '' }} - ₹{{ $job->max_salary ?? '' }}</span>
-                                <span style="color: green; font-weight:600;">{{ $job->min_qulification ?? '' }}</span>
-                                <span style="color: red;font-weight:600;">{{ date('d M Y', strtotime($job->end_date)) }}</span>
+                                | <span style="color: green; font-weight:600;">{{ $job->min_qulification ?? '' }}</span>
+                                | <span style="color: red;font-weight:600;">{{ date('d M Y', strtotime($job->end_date)) }}</span>
                             </div>
                         </a>
 
