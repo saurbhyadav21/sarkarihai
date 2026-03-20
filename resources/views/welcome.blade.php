@@ -124,7 +124,9 @@
 
         <span class="last-update">
             Last Updated : {{ now()->format('d-m-Y H:i') }}
-            <img src="{{ asset('public/job-images/' . $job->image) }}">
+            <img src="{{ asset('images/loader.gif') }}"
+         onerror="this.onerror=null;this.src='{{ asset('images/default.gif') }}';"
+         alt="Loading" width="20">
         </span>
     </h2>
 
