@@ -24,7 +24,7 @@
             width: 55px;
             height: 55px;
             object-fit: cover;
-            margin-right: 8px;
+            margin-right: 8px;object-position: 0%;
         }
 
         .job-title {
