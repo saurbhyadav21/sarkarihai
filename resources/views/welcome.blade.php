@@ -29,14 +29,14 @@
 
         .job-title {
             font-weight: 600;
-            font-size: clamp(11px, 1.2vw, 12px);
+            font-size: clamp(11px, 1.2vw, 11px);
             /* white-space: nowrap; */
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .job-meta {
-            font-size: clamp(10px, 1.1vw, 12px);
+            font-size: clamp(10px, 1.1vw, 10px);
             color: #555;
             /* white-space: nowrap; */
             overflow: hidden;
