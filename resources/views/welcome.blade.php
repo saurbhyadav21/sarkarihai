@@ -124,7 +124,7 @@
 
         <span class="last-update">
             Last Updated : {{ now()->format('d-m-Y H:i') }}
-            <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
+            <img src="{{ asset('public/job-images/' . $job->image) }}">
         </span>
     </h2>
 
