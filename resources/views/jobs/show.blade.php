@@ -83,14 +83,16 @@
                                         <h5>Post Details:</h5>
                                         <ul>
                                             <li><strong>Post Name:</strong> {{ $job->post_name ?? 'POST' }}</li>
-                                            <li><strong>Salary:</strong> ₹{{ $job->min_salary ?? 'N/A' }} -
-                                                ₹{{ $job->max_salary ?? 'N/A' }}</li>
+                                            <li><strong>Salary:</strong> ₹{{ number_format($job->min_salary ?? 0) }} - ₹{{ number_format($job->max_salary ?? 0) }}</li>
                                             <li><strong>Minimum Qualification:</strong>
                                                 {{ $job->min_qulification ?? 'N/A' }}
                                             </li>
                                             <li><strong>Minimum Age:</strong> {{ $job->min_age ?? 'N/A' }} years</li>
-                                            <li><strong>Total Vacancies:</strong> {{ $job->total_vacancies ?? 'N/A' }}</li>
-                                            <li><strong>Exam Date:</strong> {{ $job->exam_date ?? 'Update Soon' }}</li>
+                                            <li><strong>Total Vacancies:</strong> {{ number_format($job->total_vacancies ?? 0) }}</li>
+                                            <li><strong>Exam Date:</strong> {{ \Carbon\Carbon::parse($job->exam_date)->format('d-m-Y') ?? 'To Be Announced' }}</li>
+                                            {{-- <li><strong>Exam Date:</strong> {{ $job->exam_date ?? 'Update Soon' }}</li> --}}
+
+                                            
                                         </ul>
 
                                         <p>
