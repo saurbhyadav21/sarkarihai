@@ -314,7 +314,7 @@
 
 
 <style>
-    .highcharts-exporting-group .highcharts-legend-item highcharts-linear-series highcharts-color-undefined{ display: none;}
+    .highcharts-exporting-group .highcharts-legend-item highcharts-linear-series highcharts-color-undefined .highcharts-credits{ display: none;}
 </style>
 
 
