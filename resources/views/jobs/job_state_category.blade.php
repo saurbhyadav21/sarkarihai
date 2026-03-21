@@ -27,7 +27,7 @@
             padding: 10px;
             border-bottom: 1px solid #eee;
             transition: 0.2s;
-            color: #fff;
+            color: #fff; font-size: 13px;
         }
 
         .job-item.hidden {
@@ -71,9 +71,9 @@
 
                     <span><strong>{{ $job->title }}</strong></span>
                     <div style="    float: right;">
-                        <span>Salary: ₹{{ $job->min_salary ?? 'N/A' }}-₹{{ $job->max_salary ?? 'N/A' }}</span>
-                        <span>Qualification: {{ $job->min_qulification ?? 'N/A' }}</span>
-                        <span style="color:red;">{{ $job->end_date ?? 'Update Soon' }}</span>
+                        <span>₹{{ $job->min_salary ?? 'N/A' }}-₹{{ $job->max_salary ?? 'N/A' }}</span>
+                        <span> | {{ $job->min_qulification ?? 'N/A' }}</span>
+                        <span style="color:red;"> | {{ $job->end_date ?? 'Update Soon' }}</span>
                     </div>
                 </div>
             @endforeach
