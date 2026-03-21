@@ -35,7 +35,7 @@
 
         {{-- CATEGORY TABS --}}
         <div style="margin-top:10px;">
-            @foreach ($category as $cat)
+            @foreach ($categories as $cat)
                 <span class="tab-btn cat-tab" data-cat="{{ $cat }}">
                     {{ $cat }}
                 </span>
