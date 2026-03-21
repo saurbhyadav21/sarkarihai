@@ -121,13 +121,31 @@ class JobController extends Controller
             ->orderBy('end_date', 'asc')
             ->get();
 
-        // State wise count
-        $stateCounts = Job::whereDate('end_date', '>=', now())
-            ->selectRaw('state, COUNT(*) as total')
-            ->groupBy('state')
-            ->pluck('total', 'state'); // ['Uttar Pradesh' => 10]
-        dd($stateCounts);
-        return view('welcome', compact('jobs', 'stateCounts'));
+        $stateCounts = [];
+
+    foreach ($jobs as $job) {
+
+        // comma separated states ko array me convert karo
+        $states = explode(',', $job->state);
+
+        foreach ($states as $state) {
+            $state = trim($state); // extra space remove
+
+            if ($state == '') continue;
+
+            // count increase
+            if (isset($stateCounts[$state])) {
+                $stateCounts[$state]++;
+            } else {
+                $stateCounts[$state] = 1;
+            }
+        }
+    }
+
+    // sort (optional)
+    arsort($stateCounts);
+    dd($stateCounts);
+    return view('welcome', compact('jobs', 'stateCounts'));
     }
 
     public function contact()
