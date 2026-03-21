@@ -261,12 +261,12 @@
                     <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK" target="_blank" class="social-card whatsapp">
 
                         <!-- Image -->
-                        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="social-img">
+                        {{-- <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="social-img"> --}}
 
                         <!-- Icon -->
                         <i class="fab fa-whatsapp"></i>
 
-                        <span>WhatsApp Group</span>
+                        {{-- <span>WhatsApp Group</span> --}}
                     </a>
                 </div>
 
@@ -274,11 +274,11 @@
                 <div class="col-4 col-md-2 mb-3">
                     <a href="https://twitter.com/YOUR_PROFILE" target="_blank" class="social-card twitter">
 
-                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png" class="social-img">
+                        {{-- <img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png" class="social-img"> --}}
 
                         <i class="fab fa-x-twitter"></i>
 
-                        <span>Twitter</span>
+                        {{-- <span>Twitter</span> --}}
                     </a>
                 </div>
 
@@ -286,11 +286,11 @@
                 <div class="col-4 col-md-2 mb-3">
                     <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="social-card telegram">
 
-                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="social-img">
+                        {{-- <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="social-img"> --}}
 
                         <i class="fab fa-telegram-plane"></i>
 
-                        <span>Telegram</span>
+                        {{-- <span>Telegram</span> --}}
                     </a>
                 </div>
 
