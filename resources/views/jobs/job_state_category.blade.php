@@ -126,7 +126,7 @@
     let selectedState = @json(strtolower(trim($state ?? ''))).replace(/-/g, ' ');
     let selectedCat = @json(strtolower(trim($category ?? ''))).replace(/-/g, ' ');
 
-    console.log("URL state:", selectedState);
+    console.log("URL state:", 'Bihar');
     console.log("URL cat:", selectedCat);
 
     function filterJobs() {
