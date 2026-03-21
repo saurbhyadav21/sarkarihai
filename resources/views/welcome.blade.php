@@ -415,45 +415,7 @@
                         ).then(response => response.json());
 
 
-                        // const data = [
-                        //     ['in-tn', 10],
-                        //     ['in-py', 11],
-                        //     ['in-hp', 12],
-                        //     ['in-sk', 13],
-                        //     ['in-dl', 14],
-                        //     ['in-up', 15],
-                        //     ['in-hr', 16],
-                        //     ['in-pb', 17],
-                        //     ['in-ch', 18],
-                        //     ['in-rj', 19],
-                        //     ['in-jk', 20],
-                        //     ['in-gj', 21],
-                        //     ['in-mp', 22],
-                        //     ['in-mh', 23],
-                        //     ['in-dh', 24],
-                        //     ['in-br', 25],
-                        //     ['in-wb', 26],
-                        //     ['in-jh', 27],
-                        //     ['in-cg', 28],
-                        //     ['in-od', 29],
-                        //     ['in-kl', 30],
-                        //     ['in-ka', 31],
-                        //     ['in-ap', 32],
-                        //     ['in-an', 33],
-                        //     ['in-as', 34],
-                        //     ['in-tr', 35],
-                        //     ['in-ar', 36],
-                        //     ['in-ld', 37],
-                        //     ['in-ml', 38],
-                        //     ['in-mn', 39],
-                        //     ['in-nl', 40],
-                        //     ['in-mz', 41],
-                        //     ['in-ts', 42],
-                        //     ['in-la', 43],
-                        //     ['in-uk', 44],
-                        //     ['in-ga', 45]
-                        // ];
-
+                      
 
                         Highcharts.mapChart('container', {
                             chart: {
@@ -485,19 +447,7 @@
                                 min: 0
                             },
 
-                            // series: [{
-                            //     data: data,
-                            //     name: 'Total Govt Jobs 2026 In',
-                            //     states: {
-                            //         hover: {
-                            //             color: '#BADA55'
-                            //         }
-                            //     },
-                            //     dataLabels: {
-                            //         enabled: true,
-                            //         format: '{point.name}'
-                            //     }
-                            // }]
+                            
                             series: [{
                                 data: data,
                                 name: 'Total Govt Jobs 2026 In',
@@ -537,7 +487,79 @@
             <div class="col-6 col-md-6 mb-4">
                 <h2 class="mb-3 c-t">
                     <span><b>Latest State Wise Job India - 2026</b></span>
+                    <div class="row">
 
+            @foreach ($jobs as $job)
+                @php
+                    $names = explode(',', $job->post_name);
+                    $salaries = explode(',', $job->post_salary);
+                    $eligibilities = explode(',', $job->min_qulification);
+                    $count = max(count($names), count($salaries), count($eligibilities));
+                @endphp
+
+                @for ($i = 0; $i < $count; $i++)
+                    <div class="col-6 col-md-2">
+
+                        <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
+
+                            <div class="job-box position-relative">
+                                @php
+                                    $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
+                                @endphp
+
+                                @if ($isNew)
+                                    <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                                        class="new-badge">
+                                @endif
+                                <img src="{{ asset('public/job-images/' . $job->image) }}" class="job-logo">
+
+                                <div>
+                                    <div class="job-title ">
+                                        {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
+
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            @php
+                                $endDate = \Carbon\Carbon::parse($job->end_date);
+                                $today = \Carbon\Carbon::now();
+
+                                $daysLeft = $today->diffInDays($endDate, false); // negative bhi allow
+
+                                if ($daysLeft <= 7) {
+                                    $color = 'red'; // 1 week
+                                } elseif ($daysLeft <= 14) {
+                                    $color = 'orange'; // 2 week
+                                } else {
+                                    $color = 'green'; // more than 2 week
+                                }
+                            @endphp
+
+                            <div class="job-meta">
+                                <span style="color: green; font-weight:600;">
+                                    ₹{{ number_format($job->min_salary ?? 0) }} -
+                                    ₹{{ number_format($job->max_salary ?? 0) }}
+                                </span>
+                                |
+                                <span style="color: green; font-weight:600;">
+                                    {{ $job->min_qulification ?? '' }}
+                                </span>
+                                |
+                                <span style="color: {{ $color }}; font-weight:600;">
+                                    {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+                                </span>
+                            </div>
+                        </a>
+
+                    </div>
+                @endfor
+            @endforeach
+
+        </div>
 
                 </h2>
             </div>
