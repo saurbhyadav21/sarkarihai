@@ -325,9 +325,9 @@
         }
 
         .highcharts-title {
-            font-size: 24px;
-            font-weight: bold;
-            fill: rgb(255 255 255);
+            font-size: 24px !important;
+            font-weight: bold !important;
+            fill: rgb(255 255 255) !important;
             color: #fff !important;
         }
     </style>
