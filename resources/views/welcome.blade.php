@@ -515,15 +515,23 @@
                                             @endif
                                             <img src="{{ asset('public/job-images/' . $job->image) }}" class="job-logo"> --}}
 
-                                            <div>
-                                                <div class="job-title ">
-                                                    {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
+                                            <div class="job-title">
+    {{ ucfirst($job->title) 
+        . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') 
+    }}
 
+    @if(!empty($job->state))
+        @php
+            $states = explode(',', $job->state);
+        @endphp
 
-                                                </div>
-
-
-                                            </div>
+        <div class="state-tags">
+            @foreach($states as $state)
+                <span class="state-badge">{{ trim($state) }}</span>
+            @endforeach
+        </div>
+    @endif
+</div>
 
                                         </div>
                                         @php
