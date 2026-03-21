@@ -217,7 +217,7 @@
         </div>
     </div>
 
-    {{-- <div class="container mt-3">
+    <div class="container mt-3">
         <h2 class="mb-3 text-center">Latest Jobs</h2>
         <style>
             .k {
@@ -257,10 +257,8 @@
         @endforeach
     </div> --}}
 
-    {{-- <div class="container mt-4">
-        <h2 class="mb-3 text-center">Latest Jobs</h2>
-    </div> --}}
-    {{-- <div class="container mt-4">
+   
+<div class="container mt-4">
         <h2 class="mb-3 c-t">
 
             <span><b>Upcoming Job Deadlines</b></span>
@@ -309,7 +307,7 @@
                 </div>
             @endforeach
         </div>
-    </div> --}}
+    </div>
 
 
 
