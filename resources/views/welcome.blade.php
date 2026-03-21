@@ -257,9 +257,7 @@
                             <p class="mb-1" style="font-size:12px;">
                                 <b>Last Date:</b> {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
                             </p>
-                            <p class="mb-2" style="font-size:12px;">
-                                <b>Category:</b> {{ $job->category ?? 'General' }}
-                            </p>
+                            
                             <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}"
                                 class="btn btn-sm btn-light w-100">
                                 Apply Now
