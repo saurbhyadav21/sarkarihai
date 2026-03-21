@@ -50,7 +50,7 @@
 
         {{-- STATE TABS --}}
         <div class="tabs-container">
-            <span class="tab-btn state-tab active" data-state="">All States</span>
+            <span class="tab-btn state-tab" data-state="">All States</span>
             @foreach ($states as $s)
                 <span class="tab-btn state-tab" data-state="{{ strtolower($s) }}">
                     {{ ucfirst($s) }}
@@ -60,7 +60,7 @@
 
         {{-- CATEGORY TABS --}}
         <div class="tabs-container" style="margin-top:10px;">
-            <span class="tab-btn cat-tab active" data-cat="">All Categories</span>
+            <span class="tab-btn cat-tab" data-cat="">All Categories</span>
             @foreach ($categories as $cat)
                 <span class="tab-btn cat-tab" data-cat="{{ strtolower($cat) }}">
                     {{ ucfirst($cat) }}
