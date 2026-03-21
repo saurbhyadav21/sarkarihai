@@ -50,7 +50,7 @@
         <div class="tabs-container">
             <span class="tab-btn state-tab active" data-state="">All States</span>
             @foreach ($states as $s)
-                <span class="tab-btn state-tab" data-state="{{ $s }}">
+                <span class="tab-btn state-tab" data-state="{{ strtolower($s) }}">
                     {{ ucfirst($s) }}
                 </span>
             @endforeach
@@ -60,7 +60,7 @@
         <div class="tabs-container" style="margin-top:10px;">
             <span class="tab-btn cat-tab active" data-cat="">All Categories</span>
             @foreach ($categories as $cat)
-                <span class="tab-btn cat-tab" data-cat="{{ $cat }}">
+                <span class="tab-btn cat-tab" data-cat="{{ strtolower($cat) }}">
                     {{ ucfirst($cat) }}
                 </span>
             @endforeach
