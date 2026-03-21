@@ -217,10 +217,10 @@
         </div>
     </div>
 
-  
 
-   
-<div class="container mt-4">
+
+
+    <div class="container mt-4">
         <h2 class="mb-3 c-t">
 
             <span><b>Upcoming Job Deadlines</b></span>
@@ -249,19 +249,24 @@
 
                 <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
                     <div class="card h-100 shadow-sm {{ $cardColor }}">
-                        <div class="card-body p-2 text-center">
+                        <div class="card-body p-2 d-flex flex-column text-center">
+
                             <h6 class="card-title fw-bold mb-2" style="font-size:14px;">
-                        
                                 {{ $job->title }}
                             </h6>
-                            <p class="mb-1" style="font-size:12px;">
+
+                            <p class="mb-2" style="font-size:12px;">
                                 <b>Last Date:</b> {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
                             </p>
-                            
-                            <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}"
-                                class="btn btn-sm btn-light w-100">
-                                Apply Now
-                            </a>
+
+                            <!-- 👇 ye push karega button ko bottom -->
+                            <div class="mt-auto">
+                                <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}"
+                                    class="btn btn-sm btn-light w-100">
+                                    Apply Now
+                                </a>
+                            </div>
+
                         </div>
                     </div>
                 </div>
