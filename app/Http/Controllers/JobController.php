@@ -153,16 +153,23 @@ class JobController extends Controller
         // dd($stateCounts);
 
         // $startOfWeek = \Carbon\Carbon::now(); // aaj se
-$today = \Carbon\Carbon::now();
-$next7Days = \Carbon\Carbon::now()->addDays(7);
+        $today = \Carbon\Carbon::now();
+        $next7Days = \Carbon\Carbon::now()->addDays(7);
 
-$jobs_upcomming = Job::whereBetween('end_date', [$today, $next7Days])
-    ->orderBy('end_date', 'asc')
-    ->get();
+        $jobs_upcomming = Job::whereBetween('end_date', [$today, $next7Days])
+            ->orderBy('end_date', 'asc')
+            ->get();
 
-    // dd($jobs_upcomming );
+        // dd($jobs_upcomming );
 
-        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts','jobs_upcomming'));
+        $categories = Job::pluck('category')
+    ->filter() // empty remove
+    ->map(fn($c) => strtolower(trim($c)))
+    ->unique()
+    ->sort()
+    ->values();
+
+        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories'));
     }
 
     public function contact()
@@ -382,7 +389,7 @@ $jobs_upcomming = Job::whereBetween('end_date', [$today, $next7Days])
             ->unique()
             ->sort()
             ->values();
-        
+
         // Pass everything to the view
         return view('jobs/job_state_category', compact(
             'jobs',
