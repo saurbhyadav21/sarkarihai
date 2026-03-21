@@ -74,7 +74,7 @@
                 <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
                     <div class="job-item"
                         data-state="{{ implode(',', array_map(fn($s) => strtolower(trim($s)), explode(',', $job->state))) }}"
-                        data-cat="{{ strtolower(trim($job->category ?? 'other')) }}"
+                        data-cat="{{ strtolower(trim($job->category ?? 'all-categories')) }}"
                         style="padding:8px; border-bottom:1px solid #eee; display:flex; gap:15px; flex-wrap:wrap; align-items:center;">
                         @php
                             $endDate = \Carbon\Carbon::parse($job->end_date);
