@@ -123,8 +123,8 @@ Category: {{ $category ?? 'NULL' }}
         const catTabs = document.querySelectorAll('.cat-tab');
         const jobs = document.querySelectorAll('.job-item');
 
-        let selectedState = @json($state ?? '');
-let selectedCat = @json($category ?? '');
+        let selectedState = @json($states ?? '');
+let selectedCat = @json($categories ?? '');
 
 console.log("RAW state:", selectedState);
 console.log("RAW cat:", selectedCat);
