@@ -488,7 +488,7 @@ $stateMap = [
 
                             series: [{
                                 data: data,
-                                name: 'Random data',
+                                name: 'Total Govt Jobs 2026 In',
                                 states: {
                                     hover: {
                                         color: '#BADA55'
