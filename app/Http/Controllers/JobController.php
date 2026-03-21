@@ -160,7 +160,7 @@ $jobs_upcomming = Job::whereBetween('end_date', [$today, $next7Days])
     ->orderBy('end_date', 'asc')
     ->get();
 
-    dd($jobs_upcomming );
+    // dd($jobs_upcomming );
 
         return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts','jobs_upcomming'));
     }
