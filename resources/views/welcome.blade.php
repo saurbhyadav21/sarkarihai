@@ -251,21 +251,26 @@
                     <div class="card h-100 shadow-sm {{ $cardColor }}">
                         <div class="card-body p-2 d-flex flex-column text-center">
 
+                            <!-- 👆 TOP: Title -->
                             <h6 class="card-title fw-bold mb-2" style="font-size:14px;">
                                 {{ $job->title }}
                             </h6>
 
-                            <p class="mb-2" style="font-size:12px;">
-                                
-                            </p>
-
-                            <!-- 👇 ye push karega button ko bottom -->
+                            <!-- 👇 BOTTOM BLOCK -->
                             <div class="mt-auto">
-                                <b>Last Date:</b> {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+
+                                <!-- Last Date -->
+                                <p class="mb-2" style="font-size:12px;">
+                                    <b>Last Date:</b>
+                                    {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+                                </p>
+
+                                <!-- Button -->
                                 <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}"
                                     class="btn btn-sm btn-light w-100">
                                     Apply Now
                                 </a>
+
                             </div>
 
                         </div>
