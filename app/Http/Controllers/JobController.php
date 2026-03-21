@@ -352,26 +352,26 @@ class JobController extends Controller
     }
 
     public function stateCategoryJobs($state = null, $category = null)
-{
-    // Get all jobs
-    $jobs = Job::all();
+    {
+        // Get all jobs
+        $jobs = Job::all();
 
-    // Get all unique states from jobs
-    $states = Job::pluck('state')
-        ->flatMap(fn($s) => explode(',', $s))
-        ->map(fn($s) => strtolower(trim($s)))
-        ->unique()
-        ->sort()
-        ->values();
+        // Get all unique states from jobs
+        $states = Job::pluck('state')
+            ->flatMap(fn($s) => explode(',', $s))
+            ->map(fn($s) => strtolower(trim($s)))
+            ->unique()
+            ->sort()
+            ->values();
 
-    // Get all unique categories from jobs
-    $categories = Job::pluck('category')
-        ->map(fn($c) => strtolower(trim($c)))
-        ->unique()
-        ->sort()
-        ->values();
+        // Get all unique categories from jobs
+        $categories = Job::pluck('category')
+            ->map(fn($c) => strtolower(trim($c)))
+            ->unique()
+            ->sort()
+            ->values();
 
-    // Pass everything to the view
-    return view('jobs/job_state_category', compact('jobs', 'states', 'categories'));
-}
+        // Pass everything to the view
+        return view('jobs/job_state_category', compact('jobs', 'states', 'categories'));
+    }
 }

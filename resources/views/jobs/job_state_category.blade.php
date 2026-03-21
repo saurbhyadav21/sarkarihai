@@ -123,8 +123,17 @@
     const jobs = document.querySelectorAll('.job-item');
 
     // ✅ Normalize URL values (IMPORTANT FIX)
-    let selectedState = 'Bihar';//@json(strtolower(trim($state ?? ''))).replace(/-/g, ' ');
-    let selectedCat = @json(strtolower(trim($category ?? ''))).replace(/-/g, ' ');
+    let selectedState = @json(strtolower(trim($state ?? '')))
+    .replace(/-/g, ' ')
+    .trim();
+
+let selectedCat = @json(strtolower(trim($category ?? '')))
+    .replace(/-/g, ' ')
+    .trim();
+
+// 👇 IMPORTANT: "all-categories" / "all-states" ko empty bana do
+if (selectedState === "all-states") selectedState = "";
+if (selectedCat === "all-categories") selectedCat = "";
 
     console.log("URL state:", 'Bihar');
     console.log("URL cat:", selectedCat);
@@ -143,35 +152,37 @@
 
     // ✅ STATE TAB
     stateTabs.forEach(tab => {
-        let tabState = tab.dataset.state.trim().toLowerCase();
+    let tabState = tab.dataset.state.trim().toLowerCase();
 
-        if (tabState === selectedState) {
-            tab.classList.add('active');
-        }
+    // ✅ match OR both empty (All States)
+    if (tabState === selectedState || (tabState === "" && selectedState === "")) {
+        tab.classList.add('active');
+    }
 
-        tab.addEventListener('click', () => {
-            stateTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            selectedState = tabState;
-            filterJobs();
-        });
+    tab.addEventListener('click', () => {
+        stateTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        selectedState = tabState;
+        filterJobs();
     });
+});
 
     // ✅ CATEGORY TAB
     catTabs.forEach(tab => {
-        let tabCat = tab.dataset.cat.trim().toLowerCase();
+    let tabCat = tab.dataset.cat.trim().toLowerCase();
 
-        if (tabCat === selectedCat) {
-            tab.classList.add('active');
-        }
+    // ✅ match OR both empty (All Categories)
+    if (tabCat === selectedCat || (tabCat === "" && selectedCat === "")) {
+        tab.classList.add('active');
+    }
 
-        tab.addEventListener('click', () => {
-            catTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            selectedCat = tabCat;
-            filterJobs();
-        });
+    tab.addEventListener('click', () => {
+        catTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        selectedCat = tabCat;
+        filterJobs();
     });
+});
 
     filterJobs();
 </script>
