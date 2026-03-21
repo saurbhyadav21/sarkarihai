@@ -327,7 +327,9 @@ class JobController extends Controller
 
         // Decode JSON
         $json = json_decode($request->job_json, true);
-
+$state = is_array($request->states)
+    ? implode(',', $request->states)
+    : $request->states;
         // Map fields
         $data = [
             'title'            => $json['title'] ?? null,
@@ -342,7 +344,7 @@ class JobController extends Controller
             'post_eligibility' => $json['qualification'] ?? null,
             'website'          => $json['website'] ?? null,
             'category'          => $request->category_id ?? null,
-            'state'          => $request->states ?? null,
+            'state'          => $state ?? null,
         ];
             // dd($data);
         // Save
@@ -350,35 +352,7 @@ class JobController extends Controller
 
         return back()->with('success', 'Job added via JSON!');
     }
-    // public function storeJson(Request $request)
-    // {
-    //     $request->validate([
-    //         'job_json' => 'required',
-    //         'category_id' => 'required',
-    //         'states' => 'required|array'
-    //     ]);
-
-    //     // JSON decode
-    //     $data = json_decode($request->job_json, true);
-
-    //     if (!$data) {
-    //         return back()->withErrors(['Invalid JSON']);
-    //     }
-
-    //     // Job create
-    //     $job = Job::create([
-    //         'title' => $data['title'] ?? 'N/A',
-    //         'start_date' => $data['start_date'] ?? null,
-    //         'end_date' => $data['end_date'] ?? null,
-    //         'category' => $request->category_id
-    //         'state'
-    //     ]);
-
-    //     // 🔥 STATES ATTACH (Pivot Table)
-    //     $job->states()->attach($request->states);
-
-    //     return back()->with('success', 'Job Added Successfully!');
-    // }
+    
 
     public function stateJobs($state)
     {
