@@ -313,7 +313,9 @@
 
 
 
-
+<style>
+    .highcharts-exporting-group .highcharts-legend-item highcharts-linear-series highcharts-color-undefined{ display: none;}
+</style>
 
 
     <div class="container mt-4">
@@ -389,7 +391,7 @@
                         Highcharts.mapChart('container', {
                             chart: {
         map: topology,
-        backgroundColor: '#ff0000', // 🔴 red background
+        backgroundColor: '#0b1224', // 🔴 red background
         panning: false,
         zooming: {
             mouseWheel: false,
