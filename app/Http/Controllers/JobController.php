@@ -126,7 +126,7 @@ class JobController extends Controller
     ->orderBy('end_date', 'asc')
     ->limit(10)
     ->get();
-    dd($jobsxxx);
+    // dd($jobsxxx);
         $stateCounts = [];
         $jobs1 = Job::get();
         foreach ($jobs1 as $job) {
