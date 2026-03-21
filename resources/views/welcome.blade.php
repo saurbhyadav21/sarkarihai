@@ -579,8 +579,6 @@
                         <a href="{{ route('job.show', ['slug' => Str::slug($jobx->title)]) }}">
 
                             <div class="statejob-box">
-
-                                {{-- FIRST LINE --}}
                                 <div class="statejob-top">
                                     <span class="statejob-title">
                                         {{ ucfirst($jobx->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
