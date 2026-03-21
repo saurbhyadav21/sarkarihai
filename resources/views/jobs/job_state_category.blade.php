@@ -119,7 +119,8 @@
     const stateTabs = document.querySelectorAll('.state-tab');
     const catTabs = document.querySelectorAll('.cat-tab');
     const jobs = document.querySelectorAll('.job-item');
-
+        console.log(stateTabs);
+        
     // ✅ URL se aaye hue values
     let selectedState = "{{ strtolower($state ?? '') }}";
     let selectedCat = "{{ strtolower($category ?? '') }}";
