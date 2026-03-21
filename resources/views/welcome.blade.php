@@ -386,4 +386,71 @@
             @endforeach
         </div>
     </div> --}}
+
+
+<style>.state-card {
+    text-decoration: none;
+}
+
+.state-box {
+    background: linear-gradient(135deg, #ff7a00, #ffb347);
+    color: #fff;
+    padding: 20px 10px;
+    text-align: center;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.state-box h5 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.state-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}</style>
+    @php
+$states = [
+    'Uttar Pradesh',
+    'Bihar',
+    'Delhi',
+    'Madhya Pradesh',
+    'Rajasthan',
+    'Haryana',
+    'Punjab',
+    'Gujarat',
+    'Maharashtra',
+    'West Bengal',
+    'Tamil Nadu',
+    'Karnataka',
+    'Odisha',
+    'Jharkhand',
+    'Chhattisgarh',
+    'Uttarakhand',
+    'Himachal Pradesh',
+    'Assam',
+    'Kerala',
+    'Telangana',
+    'Andhra Pradesh'
+];
+@endphp
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Browse Jobs by State</h2>
+
+    <div class="row">
+        @foreach($states as $state)
+            <div class="col-6 col-md-3 mb-4">
+                <a href="{{ url('jobs/' . Str::slug($state)) }}" class="state-card">
+                    
+                    <div class="state-box">
+                        <h5>{{ $state }}</h5>
+                    </div>
+
+                </a>
+            </div>
+        @endforeach
+    </div>
+</div>
 @endsection
