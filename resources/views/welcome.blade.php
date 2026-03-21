@@ -311,7 +311,7 @@
                 <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
                 <style>
                     #container {
-                        height: 500px;
+                        height: 700px;
                         min-width: 310px;
                         max-width: 800px;
                         margin: 0 auto;
