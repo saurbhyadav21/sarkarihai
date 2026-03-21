@@ -11,11 +11,11 @@
         }
 
         .new-badge {
-                position: absolute;
-    top: 30px;
-    width: 39px;
-    z-index: 10;
-    right: -3px;
+            position: absolute;
+            top: 30px;
+            width: 39px;
+            z-index: 10;
+            right: -3px;
         }
 
         .job-box {
@@ -128,7 +128,7 @@
 
 
 
-    
+
 
 
     <div class="container mt-3">
@@ -159,20 +159,20 @@
 
                             <div class="job-box position-relative">
                                 @php
-                                            $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
-                                        @endphp
+                                    $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
+                                @endphp
 
-                                        @if ($isNew)
-                                            <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
-                                                class="new-badge">
-                                        @endif
+                                @if ($isNew)
+                                    <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                                        class="new-badge">
+                                @endif
                                 <img src="{{ asset('public/job-images/' . $job->image) }}" class="job-logo">
 
                                 <div>
                                     <div class="job-title ">
                                         {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
 
-                                        
+
                                     </div>
 
 
@@ -314,93 +314,122 @@
 
 
 
-    
 
-<div class="container mt-4">
-    <div class="row">
 
-      
-        <div class="col-6 col-md-3 mb-4">
-           <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-<style>#container {
-    height: 500px;
-    min-width: 310px;
-    max-width: 800px;
-    margin: 0 auto;
-}
+    <div class="container mt-4">
+        <div class="row">
 
-.loading {
-    margin-top: 10em;
-    text-align: center;
-    color: gray;
-}
-</style>
-<div id="container"></div>
-<script>(async () => {
 
-    const topology = await fetch(
-        'https://code.highcharts.com/mapdata/countries/in/in-all.topo.json'
-    ).then(response => response.json());
+            <div class="col-6 col-md-3 mb-4">
+                <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+                <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+                <style>
+                    #container {
+                        height: 500px;
+                        min-width: 310px;
+                        max-width: 800px;
+                        margin: 0 auto;
+                    }
 
-   
-    const data = [
-        ['in-tn', 10], ['in-py', 11], ['in-hp', 12], ['in-sk', 13],
-        ['in-dl', 14], ['in-up', 15], ['in-hr', 16], ['in-pb', 17],
-        ['in-ch', 18], ['in-rj', 19], ['in-jk', 20], ['in-gj', 21],
-        ['in-mp', 22], ['in-mh', 23], ['in-dh', 24], ['in-br', 25],
-        ['in-wb', 26], ['in-jh', 27], ['in-cg', 28], ['in-od', 29],
-        ['in-kl', 30], ['in-ka', 31], ['in-ap', 32], ['in-an', 33],
-        ['in-as', 34], ['in-tr', 35], ['in-ar', 36], ['in-ld', 37],
-        ['in-ml', 38], ['in-mn', 39], ['in-nl', 40], ['in-mz', 41],
-        ['in-ts', 42], ['in-la', 43], ['in-uk', 44], ['in-ga', 45]
-    ];
+                    .loading {
+                        margin-top: 10em;
+                        text-align: center;
+                        color: gray;
+                    }
+                </style>
+                <div id="container"></div>
+                <script>
+                    (async () => {
 
-  
-    Highcharts.mapChart('container', {
-        chart: {
-            map: topology
-        },
+                        const topology = await fetch(
+                            'https://code.highcharts.com/mapdata/countries/in/in-all.topo.json'
+                        ).then(response => response.json());
 
-        title: {
-            text: 'Highcharts Maps basic demo'
-        },
 
-        subtitle: {
-            text: 'Source map: <a href="https://code.highcharts.com/mapdata/countries/in/in-all.topo.json">India</a>'
-        },
+                        const data = [
+                            ['in-tn', 10],
+                            ['in-py', 11],
+                            ['in-hp', 12],
+                            ['in-sk', 13],
+                            ['in-dl', 14],
+                            ['in-up', 15],
+                            ['in-hr', 16],
+                            ['in-pb', 17],
+                            ['in-ch', 18],
+                            ['in-rj', 19],
+                            ['in-jk', 20],
+                            ['in-gj', 21],
+                            ['in-mp', 22],
+                            ['in-mh', 23],
+                            ['in-dh', 24],
+                            ['in-br', 25],
+                            ['in-wb', 26],
+                            ['in-jh', 27],
+                            ['in-cg', 28],
+                            ['in-od', 29],
+                            ['in-kl', 30],
+                            ['in-ka', 31],
+                            ['in-ap', 32],
+                            ['in-an', 33],
+                            ['in-as', 34],
+                            ['in-tr', 35],
+                            ['in-ar', 36],
+                            ['in-ld', 37],
+                            ['in-ml', 38],
+                            ['in-mn', 39],
+                            ['in-nl', 40],
+                            ['in-mz', 41],
+                            ['in-ts', 42],
+                            ['in-la', 43],
+                            ['in-uk', 44],
+                            ['in-ga', 45]
+                        ];
 
-        mapNavigation: {
-            enabled: true,
-            buttonOptions: {
-                verticalAlign: 'bottom'
-            }
-        },
 
-        colorAxis: {
-            min: 0
-        },
+                        Highcharts.mapChart('container', {
+                            chart: {
+                                map: topology
+                            },
 
-        series: [{
-            data: data,
-            name: 'Random data',
-            states: {
-                hover: {
-                    color: '#BADA55'
-                }
-            },
-            dataLabels: {
-                enabled: true,
-                format: '{point.name}'
-            }
-        }]
-    });
+                            title: {
+                                text: 'State Wise Job India - 2026'
+                            },
 
-})();
-</script>
+                            subtitle: {
+                                
+                            },
+
+                            mapNavigation: {
+                                enabled: true,
+                                buttonOptions: {
+                                    verticalAlign: 'bottom'
+                                }
+                            },
+
+                            colorAxis: {
+                                min: 0
+                            },
+
+                            series: [{
+                                data: data,
+                                name: 'Random data',
+                                states: {
+                                    hover: {
+                                        color: '#BADA55'
+                                    }
+                                },
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.name}'
+                                }
+                            }]
+                        });
+
+                    })();
+                </script>
+            </div>
+
+
         </div>
-       
-
     </div>
-</div>
 @endsection
