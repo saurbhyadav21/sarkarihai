@@ -119,7 +119,7 @@
     const stateTabs = document.querySelectorAll('.state-tab');
     const catTabs = document.querySelectorAll('.cat-tab');
     const jobs = document.querySelectorAll('.job-item');
-        console.log(stateTabs);
+       
         
     // ✅ URL se aaye hue values
     let selectedState = "{{ strtolower($state ?? '') }}";
@@ -138,6 +138,8 @@
     }
 
     // ✅ Highlight active STATE tab on load
+    console.log(stateTabs);
+    
     stateTabs.forEach(tab => {
         if (tab.dataset.state.toLowerCase() === selectedState) {
             tab.classList.add('active');
