@@ -428,12 +428,18 @@
 
                             series: [{
                                 data: data,
-                                name: 'Random data',
-                                states: {
-                                    hover: {
-                                        color: '#BADA55'
+                                name: 'Jobs',
+                                cursor: 'pointer',
+
+                                point: {
+                                    events: {
+                                        click: function() {
+                                            let stateName = this.name.toLowerCase().replace(/\s+/g, '-');
+                                            window.location.href = '/jobs/' + stateName;
+                                        }
                                     }
                                 },
+
                                 dataLabels: {
                                     enabled: true,
                                     format: '{point.name}'
@@ -447,7 +453,23 @@
             <div class="col-6 col-md-6 mb-4">
                 <h2 class="mb-3 c-t">
                     <span><b>Latest State Wise Job India - 2026</b></span>
+                    @php
+                    $groupedJobs = $jobs->groupBy('state');
+                    @endphp
 
+                    @foreach($groupedJobs as $state => $stateJobs)
+                        <h5>{{ $state }}</h5>
+
+                        <ul>
+                            @foreach($stateJobs->take(5) as $job)
+                                <li>
+                                    <a href="{{ url('job/' . Str::slug($job->title)) }}">
+                                        {{ $job->title }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endforeach
 
                 </h2>
             </div>
