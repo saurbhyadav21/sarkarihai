@@ -125,6 +125,8 @@
     // ✅ safe values from URL
     let selectedState = @json(strtolower(trim($state ?? '')));
     let selectedCat = @json(strtolower(trim($category ?? '')));
+       console.log("URL state upp:", selectedState);
+       console.log("URL state xx:", selectedCat);
 
     function filterJobs() {
         jobs.forEach(job => {
