@@ -122,30 +122,30 @@ class JobController extends Controller
             ->get();
 
         $stateCounts = [];
-    $jobs1 = Job::get();
-    foreach ($jobs1 as $job) {
+        $jobs1 = Job::get();
+        foreach ($jobs1 as $job) {
 
-        // comma separated states ko array me convert karo
-        $states = explode(',', $job->state);
+            // comma separated states ko array me convert karo
+            $states = explode(',', $job->state);
 
-        foreach ($states as $state) {
-            $state = trim($state); // extra space remove
+            foreach ($states as $state) {
+                $state = trim($state); // extra space remove
 
-            if ($state == '') continue;
+                if ($state == '') continue;
 
-            // count increase
-            if (isset($stateCounts[$state])) {
-                $stateCounts[$state]++;
-            } else {
-                $stateCounts[$state] = 1;
+                // count increase
+                if (isset($stateCounts[$state])) {
+                    $stateCounts[$state]++;
+                } else {
+                    $stateCounts[$state] = 1;
+                }
             }
         }
-    }
 
-    // sort (optional)
-    arsort($stateCounts);
-    dd($stateCounts);
-    return view('welcome', compact('jobs', 'stateCounts'));
+        // sort (optional)
+        arsort($stateCounts);
+        // dd($stateCounts);
+        return view('welcome', compact('jobs', 'stateCounts'));
     }
 
     public function contact()
