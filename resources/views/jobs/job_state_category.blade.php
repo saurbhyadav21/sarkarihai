@@ -75,6 +75,15 @@
                         <span> | {{ $job->min_qulification ?? 'N/A' }}</span>
                         <span style="color:red;"> | {{ $job->end_date ?? 'Update Soon' }}</span>
                     </div>
+
+                    @php
+                                    $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
+                                @endphp
+
+                                @if ($isNew)
+                                    <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                                        class="new-badge">
+                                @endif
                 </div>
             @endforeach
         </div>
