@@ -69,24 +69,24 @@
                     data-state="{{ implode(',', array_map(fn($s) => strtolower(trim($s)), explode(',', $job->state))) }}"
                     data-cat="{{ strtolower(trim($job->category ?? 'other')) }}"
                     style="padding:8px; border-bottom:1px solid #eee; display:flex; gap:15px; flex-wrap:wrap; align-items:center;">
-@php
-                                $endDate = \Carbon\Carbon::parse($job->end_date);
-                                $today = \Carbon\Carbon::now();
+                    @php
+                        $endDate = \Carbon\Carbon::parse($job->end_date);
+                        $today = \Carbon\Carbon::now();
 
-                                $daysLeft = $today->diffInDays($endDate, false); // negative bhi allow
+                        $daysLeft = $today->diffInDays($endDate, false); // negative bhi allow
 
-                                if ($daysLeft <= 7) {
-                                    $color = 'red'; // 1 week
-                                } elseif ($daysLeft <= 14) {
-                                    $color = 'orange'; // 2 week
-                                } else {
-                                    $color = 'green'; // more than 2 week
-                                }
-                            @endphp
+                        if ($daysLeft <= 7) {
+                            $color = 'red'; // 1 week
+                        } elseif ($daysLeft <= 14) {
+                            $color = 'orange'; // 2 week
+                        } else {
+                            $color = 'green'; // more than 2 week
+                        }
+                    @endphp
                     <span>
                         @php
-                        $isNew = \Carbon\Carbon::parse($job->updated_at)->diffInDays(now()) <= 2;
-                    @endphp
+                            $isNew = \Carbon\Carbon::parse($job->updated_at)->diffInDays(now()) <= 2;
+                        @endphp
 
                         @if ($isNew)
                             <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
@@ -98,8 +98,8 @@
                         <span>₹{{ $job->min_salary ?? 'N/A' }}-₹{{ $job->max_salary ?? 'N/A' }}</span>
                         <span> | {{ $job->min_qulification ?? 'N/A' }}</span>
                         <span style="color: {{ $color }}; font-weight:600;">
-                                    {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
-                                </span>
+                            {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+                        </span>
                     </div>
 
 
