@@ -122,8 +122,13 @@ class JobController extends Controller
             
             ->get();
 
+            $jobsxxx = Job::whereDate('end_date', '>=', now())
+            ->orderBy('end_date', 'asc')
+            
+            ->get();
+
         $stateCounts = [];
-        $jobs1 = Job::limit(10)->get();
+        $jobs1 = Job::get();
         foreach ($jobs1 as $job) {
 
             // comma separated states ko array me convert karo
@@ -146,7 +151,7 @@ class JobController extends Controller
         // sort (optional)
         arsort($stateCounts);
         // dd($stateCounts);
-        return view('welcome', compact('jobs', 'stateCounts'));
+        return view('welcome', compact('jobs', 'jobsxxx','stateCounts'));
     }
 
     public function contact()
