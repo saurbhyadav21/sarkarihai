@@ -294,6 +294,19 @@
                     </a>
                 </div>
 
+
+
+                <div class="col-4 col-md-2 mb-3">
+                    <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="social-card telegram">
+
+                        {{-- <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="social-img"> --}}
+
+                        <i class="fab fa-facebook"></i>
+
+                        {{-- <span>Telegram</span> --}}
+                    </a>
+                </div>
+
             </div>
         </div>
         @yield('content')
