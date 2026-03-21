@@ -472,7 +472,7 @@ $states = [
             <a href="{{ url('jobs/'.$state) }}" class="state-card">
 
                 <div class="state-box">
-                    <img src="{{ asset('images/states/'.$state.'.png') }}" class="state-img">
+                    <img src="https://images.openai.com/static-rsc-4/PxU4iFALDgp-0mZ6k6Xz-6oTxbuV0H0y1xx2Ktz1hx__FAgmwf8DpjjuwcV1CkNotPdrMCEyE_CzocR57UkMK_aB_qOPYU0QySVRgkNMlf083ZiU4-BEz2jrS_PnpeuwuoYplmN1njQlk4LMS2xAcpPs-KtoGEIT2fIpq-qpoxk3M81xmsb-V1EAg1OF70RG?purpose=fullsize" class="state-img">
                     <h6>{{ ucwords(str_replace('-', ' ', $state)) }}</h6>
                 </div>
 
