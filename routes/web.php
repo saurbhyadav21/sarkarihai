@@ -24,7 +24,10 @@ Route::get('/job/edit-list', [JobController::class, 'editList'])->name('job.edit
 
 
 Route::get('/add-job', function () {
-    return view('jobs/add-job');
+    $states = State::all();
+    $categories = Category::all();
+
+    return view('jobs.add-job', compact('states', 'categories'));
 });
 
 Route::post('/add-job', [JobController::class, 'storeJson'])->name('job.store.json');
