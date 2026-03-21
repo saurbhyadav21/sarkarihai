@@ -307,6 +307,21 @@
                     </a>
                 </div>
 
+
+
+                <div class="col-4 col-md-2 mb-3">
+    <a href="https://youtube.com/YOUR_CHANNEL" target="_blank" class="social-card youtube">
+        
+        <!-- Image -->
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" class="social-img">
+
+        <!-- Icon -->
+        <i class="fab fa-youtube"></i>
+
+        <span>YouTube</span>
+    </a>
+</div>
+
             </div>
         </div>
         @yield('content')
