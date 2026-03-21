@@ -583,41 +583,55 @@
         </div>
     </div>
 
-<style>
+    <style>
+.custom-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.custom-col {
+    width: 12.5%; /* 👈 approx 12% (8 items per row) */
+    padding: 5px;
+}
+
+/* Responsive Fix */
+@media (max-width: 992px) {
+    .custom-col { width: 20%; } /* 5 per row */
+}
+
+@media (max-width: 768px) {
+    .custom-col { width: 25%; } /* 4 per row */
+}
+
+@media (max-width: 576px) {
+    .custom-col { width: 50%; } /* 2 per row */
+}
+
 .category-card {
-    border-radius: 12px;
+    border-radius: 10px;
     transition: 0.3s;
-    border: 1px solid #eee;
 }
 
 .category-card:hover {
-    transform: translateY(-5px);
     background: #fff3e6;
-    border-color: #ff7a00;
-}
-
-.category-card h6 {
-    font-size: 14px;
-    color: #333;
+    transform: translateY(-3px);
 }
 </style>
     <div class="container mt-4">
-    <div class="row">
+    <div class="row custom-row">
 
         @foreach($categories as $cat)
-            <div class="col-6 col-md-4 col-lg-3 mb-3">
+            <div class="custom-col mb-3">
                 
                 <a href="{{ route('state.category.jobs', ['state' => 'all-states', 'category' => Str::slug($cat)]) }}" 
                    class="text-decoration-none">
 
                     <div class="card shadow-sm h-100 category-card text-center">
-                        <div class="card-body p-3 d-flex flex-column justify-content-center">
+                        <div class="card-body p-2">
 
-                            <!-- Icon -->
-                            <div style="font-size:30px;">📂</div>
+                            <div style="font-size:24px;">📂</div>
 
-                            <!-- Category Name -->
-                            <h6 class="mt-2 mb-0 fw-bold">
+                            <h6 class="mt-1 mb-0 fw-bold" style="font-size:13px;">
                                 {{ ucfirst($cat) }}
                             </h6>
 
@@ -630,5 +644,5 @@
         @endforeach
 
     </div>
-</div>   
+</div>
 @endsection
