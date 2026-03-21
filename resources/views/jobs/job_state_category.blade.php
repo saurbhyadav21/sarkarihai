@@ -114,7 +114,8 @@
                 </a>
             @endforeach
         </div>
-
+State: {{ $state ?? 'NULL' }} <br>
+Category: {{ $category ?? 'NULL' }}
     </div>
 
     <script>
