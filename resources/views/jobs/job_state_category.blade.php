@@ -42,8 +42,9 @@
 
     {{-- STATE TABS --}}
     <div class="tabs-container">
+        <span class="tab-btn state-tab active" data-state="">All States</span>
         @foreach ($states as $s)
-            <span class="tab-btn state-tab {{ $s == $state ? 'active' : '' }}" data-state="{{ $s }}">
+            <span class="tab-btn state-tab" data-state="{{ $s }}">
                 {{ ucfirst($s) }}
             </span>
         @endforeach
@@ -51,8 +52,9 @@
 
     {{-- CATEGORY TABS --}}
     <div class="tabs-container" style="margin-top:10px;">
+        <span class="tab-btn cat-tab active" data-cat="">All Categories</span>
         @foreach ($categories as $cat)
-            <span class="tab-btn cat-tab {{ $cat == $category ? 'active' : '' }}" data-cat="{{ $cat }}">
+            <span class="tab-btn cat-tab" data-cat="{{ $cat }}">
                 {{ ucfirst($cat) }}
             </span>
         @endforeach
@@ -76,8 +78,8 @@
     const catTabs = document.querySelectorAll('.cat-tab');
     const jobs = document.querySelectorAll('.job-item');
 
-    let selectedState = '{{ $state }}';
-    let selectedCat = '{{ $category }}';
+    let selectedState = '';
+    let selectedCat = '';
 
     function filterJobs() {
         jobs.forEach(job => {
@@ -103,15 +105,13 @@
 
     // CATEGORY TAB CLICK
     catTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            catTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            selectedCat = tab.dataset.cat;
-            filterJobs();
-        });
+        catTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        selectedCat = tab.dataset.cat;
+        filterJobs();
     });
 
-    // Initial filter on page load
+    // Initial filter (show all jobs)
     filterJobs();
 </script>
 @endsection

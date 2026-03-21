@@ -351,20 +351,10 @@ class JobController extends Controller
         return view('state_jobs', compact('states', 'categories', 'jobs'));
     }
 
-    public function stateCategoryJobs($state, $category)
+    public function stateCategoryJobs($state = null, $category = null)
 {
-    // Normalize incoming parameters
-    $state = strtolower(urldecode($state));
-    $category = strtolower(urldecode($category));
-
-    // Filter jobs by category and state
-    $jobs = Job::all()->filter(function ($job) use ($state, $category) {
-        // Multiple states support
-        $jobStates = array_map(fn($s) => strtolower(trim($s)), explode(',', $job->state ?? ''));
-        $jobCat = strtolower(trim($job->category ?? 'other'));
-
-        return in_array($state, $jobStates) && $category === $jobCat;
-    });
+    // Get all jobs
+    $jobs = Job::all();
 
     // Get all unique states from jobs
     $states = Job::pluck('state')
@@ -381,6 +371,7 @@ class JobController extends Controller
         ->sort()
         ->values();
 
-    return view('jobs/job_state_category', compact('jobs', 'state', 'category', 'states', 'categories'));
+    // Pass everything to the view
+    return view('jobs/job_state_category', compact('jobs', 'states', 'categories'));
 }
 }
