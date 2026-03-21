@@ -24,9 +24,11 @@
     }
 
     .job-item {
-        padding: 10px;
-        border-bottom: 1px solid #eee;
-        transition: 0.2s;
+            padding: 10px;
+    border-bottom: 1px solid #eee;
+    transition: 0.2s;
+    color: #fff;
+    font-size: 24px;
     }
 
     .job-item.hidden {
