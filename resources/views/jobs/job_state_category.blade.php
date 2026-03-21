@@ -75,7 +75,7 @@
 
                                 @if ($isNew)
                                     <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
-                                        class="new-badge">
+                                        class="new-badge" width="40px">
                                 @endif<strong>{{ $job->title }}</strong></span>
                     <div style="    float: right;">
                         <span>₹{{ $job->min_salary ?? 'N/A' }}-₹{{ $job->max_salary ?? 'N/A' }}</span>
