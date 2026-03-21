@@ -353,7 +353,7 @@ class JobController extends Controller
 
     public function stateCategoryJobs($state = null, $category = null)
     {
-        dd($category);
+        // dd($category);
         // Get all jobs
         $jobs = Job::all();
 
