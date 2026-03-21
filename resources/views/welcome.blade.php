@@ -462,7 +462,11 @@
 
                                             // URL slug (space remove + encode)
                                             // let url = "/state/" + encodeURIComponent(stateName) + "/jobs";
-                                            let url = "/jobs/" + encodeURIComponent(stateName) + "/All%20Categories";
+                                            let stateSlug = stateName.toLowerCase().replace(/\s+/g, '-');
+                                            let categorySlug = "All Categories".toLowerCase().replace(
+                                                /\s+/g, '-');
+
+                                            let url = "/jobs/" + stateSlug + "/" + categorySlug;
                                             //https://sarkarihai.com/jobs/Bihar/All%20Categories
                                             window.location.href = url;
                                         }
@@ -556,57 +560,55 @@
                 </h2>
 
                 @foreach ($jobsxxx as $jobx)
+                    @php
+                        $name = explode(',', $jobx->post_name)[0] ?? '';
 
-    @php
-        $name = explode(',', $jobx->post_name)[0] ?? '';
+                        $endDate = \Carbon\Carbon::parse($jobx->end_date);
+                        $today = now();
+                        $daysLeft = $today->diffInDays($endDate, false);
 
-        $endDate = \Carbon\Carbon::parse($jobx->end_date);
-        $today = now();
-        $daysLeft = $today->diffInDays($endDate, false);
+                        if ($daysLeft <= 7) {
+                            $color = 'red';
+                        } elseif ($daysLeft <= 14) {
+                            $color = 'orange';
+                        } else {
+                            $color = 'green';
+                        }
+                    @endphp
 
-        if ($daysLeft <= 7) {
-            $color = 'red';
-        } elseif ($daysLeft <= 14) {
-            $color = 'orange';
-        } else {
-            $color = 'green';
-        }
-    @endphp
+                    <a href="{{ route('job.show', ['slug' => Str::slug($jobx->title)]) }}">
 
-    <a href="{{ route('job.show', ['slug' => Str::slug($jobx->title)]) }}">
+                        <div class="statejob-box">
 
-        <div class="statejob-box">
+                            <div class="statejob-top">
+                                <span class="statejob-title">
+                                    {{ ucfirst($jobx->title) . (!empty($name) ? ' - ' . ucfirst($name) : '') }}
+                                </span>
 
-            <div class="statejob-top">
-                <span class="statejob-title">
-                    {{ ucfirst($jobx->title) . (!empty($name) ? ' - ' . ucfirst($name) : '') }}
-                </span>
+                                <span class="statejob-meta">
+                                    ({{ $jobx->min_qulification ?? '' }} |
+                                    ₹{{ number_format($jobx->min_salary ?? 0) }} -
+                                    ₹{{ number_format($jobx->max_salary ?? 0) }} |
+                                    <span style="color: {{ $color }}">
+                                        {{ $endDate->format('d M Y') }}
+                                    </span>)
+                                </span>
+                            </div>
 
-                <span class="statejob-meta">
-                    ({{ $jobx->min_qulification ?? '' }} |
-                    ₹{{ number_format($jobx->min_salary ?? 0) }} -
-                    ₹{{ number_format($jobx->max_salary ?? 0) }} |
-                    <span style="color: {{ $color }}">
-                        {{ $endDate->format('d M Y') }}
-                    </span>)
-                </span>
-            </div>
+                            @if (!empty($jobx->state))
+                                @php $states = explode(',', $jobx->state); @endphp
 
-            @if (!empty($jobx->state))
-                @php $states = explode(',', $jobx->state); @endphp
+                                <div class="statejob-tags">
+                                    @foreach ($states as $state)
+                                        <span class="statejob-badge">{{ trim($state) }}</span>
+                                    @endforeach
+                                </div>
+                            @endif
 
-                <div class="statejob-tags">
-                    @foreach ($states as $state)
-                        <span class="statejob-badge">{{ trim($state) }}</span>
-                    @endforeach
-                </div>
-            @endif
+                        </div>
 
-        </div>
-
-    </a>
-
-@endforeach
+                    </a>
+                @endforeach
 
             </div>
 
