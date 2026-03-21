@@ -39,7 +39,14 @@
 </style>
 
 <div class="container">
+    <h2 class="mb-3 c-t">
+            <span><b>Latest Jobs</b></span>
 
+            <span class="last-update">
+                Last Updated : 21-03-2026 09:30
+                <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
+            </span>
+        </h2>
     {{-- STATE TABS --}}
     <div class="tabs-container">
         @foreach ($states as $s)
