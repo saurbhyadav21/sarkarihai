@@ -122,8 +122,8 @@ class JobController extends Controller
             ->get();
 
         $stateCounts = [];
-
-    foreach ($jobs as $job) {
+    $jobs1 = Job::whereDate('end_date', '>=', now())->get();
+    foreach ($jobs1 as $job) {
 
         // comma separated states ko array me convert karo
         $states = explode(',', $job->state);
