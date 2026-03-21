@@ -116,46 +116,55 @@
     </div>
 
     <script>
-        const stateTabs = document.querySelectorAll('.state-tab');
-        const catTabs = document.querySelectorAll('.cat-tab');
-        const jobs = document.querySelectorAll('.job-item');
+    const stateTabs = document.querySelectorAll('.state-tab');
+    const catTabs = document.querySelectorAll('.cat-tab');
+    const jobs = document.querySelectorAll('.job-item');
 
-        let selectedState = '';
-        let selectedCat = '';
+    // ✅ URL se aaye hue values
+    let selectedState = "{{ strtolower($state ?? '') }}";
+    let selectedCat = "{{ strtolower($category ?? '') }}";
 
-        function filterJobs() {
-            jobs.forEach(job => {
-                const jobStates = job.dataset.state.split(',').map(s => s.trim().toLowerCase());
-                const jobCat = job.dataset.cat.trim().toLowerCase();
+    function filterJobs() {
+        jobs.forEach(job => {
+            const jobStates = job.dataset.state.split(',').map(s => s.trim().toLowerCase());
+            const jobCat = job.dataset.cat.trim().toLowerCase();
 
-                const stateMatch = selectedState ? jobStates.includes(selectedState.toLowerCase()) : true;
-                const catMatch = selectedCat ? jobCat === selectedCat.toLowerCase() : true;
+            const stateMatch = selectedState ? jobStates.includes(selectedState) : true;
+            const catMatch = selectedCat ? jobCat === selectedCat : true;
 
-                job.style.display = (stateMatch && catMatch) ? 'block' : 'none';
-            });
+            job.style.display = (stateMatch && catMatch) ? 'block' : 'none';
+        });
+    }
+
+    // ✅ Highlight active STATE tab on load
+    stateTabs.forEach(tab => {
+        if (tab.dataset.state.toLowerCase() === selectedState) {
+            tab.classList.add('active');
         }
 
-        // STATE TAB CLICK
-        stateTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                stateTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                selectedState = tab.dataset.state;
-                filterJobs();
-            });
+        tab.addEventListener('click', () => {
+            stateTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            selectedState = tab.dataset.state;
+            filterJobs();
         });
+    });
 
-        // CATEGORY TAB CLICK
-        catTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                catTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                selectedCat = tab.dataset.cat;
-                filterJobs();
-            });
+    // ✅ Highlight active CATEGORY tab on load
+    catTabs.forEach(tab => {
+        if (tab.dataset.cat.toLowerCase() === selectedCat) {
+            tab.classList.add('active');
+        }
+
+        tab.addEventListener('click', () => {
+            catTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            selectedCat = tab.dataset.cat;
+            filterJobs();
         });
+    });
 
-        // Initial filter (show all jobs)
-        filterJobs();
-    </script>
+    // Initial filter (based on URL)
+    filterJobs();
+</script>
 @endsection
