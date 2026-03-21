@@ -41,7 +41,7 @@
             align-items: center;
             font-size: 30px;
             color: #fff;
-            margin-left: -8px;
+            margin-left: -8px;margin-top: 20px;
         }
 
 </style>
