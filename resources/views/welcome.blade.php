@@ -555,61 +555,57 @@
                 </h2>
 
                 @foreach ($jobsxxx as $jobx)
-                    @php
-                        $names = explode(',', $jobx->post_name);
-                        $count = count($names);
-echo 'x';
-                    @endphp
 
-                    @for ($i = 0; $i < $count; $i++)
-                        @php
-                            $endDate = \Carbon\Carbon::parse($jobx->end_date);
-                            $today = \Carbon\Carbon::now();
-                            $daysLeft = $today->diffInDays($endDate, false);
+    @php
+        $name = explode(',', $jobx->post_name)[0] ?? '';
 
-                            if ($daysLeft <= 7) {
-                                $color = 'red';
-                            } elseif ($daysLeft <= 14) {
-                                $color = 'orange';
-                            } else {
-                                $color = 'green';
-                            }
-                        @endphp
+        $endDate = \Carbon\Carbon::parse($jobx->end_date);
+        $today = now();
+        $daysLeft = $today->diffInDays($endDate, false);
 
-                        <a href="{{ route('job.show', ['slug' => Str::slug($jobx->title)]) }}">
+        if ($daysLeft <= 7) {
+            $color = 'red';
+        } elseif ($daysLeft <= 14) {
+            $color = 'orange';
+        } else {
+            $color = 'green';
+        }
+    @endphp
 
-                            <div class="statejob-box">
-                                <div class="statejob-top">
-                                    <span class="statejob-title">
-                                       {{ ucfirst($jobx->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
-                                    </span>
+    <a href="{{ route('job.show', ['slug' => Str::slug($jobx->title)]) }}">
 
-                                    <span class="statejob-meta">
-                                        ({{ $jobx->min_qulification ?? '' }} |
-                                        ₹{{ number_format($jobx->min_salary ?? 0) }} -
-                                        ₹{{ number_format($jobx->max_salary ?? 0) }} |
-                                        <span style="color: {{ $color }}">
-                                            {{ $endDate->format('d M Y') }}
-                                        </span>)
-                                    </span>
-                                </div>
+        <div class="statejob-box">
 
-                                {{-- SECOND LINE --}}
-                                @if (!empty($jobx->state))
-                                    @php $states = explode(',', $jobx->state); @endphp
+            <div class="statejob-top">
+                <span class="statejob-title">
+                    {{ ucfirst($jobx->title) . (!empty($name) ? ' - ' . ucfirst($name) : '') }}
+                </span>
 
-                                    <div class="statejob-tags">
-                                        @foreach ($states as $state)
-                                            <span class="statejob-badge">{{ trim($state) }}</span>
-                                        @endforeach
-                                    </div>
-                                @endif
+                <span class="statejob-meta">
+                    ({{ $jobx->min_qulification ?? '' }} |
+                    ₹{{ number_format($jobx->min_salary ?? 0) }} -
+                    ₹{{ number_format($jobx->max_salary ?? 0) }} |
+                    <span style="color: {{ $color }}">
+                        {{ $endDate->format('d M Y') }}
+                    </span>)
+                </span>
+            </div>
 
-                            </div>
+            @if (!empty($jobx->state))
+                @php $states = explode(',', $jobx->state); @endphp
 
-                        </a>
-                    @endfor
-                @endforeach
+                <div class="statejob-tags">
+                    @foreach ($states as $state)
+                        <span class="statejob-badge">{{ trim($state) }}</span>
+                    @endforeach
+                </div>
+            @endif
+
+        </div>
+
+    </a>
+
+@endforeach
 
             </div>
 
