@@ -582,4 +582,16 @@
 
         </div>
     </div>
+
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-6 col-md-6 mb-4">
+                xxxx
+            </div>
+            <div class="col-6 col-md-6 mb-4">
+                yyy
+            </div>
+        </div>
+    </div>    
 @endsection
