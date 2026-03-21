@@ -252,16 +252,18 @@
                 transform: translateY(-6px) scale(1.03);
                 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             }
+
             .youtube {
-    background: linear-gradient(135deg, #ff0000, #cc0000);
-}
+                background: linear-gradient(135deg, #ff0000, #cc0000);
+            }
         </style>
         <div class="container mt-4">
             <div class="row justify-content-center text-center">
 
                 <!-- WhatsApp -->
                 <div class="col-4 col-md-2 mb-3">
-                    <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK" target="_blank" class="social-card whatsapp">
+                    <a href="https://whatsapp.com/channel/0029VbB0EFlJpe8ndG3kRO0g" target="_blank"
+                        class="social-card whatsapp">
 
                         <!-- Image -->
                         {{-- <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="social-img"> --}}
@@ -273,21 +275,11 @@
                     </a>
                 </div>
 
-                <!-- Twitter -->
-                <div class="col-4 col-md-2 mb-3">
-                    <a href="https://twitter.com/YOUR_PROFILE" target="_blank" class="social-card twitter">
-
-                        {{-- <img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png" class="social-img"> --}}
-
-                        <i class="fab fa-x-twitter"></i>
-
-                        {{-- <span>Twitter</span> --}}
-                    </a>
-                </div>
+                
 
                 <!-- Telegram -->
                 <div class="col-4 col-md-2 mb-3">
-                    <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="social-card telegram">
+                    <a href="https://t.me/sarkarihaiofficial" target="_blank" class="social-card telegram">
 
                         {{-- <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="social-img"> --}}
 
@@ -300,7 +292,8 @@
 
 
                 <div class="col-4 col-md-2 mb-3">
-                    <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="social-card telegram">
+                    <a href="https://www.facebook.com/people/Job-Sarkari-Hai/61578223568135/" target="_blank"
+                        class="social-card telegram">
 
                         {{-- <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="social-img"> --}}
 
@@ -313,17 +306,17 @@
 
 
                 <div class="col-4 col-md-2 mb-3">
-    <a href="https://youtube.com/YOUR_CHANNEL" target="_blank" class="social-card youtube">
-        
-        <!-- Image -->
-        {{-- <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" class="social-img"> --}}
+                    <a href="https://www.youtube.com/@sarkarihaiofficial" target="_blank" class="social-card youtube">
 
-        <!-- Icon -->
-        <i class="fab fa-youtube"></i>
+                        <!-- Image -->
+                        {{-- <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" class="social-img"> --}}
 
-        {{-- <span>YouTube</span> --}}
-    </a>
-</div>
+                        <!-- Icon -->
+                        <i class="fab fa-youtube"></i>
+
+                        {{-- <span>YouTube</span> --}}
+                    </a>
+                </div>
 
             </div>
         </div>
