@@ -126,7 +126,7 @@ class JobController extends Controller
             ->selectRaw('state, COUNT(*) as total')
             ->groupBy('state')
             ->pluck('total', 'state'); // ['Uttar Pradesh' => 10]
-
+        dd($stateCounts);
         return view('welcome', compact('jobs', 'stateCounts'));
     }
 
