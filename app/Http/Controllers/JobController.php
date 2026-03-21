@@ -354,9 +354,7 @@ class JobController extends Controller
     public function stateCategoryJobs($state = null, $category = null)
 {
     // Get all jobs
-    $jobs = Job::whereDate('end_date', '>=', now())
-            ->orderBy('end_date', 'asc')
-
+    $jobs = Job::orderBy('updated_at', 'asc')
             ->get();
 
     // Get all unique states from jobs
