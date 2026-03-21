@@ -152,10 +152,11 @@ class JobController extends Controller
         arsort($stateCounts);
         // dd($stateCounts);
 
-        $startOfWeek = \Carbon\Carbon::now(); // aaj se
-$endOfWeek = \Carbon\Carbon::now()->endOfWeek(); // week end (Sunday)
+        // $startOfWeek = \Carbon\Carbon::now(); // aaj se
+$today = \Carbon\Carbon::now();
+$next7Days = \Carbon\Carbon::now()->addDays(7);
 
-$jobs_upcomming = Job::whereBetween('end_date', [$startOfWeek, $endOfWeek])
+$jobs_upcomming = Job::whereBetween('end_date', [$today, $next7Days])
     ->orderBy('end_date', 'asc')
     ->get();
 
