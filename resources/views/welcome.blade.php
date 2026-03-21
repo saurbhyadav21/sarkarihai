@@ -217,45 +217,7 @@
         </div>
     </div>
 
-    <div class="container mt-3">
-        <h2 class="mb-3 text-center">Latest Jobs</h2>
-        <style>
-            .k {
-                color: #fff;
-                margin-bottom: 0px;
-                font-size: 14px;
-            }
-        </style>
-        @foreach ($jobs as $job)
-            @php
-                $names = explode(',', $job->post_name);
-                $salaries = explode(',', $job->post_salary);
-                $eligibilities = explode(',', $job->min_qulification);
-                $count = max(count($names), count($salaries), count($eligibilities));
-                $lastDate = \Carbon\Carbon::parse($job->last_date);
-                $today = \Carbon\Carbon::today();
-                if ($lastDate->lt($today)) {
-                    continue; // skip old jobs
-                }
-            @endphp
-
-            @for ($i = 0; $i < $count; $i++)
-                <p class="k">
-                    {{ ucfirst($job->category) .
-                        ' | ' .
-                        ucfirst($job->title) .
-                        ' | ' .
-                        (ucfirst($names[$i]) ?? '') .
-                        ' | ' .
-                        ($salaries[$i] ?? '') .
-                        ' | ' .
-                        date('d-m-Y', strtotime($job->end_date)) .
-                        ' | ' .
-                        ($eligibilities[$i] ?? '') }}
-                </p>
-            @endfor
-        @endforeach
-    </div> --}}
+  
 
    
 <div class="container mt-4">
