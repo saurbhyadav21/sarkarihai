@@ -364,6 +364,6 @@ class JobController extends Controller
                 return in_array($state, $states);
             });
 
-        return view('state_jobs', compact('jobs', 'state', 'category'));
+        return view('jobs/job_state_category', compact('jobs', 'state', 'category'));
     }
 }
