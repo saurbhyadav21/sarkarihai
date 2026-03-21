@@ -75,43 +75,45 @@
 
 <script>
     const stateTabs = document.querySelectorAll('.state-tab');
-    const catTabs = document.querySelectorAll('.cat-tab');
-    const jobs = document.querySelectorAll('.job-item');
+const catTabs = document.querySelectorAll('.cat-tab');
+const jobs = document.querySelectorAll('.job-item');
 
-    let selectedState = '';
-    let selectedCat = '';
+let selectedState = '';
+let selectedCat = '';
 
-    function filterJobs() {
-        jobs.forEach(job => {
-            const jobStates = job.dataset.state.split(',').map(s => s.trim().toLowerCase());
-            const jobCat = job.dataset.cat.trim().toLowerCase();
+function filterJobs() {
+    jobs.forEach(job => {
+        const jobStates = job.dataset.state.split(',').map(s => s.trim().toLowerCase());
+        const jobCat = job.dataset.cat.trim().toLowerCase();
 
-            const stateMatch = selectedState ? jobStates.includes(selectedState.toLowerCase()) : true;
-            const catMatch = selectedCat ? jobCat === selectedCat.toLowerCase() : true;
+        const stateMatch = selectedState ? jobStates.includes(selectedState.toLowerCase()) : true;
+        const catMatch = selectedCat ? jobCat === selectedCat.toLowerCase() : true;
 
-            job.style.display = (stateMatch && catMatch) ? 'block' : 'none';
-        });
-    }
-
-    // STATE TAB CLICK
-    stateTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            stateTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            selectedState = tab.dataset.state;
-            filterJobs();
-        });
+        job.style.display = (stateMatch && catMatch) ? 'block' : 'none';
     });
+}
 
-    // CATEGORY TAB CLICK
-    catTabs.forEach(tab => {
+// STATE TAB CLICK
+stateTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        stateTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        selectedState = tab.dataset.state;
+        filterJobs();
+    });
+});
+
+// CATEGORY TAB CLICK
+catTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
         catTabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         selectedCat = tab.dataset.cat;
         filterJobs();
     });
+});
 
-    // Initial filter (show all jobs)
-    filterJobs();
+// Initial filter (show all jobs)
+filterJobs();
 </script>
 @endsection
