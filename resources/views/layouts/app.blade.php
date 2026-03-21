@@ -252,6 +252,9 @@
                 transform: translateY(-6px) scale(1.03);
                 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             }
+            .youtube {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+}
         </style>
         <div class="container mt-4">
             <div class="row justify-content-center text-center">
