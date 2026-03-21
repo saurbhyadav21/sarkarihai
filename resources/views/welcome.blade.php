@@ -461,8 +461,9 @@
                                             let stateName = this.name;
 
                                             // URL slug (space remove + encode)
-                                            let url = "/state/" + encodeURIComponent(stateName) + "/jobs";
-
+                                            // let url = "/state/" + encodeURIComponent(stateName) + "/jobs";
+                                            let url = "/jobs/" + encodeURIComponent(stateName) + "/All%20Categories";
+                                            //https://sarkarihai.com/jobs/Bihar/All%20Categories
                                             window.location.href = url;
                                         }
                                     }
