@@ -63,7 +63,7 @@
         .nav-link {
             color: #0b1224;
             padding-right: 30px !important;
-            padding-left: 30px !important;
+            padding-left: 30px !important;    font-weight: bold;
         }
 
         /* hover */
