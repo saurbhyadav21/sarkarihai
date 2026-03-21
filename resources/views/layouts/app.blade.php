@@ -63,7 +63,8 @@
         .nav-link {
             color: #0b1224;
             padding-right: 30px !important;
-            padding-left: 30px !important;    font-weight: bold;
+            padding-left: 30px !important;
+            font-weight: bold;
         }
 
         /* hover */
@@ -141,9 +142,10 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="/"><img src="{{ asset('public/images/logo.png') }}" style="    width: 200px;"/></a>
-                
-                
+                <a class="navbar-brand" href="/"><img src="{{ asset('public/images/logo.png') }}"
+                        style="    width: 200px;" /></a>
+
+
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent">
@@ -165,7 +167,7 @@
                             <a class="nav-link active" href="/">Latest Jobs</a>
                         </li>
 
-                       
+
 
                         <li class="nav-item">
                             <a class="nav-link" href="/">Admit Card</a>
@@ -202,85 +204,182 @@
     </header>
     <!-- Main Content -->
     <main>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+        <style>
+            .social-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 15px 10px;
+                border-radius: 14px;
+                color: #fff;
+                text-decoration: none;
+                font-size: 13px;
+                transition: 0.3s;
+                position: relative;
+            }
+
+            /* Image */
+            .social-img {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 5px;
+            }
+
+            /* Icon */
+            .social-card i {
+                font-size: 20px;
+                margin-bottom: 5px;
+            }
+
+            /* Colors */
+            .whatsapp {
+                background: linear-gradient(135deg, #25D366, #1ebe5d);
+            }
+
+            .twitter {
+                background: linear-gradient(135deg, #000, #333);
+            }
+
+            .telegram {
+                background: linear-gradient(135deg, #0088cc, #00aaff);
+            }
+
+            /* Hover */
+            .social-card:hover {
+                transform: translateY(-6px) scale(1.03);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            }
+        </style>
+        <div class="container mt-4">
+            <div class="row justify-content-center text-center">
+
+                <!-- WhatsApp -->
+                <div class="col-4 col-md-2 mb-3">
+                    <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK" target="_blank" class="social-card whatsapp">
+
+                        <!-- Image -->
+                        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="social-img">
+
+                        <!-- Icon -->
+                        <i class="fab fa-whatsapp"></i>
+
+                        <span>WhatsApp Group</span>
+                    </a>
+                </div>
+
+                <!-- Twitter -->
+                <div class="col-4 col-md-2 mb-3">
+                    <a href="https://twitter.com/YOUR_PROFILE" target="_blank" class="social-card twitter">
+
+                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png" class="social-img">
+
+                        <i class="fab fa-x-twitter"></i>
+
+                        <span>Twitter</span>
+                    </a>
+                </div>
+
+                <!-- Telegram -->
+                <div class="col-4 col-md-2 mb-3">
+                    <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="social-card telegram">
+
+                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="social-img">
+
+                        <i class="fab fa-telegram-plane"></i>
+
+                        <span>Telegram</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
         @yield('content')
     </main>
 
     <footer class="bg-dark text-light pt-5 pb-3 mt-5">
-    <div class="container">
+        <div class="container">
 
-        <!-- Disclaimer -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <h5 class="mb-3">Disclaimer</h5>
-                <p style="font-size:14px; line-height:1.6;">
-                    Information regarding any exam form, results/marks, answer key published on this website
-                    is provided only for the immediate information of the examinees and should not be
-                    considered as a legal document. While every effort has been made by the Sarkarihai team
-                    to ensure the accuracy of the information provided, including official links, we are
-                    not responsible for any inadvertent errors that may appear in the examination
-                    results/marks, answer key, timetable, or admission dates. Additionally, we disclaim
-                    any liability for any loss or damage caused by any shortcomings, defects, or
-                    inaccuracies in the information available on this website. In case of any correction
-                    is needed, feel free to contact us through the Contact Us page.
-                </p>
-            </div>
-        </div>
-
-        <div class="row">
-
-            <!-- About Website -->
-            <div class="col-md-4 mb-4">
-                <h5 class="mb-3">About Us</h5>
-                <p>
-                    Our website provides the latest updates on government jobs, admit cards,
-                    results, answer keys and online forms. Stay updated with the latest
-                    recruitment notifications across India.
-                </p>
-                <a href="//www.dmca.com/Protection/Status.aspx?ID=ef60ce3f-6888-44e5-af7e-cfede662ea9c" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca_protected_25_120.png?ID=ef60ce3f-6888-44e5-af7e-cfede662ea9c"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
-            </div>
-
-            <!-- Important Links -->
-            <div class="col-md-4 mb-4">
-                <h5 class="mb-3">Important Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-light text-decoration-none">Latest Jobs</a></li>
-                    <li><a href="#" class="text-light text-decoration-none">Admit Card</a></li>
-                    <li><a href="#" class="text-light text-decoration-none">Results</a></li>
-                    <li><a href="#" class="text-light text-decoration-none">Answer Key</a></li>
-                    <li><a href="/disclaimer" class="text-light text-decoration-none">Disclaimer</a></li>
-                    <li><a href="/privacy-policy" class="text-light text-decoration-none">Privacy Policy</a></li>
-                    <li><a href="/contact" class="text-light text-decoration-none">Contact Us</a></li>
-                    <li><a href="/fact-checking-policy" class="text-light text-decoration-none">Fact Checking Policy</a></li>
-                </ul>
-            </div>
-
-            <!-- Contact Info -->
-            <div class="col-md-4 mb-4">
-                <h5 class="mb-3">Contact Info</h5>
-                <p>Email: info@example.com</p>
-                <p>Phone: +91 9876543210</p>
-
-                <div>
-                    <a href="#" class="text-light me-3">Facebook</a>
-                    <a href="#" class="text-light me-3">Twitter</a>
-                    <a href="#" class="text-light me-3">Instagram</a>
-                    <a href="#" class="text-light">YouTube</a>
+            <!-- Disclaimer -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h5 class="mb-3">Disclaimer</h5>
+                    <p style="font-size:14px; line-height:1.6;">
+                        Information regarding any exam form, results/marks, answer key published on this website
+                        is provided only for the immediate information of the examinees and should not be
+                        considered as a legal document. While every effort has been made by the Sarkarihai team
+                        to ensure the accuracy of the information provided, including official links, we are
+                        not responsible for any inadvertent errors that may appear in the examination
+                        results/marks, answer key, timetable, or admission dates. Additionally, we disclaim
+                        any liability for any loss or damage caused by any shortcomings, defects, or
+                        inaccuracies in the information available on this website. In case of any correction
+                        is needed, feel free to contact us through the Contact Us page.
+                    </p>
                 </div>
             </div>
 
+            <div class="row">
+
+                <!-- About Website -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">About Us</h5>
+                    <p>
+                        Our website provides the latest updates on government jobs, admit cards,
+                        results, answer keys and online forms. Stay updated with the latest
+                        recruitment notifications across India.
+                    </p>
+                    <a href="//www.dmca.com/Protection/Status.aspx?ID=ef60ce3f-6888-44e5-af7e-cfede662ea9c"
+                        title="DMCA.com Protection Status" class="dmca-badge"> <img
+                            src ="https://images.dmca.com/Badges/dmca_protected_25_120.png?ID=ef60ce3f-6888-44e5-af7e-cfede662ea9c"
+                            alt="DMCA.com Protection Status" /></a>
+                    <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
+                </div>
+
+                <!-- Important Links -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">Important Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Latest Jobs</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Admit Card</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Results</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Answer Key</a></li>
+                        <li><a href="/disclaimer" class="text-light text-decoration-none">Disclaimer</a></li>
+                        <li><a href="/privacy-policy" class="text-light text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="/contact" class="text-light text-decoration-none">Contact Us</a></li>
+                        <li><a href="/fact-checking-policy" class="text-light text-decoration-none">Fact Checking
+                                Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">Contact Info</h5>
+                    <p>Email: info@example.com</p>
+                    <p>Phone: +91 9876543210</p>
+
+                    <div>
+                        <a href="#" class="text-light me-3">Facebook</a>
+                        <a href="#" class="text-light me-3">Twitter</a>
+                        <a href="#" class="text-light me-3">Instagram</a>
+                        <a href="#" class="text-light">YouTube</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="border-light">
+
+            <!-- Copyright -->
+            <div class="text-center">
+                <p class="mb-0">
+                    © 2026 Sarkarihai.com | All Rights Reserved
+                </p>
+            </div>
+
         </div>
-
-        <hr class="border-light">
-
-        <!-- Copyright -->
-        <div class="text-center">
-            <p class="mb-0">
-                © 2026 Sarkarihai.com | All Rights Reserved
-            </p>
-        </div>
-
-    </div>
-</footer>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
