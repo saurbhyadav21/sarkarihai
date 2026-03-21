@@ -114,7 +114,7 @@
                 </a>
             @endforeach
         </div>
-        
+
     </div>
 
     <script>
@@ -125,36 +125,26 @@
         let selectedState = @json($state ?? '');
         let selectedCat = @json($category ?? '');
 
-        // console.log("RAW state:", selectedState);
-        // console.log("RAW cat:", selectedCat);
-
-        // normalize
         selectedState = selectedState.toLowerCase().replace(/-/g, ' ').trim();
         selectedCat = selectedCat.toLowerCase().replace(/-/g, ' ').trim();
 
-        // console.log("FINAL state:", selectedState);
-        // console.log("FINAL cat:", selectedCat);
-
-        // 👇 IMPORTANT: "all-categories" / "all-states" ko empty bana do
-        if (selectedState === "all-states") selectedState = "";
-        if (selectedCat === "all-categories") selectedCat = "";
-
-        // console.log("URL state:", selectedState);
-        // console.log("URL cat:", selectedCat);
+        // ✅ IMPORTANT FIX
+        if (selectedCat === "all categories") selectedCat = "";
+        if (selectedState === "all states") selectedState = "";
 
         function filterJobs() {
-            jobs.forEach(job => {
-                const jobStates = job.dataset.state.split(',').map(s => s.trim().toLowerCase());
-                const jobCat = job.dataset.cat.trim().toLowerCase();
+    jobs.forEach(job => {
+        const jobStates = job.dataset.state.split(',').map(s => s.trim().toLowerCase());
+        const jobCat = job.dataset.cat.trim().toLowerCase();
 
-                const stateMatch = selectedState ? jobStates.includes(selectedState) : true;
-                const catMatch = selectedCat ? jobCat === selectedCat : true;
-                console.log(stateMatch);
-                console.log(catMatch);
-                
-                job.style.display = (stateMatch && catMatch) ? 'block' : 'none';
-            });
-        }
+        const stateMatch = selectedState ? jobStates.includes(selectedState) : true;
+
+        // ✅ FIX: empty ho to ignore karo
+        const catMatch = selectedCat ? jobCat === selectedCat : true;
+
+        job.style.display = (stateMatch && catMatch) ? 'block' : 'none';
+    });
+}
 
         // ✅ STATE TAB
         stateTabs.forEach(tab => {
