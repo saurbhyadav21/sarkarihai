@@ -128,83 +128,7 @@
 
 
 
-    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-<style>#container {
-    height: 500px;
-    min-width: 310px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.loading {
-    margin-top: 10em;
-    text-align: center;
-    color: gray;
-}
-</style>
-<div id="container"></div>
-<script>(async () => {
-
-    const topology = await fetch(
-        'https://code.highcharts.com/mapdata/countries/in/in-all.topo.json'
-    ).then(response => response.json());
-
-   
-    const data = [
-        ['in-tn', 10], ['in-py', 11], ['in-hp', 12], ['in-sk', 13],
-        ['in-dl', 14], ['in-up', 15], ['in-hr', 16], ['in-pb', 17],
-        ['in-ch', 18], ['in-rj', 19], ['in-jk', 20], ['in-gj', 21],
-        ['in-mp', 22], ['in-mh', 23], ['in-dh', 24], ['in-br', 25],
-        ['in-wb', 26], ['in-jh', 27], ['in-cg', 28], ['in-od', 29],
-        ['in-kl', 30], ['in-ka', 31], ['in-ap', 32], ['in-an', 33],
-        ['in-as', 34], ['in-tr', 35], ['in-ar', 36], ['in-ld', 37],
-        ['in-ml', 38], ['in-mn', 39], ['in-nl', 40], ['in-mz', 41],
-        ['in-ts', 42], ['in-la', 43], ['in-uk', 44], ['in-ga', 45]
-    ];
-
-  
-    Highcharts.mapChart('container', {
-        chart: {
-            map: topology
-        },
-
-        title: {
-            text: 'Highcharts Maps basic demo'
-        },
-
-        subtitle: {
-            text: 'Source map: <a href="https://code.highcharts.com/mapdata/countries/in/in-all.topo.json">India</a>'
-        },
-
-        mapNavigation: {
-            enabled: true,
-            buttonOptions: {
-                verticalAlign: 'bottom'
-            }
-        },
-
-        colorAxis: {
-            min: 0
-        },
-
-        series: [{
-            data: data,
-            name: 'Random data',
-            states: {
-                hover: {
-                    color: '#BADA55'
-                }
-            },
-            dataLabels: {
-                enabled: true,
-                format: '{point.name}'
-            }
-        }]
-    });
-
-})();
-</script>
+    
 
 
     <div class="container mt-3">
@@ -388,97 +312,94 @@
     </div> --}}
 
 
-<style>.state-card {
-    text-decoration: none;
-}
 
-.state-box {
-    background: linear-gradient(135deg, #ff7a00, #ffb347);
-    color: #fff;
-    padding: 20px 10px;
-    text-align: center;
-    border-radius: 12px;
-    transition: 0.3s;
-}
 
-.state-box h5 {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.state-box:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-.state-box {
-    background: #fff;
-    border-radius: 12px;
-    padding: 15px;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.state-box:hover {
-    transform: translateY(-6px);
-}
-
-.state-img {
-    width: 70px;
-    height: 70px;
-    object-fit: contain;
-    margin-bottom: 10px;
-}
-</style>
-    @php
-$states = [
-    'Uttar Pradesh',
-    'Bihar',
-    'Delhi',
-    'Madhya Pradesh',
-    'Rajasthan',
-    'Haryana',
-    'Punjab',
-    'Gujarat',
-    'Maharashtra',
-    'West Bengal',
-    'Tamil Nadu',
-    'Karnataka',
-    'Odisha',
-    'Jharkhand',
-    'Chhattisgarh',
-    'Uttarakhand',
-    'Himachal Pradesh',
-    'Assam',
-    'Kerala',
-    'Telangana',
-    'Andhra Pradesh'
-];
-@endphp
-
-@php
-$states = [
-    'rajasthan','himachal-pradesh','meghalaya','tamil-nadu',
-    'jammu-kashmir','bihar','madhya-pradesh','haryana',
-    'jharkhand','punjab','goa','karnataka'
-];
-@endphp
+    
 
 <div class="container mt-4">
     <div class="row">
 
-        @foreach($states as $state)
+      
         <div class="col-6 col-md-3 mb-4">
-            <a href="{{ url('jobs/'.$state) }}" class="state-card">
+           <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<style>#container {
+    height: 500px;
+    min-width: 310px;
+    max-width: 800px;
+    margin: 0 auto;
+}
 
-                <div class="state-box">
-                    <img src="{{ asset('images/states/'.$state.'.png') }}" class="state-img">
-                    <h6>{{ ucwords(str_replace('-', ' ', $state)) }}</h6>
-                </div>
+.loading {
+    margin-top: 10em;
+    text-align: center;
+    color: gray;
+}
+</style>
+<div id="container"></div>
+<script>(async () => {
 
-            </a>
+    const topology = await fetch(
+        'https://code.highcharts.com/mapdata/countries/in/in-all.topo.json'
+    ).then(response => response.json());
+
+   
+    const data = [
+        ['in-tn', 10], ['in-py', 11], ['in-hp', 12], ['in-sk', 13],
+        ['in-dl', 14], ['in-up', 15], ['in-hr', 16], ['in-pb', 17],
+        ['in-ch', 18], ['in-rj', 19], ['in-jk', 20], ['in-gj', 21],
+        ['in-mp', 22], ['in-mh', 23], ['in-dh', 24], ['in-br', 25],
+        ['in-wb', 26], ['in-jh', 27], ['in-cg', 28], ['in-od', 29],
+        ['in-kl', 30], ['in-ka', 31], ['in-ap', 32], ['in-an', 33],
+        ['in-as', 34], ['in-tr', 35], ['in-ar', 36], ['in-ld', 37],
+        ['in-ml', 38], ['in-mn', 39], ['in-nl', 40], ['in-mz', 41],
+        ['in-ts', 42], ['in-la', 43], ['in-uk', 44], ['in-ga', 45]
+    ];
+
+  
+    Highcharts.mapChart('container', {
+        chart: {
+            map: topology
+        },
+
+        title: {
+            text: 'Highcharts Maps basic demo'
+        },
+
+        subtitle: {
+            text: 'Source map: <a href="https://code.highcharts.com/mapdata/countries/in/in-all.topo.json">India</a>'
+        },
+
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+        },
+
+        colorAxis: {
+            min: 0
+        },
+
+        series: [{
+            data: data,
+            name: 'Random data',
+            states: {
+                hover: {
+                    color: '#BADA55'
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }]
+    });
+
+})();
+</script>
         </div>
-        @endforeach
+       
 
     </div>
 </div>
