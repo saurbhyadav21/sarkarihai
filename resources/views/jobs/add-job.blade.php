@@ -15,7 +15,7 @@
 
         @foreach($states as $state)
             <label style="margin-right:10px;">
-                <input type="checkbox" name="states[]" value="{{ $state->id }}">
+                <input type="checkbox" name="states[]" value="{{ $state->name }}">
                 {{ $state->name }}
             </label>
         @endforeach
@@ -30,7 +30,7 @@
         <select name="category_id" required>
             <option value="">-- Select Category --</option>
             @foreach($categories as $cat)
-                <option value="{{ $cat->id }}">
+                <option value="{{ $cat->name }}">
                     {{ $cat->name }}
                 </option>
             @endforeach
