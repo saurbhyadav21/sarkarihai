@@ -372,6 +372,12 @@ class JobController extends Controller
             ->values();
 
         // Pass everything to the view
-        return view('jobs/job_state_category', compact('jobs', 'states', 'categories'));
+        return view('jobs/job_state_category', compact(
+    'jobs',
+    'states',
+    'categories',
+    'state',       // 👈 add karo
+    'category'     // 👈 add karo
+));
     }
 }
