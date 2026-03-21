@@ -301,7 +301,7 @@
 
                         {{-- <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="social-img"> --}}
 
-                        <i class="fab fa-facebook"></i>
+                        <i class="fab fa-facebook-f"></i>
 
                         {{-- <span>Telegram</span> --}}
                     </a>
