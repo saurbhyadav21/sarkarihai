@@ -149,7 +149,9 @@
 
                 const stateMatch = selectedState ? jobStates.includes(selectedState) : true;
                 const catMatch = selectedCat ? jobCat === selectedCat : true;
-
+                console.log(stateMatch);
+                console.log(catMatch);
+                
                 job.style.display = (stateMatch && catMatch) ? 'block' : 'none';
             });
         }
