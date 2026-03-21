@@ -355,6 +355,40 @@
                     }
                 </style>
                 <div id="container"></div>
+                @php
+                    $stateMap = [
+                        'Uttar Pradesh' => 'in-up',
+                        'Bihar' => 'in-br',
+                        'Delhi' => 'in-dl',
+                        'Maharashtra' => 'in-mh',
+                        'Rajasthan' => 'in-rj',
+                        'Madhya Pradesh' => 'in-mp',
+                        'Gujarat' => 'in-gj',
+                        'Haryana' => 'in-hr',
+                        'Punjab' => 'in-pb',
+                        'West Bengal' => 'in-wb',
+                        'Jharkhand' => 'in-jh',
+                        'Chhattisgarh' => 'in-cg',
+                        'Odisha' => 'in-od',
+                        'Karnataka' => 'in-ka',
+                        'Tamil Nadu' => 'in-tn',
+                        'Telangana' => 'in-ts',
+                        'Andhra Pradesh' => 'in-ap',
+                        'Kerala' => 'in-kl',
+                        'Assam' => 'in-as',
+                    ];
+                @endphp
+                <script>
+                    const data1 = [
+                        @foreach ($stateCounts as $state => $count)
+                            @if (isset($stateMap[$state]))
+                                ['{{ $stateMap[$state] }}', {{ $count }}],
+                            @endif
+                        @endforeach
+                    ];
+                    console.log(data1);
+                    
+                </script>
                 <script>
                     (async () => {
 
