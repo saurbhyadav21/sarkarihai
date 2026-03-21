@@ -325,7 +325,7 @@
         }
 
         .highcharts-title {
-            font-size: 24px !important;
+            font-size: 38px !important;
             font-weight: bold !important;
             fill: rgb(255 255 255) !important;
             color: #fff !important;
@@ -452,7 +452,11 @@
                 </script>
             </div>
             <div class="col-6 col-md-6 mb-4">
-            xxx
+                <h2 class="mb-3 c-t">
+                    <span><b>Latest Jobs</b></span>
+
+                   
+                </h2>
             </div>
 
 
