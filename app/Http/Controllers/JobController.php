@@ -371,7 +371,7 @@ class JobController extends Controller
             ->unique()
             ->sort()
             ->values();
-
+        dd($jobs);
         // Pass everything to the view
         return view('jobs/job_state_category', compact(
             'jobs',
