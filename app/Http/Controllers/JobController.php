@@ -325,8 +325,7 @@ class JobController extends Controller
     {
         $state = urldecode($state); // URL se decode
         
-        $jobs = Job::whereDate('end_date', '>=', now())
-            ->get()
+        $jobs = Job::get()
             ->filter(function ($job) use ($state) {
                 $states = array_map('trim', explode(',', $job->state));
                 return in_array($state, $states);
