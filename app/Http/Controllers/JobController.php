@@ -352,18 +352,31 @@ class JobController extends Controller
     }
 
     public function stateCategoryJobs($state, $category)
-    {
-        $state = urldecode($state);
-        $category = urldecode($category);
+{
+    $state = strtolower(urldecode($state));
+    $category = strtolower(urldecode($category));
 
-        $jobs = Job::whereDate('end_date', '>=', now())
-            ->where('category', $category)
-            ->get()
-            ->filter(function ($job) use ($state) {
-                $states = array_map('trim', explode(',', $job->state));
-                return in_array($state, $states);
-            });
+    $jobs = Job::whereRaw('LOWER(category) = ?', [$category])
+        ->get()
+        ->filter(function ($job) use ($state) {
+            $states = array_map(function ($s) {
+                return strtolower(trim($s));
+            }, explode(',', $job->state));
+            return in_array($state, $states);
+        });
 
-        return view('jobs/job_state_category', compact('jobs', 'state', 'category'));
-    }
+    // Get all unique states from jobs for tabs
+    $states = Job::pluck('state') // get all states column
+        ->flatMap(function ($s) {
+            return explode(',', $s); // split comma separated states
+        })
+        ->map(function ($s) {
+            return trim($s); // clean spaces
+        })
+        ->unique()
+        ->sort()
+        ->values();
+    dd($states);
+    return view('jobs/job_state_category', compact('jobs', 'state', 'category', 'states'));
+}
 }
