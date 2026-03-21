@@ -559,7 +559,7 @@
                         $count = count($names);
                     @endphp
 
-                    @for ($i = 0; $i < min($count, 10); $i++)
+                    @for ($i = 0; $i < 10; $i++)
                         @php
                             $endDate = \Carbon\Carbon::parse($job->end_date);
                             $today = \Carbon\Carbon::now();
