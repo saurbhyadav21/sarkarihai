@@ -122,10 +122,10 @@ class JobController extends Controller
             
             ->get();
 
-            $jobsxxx = Job::whereDate('end_date', '>=', now())
-            ->orderBy('end_date', 'asc')
-            
-            ->get();
+          $jobsxxx = Job::whereDate('end_date', '>=', now())
+    ->orderBy('end_date', 'asc')
+    ->limit(10)
+    ->get();
 
         $stateCounts = [];
         $jobs1 = Job::get();
