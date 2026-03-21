@@ -388,8 +388,14 @@
 
                         Highcharts.mapChart('container', {
                             chart: {
-                                map: topology
-                            },
+        map: topology,
+        backgroundColor: '#ff0000', // 🔴 red background
+        panning: false,
+        zooming: {
+            mouseWheel: false,
+            pinchType: null
+        }
+    },
 
                             title: {
                                 text: 'State Wise Job India - 2026'
