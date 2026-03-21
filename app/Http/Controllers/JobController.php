@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job; // Make sure you have a Job model
+use App\Models\State; // Make sure you have a Job model
+use App\Models\Category; // Make sure you have a Job model
 use Illuminate\Support\Str;
 
 
@@ -426,5 +428,14 @@ class JobController extends Controller
             'state',       // 👈 add karo
             'category'     // 👈 add karo
         ));
+    }
+
+
+    public function addJob()
+    {
+        $states = State::all();
+        $categories = Category::all();
+
+        return view('jobs.add-job', compact('states', 'categories'));
     }
 }
