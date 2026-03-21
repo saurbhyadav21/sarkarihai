@@ -358,37 +358,29 @@ class JobController extends Controller
     $category = strtolower(urldecode($category));
 
     // Filter jobs by category and state
-    $jobs = Job::whereRaw('LOWER(category) = ?', [$category])
-        ->get()
-        ->filter(function ($job) use ($state) {
-            $states = array_map(function ($s) {
-                return strtolower(trim($s));
-            }, explode(',', $job->state));
-            return in_array($state, $states);
-        });
+    $jobs = Job::all()->filter(function ($job) use ($state, $category) {
+        // Multiple states support
+        $jobStates = array_map(fn($s) => strtolower(trim($s)), explode(',', $job->state ?? ''));
+        $jobCat = strtolower(trim($job->category ?? 'other'));
 
-    // Get all unique states from jobs for tabs
-    $states = Job::pluck('state') // get all states column
-        ->flatMap(function ($s) {
-            return explode(',', $s); // split comma separated states
-        })
-        ->map(function ($s) {
-            return trim($s); // clean spaces
-        })
+        return in_array($state, $jobStates) && $category === $jobCat;
+    });
+
+    // Get all unique states from jobs
+    $states = Job::pluck('state')
+        ->flatMap(fn($s) => explode(',', $s))
+        ->map(fn($s) => strtolower(trim($s)))
         ->unique()
         ->sort()
         ->values();
 
-    // Get all unique categories from jobs for category tabs
+    // Get all unique categories from jobs
     $categories = Job::pluck('category')
-        ->map(function ($c) {
-            return trim($c);
-        })
+        ->map(fn($c) => strtolower(trim($c)))
         ->unique()
         ->sort()
         ->values();
-    dd($jobs);
-    // Pass everything to the view
+
     return view('jobs/job_state_category', compact('jobs', 'state', 'category', 'states', 'categories'));
 }
 }

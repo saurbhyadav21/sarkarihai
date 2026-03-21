@@ -43,26 +43,26 @@
     {{-- STATE TABS --}}
     <div class="tabs-container">
         @foreach ($states as $s)
-            <span class="tab-btn state-tab" data-state="{{ strtolower(trim($s)) }}">
-                {{ $s }}
+            <span class="tab-btn state-tab {{ $s == $state ? 'active' : '' }}" data-state="{{ $s }}">
+                {{ ucfirst($s) }}
             </span>
         @endforeach
     </div>
 
     {{-- CATEGORY TABS --}}
-    <div class="tabs-container">
+    <div class="tabs-container" style="margin-top:10px;">
         @foreach ($categories as $cat)
-            <span class="tab-btn cat-tab" data-cat="{{ strtolower(trim($cat)) }}">
-                {{ $cat }}
+            <span class="tab-btn cat-tab {{ $cat == $category ? 'active' : '' }}" data-cat="{{ $cat }}">
+                {{ ucfirst($cat) }}
             </span>
         @endforeach
     </div>
 
     {{-- JOB LIST --}}
-    <div id="job-list">
+    <div id="job-list" style="margin-top:15px;">
         @foreach ($jobs as $job)
             <div class="job-item" 
-                 data-state="{{ implode(',', array_map('strtolower', array_map('trim', explode(',', $job->state)))) }}" 
+                 data-state="{{ implode(',', array_map(fn($s) => strtolower(trim($s)), explode(',', $job->state))) }}" 
                  data-cat="{{ strtolower(trim($job->category ?? 'other')) }}">
                 {{ $job->title }}
             </div>
@@ -76,38 +76,42 @@
     const catTabs = document.querySelectorAll('.cat-tab');
     const jobs = document.querySelectorAll('.job-item');
 
-    let selectedState = '';
-    let selectedCat = '';
+    let selectedState = '{{ $state }}';
+    let selectedCat = '{{ $category }}';
 
     function filterJobs() {
         jobs.forEach(job => {
-            // Split multiple states properly
             const jobStates = job.dataset.state.split(',').map(s => s.trim().toLowerCase());
             const jobCat = job.dataset.cat.trim().toLowerCase();
 
-            const stateMatch = selectedState ? jobStates.includes(selectedState) : true;
-            const catMatch = selectedCat ? jobCat === selectedCat : true;
+            const stateMatch = selectedState ? jobStates.includes(selectedState.toLowerCase()) : true;
+            const catMatch = selectedCat ? jobCat === selectedCat.toLowerCase() : true;
 
-            job.classList.toggle('hidden', !(stateMatch && catMatch));
+            job.style.display = (stateMatch && catMatch) ? 'block' : 'none';
         });
     }
 
+    // STATE TAB CLICK
     stateTabs.forEach(tab => {
         tab.addEventListener('click', () => {
             stateTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            selectedState = tab.dataset.state.trim().toLowerCase();
+            selectedState = tab.dataset.state;
             filterJobs();
         });
     });
 
+    // CATEGORY TAB CLICK
     catTabs.forEach(tab => {
         tab.addEventListener('click', () => {
             catTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            selectedCat = tab.dataset.cat.trim().toLowerCase();
+            selectedCat = tab.dataset.cat;
             filterJobs();
         });
     });
+
+    // Initial filter on page load
+    filterJobs();
 </script>
 @endsection
