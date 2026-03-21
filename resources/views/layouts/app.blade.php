@@ -142,7 +142,7 @@
             <div class="container-fluid">
 
                 {{-- <a class="navbar-brand" href="/">Sarakrihai</a> --}}
-                <img src="{{ asset('public/job-images/' . $job->image) }}"/>
+                <img src="{{ asset('public/images/logo.png') }}"/>
                 
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
