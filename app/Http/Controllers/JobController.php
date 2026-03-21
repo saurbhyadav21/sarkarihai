@@ -344,7 +344,7 @@ class JobController extends Controller
             'category'          => $request->category_id ?? null,
             'state'          => $request->states ?? null,
         ];
-
+            dd($data);
         // Save
         Job::create($data);
 
