@@ -356,7 +356,7 @@ class JobController extends Controller
         // dd($category);
         // Get all jobs
         $jobs = Job::all();
-
+dd($state.'---'.$category);
         // Get all unique states from jobs
         $states = Job::pluck('state')
             ->flatMap(fn($s) => explode(',', $s))
@@ -371,7 +371,7 @@ class JobController extends Controller
             ->unique()
             ->sort()
             ->values();
-        dd($jobs);
+        
         // Pass everything to the view
         return view('jobs/job_state_category', compact(
             'jobs',
