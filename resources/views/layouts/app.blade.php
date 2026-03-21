@@ -142,7 +142,7 @@
             <div class="container-fluid">
 
                 {{-- <a class="navbar-brand" href="/">Sarakrihai</a> --}}
-                <img src="{{ asset('public/images/logo.png') }}"/>
+                <img src="{{ asset('public/images/logo.png') }}" style="    width: 200px;"/>
                 
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
