@@ -13,4 +13,6 @@ class Job extends Model
 
     protected $table = 'job_details'; // your table name
     protected $guarded = [];   // allow mass assignment for all fields
+
+    
 }

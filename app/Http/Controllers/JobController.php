@@ -163,11 +163,11 @@ class JobController extends Controller
         // dd($jobs_upcomming );
 
         $categories = Job::pluck('category')
-    ->filter() // empty remove
-    ->map(fn($c) => strtolower(trim($c)))
-    ->unique()
-    ->sort()
-    ->values();
+            ->filter() // empty remove
+            ->map(fn($c) => strtolower(trim($c)))
+            ->unique()
+            ->sort()
+            ->values();
 
         return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories'));
     }
@@ -314,35 +314,63 @@ class JobController extends Controller
     }
 
 
+    // public function storeJson(Request $request)
+    // {
+    //     // Validate JSON
+    //     $request->validate([
+    //         'job_json' => 'required|json'
+    //     ]);
+
+    //     // Decode JSON
+    //     $json = json_decode($request->job_json, true);
+
+    //     // Map fields
+    //     $data = [
+    //         'title'            => $json['title'] ?? null,
+    //         'start_date'       => $json['start_date'] ?? null,
+    //         'end_date'         => $json['last_date'] ?? null,
+    //         'exam_date'        => $json['exam_date'] ?? null,
+    //         'min_salary'       => $json['salary_min'] ?? null,
+    //         'max_salary'       => $json['salary_max'] ?? null,
+    //         'min_age'          => $json['age_min'] ?? null,
+    //         'max_age_genral'   => $json['age_max'] ?? null,
+    //         'total_vacancies'  => $json['total_vacancy'] ?? null,
+    //         'post_eligibility' => $json['qualification'] ?? null,
+    //         'website'          => $json['website'] ?? null,
+    //     ];
+
+    //     // Save
+    //     Job::create($data);
+
+    //     return back()->with('success', 'Job added via JSON!');
+    // }
     public function storeJson(Request $request)
     {
-        // Validate JSON
         $request->validate([
-            'job_json' => 'required|json'
+            'job_json' => 'required',
+            'category_id' => 'required|exists:categories,id',
+            'states' => 'required|array'
         ]);
 
-        // Decode JSON
-        $json = json_decode($request->job_json, true);
+        // JSON decode
+        $data = json_decode($request->job_json, true);
 
-        // Map fields
-        $data = [
-            'title'            => $json['title'] ?? null,
-            'start_date'       => $json['start_date'] ?? null,
-            'end_date'         => $json['last_date'] ?? null,
-            'exam_date'        => $json['exam_date'] ?? null,
-            'min_salary'       => $json['salary_min'] ?? null,
-            'max_salary'       => $json['salary_max'] ?? null,
-            'min_age'          => $json['age_min'] ?? null,
-            'max_age_genral'   => $json['age_max'] ?? null,
-            'total_vacancies'  => $json['total_vacancy'] ?? null,
-            'post_eligibility' => $json['qualification'] ?? null,
-            'website'          => $json['website'] ?? null,
-        ];
+        if (!$data) {
+            return back()->withErrors(['Invalid JSON']);
+        }
 
-        // Save
-        Job::create($data);
+        // Job create
+        $job = Job::create([
+            'title' => $data['title'] ?? 'N/A',
+            'start_date' => $data['start_date'] ?? null,
+            'end_date' => $data['end_date'] ?? null,
+            'category_id' => $request->category_id
+        ]);
 
-        return back()->with('success', 'Job added via JSON!');
+        // 🔥 STATES ATTACH (Pivot Table)
+        $job->states()->attach($request->states);
+
+        return back()->with('success', 'Job Added Successfully!');
     }
 
     public function stateJobs($state)
