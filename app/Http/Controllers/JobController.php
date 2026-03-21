@@ -321,8 +321,8 @@ class JobController extends Controller
         // Validate JSON
         $request->validate([
             'job_json' => 'required|json',
-            'states' => 'required|json',
-            'category_id' => 'required|json'
+            'states' => 'required|array',
+            'category_id' => 'required'
         ]);
 
         // Decode JSON
