@@ -114,8 +114,7 @@
                 </a>
             @endforeach
         </div>
-State: {{ $state ?? 'NULL' }} <br>
-Category: {{ $category ?? 'NULL' }}
+        
     </div>
 
     <script>
@@ -124,17 +123,17 @@ Category: {{ $category ?? 'NULL' }}
         const jobs = document.querySelectorAll('.job-item');
 
         let selectedState = @json($state ?? '');
-let selectedCat = @json($category ?? '');
+        let selectedCat = @json($category ?? '');
 
-console.log("RAW state:", selectedState);
-console.log("RAW cat:", selectedCat);
+        console.log("RAW state:", selectedState);
+        console.log("RAW cat:", selectedCat);
 
-// normalize
-selectedState = selectedState.toLowerCase().replace(/-/g, ' ').trim();
-selectedCat = selectedCat.toLowerCase().replace(/-/g, ' ').trim();
+        // normalize
+        selectedState = selectedState.toLowerCase().replace(/-/g, ' ').trim();
+        selectedCat = selectedCat.toLowerCase().replace(/-/g, ' ').trim();
 
-console.log("FINAL state:", selectedState);
-console.log("FINAL cat:", selectedCat);
+        console.log("FINAL state:", selectedState);
+        console.log("FINAL cat:", selectedCat);
 
         // 👇 IMPORTANT: "all-categories" / "all-states" ko empty bana do
         if (selectedState === "all-states") selectedState = "";
@@ -160,7 +159,7 @@ console.log("FINAL cat:", selectedCat);
             let tabState = tab.dataset.state.trim().toLowerCase();
             console.log(selectedState);
             console.log(tabState);
-            
+
             // ✅ match OR both empty (All States)
             if (tabState === selectedState || (tabState === "" && selectedState === "")) {
                 tab.classList.add('active');
