@@ -141,7 +141,7 @@
     // ✅ STATE TAB
     stateTabs.forEach(tab => {
         console.log(selectedState);
-        console.log(tab.dataset.state.trim().toLowerCase());
+        // console.log(tab.dataset.state.trim().toLowerCase());
         
         if (tab.dataset.state.trim().toLowerCase() === selectedState) {
             tab.classList.add('active');
