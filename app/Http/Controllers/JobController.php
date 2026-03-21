@@ -324,7 +324,7 @@ class JobController extends Controller
     public function stateJobs($state)
     {
         $state = urldecode($state); // URL se decode
-
+        dd($state);
         $jobs = Job::whereDate('end_date', '>=', now())
             ->get()
             ->filter(function ($job) use ($state) {
