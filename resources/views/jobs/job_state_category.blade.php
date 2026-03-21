@@ -44,19 +44,50 @@
         .tabs-container {
             margin-bottom: 10px;
         }
+
         .c-t {
             display: flex;
             align-items: center;
             font-size: 30px;
             color: #fff;
-            margin-left: -8px;    margin-top: 30px;}
+            margin-left: -8px;
+            margin-top: 30px;
+        }
     </style>
+    <div class="container mt-4">
+        <div class="row justify-content-center text-center">
 
+            <!-- WhatsApp -->
+            <div class="col-4 col-md-2 mb-3">
+                <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK" target="_blank" class="social-card whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+
+            <!-- Twitter -->
+            <div class="col-4 col-md-2 mb-3">
+                <a href="https://twitter.com/YOUR_PROFILE" target="_blank" class="social-card twitter">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
+            </div>
+
+            <!-- Telegram -->
+            <div class="col-4 col-md-2 mb-3">
+                <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="social-card telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                    <span>Telegram</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
     <div class="container">
         <h2 class="mb-3 c-t">
             <span><b>Latest Jobs In States</b></span>
 
-            
+
         </h2>
         {{-- STATE TABS --}}
         <div class="tabs-container">
@@ -143,18 +174,18 @@
         if (selectedState === "all states") selectedState = "";
 
         function filterJobs() {
-    jobs.forEach(job => {
-        const jobStates = job.dataset.state.split(',').map(s => s.trim().toLowerCase());
-        const jobCat = job.dataset.cat.trim().toLowerCase();
+            jobs.forEach(job => {
+                const jobStates = job.dataset.state.split(',').map(s => s.trim().toLowerCase());
+                const jobCat = job.dataset.cat.trim().toLowerCase();
 
-        const stateMatch = selectedState ? jobStates.includes(selectedState) : true;
+                const stateMatch = selectedState ? jobStates.includes(selectedState) : true;
 
-        // ✅ FIX: empty ho to ignore karo
-        const catMatch = selectedCat ? jobCat === selectedCat : true;
+                // ✅ FIX: empty ho to ignore karo
+                const catMatch = selectedCat ? jobCat === selectedCat : true;
 
-        job.style.display = (stateMatch && catMatch) ? 'block' : 'none';
-    });
-}
+                job.style.display = (stateMatch && catMatch) ? 'block' : 'none';
+            });
+        }
 
         // ✅ STATE TAB
         stateTabs.forEach(tab => {
