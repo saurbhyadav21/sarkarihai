@@ -415,7 +415,7 @@
                             },
 
                             title: {
-                                text: 'State Wise Job India - 2026'
+                                // text: 'State Wise Job India - 2026'
                             },
 
                             subtitle: {
@@ -453,7 +453,7 @@
             </div>
             <div class="col-6 col-md-6 mb-4">
                 <h2 class="mb-3 c-t">
-                    <span><b>Latest Jobs</b></span>
+                    <span><b>Latest State Wise Job India - 2026</b></span>
 
 
                 </h2>
