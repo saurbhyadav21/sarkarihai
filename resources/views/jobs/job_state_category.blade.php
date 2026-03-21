@@ -36,6 +36,14 @@
     .tabs-container {
         margin-bottom: 10px;
     }
+     .c-t {
+            display: flex;
+            align-items: center;
+            font-size: 30px;
+            color: #fff;
+            margin-left: -8px;
+        }
+        
 </style>
 
 <div class="container">
