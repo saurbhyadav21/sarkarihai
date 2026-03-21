@@ -313,7 +313,7 @@
     <a href="https://youtube.com/YOUR_CHANNEL" target="_blank" class="social-card youtube">
         
         <!-- Image -->
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" class="social-img">
+        {{-- <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" class="social-img"> --}}
 
         <!-- Icon -->
         <i class="fab fa-youtube"></i>
