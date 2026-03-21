@@ -125,22 +125,22 @@
         let selectedState = @json($state ?? '');
         let selectedCat = @json($category ?? '');
 
-        console.log("RAW state:", selectedState);
-        console.log("RAW cat:", selectedCat);
+        // console.log("RAW state:", selectedState);
+        // console.log("RAW cat:", selectedCat);
 
         // normalize
         selectedState = selectedState.toLowerCase().replace(/-/g, ' ').trim();
         selectedCat = selectedCat.toLowerCase().replace(/-/g, ' ').trim();
 
-        console.log("FINAL state:", selectedState);
-        console.log("FINAL cat:", selectedCat);
+        // console.log("FINAL state:", selectedState);
+        // console.log("FINAL cat:", selectedCat);
 
         // 👇 IMPORTANT: "all-categories" / "all-states" ko empty bana do
         if (selectedState === "all-states") selectedState = "";
         if (selectedCat === "all-categories") selectedCat = "";
 
-        console.log("URL state:", selectedState);
-        console.log("URL cat:", selectedCat);
+        // console.log("URL state:", selectedState);
+        // console.log("URL cat:", selectedCat);
 
         function filterJobs() {
             jobs.forEach(job => {
