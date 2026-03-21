@@ -151,7 +151,17 @@ class JobController extends Controller
         // sort (optional)
         arsort($stateCounts);
         // dd($stateCounts);
-        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts'));
+
+        $startOfWeek = \Carbon\Carbon::now(); // aaj se
+$endOfWeek = \Carbon\Carbon::now()->endOfWeek(); // week end (Sunday)
+
+$jobs_upcomming = Job::whereBetween('end_date', [$startOfWeek, $endOfWeek])
+    ->orderBy('end_date', 'asc')
+    ->get();
+
+
+
+        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts','jobs_upcomming'));
     }
 
     public function contact()
