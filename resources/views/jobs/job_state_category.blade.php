@@ -28,9 +28,13 @@
             border-bottom: 1px solid #eee;
             transition: 0.2s;
             color: #fff;
-            font-size: 13px;
+            font-size: 15px;
         }
-
+        .job-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
         .job-item.hidden {
             display: none;
         }
