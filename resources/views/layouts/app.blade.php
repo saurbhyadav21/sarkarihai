@@ -141,8 +141,8 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
 
-                {{-- <a class="navbar-brand" href="/">Sarakrihai</a> --}}
-                <img src="{{ asset('public/images/logo.png') }}" style="    width: 200px;"/>
+                <a class="navbar-brand" href="/"><img src="{{ asset('public/images/logo.png') }}" style="    width: 200px;"/></a>
+                
                 
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
