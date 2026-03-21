@@ -494,13 +494,13 @@
 
                 /* Box */
                 .statejob-box {
-                    padding: 10px 12px;
+                    padding: 5px 6px;
                     border-bottom: 1px solid #eee;
-                    transition: 0.3s;
+                    transition: 0.3s;background-color: #ffffff;
                 }
 
                 .statejob-box:hover {
-                    background: #f9fbff;
+                    background: red;
                 }
 
                 /* First Line */
@@ -514,13 +514,13 @@
                 /* Title */
                 .statejob-title {
                     font-weight: 600;
-                    font-size: 15px;
+                    font-size: 13px;
                     color: #111;
                 }
 
                 /* Meta */
                 .statejob-meta {
-                    font-size: 13px;
+                    font-size: 12px;
                     color: #555;
                 }
 
