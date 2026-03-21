@@ -44,7 +44,7 @@
 
         /* navbar style */
         .navbar {
-            background: #0b1224;
+            background: #fff;
             border-bottom: 1px solid #e5e7eb;
         }
 
@@ -61,7 +61,7 @@
 
         /* menu link */
         .nav-link {
-            color: #fff;
+            color: #0b1224;
             padding-right: 30px !important;
             padding-left: 30px !important;
         }
