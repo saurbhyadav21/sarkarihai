@@ -141,7 +141,9 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="/">Sarakrihai</a>
+                {{-- <a class="navbar-brand" href="/">Sarakrihai</a> --}}
+                <img src="{{ asset('public/job-images/' . $job->image) }}"/>
+                
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent">
