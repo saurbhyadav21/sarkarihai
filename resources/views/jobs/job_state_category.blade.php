@@ -49,12 +49,12 @@
             align-items: center;
             font-size: 30px;
             color: #fff;
-            margin-left: -8px;
+            margin-left: -8px;    margin-top: 30px;}
     </style>
 
     <div class="container">
         <h2 class="mb-3 c-t">
-            <span><b>Latest Jobs</b></span>
+            <span><b>Latest Jobs In States</b></span>
 
             
         </h2>
