@@ -356,7 +356,7 @@ class JobController extends Controller
         // dd($category);
         // Get all jobs
         $jobs = Job::all();
-dd($state.'---'.$category);
+
         // Get all unique states from jobs
         $states = Job::pluck('state')
             ->flatMap(fn($s) => explode(',', $s))
