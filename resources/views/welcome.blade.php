@@ -553,7 +553,7 @@
                     <span><b>Latest State Wise Job India - 2026</b></span>
                 </h2>
 
-                @foreach ($jobsxxx as $job)
+                @foreach ($jobs as $job)
                     @php
                         $names = explode(',', $job->post_name);
                         $count = count($names);
