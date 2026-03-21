@@ -353,6 +353,7 @@ class JobController extends Controller
 
     public function stateCategoryJobs($state = null, $category = null)
     {
+        dd($category);
         // Get all jobs
         $jobs = Job::all();
 
@@ -373,11 +374,11 @@ class JobController extends Controller
 
         // Pass everything to the view
         return view('jobs/job_state_category', compact(
-    'jobs',
-    'states',
-    'categories',
-    'state',       // 👈 add karo
-    'category'     // 👈 add karo
-));
+            'jobs',
+            'states',
+            'categories',
+            'state',       // 👈 add karo
+            'category'     // 👈 add karo
+        ));
     }
 }
