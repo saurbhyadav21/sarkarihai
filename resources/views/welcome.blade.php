@@ -321,6 +321,12 @@
 .highcharts-credits {
     display: none !important; /* Highcharts watermark */
 }
+.highcharts-title{
+font-size: 24px;
+    font-weight: bold;
+    fill: rgb(255 255 255);
+    color: #fff !important;
+}
 </style>
 
 
