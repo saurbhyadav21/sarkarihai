@@ -487,7 +487,8 @@
             <div class="col-6 col-md-6 mb-4">
                 <h2 class="mb-3 c-t">
                     <span><b>Latest State Wise Job India - 2026</b></span>
-                    {{-- <div class="row"> --}}
+                </h2>
+                {{-- <div class="row"> --}}
 
                         @foreach ($jobs as $job)
                             @php
@@ -561,8 +562,6 @@
                         @endforeach
 
                     {{-- </div> --}}
-
-                </h2>
             </div>
 
 
