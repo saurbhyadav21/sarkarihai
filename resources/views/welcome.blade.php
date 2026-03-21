@@ -557,6 +557,8 @@
                     @php
                         $names = explode(',', $job->post_name);
                         $count = count($names);
+
+                        dd($count);
                     @endphp
 
                     @for ($i = 0; $i < $count; $i++)
