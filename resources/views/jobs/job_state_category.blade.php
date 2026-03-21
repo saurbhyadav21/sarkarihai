@@ -70,7 +70,7 @@
                     style="padding:8px; border-bottom:1px solid #eee; display:flex; gap:15px; flex-wrap:wrap; align-items:center;">
 
                     <span><strong>{{ $job->title }}</strong></span>
-                    <div>
+                    <div style="    float: right;">
                         <span>Salary: {{ $job->min_salary ?? 'N/A' }}-{{ $job->max_salary ?? 'N/A' }}</span>
                         <span>Qualification: {{ $job->qualification ?? 'N/A' }}</span>
                         <span style="color:red;">Last Date: {{ $job->last_date ?? 'Update Soon' }}</span>
