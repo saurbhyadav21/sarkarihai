@@ -232,7 +232,7 @@
 
         </h2>
         <div class="row">
-            @foreach ($jobs as $job)
+            @foreach ($jobs_upcomming as $job)
                 @php
                     $today = \Carbon\Carbon::today();
                     $jobEnd = \Carbon\Carbon::parse($job->end_date);
