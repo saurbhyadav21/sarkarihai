@@ -504,42 +504,49 @@
                         <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
 
                             <div class="job-box position-relative">
-                                @php
-                                    $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
-                                @endphp
 
-                                <div class="job-title">
-                                    {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
+    {{-- FIRST LINE --}}
+    <div class="job-top-line">
+        <span class="job-title">
+            {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
+        </span>
 
-                                    @if (!empty($job->state))
-                                        @php
-                                            $states = explode(',', $job->state);
-                                        @endphp
+        @php
+            $endDate = \Carbon\Carbon::parse($job->end_date);
+            $today = \Carbon\Carbon::now();
+            $daysLeft = $today->diffInDays($endDate, false);
 
-                                        <div class="state-tags">
-                                            @foreach ($states as $state)
-                                                <span class="state-badge">{{ trim($state) }}</span>
-                                            @endforeach
-                                        </div>
-                                    @endif
+            if ($daysLeft <= 7) {
+                $color = 'red';
+            } elseif ($daysLeft <= 14) {
+                $color = 'orange';
+            } else {
+                $color = 'green';
+            }
+        @endphp
 
-                                    <div class="job-meta">
-                                        <span style="color: green; font-weight:600;">
-                                            ₹{{ number_format($job->min_salary ?? 0) }} -
-                                            ₹{{ number_format($job->max_salary ?? 0) }}
-                                        </span>
-                                        |
-                                        <span style="color: green; font-weight:600;">
-                                            {{ $job->min_qulification ?? '' }}
-                                        </span>
-                                        |
-                                        <span style="color: {{ $color }}; font-weight:600;">
-                                            {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
-                                        </span>
-                                    </div>
-                                </div>
+        <span class="job-meta-inline">
+            ({{ $job->min_qulification ?? '' }} |
+            ₹{{ number_format($job->min_salary ?? 0) }} -
+            ₹{{ number_format($job->max_salary ?? 0) }} |
+            <span style="color: {{ $color }}">
+                {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+            </span>)
+        </span>
+    </div>
 
-                            </div>
+    {{-- SECOND LINE (STATE) --}}
+    @if (!empty($job->state))
+        @php $states = explode(',', $job->state); @endphp
+
+        <div class="state-tags">
+            @foreach ($states as $state)
+                <span class="state-badge">{{ trim($state) }}</span>
+            @endforeach
+        </div>
+    @endif
+
+</div>
                             @php
                                 $endDate = \Carbon\Carbon::parse($job->end_date);
                                 $today = \Carbon\Carbon::now();
@@ -555,7 +562,20 @@
                                 }
                             @endphp
 
-
+                            <div class="job-meta">
+                                <span style="color: green; font-weight:600;">
+                                    ₹{{ number_format($job->min_salary ?? 0) }} -
+                                    ₹{{ number_format($job->max_salary ?? 0) }}
+                                </span>
+                                |
+                                <span style="color: green; font-weight:600;">
+                                    {{ $job->min_qulification ?? '' }}
+                                </span>
+                                |
+                                <span style="color: {{ $color }}; font-weight:600;">
+                                    {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+                                </span>
+                            </div>
                         </a>
 
                         {{-- </div> --}}
