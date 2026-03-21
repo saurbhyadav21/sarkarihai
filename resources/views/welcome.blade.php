@@ -313,21 +313,24 @@
 
 
 
-<style>
-    .highcharts-exporting-group {
-    display: none !important; /* menu button */
-}
+    <style>
+        .highcharts-exporting-group {
+            display: none !important;
+            /* menu button */
+        }
 
-.highcharts-credits {
-    display: none !important; /* Highcharts watermark */
-}
-.highcharts-title{
-font-size: 24px;
-    font-weight: bold;
-    fill: rgb(255 255 255);
-    color: #fff !important;
-}
-</style>
+        .highcharts-credits {
+            display: none !important;
+            /* Highcharts watermark */
+        }
+
+        .highcharts-title {
+            font-size: 24px;
+            font-weight: bold;
+            fill: rgb(255 255 255);
+            color: #fff !important;
+        }
+    </style>
 
 
     <div class="container mt-4">
@@ -402,21 +405,21 @@ font-size: 24px;
 
                         Highcharts.mapChart('container', {
                             chart: {
-        map: topology,
-        backgroundColor: '#0b1224', // 🔴 red background
-        panning: false,
-        zooming: {
-            mouseWheel: false,
-            pinchType: null
-        }
-    },
+                                map: topology,
+                                backgroundColor: '#0b1224', // 🔴 red background
+                                panning: false,
+                                zooming: {
+                                    mouseWheel: false,
+                                    pinchType: null
+                                }
+                            },
 
                             title: {
                                 text: 'State Wise Job India - 2026'
                             },
 
                             subtitle: {
-                                
+
                             },
 
                             mapNavigation: {
@@ -447,6 +450,9 @@ font-size: 24px;
 
                     })();
                 </script>
+            </div>
+            <div class="col-6 col-md-3 mb-4">
+            xxx
             </div>
 
 
