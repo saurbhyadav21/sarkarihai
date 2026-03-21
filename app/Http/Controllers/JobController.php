@@ -119,11 +119,11 @@ class JobController extends Controller
     {
         $jobs = Job::whereDate('end_date', '>=', now())
             ->orderBy('end_date', 'asc')
-            ->limit(10)
+            
             ->get();
 
         $stateCounts = [];
-        $jobs1 = Job::get();
+        $jobs1 = Job::limit(10)->get();
         foreach ($jobs1 as $job) {
 
             // comma separated states ko array me convert karo
