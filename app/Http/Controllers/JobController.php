@@ -117,11 +117,17 @@ class JobController extends Controller
 
     public function landing()
     {
-         $jobs = Job::whereDate('end_date', '>=', now())
-                ->orderBy('end_date', 'asc')
-                ->get();
+        $jobs = Job::whereDate('end_date', '>=', now())
+            ->orderBy('end_date', 'asc')
+            ->get();
 
-        return view('welcome', compact('jobs'));
+        // State wise count
+        $stateCounts = Job::whereDate('end_date', '>=', now())
+            ->selectRaw('state, COUNT(*) as total')
+            ->groupBy('state')
+            ->pluck('total', 'state'); // ['Uttar Pradesh' => 10]
+
+        return view('welcome', compact('jobs', 'stateCounts'));
     }
 
     public function contact()
@@ -267,33 +273,33 @@ class JobController extends Controller
 
 
     public function storeJson(Request $request)
-{
-    // Validate JSON
-    $request->validate([
-        'job_json' => 'required|json'
-    ]);
+    {
+        // Validate JSON
+        $request->validate([
+            'job_json' => 'required|json'
+        ]);
 
-    // Decode JSON
-    $json = json_decode($request->job_json, true);
+        // Decode JSON
+        $json = json_decode($request->job_json, true);
 
-    // Map fields
-    $data = [
-        'title'            => $json['title'] ?? null,
-        'start_date'       => $json['start_date'] ?? null,
-        'end_date'         => $json['last_date'] ?? null,
-        'exam_date'        => $json['exam_date'] ?? null,
-        'min_salary'       => $json['salary_min'] ?? null,
-        'max_salary'       => $json['salary_max'] ?? null,
-        'min_age'          => $json['age_min'] ?? null,
-        'max_age_genral'   => $json['age_max'] ?? null,
-        'total_vacancies'  => $json['total_vacancy'] ?? null,
-        'post_eligibility' => $json['qualification'] ?? null,
-        'website'          => $json['website'] ?? null,
-    ];
+        // Map fields
+        $data = [
+            'title'            => $json['title'] ?? null,
+            'start_date'       => $json['start_date'] ?? null,
+            'end_date'         => $json['last_date'] ?? null,
+            'exam_date'        => $json['exam_date'] ?? null,
+            'min_salary'       => $json['salary_min'] ?? null,
+            'max_salary'       => $json['salary_max'] ?? null,
+            'min_age'          => $json['age_min'] ?? null,
+            'max_age_genral'   => $json['age_max'] ?? null,
+            'total_vacancies'  => $json['total_vacancy'] ?? null,
+            'post_eligibility' => $json['qualification'] ?? null,
+            'website'          => $json['website'] ?? null,
+        ];
 
-    // Save
-    Job::create($data);
+        // Save
+        Job::create($data);
 
-    return back()->with('success', 'Job added via JSON!');
-}
+        return back()->with('success', 'Job added via JSON!');
+    }
 }

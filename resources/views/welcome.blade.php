@@ -56,7 +56,7 @@
         .c-t {
             display: flex;
             align-items: center;
-            font-size: 20px;
+            font-size: 30px;
             color: #fff;
             margin-left: -8px;
         }
@@ -332,7 +332,29 @@
         }
     </style>
 
-
+    @php
+        $stateMap = [
+            'Uttar Pradesh' => 'in-up',
+            'Bihar' => 'in-br',
+            'Delhi' => 'in-dl',
+            'Maharashtra' => 'in-mh',
+            'Rajasthan' => 'in-rj',
+            'Madhya Pradesh' => 'in-mp',
+            'Gujarat' => 'in-gj',
+            'Haryana' => 'in-hr',
+            'Punjab' => 'in-pb',
+            'West Bengal' => 'in-wb',
+            'Jharkhand' => 'in-jh',
+            'Chhattisgarh' => 'in-cg',
+            'Odisha' => 'in-od',
+            'Karnataka' => 'in-ka',
+            'Tamil Nadu' => 'in-tn',
+            'Telangana' => 'in-ts',
+            'Andhra Pradesh' => 'in-ap',
+            'Kerala' => 'in-kl',
+            'Assam' => 'in-as',
+        ];
+    @endphp
     <div class="container mt-4">
         <div class="row">
 
@@ -363,44 +385,15 @@
                         ).then(response => response.json());
 
 
+
                         const data = [
-                            ['in-tn', 10],
-                            ['in-py', 11],
-                            ['in-hp', 12],
-                            ['in-sk', 13],
-                            ['in-dl', 14],
-                            ['in-up', 15],
-                            ['in-hr', 16],
-                            ['in-pb', 17],
-                            ['in-ch', 18],
-                            ['in-rj', 19],
-                            ['in-jk', 20],
-                            ['in-gj', 21],
-                            ['in-mp', 22],
-                            ['in-mh', 23],
-                            ['in-dh', 24],
-                            ['in-br', 25],
-                            ['in-wb', 26],
-                            ['in-jh', 27],
-                            ['in-cg', 28],
-                            ['in-od', 29],
-                            ['in-kl', 30],
-                            ['in-ka', 31],
-                            ['in-ap', 32],
-                            ['in-an', 33],
-                            ['in-as', 34],
-                            ['in-tr', 35],
-                            ['in-ar', 36],
-                            ['in-ld', 37],
-                            ['in-ml', 38],
-                            ['in-mn', 39],
-                            ['in-nl', 40],
-                            ['in-mz', 41],
-                            ['in-ts', 42],
-                            ['in-la', 43],
-                            ['in-uk', 44],
-                            ['in-ga', 45]
+                            @foreach ($stateCounts as $state => $count)
+                                @if (isset($stateMap[$state]))
+                                    ['{{ $stateMap[$state] }}', {{ $count }}],
+                                @endif
+                            @endforeach
                         ];
+
 
 
                         Highcharts.mapChart('container', {
