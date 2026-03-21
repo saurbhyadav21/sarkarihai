@@ -409,7 +409,27 @@
 .state-box:hover {
     transform: translateY(-6px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}</style>
+}
+.state-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.state-box:hover {
+    transform: translateY(-6px);
+}
+
+.state-img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+</style>
     @php
 $states = [
     'Uttar Pradesh',
@@ -436,21 +456,30 @@ $states = [
 ];
 @endphp
 
+@php
+$states = [
+    'rajasthan','himachal-pradesh','meghalaya','tamil-nadu',
+    'jammu-kashmir','bihar','madhya-pradesh','haryana',
+    'jharkhand','punjab','goa','karnataka'
+];
+@endphp
+
 <div class="container mt-4">
-    <h2 class="mb-4 text-center">Browse Jobs by State</h2>
-
     <div class="row">
-        @foreach($states as $state)
-            <div class="col-6 col-md-3 mb-4">
-                <a href="{{ url('jobs/' . Str::slug($state)) }}" class="state-card">
-                    
-                    <div class="state-box">
-                        <h5>{{ $state }}</h5>
-                    </div>
 
-                </a>
-            </div>
+        @foreach($states as $state)
+        <div class="col-6 col-md-3 mb-4">
+            <a href="{{ url('jobs/'.$state) }}" class="state-card">
+
+                <div class="state-box">
+                    <img src="{{ asset('images/states/'.$state.'.png') }}" class="state-img">
+                    <h6>{{ ucwords(str_replace('-', ' ', $state)) }}</h6>
+                </div>
+
+            </a>
+        </div>
         @endforeach
+
     </div>
 </div>
 @endsection
