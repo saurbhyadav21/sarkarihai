@@ -558,7 +558,7 @@
                     @php
                         $names = explode(',', $jobx->post_name);
                         $count = count($names);
-
+echo 'x';
                     @endphp
 
                     @for ($i = 0; $i < $count; $i++)
@@ -581,7 +581,7 @@
                             <div class="statejob-box">
                                 <div class="statejob-top">
                                     <span class="statejob-title">
-                                       xxx {{ ucfirst($jobx->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
+                                       {{ ucfirst($jobx->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
                                     </span>
 
                                     <span class="statejob-meta">
