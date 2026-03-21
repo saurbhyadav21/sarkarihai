@@ -321,7 +321,7 @@
         <!-- Icon -->
         <i class="fab fa-youtube"></i>
 
-        <span>YouTube</span>
+        {{-- <span>YouTube</span> --}}
     </a>
 </div>
 
