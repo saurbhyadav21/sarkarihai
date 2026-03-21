@@ -117,16 +117,17 @@
 
     </div>
 
-    <script>
+   <script>
     const stateTabs = document.querySelectorAll('.state-tab');
     const catTabs = document.querySelectorAll('.cat-tab');
     const jobs = document.querySelectorAll('.job-item');
 
-    // ✅ safe values from URL
-    let selectedState = @json(strtolower(trim($state ?? '')));
-    let selectedCat = @json(strtolower(trim($category ?? '')));
-       console.log("URL state upp:", selectedState);
-       console.log("URL state xx:", selectedCat);
+    // ✅ Normalize URL values (IMPORTANT FIX)
+    let selectedState = @json(strtolower(trim($state ?? ''))).replace(/-/g, ' ');
+    let selectedCat = @json(strtolower(trim($category ?? ''))).replace(/-/g, ' ');
+
+    console.log("URL state:", selectedState);
+    console.log("URL cat:", selectedCat);
 
     function filterJobs() {
         jobs.forEach(job => {
@@ -142,31 +143,32 @@
 
     // ✅ STATE TAB
     stateTabs.forEach(tab => {
-       console.log("URL state:", selectedState);
-console.log("Tab state:", tab.dataset.state);
-        
-        if (tab.dataset.state.trim().toLowerCase() === selectedState) {
+        let tabState = tab.dataset.state.trim().toLowerCase();
+
+        if (tabState === selectedState) {
             tab.classList.add('active');
         }
 
         tab.addEventListener('click', () => {
             stateTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            selectedState = tab.dataset.state.trim().toLowerCase();
+            selectedState = tabState;
             filterJobs();
         });
     });
 
     // ✅ CATEGORY TAB
     catTabs.forEach(tab => {
-        if (tab.dataset.cat.trim().toLowerCase() === selectedCat) {
+        let tabCat = tab.dataset.cat.trim().toLowerCase();
+
+        if (tabCat === selectedCat) {
             tab.classList.add('active');
         }
 
         tab.addEventListener('click', () => {
             catTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            selectedCat = tab.dataset.cat.trim().toLowerCase();
+            selectedCat = tabCat;
             filterJobs();
         });
     });
