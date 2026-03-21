@@ -128,7 +128,35 @@
 
 
 
+<div class="container mt-4">
+    <div class="row justify-content-center text-center">
 
+        <!-- WhatsApp -->
+        <div class="col-4 col-md-2 mb-3">
+            <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK" target="_blank" class="social-card whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+
+        <!-- Twitter -->
+        <div class="col-4 col-md-2 mb-3">
+            <a href="https://twitter.com/YOUR_PROFILE" target="_blank" class="social-card twitter">
+                <i class="fab fa-twitter"></i>
+                <span>Twitter</span>
+            </a>
+        </div>
+
+        <!-- Telegram -->
+        <div class="col-4 col-md-2 mb-3">
+            <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="social-card telegram">
+                <i class="fab fa-telegram-plane"></i>
+                <span>Telegram</span>
+            </a>
+        </div>
+
+    </div>
+</div>
 
 
     <div class="container mt-3">
