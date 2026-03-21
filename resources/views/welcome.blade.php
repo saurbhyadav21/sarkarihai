@@ -552,7 +552,10 @@
                 <h2 class="mb-3 c-t">
                     <span><b>Latest State Wise Job India - 2026</b></span>
                 </h2>
-
+                    @php
+                        
+                        dd($jobsxxx);
+                    @endphp
                 @foreach ($jobsxxx as $job)
                     @php
                         $names = explode(',', $job->post_name);
