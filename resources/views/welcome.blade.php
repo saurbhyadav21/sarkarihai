@@ -314,7 +314,13 @@
 
 
 <style>
-    .highcharts-exporting-group .highcharts-legend-item highcharts-linear-series highcharts-color-undefined .highcharts-credits{ display: none;}
+    .highcharts-exporting-group {
+    display: none !important; /* menu button */
+}
+
+.highcharts-credits {
+    display: none !important; /* Highcharts watermark */
+}
 </style>
 
 
