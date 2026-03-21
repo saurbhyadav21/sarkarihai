@@ -30,11 +30,13 @@
             color: #fff;
             font-size: 15px;
         }
+
         .job-link {
             text-decoration: none;
             color: inherit;
             display: block;
         }
+
         .job-item.hidden {
             display: none;
         }
@@ -69,47 +71,47 @@
         {{-- JOB LIST --}}
         <div id="job-list" style="margin-top:15px;">
             @foreach ($jobs as $job)
-            <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
-                <div class="job-item"
-                    data-state="{{ implode(',', array_map(fn($s) => strtolower(trim($s)), explode(',', $job->state))) }}"
-                    data-cat="{{ strtolower(trim($job->category ?? 'other')) }}"
-                    style="padding:8px; border-bottom:1px solid #eee; display:flex; gap:15px; flex-wrap:wrap; align-items:center;">
-                    @php
-                        $endDate = \Carbon\Carbon::parse($job->end_date);
-                        $today = \Carbon\Carbon::now();
-
-                        $daysLeft = $today->diffInDays($endDate, false); // negative bhi allow
-
-                        if ($daysLeft <= 7) {
-                            $color = 'red'; // 1 week
-                        } elseif ($daysLeft <= 14) {
-                            $color = 'orange'; // 2 week
-                        } else {
-                            $color = 'green'; // more than 2 week
-                        }
-                    @endphp
-                    <span>
+                <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
+                    <div class="job-item"
+                        data-state="{{ implode(',', array_map(fn($s) => strtolower(trim($s)), explode(',', $job->state))) }}"
+                        data-cat="{{ strtolower(trim($job->category ?? 'other')) }}"
+                        style="padding:8px; border-bottom:1px solid #eee; display:flex; gap:15px; flex-wrap:wrap; align-items:center;">
                         @php
-                            $isNew = \Carbon\Carbon::parse($job->updated_at)->diffInDays(now()) <= 2;
+                            $endDate = \Carbon\Carbon::parse($job->end_date);
+                            $today = \Carbon\Carbon::now();
+
+                            $daysLeft = $today->diffInDays($endDate, false); // negative bhi allow
+
+                            if ($daysLeft <= 7) {
+                                $color = 'red'; // 1 week
+                            } elseif ($daysLeft <= 14) {
+                                $color = 'orange'; // 2 week
+                            } else {
+                                $color = 'green'; // more than 2 week
+                            }
                         @endphp
+                        <span>
+                            @php
+                                $isNew = \Carbon\Carbon::parse($job->updated_at)->diffInDays(now()) <= 2;
+                            @endphp
 
-                        @if ($isNew)
-                            <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
-                                class="new-badge" width="40px">
-                        @endif
-                        <strong>{{ $job->title }}</strong>
-                    </span>
-                    <div style="    float: right;">
-                        <span>₹{{ $job->min_salary ?? 'N/A' }}-₹{{ $job->max_salary ?? 'N/A' }}</span>
-                        <span> | {{ $job->min_qulification ?? 'N/A' }}</span>
-                        <span style="color: {{ $color }}; font-weight:600;">
-                            {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+                            @if ($isNew)
+                                <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                                    class="new-badge" width="40px">
+                            @endif
+                            <strong>{{ $job->title }}</strong>
                         </span>
+                        <div style="    float: right;">
+                            <span>₹{{ $job->min_salary ?? 'N/A' }}-₹{{ $job->max_salary ?? 'N/A' }}</span>
+                            <span> | {{ $job->min_qulification ?? 'N/A' }}</span>
+                            <span style="color: {{ $color }}; font-weight:600;">
+                                {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+                            </span>
+                        </div>
+
+
                     </div>
-
-
-                </div>
-            </a>
+                </a>
             @endforeach
         </div>
 
@@ -119,11 +121,10 @@
     const stateTabs = document.querySelectorAll('.state-tab');
     const catTabs = document.querySelectorAll('.cat-tab');
     const jobs = document.querySelectorAll('.job-item');
-       
-        
-    // ✅ URL se aaye hue values
-    let selectedState = "{{ strtolower($state ?? '') }}";
-    let selectedCat = "{{ strtolower($category ?? '') }}";
+
+    // ✅ safe values from URL
+    let selectedState = @json(strtolower(trim($state ?? '')));
+    let selectedCat = @json(strtolower(trim($category ?? '')));
 
     function filterJobs() {
         jobs.forEach(job => {
@@ -137,37 +138,34 @@
         });
     }
 
-    // ✅ Highlight active STATE tab on load
-    console.log(stateTabs);
-    
+    // ✅ STATE TAB
     stateTabs.forEach(tab => {
-        if (tab.dataset.state.toLowerCase() === selectedState) {
+        if (tab.dataset.state.trim().toLowerCase() === selectedState) {
             tab.classList.add('active');
         }
 
         tab.addEventListener('click', () => {
             stateTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            selectedState = tab.dataset.state;
+            selectedState = tab.dataset.state.trim().toLowerCase();
             filterJobs();
         });
     });
 
-    // ✅ Highlight active CATEGORY tab on load
+    // ✅ CATEGORY TAB
     catTabs.forEach(tab => {
-        if (tab.dataset.cat.toLowerCase() === selectedCat) {
+        if (tab.dataset.cat.trim().toLowerCase() === selectedCat) {
             tab.classList.add('active');
         }
 
         tab.addEventListener('click', () => {
             catTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            selectedCat = tab.dataset.cat;
+            selectedCat = tab.dataset.cat.trim().toLowerCase();
             filterJobs();
         });
     });
 
-    // Initial filter (based on URL)
     filterJobs();
 </script>
 @endsection
