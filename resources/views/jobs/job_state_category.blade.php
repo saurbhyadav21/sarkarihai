@@ -85,7 +85,7 @@
                             @endphp
                     <span>
                         @php
-                        $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
+                        $isNew = \Carbon\Carbon::parse($job->updated_at)->diffInDays(now()) <= 2;
                     @endphp
 
                         @if ($isNew)
