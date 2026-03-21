@@ -414,9 +414,9 @@
                                 }
                             },
 
-                            // title: {
-                            //     text: 'State Wise Job India - 2026'
-                            // },
+                            title: {
+                                text: null
+                            },
 
                             subtitle: {
 
