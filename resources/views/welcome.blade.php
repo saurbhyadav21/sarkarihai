@@ -581,7 +581,7 @@
                             <div class="statejob-box">
                                 <div class="statejob-top">
                                     <span class="statejob-title">
-                                        {{ ucfirst($jobx->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
+                                       xxx {{ ucfirst($jobx->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
                                     </span>
 
                                     <span class="statejob-meta">
