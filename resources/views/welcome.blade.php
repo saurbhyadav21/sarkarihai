@@ -455,7 +455,7 @@
                 <h2 class="mb-3 c-t">
                     <span><b>Latest Jobs</b></span>
 
-                   
+
                 </h2>
             </div>
 
