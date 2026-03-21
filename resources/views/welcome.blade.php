@@ -356,35 +356,54 @@
                 </style>
                 <div id="container"></div>
                 @php
-                    $stateMap = [
-                        'Uttar Pradesh' => 'in-up',
-                        'Bihar' => 'in-br',
-                        'Delhi' => 'in-dl',
-                        'Maharashtra' => 'in-mh',
-                        'Rajasthan' => 'in-rj',
-                        'Madhya Pradesh' => 'in-mp',
-                        'Gujarat' => 'in-gj',
-                        'Haryana' => 'in-hr',
-                        'Punjab' => 'in-pb',
-                        'West Bengal' => 'in-wb',
-                        'Jharkhand' => 'in-jh',
-                        'Chhattisgarh' => 'in-cg',
-                        'Odisha' => 'in-od',
-                        'Karnataka' => 'in-ka',
-                        'Tamil Nadu' => 'in-tn',
-                        'Telangana' => 'in-ts',
-                        'Andhra Pradesh' => 'in-ap',
-                        'Kerala' => 'in-kl',
-                        'Assam' => 'in-as',
-                    ];
-                @endphp
+$stateMap = [
+    'Andhra Pradesh' => 'in-ap',
+    'Arunachal Pradesh' => 'in-ar',
+    'Assam' => 'in-as',
+    'Bihar' => 'in-br',
+    'Chhattisgarh' => 'in-cg',
+    'Goa' => 'in-ga',
+    'Gujarat' => 'in-gj',
+    'Haryana' => 'in-hr',
+    'Himachal Pradesh' => 'in-hp',
+    'Jharkhand' => 'in-jh',
+    'Karnataka' => 'in-ka',
+    'Kerala' => 'in-kl',
+    'Madhya Pradesh' => 'in-mp',
+    'Maharashtra' => 'in-mh',
+    'Manipur' => 'in-mn',
+    'Meghalaya' => 'in-ml',
+    'Mizoram' => 'in-mz',
+    'Nagaland' => 'in-nl',
+    'Odisha' => 'in-od',
+    'Punjab' => 'in-pb',
+    'Rajasthan' => 'in-rj',
+    'Sikkim' => 'in-sk',
+    'Tamil Nadu' => 'in-tn',
+    'Telangana' => 'in-ts',
+    'Tripura' => 'in-tr',
+    'Uttar Pradesh' => 'in-up',
+    'Uttarakhand' => 'in-uk',
+    'West Bengal' => 'in-wb',
+
+    // 🔥 Union Territories
+    'Delhi' => 'in-dl',
+    'Jammu and Kashmir' => 'in-jk',
+    'Ladakh' => 'in-la',
+    'Chandigarh' => 'in-ch',
+    'Puducherry' => 'in-py',
+    'Andaman and Nicobar Islands' => 'in-an',
+    'Lakshadweep' => 'in-ld',
+    'Dadra and Nagar Haveli and Daman and Diu' => 'in-dn' // ⚠️ correct code
+];
+@endphp
                 <script>
                     const data1 = [
-                        @foreach ($stateCounts as $state => $count)
-                            @if (isset($stateMap[$state]))
-                                ['{{ $stateMap[$state] }}', {{ $count }}],
-                            @endif
-                        @endforeach
+                        @foreach($stateCounts as $state => $count)
+    @if(isset($stateMap[$state]))
+        ['{{ $stateMap[$state] }}', {{ $count }}],
+    @endif
+@endforeach
                     ];
                     console.log(data1);
                     
