@@ -69,21 +69,21 @@
                     data-cat="{{ strtolower(trim($job->category ?? 'other')) }}"
                     style="padding:8px; border-bottom:1px solid #eee; display:flex; gap:15px; flex-wrap:wrap; align-items:center;">
 
-                    <span><strong>{{ $job->title }}</strong></span>
-                    <div style="    float: right;">
-                        <span>₹{{ $job->min_salary ?? 'N/A' }}-₹{{ $job->max_salary ?? 'N/A' }}</span>
-                        <span> | {{ $job->min_qulification ?? 'N/A' }}</span>
-                        <span style="color:red;"> | {{ $job->end_date ?? 'Update Soon' }}</span>
-                    </div>
-
-                    @php
+                    <span>@php
                                     $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
                                 @endphp
 
                                 @if ($isNew)
                                     <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
                                         class="new-badge">
-                                @endif
+                                @endif<strong>{{ $job->title }}</strong></span>
+                    <div style="    float: right;">
+                        <span>₹{{ $job->min_salary ?? 'N/A' }}-₹{{ $job->max_salary ?? 'N/A' }}</span>
+                        <span> | {{ $job->min_qulification ?? 'N/A' }}</span>
+                        <span style="color:red;"> | {{ $job->end_date ?? 'Update Soon' }}</span>
+                    </div>
+
+                                
                 </div>
             @endforeach
         </div>
