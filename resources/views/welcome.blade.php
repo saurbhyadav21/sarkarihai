@@ -584,65 +584,81 @@
     </div>
 
     <style>
-.custom-row {
-    display: flex;
-    flex-wrap: wrap;
-}
+        .custom-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
-.custom-col {
-    width: 12.5%; /* 👈 approx 12% (8 items per row) */
-    padding: 5px;
-}
+        .custom-col {
+            width: 12.5%;
+            /* 👈 approx 12% (8 items per row) */
+            padding: 5px;
+        }
 
-/* Responsive Fix */
-@media (max-width: 992px) {
-    .custom-col { width: 20%; } /* 5 per row */
-}
+        /* Responsive Fix */
+        @media (max-width: 992px) {
+            .custom-col {
+                width: 20%;
+            }
 
-@media (max-width: 768px) {
-    .custom-col { width: 25%; } /* 4 per row */
-}
+            /* 5 per row */
+        }
 
-@media (max-width: 576px) {
-    .custom-col { width: 50%; } /* 2 per row */
-}
+        @media (max-width: 768px) {
+            .custom-col {
+                width: 25%;
+            }
 
-.category-card {
-    border-radius: 10px;
-    transition: 0.3s;
-}
+            /* 4 per row */
+        }
 
-.category-card:hover {
-    background: #fff3e6;
-    transform: translateY(-3px);
-}
-</style>
+        @media (max-width: 576px) {
+            .custom-col {
+                width: 50%;
+            }
+
+            /* 2 per row */
+        }
+
+        .category-card {
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .category-card:hover {
+            background: #fff3e6;
+            transform: translateY(-3px);
+        }
+    </style>
     <div class="container mt-4">
-    <div class="row custom-row">
+        <h2 class="mb-3 c-t">
+            <span><b>Category Wise Jobs</b></span>
+        </h2>
+        <div class="row custom-row">
 
-        @foreach($categories as $cat)
-            <div class="custom-col mb-3">
-                
-                <a href="{{ route('state.category.jobs', ['state' => 'all-states', 'category' => Str::slug($cat)]) }}" 
-                   class="text-decoration-none">
+            @foreach ($categories as $cat)
+                <div class="custom-col mb-3">
 
-                    <div class="card shadow-sm h-100 category-card text-center">
-                        <div class="card-body p-2">
+                    <a href="{{ route('state.category.jobs', ['state' => 'all-states', 'category' => Str::slug($cat)]) }}"
+                        class="text-decoration-none">
 
-                            <div style="font-size:24px;">📂</div>
+                        <div class="card shadow-sm h-100 category-card text-center">
+                            <div class="card-body p-2">
 
-                            <h6 class="mt-1 mb-0 fw-bold" style="font-size:13px;">
-                                {{ ucfirst($cat) }}
-                            </h6>
+                                <div style="font-size:24px;">📂</div>
 
+                                <h6 class="mt-1 mb-0 fw-bold" style="font-size:13px;">
+                                    {{ ucfirst($cat) }}
+                                </h6>
+
+                            </div>
                         </div>
-                    </div>
 
-                </a>
+                    </a>
 
-            </div>
-        @endforeach
+                </div>
+            @endforeach
 
+        </div>
     </div>
-</div>
 @endsection
