@@ -509,11 +509,11 @@
                                                     \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
                                             @endphp
 
-                                            @if ($isNew)
+                                            {{-- @if ($isNew)
                                                 <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
                                                     class="new-badge">
                                             @endif
-                                            <img src="{{ asset('public/job-images/' . $job->image) }}" class="job-logo">
+                                            <img src="{{ asset('public/job-images/' . $job->image) }}" class="job-logo"> --}}
 
                                             <div>
                                                 <div class="job-title ">
