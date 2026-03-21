@@ -28,3 +28,6 @@ Route::get('/add-job', function () {
 
 Route::post('/add-job', [JobController::class, 'storeJson'])->name('job.store.json');
 
+
+Route::get('/state/{state}/jobs', [JobController::class, 'stateJobs'])->name('state.jobs');
+
