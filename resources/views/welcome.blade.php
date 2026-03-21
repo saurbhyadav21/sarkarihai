@@ -500,7 +500,7 @@
                 }
 
                 .statejob-box:hover {
-                    background: red;
+                    background: #e8e8e8;
                 }
 
                 /* First Line */
