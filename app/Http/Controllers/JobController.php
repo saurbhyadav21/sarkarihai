@@ -353,9 +353,11 @@ class JobController extends Controller
 
     public function stateCategoryJobs($state, $category)
 {
+    // Normalize incoming parameters
     $state = strtolower(urldecode($state));
     $category = strtolower(urldecode($category));
 
+    // Filter jobs by category and state
     $jobs = Job::whereRaw('LOWER(category) = ?', [$category])
         ->get()
         ->filter(function ($job) use ($state) {
@@ -376,7 +378,17 @@ class JobController extends Controller
         ->unique()
         ->sort()
         ->values();
-    dd($category);
-    return view('jobs/job_state_category', compact('jobs', 'state', 'category', 'states'));
+
+    // Get all unique categories from jobs for category tabs
+    $categories = Job::pluck('category')
+        ->map(function ($c) {
+            return trim($c);
+        })
+        ->unique()
+        ->sort()
+        ->values();
+
+    // Pass everything to the view
+    return view('jobs/job_state_category', compact('jobs', 'state', 'category', 'states', 'categories'));
 }
 }
