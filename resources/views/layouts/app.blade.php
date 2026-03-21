@@ -33,7 +33,7 @@
     <meta name="keywords" content="{{ $seo['keywords'] ?? 'sarkari naukri, govt jobs, railway jobs' }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="icon" type="image/png" href="{{ asset('public/images/fevicon.png') }}">
     <style>
         /* page background */
         body {
