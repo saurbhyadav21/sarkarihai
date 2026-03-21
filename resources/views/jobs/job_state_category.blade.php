@@ -65,6 +65,7 @@
         {{-- JOB LIST --}}
         <div id="job-list" style="margin-top:15px;">
             @foreach ($jobs as $job)
+            <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
                 <div class="job-item"
                     data-state="{{ implode(',', array_map(fn($s) => strtolower(trim($s)), explode(',', $job->state))) }}"
                     data-cat="{{ strtolower(trim($job->category ?? 'other')) }}"
@@ -104,6 +105,7 @@
 
 
                 </div>
+            </a>
             @endforeach
         </div>
 
