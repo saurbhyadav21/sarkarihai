@@ -552,68 +552,66 @@
                 <h2 class="mb-3 c-t">
                     <span><b>Latest State Wise Job India - 2026</b></span>
                 </h2>
-                @php
-                    dd($jobsxxx);
-                @endphp
-                @foreach ($jobsxxx as $job)
-                    @php
-                        $names = explode(',', $job->post_name);
-                        $count = count($names);
+                
+                @foreach ($jobsxxx as $jobx)
+@php
+$names = explode(',', $jobx->post_name);
+$count = count($names);
 
-                        
-                    @endphp
 
-                    @for ($i = 0; $i < $count; $i++)
-                        @php
-                            $endDate = \Carbon\Carbon::parse($job->end_date);
-                            $today = \Carbon\Carbon::now();
-                            $daysLeft = $today->diffInDays($endDate, false);
+@endphp
 
-                            if ($daysLeft <= 7) {
-                                $color = 'red';
-                            } elseif ($daysLeft <= 14) {
-                                $color = 'orange';
-                            } else {
-                                $color = 'green';
-                            }
-                        @endphp
+@for ($i = 0; $i < $count; $i++)
+    @php
+    $endDate=\Carbon\Carbon::parse($jobx->end_date);
+    $today = \Carbon\Carbon::now();
+    $daysLeft = $today->diffInDays($endDate, false);
 
-                        <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}">
+    if ($daysLeft <= 7) {
+        $color='red' ;
+        } elseif ($daysLeft <=14) {
+        $color='orange' ;
+        } else {
+        $color='green' ;
+        }
+        @endphp
 
-                            <div class="statejob-box">
+        <a href="{{ route('job.show', ['slug' => Str::slug($jobx->title)]) }}">
 
-                                {{-- FIRST LINE --}}
-                                <div class="statejob-top">
-                                    <span class="statejob-title">
-                                        {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
-                                    </span>
+        <div class="statejob-box">
 
-                                    <span class="statejob-meta">
-                                        ({{ $job->min_qulification ?? '' }} |
-                                        ₹{{ number_format($job->min_salary ?? 0) }} -
-                                        ₹{{ number_format($job->max_salary ?? 0) }} |
-                                        <span style="color: {{ $color }}">
-                                            {{ $endDate->format('d M Y') }}
-                                        </span>)
-                                    </span>
-                                </div>
+            {{-- FIRST LINE --}}
+            <div class="statejob-top">
+                <span class="statejob-title">
+                    {{ ucfirst($jobx->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
+                </span>
 
-                                {{-- SECOND LINE --}}
-                                @if (!empty($job->state))
-                                    @php $states = explode(',', $job->state); @endphp
+                <span class="statejob-meta">
+                    ({{ $jobx->min_qulification ?? '' }} |
+                    ₹{{ number_format($jobx->min_salary ?? 0) }} -
+                    ₹{{ number_format($jobx->max_salary ?? 0) }} |
+                    <span style="color: {{ $color }}">
+                        {{ $endDate->format('d M Y') }}
+                    </span>)
+                </span>
+            </div>
 
-                                    <div class="statejob-tags">
-                                        @foreach ($states as $state)
-                                            <span class="statejob-badge">{{ trim($state) }}</span>
-                                        @endforeach
-                                    </div>
-                                @endif
+            {{-- SECOND LINE --}}
+            @if (!empty($jobx->state))
+            @php $states = explode(',', $jobx->state); @endphp
 
-                            </div>
-
-                        </a>
-                    @endfor
+            <div class="statejob-tags">
+                @foreach ($states as $state)
+                <span class="statejob-badge">{{ trim($state) }}</span>
                 @endforeach
+            </div>
+            @endif
+
+        </div>
+
+        </a>
+        @endfor
+        @endforeach
 
             </div>
 
