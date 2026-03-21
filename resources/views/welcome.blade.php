@@ -484,106 +484,135 @@
                     })();
                 </script>
             </div>
+
+            <style>
+                .job-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Box */
+.job-box {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    transition: 0.3s;
+}
+
+.job-box:hover {
+    background: #f9fbff;
+}
+
+/* First Line */
+.job-top-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+/* Title */
+.job-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: #111;
+}
+
+/* Meta */
+.job-meta-inline {
+    font-size: 13px;
+    color: #555;
+}
+
+/* States */
+.state-tags {
+    margin-top: 5px;
+}
+
+/* Badge */
+.state-badge {
+    display: inline-block;
+    background: #eef2ff;
+    color: #3749ff;
+    font-size: 12px;
+    padding: 3px 8px;
+    margin: 2px 4px 2px 0;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.state-badge:hover {
+    background: #3749ff;
+    color: #fff;
+}
+            </style>
             <div class="col-6 col-md-6 mb-4">
-                <h2 class="mb-3 c-t">
-                    <span><b>Latest State Wise Job India - 2026</b></span>
-                </h2>
-                {{-- <div class="row"> --}}
+    <h2 class="mb-3 c-t">
+        <span><b>Latest State Wise Job India - 2026</b></span>
+    </h2>
 
-                @foreach ($jobs as $job)
-                    @php
-                        $names = explode(',', $job->post_name);
-                        $salaries = explode(',', $job->post_salary);
-                        $eligibilities = explode(',', $job->min_qulification);
-                        $count = max(count($names), count($salaries), count($eligibilities));
-                    @endphp
-
-                    @for ($i = 0; $i < $count; $i++)
-                        {{-- <div class="col-6 col-md-2"> --}}
-
-                        <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
-
-                            <div class="job-box position-relative">
-
-    {{-- FIRST LINE --}}
-    <div class="job-top-line">
-        <span class="job-title">
-            {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
-        </span>
+    @foreach ($jobs as $job)
 
         @php
-            $endDate = \Carbon\Carbon::parse($job->end_date);
-            $today = \Carbon\Carbon::now();
-            $daysLeft = $today->diffInDays($endDate, false);
-
-            if ($daysLeft <= 7) {
-                $color = 'red';
-            } elseif ($daysLeft <= 14) {
-                $color = 'orange';
-            } else {
-                $color = 'green';
-            }
+            $names = explode(',', $job->post_name);
+            $count = count($names);
         @endphp
 
-        <span class="job-meta-inline">
-            ({{ $job->min_qulification ?? '' }} |
-            ₹{{ number_format($job->min_salary ?? 0) }} -
-            ₹{{ number_format($job->max_salary ?? 0) }} |
-            <span style="color: {{ $color }}">
-                {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
-            </span>)
-        </span>
-    </div>
+        @for ($i = 0; $i < $count; $i++)
 
-    {{-- SECOND LINE (STATE) --}}
-    @if (!empty($job->state))
-        @php $states = explode(',', $job->state); @endphp
+            @php
+                $endDate = \Carbon\Carbon::parse($job->end_date);
+                $today = \Carbon\Carbon::now();
+                $daysLeft = $today->diffInDays($endDate, false);
 
-        <div class="state-tags">
-            @foreach ($states as $state)
-                <span class="state-badge">{{ trim($state) }}</span>
-            @endforeach
-        </div>
-    @endif
+                if ($daysLeft <= 7) {
+                    $color = 'red';
+                } elseif ($daysLeft <= 14) {
+                    $color = 'orange';
+                } else {
+                    $color = 'green';
+                }
+            @endphp
 
+            <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
+
+                <div class="job-box">
+
+                    {{-- FIRST LINE --}}
+                    <div class="job-top-line">
+                        <span class="job-title">
+                            {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
+                        </span>
+
+                        <span class="job-meta-inline">
+                            ({{ $job->min_qulification ?? '' }} |
+                            ₹{{ number_format($job->min_salary ?? 0) }} -
+                            ₹{{ number_format($job->max_salary ?? 0) }} |
+                            <span style="color: {{ $color }}">
+                                {{ $endDate->format('d M Y') }}
+                            </span>)
+                        </span>
+                    </div>
+
+                    {{-- SECOND LINE (STATE) --}}
+                    @if (!empty($job->state))
+                        @php $states = explode(',', $job->state); @endphp
+
+                        <div class="state-tags">
+                            @foreach ($states as $state)
+                                <span class="state-badge">{{ trim($state) }}</span>
+                            @endforeach
+                        </div>
+                    @endif
+
+                </div>
+
+            </a>
+
+        @endfor
+
+    @endforeach
 </div>
-                            @php
-                                $endDate = \Carbon\Carbon::parse($job->end_date);
-                                $today = \Carbon\Carbon::now();
-
-                                $daysLeft = $today->diffInDays($endDate, false); // negative bhi allow
-
-                                if ($daysLeft <= 7) {
-                                    $color = 'red'; // 1 week
-                                } elseif ($daysLeft <= 14) {
-                                    $color = 'orange'; // 2 week
-                                } else {
-                                    $color = 'green'; // more than 2 week
-                                }
-                            @endphp
-
-                            <div class="job-meta">
-                                <span style="color: green; font-weight:600;">
-                                    ₹{{ number_format($job->min_salary ?? 0) }} -
-                                    ₹{{ number_format($job->max_salary ?? 0) }}
-                                </span>
-                                |
-                                <span style="color: green; font-weight:600;">
-                                    {{ $job->min_qulification ?? '' }}
-                                </span>
-                                |
-                                <span style="color: {{ $color }}; font-weight:600;">
-                                    {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
-                                </span>
-                            </div>
-                        </a>
-
-                        {{-- </div> --}}
-                    @endfor
-                @endforeach
-
-                {{-- </div> --}}
-            </div>
 
 
         </div>
