@@ -1,23 +1,43 @@
 <form action="{{ route('job.store.json') }}" method="POST">
     @csrf
 
+    <!-- JSON -->
     <div>
         <label>Paste Job JSON</label><br>
         <textarea name="job_json" rows="10" style="width:100%;" placeholder='Paste JSON here'></textarea>
     </div>
 
     <br>
+
+    <!-- STATES CHECKBOX -->
+    <div>
+        <label><b>Select States</b></label><br>
+
+        @foreach($states as $state)
+            <label style="margin-right:10px;">
+                <input type="checkbox" name="states[]" value="{{ $state->id }}">
+                {{ $state->name }}
+            </label>
+        @endforeach
+    </div>
+
+    <br>
+
+    <!-- CATEGORY SELECT -->
+    <div>
+        <label><b>Select Category</b></label><br>
+
+        <select name="category_id" required>
+            <option value="">-- Select Category --</option>
+            @foreach($categories as $cat)
+                <option value="{{ $cat->id }}">
+                    {{ $cat->name }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <br>
+
     <button type="submit">Submit Job</button>
 </form>
-
-@if(session('success'))
-    <p style="color:green;">{{ session('success') }}</p>
-@endif
-
-@if($errors->any())
-    <ul style="color:red;">
-        @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-@endif
