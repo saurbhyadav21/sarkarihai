@@ -119,14 +119,14 @@ class JobController extends Controller
     {
         $jobs = Job::whereDate('end_date', '>=', now())
             ->orderBy('end_date', 'asc')
-            
+
             ->get();
 
-          $jobsxxx = Job::whereDate('end_date', '>=', now())
-    ->orderBy('end_date', 'asc')
-    ->limit(10)
-    ->get();
-    // dd($jobsxxx);
+        $jobsxxx = Job::whereDate('end_date', '>=', now())
+            ->orderBy('end_date', 'asc')
+            ->limit(10)
+            ->get();
+        // dd($jobsxxx);
         $stateCounts = [];
         $jobs1 = Job::get();
         foreach ($jobs1 as $job) {
@@ -151,7 +151,7 @@ class JobController extends Controller
         // sort (optional)
         arsort($stateCounts);
         // dd($stateCounts);
-        return view('welcome', compact('jobs', 'jobsxxx','stateCounts'));
+        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts'));
     }
 
     public function contact()
@@ -330,13 +330,40 @@ class JobController extends Controller
     public function stateJobs($state)
     {
         $state = urldecode($state); // URL se decode
-        
+
         $jobs = Job::get()
             ->filter(function ($job) use ($state) {
                 $states = array_map('trim', explode(',', $job->state));
                 return in_array($state, $states);
             });
         // dd($jobs);
-        return view('jobs/state_jobs', compact('jobs', 'state')); 
+        return view('jobs/state_jobs', compact('jobs', 'state'));
+    }
+
+    public function stateJobsPage()
+    {
+        $states = ['Uttar Pradesh', 'Bihar', 'Delhi', 'Maharashtra'];
+
+        $categories = ['All', 'Railway', 'UPSC', 'Police'];
+
+        $jobs = Job::whereDate('end_date', '>=', now())->get();
+
+        return view('state_jobs', compact('states', 'categories', 'jobs'));
+    }
+
+    public function stateCategoryJobs($state, $category)
+    {
+        $state = urldecode($state);
+        $category = urldecode($category);
+
+        $jobs = Job::whereDate('end_date', '>=', now())
+            ->where('category', $category)
+            ->get()
+            ->filter(function ($job) use ($state) {
+                $states = array_map('trim', explode(',', $job->state));
+                return in_array($state, $states);
+            });
+
+        return view('state_jobs', compact('jobs', 'state', 'category'));
     }
 }

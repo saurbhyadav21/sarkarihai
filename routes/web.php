@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
+
 Route::get('/', [JobController::class, 'landing'])->name('landing'); // Landing page
 Route::get('/contact', [JobController::class, 'contact'])->name('contact'); // Landing page
 Route::get('/privacy-policy', [JobController::class, 'privacy'])->name('privacy'); // Landing page
@@ -30,4 +31,5 @@ Route::post('/add-job', [JobController::class, 'storeJson'])->name('job.store.js
 
 
 Route::get('/state/{state}/jobs', [JobController::class, 'stateJobs'])->name('state.jobs');
-
+Route::get('/jobs/{state}/{category}', [JobController::class, 'stateCategoryJobs'])
+    ->name('state.category.jobs');
