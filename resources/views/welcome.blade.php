@@ -583,15 +583,52 @@
         </div>
     </div>
 
+<style>
+.category-card {
+    border-radius: 12px;
+    transition: 0.3s;
+    border: 1px solid #eee;
+}
 
+.category-card:hover {
+    transform: translateY(-5px);
+    background: #fff3e6;
+    border-color: #ff7a00;
+}
+
+.category-card h6 {
+    font-size: 14px;
+    color: #333;
+}
+</style>
     <div class="container mt-4">
-        <div class="row">
-            <div class="col-6 col-md-6 mb-4">
-                xxxx
+    <div class="row">
+
+        @foreach($categories as $cat)
+            <div class="col-6 col-md-4 col-lg-3 mb-3">
+                
+                <a href="{{ route('state.category.jobs', ['state' => 'all-states', 'category' => Str::slug($cat)]) }}" 
+                   class="text-decoration-none">
+
+                    <div class="card shadow-sm h-100 category-card text-center">
+                        <div class="card-body p-3 d-flex flex-column justify-content-center">
+
+                            <!-- Icon -->
+                            <div style="font-size:30px;">📂</div>
+
+                            <!-- Category Name -->
+                            <h6 class="mt-2 mb-0 fw-bold">
+                                {{ ucfirst($cat) }}
+                            </h6>
+
+                        </div>
+                    </div>
+
+                </a>
+
             </div>
-            <div class="col-6 col-md-6 mb-4">
-                yyy
-            </div>
-        </div>
-    </div>    
+        @endforeach
+
+    </div>
+</div>   
 @endsection
