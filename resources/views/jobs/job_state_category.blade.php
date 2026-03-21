@@ -2,100 +2,109 @@
 
 @section('content')
     <style>
-        .tab-btn {
-            padding: 6px 12px;
-            border: 1px solid #ddd;
-            cursor: pointer;
-            margin: 3px;
-            border-radius: 6px;
-            background: #f5f5f5;
-        }
+    .tab-btn {
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        margin: 3px;
+        border-radius: 6px;
+        background: #f5f5f5;
+        transition: 0.2s;
+        display: inline-block;
+    }
 
-        .tab-btn.active {
-            background: #ff7a00;
-            color: #fff;
-        }
+    .tab-btn:hover {
+        background: #ffe0b3;
+    }
 
-        .job-item {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-    </style>
+    .tab-btn.active {
+        background: #ff7a00;
+        color: #fff;
+        border-color: #ff7a00;
+    }
 
-    <div class="container">
+    .job-item {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        transition: 0.2s;
+    }
 
-        {{-- STATE TABS --}}
-        <div>
-            @foreach ($states as $state)
-                <span class="tab-btn state-tab" data-state="{{ $state }}">
-                    {{ $state }}
-                </span>
-            @endforeach
-        </div>
+    .job-item.hidden {
+        display: none;
+    }
 
-        {{-- CATEGORY TABS --}}
-        <div style="margin-top:10px;">
-            @foreach ($categories as $cat)
-                <span class="tab-btn cat-tab" data-cat="{{ $cat }}">
-                    {{ $cat }}
-                </span>
-            @endforeach
-        </div>
+    .tabs-container {
+        margin-bottom: 10px;
+    }
+</style>
 
-        {{-- JOB LIST --}}
-        <div id="job-list" style="margin-top:15px;">
-            @foreach ($jobs as $job)
-                <div class="job-item" data-state="{{ $job->state }}" data-cat="{{ $job->category ?? 'Other' }}">
+<div class="container">
 
-                    {{ $job->title }}
-                </div>
-            @endforeach
-        </div>
-
+    {{-- STATE TABS --}}
+    <div class="tabs-container">
+        @foreach ($states as $s)
+            <span class="tab-btn state-tab" data-state="{{ strtolower($s) }}">
+                {{ $s }}
+            </span>
+        @endforeach
     </div>
 
-    <script>
-        let selectedState = '';
-        let selectedCat = '';
+    {{-- CATEGORY TABS --}}
+    <div class="tabs-container">
+        @foreach ($categories as $cat)
+            <span class="tab-btn cat-tab" data-cat="{{ strtolower($cat) }}">
+                {{ $cat }}
+            </span>
+        @endforeach
+    </div>
 
-        document.querySelectorAll('.state-tab').forEach(btn => {
-            btn.addEventListener('click', function() {
+    {{-- JOB LIST --}}
+    <div id="job-list">
+        @foreach ($jobs as $job)
+            <div class="job-item" data-state="{{ strtolower($job->state) }}" data-cat="{{ strtolower($job->category ?? 'other') }}">
+                {{ $job->title }}
+            </div>
+        @endforeach
+    </div>
 
-                document.querySelectorAll('.state-tab').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
+</div>
 
-                selectedState = this.dataset.state;
-                filterJobs();
-            });
+<script>
+    const stateTabs = document.querySelectorAll('.state-tab');
+    const catTabs = document.querySelectorAll('.cat-tab');
+    const jobs = document.querySelectorAll('.job-item');
+
+    let selectedState = '';
+    let selectedCat = '';
+
+    function filterJobs() {
+        jobs.forEach(job => {
+            const jobStates = job.dataset.state.split(',').map(s => s.trim());
+            const jobCat = job.dataset.cat.trim();
+
+            const stateMatch = selectedState ? jobStates.includes(selectedState) : true;
+            const catMatch = selectedCat ? jobCat === selectedCat : true;
+
+            job.classList.toggle('hidden', !(stateMatch && catMatch));
         });
+    }
 
-        document.querySelectorAll('.cat-tab').forEach(btn => {
-            btn.addEventListener('click', function() {
-
-                document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-
-                selectedCat = this.dataset.cat;
-                filterJobs();
-            });
+    stateTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            stateTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            selectedState = tab.dataset.state;
+            filterJobs();
         });
+    });
 
-        function filterJobs() {
-            document.querySelectorAll('.job-item').forEach(job => {
-
-                let jobState = job.dataset.state;
-                let jobCat = job.dataset.cat;
-
-                let matchState = selectedState === '' || jobState.includes(selectedState);
-                let matchCat = selectedCat === '' || selectedCat === 'All' || jobCat === selectedCat;
-
-                if (matchState && matchCat) {
-                    job.style.display = 'block';
-                } else {
-                    job.style.display = 'none';
-                }
-
-            });
-        }
-    </script>
+    catTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            catTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            selectedCat = tab.dataset.cat;
+            filterJobs();
+        });
+    });
+</script>
 @endsection
