@@ -24,11 +24,9 @@
     }
 
     .job-item {
-            padding: 10px;
-    border-bottom: 1px solid #eee;
-    transition: 0.2s;
-    color: #fff;
-    font-size: 24px;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        transition: 0.2s;
     }
 
     .job-item.hidden {
@@ -38,24 +36,14 @@
     .tabs-container {
         margin-bottom: 10px;
     }
-     .c-t {
-            display: flex;
-            align-items: center;
-            font-size: 30px;
-            color: #fff;
-            margin-left: -8px;margin-top: 20px;
-        }
-
 </style>
 
 <div class="container">
-    <h2 class="mb-3 c-t">
-            <span><b>Latest Jobs</b></span>
-        </h2>
+
     {{-- STATE TABS --}}
     <div class="tabs-container">
         @foreach ($states as $s)
-            <span class="tab-btn state-tab" data-state="{{ strtolower($s) }}">
+            <span class="tab-btn state-tab" data-state="{{ strtolower(trim($s)) }}">
                 {{ $s }}
             </span>
         @endforeach
@@ -64,7 +52,7 @@
     {{-- CATEGORY TABS --}}
     <div class="tabs-container">
         @foreach ($categories as $cat)
-            <span class="tab-btn cat-tab" data-cat="{{ strtolower($cat) }}">
+            <span class="tab-btn cat-tab" data-cat="{{ strtolower(trim($cat)) }}">
                 {{ $cat }}
             </span>
         @endforeach
@@ -73,7 +61,9 @@
     {{-- JOB LIST --}}
     <div id="job-list">
         @foreach ($jobs as $job)
-            <div class="job-item" data-state="{{ strtolower($job->state) }}" data-cat="{{ strtolower($job->category ?? 'other') }}">
+            <div class="job-item" 
+                 data-state="{{ implode(',', array_map('strtolower', array_map('trim', explode(',', $job->state)))) }}" 
+                 data-cat="{{ strtolower(trim($job->category ?? 'other')) }}">
                 {{ $job->title }}
             </div>
         @endforeach
@@ -91,8 +81,9 @@
 
     function filterJobs() {
         jobs.forEach(job => {
-            const jobStates = job.dataset.state.split(',').map(s => s.trim());
-            const jobCat = job.dataset.cat.trim();
+            // Split multiple states properly
+            const jobStates = job.dataset.state.split(',').map(s => s.trim().toLowerCase());
+            const jobCat = job.dataset.cat.trim().toLowerCase();
 
             const stateMatch = selectedState ? jobStates.includes(selectedState) : true;
             const catMatch = selectedCat ? jobCat === selectedCat : true;
@@ -105,7 +96,7 @@
         tab.addEventListener('click', () => {
             stateTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            selectedState = tab.dataset.state;
+            selectedState = tab.dataset.state.trim().toLowerCase();
             filterJobs();
         });
     });
@@ -114,7 +105,7 @@
         tab.addEventListener('click', () => {
             catTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            selectedCat = tab.dataset.cat;
+            selectedCat = tab.dataset.cat.trim().toLowerCase();
             filterJobs();
         });
     });
