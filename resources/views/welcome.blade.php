@@ -732,7 +732,7 @@
 
         @php
             $today = now();
-            $admitDate = \Carbon\Carbon::parse($job->admit_card_date);
+            $admitDate = \Carbon\Carbon::parse($job->admit_card);
 
             $cardClass = '';
             $badge = '';
