@@ -502,47 +502,50 @@
 
 
             <div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">
+                {{ $job->title }} – Important Links
+            </h2>
 
-                <div class="card shadow-sm">
-                    <div class="card-body">
+            <div class="row text-center">
+                @php
+                    // Remove trailing # from links if any
+                    $cleanLinks = str_replace('#', '', $job->link);
 
-                        <h2 class="card-title text-center mb-4">
-                            {{ $job->title }} – Important Links
-                        </h2>
+                    // Split by '#' (or newline) for multiple links
+                    $links = explode("\n", str_replace('#', "\n", $cleanLinks));
+                @endphp
 
-                        <div class="row text-center">
-                            @php
-                                // Split the comma-separated links from DB
-                                $links = explode('#', $job->link); // $job->link = "Apply Online Link,https://example.com,Link Activate On 13 March 2026"
-                            @endphp
+                @foreach ($links as $link)
+                    @php
+                        $link = trim($link);
+                        if (empty($link)) continue; // skip empty lines
 
-                            @foreach ($links as $link)
-                                @php
-                                    // Split each part by dash or pipe if needed (title-url-text)
-                                    $parts = explode('-', $link);
-                                    // Example: $parts[0] = Title, $parts[1] = URL, $parts[2] = optional text
-                                @endphp
+                        $parts = explode('$', $link);
+                        $title = $parts[0] ?? 'Link Title';
+                        $url = $parts[1] ?? '#';
+                        $text = $parts[2] ?? null;
+                    @endphp
 
-                                <div class="col-md-4 mb-3">
-                                    <div class="border p-3 rounded">
-                                        <h5>{{ $parts[0] ?? 'Link Title' }}</h5>
-                                        <a href="{{ $parts[1] ?? '#' }}" class="btn btn-danger mt-2" target="_blank">
-                                            Click Here
-                                        </a>
-                                        @if (isset($parts[2]))
-                                            <p class="mt-2 text-muted" style="font-size:14px;">
-                                                {{ $parts[2] }}
-                                            </p>
-                                        @endif
-                                    </div>
-                                </div>
-                            @endforeach
+                    <div class="col-md-4 mb-3">
+                        <div class="border p-3 rounded h-100 d-flex flex-column justify-content-between">
+                            <h5>{{ $title }}</h5>
+                            <a href="{{ $url }}" class="btn btn-danger mt-2" target="_blank">
+                                Click Here
+                            </a>
+                            @if ($text)
+                                <p class="mt-2 text-muted" style="font-size:14px;">
+                                    {{ $text }}
+                                </p>
+                            @endif
                         </div>
-
                     </div>
-                </div>
-
+                @endforeach
             </div>
+        </div>
+    </div>
+</div>
 
 
             <div class="container mt-4">
