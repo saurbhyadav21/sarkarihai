@@ -125,8 +125,7 @@ class JobController extends Controller
 
             ->get();
 
-        $jobsxxx = Job::whereDate('end_date', '>=', now())
-            ->orderBy('end_date', 'asc')
+        $jobsxxx = Job::orderBy('created_at', 'desc')
             ->limit(10)
             ->get();
         // dd($jobsxxx);
