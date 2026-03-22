@@ -682,7 +682,26 @@
     </div>
 
 
+<style>
 
+    .admit-card {
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.admit-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.admit-card .btn {
+    border-radius: 8px;
+}
+
+.badge {
+    font-size: 12px;
+}
+</style>
     <div class="container mt-4">
 
     <!-- Title -->
