@@ -423,7 +423,7 @@
                                             <!-- Salary -->
                                             <div class="col-md-3 text-end text-success fw-semibold"
                                                 style="font-size: 14px;">
-                                                ₹{{ trim($salaries[$i] ?? 'N/A') }}
+                                                {{ trim($salaries[$i] ?? 'N/A') }}
                                             </div>
 
                                         </div>
