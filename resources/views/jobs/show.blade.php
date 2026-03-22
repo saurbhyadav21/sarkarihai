@@ -188,23 +188,43 @@
                     <div class="card h-100">
                         <div class="card-body">
 
-                            <h2 class="card-title" id="application-fee">{{ $job->title }} – Application Fee
+                            <h2 class="card-title mb-3 text-center" id="application-fee">
+                                {{ $job->title }} – Application Fee
                             </h2>
 
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">General Fees : ₹{{ $job->genral_fees }}/-</li>
-                                <li class="list-group-item">OBC Fees : ₹{{ $job->obc_fees }}/-</li>
-                                <li class="list-group-item">SC Fees : ₹{{ $job->sc_fees }}/-</li>
-                                <li class="list-group-item">ST Fees : ₹{{ $job->st_fees }}/-</li>
-                                <li class="list-group-item">Portal Charge : ₹{{ $job->extra_charge }}/-</li>
-                                <li class="list-group-item fw-bold">
-                                    You can make the payment using the following methods:
-                                    Debit Card,
-                                    Credit Card,
-                                    Internet Banking,
-                                    IMPS,
-                                    Cash Card / Mobile Wallet
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>General Fees</span>
+                                    <span class="badge bg-primary">₹{{ $job->genral_fees }}/-</span>
                                 </li>
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>OBC Fees</span>
+                                    <span class="badge bg-info text-dark">₹{{ $job->obc_fees }}/-</span>
+                                </li>
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>SC Fees</span>
+                                    <span class="badge bg-success">₹{{ $job->sc_fees }}/-</span>
+                                </li>
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>ST Fees</span>
+                                    <span class="badge bg-secondary">₹{{ $job->st_fees }}/-</span>
+                                </li>
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Portal Charge</span>
+                                    <span class="badge bg-warning text-dark">₹{{ $job->extra_charge }}/-</span>
+                                </li>
+
+                                <!-- Payment Info -->
+                                <li class="list-group-item mt-2" style="font-size: 14px; line-height: 1.6;">
+                                    <b>Payment Methods:</b><br>
+                                    Debit Card, Credit Card, Internet Banking, IMPS, Cash Card / Mobile Wallet
+                                </li>
+
                             </ul>
 
                         </div>
