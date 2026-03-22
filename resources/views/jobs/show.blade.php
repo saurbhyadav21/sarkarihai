@@ -342,7 +342,7 @@
 
             </div>
 
-{{--
+
             <div class="container mt-4">
 
                 <div class="card shadow-sm">
@@ -412,7 +412,7 @@
                 </div>
 
             </div>
-
+{{--
             <div class="container mt-4">
 
                 <div class="card shadow-sm">
