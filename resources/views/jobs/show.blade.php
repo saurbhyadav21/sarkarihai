@@ -379,7 +379,7 @@
 
                         <div class="container mt-4">
                             <div class="card shadow-sm">
-                                <div class="card-body" style="padding: 10px;">
+                                <div class="card-body">
 
                                     @php
                                         $names = explode('#', $job->post_name);
@@ -390,27 +390,27 @@
                                     @endphp
 
                                     @for ($i = 0; $i < $total; $i++)
-                                        <div class="row py-3 border-bottom" style="padding-bottom: 5px;">
+                                        <div class="row py-3 border-bottom align-items-center">
 
                                             <!-- Sno -->
-                                            <div class="col-md-1 fw-bold">
+                                            <div class="col-md-1 text-muted" style="font-size: 13px;">
                                                 {{ $i + 1 }}.
                                             </div>
 
                                             <!-- Post Name -->
-                                            <div class="col-md-3 fw-bold">
+                                            <div class="col-md-3 fw-semibold" style="font-size: 15px;">
                                                 {{ trim($names[$i] ?? '') }}
                                             </div>
 
-                                            <!-- Eligibility + Salary (below) -->
-                                            <div class="col-md-8">
-                                                <div style="font-size: 14px;">
-                                                    {{ trim($eligibilities[$i] ?? '') }}
-                                                </div>
+                                            <!-- Eligibility -->
+                                            <div class="col-md-5" style="font-size: 14px; line-height: 1.6;">
+                                                {{ trim($eligibilities[$i] ?? '') }}
+                                            </div>
 
-                                                <div class="text-success fw-semibold mt-1" style="font-size: 13px;">
-                                                    Pay Scale: ₹{{ trim($salaries[$i] ?? 'N/A') }}
-                                                </div>
+                                            <!-- Salary (Right Aligned) -->
+                                            <div class="col-md-3 text-end text-success fw-semibold"
+                                                style="font-size: 14px;">
+                                                ₹{{ trim($salaries[$i] ?? 'N/A') }}
                                             </div>
 
                                         </div>
