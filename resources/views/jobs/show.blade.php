@@ -378,47 +378,59 @@
 
 
                         <div class="container mt-4">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
+    <div class="card shadow-sm">
+        <div class="card-body">
 
-                                    @php
-                                        $names = explode('#', $job->post_name);
-                                        $eligibilities = explode('#', $job->post_eligibility);
-                                        $salaries = explode('#', $job->post_salary);
+            <!-- Title -->
+            <h2 class="card-title mb-4 text-center">
+                {{ $job->title }} – Post Details
+            </h2>
 
-                                        $total = count($names);
-                                    @endphp
+            @php
+                $names = explode('#', $job->post_name);
+                $eligibilities = explode('#', $job->post_eligibility);
+                $salaries = explode('#', $job->post_salary);
 
-                                    @for ($i = 0; $i < $total; $i++)
-                                        <div class="row py-3 border-bottom align-items-center">
+                $total = count($names);
+            @endphp
 
-                                            <!-- Sno -->
-                                            <div class="col-md-1 text-muted" style="font-size: 13px;">
-                                                {{ $i + 1 }}.
-                                            </div>
+            <!-- Header Row -->
+            <div class="row fw-bold border-bottom pb-2 mb-2">
+                <div class="col-md-1">Sno</div>
+                <div class="col-md-3">Post Name</div>
+                <div class="col-md-5">Eligibility</div>
+                <div class="col-md-3 text-end">Salary</div>
+            </div>
 
-                                            <!-- Post Name -->
-                                            <div class="col-md-3 fw-semibold" style="font-size: 15px;">
-                                                {{ trim($names[$i] ?? '') }}
-                                            </div>
+            @for ($i = 0; $i < $total; $i++)
+                <div class="row py-3 border-bottom align-items-center">
 
-                                            <!-- Eligibility -->
-                                            <div class="col-md-5" style="font-size: 14px; line-height: 1.6;">
-                                                {{ trim($eligibilities[$i] ?? '') }}
-                                            </div>
+                    <!-- Sno -->
+                    <div class="col-md-1 text-muted" style="font-size: 13px;">
+                        {{ $i + 1 }}
+                    </div>
 
-                                            <!-- Salary (Right Aligned) -->
-                                            <div class="col-md-3 text-end text-success fw-semibold"
-                                                style="font-size: 14px;">
-                                                ₹{{ trim($salaries[$i] ?? 'N/A') }}
-                                            </div>
+                    <!-- Post Name -->
+                    <div class="col-md-3 fw-semibold" style="font-size: 15px;">
+                        {{ trim($names[$i] ?? '') }}
+                    </div>
 
-                                        </div>
-                                    @endfor
+                    <!-- Eligibility -->
+                    <div class="col-md-5" style="font-size: 14px; line-height: 1.6;">
+                        {{ trim($eligibilities[$i] ?? '') }}
+                    </div>
 
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Salary -->
+                    <div class="col-md-3 text-end text-success fw-semibold" style="font-size: 14px;">
+                        ₹{{ trim($salaries[$i] ?? 'N/A') }}
+                    </div>
+
+                </div>
+            @endfor
+
+        </div>
+    </div>
+</div>
 
 
 
