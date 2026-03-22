@@ -378,37 +378,45 @@
 
 
                         <div class="container mt-4">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
+    <div class="card shadow-sm">
+        <div class="card-body">
 
+            @php
+                $names = explode('#', $job->post_name);
+                $eligibilities = explode('#', $job->post_eligibility);
+                $salaries = explode('#', $job->post_salary);
 
+                $total = count($names);
+            @endphp
 
-                                    @php
+            @for ($i = 0; $i < $total; $i++)
+                <div class="row py-3 border-bottom">
 
-                                        $names = explode(',', $job->post_name);
-                                        $eligibilities = explode(',', $job->post_eligibility);
-                                        // $salaries = explode(',', $job->post_salary);
-                                        $total = count($names); // total number of posts
-                                    @endphp
+                    <!-- Sno -->
+                    <div class="col-md-1 fw-bold">
+                        {{ $i + 1 }}.
+                    </div>
 
-                                    @for ($i = 0; $i < $total; $i++)
-                                        <div class="row py-3 border-bottom">
-                                            <div class="col-md-4 fw-bold">
-                                                {{ trim($names[$i]) }}
-                                            </div>
+                    <!-- Post Name -->
+                    <div class="col-md-3 fw-bold">
+                        {{ trim($names[$i] ?? '') }}
+                    </div>
 
-                                            <div class="col-md-8">
-                                                {{ trim($eligibilities[$i]) }}
+                    <!-- Eligibility + Salary -->
+                    <div class="col-md-8">
+                        {{ trim($eligibilities[$i] ?? '') }}
 
-                                                <span class="fw-bold text-success">( Pay Scale :
-                                                    ₹{!! trim($job->post_salary) !!})</span>
-                                            </div>
-                                        </div>
-                                    @endfor
+                        <span class="fw-bold text-success">
+                            ( Pay Scale : ₹{{ trim($salaries[$i] ?? 'N/A') }} )
+                        </span>
+                    </div>
 
-                                </div>
-                            </div>
-                        </div>
+                </div>
+            @endfor
+
+        </div>
+    </div>
+</div>
 
 
 
