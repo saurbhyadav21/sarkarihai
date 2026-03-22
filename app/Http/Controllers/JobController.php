@@ -417,7 +417,7 @@ class JobController extends Controller
     {
         $states = State::all();
         $categories = Category::all();
-        $Mineducation = Mineducation::all();
+        $mineducation = Mineducation::all();
 
         return view('jobs.add-job', compact('states', 'categories', 'mineducation'));
     }
