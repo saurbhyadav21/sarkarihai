@@ -218,7 +218,7 @@ class JobController extends Controller
             ->limit(30)
             ->get();
 
-            dd($admitCard);
+            // dd($admitCard);
         return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories','admitCard'));
     }
 
