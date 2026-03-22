@@ -70,7 +70,7 @@
                                         <p>
                                             <strong>{{ $job->title }}</strong> has released notification for various
                                             posts
-                                            <strong>{{ $job->post_name }}</strong> under {{ $job->category }}.
+                                            <strong>{{ str_replace('#', ', ', $job->post_name ?? '') }}</strong> under {{ $job->category }}.
                                             Interested candidates can apply online from
                                             <strong>{{ \Carbon\Carbon::parse($job->start_date)->format('d-m-Y') ?? 'START DATE' }}</strong>
                                             to
