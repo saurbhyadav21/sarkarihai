@@ -322,48 +322,49 @@
 
                     <!-- Category Wise Post -->
                     <div class="col-md-6 mb-3">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body">
+    <div class="card shadow-sm h-100">
+        <div class="card-body">
 
-                                <h2 class="card-title mb-3 text-center" id="category-post">
-                                    {{ $job->title }} – Category Wise Post
-                                </h2>
+            <h2 class="card-title mb-3 text-center" id="category-post">
+                {{ $job->title }} – Category Wise Post
+            </h2>
 
-                                <!-- Header -->
-                                <div class="row fw-bold border-bottom pb-2 mb-2">
-                                    <div class="col-6">Category</div>
-                                    <div class="col-6 text-end">Posts</div>
-                                </div>
+            @php
+                $categories = [
+                    'General' => $job->genral_post,
+                    'EWS' => $job->ews_post,
+                    'OBC' => $job->obc_post,
+                    'SC' => $job->sc_post,
+                    'ST' => $job->st_post,
+                ];
+            @endphp
 
-                                <!-- Rows -->
-                                <div class="row py-2 border-bottom">
-                                    <div class="col-6">General</div>
-                                    <div class="col-6 text-end fw-semibold">{{ $job->genral_post }}</div>
-                                </div>
+            @foreach($categories as $catName => $catData)
+                <div class="mb-3">
+                    <h5 class="fw-bold">{{ $catName }}</h5>
+                    @php
+                        $posts = explode('#', $catData);
+                    @endphp
+                    <ul class="list-group list-group-flush">
+                        @foreach($posts as $post)
+                            @php
+                                $parts = explode('$', $post);
+                                $postName = $parts[0] ?? 'Post';
+                                $postCount = $parts[1] ?? '0';
+                            @endphp
+                            <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
+                                {{ $postName }}
+                                <span class="badge bg-primary rounded-pill">{{ $postCount }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <hr class="my-2">
+            @endforeach
 
-                                <div class="row py-2 border-bottom">
-                                    <div class="col-6">EWS</div>
-                                    <div class="col-6 text-end fw-semibold">{{ $job->ews_post }}</div>
-                                </div>
-
-                                <div class="row py-2 border-bottom">
-                                    <div class="col-6">OBC</div>
-                                    <div class="col-6 text-end fw-semibold">{{ $job->obc_post }}</div>
-                                </div>
-
-                                <div class="row py-2 border-bottom">
-                                    <div class="col-6">SC</div>
-                                    <div class="col-6 text-end fw-semibold">{{ $job->sc_post }}</div>
-                                </div>
-
-                                <div class="row py-2">
-                                    <div class="col-6">ST</div>
-                                    <div class="col-6 text-end fw-semibold">{{ $job->st_post }}</div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+        </div>
+    </div>
+</div>
 
                     <!-- Mode Of Selection -->
                     <div class="col-md-6 mb-3">
