@@ -321,46 +321,66 @@
                 <div class="row">
 
                     <!-- Category Wise Post -->
-                    <div class="col-md-6 mb-3">
-    <div class="card shadow-sm h-100">
+                    <div class="col-12 mb-3">
+    <div class="card shadow-sm">
         <div class="card-body">
 
-            <h2 class="card-title mb-3 text-center" id="category-post">
-                {{ $job->title }} – Category Wise Post
-            </h2>
+            <h2 class="card-title mb-3 text-center">{{ $job->title }} – Category Wise Post</h2>
 
             @php
                 $categories = [
-                    'General' => $job->genral_post,
+                    'General (UR)' => $job->genral_post,
                     'EWS' => $job->ews_post,
                     'OBC' => $job->obc_post,
                     'SC' => $job->sc_post,
                     'ST' => $job->st_post,
                 ];
+
+                $totalPosts = 0;
             @endphp
 
-            @foreach($categories as $catName => $catData)
-                <div class="mb-3">
-                    <h5 class="fw-bold">{{ $catName }}</h5>
+            <div class="row text-center fw-bold border-bottom py-2 mb-2">
+                @foreach($categories as $catName => $catData)
+                    <div class="col">{{ $catName }}</div>
+                @endforeach
+                <div class="col">Total Post</div>
+            </div>
+
+            <div class="row text-center">
+                @foreach($categories as $catName => $catData)
                     @php
+                        $count = 0;
                         $posts = explode('#', $catData);
+                        foreach($posts as $post) {
+                            $parts = explode('$', $post);
+                            $count += intval($parts[1] ?? 0);
+                        }
+                        $totalPosts += $count;
                     @endphp
-                    <ul class="list-group list-group-flush">
-                        @foreach($posts as $post)
-                            @php
-                                $parts = explode('$', $post);
-                                $postName = $parts[0] ?? 'Post';
-                                $postCount = $parts[1] ?? '0';
-                            @endphp
-                            <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                {{ $postName }}
-                                <span class="badge bg-primary rounded-pill">{{ $postCount }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-                <hr class="my-2">
-            @endforeach
+                    <div class="col">{{ $count }}</div>
+                @endforeach
+                <div class="col">{{ $totalPosts }}</div>
+            </div>
+
+            <div class="row mt-3">
+                @foreach($categories as $catName => $catData)
+                    <div class="col-md-2">
+                        @php
+                            $posts = explode('#', $catData);
+                        @endphp
+                        <ul class="list-unstyled mb-0 text-start">
+                            @foreach($posts as $post)
+                                @php
+                                    $parts = explode('$', $post);
+                                    $postName = $parts[0] ?? '';
+                                    $postCount = $parts[1] ?? '';
+                                @endphp
+                                <li>{{ $postName }} ({{ $postCount }})</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
+            </div>
 
         </div>
     </div>
