@@ -377,12 +377,13 @@
                                 <ul class="list-group list-group-flush">
                                     @php
                                         $modes = explode(',', $job->mode_selection);
+                                        $p= 1;
                                     @endphp
 
                                     @foreach ($modes as $mode)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <span>{{ trim($mode) }}</span>
-                                            <span class="badge bg-primary">Step</span>
+                                            <span class="badge bg-primary">Step {{$p+1}}</span>
                                         </li>
                                     @endforeach
                                 </ul>
