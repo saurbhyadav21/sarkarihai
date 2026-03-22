@@ -377,7 +377,7 @@
                                 <ul class="list-group list-group-flush">
                                     @php
                                         $modes = explode(',', $job->mode_selection);
-                                        $p= 0;
+                                        $p= 1;
                                     @endphp
 
                                     @foreach ($modes as $mode)
