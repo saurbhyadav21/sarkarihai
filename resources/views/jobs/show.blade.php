@@ -132,46 +132,48 @@
                     <div class="card h-100">
                         <div class="card-body">
 
-                            <h2 class="card-title">{{ $job->title }} – Important Dates</h2>
+                            <h2 class="card-title mb-3 text-center">
+                                {{ $job->title }} – Important Dates
+                            </h2>
 
                             <ul class="list-group list-group-flush">
 
-                                <li class="list-group-item">
-                                    Apply Online Start Date :
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Apply Online Start Date</span>
                                     <span class="badge bg-success">{{ $job->start_date }}</span>
                                 </li>
 
-                                <li class="list-group-item">
-                                    Apply Online Last Date :
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Apply Online Last Date</span>
                                     <span class="badge bg-danger">{{ $job->end_date }}</span>
                                 </li>
 
-                                <li class="list-group-item">
-                                    Last Date For Fee Payment :
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Last Date For Fee Payment</span>
                                     <span class="badge bg-warning text-dark">{{ $job->last_fee_date }}</span>
                                 </li>
 
-                                <li class="list-group-item">
-                                    Correction Last Date :
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Correction Last Date</span>
                                     <span class="badge bg-info text-dark">{{ $job->correction_date }}</span>
                                 </li>
 
-                                <li class="list-group-item">
-                                    Exam Date :
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Exam Date</span>
                                     <span class="badge bg-primary">{{ $job->exam_date }}</span>
                                 </li>
 
-                                <li class="list-group-item">
-                                    Admit Card :
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Admit Card</span>
                                     <span class="badge bg-secondary">{{ $job->admit_card }}</span>
                                 </li>
 
-                                <li class="list-group-item">
-                                    Result Date :
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Result Date</span>
                                     <span class="badge bg-dark">{{ $job->result_date }}</span>
                                 </li>
 
-                                <li class="list-group-item">
+                                <li class="list-group-item text-center">
                                     {{ $job->info_date }}
                                 </li>
 
