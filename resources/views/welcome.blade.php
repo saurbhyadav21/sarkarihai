@@ -525,7 +525,8 @@
                         <span><b>Latest State Wise Job India - 2026</b></span>
                     </h2>
 
-                    <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold">
+                    <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold" style="color: #fff;
+    font-size: 10px;">
                         View All →
                     </a>
                 </div>
