@@ -385,6 +385,7 @@
                                             <span>{{ trim($mode) }}</span>
                                             <span class="badge bg-primary">Step {{$p+1}}</span>
                                         </li>
+                                        {{$p++}}
                                     @endforeach
                                 </ul>
 
