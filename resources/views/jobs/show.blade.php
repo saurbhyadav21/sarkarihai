@@ -378,47 +378,47 @@
 
 
                         <div class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-body">
+                            <div class="card shadow-sm">
+                                <div class="card-body" style="padding: 10px;">
 
-            @php
-                $names = explode('#', $job->post_name);
-                $eligibilities = explode('#', $job->post_eligibility);
-                $salaries = explode('#', $job->post_salary);
+                                    @php
+                                        $names = explode('#', $job->post_name);
+                                        $eligibilities = explode('#', $job->post_eligibility);
+                                        $salaries = explode('#', $job->post_salary);
 
-                $total = count($names);
-            @endphp
+                                        $total = count($names);
+                                    @endphp
 
-            @for ($i = 0; $i < $total; $i++)
-                <div class="row py-3 border-bottom">
+                                    @for ($i = 0; $i < $total; $i++)
+                                        <div class="row py-3 border-bottom" style="padding-bottom: 10px;">
 
-                    <!-- Sno -->
-                    <div class="col-md-1 fw-bold">
-                        {{ $i + 1 }}.
-                    </div>
+                                            <!-- Sno -->
+                                            <div class="col-md-1 fw-bold">
+                                                {{ $i + 1 }}.
+                                            </div>
 
-                    <!-- Post Name -->
-                    <div class="col-md-3 fw-bold">
-                        {{ trim($names[$i] ?? '') }}
-                    </div>
+                                            <!-- Post Name -->
+                                            <div class="col-md-3 fw-bold">
+                                                {{ trim($names[$i] ?? '') }}
+                                            </div>
 
-                    <!-- Eligibility + Salary (below) -->
-                    <div class="col-md-8">
-                        <div style="font-size: 14px;">
-                            {{ trim($eligibilities[$i] ?? '') }}
+                                            <!-- Eligibility + Salary (below) -->
+                                            <div class="col-md-8">
+                                                <div style="font-size: 14px;">
+                                                    {{ trim($eligibilities[$i] ?? '') }}
+                                                </div>
+
+                                                <div class="text-success fw-semibold mt-1" style="font-size: 13px;">
+                                                    Pay Scale: ₹{{ trim($salaries[$i] ?? 'N/A') }}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    @endfor
+
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="text-success fw-semibold mt-1" style="font-size: 13px;">
-                            Pay Scale: ₹{{ trim($salaries[$i] ?? 'N/A') }}
-                        </div>
-                    </div>
-
-                </div>
-            @endfor
-
-        </div>
-    </div>
-</div>
 
 
 
