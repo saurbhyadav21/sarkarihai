@@ -390,7 +390,7 @@
                                     @endphp
 
                                     @for ($i = 0; $i < $total; $i++)
-                                        <div class="row py-3 border-bottom" style="padding-bottom: 10px;">
+                                        <div class="row py-3 border-bottom" style="padding-bottom: 5px;">
 
                                             <!-- Sno -->
                                             <div class="col-md-1 fw-bold">
