@@ -83,16 +83,20 @@
                                         <h5>Post Details:</h5>
                                         <ul>
                                             <li><strong>Post Name:</strong> {{ $job->post_name ?? 'POST' }}</li>
-                                            <li><strong>Salary:</strong> ₹{{ number_format($job->min_salary ?? 0) }} - ₹{{ number_format($job->max_salary ?? 0) }}</li>
+                                            <li><strong>Salary:</strong> ₹{{ number_format($job->min_salary ?? 0) }} -
+                                                ₹{{ number_format($job->max_salary ?? 0) }}</li>
                                             <li><strong>Minimum Qualification:</strong>
                                                 {{ $job->min_qulification ?? 'N/A' }}
                                             </li>
                                             <li><strong>Minimum Age:</strong> {{ $job->min_age ?? 'N/A' }} years</li>
-                                            <li><strong>Total Vacancies:</strong> {{ number_format($job->total_vacancies ?? 0) }}</li>
-                                            <li><strong>Exam Date:</strong> {{ \Carbon\Carbon::parse($job->exam_date)->format('d-m-Y') ?? 'To Be Announced' }}</li>
+                                            <li><strong>Total Vacancies:</strong>
+                                                {{ number_format($job->total_vacancies ?? 0) }}</li>
+                                            <li><strong>Exam Date:</strong>
+                                                {{ \Carbon\Carbon::parse($job->exam_date)->format('d-m-Y') ?? 'To Be Announced' }}
+                                            </li>
                                             {{-- <li><strong>Exam Date:</strong> {{ $job->exam_date ?? 'Update Soon' }}</li> --}}
 
-                                            
+
                                         </ul>
 
                                         <p>
@@ -113,7 +117,7 @@
 
             </div>
 
-             <div class="row align-items-stretch gy-4" id="date-fee">
+            <div class="row align-items-stretch gy-4" id="date-fee">
 
                 <!-- Important Dates -->
                 <div class="col-md-6">
@@ -377,10 +381,10 @@
                             <div class="card shadow-sm">
                                 <div class="card-body">
 
-                                    
+
 
                                     @php
-                                        
+
                                         $names = explode(',', $job->post_name);
                                         $eligibilities = explode(',', $job->post_eligibility);
                                         // $salaries = explode(',', $job->post_salary);
@@ -395,7 +399,7 @@
 
                                             <div class="col-md-8">
                                                 {{ trim($eligibilities[$i]) }}
-                                                
+
                                                 <span class="fw-bold text-success">( Pay Scale :
                                                     ₹{!! trim($job->post_salary) !!})</span>
                                             </div>
@@ -415,28 +419,29 @@
 
             <div class="container mt-4">
 
-                <div class="card shadow-sm">
-                    <div class="card-body">
+    <div class="card shadow-sm">
+        <div class="card-body">
 
-                        <h2 class="card-title mb-4 text-center" id="online-form">
-                            {{ $job->title }} – Online Form Fill Instruction
-                        </h2>
+            <h2 class="card-title mb-4 text-center" id="online-form">
+                {{ $job->title }} – Online Form Fill Instruction
+            </h2>
 
-                        <ul class="list-group list-group-flush">
-                            @php
-                                // Split the comma-separated instruction string into array
-                                $instructions = explode('#', $job->instruction);
-                            @endphp
+            <ul class="list-group list-group-flush">
+                @php
+                    $instructions = explode('#', $job->instruction);
+                @endphp
 
-                            @foreach ($instructions as $instruction)
-                                <li class="list-group-item">{!! $instruction !!}</li>
-                            @endforeach
-                        </ul>
+                @foreach ($instructions as $instruction)
+                    <li class="list-group-item">
+                        <b>{{ $loop->iteration }}.</b> {!! $instruction !!}
+                    </li>
+                @endforeach
+            </ul>
 
-                    </div>
-                </div>
+        </div>
+    </div>
 
-            </div> 
+</div>
 
 
 
@@ -485,7 +490,7 @@
                     </div>
                 </div>
 
-            </div> 
+            </div>
 
 
             <div class="container mt-4">
@@ -498,39 +503,39 @@
                         </h2>
 
                         <div class="table-responsive">
-    <table class="table table-bordered table-striped align-middle">
-        <thead class="table-dark text-center">
-            <tr>
-                <th style="width:10%">S.No</th>
-                <th style="width:30%">Documents Name</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            @php
-                // Split comma-separated documents
-                $docs = explode('#', $job->doc);
-            @endphp
+                            <table class="table table-bordered table-striped align-middle">
+                                <thead class="table-dark text-center">
+                                    <tr>
+                                        <th style="width:10%">S.No</th>
+                                        <th style="width:30%">Documents Name</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        // Split comma-separated documents
+                                        $docs = explode('#', $job->doc);
+                                    @endphp
 
-            @foreach ($docs as $index => $doc)
-                @php
-                    // Split each doc into title and details
-                    $parts = explode('-', $doc);
-                @endphp
-                <tr>
-                    <td class="text-center">{{ $index + 1 }}</td>
-                    <td class="fw-bold">{{ $parts[0] ?? 'Title' }}</td>
-                    <td>{{ $parts[1] ?? 'Details' }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+                                    @foreach ($docs as $index => $doc)
+                                        @php
+                                            // Split each doc into title and details
+                                            $parts = explode('-', $doc);
+                                        @endphp
+                                        <tr>
+                                            <td class="text-center">{{ $index + 1 }}</td>
+                                            <td class="fw-bold">{{ $parts[0] ?? 'Title' }}</td>
+                                            <td>{{ $parts[1] ?? 'Details' }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
                 </div>
 
-            </div> 
+            </div>
 
 
             <div class="container mt-5">
