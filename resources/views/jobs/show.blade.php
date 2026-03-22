@@ -195,7 +195,7 @@
             </div>
 
 
-           {{-- <div class="row align-items-stretch">
+            <div class="row align-items-stretch">
 
                 <!-- Age Limit -->
                 <div class="col-md-6" style="margin-top: 10px;">
@@ -265,7 +265,7 @@
                 </div>
 
             </div>
-
+{{--
             <div class="container mt-4">
 
                 <div class="row">

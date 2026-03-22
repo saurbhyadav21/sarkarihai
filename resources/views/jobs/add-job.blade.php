@@ -9,6 +9,14 @@
 
     <br>
 
+    <!-- JSON -->
+    <div>
+        <label>Paste Job Date JSON</label><br>
+        <textarea name="job_json_date" rows="10" style="width:100%;" placeholder='Paste JSON here'></textarea>
+    </div>
+
+    <br>
+
     <!-- STATES CHECKBOX -->
     <div>
         <label><b>Select States</b></label><br>
