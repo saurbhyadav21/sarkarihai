@@ -318,8 +318,8 @@ class JobController extends Controller
 
     public function storeJson(Request $request)
     {
-    // dd($request);   
-    // Validate JSON
+        // dd($request);   
+        // Validate JSON
         $request->validate([
             'job_json' => 'required|json',
             'states' => 'required|array',
@@ -334,21 +334,29 @@ class JobController extends Controller
             : $request->states;
         // Map fields
         $data = [
-            'title'            => $json['title'] ?? null,
-            'start_date'       => $json['start_date'] ?? null,
-            'end_date'         => $json['last_date'] ?? null,
-            'exam_date'        => $json['exam_date'] ?? null,
-            'min_salary'       => $json['salary_min'] ?? null,
-            'max_salary'       => $json['salary_max'] ?? null,
-            'min_age'          => $json['age_min'] ?? null,
-            'max_age_genral'   => $json['age_max'] ?? null,
-            'total_vacancies'  => $json['total_vacancy'] ?? null,
-            'post_eligibility' => $json['qualification'] ?? null,
-            'website'          => $json['official_website'] ?? null,
-            'category'          => $request->category_id ?? null,
-            'state'          => $state ?? null,
-            'min_qulification'          => $request->min_education ?? null,
+            'title'             => $json['title'] ?? null,
+            'state'             => $state ?? null,
+            'start_date'        => $json['start_date'] ?? null,
+            'end_date'          => $json['last_date'] ?? null,
+            'min_salary'        => $json['salary_min'] ?? null,
+            'max_salary'        => $json['salary_max'] ?? null,
+            'min_age'           => $json['age_min'] ?? null,
+            'max_age_genral'    => $json['age_max'] ?? null,
         ];
+        // $data = [
+        //     'title'            => $json['title'] ?? null,
+
+        //     'exam_date'        => $json['exam_date'] ?? null,
+
+
+
+        //     'total_vacancies'  => $json['total_vacancy'] ?? null,
+        //     'post_eligibility' => $json['qualification'] ?? null,
+        //     'website'          => $json['official_website'] ?? null,
+        //     'category'          => $request->category_id ?? null,
+        //     
+        //     'min_qulification'          => $request->min_education ?? null,
+        // ];
         // dd($data);
         // Save
         Job::create($data);
