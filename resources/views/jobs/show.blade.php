@@ -531,7 +531,7 @@
             </div> 
 
 
-            {{-- <div class="container mt-5">
+            <div class="container mt-5">
                 <div class="card shadow-sm">
                     <div class="card-body">
 
@@ -664,7 +664,7 @@
 
                     </div>
                 </div>
-            </div> --}}
+            </div>
         </div>
 
     </main>
