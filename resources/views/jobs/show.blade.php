@@ -383,7 +383,7 @@
                                         
                                         $names = explode(',', $job->post_name);
                                         $eligibilities = explode(',', $job->post_eligibility);
-                                        $salaries = explode(',', $job->post_salary);
+                                        // $salaries = explode(',', $job->post_salary);
                                         $total = count($names); // total number of posts
                                     @endphp
 
@@ -397,7 +397,7 @@
                                                 {{ trim($eligibilities[$i]) }}
                                                 
                                                 <span class="fw-bold text-success">( Pay Scale :
-                                                    ₹{!! trim($salaries[$i]) !!})</span>
+                                                    ₹{!! trim($job->post_salary) !!})</span>
                                             </div>
                                         </div>
                                     @endfor
