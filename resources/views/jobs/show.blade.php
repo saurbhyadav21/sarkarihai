@@ -70,7 +70,8 @@
                                         <p>
                                             <strong>{{ $job->title }}</strong> has released notification for various
                                             posts
-                                            <strong>{{ str_replace('#', ', ', $job->post_name ?? '') }}</strong> under {{ $job->category }}.
+                                            <strong>{{ str_replace('#', ', ', $job->post_name ?? '') }}</strong> under
+                                            {{ $job->category }}.
                                             Interested candidates can apply online from
                                             <strong>{{ \Carbon\Carbon::parse($job->start_date)->format('d-m-Y') ?? 'START DATE' }}</strong>
                                             to
@@ -82,7 +83,8 @@
 
                                         <h5>Post Details:</h5>
                                         <ul>
-                                            <li><strong>Post Name:</strong> {{ str_replace('#', ', ', $job->post_name ?? '') }}</li>
+                                            <li><strong>Post Name:</strong>
+                                                {{ str_replace('#', ', ', $job->post_name ?? '') }}</li>
                                             <li><strong>Salary:</strong> ₹{{ number_format($job->min_salary ?? 0) }} -
                                                 ₹{{ number_format($job->max_salary ?? 0) }}</li>
                                             <li><strong>Minimum Qualification:</strong>
@@ -105,7 +107,9 @@
                                         </p>
 
                                         <p style="color: red;">
-                                            Note – छात्रो से ये अनुरोध किया जाता है की वो अपना फॉर्म भरने से पहले Official Notification को ध्यान से जरूर पढे उसके बाद ही अपना फॉर्म भरे । (Last Date, Age Limit, & Education Qualification)
+                                            Note – छात्रो से ये अनुरोध किया जाता है की वो अपना फॉर्म भरने से पहले Official
+                                            Notification को ध्यान से जरूर पढे उसके बाद ही अपना फॉर्म भरे । (Last Date, Age
+                                            Limit, & Education Qualification)
                                         </p>
 
                                         <a href="#date-fee" class="btn btn-success">Read Official
@@ -192,7 +196,12 @@
                                 <li class="list-group-item">ST Fees : ₹{{ $job->st_fees }}/-</li>
                                 <li class="list-group-item">Portal Charge : ₹{{ $job->extra_charge }}/-</li>
                                 <li class="list-group-item fw-bold">
-                                    Payment Mode : Debit Card, Credit Card, Internet Banking, IMPS / Wallet
+                                    You can make the payment using the following methods:
+                                    Debit Card,
+                                    Credit Card,
+                                    Internet Banking,
+                                    IMPS,
+                                    Cash Card / Mobile Wallet
                                 </li>
                             </ul>
 
