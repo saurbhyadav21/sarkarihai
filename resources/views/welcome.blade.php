@@ -567,7 +567,7 @@
 
                             <div class="statejob-top">
                                 <span class="statejob-title">
-                                    {{ ucfirst($jobx->title) . (!empty($name) ? ' - ' . ucfirst($name) : '') }}
+                                    {{ ucfirst($jobx->title) . (!empty($name) ? ' - ' . ucfirst(str_replace('#', ', ', $name)) : '') }}
                                 </span>
 
 
