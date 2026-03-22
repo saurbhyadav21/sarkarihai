@@ -491,7 +491,7 @@
                 /* Meta */
                 .statejob-meta {
                     font-size: 12px;
-                    color: #555; float: right;
+                    color: #555;
                 }
 
                 /* States */
@@ -549,7 +549,9 @@
                                     {{ ucfirst($jobx->title) . (!empty($name) ? ' - ' . ucfirst($name) : '') }}
                                 </span>
 
-                                <span class="statejob-meta">
+                                
+                            </div>
+                            <span class="statejob-meta">
                                     ({{ $jobx->min_qulification ?? '' }} |
                                     ₹{{ number_format($jobx->min_salary ?? 0) }} -
                                     ₹{{ number_format($jobx->max_salary ?? 0) }} |
@@ -557,8 +559,6 @@
                                         {{ $endDate->format('d M Y') }}
                                     </span>)
                                 </span>
-                            </div>
-
                             @if (!empty($jobx->state))
                                 @php $states = explode(',', $jobx->state); @endphp
 
