@@ -82,7 +82,7 @@
 
                                         <h5>Post Details:</h5>
                                         <ul>
-                                            <li><strong>Post Name:</strong> {{ $job->post_name ?? 'POST' }}</li>
+                                            <li><strong>Post Name:</strong> {{ str_replace('#', ', ', $job->post_name ?? '') }}</li>
                                             <li><strong>Salary:</strong> ₹{{ number_format($job->min_salary ?? 0) }} -
                                                 ₹{{ number_format($job->max_salary ?? 0) }}</li>
                                             <li><strong>Minimum Qualification:</strong>
@@ -102,6 +102,10 @@
                                         <p>
                                             Read the notification for recruitment eligibility, post information, selection
                                             procedure, Physical Eligibility, pay scale and all other information.</strong>.
+                                        </p>
+
+                                        <p style="color: red;">
+                                            Note – छात्रो से ये अनुरोध किया जाता है की वो अपना फॉर्म भरने से पहले Official Notification को ध्यान से जरूर पढे उसके बाद ही अपना फॉर्म भरे । (Last Date, Age Limit, & Education Qualification)
                                         </p>
 
                                         <a href="#date-fee" class="btn btn-success">Read Official
