@@ -131,21 +131,35 @@ class JobController extends Controller
         // dd($jobsxxx);
         $stateCounts = [];
         $jobs1 = Job::get();
+        $allStates = [
+            'Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana','Himachal Pradesh',
+            'Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland',
+            'Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal',
+            'Delhi','Jammu & Kashmir','Ladakh'
+        ];
         foreach ($jobs1 as $job) {
-
-            // comma separated states ko array me convert karo
             $states = explode(',', $job->state);
 
-            foreach ($states as $state) {
-                $state = trim($state); // extra space remove
+            $states = array_map('trim', $states);
 
-                if ($state == '') continue;
+            if (in_array('All India', $states)) {
+                // All India matlab sab states me +1
+                foreach ($allStates as $st) {
+                    if (isset($stateCounts[$st])) {
+                        $stateCounts[$st]++;
+                    } else {
+                        $stateCounts[$st] = 1;
+                    }
+                }
+            } else {
+                foreach ($states as $state) {
+                    if ($state == '') continue;
 
-                // count increase
-                if (isset($stateCounts[$state])) {
-                    $stateCounts[$state]++;
-                } else {
-                    $stateCounts[$state] = 1;
+                    if (isset($stateCounts[$state])) {
+                        $stateCounts[$state]++;
+                    } else {
+                        $stateCounts[$state] = 1;
+                    }
                 }
             }
         }
