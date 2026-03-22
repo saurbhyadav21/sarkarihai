@@ -321,7 +321,7 @@
                 <div class="row">
 
                     <!-- Category Wise Post -->
-                    <div class="col-12 mb-3">
+                    <div class="col-6 mb-3">
     <div class="card shadow-sm">
         <div class="card-body">
 
