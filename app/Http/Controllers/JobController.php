@@ -324,7 +324,7 @@ class JobController extends Controller
             'job_json' => 'required|json',
             'states' => 'required|array',
             'category_id' => 'required',
-            'min_education'=>'required'
+            'min_education' => 'required'
         ]);
 
         // Decode JSON
