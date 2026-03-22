@@ -43,12 +43,20 @@
     <div>
         <label><b>Select Min Education</b></label><br>
 
-        @foreach($mineducation as $minedu)
+        {{-- @foreach($mineducation as $minedu)
             <label style="margin-right:10px;">
                 <input type="checkbox" name="minedus" value="{{ $minedu->name }}">
                 {{ $minedu->name }}
             </label>
-        @endforeach
+        @endforeach --}}
+        <select name="mineducationd" required>
+            <option value="">-- Select min education --</option>
+            @foreach($mineducation as $cat)
+                <option value="{{ $cat->name }}">
+                    {{ $cat->name }}
+                </option>
+            @endforeach
+        </select>
     </div>
 
     <br>
