@@ -322,69 +322,73 @@
 
                     <!-- Category Wise Post -->
                     <div class="col-12 mb-3">
-                        <div class="card shadow-sm">
-                            <div class="card-body">
+    <div class="card shadow-sm">
+        <div class="card-body">
 
-                                <h2 class="card-title mb-3 text-center">{{ $job->title }} – Category Wise Post</h2>
+            <h2 class="card-title mb-3 text-center">{{ $job->title }} – Category Wise Post</h2>
 
-                                @php
-                                    $categories = [
-                                        'General (UR)' => $job->genral_post,
-                                        'EWS' => $job->ews_post,
-                                        'OBC' => $job->obc_post,
-                                        'SC' => $job->sc_post,
-                                        'ST' => $job->st_post,
-                                    ];
+            @php
+                $categories = [
+                    'General' => $job->genral_post,
+                    'EWS' => $job->ews_post,
+                    'OBC' => $job->obc_post,
+                    'SC' => $job->sc_post,
+                    'ST' => $job->st_post,
+                ];
 
-                                    $totalPosts = 0;
-                                @endphp
+                // Prepare array of posts
+                $allPosts = [];
 
-                                <div class="row text-center fw-bold border-bottom py-2 mb-2">
-                                    @foreach ($categories as $catName => $catData)
-                                        <div class="col">{{ $catName }}</div>
-                                    @endforeach
-                                    <div class="col">Total Post</div>
-                                </div>
+                foreach($categories as $catName => $catData) {
+                    $posts = explode('#', $catData);
+                    foreach($posts as $post) {
+                        $parts = explode('$', $post);
+                        $postName = trim($parts[0] ?? '');
+                        $count = intval($parts[1] ?? 0);
 
-                                <div class="row text-center">
-                                    @foreach ($categories as $catName => $catData)
-                                        @php
-                                            $count = 0;
-                                            $posts = explode('#', $catData);
-                                            foreach ($posts as $post) {
-                                                $parts = explode('$', $post);
-                                                $count += intval($parts[1] ?? 0);
-                                            }
-                                            $totalPosts += $count;
-                                        @endphp
-                                        <div class="col">{{ $count }}</div>
-                                    @endforeach
-                                    <div class="col">{{ $totalPosts }}</div>
-                                </div>
+                        if(!isset($allPosts[$postName])) {
+                            $allPosts[$postName] = [
+                                'General'=>0, 'EWS'=>0, 'OBC'=>0, 'SC'=>0, 'ST'=>0, 'total'=>0
+                            ];
+                        }
+                        $allPosts[$postName][$catName] = $count;
+                        $allPosts[$postName]['total'] += $count;
+                    }
+                }
+            @endphp
 
-                                <div class="row mt-3">
-                                    @foreach ($categories as $catName => $catData)
-                                        <div class="col-md-2">
-                                            @php
-                                                $posts = explode('#', $catData);
-                                            @endphp
-                                            <ul class="list-unstyled mb-0 text-start">
-                                                @foreach ($posts as $post)
-                                                    @php
-                                                        $parts = explode('$', $post);
-                                                        $postName = $parts[0] ?? '';
-                                                        $postCount = $parts[1] ?? '';
-                                                    @endphp
-                                                    <li>{{ $postName }} ({{ $postCount }})</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endforeach
-                                </div>
+            <div class="table-responsive">
+                <table class="table table-bordered text-center align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Post Name</th>
+                            <th>General</th>
+                            <th>EWS</th>
+                            <th>OBC</th>
+                            <th>SC</th>
+                            <th>ST</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($allPosts as $postName => $data)
+                            <tr>
+                                <td class="text-start">{{ $postName }}</td>
+                                <td>{{ $data['General'] }}</td>
+                                <td>{{ $data['EWS'] }}</td>
+                                <td>{{ $data['OBC'] }}</td>
+                                <td>{{ $data['SC'] }}</td>
+                                <td>{{ $data['ST'] }}</td>
+                                <td>{{ $data['total'] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
-                            </div>
-                        </div>
-                    </div>
+        </div>
+    </div>
+</div>
 
                     <!-- Mode Of Selection -->
                     <div class="col-md-6 mb-3">
@@ -398,14 +402,15 @@
                                 <ul class="list-group list-group-flush">
                                     @php
                                         $modes = explode(',', $job->mode_selection);
-                                        $p = 1;
+                                        $p= 1;
                                     @endphp
 
                                     @foreach ($modes as $mode)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <span>{{ trim($mode) }}</span>
-                                            <span class="badge bg-primary">Step {{ $p++ }}</span>
+                                            <span class="badge bg-primary">Step {{$p++}}</span>
                                         </li>
+                                        
                                     @endforeach
                                 </ul>
 
@@ -522,52 +527,50 @@
 
 
             <div class="container mt-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h2 class="card-title text-center mb-4">
-                            {{ $job->title }} – Important Links
-                        </h2>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">
+                {{ $job->title }} – Important Links
+            </h2>
 
-                        <div class="row text-center">
-                            @php
-                                // Remove trailing # from links if any
-                                $cleanLinks = str_replace('#', '', $job->link);
+            <div class="row text-center">
+                @php
+                    // Remove trailing # from links if any
+                    $cleanLinks = str_replace('#', '', $job->link);
 
-                                // Split by '#' (or newline) for multiple links
-                                $links = explode("\n", str_replace('#', "\n", $cleanLinks));
-                            @endphp
+                    // Split by '#' (or newline) for multiple links
+                    $links = explode("\n", str_replace('#', "\n", $cleanLinks));
+                @endphp
 
-                            @foreach ($links as $link)
-                                @php
-                                    $link = trim($link);
-                                    if (empty($link)) {
-                                        continue;
-                                    } // skip empty lines
+                @foreach ($links as $link)
+                    @php
+                        $link = trim($link);
+                        if (empty($link)) continue; // skip empty lines
 
-                                    $parts = explode('$', $link);
-                                    $title = $parts[0] ?? 'Link Title';
-                                    $url = $parts[1] ?? '#';
-                                    $text = $parts[2] ?? null;
-                                @endphp
+                        $parts = explode('$', $link);
+                        $title = $parts[0] ?? 'Link Title';
+                        $url = $parts[1] ?? '#';
+                        $text = $parts[2] ?? null;
+                    @endphp
 
-                                <div class="col-md-4 mb-3">
-                                    <div class="border p-3 rounded h-100 d-flex flex-column justify-content-between">
-                                        <h5>{{ $title }}</h5>
-                                        <a href="{{ $url }}" class="btn btn-danger mt-2" target="_blank">
-                                            Click Here
-                                        </a>
-                                        @if ($text)
-                                            <p class="mt-2 text-muted" style="font-size:14px;">
-                                                {{ $text }}
-                                            </p>
-                                        @endif
-                                    </div>
-                                </div>
-                            @endforeach
+                    <div class="col-md-4 mb-3">
+                        <div class="border p-3 rounded h-100 d-flex flex-column justify-content-between">
+                            <h5>{{ $title }}</h5>
+                            <a href="{{ $url }}" class="btn btn-danger mt-2" target="_blank">
+                                Click Here
+                            </a>
+                            @if ($text)
+                                <p class="mt-2 text-muted" style="font-size:14px;">
+                                    {{ $text }}
+                                </p>
+                            @endif
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
+        </div>
+    </div>
+</div>
 
 
             <div class="container mt-4">
