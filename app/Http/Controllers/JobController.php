@@ -319,7 +319,8 @@ class JobController extends Controller
 
     public function storeJson(Request $request)
     {
-        // Validate JSON
+    dd($request);   
+    // Validate JSON
         $request->validate([
             'job_json' => 'required|json',
             'states' => 'required|array',
