@@ -508,7 +508,7 @@
                                 <tbody>
                                     @php
                                         // Split comma-separated documents
-                                        $docs = explode(',', $job->doc); // e.g. "Aadhaar Card-The Aadhaar number is required...,10th Class-Used as DOB proof"
+                                        $docs = explode('#', $job->doc); // e.g. "Aadhaar Card-The Aadhaar number is required...,10th Class-Used as DOB proof"
                                     @endphp
 
                                     @foreach ($docs as $doc)
