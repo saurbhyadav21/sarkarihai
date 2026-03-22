@@ -120,9 +120,8 @@ class JobController extends Controller
 
     public function landing()
     {
-        $jobs = Job::whereDate('end_date', '>=', now())
-            ->orderBy('end_date', 'asc')
-
+        $jobs = Job::orderBy('end_date', 'asc')
+            ->limit(30)
             ->get();
 
         $jobsxxx = Job::orderBy('created_at', 'desc')

@@ -148,7 +148,7 @@
         </h2>
 
         <div class="row">
-            {{$jobs}}
+            
             @foreach ($jobs as $job)
                 @php
                     $names = explode(',', $job->post_name);
