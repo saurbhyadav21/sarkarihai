@@ -531,52 +531,45 @@
 
 
             <div class="container mt-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h2 class="card-title text-center mb-4">
-                            {{ $job->title }} – Important Links
-                        </h2>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">
+                {{ $job->title }} – Important Links
+            </h2>
 
-                        <div class="row text-center">
-                            @php
-                                // Remove trailing # from links if any
-                                $cleanLinks = str_replace('#', '', $job->link);
+            <div class="row text-center">
+                @php
+                    // Replace multiple # with single # and remove trailing #
+                    $cleanLinks = rtrim(preg_replace('/#+/', '#', $job->link), '#');
 
-                                // Split by '#' (or newline) for multiple links
-                                $links = explode("\n", str_replace('#', "\n", $cleanLinks));
-                            @endphp
+                    // Split by '#' for multiple links
+                    $links = explode('#', $cleanLinks);
+                @endphp
 
-                            @foreach ($links as $link)
-                                @php
-                                    $link = trim($link);
-                                    if (empty($link)) {
-                                        continue;
-                                    } // skip empty lines
+                @foreach ($links as $link)
+                    @php
+                        $link = trim($link);
+                        if (empty($link)) continue;
 
-                                    $parts = explode('$', $link);
-                                    $title = $parts[0] ?? 'Link Title';
-                                    $url = $parts[1] ?? '#';
-                                    $text = $parts[2] ?? null;
-                                @endphp
+                        // Split by $ for title and url
+                        $parts = explode('$', $link);
+                        $title = $parts[0] ?? 'Link Title';
+                        $url = $parts[1] ?? '#';
+                    @endphp
 
-                                <div class="col-md-4 mb-3">
-                                    <div class="border p-3 rounded h-100 d-flex flex-column justify-content-between">
-                                        <h5>{{ $title }}</h5>
-                                        <a href="{{ $url }}" class="btn btn-danger mt-2" target="_blank">
-                                            Click Here
-                                        </a>
-                                        @if ($text)
-                                            <p class="mt-2 text-muted" style="font-size:14px;">
-                                                {{ $text }}
-                                            </p>
-                                        @endif
-                                    </div>
-                                </div>
-                            @endforeach
+                    <div class="col-md-4 mb-3">
+                        <div class="border p-3 rounded h-100 d-flex flex-column justify-content-between">
+                            <h5>{{ $title }}</h5>
+                            <a href="{{ $url }}" class="btn btn-danger mt-2" target="_blank">
+                                Click Here
+                            </a>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
+        </div>
+    </div>
+</div>
 
 
             <div class="container mt-4">
