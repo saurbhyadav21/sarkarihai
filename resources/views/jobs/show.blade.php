@@ -241,37 +241,48 @@
                     <div class="card h-100">
                         <div class="card-body">
 
-                            <h2 class="card-title" id="age-limit">{{ $job->title }} – Age Limit</h2>
+                            <h2 class="card-title mb-3 text-center" id="age-limit">
+                                {{ $job->title }} – Age Limit
+                            </h2>
 
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <b>Minimum Age :</b> {{ $job->min_age }} Years
+                            <ul class="list-group list-group-flush">
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Minimum Age</span>
+                                    <span class="badge bg-success">{{ $job->min_age }} Years</span>
                                 </li>
 
-                                <li class="list-group-item">
-                                    <b>Maximum Age General Category :</b> {{ $job->max_age_genral }} Years
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Max Age (General)</span>
+                                    <span class="badge bg-primary">{{ $job->max_age_genral }} Years</span>
                                 </li>
 
-                                <li class="list-group-item">
-                                    <b>Maximum Age OBC Category :</b> {{ $job->max_age_obc }} Years
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Max Age (OBC)</span>
+                                    <span class="badge bg-info text-dark">{{ $job->max_age_obc }} Years</span>
                                 </li>
 
-                                <li class="list-group-item">
-                                    <b>Maximum Age SC Category :</b> {{ $job->max_age_sc_st }} Years
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Max Age (SC)</span>
+                                    <span class="badge bg-warning text-dark">{{ $job->max_age_sc_st }} Years</span>
                                 </li>
 
-
-                                <li class="list-group-item">
-                                    <b>Maximum Age ST Category :</b> {{ $job->max_age_sc_st }} Years
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Max Age (ST)</span>
+                                    <span class="badge bg-secondary">{{ $job->max_age_sc_st }} Years</span>
                                 </li>
 
-                                <li class="list-group-item">
-                                    <b>Maximum Age Female Category :</b> {{ $job->max_age_female }} Years
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Max Age (Female)</span>
+                                    <span class="badge bg-dark">{{ $job->max_age_female }} Years</span>
                                 </li>
 
-                                <li class="list-group-item">
-                                    <b>Age Relaxation :</b> {{ $job->relaxation }}
+                                <!-- Relaxation -->
+                                <li class="list-group-item mt-2" style="font-size: 14px; line-height: 1.6;">
+                                    <b>Age Relaxation:</b><br>
+                                    {{ $job->relaxation }}
                                 </li>
+
                             </ul>
 
                         </div>
