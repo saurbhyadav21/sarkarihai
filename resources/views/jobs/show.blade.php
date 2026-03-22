@@ -322,42 +322,43 @@
 
                     <!-- Category Wise Post -->
                     <div class="col-md-6 mb-3">
-                        <div class="card shadow-sm">
-                            <div class="card-body text-center">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
 
-                                <h2 class="card-title mb-4" id="category-post">
+                                <h2 class="card-title mb-3 text-center" id="category-post">
                                     {{ $job->title }} – Category Wise Post
                                 </h2>
 
                                 <!-- Header -->
-                                <div class="row fw-bold border-bottom pb-2 mb-2 text-center">
-                                    <div class="col-6">Category Name</div>
-                                    <div class="col-6">No. Of Post</div>
+                                <div class="row fw-bold border-bottom pb-2 mb-2">
+                                    <div class="col-6">Category</div>
+                                    <div class="col-6 text-end">Posts</div>
                                 </div>
 
-                                <div class="row py-2 border-bottom text-center">
+                                <!-- Rows -->
+                                <div class="row py-2 border-bottom">
                                     <div class="col-6">General</div>
-                                    <div class="col-6">{{ $job->genral_post }}</div>
+                                    <div class="col-6 text-end fw-semibold">{{ $job->genral_post }}</div>
                                 </div>
 
-                                <div class="row py-2 border-bottom text-center">
+                                <div class="row py-2 border-bottom">
                                     <div class="col-6">EWS</div>
-                                    <div class="col-6">{{ $job->ews_post }}</div>
+                                    <div class="col-6 text-end fw-semibold">{{ $job->ews_post }}</div>
                                 </div>
 
-                                <div class="row py-2 border-bottom text-center">
+                                <div class="row py-2 border-bottom">
                                     <div class="col-6">OBC</div>
-                                    <div class="col-6">{{ $job->obc_post }}</div>
+                                    <div class="col-6 text-end fw-semibold">{{ $job->obc_post }}</div>
                                 </div>
 
-                                <div class="row py-2 border-bottom text-center">
+                                <div class="row py-2 border-bottom">
                                     <div class="col-6">SC</div>
-                                    <div class="col-6">{{ $job->sc_post }}</div>
+                                    <div class="col-6 text-end fw-semibold">{{ $job->sc_post }}</div>
                                 </div>
 
-                                <div class="row py-2 text-center">
+                                <div class="row py-2">
                                     <div class="col-6">ST</div>
-                                    <div class="col-6">{{ $job->st_post }}</div>
+                                    <div class="col-6 text-end fw-semibold">{{ $job->st_post }}</div>
                                 </div>
 
                             </div>
@@ -366,21 +367,23 @@
 
                     <!-- Mode Of Selection -->
                     <div class="col-md-6 mb-3">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm h-100">
                             <div class="card-body">
 
-                                <h2 class="card-title mb-4 text-center" id="selection-process">
+                                <h2 class="card-title mb-3 text-center" id="selection-process">
                                     {{ $job->title }} – Mode Of Selection
                                 </h2>
 
-                                <ul class="list-group list-group-flush text-center">
+                                <ul class="list-group list-group-flush">
                                     @php
-
                                         $modes = explode(',', $job->mode_selection);
                                     @endphp
 
                                     @foreach ($modes as $mode)
-                                        <li class="list-group-item">{{ trim($mode) }}</li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>{{ trim($mode) }}</span>
+                                            <span class="badge bg-primary">Step</span>
+                                        </li>
                                     @endforeach
                                 </ul>
 
@@ -398,29 +401,7 @@
                 <div class="card shadow-sm">
                     <div class="card-body text-center">
 
-                        {{-- <h2 class="card-title mb-4" id="eligibility">
-                            {{ $job->title }} – Post & Eligibility Criteria
 
-                        </h2> --}}
-
-                        <!-- Header -->
-                        {{-- <div class="row mb-3 text-center" style="border-bottom:3px solid #ff7a18; padding-bottom:10px;">
-
-                            <div class="col-md-4">
-                                <span
-                                    style="font-size:18px; font-weight:700; letter-spacing:1px; text-transform:uppercase;">
-                                    Post Name
-                                </span>
-                            </div>
-
-                            <div class="col-md-8">
-                                <span
-                                    style="font-size:18px; font-weight:700; letter-spacing:1px; text-transform:uppercase;">
-                                    Eligibility Criteria
-                                </span>
-                            </div>
-
-                        </div> --}}
 
 
                         <div class="container mt-4">
