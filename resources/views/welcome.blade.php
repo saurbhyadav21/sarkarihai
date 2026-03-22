@@ -148,7 +148,7 @@
         </h2>
 
         <div class="row">
-            
+
             @foreach ($jobs as $job)
                 @php
                     $names = explode(',', $job->post_name);
@@ -176,7 +176,7 @@
                                 <div>
                                     <div class="job-title ">
                                         {{-- {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }} --}}
-                                        {{ ucfirst($job->title)}}
+                                        {{ ucfirst($job->title) }}
 
 
                                     </div>
@@ -682,26 +682,43 @@
     </div>
 
 
-<style>
-
-    .admit-card {
+    <style>
+        .admit-card {
     border-radius: 12px;
     transition: 0.3s;
 }
 
+/* 🟢 Green - Released */
+.card-green {
+    background: #e6f4ea;
+    border-left: 5px solid #198754;
+}
+
+/* 🟡 Yellow - Coming Soon */
+.card-yellow {
+    background: #fff8e1;
+    border-left: 5px solid #ffc107;
+}
+
+/* ⚪ Grey - Upcoming */
+.card-grey {
+    background: #f1f3f5;
+    border-left: 5px solid #6c757d;
+}
+
+/* Hover Effect */
 .admit-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-.admit-card .btn {
-    border-radius: 8px;
-}
-
+/* Badge style */
 .badge {
+    padding: 6px 10px;
     font-size: 12px;
+    border-radius: 6px;
 }
-</style>
+    </style>
     <div class="container mt-4">
 
     <!-- Title -->
@@ -709,54 +726,71 @@
         Download Admit Card
     </h2>
 
-    <!-- Row -->
     <div class="row g-3">
 
         @foreach($admitCard as $job)
-        <div class="col-md-6 col-lg-4">
-            <div class="card admit-card shadow-sm h-100">
 
-                <!-- Card Body -->
+        @php
+            $today = now();
+            $admitDate = \Carbon\Carbon::parse($job->admit_card_date);
+
+            $cardClass = '';
+            $badge = '';
+            $btnClass = '';
+
+            if ($admitDate <= $today) {
+                $cardClass = 'card-green';
+                $badge = '<span class="badge bg-success">Released</span>';
+                $btnClass = 'btn-success';
+            } elseif ($admitDate <= $today->copy()->addDays(7)) {
+                $cardClass = 'card-yellow';
+                $badge = '<span class="badge bg-warning text-dark">🔥 Soon</span>';
+                $btnClass = 'btn-warning';
+            } elseif ($admitDate <= $today->copy()->addDays(14)) {
+                $cardClass = 'card-grey';
+                $badge = '<span class="badge bg-secondary">Upcoming</span>';
+                $btnClass = 'btn-secondary';
+            }
+        @endphp
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card admit-card shadow-sm h-100 {{ $cardClass }}">
+
                 <div class="card-body d-flex flex-column">
 
                     <!-- Job Title -->
-                    <h5 class="card-title fw-bold">
+                    <h5 class="fw-bold">
                         {{ $job->title }}
                     </h5>
 
-                    <!-- Org -->
+                    <!-- Organization -->
                     <p class="text-muted mb-2">
                         {{ $job->organization }}
                     </p>
 
-                    <!-- Dates -->
+                    <!-- Exam Date -->
                     <p class="mb-1">
                         📅 Exam Date: 
                         <b>{{ \Carbon\Carbon::parse($job->exam_date)->format('d M Y') }}</b>
                     </p>
 
-                    <p class="mb-2">
-                        🪪 Admit Card: 
-                        <span class="badge bg-success">
-                            Released
-                        </span>
+                    <!-- Admit Card Status -->
+                    <p class="mb-3">
+                        🪪 Admit Card: {!! $badge !!}
                     </p>
 
-                    <!-- Spacer -->
+                    <!-- Button -->
                     <div class="mt-auto">
-
-                        <!-- Button -->
-                        {{-- <a href="{{ url($job->slug) }}" 
-                           class="btn btn-primary w-100">
+                        <a href="{{ url($job->slug) }}" 
+                           class="btn {{ $btnClass }} w-100">
                            Download Admit Card
-                        </a> --}}
-
+                        </a>
                     </div>
 
                 </div>
-
             </div>
         </div>
+
         @endforeach
 
     </div>

@@ -212,11 +212,12 @@ class JobController extends Controller
             ->values();
 
         //Admit Card
-        $admitCard = Job::whereDate('admit_card', '<=', \Carbon\Carbon::today()) // admit card aa chuka hai
-            ->whereDate('exam_date', '>=', \Carbon\Carbon::today()) // exam abhi baaki hai
-            ->orderBy('exam_date', 'asc') // jo exam jaldi hai wo pehle
-            ->limit(30)
-            ->get();
+        $admitCard = Job::whereNotNull('admit_card')
+    ->whereNotNull('exam_date')
+    ->whereDate('admit_card', '<=', now()->addDays(14)) // max 2 week future
+    ->whereDate('exam_date', '>=', now()) // exam abhi baaki hai
+    ->orderBy('exam_date', 'asc')
+    ->get();
 
             // dd($admitCard);
         return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories','admitCard'));
