@@ -680,4 +680,66 @@
 
         </div>
     </div>
+
+
+
+    <div class="container mt-4">
+
+    <!-- Title -->
+    <h2 class="mb-4 text-center fw-bold">
+        Download Admit Card
+    </h2>
+
+    <!-- Row -->
+    <div class="row g-3">
+
+        @foreach($admitCard as $job)
+        <div class="col-md-6 col-lg-4">
+            <div class="card admit-card shadow-sm h-100">
+
+                <!-- Card Body -->
+                <div class="card-body d-flex flex-column">
+
+                    <!-- Job Title -->
+                    <h5 class="card-title fw-bold">
+                        {{ $job->title }}
+                    </h5>
+
+                    <!-- Org -->
+                    <p class="text-muted mb-2">
+                        {{ $job->organization }}
+                    </p>
+
+                    <!-- Dates -->
+                    <p class="mb-1">
+                        📅 Exam Date: 
+                        <b>{{ \Carbon\Carbon::parse($job->exam_date)->format('d M Y') }}</b>
+                    </p>
+
+                    <p class="mb-2">
+                        🪪 Admit Card: 
+                        <span class="badge bg-success">
+                            Released
+                        </span>
+                    </p>
+
+                    <!-- Spacer -->
+                    <div class="mt-auto">
+
+                        <!-- Button -->
+                        <a href="{{ url($job->slug) }}" 
+                           class="btn btn-primary w-100">
+                           Download Admit Card
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        @endforeach
+
+    </div>
+</div>
 @endsection
