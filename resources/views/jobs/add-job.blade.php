@@ -49,7 +49,7 @@
                 {{ $minedu->name }}
             </label>
         @endforeach --}}
-        <select name="mineducation" required>
+        <select name="min_education" required>
             <option value="">-- Select min education --</option>
             @foreach($mineducation as $cat)
                 <option value="{{ $cat->name }}">
