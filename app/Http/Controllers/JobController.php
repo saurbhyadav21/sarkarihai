@@ -350,7 +350,7 @@ class JobController extends Controller
             'state'          => $state ?? null,
             'min_qulification'          => $request->min_education ?? null,
         ];
-        dd($data);
+        // dd($data);
         // Save
         Job::create($data);
 
