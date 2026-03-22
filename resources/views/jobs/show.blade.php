@@ -498,32 +498,34 @@
                         </h2>
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped align-middle">
-                                <thead class="table-dark text-center">
-                                    <tr>
-                                        <th style="width:30%">Documents Name</th>
-                                        <th>Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        // Split comma-separated documents
-                                        $docs = explode('#', $job->doc); // e.g. "Aadhaar Card-The Aadhaar number is required...,10th Class-Used as DOB proof"
-                                    @endphp
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark text-center">
+            <tr>
+                <th style="width:10%">S.No</th>
+                <th style="width:30%">Documents Name</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                // Split comma-separated documents
+                $docs = explode('#', $job->doc);
+            @endphp
 
-                                    @foreach ($docs as $doc)
-                                        @php
-                                            // Split each doc into title and details
-                                            $parts = explode('-', $doc);
-                                        @endphp
-                                        <tr>
-                                            <td class="fw-bold">{{ $parts[0] ?? 'Title' }}</td>
-                                            <td>{{ $parts[1] ?? 'Details' }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+            @foreach ($docs as $index => $doc)
+                @php
+                    // Split each doc into title and details
+                    $parts = explode('-', $doc);
+                @endphp
+                <tr>
+                    <td class="text-center">{{ $index + 1 }}</td>
+                    <td class="fw-bold">{{ $parts[0] ?? 'Title' }}</td>
+                    <td>{{ $parts[1] ?? 'Details' }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
                     </div>
                 </div>
