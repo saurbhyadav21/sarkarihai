@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Job; // Make sure you have a Job model
 use App\Models\State; // Make sure you have a Job model
 use App\Models\Category; // Make sure you have a Job model
+use App\Models\Mineducation; // Make sure you have a Job model
 use Illuminate\Support\Str;
 
 
@@ -322,14 +323,15 @@ class JobController extends Controller
         $request->validate([
             'job_json' => 'required|json',
             'states' => 'required|array',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'min_education'=>'required'
         ]);
 
         // Decode JSON
         $json = json_decode($request->job_json, true);
-$state = is_array($request->states)
-    ? implode(',', $request->states)
-    : $request->states;
+        $state = is_array($request->states)
+            ? implode(',', $request->states)
+            : $request->states;
         // Map fields
         $data = [
             'title'            => $json['title'] ?? null,
@@ -345,14 +347,15 @@ $state = is_array($request->states)
             'website'          => $json['website'] ?? null,
             'category'          => $request->category_id ?? null,
             'state'          => $state ?? null,
+            'min_qulification'          => $request->min_education ?? null,
         ];
-            // dd($data);
+        // dd($data);
         // Save
         Job::create($data);
 
         return back()->with('success', 'Job added via JSON!');
     }
-    
+
 
     public function stateJobs($state)
     {
@@ -414,7 +417,8 @@ $state = is_array($request->states)
     {
         $states = State::all();
         $categories = Category::all();
+        $Mineducation = Mineducation::all();
 
-        return view('jobs.add-job', compact('states', 'categories'));
+        return view('jobs.add-job', compact('states', 'categories', 'mineducation'));
     }
 }

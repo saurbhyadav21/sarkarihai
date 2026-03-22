@@ -39,5 +39,19 @@
 
     <br>
 
+    <!-- Min Education -->
+    <div>
+        <label><b>Select Min Education</b></label><br>
+
+        @foreach($mineducation as $minedu)
+            <label style="margin-right:10px;">
+                <input type="checkbox" name="minedus" value="{{ $minedu->name }}">
+                {{ $minedu->name }}
+            </label>
+        @endforeach
+    </div>
+
+    <br>
+
     <button type="submit">Submit Job</button>
 </form>
