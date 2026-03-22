@@ -513,7 +513,7 @@
                         <div class="row text-center">
                             @php
                                 // Split the comma-separated links from DB
-                                $links = explode(',', $job->link); // $job->link = "Apply Online Link,https://example.com,Link Activate On 13 March 2026"
+                                $links = explode('#', $job->link); // $job->link = "Apply Online Link,https://example.com,Link Activate On 13 March 2026"
                             @endphp
 
                             @foreach ($links as $link)
