@@ -131,10 +131,37 @@ class JobController extends Controller
         $stateCounts = [];
         $jobs1 = Job::get();
         $allStates = [
-            'Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana','Himachal Pradesh',
-            'Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland',
-            'Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal',
-            'Delhi','Jammu & Kashmir','Ladakh'
+            'Andhra Pradesh',
+            'Arunachal Pradesh',
+            'Assam',
+            'Bihar',
+            'Chhattisgarh',
+            'Goa',
+            'Gujarat',
+            'Haryana',
+            'Himachal Pradesh',
+            'Jharkhand',
+            'Karnataka',
+            'Kerala',
+            'Madhya Pradesh',
+            'Maharashtra',
+            'Manipur',
+            'Meghalaya',
+            'Mizoram',
+            'Nagaland',
+            'Odisha',
+            'Punjab',
+            'Rajasthan',
+            'Sikkim',
+            'Tamil Nadu',
+            'Telangana',
+            'Tripura',
+            'Uttar Pradesh',
+            'Uttarakhand',
+            'West Bengal',
+            'Delhi',
+            'Jammu & Kashmir',
+            'Ladakh'
         ];
         foreach ($jobs1 as $job) {
             $states = explode(',', $job->state);
@@ -184,7 +211,15 @@ class JobController extends Controller
             ->sort()
             ->values();
 
-        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories'));
+        //Admit Card
+        $admitCard = Job::whereDate('end_date', '<=', \Carbon\Carbon::today())
+            ->whereDate('admit_card_date', '<=', \Carbon\Carbon::today())
+            ->orderBy('admit_card_date', 'desc') // latest admit card pehle dikhe
+            ->limit(30)
+            ->get();
+
+            dd($admitCard);
+        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories','admitCard'));
     }
 
     public function contact()
