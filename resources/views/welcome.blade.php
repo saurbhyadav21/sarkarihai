@@ -491,7 +491,7 @@
                 /* Meta */
                 .statejob-meta {
                     font-size: 12px;
-                    color: #555;
+                    color: #555; float: right;
                 }
 
                 /* States */
