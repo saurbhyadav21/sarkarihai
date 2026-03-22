@@ -132,18 +132,19 @@
 
         <h2 class="mb-3 c-t">
             <span><b>Latest Jobs</b></span>
-            
+
             <span class="last-update">
                 Last Updated : {{ now()->format('d-m-Y H:i') }}
                 <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
             </span>
-            <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold" style="
+            <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
+                style="
     color: #fff;
     font-size: 10px;
     float: right;
     ">
-                        View All →
-                    </a>
+                View All →
+            </a>
         </h2>
 
         <div class="row">
@@ -217,10 +218,11 @@
                     </div>
                 @endfor
             @endforeach
-            <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold" style="color: #fff;
+            <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
+                style="color: #fff;
     font-size: 10px;">
-                        View All →
-                    </a>
+                View All →
+            </a>
         </div>
     </div>
 
@@ -535,7 +537,8 @@
                         <span><b>Latest State Wise Job India - 2026</b></span>
                     </h2>
 
-                    <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold" style="color: #fff;
+                    <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
+                        style="color: #fff;
     font-size: 10px;">
                         View All →
                     </a>

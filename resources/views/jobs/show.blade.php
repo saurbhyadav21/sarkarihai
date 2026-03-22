@@ -113,7 +113,7 @@
 
             </div>
 
-            {{-- <div class="row align-items-stretch gy-4" id="date-fee">
+             <div class="row align-items-stretch gy-4" id="date-fee">
 
                 <!-- Important Dates -->
                 <div class="col-md-6">
@@ -195,7 +195,7 @@
             </div>
 
 
-            <div class="row align-items-stretch">
+           {{-- <div class="row align-items-stretch">
 
                 <!-- Age Limit -->
                 <div class="col-md-6" style="margin-top: 10px;">
