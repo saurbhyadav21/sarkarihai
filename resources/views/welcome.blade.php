@@ -125,7 +125,7 @@
             cursor: pointer;
         }
     </style>
-    
+
 
 
     <div class="container mt-3">
@@ -491,7 +491,8 @@
                 /* Meta */
                 .statejob-meta {
                     font-size: 12px;
-                    color: #555; float: right;
+                    color: #555;
+                    float: right;
                 }
 
                 /* States */
@@ -519,9 +520,15 @@
             </style>
             <div class="col-6 col-md-6 mb-4 statejob-wrapper">
 
-                <h2 class="mb-3 c-t">
-                    <span><b>Latest State Wise Job India - 2026</b></span>
-                </h2>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="c-t m-0">
+                        <span><b>Latest State Wise Job India - 2026</b></span>
+                    </h2>
+
+                    <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold">
+                        View All →
+                    </a>
+                </div>
 
                 @foreach ($jobsxxx as $jobx)
                     @php
@@ -549,16 +556,16 @@
                                     {{ ucfirst($jobx->title) . (!empty($name) ? ' - ' . ucfirst($name) : '') }}
                                 </span>
 
-                                
+
                             </div>
                             <span class="statejob-meta">
-                                    ({{ $jobx->min_qulification ?? '' }} |
-                                    ₹{{ number_format($jobx->min_salary ?? 0) }} -
-                                    ₹{{ number_format($jobx->max_salary ?? 0) }} |
-                                    <span style="color: {{ $color }}">
-                                        {{ $endDate->format('d M Y') }}
-                                    </span>)
-                                </span>
+                                ({{ $jobx->min_qulification ?? '' }} |
+                                ₹{{ number_format($jobx->min_salary ?? 0) }} -
+                                ₹{{ number_format($jobx->max_salary ?? 0) }} |
+                                <span style="color: {{ $color }}">
+                                    {{ $endDate->format('d M Y') }}
+                                </span>)
+                            </span>
                             @if (!empty($jobx->state))
                                 @php $states = explode(',', $jobx->state); @endphp
 
