@@ -175,7 +175,8 @@
 
                                 <div>
                                     <div class="job-title ">
-                                        {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }}
+                                        {{-- {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }} --}}
+                                        {{ ucfirst($job->title)}}
 
 
                                     </div>
