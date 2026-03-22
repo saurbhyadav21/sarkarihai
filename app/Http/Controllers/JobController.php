@@ -345,7 +345,7 @@ class JobController extends Controller
             'max_age_genral'   => $json['age_max'] ?? null,
             'total_vacancies'  => $json['total_vacancy'] ?? null,
             'post_eligibility' => $json['qualification'] ?? null,
-            'website'          => $json['website'] ?? null,
+            'website'          => $json['official_website'] ?? null,
             'category'          => $request->category_id ?? null,
             'state'          => $state ?? null,
             'min_qulification'          => $request->min_education ?? null,
