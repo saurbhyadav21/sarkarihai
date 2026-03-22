@@ -727,10 +727,10 @@
                     <div class="mt-auto">
 
                         <!-- Button -->
-                        <a href="{{ url($job->slug) }}" 
+                        {{-- <a href="{{ url($job->slug) }}" 
                            class="btn btn-primary w-100">
                            Download Admit Card
-                        </a>
+                        </a> --}}
 
                     </div>
 
