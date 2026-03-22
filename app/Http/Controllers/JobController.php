@@ -213,8 +213,8 @@ class JobController extends Controller
 
         //Admit Card
         $admitCard = Job::whereDate('end_date', '<=', \Carbon\Carbon::today())
-            ->whereDate('admit_card_date', '<=', \Carbon\Carbon::today())
-            ->orderBy('admit_card_date', 'desc') // latest admit card pehle dikhe
+            ->whereDate('admit_card', '<=', \Carbon\Carbon::today())
+            ->orderBy('admit_card', 'desc') // latest admit card pehle dikhe
             ->limit(30)
             ->get();
 
