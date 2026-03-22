@@ -402,13 +402,15 @@
                         {{ trim($names[$i] ?? '') }}
                     </div>
 
-                    <!-- Eligibility + Salary -->
+                    <!-- Eligibility + Salary (below) -->
                     <div class="col-md-8">
-                        {{ trim($eligibilities[$i] ?? '') }}
+                        <div style="font-size: 14px;">
+                            {{ trim($eligibilities[$i] ?? '') }}
+                        </div>
 
-                        <span class="fw-bold text-success">
-                            ( Pay Scale : ₹{{ trim($salaries[$i] ?? 'N/A') }} )
-                        </span>
+                        <div class="text-success fw-semibold mt-1" style="font-size: 13px;">
+                            Pay Scale: ₹{{ trim($salaries[$i] ?? 'N/A') }}
+                        </div>
                     </div>
 
                 </div>
@@ -427,29 +429,29 @@
 
             <div class="container mt-4">
 
-    <div class="card shadow-sm">
-        <div class="card-body">
+                <div class="card shadow-sm">
+                    <div class="card-body">
 
-            <h2 class="card-title mb-4 text-center" id="online-form">
-                {{ $job->title }} – Online Form Fill Instruction
-            </h2>
+                        <h2 class="card-title mb-4 text-center" id="online-form">
+                            {{ $job->title }} – Online Form Fill Instruction
+                        </h2>
 
-            <ul class="list-group list-group-flush">
-                @php
-                    $instructions = explode('#', $job->instruction);
-                @endphp
+                        <ul class="list-group list-group-flush">
+                            @php
+                                $instructions = explode('#', $job->instruction);
+                            @endphp
 
-                @foreach ($instructions as $instruction)
-                    <li class="list-group-item">
-                        <b>{{ $loop->iteration }}.</b> {!! $instruction !!}
-                    </li>
-                @endforeach
-            </ul>
+                            @foreach ($instructions as $instruction)
+                                <li class="list-group-item">
+                                    <b>{{ $loop->iteration }}.</b> {!! $instruction !!}
+                                </li>
+                            @endforeach
+                        </ul>
 
-        </div>
-    </div>
+                    </div>
+                </div>
 
-</div>
+            </div>
 
 
 
