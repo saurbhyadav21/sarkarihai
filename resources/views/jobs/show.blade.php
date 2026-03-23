@@ -94,7 +94,7 @@
                                             <li><strong>Total Vacancies:</strong>
                                                 {{ number_format($job->total_vacancies ?? 0) }}</li>
                                             <li><strong>Exam Date:</strong>
-                                                {{ \Carbon\Carbon::parse($job->exam_date)->format('d-m-Y') ?? 'To Be Announced' }}
+                                                {{ $job->exam_date }}
                                             </li>
                                             {{-- <li><strong>Exam Date:</strong> {{ $job->exam_date ?? 'Update Soon' }}</li> --}}
 
