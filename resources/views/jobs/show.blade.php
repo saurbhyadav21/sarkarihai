@@ -86,6 +86,9 @@
     background: #000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
+#tabsSpacer {
+    transition: height 0.3s ease;
+}
         </style>
 
         <!-- JS -->
@@ -993,7 +996,7 @@
     const spacer = document.getElementById("tabsSpacer");
 
     const offset = tabs.offsetTop;
-    const height = 150;//tabs.offsetHeight;
+    const height = 250;//tabs.offsetHeight;
 
     window.addEventListener("scroll", function () {
 
