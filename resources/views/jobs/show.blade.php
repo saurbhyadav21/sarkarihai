@@ -95,8 +95,24 @@
     transition: height 0.3s ease;
 }
 .add-offset {
-    padding-top: 120px;   /* sticky menu height */
-    margin-top: -120px;   /* layout break na ho */
+    padding-top: 120px;
+    margin-top: -120px;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .add-offset {
+        padding-top: 100px;
+        margin-top: -100px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .add-offset {
+        padding-top: 140px;
+        margin-top: -140px;
+    }
 }
 html {
     scroll-behavior: smooth;
