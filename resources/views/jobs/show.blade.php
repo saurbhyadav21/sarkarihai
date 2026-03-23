@@ -996,20 +996,19 @@
     const spacer = document.getElementById("tabsSpacer");
 
     const offset = tabs.offsetTop;
-    const height = 250;//tabs.offsetHeight;
+
+    const FIXED_HEIGHT = 250; // 👈 yaha apni exact height daal (60–80 range)
 
     window.addEventListener("scroll", function () {
 
         if (window.pageYOffset >= offset) {
             tabs.classList.add("sticky-active");
 
-            // 👇 space add karega (fix overlap)
-            spacer.style.height = height + "px";
+            // fixed spacing
+            spacer.style.height = FIXED_HEIGHT + "px";
 
         } else {
             tabs.classList.remove("sticky-active");
-
-            // 👇 wapas normal
             spacer.style.height = "0px";
         }
 
