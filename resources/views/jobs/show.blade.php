@@ -749,7 +749,7 @@
                 @php
                     function isLocked($value)
                     {
-                        return strtolower(trim($value)) == 'to be announced' || empty($value);
+                        return strtolower(trim($value)) == 'To Be Announced' || empty($value);
                     }
                     $examLocked = isLocked($job->exam_date);
                    echo $admitLocked = isLocked($job->admit_card);
