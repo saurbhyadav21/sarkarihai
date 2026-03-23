@@ -70,6 +70,15 @@
                 background: #fff;
                 box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
             }
+            .sticky-active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 0;
+}
         </style>
 
         <!-- JS -->
@@ -87,7 +96,7 @@
         <div class="container mt-3">
 
             <!-- Section Tabs -->
-            <div class="section-tabs mb-3">
+            <div class="section-tabs mb-3" id="stickyTabs">
                 <button onclick="scrollToSection('admit')">
                     <i class="fa-solid fa-id-card"></i> Admit Card
                 </button>
@@ -970,4 +979,17 @@
         </div>
 
     </main>
+
+    <script>
+    const tabs = document.getElementById("stickyTabs");
+    const offset = tabs.offsetTop;
+
+    window.addEventListener("scroll", function () {
+        if (window.pageYOffset >= offset) {
+            tabs.classList.add("sticky-active");
+        } else {
+            tabs.classList.remove("sticky-active");
+        }
+    });
+</script>
 @endsection
