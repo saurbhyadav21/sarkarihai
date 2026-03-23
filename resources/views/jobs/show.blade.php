@@ -81,10 +81,15 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width:1340px;
+    max-width: 1140px;
     z-index: 999;
-    background: #000;
+    background: #fff;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* 👇 jab sticky ho tab content niche shift */
+.add-space {
+    margin-top: 80px; /* 👈 same height as menu */
 }
 #tabsSpacer {
     transition: height 0.3s ease;
@@ -993,23 +998,19 @@
 
     <script>
     const tabs = document.getElementById("stickyTabs");
-    const spacer = document.getElementById("tabsSpacer");
+    const content = document.getElementById("mainContent"); // 👈 neeche ka content wrapper
 
     const offset = tabs.offsetTop;
-
-    const FIXED_HEIGHT = 250; // 👈 yaha apni exact height daal (60–80 range)
+    const FIXED_HEIGHT = 80;
 
     window.addEventListener("scroll", function () {
 
         if (window.pageYOffset >= offset) {
             tabs.classList.add("sticky-active");
-
-            // fixed spacing
-            spacer.style.height = FIXED_HEIGHT + "px";
-
+            content.classList.add("add-space");
         } else {
             tabs.classList.remove("sticky-active");
-            spacer.style.height = "0px";
+            content.classList.remove("add-space");
         }
 
     });
