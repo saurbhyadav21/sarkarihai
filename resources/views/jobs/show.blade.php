@@ -675,96 +675,135 @@
 
             </style>
             <div class="container mt-3" id="admit">
-                <div class="card shadow-sm border-0 admit-card">
+    <div class="card admit-card border-0">
 
-                    <!-- Header -->
-                    <div class="card-header text-white d-flex justify-content-between align-items-center">
-                        <h6 class="mb-0 fw-bold">
-                            {{ $job->title }} – Admit Card
-                        </h6>
-                        <span class="badge bg-light text-success fw-bold">
-                            Released
-                        </span>
-                    </div>
+        <!-- Header -->
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h6 class="mb-0 fw-bold text-white">
+                {{ $job->title }} – Admit Card
+            </h6>
+            <span class="badge status-badge">
+                Released
+            </span>
+        </div>
 
-                    <!-- Body -->
-                    <div class="card-body p-3">
+        <!-- Body -->
+        <div class="card-body p-3">
 
-                        <!-- Exam + Button Row -->
-                        <div class="d-flex justify-content-between align-items-center flex-wrap mb-2">
+            <!-- Top Row -->
+            <div class="d-flex justify-content-between align-items-center flex-wrap mb-2">
 
-                            <div class="small">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                Exam: <b>March 2026</b>
-                            </div>
-
-                            <a href="{{ $job->admit_card_link }}" target="_blank" class="btn btn-sm btn-primary">
-                                <i class="fa-solid fa-download"></i> Download
-                            </a>
-
-                        </div>
-
-                        <!-- Divider -->
-                        <hr class="my-2">
-
-                        <!-- Info Grid -->
-                        <div class="row small">
-
-                            <div class="col-md-6 mb-2">
-                                <i class="fa-solid fa-key"></i>
-                                Login: Reg No / DOB
-                            </div>
-
-                            <div class="col-md-6 mb-2">
-                                <i class="fa-solid fa-location-dot"></i>
-                                Center: Check Admit Card
-                            </div>
-
-                            <div class="col-md-6 mb-2">
-                                <i class="fa-solid fa-id-card"></i>
-                                Carry ID Proof
-                            </div>
-
-                            <div class="col-md-6 mb-2">
-                                <i class="fa-solid fa-print"></i>
-                                Print A4 Size
-                            </div>
-
-                        </div>
-
-                        <!-- Instructions -->
-                        <div class="mt-2 p-2 bg-light rounded small">
-                            <b><i class="fa-solid fa-circle-info"></i> Steps:</b>
-                            Login → Download → Print
-                        </div>
-
-                        <!-- Warning -->
-                        <div class="alert alert-danger mt-2 py-1 px-2 small text-center mb-0">
-                            Admit Card mandatory for entry
-                        </div>
-
-                    </div>
+                <div class="small fw-semibold text-primary">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Exam: March 2026
                 </div>
+
+                <a href="{{ $job->admit_card_link }}" target="_blank"
+                   class="btn download-btn">
+                   <i class="fa-solid fa-download"></i> Download
+                </a>
+
             </div>
+
+            <!-- Info Grid -->
+            <div class="row small text-dark">
+
+                <div class="col-6 mb-2 info-box">
+                    <i class="fa-solid fa-key text-warning"></i>
+                    Login: Reg No / DOB
+                </div>
+
+                <div class="col-6 mb-2 info-box">
+                    <i class="fa-solid fa-location-dot text-danger"></i>
+                    Center: Check Card
+                </div>
+
+                <div class="col-6 mb-2 info-box">
+                    <i class="fa-solid fa-id-card text-success"></i>
+                    Carry ID Proof
+                </div>
+
+                <div class="col-6 mb-2 info-box">
+                    <i class="fa-solid fa-print text-info"></i>
+                    Print A4 Size
+                </div>
+
+            </div>
+
+            <!-- Steps -->
+            <div class="steps-box mt-2">
+                <i class="fa-solid fa-circle-info"></i>
+                Login → Download → Print
+            </div>
+
+            <!-- Warning -->
+            <div class="warning-box mt-2">
+                ⚠️ Admit Card mandatory for exam entry
+            </div>
+
+        </div>
+    </div>
+</div>
             <style>
-                .admit-card .card-header {
-                    background: linear-gradient(45deg, #007bff, #0056b3);
-                    padding: 10px 15px;
-                }
+                .admit-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+}
 
-                .admit-card .btn {
-                    padding: 4px 10px;
-                    font-size: 13px;
-                }
+/* Header Gradient */
+.admit-card .card-header {
+    background: linear-gradient(45deg, #ff6a00, #ee0979);
+    padding: 10px 15px;
+}
 
-                .admit-card hr {
-                    margin: 6px 0;
-                }
+/* Status Badge */
+.status-badge {
+    background: #fff;
+    color: #28a745;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
 
-                .admit-card i {
-                    margin-right: 4px;
-                    color: #555;
-                }
+/* Download Button */
+.download-btn {
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    color: #fff;
+    border: none;
+    padding: 5px 12px;
+    font-size: 13px;
+    border-radius: 20px;
+}
+
+.download-btn:hover {
+    opacity: 0.9;
+}
+
+/* Info Boxes */
+.info-box {
+    background: #f8f9fa;
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+
+/* Steps */
+.steps-box {
+    background: #e3f2fd;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+/* Warning */
+.warning-box {
+    background: #ffe5e5;
+    color: #d63031;
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 13px;
+    text-align: center;
+}
             </style>
 
             <div class="container mt-5 section-box" id="faq">
