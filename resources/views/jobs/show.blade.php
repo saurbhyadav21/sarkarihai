@@ -40,10 +40,96 @@
             <img src="{{ asset('public/job-images/' . $job->image) }}" class="img-fluid banner-img" alt="Job Image">
         </div>
 
-        <div class="container mt-3">
-            xxxx
+        <div class="container mt-4">
+
+    <!-- Tabs -->
+    <ul class="nav nav-pills justify-content-center mb-3 custom-tabs" id="jobTabs">
+        <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#apply">
+                📝 Apply
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#admit">
+                🎫 Admit Card
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#result">
+                📊 Result
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#answer">
+                📄 Answer Key
+            </button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+
+        <div class="tab-pane fade show active" id="apply">
+            <div class="card p-3 text-center">
+                <h5>Apply Online</h5>
+                <a href="#" class="btn btn-success mt-2">Apply Now</a>
+            </div>
         </div>
 
+        <div class="tab-pane fade" id="admit">
+            <div class="card p-3 text-center">
+                <h5>Admit Card</h5>
+                <span class="badge bg-warning text-dark">Coming Soon</span>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="result">
+            <div class="card p-3 text-center">
+                <h5>Result</h5>
+                <span class="badge bg-secondary">Not Declared</span>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="answer">
+            <div class="card p-3 text-center">
+                <h5>Answer Key</h5>
+                <span class="badge bg-secondary">Not Available</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Custom CSS -->
+<style>
+.custom-tabs .nav-link {
+    border-radius: 30px;
+    margin: 5px;
+    padding: 10px 20px;
+    font-weight: 600;
+    color: #555;
+    background: #f1f1f1;
+    transition: 0.3s;
+}
+
+.custom-tabs .nav-link:hover {
+    background: #e0e0e0;
+}
+
+.custom-tabs .nav-link.active {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+</style>
+
+<!-- Bootstrap JS (required) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
         <div class="container mt-3">
