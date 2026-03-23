@@ -993,7 +993,7 @@
     const spacer = document.getElementById("tabsSpacer");
 
     const offset = tabs.offsetTop;
-    const height = tabs.offsetHeight;
+    const height = 150;//tabs.offsetHeight;
 
     window.addEventListener("scroll", function () {
 
