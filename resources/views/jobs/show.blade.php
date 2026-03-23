@@ -121,14 +121,6 @@
             html {
                 scroll-behavior: smooth;
             }
-            .locked-card {
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-.disabled-btn {
-    cursor: not-allowed;
-}
         </style>
 
         <!-- JS -->
@@ -172,7 +164,7 @@
                     <i class="fa-solid fa-square-poll-vertical"></i> Syllabus
                 </button>
 
-
+                
                 <button onclick="scrollToSection('dates')">📅 Important Dates</button>
                 <button onclick="scrollToSection('fee')">💰 Application Fee</button>
                 <button onclick="scrollToSection('age')">🎯 Age Limit</button>
@@ -749,52 +741,97 @@
                 </div>
 
             </div>
-            @php
-            $isLocked = strtolower(trim($job->exam_date)) == 'to be announced';
-            @endphp
+            <style>
+
+            </style>
             <<!-- Font Awesome -->
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
                 <div class="container mt-3" id="admit">
-    <div class="card admit-card border-0 {{ $isLocked ? 'locked-card' : '' }}">
+                    <div class="card admit-card border-0">
 
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h6 class="mb-0 fw-bold text-white">
-                {{ $job->title }} – Admit Card
-            </h6>
+                        <!-- Header -->
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0 fw-bold text-white">
+                                {{ $job->title }} – Admit Card
+                            </h6>
+                            <span class="badge status-badge">
+                                🟢 Released
+                            </span>
+                        </div>
 
-            @if($isLocked)
-                <span class="badge bg-danger">🔒 Not Released</span>
-            @else
-                <span class="badge bg-success">🟢 Available</span>
-            @endif
-        </div>
+                        <!-- Body -->
+                        <div class="card-body p-3">
 
-        <div class="card-body p-3">
+                            <!-- Top Row -->
+                            <div class="d-flex justify-content-between align-items-center flex-wrap mb-2">
 
-            <div class="d-flex justify-content-between align-items-center">
+                                <div class="small fw-semibold text-primary">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    Exam: March 2026
+                                </div>
 
-                <div class="small fw-semibold">
-                    <i class="fa-solid fa-calendar"></i>
-                    Exam Date: {{ $job->exam_date }}
+                                <a href="{{ $job->admit_card_link }}" target="_blank" class="btn download-btn">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </a>
+
+                            </div>
+
+                            <!-- Info Grid -->
+                            <div class="row small text-dark">
+
+                                <div class="col-6 mb-2 info-box">
+                                    <i class="fa-solid fa-key text-warning"></i>
+                                    Login: Reg No / DOB
+                                </div>
+
+                                <div class="col-6 mb-2 info-box">
+                                    <i class="fa-solid fa-location-dot text-danger"></i>
+                                    Center: Check Card
+                                </div>
+
+                                <div class="col-6 mb-2 info-box">
+                                    <i class="fa-solid fa-id-card text-success"></i>
+                                    Carry ID Proof
+                                </div>
+
+                                <div class="col-6 mb-2 info-box">
+                                    <i class="fa-solid fa-print text-info"></i>
+                                    Print A4 Size
+                                </div>
+
+                            </div>
+
+                            <!-- Quick Steps -->
+                            <div class="steps-box mt-2">
+                                <i class="fa-solid fa-circle-info"></i>
+                                Login → Download → Print
+                            </div>
+
+                            <!-- Detailed Instructions -->
+                            <div class="instruction-box mt-2">
+                                <h6 class="mb-2">
+                                    <i class="fa-solid fa-circle-info"></i> How to Download Admit Card
+                                </h6>
+
+                                <ul class="mb-0 ps-3">
+                                    <li>Download button par click karein.</li>
+                                    <li>Apna Registration Number / Roll Number enter karein.</li>
+                                    <li>Date of Birth / Password fill karein.</li>
+                                    <li>Login / Submit button par click karein.</li>
+                                    <li>Admit Card screen par show ho jayega.</li>
+                                    <li>PDF download karke print nikal lein.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Warning -->
+                            <div class="warning-box mt-2">
+                                ⚠️ Admit Card mandatory for exam entry
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-
-                @if($isLocked)
-                    <button class="btn btn-secondary disabled-btn" disabled>
-                        <i class="fa-solid fa-lock"></i> Locked
-                    </button>
-                @else
-                    <a href="{{ $job->admit_card }}" target="_blank"
-                       class="btn download-btn">
-                       <i class="fa-solid fa-download"></i> Download
-                    </a>
-                @endif
-
-            </div>
-
-        </div>
-    </div>
-</div>
                 <style>
                     .admit-card {
                         border-radius: 12px;
@@ -869,60 +906,148 @@
 
                 {{-- Result --}}
                 <div class="container mt-3" id="result">
-    <div class="card admit-card border-0 {{ $isLocked ? 'locked-card' : '' }}">
+                    <div class="card admit-card border-0">
 
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h6 class="mb-0 fw-bold text-white">
-                {{ $job->title }} – Result
-            </h6>
+                        <!-- Header -->
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0 fw-bold text-white">
+                                {{ $job->title }} – Result
+                            </h6>
+                            <span class="badge status-badge">
+                                🟢 Result Declared
+                            </span>
+                        </div>
 
-            <span class="badge {{ $isLocked ? 'bg-danger' : 'bg-success' }}">
-                {{ $isLocked ? '🔒 Locked' : '🟢 Declared' }}
-            </span>
-        </div>
+                        <!-- Body -->
+                        <div class="card-body p-3">
 
-        <div class="card-body p-3 text-center">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
 
-            @if($isLocked)
-                <i class="fa-solid fa-lock fa-2x text-muted mb-2"></i>
-                <p class="text-muted mb-0">Result will be available after exam</p>
-            @else
-                <a href="{{ $job->result_link }}" target="_blank"
-                   class="btn download-btn">
-                   Check Result
-                </a>
-            @endif
+                                <div class="small fw-semibold text-success">
+                                    <i class="fa-solid fa-calendar-check"></i>
+                                    Result Date: Coming Soon
+                                </div>
 
-        </div>
-    </div>
-</div>
+                                <a href="{{ $job->result_link }}" target="_blank" class="btn download-btn">
+                                    <i class="fa-solid fa-square-poll-vertical"></i> Check Result
+                                </a>
+
+                            </div>
+
+                            <!-- Info -->
+                            <div class="row small">
+
+                                <div class="col-6 mb-2 info-box">
+                                    <i class="fa-solid fa-user"></i>
+                                    Login: Roll No / DOB
+                                </div>
+
+                                <div class="col-6 mb-2 info-box">
+                                    <i class="fa-solid fa-list"></i>
+                                    Merit List Available
+                                </div>
+
+                            </div>
+
+                            <!-- Steps -->
+                            <div class="steps-box mt-2">
+                                <i class="fa-solid fa-circle-info"></i>
+                                Login → View Result → Download
+                            </div>
+
+                            <!-- Instructions -->
+                            <div class="instruction-box mt-2">
+                                <h6 class="mb-2">
+                                    <i class="fa-solid fa-circle-info"></i> How to Check Result
+                                </h6>
+                                <ul class="mb-0 ps-3">
+                                    <li>Check Result button par click karein.</li>
+                                    <li>Apna Roll Number / Registration Number enter karein.</li>
+                                    <li>Date of Birth fill karein.</li>
+                                    <li>Submit button par click karein.</li>
+                                    <li>Result screen par show ho jayega.</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
 
                 {{-- syllbus --}}
                 <div class="container mt-3" id="syllabus">
-    <div class="card admit-card border-0 {{ $isLocked ? 'locked-card' : '' }}">
+    <div class="card admit-card border-0">
 
+        <!-- Header -->
         <div class="card-header d-flex justify-content-between align-items-center">
             <h6 class="mb-0 fw-bold text-white">
                 {{ $job->title }} – Syllabus
             </h6>
-
-            <span class="badge {{ $isLocked ? 'bg-warning' : 'bg-primary' }}">
-                {{ $isLocked ? '🔒 Coming Soon' : '📘 Available' }}
+            <span class="badge status-badge">
+                📘 Available
             </span>
         </div>
 
-        <div class="card-body p-3 text-center">
+        <!-- Body -->
+        <div class="card-body p-3">
 
-            @if($isLocked)
-                <i class="fa-solid fa-lock fa-2x text-muted mb-2"></i>
-                <p class="text-muted mb-0">Syllabus will be updated soon</p>
-            @else
+            <div class="d-flex justify-content-between align-items-center mb-2">
+
+                <div class="small fw-semibold text-primary">
+                    <i class="fa-solid fa-book"></i>
+                    Subject Wise Syllabus
+                </div>
+
                 <a href="{{ $job->syllabus_link }}" target="_blank"
                    class="btn download-btn">
-                   Download Syllabus
+                   <i class="fa-solid fa-download"></i> Download PDF
                 </a>
-            @endif
+
+            </div>
+
+            <!-- Subjects -->
+            <div class="row small">
+
+                <div class="col-6 mb-2 info-box">
+                    <i class="fa-solid fa-brain"></i>
+                    Reasoning
+                </div>
+
+                <div class="col-6 mb-2 info-box">
+                    <i class="fa-solid fa-calculator"></i>
+                    Mathematics
+                </div>
+
+                <div class="col-6 mb-2 info-box">
+                    <i class="fa-solid fa-globe"></i>
+                    General Knowledge
+                </div>
+
+                <div class="col-6 mb-2 info-box">
+                    <i class="fa-solid fa-language"></i>
+                    English / Hindi
+                </div>
+
+            </div>
+
+            <!-- Steps -->
+            <div class="steps-box mt-2">
+                <i class="fa-solid fa-circle-info"></i>
+                Download → Read → Prepare
+            </div>
+
+            <!-- Instructions -->
+            <div class="instruction-box mt-2">
+                <h6 class="mb-2">
+                    <i class="fa-solid fa-circle-info"></i> Syllabus Details
+                </h6>
+                <ul class="mb-0 ps-3">
+                    <li>Official syllabus PDF download karein.</li>
+                    <li>Har subject ke topics check karein.</li>
+                    <li>Important topics par focus karein.</li>
+                    <li>Previous year questions practice karein.</li>
+                </ul>
+            </div>
 
         </div>
     </div>
