@@ -160,6 +160,11 @@
                 <button onclick="scrollToSection('result')">
                     <i class="fa-solid fa-square-poll-vertical"></i> Result
                 </button>
+                <button onclick="scrollToSection('Syllabus')">
+                    <i class="fa-solid fa-square-poll-vertical"></i> Syllabus
+                </button>
+
+                
                 <button onclick="scrollToSection('dates')">📅 Important Dates</button>
                 <button onclick="scrollToSection('fee')">💰 Application Fee</button>
                 <button onclick="scrollToSection('age')">🎯 Age Limit</button>
