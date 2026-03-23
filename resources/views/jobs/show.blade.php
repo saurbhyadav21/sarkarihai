@@ -121,6 +121,14 @@
             html {
                 scroll-behavior: smooth;
             }
+            .locked-card {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.disabled-btn {
+    cursor: not-allowed;
+}
         </style>
 
         <!-- JS -->
