@@ -674,99 +674,96 @@
             <style>
 
             </style>
-            <div class="container mt-4 section-box" id="admit">
-                <div class="card shadow border-0" style="border-radius:12px;">
-                    <div class="card-body">
+            <div class="container mt-3" id="admit">
+                <div class="card shadow-sm border-0 admit-card">
 
-                        <!-- Title -->
-                        <h2 class="text-center fw-bold mb-2">
-                            {{ $job->title }} – Admit Card 2026
-                        </h2>
+                    <!-- Header -->
+                    <div class="card-header text-white d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0 fw-bold">
+                            {{ $job->title }} – Admit Card
+                        </h6>
+                        <span class="badge bg-light text-success fw-bold">
+                            Released
+                        </span>
+                    </div>
 
-                        <!-- Status Badge -->
-                        <div class="text-center mb-3">
-                            <span class="badge bg-success px-3 py-2">
-                                🟢 Admit Card Released
-                            </span>
-                        </div>
+                    <!-- Body -->
+                    <div class="card-body p-3">
 
-                        <!-- Exam Date -->
-                        <div class="alert alert-info text-center">
-                            📅 Exam Date: March 2026 (Check Admit Card for exact date)
-                        </div>
+                        <!-- Exam + Button Row -->
+                        <div class="d-flex justify-content-between align-items-center flex-wrap mb-2">
 
-                        <!-- Download Button -->
-                        <div class="text-center mb-4">
-                            <a href="{{ $job->admit_card_link }}" target="_blank" class="btn btn-primary px-4 py-2">
-                                <i class="fa-solid fa-download"></i> Download Admit Card
+                            <div class="small">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                Exam: <b>March 2026</b>
+                            </div>
+
+                            <a href="{{ $job->admit_card_link }}" target="_blank" class="btn btn-sm btn-primary">
+                                <i class="fa-solid fa-download"></i> Download
                             </a>
+
                         </div>
 
-                        <!-- Required Details -->
-                        <div class="mb-3">
-                            <h5><i class="fa-solid fa-key"></i> Required Login Details</h5>
-                            <p>Registration Number / Roll Number + Date of Birth / Password</p>
-                        </div>
+                        <!-- Divider -->
+                        <hr class="my-2">
 
-                        <!-- Documents to Carry -->
-                        <div class="mb-3">
-                            <h5><i class="fa-solid fa-file"></i> Documents to Carry</h5>
-                            <ul>
-                                <li>Admit Card Printout</li>
-                                <li>Valid ID Proof (Aadhar / PAN / Voter ID)</li>
-                                <li>Passport Size Photograph</li>
-                            </ul>
+                        <!-- Info Grid -->
+                        <div class="row small">
+
+                            <div class="col-md-6 mb-2">
+                                <i class="fa-solid fa-key"></i>
+                                Login: Reg No / DOB
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <i class="fa-solid fa-location-dot"></i>
+                                Center: Check Admit Card
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <i class="fa-solid fa-id-card"></i>
+                                Carry ID Proof
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <i class="fa-solid fa-print"></i>
+                                Print A4 Size
+                            </div>
+
                         </div>
 
                         <!-- Instructions -->
-                        <div class="p-3 bg-light rounded mb-3">
-                            <h5>
-                                <i class="fa-solid fa-circle-info"></i> How to Download Admit Card
-                            </h5>
-                            <ul class="mb-0">
-                                <li>Click on "Download Admit Card" button above.</li>
-                                <li>Enter your Registration Number / Roll Number.</li>
-                                <li>Fill your Date of Birth / Password.</li>
-                                <li>Click on Login / Submit button.</li>
-                                <li>Your Admit Card will appear on screen.</li>
-                                <li>Download and take printout.</li>
-                            </ul>
+                        <div class="mt-2 p-2 bg-light rounded small">
+                            <b><i class="fa-solid fa-circle-info"></i> Steps:</b>
+                            Login → Download → Print
                         </div>
 
                         <!-- Warning -->
-                        <div class="alert alert-danger text-center">
-                            ⚠️ Admit Card ke bina exam center me entry allowed nahi hogi.
-                        </div>
-
-                        <!-- Help -->
-                        <div class="text-center mt-2">
-                            <p class="mb-1">
-                                Forgot Registration Number? Use "Forgot Details" option on official website.
-                            </p>
-
-                            <a href="{{ $job->official_website }}" target="_blank" class="btn btn-outline-dark btn-sm">
-                                <i class="fa-solid fa-globe"></i> Official Website
-                            </a>
+                        <div class="alert alert-danger mt-2 py-1 px-2 small text-center mb-0">
+                            Admit Card mandatory for entry
                         </div>
 
                     </div>
                 </div>
             </div>
             <style>
-                .section-box .card {
-                    transition: 0.3s;
+                .admit-card .card-header {
+                    background: linear-gradient(45deg, #007bff, #0056b3);
+                    padding: 10px 15px;
                 }
 
-                .section-box .card:hover {
-                    transform: translateY(-4px);
+                .admit-card .btn {
+                    padding: 4px 10px;
+                    font-size: 13px;
                 }
 
-                .badge {
-                    font-size: 14px;
+                .admit-card hr {
+                    margin: 6px 0;
                 }
 
-                .btn i {
-                    margin-right: 6px;
+                .admit-card i {
+                    margin-right: 4px;
+                    color: #555;
                 }
             </style>
 
