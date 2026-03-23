@@ -41,59 +41,59 @@
         </div>
 
         <style>
-.section-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
+            .section-tabs {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+            }
 
-.section-tabs button {
-    border: none;
-    padding: 8px 16px;
-    border-radius: 25px;
-    background: #f1f1f1;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
+            .section-tabs button {
+                border: none;
+                padding: 8px 16px;
+                border-radius: 25px;
+                background: #f1f1f1;
+                font-weight: 600;
+                cursor: pointer;
+                transition: 0.3s;
+            }
 
-.section-tabs button:hover {
-    background: #28a745;
-    color: #fff;
-}
+            .section-tabs button:hover {
+                background: #28a745;
+                color: #fff;
+            }
 
-.section-box {
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
-}
-</style>
+            .section-box {
+                margin-top: 30px;
+                padding: 20px;
+                border-radius: 12px;
+                background: #fff;
+                box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            }
+        </style>
 
-<!-- JS -->
-<script>
-function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({
-        behavior: 'smooth'
-    });
-}
-</script>
+        <!-- JS -->
+        <script>
+            function scrollToSection(id) {
+                document.getElementById(id).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        </script>
         <!-- Section Tabs -->
-    <div class="section-tabs mb-3">
-        <button onclick="scrollToSection('dates')">📅 Important Dates</button>
-        <button onclick="scrollToSection('fee')">💰 Application Fee</button>
-        <button onclick="scrollToSection('age')">🎯 Age Limit</button>
-        <button onclick="scrollToSection('post')">📌 Total Post</button>
-        <button onclick="scrollToSection('category')">📊 Category Wise</button>
-        <button onclick="scrollToSection('selection')">✅ Selection Process</button>
-        <button onclick="scrollToSection('details')">📄 Post Details</button>
-        <button onclick="scrollToSection('instruction')">📝 How to Apply</button>
-        <button onclick="scrollToSection('links')">🔗 Important Links</button>
-        <button onclick="scrollToSection('docs')">📂 Documents</button>
-        <button onclick="scrollToSection('faq')">❓ FAQ</button>
-    </div>
+        <div class="section-tabs mb-3">
+            <button onclick="scrollToSection('dates')">📅 Important Dates</button>
+            <button onclick="scrollToSection('fee')">💰 Application Fee</button>
+            <button onclick="scrollToSection('age')">🎯 Age Limit</button>
+            <button onclick="scrollToSection('post')">📌 Total Post</button>
+            <button onclick="scrollToSection('category')">📊 Category Wise</button>
+            <button onclick="scrollToSection('selection')">✅ Selection Process</button>
+            <button onclick="scrollToSection('details')">📄 Post Details</button>
+            <button onclick="scrollToSection('instruction')">📝 How to Apply</button>
+            <button onclick="scrollToSection('links')">🔗 Important Links</button>
+            <button onclick="scrollToSection('docs')">📂 Documents</button>
+            <button onclick="scrollToSection('faq')">❓ FAQ</button>
+        </div>
 
 
 
@@ -176,7 +176,7 @@ function scrollToSection(id) {
 
             </div>
 
-            <div class="row align-items-stretch gy-4" id="date-fee">
+            <div class="row align-items-stretch gy-4 section-box" id="dates">
 
                 <!-- Important Dates -->
                 <div class="col-md-6">
@@ -582,45 +582,47 @@ function scrollToSection(id) {
 
 
             <div class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h2 class="card-title text-center mb-4">
-                {{ $job->title }} – Important Links
-            </h2>
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">
+                            {{ $job->title }} – Important Links
+                        </h2>
 
-            <div class="row text-center">
-                @php
-                    // Replace multiple # with single # and remove trailing #
-                    $cleanLinks = rtrim(preg_replace('/#+/', '#', $job->link), '#');
+                        <div class="row text-center">
+                            @php
+                                // Replace multiple # with single # and remove trailing #
+                                $cleanLinks = rtrim(preg_replace('/#+/', '#', $job->link), '#');
 
-                    // Split by '#' for multiple links
-                    $links = explode('#', $cleanLinks);
-                @endphp
+                                // Split by '#' for multiple links
+                                $links = explode('#', $cleanLinks);
+                            @endphp
 
-                @foreach ($links as $link)
-                    @php
-                        $link = trim($link);
-                        if (empty($link)) continue;
+                            @foreach ($links as $link)
+                                @php
+                                    $link = trim($link);
+                                    if (empty($link)) {
+                                        continue;
+                                    }
 
-                        // Split by $ for title and url
-                        $parts = explode('$', $link);
-                        $title = $parts[0] ?? 'Link Title';
-                        $url = $parts[1] ?? '#';
-                    @endphp
+                                    // Split by $ for title and url
+                                    $parts = explode('$', $link);
+                                    $title = $parts[0] ?? 'Link Title';
+                                    $url = $parts[1] ?? '#';
+                                @endphp
 
-                    <div class="col-md-4 mb-3">
-                        <div class="border p-3 rounded h-100 d-flex flex-column justify-content-between">
-                            <h5>{{ $title }}</h5>
-                            <a href="{{ $url }}" class="btn btn-danger mt-2" target="_blank">
-                                Click Here
-                            </a>
+                                <div class="col-md-4 mb-3">
+                                    <div class="border p-3 rounded h-100 d-flex flex-column justify-content-between">
+                                        <h5>{{ $title }}</h5>
+                                        <a href="{{ $url }}" class="btn btn-danger mt-2" target="_blank">
+                                            Click Here
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                @endforeach
+                </div>
             </div>
-        </div>
-    </div>
-</div>
 
 
             <div class="container mt-4">
