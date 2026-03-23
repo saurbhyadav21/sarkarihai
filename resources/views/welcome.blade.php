@@ -158,7 +158,7 @@
                     
                 @endphp
 
-                @for ($i = 0; $i < $count; $i++)
+                {{-- @for ($i = 0; $i < $count; $i++) --}}
                     <div class="col-6 col-md-2">
 
                         <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
@@ -218,7 +218,7 @@
                         </a>
 
                     </div>
-                @endfor
+                {{-- @endfor --}}
             @endforeach
             <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
                 style="color: #fff;
