@@ -81,8 +81,9 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 1320px; /* Bootstrap container width */
+    max-width: 1140px;
     z-index: 999;
+    background: #000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
         </style>
@@ -100,7 +101,8 @@
 
 
         <div class="container mt-3">
-
+            <!-- Spacer (auto height milega) -->
+    <div id="tabsSpacer"></div>
             <!-- Section Tabs -->
             <div class="section-tabs mb-3" id="stickyTabs">
                 <button onclick="scrollToSection('admit')">
@@ -987,15 +989,27 @@
     </main>
 
     <script>
-        const tabs = document.getElementById("stickyTabs");
-        const offset = tabs.offsetTop;
+    const tabs = document.getElementById("stickyTabs");
+    const spacer = document.getElementById("tabsSpacer");
 
-        window.addEventListener("scroll", function() {
-            if (window.pageYOffset >= offset) {
-                tabs.classList.add("sticky-active");
-            } else {
-                tabs.classList.remove("sticky-active");
-            }
-        });
-    </script>
+    const offset = tabs.offsetTop;
+    const height = tabs.offsetHeight;
+
+    window.addEventListener("scroll", function () {
+
+        if (window.pageYOffset >= offset) {
+            tabs.classList.add("sticky-active");
+
+            // 👇 space add karega (fix overlap)
+            spacer.style.height = height + "px";
+
+        } else {
+            tabs.classList.remove("sticky-active");
+
+            // 👇 wapas normal
+            spacer.style.height = "0px";
+        }
+
+    });
+</script>
 @endsection
