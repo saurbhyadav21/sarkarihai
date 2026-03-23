@@ -81,9 +81,9 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 1140px;
+    max-width: 1340px;
     z-index: 999;
-    background: #fff;
+    background: #000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
