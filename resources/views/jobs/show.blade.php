@@ -42,26 +42,30 @@
 
         <style>
             .section-tabs {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                justify-content: center;
-            }
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
 
-            .section-tabs button {
-                border: none;
-                padding: 8px 16px;
-                border-radius: 25px;
-                background: #f1f1f1;
-                font-weight: 600;
-                cursor: pointer;
-                transition: 0.3s;
-            }
+/* Buttons */
+.section-tabs button {
+    border: none;
+    background: #f1f1f1;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+}
 
-            .section-tabs button:hover {
-                background: #28a745;
-                color: #fff;
-            }
+.section-tabs button:hover {
+    background: #007bff;
+    color: #fff;
+}
+
 
             .section-box {
                 margin-top: 30px;
