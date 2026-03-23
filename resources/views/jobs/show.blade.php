@@ -672,36 +672,27 @@
 
             </div>
             <style>
-                .section-box .card {
-                    transition: 0.3s;
-                }
 
-                .section-box .card:hover {
-                    transform: translateY(-3px);
-                }
-
-                .badge {
-                    font-size: 14px;
-                }
-
-                .btn i {
-                    margin-right: 6px;
-                }
             </style>
             <div class="container mt-4 section-box" id="docs">
                 <div class="card shadow border-0" style="border-radius:12px;">
                     <div class="card-body">
 
                         <!-- Title -->
-                        <h2 class="text-center mb-3 fw-bold">
-                            {{ $job->title }} – Admit Card Out
+                        <h2 class="text-center fw-bold mb-2">
+                            {{ $job->title }} – Admit Card 2026
                         </h2>
 
                         <!-- Status Badge -->
                         <div class="text-center mb-3">
                             <span class="badge bg-success px-3 py-2">
-                                Admit Card Available
+                                🟢 Admit Card Released
                             </span>
+                        </div>
+
+                        <!-- Exam Date -->
+                        <div class="alert alert-info text-center">
+                            📅 Exam Date: March 2026 (Check Admit Card for exact date)
                         </div>
 
                         <!-- Download Button -->
@@ -711,26 +702,73 @@
                             </a>
                         </div>
 
+                        <!-- Required Details -->
+                        <div class="mb-3">
+                            <h5><i class="fa-solid fa-key"></i> Required Login Details</h5>
+                            <p>Registration Number / Roll Number + Date of Birth / Password</p>
+                        </div>
+
+                        <!-- Documents to Carry -->
+                        <div class="mb-3">
+                            <h5><i class="fa-solid fa-file"></i> Documents to Carry</h5>
+                            <ul>
+                                <li>Admit Card Printout</li>
+                                <li>Valid ID Proof (Aadhar / PAN / Voter ID)</li>
+                                <li>Passport Size Photograph</li>
+                            </ul>
+                        </div>
+
                         <!-- Instructions -->
-                        <div class="p-3 bg-light rounded">
-                            <h5 class="mb-3">
+                        <div class="p-3 bg-light rounded mb-3">
+                            <h5>
                                 <i class="fa-solid fa-circle-info"></i> How to Download Admit Card
                             </h5>
-
                             <ul class="mb-0">
-                                <li>Click on the <b>Download Admit Card</b> button above.</li>
+                                <li>Click on "Download Admit Card" button above.</li>
                                 <li>Enter your Registration Number / Roll Number.</li>
                                 <li>Fill your Date of Birth / Password.</li>
                                 <li>Click on Login / Submit button.</li>
                                 <li>Your Admit Card will appear on screen.</li>
-                                <li>Download and take a printout for exam.</li>
+                                <li>Download and take printout.</li>
                             </ul>
+                        </div>
+
+                        <!-- Warning -->
+                        <div class="alert alert-danger text-center">
+                            ⚠️ Admit Card ke bina exam center me entry allowed nahi hogi.
+                        </div>
+
+                        <!-- Help -->
+                        <div class="text-center mt-2">
+                            <p class="mb-1">
+                                Forgot Registration Number? Use "Forgot Details" option on official website.
+                            </p>
+
+                            <a href="{{ $job->official_website }}" target="_blank" class="btn btn-outline-dark btn-sm">
+                                <i class="fa-solid fa-globe"></i> Official Website
+                            </a>
                         </div>
 
                     </div>
                 </div>
             </div>
+            <style>
+                .section-box .card {
+    transition: 0.3s;
+}
 
+.section-box .card:hover {
+    transform: translateY(-4px);
+}
+
+.badge {
+    font-size: 14px;
+}
+
+.btn i {
+    margin-right: 6px;
+}
+            </style>
 
             <div class="container mt-5 section-box" id="faq">
                 <div class="card shadow-sm">
