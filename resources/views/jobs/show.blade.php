@@ -94,6 +94,9 @@
 #tabsSpacer {
     transition: height 0.3s ease;
 }
+section {
+    scroll-margin-top: 90px; /* 👈 sticky menu height */
+}
         </style>
 
         <!-- JS -->
