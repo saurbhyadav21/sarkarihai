@@ -752,8 +752,10 @@
                         return strtolower(trim($value)) == 'To Be Announced' || empty($value);
                     }
                     $examLocked = isLocked($job->exam_date);
-                   echo $admitLocked = isLocked($job->admit_card);
+                    $admitLocked = isLocked($job->admit_card);
                     $resultLocked = isLocked($job->result_date);
+
+                    echo $job->admit_card;
                 @endphp
 
                 {{-- ADmit card --}}
