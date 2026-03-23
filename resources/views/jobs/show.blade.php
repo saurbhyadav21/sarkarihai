@@ -88,6 +88,13 @@
 
             <!-- Section Tabs -->
             <div class="section-tabs mb-3">
+                <button onclick="scrollToSection('admit')">
+                    <i class="fa-solid fa-id-card"></i> Admit Card
+                </button>
+
+                <button onclick="scrollToSection('result')">
+                    <i class="fa-solid fa-square-poll-vertical"></i> Result
+                </button>
                 <button onclick="scrollToSection('dates')">📅 Important Dates</button>
                 <button onclick="scrollToSection('fee')">💰 Application Fee</button>
                 <button onclick="scrollToSection('age')">🎯 Age Limit</button>
