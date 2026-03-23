@@ -275,7 +275,7 @@
                     </a>
                 </div>
 
-                
+
 
                 <!-- Telegram -->
                 <div class="col-4 col-md-2 mb-3">
@@ -405,7 +405,54 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Button -->
+    <button id="topBtn" title="Go to top">⬆</button>
 
+    <!-- CSS -->
+    <style>
+        #topBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 25px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            cursor: pointer;
+            padding: 12px 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: none;
+            transition: 0.3s;
+        }
+
+        #topBtn:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+    <!-- JS -->
+    <script>
+        let topBtn = document.getElementById("topBtn");
+
+        // Show button on scroll
+        window.onscroll = function() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                topBtn.style.display = "block";
+            } else {
+                topBtn.style.display = "none";
+            }
+        };
+
+        // Scroll to top
+        topBtn.onclick = function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+    </script>
 </body>
 
 </html>
