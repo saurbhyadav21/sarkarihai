@@ -101,7 +101,7 @@
         <div class="container mt-3">
 
             <!-- Section Tabs -->
-            <div class="row section-tabs mb-3" id="stickyTabs">
+            <div class="section-tabs mb-3" id="stickyTabs">
                 <button onclick="scrollToSection('admit')">
                     <i class="fa-solid fa-id-card"></i> Admit Card
                 </button>
