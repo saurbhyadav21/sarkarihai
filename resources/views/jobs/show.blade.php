@@ -674,7 +674,7 @@
             <style>
 
             </style>
-            <div class="container mt-4 section-box" id="docs">
+            <div class="container mt-4 section-box" id="admit">
                 <div class="card shadow border-0" style="border-radius:12px;">
                     <div class="card-body">
 
@@ -754,20 +754,20 @@
             </div>
             <style>
                 .section-box .card {
-    transition: 0.3s;
-}
+                    transition: 0.3s;
+                }
 
-.section-box .card:hover {
-    transform: translateY(-4px);
-}
+                .section-box .card:hover {
+                    transform: translateY(-4px);
+                }
 
-.badge {
-    font-size: 14px;
-}
+                .badge {
+                    font-size: 14px;
+                }
 
-.btn i {
-    margin-right: 6px;
-}
+                .btn i {
+                    margin-right: 6px;
+                }
             </style>
 
             <div class="container mt-5 section-box" id="faq">
