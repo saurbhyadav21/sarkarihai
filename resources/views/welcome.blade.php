@@ -151,11 +151,11 @@
 
             @foreach ($jobs as $job)
                 @php
-                    $names = explode(',', $job->post_name);
-                    $salaries = explode(',', $job->post_salary);
-                    $eligibilities = explode(',', $job->min_qulification);
+                    $names = explode('#', $job->post_name);
+                    $salaries = explode('#', $job->post_salary);
+                    $eligibilities = explode('#', $job->min_qulification);
                     $count = max(count($names), count($salaries), count($eligibilities));
-                    echo $count;
+                    
                 @endphp
 
                 @for ($i = 0; $i < $count; $i++)
