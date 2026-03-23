@@ -89,12 +89,12 @@
             <!-- Section Tabs -->
             <div class="section-tabs mb-3">
                 <button onclick="scrollToSection('admit')">
-    <i class="fa-solid fa-id-card"></i> Admit Card
-</button>
+                    <i class="fa-solid fa-id-card"></i> Admit Card
+                </button>
 
-<button onclick="scrollToSection('result')">
-    <i class="fa-solid fa-square-poll-vertical"></i> Result
-</button>
+                <button onclick="scrollToSection('result')">
+                    <i class="fa-solid fa-square-poll-vertical"></i> Result
+                </button>
                 <button onclick="scrollToSection('dates')">📅 Important Dates</button>
                 <button onclick="scrollToSection('fee')">💰 Application Fee</button>
                 <button onclick="scrollToSection('age')">🎯 Age Limit</button>
@@ -670,6 +670,65 @@
                     </div>
                 </div>
 
+            </div>
+            <style>
+                .section-box .card {
+                    transition: 0.3s;
+                }
+
+                .section-box .card:hover {
+                    transform: translateY(-3px);
+                }
+
+                .badge {
+                    font-size: 14px;
+                }
+
+                .btn i {
+                    margin-right: 6px;
+                }
+            </style>
+            <div class="container mt-4 section-box" id="docs">
+                <div class="card shadow border-0" style="border-radius:12px;">
+                    <div class="card-body">
+
+                        <!-- Title -->
+                        <h2 class="text-center mb-3 fw-bold">
+                            {{ $job->title }} – Admit Card Out
+                        </h2>
+
+                        <!-- Status Badge -->
+                        <div class="text-center mb-3">
+                            <span class="badge bg-success px-3 py-2">
+                                Admit Card Available
+                            </span>
+                        </div>
+
+                        <!-- Download Button -->
+                        <div class="text-center mb-4">
+                            <a href="{{ $job->admit_card_link }}" target="_blank" class="btn btn-primary px-4 py-2">
+                                <i class="fa-solid fa-download"></i> Download Admit Card
+                            </a>
+                        </div>
+
+                        <!-- Instructions -->
+                        <div class="p-3 bg-light rounded">
+                            <h5 class="mb-3">
+                                <i class="fa-solid fa-circle-info"></i> How to Download Admit Card
+                            </h5>
+
+                            <ul class="mb-0">
+                                <li>Click on the <b>Download Admit Card</b> button above.</li>
+                                <li>Enter your Registration Number / Roll Number.</li>
+                                <li>Fill your Date of Birth / Password.</li>
+                                <li>Click on Login / Submit button.</li>
+                                <li>Your Admit Card will appear on screen.</li>
+                                <li>Download and take a printout for exam.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
 
