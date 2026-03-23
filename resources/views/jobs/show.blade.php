@@ -94,18 +94,36 @@
 #tabsSpacer {
     transition: height 0.3s ease;
 }
-section {
-    scroll-margin-top: 90px; /* 👈 sticky menu height */
+.add-offset {
+    padding-top: 90px;   /* sticky menu height */
+    margin-top: -90px;   /* layout break na ho */
+}
+html {
+    scroll-behavior: smooth;
 }
         </style>
 
         <!-- JS -->
         <script>
-            function scrollToSection(id) {
-                document.getElementById(id).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
+            <script>
+function scrollToSection(id) {
+
+    // 👇 sabse pehle sab sections se remove
+    document.querySelectorAll('.add-offset').forEach(el => {
+        el.classList.remove('add-offset');
+    });
+
+    // 👇 current section me add
+    const target = document.getElementById(id);
+    target.classList.add('add-offset');
+
+    // 👇 scroll karo
+    target.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+</script>
         </script>
 
 
