@@ -674,7 +674,10 @@
             <style>
 
             </style>
-            <div class="container mt-3" id="admit">
+            <<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div class="container mt-3" id="docs">
     <div class="card admit-card border-0">
 
         <!-- Header -->
@@ -683,7 +686,7 @@
                 {{ $job->title }} – Admit Card
             </h6>
             <span class="badge status-badge">
-                Released
+                🟢 Released
             </span>
         </div>
 
@@ -730,10 +733,26 @@
 
             </div>
 
-            <!-- Steps -->
+            <!-- Quick Steps -->
             <div class="steps-box mt-2">
                 <i class="fa-solid fa-circle-info"></i>
                 Login → Download → Print
+            </div>
+
+            <!-- Detailed Instructions -->
+            <div class="instruction-box mt-2">
+                <h6 class="mb-2">
+                    <i class="fa-solid fa-circle-info"></i> How to Download Admit Card
+                </h6>
+
+                <ul class="mb-0 ps-3">
+                    <li>Download button par click karein.</li>
+                    <li>Apna Registration Number / Roll Number enter karein.</li>
+                    <li>Date of Birth / Password fill karein.</li>
+                    <li>Login / Submit button par click karein.</li>
+                    <li>Admit Card screen par show ho jayega.</li>
+                    <li>PDF download karke print nikal lein.</li>
+                </ul>
             </div>
 
             <!-- Warning -->
@@ -744,8 +763,8 @@
         </div>
     </div>
 </div>
-            <style>
-                .admit-card {
+<style>
+    .admit-card {
     border-radius: 12px;
     overflow: hidden;
     background: #fff;
@@ -795,6 +814,15 @@
     font-size: 13px;
 }
 
+/* Instructions */
+.instruction-box {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
 /* Warning */
 .warning-box {
     background: #ffe5e5;
@@ -804,7 +832,7 @@
     font-size: 13px;
     text-align: center;
 }
-            </style>
+</style>
 
             <div class="container mt-5 section-box" id="faq">
                 <div class="card shadow-sm">
