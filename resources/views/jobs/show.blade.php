@@ -81,7 +81,7 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 1140px; /* Bootstrap container width */
+    max-width: 1320px; /* Bootstrap container width */
     z-index: 999;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
