@@ -628,7 +628,7 @@
             </div>
 
 
-            <div class="container mt-4 section-box" id="admit">
+            <div class="container mt-4 section-box" id="docs">
 
                 <div class="card shadow-sm">
                     <div class="card-body">
@@ -677,7 +677,7 @@
             <<!-- Font Awesome -->
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-                <div class="container mt-3" id="docs">
+                <div class="container mt-3" id="admit">
                     <div class="card admit-card border-0">
 
                         <!-- Header -->
