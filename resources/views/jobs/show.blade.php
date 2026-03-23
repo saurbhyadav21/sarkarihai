@@ -105,7 +105,7 @@ html {
 
         <!-- JS -->
         <script>
-            <script>
+            
 function scrollToSection(id) {
 
     // 👇 sabse pehle sab sections se remove
@@ -124,7 +124,7 @@ function scrollToSection(id) {
 
 }
 </script>
-        </script>
+      
 
 
 
