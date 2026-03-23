@@ -95,8 +95,8 @@
     transition: height 0.3s ease;
 }
 .add-offset {
-    padding-top: 90px;   /* sticky menu height */
-    margin-top: -90px;   /* layout break na ho */
+    padding-top: 120px;   /* sticky menu height */
+    margin-top: -120px;   /* layout break na ho */
 }
 html {
     scroll-behavior: smooth;
