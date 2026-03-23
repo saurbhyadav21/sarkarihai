@@ -42,7 +42,7 @@
 
         <style>
             .section-tabs {
-                background: #fff;
+                background: #000;
                 padding: 10px;
                 border-radius: 8px;
                 display: flex;
