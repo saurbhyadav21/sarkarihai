@@ -71,7 +71,7 @@
                 margin-top: 30px;
                 padding: 20px;
                 border-radius: 12px;
-                background: #fff;
+                background: #000;
                 box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
             }
 
