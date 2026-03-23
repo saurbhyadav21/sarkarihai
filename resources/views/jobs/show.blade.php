@@ -80,26 +80,26 @@
                 });
             }
         </script>
-        <!-- Section Tabs -->
-        <div class="section-tabs mb-3">
-            <button onclick="scrollToSection('dates')">📅 Important Dates</button>
-            <button onclick="scrollToSection('fee')">💰 Application Fee</button>
-            <button onclick="scrollToSection('age')">🎯 Age Limit</button>
-            <button onclick="scrollToSection('post')">📌 Total Post</button>
-            <button onclick="scrollToSection('category')">📊 Category Wise</button>
-            <button onclick="scrollToSection('selection')">✅ Selection Process</button>
-            <button onclick="scrollToSection('details')">📄 Post Details</button>
-            <button onclick="scrollToSection('instruction')">📝 How to Apply</button>
-            <button onclick="scrollToSection('links')">🔗 Important Links</button>
-            <button onclick="scrollToSection('docs')">📂 Documents</button>
-            <button onclick="scrollToSection('faq')">❓ FAQ</button>
-        </div>
+
 
 
 
         <div class="container mt-3">
 
-
+            <!-- Section Tabs -->
+            <div class="section-tabs mb-3">
+                <button onclick="scrollToSection('dates')">📅 Important Dates</button>
+                <button onclick="scrollToSection('fee')">💰 Application Fee</button>
+                <button onclick="scrollToSection('age')">🎯 Age Limit</button>
+                <button onclick="scrollToSection('post')">📌 Total Post</button>
+                <button onclick="scrollToSection('category')">📊 Category Wise</button>
+                <button onclick="scrollToSection('selection')">✅ Selection Process</button>
+                <button onclick="scrollToSection('details')">📄 Post Details</button>
+                <button onclick="scrollToSection('instruction')">📝 How to Apply</button>
+                <button onclick="scrollToSection('links')">🔗 Important Links</button>
+                <button onclick="scrollToSection('docs')">📂 Documents</button>
+                <button onclick="scrollToSection('faq')">❓ FAQ</button>
+            </div>
             <div class="row align-items-stretch gy-4" style="margin-bottom: 10px;">
 
                 <!-- Important Info -->
@@ -482,7 +482,7 @@
 
                 <div class="card shadow-sm">
                     <div class="card-body text-center">
-                         <div class="container mt-4">
+                        <div class="container mt-4">
                             <div class="card shadow-sm">
                                 <div class="card-body">
 
