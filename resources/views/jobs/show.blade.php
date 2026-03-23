@@ -76,14 +76,15 @@
             }
 
             .sticky-active {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                z-index: 999;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                border-radius: 0;
-            }
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1140px; /* Bootstrap container width */
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
         </style>
 
         <!-- JS -->
