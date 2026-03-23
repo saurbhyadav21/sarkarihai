@@ -176,10 +176,10 @@
 
             </div>
 
-            <div class="row align-items-stretch gy-4 section-box" id="dates">
+            <div class="row align-items-stretch gy-4 ">
 
                 <!-- Important Dates -->
-                <div class="col-md-6">
+                <div class="col-md-6 section-box" id="dates">
                     <div class="card h-100">
                         <div class="card-body">
 
@@ -235,7 +235,7 @@
                 </div>
 
                 <!-- Application Fee -->
-                <div class="col-md-6">
+                <div class="col-md-6 section-box" id="fee">
                     <div class="card h-100">
                         <div class="card-body">
 
@@ -288,7 +288,7 @@
             <div class="row align-items-stretch">
 
                 <!-- Age Limit -->
-                <div class="col-md-6" style="margin-top: 10px;">
+                <div class="col-md-6 section-box" style="margin-top: 10px;" id="age">
                     <div class="card h-100">
                         <div class="card-body">
 
@@ -341,7 +341,7 @@
                 </div>
 
                 <!-- Total Post -->
-                <div class="col-md-6" style="margin-top: 10px;">
+                <div class="col-md-6 section-box" style="margin-top: 10px;" id="post">
                     <div class="card text-center shadow-sm border-0 h-100">
                         <div class="card-body">
 
@@ -372,7 +372,7 @@
                 <div class="row">
 
                     <!-- Category Wise Post -->
-                    <div class="col-6 mb-3">
+                    <div class="col-6 mb-3 section-box" id="category">
                         <div class="card shadow-sm">
                             <div class="card-body">
 
@@ -447,7 +447,7 @@
                     </div>
 
                     <!-- Mode Of Selection -->
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-6 mb-3 section-box" id="selection">
                         <div class="card shadow-sm h-100">
                             <div class="card-body">
 
@@ -478,15 +478,11 @@
             </div>
 
 
-            <div class="container mt-4">
+            <div class="container mt-4 section-box" id="details">
 
                 <div class="card shadow-sm">
                     <div class="card-body text-center">
-
-
-
-
-                        <div class="container mt-4">
+                         <div class="container mt-4">
                             <div class="card shadow-sm">
                                 <div class="card-body">
 
@@ -551,7 +547,7 @@
 
             <div class="container mt-4">
 
-                <div class="card shadow-sm">
+                <div class="card shadow-sm section-box" id="instruction">
                     <div class="card-body">
 
                         <h2 class="card-title mb-4 text-center" id="online-form">
@@ -581,7 +577,7 @@
 
 
 
-            <div class="container mt-4">
+            <div class="container mt-4 section-box" id="links">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h2 class="card-title text-center mb-4">
@@ -625,7 +621,7 @@
             </div>
 
 
-            <div class="container mt-4">
+            <div class="container mt-4 section-box" id="docs">
 
                 <div class="card shadow-sm">
                     <div class="card-body">
@@ -670,7 +666,7 @@
             </div>
 
 
-            <div class="container mt-5">
+            <div class="container mt-5 section-box" id="faq">
                 <div class="card shadow-sm">
                     <div class="card-body">
 
