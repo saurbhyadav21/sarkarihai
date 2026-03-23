@@ -744,7 +744,7 @@
             <style>
 
             </style>
-            <<!-- Font Awesome -->
+            <!-- Font Awesome -->
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
                 @php
                     function isLocked($value)
@@ -755,7 +755,7 @@
                     $admitLocked = isLocked($job->admit_card);
                     $resultLocked = isLocked($job->result_date);
 
-                    echo $job->admit_card;
+                    echo $admitLocked;
                 @endphp
 
                 {{-- ADmit card --}}
