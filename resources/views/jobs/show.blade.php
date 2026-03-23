@@ -164,7 +164,7 @@
                     <i class="fa-solid fa-square-poll-vertical"></i> Syllabus
                 </button>
 
-                
+
                 <button onclick="scrollToSection('dates')">📅 Important Dates</button>
                 <button onclick="scrollToSection('fee')">💰 Application Fee</button>
                 <button onclick="scrollToSection('age')">🎯 Age Limit</button>
@@ -746,9 +746,19 @@
             </style>
             <<!-- Font Awesome -->
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+                @php
+                    function isLocked($value)
+                    {
+                        return strtolower(trim($value)) == 'to be announced' || empty($value);
+                    }
+                    $examLocked = isLocked($job->exam_date);
+                    $admitLocked = isLocked($job->admit_card);
+                    $resultLocked = isLocked($job->result_date);
+                @endphp
 
+                {{-- ADmit card --}}
                 <div class="container mt-3" id="admit">
-                    <div class="card admit-card border-0">
+                    <div class="card admit-card border-0 {{ $admitLocked ? 'locked-card' : '' }}">
 
                         <!-- Header -->
                         <div class="card-header d-flex justify-content-between align-items-center">
@@ -903,7 +913,6 @@
                     }
                 </style>
 
-
                 {{-- Result --}}
                 <div class="container mt-3" id="result">
                     <div class="card admit-card border-0">
@@ -973,85 +982,85 @@
                     </div>
                 </div>
 
-
                 {{-- syllbus --}}
                 <div class="container mt-3" id="syllabus">
-    <div class="card admit-card border-0">
+                    <div class="card admit-card border-0">
 
-        <!-- Header -->
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h6 class="mb-0 fw-bold text-white">
-                {{ $job->title }} – Syllabus
-            </h6>
-            <span class="badge status-badge">
-                📘 Available
-            </span>
-        </div>
+                        <!-- Header -->
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0 fw-bold text-white">
+                                {{ $job->title }} – Syllabus
+                            </h6>
+                            <span class="badge status-badge">
+                                📘 Available
+                            </span>
+                        </div>
 
-        <!-- Body -->
-        <div class="card-body p-3">
+                        <!-- Body -->
+                        <div class="card-body p-3">
 
-            <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
 
-                <div class="small fw-semibold text-primary">
-                    <i class="fa-solid fa-book"></i>
-                    Subject Wise Syllabus
+                                <div class="small fw-semibold text-primary">
+                                    <i class="fa-solid fa-book"></i>
+                                    Subject Wise Syllabus
+                                </div>
+
+                                <a href="{{ $job->syllabus_link }}" target="_blank" class="btn download-btn">
+                                    <i class="fa-solid fa-download"></i> Download PDF
+                                </a>
+
+                            </div>
+
+                            <!-- Subjects -->
+                            <div class="row small">
+
+                                <div class="col-6 mb-2 info-box">
+                                    <i class="fa-solid fa-brain"></i>
+                                    Reasoning
+                                </div>
+
+                                <div class="col-6 mb-2 info-box">
+                                    <i class="fa-solid fa-calculator"></i>
+                                    Mathematics
+                                </div>
+
+                                <div class="col-6 mb-2 info-box">
+                                    <i class="fa-solid fa-globe"></i>
+                                    General Knowledge
+                                </div>
+
+                                <div class="col-6 mb-2 info-box">
+                                    <i class="fa-solid fa-language"></i>
+                                    English / Hindi
+                                </div>
+
+                            </div>
+
+                            <!-- Steps -->
+                            <div class="steps-box mt-2">
+                                <i class="fa-solid fa-circle-info"></i>
+                                Download → Read → Prepare
+                            </div>
+
+                            <!-- Instructions -->
+                            <div class="instruction-box mt-2">
+                                <h6 class="mb-2">
+                                    <i class="fa-solid fa-circle-info"></i> Syllabus Details
+                                </h6>
+                                <ul class="mb-0 ps-3">
+                                    <li>Official syllabus PDF download karein.</li>
+                                    <li>Har subject ke topics check karein.</li>
+                                    <li>Important topics par focus karein.</li>
+                                    <li>Previous year questions practice karein.</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
-                <a href="{{ $job->syllabus_link }}" target="_blank"
-                   class="btn download-btn">
-                   <i class="fa-solid fa-download"></i> Download PDF
-                </a>
 
-            </div>
-
-            <!-- Subjects -->
-            <div class="row small">
-
-                <div class="col-6 mb-2 info-box">
-                    <i class="fa-solid fa-brain"></i>
-                    Reasoning
-                </div>
-
-                <div class="col-6 mb-2 info-box">
-                    <i class="fa-solid fa-calculator"></i>
-                    Mathematics
-                </div>
-
-                <div class="col-6 mb-2 info-box">
-                    <i class="fa-solid fa-globe"></i>
-                    General Knowledge
-                </div>
-
-                <div class="col-6 mb-2 info-box">
-                    <i class="fa-solid fa-language"></i>
-                    English / Hindi
-                </div>
-
-            </div>
-
-            <!-- Steps -->
-            <div class="steps-box mt-2">
-                <i class="fa-solid fa-circle-info"></i>
-                Download → Read → Prepare
-            </div>
-
-            <!-- Instructions -->
-            <div class="instruction-box mt-2">
-                <h6 class="mb-2">
-                    <i class="fa-solid fa-circle-info"></i> Syllabus Details
-                </h6>
-                <ul class="mb-0 ps-3">
-                    <li>Official syllabus PDF download karein.</li>
-                    <li>Har subject ke topics check karein.</li>
-                    <li>Important topics par focus karein.</li>
-                    <li>Previous year questions practice karein.</li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</div>
                 <div class="container mt-5 section-box" id="faq">
                     <div class="card shadow-sm">
                         <div class="card-body">
