@@ -76,78 +76,81 @@
             }
 
             .sticky-active {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 1340px;
-    z-index: 999;
-    background: #000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+                position: fixed;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                max-width: 1340px;
+                z-index: 999;
+                background: #000;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
 
-/* 👇 jab sticky ho tab content niche shift */
-.add-space {
-    margin-top: 80px; /* 👈 same height as menu */
-}
-#tabsSpacer {
-    transition: height 0.3s ease;
-}
-.add-offset {
-    padding-top: 120px;
-    margin-top: -120px;
-}
+            /* 👇 jab sticky ho tab content niche shift */
+            .add-space {
+                margin-top: 80px;
+                /* 👈 same height as menu */
+            }
 
-/* Tablet */
-@media (max-width: 992px) {
-    .add-offset {
-        padding-top: 100px;
-        margin-top: -100px;
-    }
-}
+            #tabsSpacer {
+                transition: height 0.3s ease;
+            }
 
-/* Mobile */
-@media (max-width: 576px) {
-    .add-offset {
-        padding-top: 140px;
-        margin-top: -140px;
-    }
-}
-html {
-    scroll-behavior: smooth;
-}
+            .add-offset {
+                padding-top: 120px;
+                margin-top: -120px;
+            }
+
+            /* Tablet */
+            @media (max-width: 992px) {
+                .add-offset {
+                    padding-top: 100px;
+                    margin-top: -100px;
+                }
+            }
+
+            /* Mobile */
+            @media (max-width: 576px) {
+                .add-offset {
+                    padding-top: 140px;
+                    margin-top: -140px;
+                }
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
         </style>
 
         <!-- JS -->
         <script>
-            
-function scrollToSection(id) {
+            function scrollToSection(id) {
 
-    // 👇 sabse pehle sab sections se remove
-    document.querySelectorAll('.add-offset').forEach(el => {
-        el.classList.remove('add-offset');
-    });
+                // 👇 sabse pehle sab sections se remove
+                document.querySelectorAll('.add-offset').forEach(el => {
+                    el.classList.remove('add-offset');
+                });
 
-    // 👇 current section me add
-    const target = document.getElementById(id);
-    target.classList.add('add-offset');
+                // 👇 current section me add
+                const target = document.getElementById(id);
+                target.classList.add('add-offset');
 
-    // 👇 scroll karo
-    target.scrollIntoView({
-        behavior: "smooth"
-    });
+                // 👇 scroll karo
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
 
-}
-</script>
-      
+            }
+        </script>
+
 
 
 
 
         <div class="container mt-3">
             <!-- Spacer (auto height milega) -->
-    <div id="tabsSpacer"></div>
+            <div id="tabsSpacer"></div>
             <!-- Section Tabs -->
             <div class="section-tabs mb-3" id="stickyTabs">
                 <button onclick="scrollToSection('admit')">
@@ -895,6 +898,155 @@ function scrollToSection(id) {
                     }
                 </style>
 
+
+                {{-- Result --}}
+                <div class="container mt-3" id="result">
+                    <div class="card admit-card border-0">
+
+                        <!-- Header -->
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0 fw-bold text-white">
+                                {{ $job->title }} – Result
+                            </h6>
+                            <span class="badge status-badge">
+                                🟢 Result Declared
+                            </span>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="card-body p-3">
+
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+
+                                <div class="small fw-semibold text-success">
+                                    <i class="fa-solid fa-calendar-check"></i>
+                                    Result Date: Coming Soon
+                                </div>
+
+                                <a href="{{ $job->result_link }}" target="_blank" class="btn download-btn">
+                                    <i class="fa-solid fa-square-poll-vertical"></i> Check Result
+                                </a>
+
+                            </div>
+
+                            <!-- Info -->
+                            <div class="row small">
+
+                                <div class="col-6 mb-2 info-box">
+                                    <i class="fa-solid fa-user"></i>
+                                    Login: Roll No / DOB
+                                </div>
+
+                                <div class="col-6 mb-2 info-box">
+                                    <i class="fa-solid fa-list"></i>
+                                    Merit List Available
+                                </div>
+
+                            </div>
+
+                            <!-- Steps -->
+                            <div class="steps-box mt-2">
+                                <i class="fa-solid fa-circle-info"></i>
+                                Login → View Result → Download
+                            </div>
+
+                            <!-- Instructions -->
+                            <div class="instruction-box mt-2">
+                                <h6 class="mb-2">
+                                    <i class="fa-solid fa-circle-info"></i> How to Check Result
+                                </h6>
+                                <ul class="mb-0 ps-3">
+                                    <li>Check Result button par click karein.</li>
+                                    <li>Apna Roll Number / Registration Number enter karein.</li>
+                                    <li>Date of Birth fill karein.</li>
+                                    <li>Submit button par click karein.</li>
+                                    <li>Result screen par show ho jayega.</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                {{-- syllbus --}}
+                <div class="container mt-3" id="syllabus">
+    <div class="card admit-card border-0">
+
+        <!-- Header -->
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h6 class="mb-0 fw-bold text-white">
+                {{ $job->title }} – Syllabus
+            </h6>
+            <span class="badge status-badge">
+                📘 Available
+            </span>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body p-3">
+
+            <div class="d-flex justify-content-between align-items-center mb-2">
+
+                <div class="small fw-semibold text-primary">
+                    <i class="fa-solid fa-book"></i>
+                    Subject Wise Syllabus
+                </div>
+
+                <a href="{{ $job->syllabus_link }}" target="_blank"
+                   class="btn download-btn">
+                   <i class="fa-solid fa-download"></i> Download PDF
+                </a>
+
+            </div>
+
+            <!-- Subjects -->
+            <div class="row small">
+
+                <div class="col-6 mb-2 info-box">
+                    <i class="fa-solid fa-brain"></i>
+                    Reasoning
+                </div>
+
+                <div class="col-6 mb-2 info-box">
+                    <i class="fa-solid fa-calculator"></i>
+                    Mathematics
+                </div>
+
+                <div class="col-6 mb-2 info-box">
+                    <i class="fa-solid fa-globe"></i>
+                    General Knowledge
+                </div>
+
+                <div class="col-6 mb-2 info-box">
+                    <i class="fa-solid fa-language"></i>
+                    English / Hindi
+                </div>
+
+            </div>
+
+            <!-- Steps -->
+            <div class="steps-box mt-2">
+                <i class="fa-solid fa-circle-info"></i>
+                Download → Read → Prepare
+            </div>
+
+            <!-- Instructions -->
+            <div class="instruction-box mt-2">
+                <h6 class="mb-2">
+                    <i class="fa-solid fa-circle-info"></i> Syllabus Details
+                </h6>
+                <ul class="mb-0 ps-3">
+                    <li>Official syllabus PDF download karein.</li>
+                    <li>Har subject ke topics check karein.</li>
+                    <li>Important topics par focus karein.</li>
+                    <li>Previous year questions practice karein.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
                 <div class="container mt-5 section-box" id="faq">
                     <div class="card shadow-sm">
                         <div class="card-body">
@@ -1034,22 +1186,22 @@ function scrollToSection(id) {
     </main>
 
     <script>
-    const tabs = document.getElementById("stickyTabs");
-    const content = document.getElementById("mainContent"); // 👈 neeche ka content wrapper
+        const tabs = document.getElementById("stickyTabs");
+        const content = document.getElementById("mainContent"); // 👈 neeche ka content wrapper
 
-    const offset = tabs.offsetTop;
-    const FIXED_HEIGHT = 80;
+        const offset = tabs.offsetTop;
+        const FIXED_HEIGHT = 80;
 
-    window.addEventListener("scroll", function () {
+        window.addEventListener("scroll", function() {
 
-        if (window.pageYOffset >= offset) {
-            tabs.classList.add("sticky-active");
-            content.classList.add("add-space");
-        } else {
-            tabs.classList.remove("sticky-active");
-            content.classList.remove("add-space");
-        }
+            if (window.pageYOffset >= offset) {
+                tabs.classList.add("sticky-active");
+                content.classList.add("add-space");
+            } else {
+                tabs.classList.remove("sticky-active");
+                content.classList.remove("add-space");
+            }
 
-    });
-</script>
+        });
+    </script>
 @endsection
