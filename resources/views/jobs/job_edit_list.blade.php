@@ -50,7 +50,7 @@
                                     <!-- Image -->
                                     <td>
                                         @if (!empty($job->image))
-                                            <img src="{{ asset('uploads/' . $job->image) }}" width="60" height="60"
+                                            <img src="{{ asset('/public/job-images/' . $job->image) }}" width="60" height="60"
                                                 style="object-fit:cover;">
                                         @else
                                             <span class="badge bg-danger">No Image</span>
