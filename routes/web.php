@@ -13,7 +13,7 @@ Route::get('/fact-checking-policy', [JobController::class, 'policy'])->name('pol
 Route::get('/job/create', [JobController::class, 'create'])->name('job.create');
 Route::post('/job/store', [JobController::class, 'store'])->name('job.store');
 
-
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 Route::get('/sarkari-naukri', [JobController::class, 'index'])->name('jobs.index'); // List all jobs
 Route::get('/sarkari-naukri/{slug}', [JobController::class, 'show'])->name('job.show'); // Show single job
