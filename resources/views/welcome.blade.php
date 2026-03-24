@@ -341,7 +341,7 @@
 
                         <div class="job-meta">
                             <span style="color: green; font-weight:600;">
-                                Exam Date : 2026-02-12
+                                2026-02-12
                             </span>
                             
                             |
