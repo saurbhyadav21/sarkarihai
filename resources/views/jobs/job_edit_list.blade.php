@@ -99,17 +99,15 @@
 
                                     <td>
                                         <!-- Delete Button -->
-                                    <form action="{{ route('job.destroy', $job->id) }}" method="POST"
-                                        style="display:inline-block;"
-                                        onsubmit="return confirm('Are you sure you want to delete this job?')">
+                                    <form action="{{ route('job.destroy', $job->id) }}" method="POST" style="display:inline-block;"
+      onsubmit="return confirm('Delete karna hai kya?')">
+    @csrf
+    @method('DELETE')
 
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            Delete
-                                        </button>
-                                    </form>
+    <button type="submit" class="btn btn-danger btn-sm">
+        Delete
+    </button>
+</form>
                                     </td>
 
                                     <td>

@@ -293,7 +293,19 @@ class JobController extends Controller
         $jobs = Job::latest()->get();
         return view('jobs/job_edit_list', compact('jobs'));
     }
+    public function destroy($id)
+{
+    $job = Job::findOrFail($id);
 
+    // Image delete (optional but recommended)
+    if ($job->image && file_exists(public_path('uploads/' . $job->image))) {
+        unlink(public_path('uploads/' . $job->image));
+    }
+
+    $job->delete();
+
+    return redirect()->back()->with('success', 'Job deleted successfully');
+}
 
     // Update Data
     public function update(Request $request, $id)
