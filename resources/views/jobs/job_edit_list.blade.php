@@ -59,8 +59,8 @@
 
                                     <!-- Admit Date -->
                                     <td>
-                                        @if (!empty($job->admit_date))
-                                            {{ $job->admit_date }}
+                                        @if (!empty($job->admit_card))
+                                            {{ $job->admit_card }}
                                         @else
                                             <span class="badge bg-danger">Not Announced</span>
                                         @endif
