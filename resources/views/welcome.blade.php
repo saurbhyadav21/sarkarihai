@@ -324,7 +324,7 @@
 
                             <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
                                 class="new-badge">
-                            <img src="https://sarkarihai.com/public/job-images" class="job-logo">
+                            <img src="https://sarkarihai.com/public/job-images/1774169048.png" class="job-logo">
 
                             <div>
                                 <div class="job-title ">
