@@ -50,8 +50,8 @@
                                     <!-- Image -->
                                     <td>
                                         @if (!empty($job->image))
-                                            <img src="{{ asset('/public/job-images/' . $job->image) }}" width="60" height="60"
-                                                style="object-fit:cover;">
+                                            <img src="{{ asset('/public/job-images/' . $job->image) }}" width="60"
+                                                height="60" style="object-fit:cover;">
                                         @else
                                             <span class="badge bg-danger">No Image</span>
                                         @endif
@@ -97,16 +97,17 @@
                                     </td>
 
                                     <!-- Delete Button -->
-    <form action="{{ route('job.destroy', $job->id) }}" method="POST" style="display:inline-block;"
-          onsubmit="return confirm('Are you sure you want to delete this job?')">
-        
-        @csrf
-        @method('DELETE')
+                                    <form action="{{ route('job.destroy', $job->id) }}" method="POST"
+                                        style="display:inline-block;"
+                                        onsubmit="return confirm('Are you sure you want to delete this job?')">
 
-        <button type="submit" class="btn btn-danger btn-sm">
-            Delete
-        </button>
-    </form>
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            Delete
+                                        </button>
+                                    </form>
 
                                     <td>
 
