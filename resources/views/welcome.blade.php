@@ -155,69 +155,69 @@
                     $salaries = explode('#', $job->post_salary);
                     $eligibilities = explode('#', $job->min_qulification);
                     $count = max(count($names), count($salaries), count($eligibilities));
-                    
+
                 @endphp
 
                 {{-- @for ($i = 0; $i < $count; $i++) --}}
-                    <div class="col-6 col-md-2">
+                <div class="col-6 col-md-2">
 
-                        <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
+                    <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
 
-                            <div class="job-box position-relative">
-                                @php
-                                    $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
-                                @endphp
+                        <div class="job-box position-relative">
+                            @php
+                                $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
+                            @endphp
 
-                                @if ($isNew)
-                                    <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
-                                        class="new-badge">
-                                @endif
-                                <img src="{{ asset('public/job-images/' . $job->image) }}" class="job-logo">
+                            @if ($isNew)
+                                <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                                    class="new-badge">
+                            @endif
+                            <img src="{{ asset('public/job-images/' . $job->image) }}" class="job-logo">
 
-                                <div>
-                                    <div class="job-title ">
-                                        {{-- {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }} --}}
-                                        {{ ucfirst($job->title) }}
-
-
-                                    </div>
+                            <div>
+                                <div class="job-title ">
+                                    {{-- {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }} --}}
+                                    {{ ucfirst($job->title) }}
 
 
                                 </div>
 
+
                             </div>
-                            @php
-                                $endDate = \Carbon\Carbon::parse($job->end_date);
-                                $today = \Carbon\Carbon::now();
 
-                                $daysLeft = $today->diffInDays($endDate, false); // negative bhi allow
+                        </div>
+                        @php
+                            $endDate = \Carbon\Carbon::parse($job->end_date);
+                            $today = \Carbon\Carbon::now();
 
-                                if ($daysLeft <= 7) {
-                                    $color = 'red'; // 1 week
-                                } elseif ($daysLeft <= 14) {
-                                    $color = 'orange'; // 2 week
-                                } else {
-                                    $color = 'green'; // more than 2 week
-                                }
-                            @endphp
+                            $daysLeft = $today->diffInDays($endDate, false); // negative bhi allow
 
-                            <div class="job-meta">
-                                <span style="color: green; font-weight:600;">
-                                    ₹{{ number_format($job->min_salary ?? 0) }} -
-                                    ₹{{ number_format($job->max_salary ?? 0) }}
-                                </span>
-                                |
-                                <span style="color: green; font-weight:600;">
-                                    {{ $job->min_qulification ?? '' }}
-                                </span>
-                                |
-                                <span style="color: {{ $color }}; font-weight:600;">
-                                    {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
-                                </span>
-                            </div>
-                        </a>
+                            if ($daysLeft <= 7) {
+                                $color = 'red'; // 1 week
+                            } elseif ($daysLeft <= 14) {
+                                $color = 'orange'; // 2 week
+                            } else {
+                                $color = 'green'; // more than 2 week
+                            }
+                        @endphp
 
-                    </div>
+                        <div class="job-meta">
+                            <span style="color: green; font-weight:600;">
+                                ₹{{ number_format($job->min_salary ?? 0) }} -
+                                ₹{{ number_format($job->max_salary ?? 0) }}
+                            </span>
+                            |
+                            <span style="color: green; font-weight:600;">
+                                {{ $job->min_qulification ?? '' }}
+                            </span>
+                            |
+                            <span style="color: {{ $color }}; font-weight:600;">
+                                {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+                            </span>
+                        </div>
+                    </a>
+
+                </div>
                 {{-- @endfor --}}
             @endforeach
             <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
@@ -230,6 +230,66 @@
 
 
 
+
+    <div class="container mt-4">
+        <h2 class="mb-3 c-t">
+
+            <span><b>Upcoming Job Deadlines</b></span>
+
+            <span class="last-update">
+                Last Updated : {{ now()->format('d-m-Y H:i') }}
+                <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
+            </span>
+
+        </h2>
+        <div class="row">
+            @foreach ($jobs_upcomming as $job)
+                @php
+                    $today = \Carbon\Carbon::today();
+                    $jobEnd = \Carbon\Carbon::parse($job->end_date);
+                    $diff = $today->diffInDays($jobEnd, false);
+
+                    if ($diff <= 3) {
+                        $cardColor = 'bg-danger text-white';
+                    } elseif ($diff <= 7) {
+                        $cardColor = 'bg-warning text-dark';
+                    } else {
+                        $cardColor = 'bg-success text-white';
+                    }
+                @endphp
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="card h-100 shadow-sm {{ $cardColor }}">
+                        <div class="card-body p-2 d-flex flex-column text-center">
+
+                            <!-- 👆 TOP: Title -->
+                            <h6 class="card-title fw-bold mb-2" style="font-size:14px;">
+                                {{ $job->title }}
+                            </h6>
+
+                            <!-- 👇 BOTTOM BLOCK -->
+                            <div class="mt-auto">
+
+                                <!-- Last Date -->
+                                <p class="mb-2" style="font-size:12px;">
+                                    <b>Last Date:</b>
+                                    {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+                                </p>
+
+                                <!-- Button -->
+                                <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}"
+                                    class="btn btn-sm btn-light w-100">
+                                    Apply Now
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
 
     <div class="container mt-4">
         <h2 class="mb-3 c-t">
@@ -685,109 +745,107 @@
 
     <style>
         .admit-card {
-    border-radius: 12px;
-    transition: 0.3s;
-}
+            border-radius: 12px;
+            transition: 0.3s;
+        }
 
-/* 🟢 Green - Released */
-.card-green {
-    background: #e6f4ea;
-    border-left: 5px solid #198754;
-}
+        /* 🟢 Green - Released */
+        .card-green {
+            background: #e6f4ea;
+            border-left: 5px solid #198754;
+        }
 
-/* 🟡 Yellow - Coming Soon */
-.card-yellow {
-    background: #fff8e1;
-    border-left: 5px solid #ffc107;
-}
+        /* 🟡 Yellow - Coming Soon */
+        .card-yellow {
+            background: #fff8e1;
+            border-left: 5px solid #ffc107;
+        }
 
-/* ⚪ Grey - Upcoming */
-.card-grey {
-    background: #f1f3f5;
-    border-left: 5px solid #6c757d;
-}
+        /* ⚪ Grey - Upcoming */
+        .card-grey {
+            background: #f1f3f5;
+            border-left: 5px solid #6c757d;
+        }
 
-/* Hover Effect */
-.admit-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
+        /* Hover Effect */
+        .admit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
 
-/* Badge style */
-.badge {
-    padding: 6px 10px;
-    font-size: 12px;
-    border-radius: 6px;
-}
+        /* Badge style */
+        .badge {
+            padding: 6px 10px;
+            font-size: 12px;
+            border-radius: 6px;
+        }
     </style>
     <div class="container mt-4">
 
-    <!-- Title -->
-    <h2 class="mb-4 text-center fw-bold">
-        Download Admit Card
-    </h2>
+        <!-- Title -->
+        <h2 class="mb-4 text-center fw-bold">
+            Download Admit Card
+        </h2>
 
-    <div class="row g-3">
+        <div class="row g-3">
 
-        @foreach($admitCard as $job)
+            @foreach ($admitCard as $job)
+                @php
+                    $today = now();
+                    $admitDate = \Carbon\Carbon::parse($job->admit_card);
 
-        @php
-            $today = now();
-            $admitDate = \Carbon\Carbon::parse($job->admit_card);
+                    $cardClass = '';
+                    $badge = '';
+                    $btnClass = '';
 
-            $cardClass = '';
-            $badge = '';
-            $btnClass = '';
+                    if ($admitDate <= $today) {
+                        $cardClass = 'card-green';
+                        $badge = '<span class="badge bg-success">Released</span>';
+                        $btnClass = 'btn-success';
+                    } elseif ($admitDate <= $today->copy()->addDays(7)) {
+                        $cardClass = 'card-yellow';
+                        $badge = '<span class="badge bg-warning text-dark">🔥 Soon</span>';
+                        $btnClass = 'btn-warning';
+                    } elseif ($admitDate <= $today->copy()->addDays(14)) {
+                        $cardClass = 'card-grey';
+                        $badge = '<span class="badge bg-secondary">Upcoming</span>';
+                        $btnClass = 'btn-secondary';
+                    }
+                @endphp
 
-            if ($admitDate <= $today) {
-                $cardClass = 'card-green';
-                $badge = '<span class="badge bg-success">Released</span>';
-                $btnClass = 'btn-success';
-            } elseif ($admitDate <= $today->copy()->addDays(7)) {
-                $cardClass = 'card-yellow';
-                $badge = '<span class="badge bg-warning text-dark">🔥 Soon</span>';
-                $btnClass = 'btn-warning';
-            } elseif ($admitDate <= $today->copy()->addDays(14)) {
-                $cardClass = 'card-grey';
-                $badge = '<span class="badge bg-secondary">Upcoming</span>';
-                $btnClass = 'btn-secondary';
-            }
-        @endphp
+                <div class="col-md-6 col-lg-4">
+                    <div class="card admit-card shadow-sm h-100 {{ $cardClass }}">
 
-        <div class="col-md-6 col-lg-4">
-            <div class="card admit-card shadow-sm h-100 {{ $cardClass }}">
+                        <div class="card-body d-flex flex-column">
 
-                <div class="card-body d-flex flex-column">
+                            <!-- Job Title -->
+                            <h5 class="fw-bold">
+                                {{ $job->title }}
+                            </h5>
 
-                    <!-- Job Title -->
-                    <h5 class="fw-bold">
-                        {{ $job->title }}
-                    </h5>
+                            <!-- Organization -->
+                            <p class="text-muted mb-2">
+                                {{ $job->organization }}
+                            </p>
 
-                    <!-- Organization -->
-                    <p class="text-muted mb-2">
-                        {{ $job->organization }}
-                    </p>
+                            <!-- Exam Date -->
+                            <p class="mb-1">
+                                📅 Exam Date:
+                                <b>{{ \Carbon\Carbon::parse($job->exam_date)->format('d M Y') }}</b>
+                            </p>
 
-                    <!-- Exam Date -->
-                    <p class="mb-1">
-                        📅 Exam Date: 
-                        <b>{{ \Carbon\Carbon::parse($job->exam_date)->format('d M Y') }}</b>
-                    </p>
+                            <!-- Admit Card Status -->
+                            <p class="mb-3">
+                                🪪 Admit Card: {!! $badge !!}
+                            </p>
 
-                    <!-- Admit Card Status -->
-                    <p class="mb-3">
-                        🪪 Admit Card: {!! $badge !!}
-                    </p>
+                            <!-- Button -->
 
-                    <!-- Button -->
-                    
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
+
         </div>
-
-        @endforeach
-
     </div>
-</div>
 @endsection
