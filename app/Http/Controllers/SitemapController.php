@@ -5,22 +5,72 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Response;
 use App\Models\Job;
 use Illuminate\Support\Str;
+use App\Models\State; // Make sure you have a Job model
+use App\Models\Category; // Make sure you have a Job model
+
 
 class SitemapController extends Controller
 {
     public function index()
     {
         $jobs = Job::latest()->get();
+        $states = State::all();
+        $categories = Category::all();
+
+
 
         $xml = '<?xml version="1.0" encoding="UTF-8"?>';
         $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
-        $xml .= '<url>
-                <loc>' . url('/') . '</loc>
-                <priority>1.0</priority>
-            </url>';
+        // ✅ STATIC PAGES
+        $staticPages = [
+            '/',
+            '/about',
+            '/contact',
+            '/privacy-policy',
+            '/disclaimer',
+            '/terms-and-conditions',
+            '/fact-checking-policy',
 
+        ];
+
+        foreach ($staticPages as $page) {
+            $xml .= '<url>
+                    <loc>' . url($page) . '</loc>
+                    <priority>0.8</priority>
+                </url>';
+        }
+
+
+        // ✅ STATE PAGES
+        foreach ($states as $state) {
+
+            $stateSlug = Str::slug($state->name);
+
+            $xml .= '<url>
+                    <loc>' . url('/state/' . $stateSlug . '/jobs') . '</loc>
+                    <priority>0.7</priority>
+                </url>';
+        }
+
+        // ✅ STATE + CATEGORY PAGES
+        foreach ($states as $state) {
+            foreach ($categories as $category) {
+
+                $stateSlug = Str::slug($state->name);
+                $catSlug = Str::slug($category->name);
+
+                $xml .= '<url>
+                        <loc>' . url('/jobs/' . $stateSlug . '/' . $catSlug) . '</loc>
+                        <priority>0.7</priority>
+                    </url>';
+            }
+        }
+
+
+        // ✅ DYNAMIC JOBS
         foreach ($jobs as $job) {
+
             $slug = Str::slug($job->title);
 
             $xml .= '<url>
