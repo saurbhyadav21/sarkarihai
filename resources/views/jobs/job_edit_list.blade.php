@@ -29,6 +29,11 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Title</th>
+                                <th>image</th>
+                                <th>admit date</th>
+                                <th>exam date</th>
+                                <th>result date</th>
+                                <th>syllabus</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -41,6 +46,57 @@
                                     <td>{{ $job->id }}</td>
 
                                     <td>{{ $job->title }}</td>
+
+                                    <!-- Image -->
+                                    <td>
+                                        @if (!empty($job->image))
+                                            <img src="{{ asset('uploads/' . $job->image) }}" width="60" height="60"
+                                                style="object-fit:cover;">
+                                        @else
+                                            <span class="badge bg-danger">No Image</span>
+                                        @endif
+                                    </td>
+
+                                    <!-- Admit Date -->
+                                    <td>
+                                        @if (!empty($job->admit_date))
+                                            {{ $job->admit_date }}
+                                        @else
+                                            <span class="badge bg-danger">Not Announced</span>
+                                        @endif
+                                    </td>
+
+                                    <!-- Exam Date -->
+                                    <td>
+                                        @if (!empty($job->exam_date))
+                                            {{ $job->exam_date }}
+                                        @else
+                                            <span class="badge bg-danger">Not Announced</span>
+                                        @endif
+                                    </td>
+
+                                    <!-- Result Date -->
+                                    <td>
+                                        @if (!empty($job->result_date))
+                                            {{ $job->result_date }}
+                                        @else
+                                            <span class="badge bg-danger">Not Announced</span>
+                                        @endif
+                                    </td>
+
+                                    <!-- Syllabus -->
+                                    <td>
+                                        @if (!empty($job->syllabus))
+                                            <a href="{{ $job->syllabus }}" target="_blank"
+                                                class="btn btn-success btn-sm">
+                                                View
+                                            </a>
+                                        @else
+                                            <span class="badge bg-danger">Not Announced</span>
+                                        @endif
+                                    </td>
+
+
 
                                     <td>
 
