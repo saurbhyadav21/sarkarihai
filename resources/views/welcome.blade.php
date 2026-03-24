@@ -341,12 +341,12 @@
 
                         <div class="job-meta">
                             <span style="color: green; font-weight:600;margin-left: 10px;">
-                                2026-02-12
+                            📝 2026-02-12
                             </span>
                             
-                           
+                        
                             <span style="color: red;font-weight: 600;float: right;margin-right: 5px;">
-                                7 Days 10Hr 40min Left
+                            ⏳7 Days 10Hr 40min Left
                             </span>
                         </div>
                     </a>
