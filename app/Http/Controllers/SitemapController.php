@@ -10,7 +10,7 @@ class SitemapController extends Controller
     public function index()
     {
         $jobs = Job::latest()->get();
-            dd($jobs);
+            
         return response()   
             ->view('sitemap', compact('jobs'))
             ->header('Content-Type', 'application/xml');
