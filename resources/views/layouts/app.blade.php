@@ -24,11 +24,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        {{ isset($seo['title']) ? $seo['title'] . ' | Sarkarihai' : 'Sarkarihai – Latest Sarkari Naukri, Results, Admit Card Updates' }}
+        {{ isset($seo['title']) ? $seo['title'] . ' | Sarkarihai' : 'Sarkarihai.com – Latest Sarkari Naukri 2026, Results 2026, Sarkari Results Official, Admit Card' }}
     </title>
 
     <meta name="description"
-        content="{{ $seo['description'] ?? 'Latest government jobs updates, results and admit cards in India at Sarkarihai.' }}">
+        content="{{ $seo['description'] ?? 'sarkarihai.com is the official website for Sarkari Result in India, providing latest Sarkari Result 2026 updates, Sarkari Naukri, government jobs, admit cards and exam results' }}">
 
     <meta name="keywords" content="{{ $seo['keywords'] ?? 'sarkari naukri, govt jobs, railway jobs' }}">
 
