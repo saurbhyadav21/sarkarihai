@@ -315,7 +315,7 @@
                     }
                 @endphp
 
-                <div class="col-6 col-md-2-4">
+                <div class="col-6 col-md-2">
 
                     <a href="https://sarkarihai.com/sarkari-naukri/bpssc-enforcement-sub-inspector-esi-recruitment-2024"
                         class="job-link">
