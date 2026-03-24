@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Response;
@@ -10,7 +11,8 @@ class SitemapController extends Controller
     {
         $jobs = Job::latest()->get();
 
-        return response()->view('sitemap', compact('jobs'))
-            ->header('Content-Type', 'text/xml');
+        return response()
+            ->view('sitemap', compact('jobs'))
+            ->header('Content-Type', 'application/xml');
     }
 }
