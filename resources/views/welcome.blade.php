@@ -341,8 +341,7 @@
 
                         <div class="job-meta">
                             <span style="color: green; font-weight:600;">
-                                ₹35,400 -
-                                ₹112,400
+                                Exam Date : 2026-02-12
                             </span>
                             |
                             <span style="color: green; font-weight:600;">
@@ -350,7 +349,7 @@
                             </span>
                             |
                             <span style="color: red; font-weight:600;">
-                                03 Apr 2024
+                                7 Days 10Hr 40min Left
                             </span>
                         </div>
                     </a>
