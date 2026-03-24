@@ -338,7 +338,8 @@
                                     RPSC Assistant Engineer (AE) Mains Admit Card 2026 
  
 
-                                </div><p>: Check Exam Date & Download Link</p>
+                                </div>
+                                <p style="font-size: 9px;margin-bottom: 0px;">Check Exam Date & Download Link</p>
 
 
                             </div>
