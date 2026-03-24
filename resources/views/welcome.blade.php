@@ -329,7 +329,7 @@
                             <div>
                                 <div class="job-title ">
 
-                                    BPSSC Enforcement Sub Inspector ESI Recruitment 2024
+                                    RPSC Assistant Engineer (AE) Mains Admit Card 2026 : Check Exam Date & Download Link
 
 
                                 </div>
@@ -340,7 +340,7 @@
                         </div>
 
                         <div class="job-meta">
-                            <span style="color: green; font-weight:600;margin-left: 10px;">
+                            <span style="color: green; font-weight:600;margin-left: 0px;">
                             📝 2026-02-12
                             </span>
                             
