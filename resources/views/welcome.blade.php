@@ -343,10 +343,7 @@
                             <span style="color: green; font-weight:600;">
                                 Exam Date : 2026-02-12
                             </span>
-                            |
-                            <span style="color: green; font-weight:600;">
-                                Graduate
-                            </span>
+                            
                             |
                             <span style="color: red; font-weight:600;">
                                 7 Days 10Hr 40min Left
