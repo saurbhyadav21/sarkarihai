@@ -315,34 +315,46 @@
                     }
                 @endphp
 
-                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
-                    <div class="card h-100 shadow-sm {{ $cardColor }}">
-                        <div class="card-body p-2 d-flex flex-column text-center">
+                <div class="col-6 col-md-2">
 
-                            <!-- 👆 TOP: Title -->
-                            <h6 class="card-title fw-bold mb-2" style="font-size:14px;">
-                                {{ $job->title }}
-                            </h6>
+                    <a href="https://sarkarihai.com/sarkari-naukri/bpssc-enforcement-sub-inspector-esi-recruitment-2024"
+                        class="job-link">
 
-                            <!-- 👇 BOTTOM BLOCK -->
-                            <div class="mt-auto">
+                        <div class="job-box position-relative">
 
-                                <!-- Last Date -->
-                                <p class="mb-2" style="font-size:12px;">
-                                    <b>Last Date:</b>
-                                    {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
-                                </p>
+                            <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                                class="new-badge">
+                            <img src="https://sarkarihai.com/public/job-images" class="job-logo">
 
-                                <!-- Button -->
-                                <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}"
-                                    class="btn btn-sm btn-light w-100">
-                                    Apply Now
-                                </a>
+                            <div>
+                                <div class="job-title ">
+
+                                    BPSSC Enforcement Sub Inspector ESI Recruitment 2024
+
+
+                                </div>
+
 
                             </div>
 
                         </div>
-                    </div>
+
+                        <div class="job-meta">
+                            <span style="color: green; font-weight:600;">
+                                ₹35,400 -
+                                ₹112,400
+                            </span>
+                            |
+                            <span style="color: green; font-weight:600;">
+                                Graduate
+                            </span>
+                            |
+                            <span style="color: red; font-weight:600;">
+                                03 Apr 2024
+                            </span>
+                        </div>
+                    </a>
+
                 </div>
             @endforeach
         </div>
