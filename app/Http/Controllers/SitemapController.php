@@ -44,13 +44,27 @@ class SitemapController extends Controller
 
         // ✅ STATE PAGES
         foreach ($states as $state) {
+            foreach ($categories as $category) {
 
-            $stateSlug = Str::slug($state->name);
+                $stateSlug = Str::slug($state->name);
+                $catSlug = Str::slug($category->name);
 
-            $xml .= '<url>
-                    <loc>' . url('/state/' . $stateSlug . '/jobs') . '</loc>
-                    <priority>0.7</priority>
-                </url>';
+                // ✅ latest job nikal lo us state + category ke liye
+                $latestJob = Job::where('state', $state->name)
+                                ->where('category', $category->name)
+                                ->latest('updated_at')
+                                ->first();
+
+                // agar job exist karti hai tabhi add karo
+                if ($latestJob) {
+
+                    $xml .= '<url>
+                                <loc>' . url('/jobs/' . $stateSlug . '/' . $catSlug) . '</loc>
+                                <lastmod>' . $latestJob->updated_at->toAtomString() . '</lastmod>
+                                <priority>0.7</priority>
+                            </url>';
+                }
+            }
         }
 
         // ✅ STATE + CATEGORY PAGES
@@ -62,6 +76,7 @@ class SitemapController extends Controller
 
                 $xml .= '<url>
                         <loc>' . url('/jobs/' . $stateSlug . '/' . $catSlug) . '</loc>
+                        
                         <priority>0.7</priority>
                     </url>';
             }
