@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\SitemapController;
 
 Route::get('/', [JobController::class, 'landing'])->name('landing'); // Landing page
 Route::get('/contact', [JobController::class, 'contact'])->name('contact'); // Landing page
