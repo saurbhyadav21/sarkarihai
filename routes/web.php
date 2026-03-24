@@ -22,7 +22,7 @@ Route::get('/job/{id}/edit', [JobController::class, 'edit'])->name('job.edit');
 Route::post('/job/{id}/update', [JobController::class, 'update'])->name('job.update');
 Route::get('/job/edit-list', [JobController::class, 'editList'])->name('job.edit.list');
 Route::get('/add-job', [JobController::class, 'addJob'])->name('job.addjob');
-
+Route::delete('/job/{id}', [JobController::class, 'destroy'])->name('job.destroy');
 
 // Route::get('/add-job', function () {
 //     return view('jobs/add-job');
