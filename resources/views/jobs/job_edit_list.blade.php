@@ -34,6 +34,7 @@
                                 <th>exam date</th>
                                 <th>result date</th>
                                 <th>syllabus</th>
+                                <th>Delete</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -96,7 +97,8 @@
                                         @endif
                                     </td>
 
-                                    <!-- Delete Button -->
+                                    <td>
+                                        <!-- Delete Button -->
                                     <form action="{{ route('job.destroy', $job->id) }}" method="POST"
                                         style="display:inline-block;"
                                         onsubmit="return confirm('Are you sure you want to delete this job?')">
@@ -108,6 +110,7 @@
                                             Delete
                                         </button>
                                     </form>
+                                    </td>
 
                                     <td>
 
