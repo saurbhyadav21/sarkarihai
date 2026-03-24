@@ -22,23 +22,23 @@ class SitemapController extends Controller
         $xml = '<?xml version="1.0" encoding="UTF-8"?>';
         $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
-        // ✅ STATIC PAGES
         $staticPages = [
-            '/',
-            '/about',
-            '/contact',
-            '/privacy-policy',
-            '/disclaimer',
-            '/terms-and-conditions',
-            '/fact-checking-policy',
-
+            ['url' => '/', 'priority' => '1.0'],
+            ['url' => '/about', 'priority' => '0.8'],
+            ['url' => '/contact', 'priority' => '0.7'],
+            ['url' => '/privacy-policy', 'priority' => '0.6'],
+            ['url' => '/disclaimer', 'priority' => '0.6'],
+            ['url' => '/terms-and-conditions', 'priority' => '0.6'],
+            ['url' => '/fact-checking-policy', 'priority' => '0.6'],
         ];
 
         foreach ($staticPages as $page) {
+
             $xml .= '<url>
-                    <loc>' . url($page) . '</loc>
-                    <priority>0.8</priority>
-                </url>';
+                        <loc>' . url($page['url']) . '</loc>
+                        <lastmod>' . now()->toAtomString() . '</lastmod>
+                        <priority>' . $page['priority'] . '</priority>
+                    </url>';
         }
 
 
