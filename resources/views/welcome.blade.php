@@ -339,7 +339,7 @@
  
 
                                 </div>
-                                <p style="font-size: 9px;margin-bottom: 0px;">Check Exam Date & Download Link</p>
+                                <p style="font-size: 10px;margin-bottom: 0px;">Check Exam Date & Download Link</p>
 
 
                             </div>
@@ -348,13 +348,13 @@
 
                         <div class="job-meta">
                             <span style="color: green; font-weight:600;margin-left: 0px;">
-                            📝 2026-02-12
+                            📝 Exam Date: 12 Feb 2026 | ⏳ 7 Days 10 Hours Left
                             </span>
                             
                         
-                            <span style="color: red;font-weight: 600;float: right;margin-right: 5px;">
+                            {{-- <span style="color: red;font-weight: 600;float: right;margin-right: 5px;">
                             ⏳7 Days 10Hr 40min Left
-                            </span>
+                            </span> --}}
                         </div>
                     </a>
 
