@@ -32,7 +32,8 @@ class SitemapController extends Controller
 
         $xml .= '</urlset>';
 
-        return response($xml)
-            ->header('Content-Type', 'text/xml');
+        return response($xml, 200, [
+            'Content-Type' => 'application/xml'
+        ]);
     }
 }
