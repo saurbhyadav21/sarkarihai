@@ -335,10 +335,10 @@
                             <div>
                                 <div class="job-title ">
 
-                                    RPSC Assistant Engineer (AE) Mains Admit Card 2026 : Check Exam Date & Download Link
+                                    RPSC Assistant Engineer (AE) Mains Admit Card 2026 
  
 
-                                </div>
+                                </div>: Check Exam Date & Download Link
 
 
                             </div>
