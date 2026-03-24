@@ -423,6 +423,7 @@ class JobController extends Controller
             'post_salary'          => $json['post_salary'] ?? null,
             'instruction'          => $json['instruction'] ?? null,
             'doc'          => $json['doc'] ?? null,
+            'link'          => $json['link'] ?? null,
 
         ];
         // $data = [
