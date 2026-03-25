@@ -611,6 +611,13 @@ class JobController extends Controller
         // 1️⃣ Slug se admit card fetch karo
         $admitCard = AdmitCard::where('slug', $slug)->firstOrFail();
 
+        // 👉 Direct job fetch using job_id
+        $job = null;
+        if ($admitCard->job_id) {
+            $job = Job::where('id', $admitCard->job_id)->first();
+        }
+
+
         // 2️⃣ Only upcoming exams filter karo
         $exams = [];
         if ($admitCard->exam_dates) {
@@ -632,6 +639,6 @@ class JobController extends Controller
         $admitCard->exam_list = $exams;
 
         // 3️⃣ View return karo
-        return view('jobs/admitcardshow', compact('admitCard'));
+        return view('jobs/admitcardshow', compact('admitCard', 'job'));
     }
 }
