@@ -799,8 +799,12 @@
                         <h6 class="mb-0 fw-bold text-white">
                             {{ $job->title }} – Admit Card
                         </h6>
-                        <span class="badge status-badge">
-                            🟢 Released
+                        <span
+                            class="badge status-badge 
+            {{ $admitLocked ? 'bg-dark' : 'bg-light text-success' }}">
+
+                            {{ $admitLocked ? '🔒 Not Released' : '🟢 Released' }}
+
                         </span>
                     </div>
 
