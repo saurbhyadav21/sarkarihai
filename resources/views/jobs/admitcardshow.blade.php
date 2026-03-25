@@ -109,7 +109,11 @@
                                             <li><strong>Exam Date:</strong>
                                                 {{ $job->exam_date }}
                                             </li>
-                                            {{-- <li><strong>Exam Date:</strong> {{ $job->exam_date ?? 'Update Soon' }}</li> --}}
+                                            <li>
+    <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}" class="btn btn-success">
+        View Details • Check Official Notification • Apply Now
+    </a>
+</li>
                                         </ul>
 
                                     <p>
