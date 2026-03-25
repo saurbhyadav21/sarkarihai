@@ -13,7 +13,7 @@ class AdmitCard extends Model
     protected $table = 'admit_card'; // your table name
     protected $guarded = [];   // allow mass assignment for all fields
 
-    protected $fillable = ['title', 'exam_dates', 'slug'];
+    // protected $fillable = ['title', 'exam_dates', 'slug'];
 
     protected static function booted()
     {
