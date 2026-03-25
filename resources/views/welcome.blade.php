@@ -322,7 +322,7 @@
 
                                 <div>
                                     <div class="job-title">
-                                        {{ $job->job_title }} - {{ $exam['name'] }} - Admit Card Out
+                                        {{ $job->job_title }} <br> {{ $exam['name'] }} - Admit Card Out
                                     </div>
 
                                     {{-- <p style="font-size: 10px;margin-bottom:0;">
