@@ -60,7 +60,7 @@
 
         @if($admit && $admit->logo)
             <br><br>
-            <img src="{{ asset('job-images/'.$admit->logo) }}" width="120">
+            <img src="{{ asset('public/job-images/'.$admit->logo) }}" width="120">
         @endif
     </div>
 
