@@ -30,7 +30,7 @@ Route::delete('/job/{id}', [JobController::class, 'destroy'])->name('job.destroy
 // });
 
 Route::post('/add-job', [JobController::class, 'storeJson'])->name('job.store.json');
-Route::post('/add-admit', [JobController::class, 'editStoreJson'])->name('job.editStore.json');
+
 
 
 Route::get('/state/{state}/jobs', [JobController::class, 'stateJobs'])->name('state.jobs');
@@ -41,3 +41,4 @@ Route::get('/jobs/{state}/{category}', [JobController::class, 'stateCategoryJobs
 
 //admit card edit
 Route::get('/job/{id}/admit', [JobController::class, 'admitEdit'])->name('job.admitEdit');
+Route::post('/add-admit', [JobController::class, 'admitStoreJson'])->name('job.editStore.json');
