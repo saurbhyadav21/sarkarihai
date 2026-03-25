@@ -124,8 +124,7 @@ Admit Card पर दिए गए <strong>Exam Date, Exam Center, Shift Timing,
 <strong>Admit Card के साथ एक वैध ID Proof</strong> अवश्य लेकर जाएं।
 </p>
 
-                                    <a href="#date-fee" class="btn btn-success">Read Official
-                                        Notification / Apply Online</a>
+                                    
 
                                 </div>
                             </div>
