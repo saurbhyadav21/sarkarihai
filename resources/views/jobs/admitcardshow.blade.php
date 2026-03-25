@@ -452,7 +452,9 @@
         @endif
 
     </div>
-    <script type="application/ld+json">
+    
+@endsection
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -484,4 +486,3 @@
   ]
 }
 </script>
-@endsection
