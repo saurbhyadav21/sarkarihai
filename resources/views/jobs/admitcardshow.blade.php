@@ -9,7 +9,16 @@
 @endsection
 
 @section('content')
+    <style>
+        .section-box .card {
+            border-radius: 12px;
+            transition: 0.3s;
+        }
 
+        .section-box .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
     <div class="container mt-4">
         <div class="container mt-3">
             <img src="https://sarkarihai.com/public/job-images/1774179425.png" class="img-fluid banner-img" alt="Job Image">
