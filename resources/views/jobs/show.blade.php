@@ -784,7 +784,7 @@
                 {
                     return trim($value) == 'To Be Announced' || empty($value);
                 }
-                $examLocked = isLocked($job->exam_date);
+                
                 $admitLocked = isLocked($job->admit_card);
                 $resultLocked = isLocked($job->result_date);
 
