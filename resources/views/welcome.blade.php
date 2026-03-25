@@ -311,7 +311,7 @@
                 @foreach ($job->exam_list as $exam)
                     <div class="col-6 col-md-5th">
 
-                        <a href="#" class="job-link">
+                        <a href="{{ route('admit.show', $job->slug) }}" class="job-link">
 
                             <div class="job-box position-relative">
 
