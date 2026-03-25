@@ -811,24 +811,23 @@
                     <div class="card-body p-3">
 
                         <!-- Top Info -->
-                        <div class="d-flex justify-content-between align-items-center flex-wrap mb-2">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
 
-                            <div class="small fw-semibold text-primary">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                Exam Dates :
+                            <!-- Exam Dates -->
+                            <div class="small fw-semibold text-primary flex-grow-1">
+                                <div class="mb-1">
+                                    <i class="fa-solid fa-calendar-days"></i> <strong>Exam Dates:</strong>
+                                </div>
+
                                 @if (!empty($admitCard->exam_dates))
-                                    @php
-                                        $dates = explode('#', $admitCard->exam_dates);
-                                    @endphp
+                                    @php $dates = explode('#', $admitCard->exam_dates); @endphp
 
                                     @foreach ($dates as $date)
-                                        @php
-                                            $data = explode('$', $date);
-                                        @endphp
+                                        @php $data = explode('$', $date); @endphp
 
                                         @if (count($data) == 2)
-                                            <div>
-                                                {{ $loop->iteration }}. {{ trim($data[0]) }} -
+                                            <div class="d-flex justify-content-between align-items-center exam-row">
+                                                <span>{{ $loop->iteration }}. {{ trim($data[0]) }}</span>
                                                 <span class="badge bg-primary">
                                                     {{ date('d M Y', strtotime($data[1])) }}
                                                 </span>
@@ -836,28 +835,29 @@
                                         @endif
                                     @endforeach
                                 @else
-                                    <span class="text-muted">Exam Date: Coming Soon</span>
+                                    <span class="text-muted">Coming Soon</span>
                                 @endif
                             </div>
 
-                            <!-- View Details Button -->
-                            <a href="{{ url('admit-card/' . $admitCard->slug) }}" class="btn view-btn">
-                                🔍 View Details
-                            </a>
+                            <!-- Button -->
+                            <div>
+                                <a href="{{ url('admit-card/' . $admitCard->slug) }}" class="btn view-btn">
+                                    🔍 View Details
+                                </a>
+                            </div>
 
                         </div>
 
                         <!-- Info Grid -->
-                        <div class="row small text-dark g-3">
+                        <div class="row g-3">
 
                             <!-- Release Date -->
                             <div class="col-md-6">
-                                <div class="info-box d-flex align-items-center justify-content-between">
+                                <div class="info-box d-flex justify-content-between align-items-center">
                                     <span>
                                         <i class="fa-solid fa-calendar-check text-success"></i>
                                         Admit Card Release
                                     </span>
-
                                     <span class="badge bg-success">
                                         {{ !empty($admitCard->admit_card_release_date)
                                             ? date('d M Y', strtotime($admitCard->admit_card_release_date))
@@ -866,27 +866,28 @@
                                 </div>
                             </div>
 
-                            <!-- Official Links -->
+                            <!-- Important Links -->
                             <div class="col-md-6">
                                 <div class="info-box">
-                                    <i class="fa-solid fa-link text-primary"></i>
-                                    <strong>Important Links</strong>
+                                    <div class="mb-1">
+                                        <i class="fa-solid fa-link text-primary"></i>
+                                        <strong>Important Links</strong>
+                                    </div>
 
                                     @if (!empty($admitCard->official_link))
                                         @php $links = explode('#', $admitCard->official_link); @endphp
 
-                                        <div class="mt-1">
-                                            @foreach ($links as $link)
-                                                @php $data = explode('$', $link); @endphp
+                                        @foreach ($links as $link)
+                                            @php $data = explode('$', $link); @endphp
 
-                                                @if (count($data) == 2)
-                                                    <a href="{{ trim($data[1]) }}" target="_blank"
-                                                        class="d-block text-decoration-none small link-item">
-                                                        👉 {{ trim($data[0]) }}
-                                                    </a>
-                                                @endif
-                                            @endforeach
-                                        </div>
+                                            @if (count($data) == 2)
+                                                <a href="{{ trim($data[1]) }}" target="_blank"
+                                                    class="d-flex justify-content-between align-items-center link-item">
+                                                    <span>👉 {{ trim($data[0]) }}</span>
+                                                    <span class="badge bg-light text-primary">Open</span>
+                                                </a>
+                                            @endif
+                                        @endforeach
                                     @endif
                                 </div>
                             </div>
@@ -903,13 +904,14 @@
                                     @if (!empty($admitCard->how_to_download_admit_card))
                                         @php $steps = explode('#', $admitCard->how_to_download_admit_card); @endphp
 
-                                        <ul class="mb-0 ps-3">
-                                            @foreach ($steps as $step)
-                                                @if (!empty(trim($step)))
-                                                    <li>{{ trim($step) }}</li>
-                                                @endif
-                                            @endforeach
-                                        </ul>
+                                        @foreach ($steps as $step)
+                                            @if (!empty(trim($step)))
+                                                <div class="step-item">
+                                                    <span class="step-badge">{{ $loop->iteration }}</span>
+                                                    <span>{{ trim($step) }}</span>
+                                                </div>
+                                            @endif
+                                        @endforeach
                                     @endif
 
                                 </div>
@@ -917,14 +919,8 @@
 
                         </div>
 
-                        <!-- Quick Steps -->
-                        {{-- <div class="steps-box mt-2">
-                            <i class="fa-solid fa-circle-info"></i>
-                            Login → Download → Print
-                        </div> --}}
-
                         <!-- Warning -->
-                        <div class="warning-box mt-2">
+                        <div class="warning-box mt-3">
                             ⚠️ Admit Card is mandatory for exam entry
                         </div>
 
