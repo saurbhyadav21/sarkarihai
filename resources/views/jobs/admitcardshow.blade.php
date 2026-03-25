@@ -11,7 +11,9 @@
 @section('content')
 
 <div class="container mt-4">
-
+    <div class="container mt-3">
+            <img src="{{ asset('public/job-images/' . $job->image) }}" class="img-fluid banner-img" alt="Job Image">
+        </div>
     <!-- Title -->
     <div class="card shadow mb-3">
         <div class="card-body text-center">
