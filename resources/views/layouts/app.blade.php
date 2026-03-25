@@ -170,7 +170,7 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Admit Card</a>
+                            <a class="nav-link" href="/admit-cards">Admit Card</a>
                         </li>
 
                         <li class="nav-item">
