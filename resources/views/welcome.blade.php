@@ -322,24 +322,22 @@
 
                                 <div>
                                     <div class="job-title">
-                                        {{ $job->title }}
+                                        {{ $job->title }} - {{ $exam['name'] }} - Admit Card Out
                                     </div>
 
-                                    <p style="font-size: 10px;margin-bottom:0;">
+                                    {{-- <p style="font-size: 10px;margin-bottom:0;">
                                         {{ $exam['name'] }}
-                                    </p>
+                                    </p> --}}
                                 </div>
 
                             </div>
 
                             <div class="job-meta">
                                 <span style="color: green; font-weight:600;">
-                                    📝 Exam Date: {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}
-                                    <br>
-                                    ⏳ <span class="countdown" data-date="{{ $exam['date'] }}"></span>
+                                    📝 Exam Date: {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }} ⏳
+                                    <span class="countdown" data-date="{{ $exam['date'] }}" style="margin-left: 5px;"></span>
                                 </span>
                             </div>
-
                         </a>
 
                     </div>
