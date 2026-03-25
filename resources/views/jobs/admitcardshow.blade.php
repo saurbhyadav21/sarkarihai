@@ -27,7 +27,7 @@
                             <div class="card shadow">
                                 <div class="card-header bg-primary text-white">
                                     <h1 class="mb-0">
-                                        SSC Combined Graduate Level CGL Recruitment 2025
+                                        {{ $job->title }} - Admit Card 2026 Out
                                     </h1>
                                 </div>
                                 <div class="card-body">
