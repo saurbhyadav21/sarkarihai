@@ -485,7 +485,8 @@ class JobController extends Controller
 
     public function admitStoreJson(Request $request)
     {
-        $request->validate([
+    dd($request);    
+    $request->validate([
             'admit_json' => 'required|json',
             'job_id' => 'required'
         ]);
