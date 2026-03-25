@@ -321,7 +321,7 @@
                                 <img src="https://sarkarihai.com/public/job-images/1774169048.png" class="job-logo">
 
                                 <div>
-                                    <div class="job-title">
+                                    <div class="job-title" style="font-size:12px;">
                                         {{ $job->job_title }} <br> {{ $exam['name'] }} - Admit Card Out
                                     </div>
 
