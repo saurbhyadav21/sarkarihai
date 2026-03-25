@@ -33,11 +33,7 @@ class JobController extends Controller
         $admitCard = \App\Models\AdmitCard::where('job_id', $job->id)->first();
 
         // ✅ Lock condition
-        $admitLocked = true;
-        if ($admitCard && !empty($admitCard->admit_card_release_date)) {
-            $admitLocked = \Carbon\Carbon::parse($admitCard->admit_card_release_date)->isFuture();
-        }
-
+       
         // SEO
         $seo = [
             'title' => $job->title . ' - ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date, Salary',
@@ -45,7 +41,7 @@ class JobController extends Controller
             'keywords' => $job->title . ', ' . $job->title . ' vacancy, ' . $job->title . ' apply online, ' . $job->title . ' notification, ' . $job->category . ' recruitment'
         ];
 
-        return view('jobs.show', compact('job', 'seo', 'admitCard', 'admitLocked'));
+        return view('jobs.show', compact('job', 'seo', 'admitCard'));
     }
     //     public function show($slug)
     // {
