@@ -162,13 +162,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="/">Home</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link active" href="/">Latest Jobs</a>
+                            <a class="nav-link" href="https://sarkarihai.com/jobs/all%20states/All%20Categories">Latest Jobs</a>
                         </li>
-
-
-
                         <li class="nav-item">
                             <a class="nav-link" href="/admit-cards">Admit Card</a>
                         </li>
@@ -365,8 +361,8 @@
                 <div class="col-md-4 mb-4">
                     <h5 class="mb-3">Important Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-light text-decoration-none">Latest Jobs</a></li>
-                        <li><a href="#" class="text-light text-decoration-none">Admit Card</a></li>
+                        <li><a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-light text-decoration-none">Latest Jobs</a></li>
+                        <li><a href="/admit-cards" class="text-light text-decoration-none">Admit Card</a></li>
                         <li><a href="#" class="text-light text-decoration-none">Results</a></li>
                         <li><a href="#" class="text-light text-decoration-none">Answer Key</a></li>
                         <li><a href="/disclaimer" class="text-light text-decoration-none">Disclaimer</a></li>
@@ -380,14 +376,14 @@
                 <!-- Contact Info -->
                 <div class="col-md-4 mb-4">
                     <h5 class="mb-3">Contact Info</h5>
-                    <p>Email: info@example.com</p>
-                    <p>Phone: +91 9876543210</p>
+                    <p>Email: official.sarkarihai@gmail.com</p>
+                    {{-- <p>Phone: +91 9876543210</p> --}}
 
                     <div>
-                        <a href="#" class="text-light me-3">Facebook</a>
-                        <a href="#" class="text-light me-3">Twitter</a>
-                        <a href="#" class="text-light me-3">Instagram</a>
-                        <a href="#" class="text-light">YouTube</a>
+                        <a href="https://www.facebook.com/people/Job-Sarkari-Hai/61578223568135/" class="text-light me-3">Facebook</a>
+                        <a href="https://t.me/sarkarihaiofficial" class="text-light me-3">Telegram</a>
+                        <a href="https://www.whatsapp.com/channel/0029VbB0EFlJpe8ndG3kRO0g" class="text-light me-3">Whatsup</a>
+                        <a href="https://www.youtube.com/@sarkarihaiofficial" class="text-light">YouTube</a>
                     </div>
                 </div>
 
