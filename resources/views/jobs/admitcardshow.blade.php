@@ -93,51 +93,56 @@
                                         <strong>Sarkari jobs, results, admit cards, and सरकारी नौकरी updates</strong>.
                                     </p>
 
-                                   
-                                    <h2 class="mt-3">📌 {{ $job->title }} – Post Details, Salary, Eligibility & Exam Date</h2>
 
-<ul class="list-unstyled job-details">
+                                    <h2 class="mt-3">📌 {{ $job->title }} – Post Details, Salary, Eligibility & Exam
+                                        Date</h2>
 
-    <li>
-        <strong>Post Name:</strong> 
-        {{ !empty($job->post_name) ? str_replace('#', ', ', $job->post_name) : 'Various Posts' }}
-    </li>
+                                    <ul class="list-unstyled job-details">
 
-    <li>
-        <strong>Salary / Pay Scale:</strong> 
-        ₹{{ number_format($job->min_salary ?? 0) }} - ₹{{ number_format($job->max_salary ?? 0) }}
-    </li>
+                                        <li>
+                                            <strong>Post Name:</strong>
+                                            {{ !empty($job->post_name) ? str_replace('#', ', ', $job->post_name) : 'Various Posts' }}
+                                        </li>
 
-    <li>
-        <strong>Educational Qualification:</strong> 
-        {{ !empty($job->min_qulification) ? $job->min_qulification : 'Check Official Notification' }}
-    </li>
+                                        <li>
+                                            <strong>Salary / Pay Scale:</strong>
+                                            ₹{{ number_format($job->min_salary ?? 0) }} -
+                                            ₹{{ number_format($job->max_salary ?? 0) }}
+                                        </li>
 
-    <li>
-        <strong>Age Limit:</strong> 
-        {{ $job->min_age ?? 'N/A' }} Years 
-        @if(!empty($job->max_age)) - {{ $job->max_age }} Years @endif
-    </li>
+                                        <li>
+                                            <strong>Educational Qualification:</strong>
+                                            {{ !empty($job->min_qulification) ? $job->min_qulification : 'Check Official Notification' }}
+                                        </li>
 
-    <li>
-        <strong>Total Vacancies:</strong> 
-        {{ !empty($job->total_vacancies) ? number_format($job->total_vacancies) : 'N/A' }}
-    </li>
+                                        <li>
+                                            <strong>Age Limit:</strong>
+                                            {{ $job->min_age ?? 'N/A' }} Years
+                                            @if (!empty($job->max_age))
+                                                - {{ $job->max_age }} Years
+                                            @endif
+                                        </li>
 
-    @if(!empty($job->exam_date))
-    <li>
-        <strong>Exam Date:</strong> 
-        {{ date('d M Y', strtotime($job->exam_date)) }}
-    </li>
-    @endif
+                                        <li>
+                                            <strong>Total Vacancies:</strong>
+                                            {{ !empty($job->total_vacancies) ? number_format($job->total_vacancies) : 'N/A' }}
+                                        </li>
 
-    <li class="mt-3">
-        <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}" class="btn btn-success">
-            👉 View Details • Check Notification • Apply Online
-        </a>
-    </li>
+                                        @if (!empty($job->exam_date))
+                                            <li>
+                                                <strong>Exam Date:</strong>
+                                                {{ date('d M Y', strtotime($job->exam_date)) }}
+                                            </li>
+                                        @endif
 
-</ul>
+                                        <li class="mt-3">
+                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}"
+                                                class="btn btn-success">
+                                                👉 View Details • Check Notification • Apply Online
+                                            </a>
+                                        </li>
+
+                                    </ul>
 
                                     <p>
                                         Read the notification for recruitment eligibility, post information, selection
@@ -166,62 +171,52 @@
 
         </div>
         <div class="row align-items-stretch gy-4 ">
-
+[]
             <!-- Important Dates -->
-            <div class="col-md-6 section-box" id="dates">
-                <div class="card h-100">
-                    <div class="card-body">
+<div class="col-md-6 section-box" id="dates">
+    <div class="card h-100">
+        <div class="card-body">
 
-                        <h2 class="card-title mb-3 text-center">
-                            SSC Combined Graduate Level CGL Recruitment 2025 – Important Dates
-                        </h2>
+            <h2 class="card-title mb-3 text-center">
+                {{ $admitCard->title ?? 'Admit Card' }} – Important Dates
+            </h2>
 
-                        <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush">
 
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>Apply Online Start Date</span>
-                                <span class="badge bg-success">2025-06-09</span>
-                            </li>
+                @if(!empty($admitCard->apply_start_date))
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Apply Online Start Date</span>
+                    <span class="badge bg-success">
+                        {{ date('d M Y', strtotime($admitCard->apply_start_date)) }}
+                    </span>
+                </li>
+                @endif
 
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>Apply Online Last Date</span>
-                                <span class="badge bg-danger">2025-07-04</span>
-                            </li>
+                @if(!empty($admitCard->apply_last_date))
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Last Date to Apply</span>
+                    <span class="badge bg-danger">
+                        {{ date('d M Y', strtotime($admitCard->apply_last_date)) }}
+                    </span>
+                </li>
+                @endif
 
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>Last Date For Fee Payment</span>
-                                <span class="badge bg-warning text-dark">2025-07-05</span>
-                            </li>
+                @if(!empty($admitCard->exam_list))
+                    @foreach($admitCard->exam_list as $exam)
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>{{ $exam['name'] }}</span>
+                        <span class="badge bg-primary">
+                            {{ date('d M Y', strtotime($exam['date'])) }}
+                        </span>
+                    </li>
+                    @endforeach
+                @endif
 
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>Correction Last Date</span>
-                                <span class="badge bg-info text-dark">2025-07-10</span>
-                            </li>
+            </ul>
 
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>Exam Date</span>
-                                <span class="badge bg-primary">To Be Announced</span>
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>Admit Card</span>
-                                <span class="badge bg-secondary">To Be Announced</span>
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>Result Date</span>
-                                <span class="badge bg-dark">To Be Announced</span>
-                            </li>
-
-                            <li class="list-group-item text-center">
-
-                            </li>
-
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
+</div>
 
             <!-- Application Fee -->
             <div class="col-md-6 section-box" id="fee">
