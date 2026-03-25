@@ -41,4 +41,4 @@ Route::get('/jobs/{state}/{category}', [JobController::class, 'stateCategoryJobs
 
 //admit card edit
 Route::get('/job/{id}/admit', [JobController::class, 'admitEdit'])->name('job.admitEdit');
-Route::post('/add-admit', [JobController::class, 'admitStoreJson'])->name('job.editStore.json');
+Route::post('/add-admit', [JobController::class, 'admitStoreJson'])->name('job.admitStoreJson');

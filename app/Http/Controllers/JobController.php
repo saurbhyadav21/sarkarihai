@@ -461,7 +461,7 @@ class JobController extends Controller
     }
 
 
-    public function editStoreJson(Request $request)
+    public function admitStoreJson(Request $request)
     {
         // ✅ Validation
         $request->validate([
