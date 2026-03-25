@@ -12,7 +12,7 @@
     
 
     <!-- STATES CHECKBOX -->
-    <div>
+    {{-- <div>
         <label><b>Select States</b></label><br>
 
         @foreach($states as $state)
@@ -23,10 +23,10 @@
         @endforeach
     </div>
 
-    <br>
+    <br> --}}
 
     <!-- CATEGORY SELECT -->
-    <div>
+    {{-- <div>
         <label><b>Select Category</b></label><br>
 
         <select name="category_id" required>
@@ -39,10 +39,10 @@
         </select>
     </div>
 
-    <br>
+    <br> --}}
 
     <!-- Min Education -->
-    <div>
+    {{-- <div>
         <label><b>Select Min Education</b></label><br>
 
        
@@ -56,7 +56,7 @@
         </select>
     </div>
 
-    <br>
+    <br> --}}
 
     <button type="submit">Submit Job</button>
 </form>
