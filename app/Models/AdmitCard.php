@@ -4,10 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 
 class AdmitCard extends Model
 {
     use HasFactory;    
     protected $table = 'admit_card'; // your table name
     protected $guarded = [];   // allow mass assignment for all fields
+
+    protected $fillable = ['title', 'exam_dates', 'slug'];
+
+    protected static function booted()
+    {
+        static::creating(function ($card) {
+            // Agar slug empty ho to generate kar do
+            if(!$card->slug) {
+                $card->slug = Str::slug($card->title . '-' . now()->format('Y'));
+            }
+        });
+    }
 }
