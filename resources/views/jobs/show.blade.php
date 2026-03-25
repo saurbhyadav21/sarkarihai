@@ -1029,7 +1029,7 @@
 
             {{-- syllbus --}}
             <div class="container mt-3" id="syllabus">
-                <div class="card admit-card border-0">
+                <div class="card admit-card border-0 locked-card">
 
                     <!-- Header -->
                     <div class="card-header d-flex justify-content-between align-items-center">
