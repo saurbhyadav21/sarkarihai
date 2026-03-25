@@ -225,15 +225,20 @@ class JobController extends Controller
                     $data = explode('$', $part);
 
                     if (count($data) == 2) {
-                        $exams[] = [
-                            'name' => $data[0],
-                            'date' => $data[1]
-                        ];
+                        $examDate =  \Carbon\Carbon::parse($data[1]);
+
+                        // ✅ Only future or today exams
+                        if ($examDate->isToday() || $examDate->isFuture()) {
+                            $exams[] = [
+                                'name' => $data[0],
+                                'date' => $data[1]
+                            ];
+                        }
                     }
                 }
             }
 
-            $card->exam_list = $exams; // new dynamic property
+            $card->exam_list = $exams; // dynamic property
         }
 
 
