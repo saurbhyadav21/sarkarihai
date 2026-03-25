@@ -485,8 +485,8 @@ class JobController extends Controller
 
     public function admitStoreJson(Request $request)
     {
-    dd($request);    
-    $request->validate([
+        // dd($request);    
+        $request->validate([
             'admit_json' => 'required|json',
             'job_id' => 'required'
         ]);
@@ -613,7 +613,7 @@ class JobController extends Controller
 
         // 2️⃣ Only upcoming exams filter karo
         $exams = [];
-        if ($admitCard->exam_dates) {                           
+        if ($admitCard->exam_dates) {
             $parts = explode('#',              $admitCard->exam_dates);
             foreach ($parts as $part) {
                 $data = explode('$', $part);
