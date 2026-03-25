@@ -94,27 +94,50 @@
                                     </p>
 
                                    
-                                    <h5>Post Details:</h5>
-                                        <ul>
-                                            <li><strong>Post Name:</strong>
-                                                {{ str_replace('#', ', ', $job->post_name ?? '') }}</li>
-                                            <li><strong>Salary:</strong> ₹{{ number_format($job->min_salary ?? 0) }} -
-                                                ₹{{ number_format($job->max_salary ?? 0) }}</li>
-                                            <li><strong>Minimum Qualification:</strong>
-                                                {{ $job->min_qulification ?? 'N/A' }}
-                                            </li>
-                                            <li><strong>Minimum Age:</strong> {{ $job->min_age ?? 'N/A' }} years</li>
-                                            <li><strong>Total Vacancies:</strong>
-                                                {{ number_format($job->total_vacancies ?? 0) }}</li>
-                                            <li><strong>Exam Date:</strong>
-                                                {{ $job->exam_date }}
-                                            </li>
-                                            <li>
-    <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}" class="btn btn-success">
-        View Details • Check Official Notification • Apply Now
-    </a>
-</li>
-                                        </ul>
+                                    <h2 class="mt-3">📌 {{ $job->title }} – Post Details, Salary, Eligibility & Exam Date</h2>
+
+<ul class="list-unstyled job-details">
+
+    <li>
+        <strong>Post Name:</strong> 
+        {{ !empty($job->post_name) ? str_replace('#', ', ', $job->post_name) : 'Various Posts' }}
+    </li>
+
+    <li>
+        <strong>Salary / Pay Scale:</strong> 
+        ₹{{ number_format($job->min_salary ?? 0) }} - ₹{{ number_format($job->max_salary ?? 0) }}
+    </li>
+
+    <li>
+        <strong>Educational Qualification:</strong> 
+        {{ !empty($job->min_qulification) ? $job->min_qulification : 'Check Official Notification' }}
+    </li>
+
+    <li>
+        <strong>Age Limit:</strong> 
+        {{ $job->min_age ?? 'N/A' }} Years 
+        @if(!empty($job->max_age)) - {{ $job->max_age }} Years @endif
+    </li>
+
+    <li>
+        <strong>Total Vacancies:</strong> 
+        {{ !empty($job->total_vacancies) ? number_format($job->total_vacancies) : 'N/A' }}
+    </li>
+
+    @if(!empty($job->exam_date))
+    <li>
+        <strong>Exam Date:</strong> 
+        {{ date('d M Y', strtotime($job->exam_date)) }}
+    </li>
+    @endif
+
+    <li class="mt-3">
+        <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}" class="btn btn-success">
+            👉 View Details • Check Notification • Apply Online
+        </a>
+    </li>
+
+</ul>
 
                                     <p>
                                         Read the notification for recruitment eligibility, post information, selection
