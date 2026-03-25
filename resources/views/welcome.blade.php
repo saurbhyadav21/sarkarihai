@@ -334,10 +334,12 @@
 
                             <div class="job-meta">
                                 <span style="color: green; font-weight:600;">
-                                    📝 Exam Date: {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }} ⏳
-                                    <span class="countdown" data-date="{{ $exam['date'] }}" style="margin-left: 5px;"></span>
+                                    📝 Exam Date: {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}
+                                    <br>
+                                    ⏳ <span class="countdown" data-date="{{ $exam['date'] }}"></span>
                                 </span>
                             </div>
+
                         </a>
 
                     </div>
