@@ -838,7 +838,33 @@
                                     <span class="text-muted">Coming Soon</span>
                                 @endif
                             </div>
+                            <style>
+                                @keyframes pulseGlow {
+                                    0% {
+                                        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.6);
+                                    }
 
+                                    70% {
+                                        box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+                                    }
+
+                                    100% {
+                                        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+                                    }
+                                }
+
+                                .view-btn {
+                                    background: linear-gradient(45deg, #28a745, #00c851);
+                                    color: #fff;
+                                    border-radius: 20px;
+                                    font-weight: 600;
+                                    animation: pulseGlow 2s infinite;
+                                }
+
+                                .view-btn:hover {
+                                    transform: scale(1.05);
+                                }
+                            </style>
                             <!-- Button -->
                             <div>
                                 <a href="{{ url('admit-card/' . $admitCard->slug) }}" class="btn view-btn">
