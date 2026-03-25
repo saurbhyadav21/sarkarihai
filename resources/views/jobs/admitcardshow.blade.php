@@ -93,27 +93,24 @@
                                         <strong>Sarkari jobs, results, admit cards, and सरकारी नौकरी updates</strong>.
                                     </p>
 
+                                   
                                     <h5>Post Details:</h5>
-                                    <ul>
-                                        <li><strong>Post Name:</strong>
-                                            Assistant Audit Officer, Assistant Section Officer, Inspector of Income Tax,
-                                            Central Excise Inspector, Sub Inspector CBI, Junior Statistical Officer,
-                                            Auditor, Tax Assistant, Upper Division Clerk</li>
-                                        <li><strong>Salary:</strong> ₹25,500 -
-                                            ₹151,100</li>
-                                        <li><strong>Minimum Qualification:</strong>
-                                            Graduate
-                                        </li>
-                                        <li><strong>Minimum Age:</strong> 18 years</li>
-                                        <li><strong>Total Vacancies:</strong>
-                                            15,130</li>
-                                        <li><strong>Exam Date:</strong>
-                                            To Be Announced
-                                        </li>
-
-
-
-                                    </ul>
+                                        <ul>
+                                            <li><strong>Post Name:</strong>
+                                                {{ str_replace('#', ', ', $job->post_name ?? '') }}</li>
+                                            <li><strong>Salary:</strong> ₹{{ number_format($job->min_salary ?? 0) }} -
+                                                ₹{{ number_format($job->max_salary ?? 0) }}</li>
+                                            <li><strong>Minimum Qualification:</strong>
+                                                {{ $job->min_qulification ?? 'N/A' }}
+                                            </li>
+                                            <li><strong>Minimum Age:</strong> {{ $job->min_age ?? 'N/A' }} years</li>
+                                            <li><strong>Total Vacancies:</strong>
+                                                {{ number_format($job->total_vacancies ?? 0) }}</li>
+                                            <li><strong>Exam Date:</strong>
+                                                {{ $job->exam_date }}
+                                            </li>
+                                            {{-- <li><strong>Exam Date:</strong> {{ $job->exam_date ?? 'Update Soon' }}</li> --}}
+                                        </ul>
 
                                     <p>
                                         Read the notification for recruitment eligibility, post information, selection
