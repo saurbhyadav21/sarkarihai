@@ -212,5 +212,36 @@
 }
 
 </style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+    function updateCountdown() {
+        document.querySelectorAll('.countdown').forEach(function(el) {
+
+            let dateStr = el.getAttribute('data-date');
+
+            if (!dateStr) return;
+
+            let targetDate = new Date(dateStr).getTime();
+            let now = new Date().getTime();
+            let diff = targetDate - now;
+
+            if (diff <= 0) {
+                el.innerHTML = "Exam Started";
+                return;
+            }
+
+            let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            let minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+            el.innerHTML = `${days}d ${hours}h ${minutes}m left`;
+        });
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 60000); // update every 1 min
+
+});
+</script>
 @endsection
