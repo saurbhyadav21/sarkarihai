@@ -60,17 +60,10 @@
 
                                     <!-- Admit Date -->
                                     <td>
-                                        @if (!empty($job->admit_card))
                                             {{ $job->admit_card }}
                                             <a href="{{ route('job.admitEdit', $job->id) }}" class="btn btn-warning btn-sm">
                                             admit Edit
                                             </a>
-                                        @else
-                                            <span class="badge bg-danger">Not Announced</span>
-                                            <a href="{{ route('job.admitEdit', $job->id) }}" class="btn btn-warning btn-sm">
-                                            admit Edit
-                                            </a>
-                                        @endif
                                     </td>
 
                                     <!-- Exam Date -->
