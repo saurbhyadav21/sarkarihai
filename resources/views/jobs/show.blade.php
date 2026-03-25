@@ -797,7 +797,7 @@
                     <!-- Header -->
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h6 class="mb-0 fw-bold text-white">
-                            {{ $job->title }} – Admit Card
+                            {{ $job->title }} – Admit Card Out
                         </h6>
 
                         <span
@@ -815,7 +815,17 @@
 
                             <div class="small fw-semibold text-primary">
                                 <i class="fa-solid fa-calendar-days"></i>
-                                Exam: {{ $admitCard->exam_list[0]['date'] ?? 'Coming Soon' }}
+                                {{-- Exam: {{ $admitCard->exam_list[0]['date'] ?? 'Coming Soon' }} --}}
+                                @if (!empty($admitCard->exam_list))
+                                @foreach ($admitCard->exam_list as $exam)
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Exam Date ({{ $loop->iteration }}) - {{ $exam['name'] }}</span>
+                                        <span class="badge bg-primary">
+                                            {{ date('d M Y', strtotime($exam['date'])) }}
+                                        </span>
+                                    </li>
+                                @endforeach
+                            @endif
                             </div>
 
                             <!-- View Details Button -->
