@@ -61,9 +61,9 @@
                                     <!-- Admit Date -->
                                     <td>
                                         @if (!empty($job->admit_card))
-                                            {{ $job->admit_card }}
+                                            {{ $job->admit_card }}xx
                                         @else
-                                            <span class="badge bg-danger">Not Announced</span>
+                                            <span class="badge bg-danger">Not Announcedyy</span>
                                             <a href="{{ route('job.admitEdit', $job->id) }}" class="btn btn-warning btn-sm">
                                             admit Edit
                                             </a>
