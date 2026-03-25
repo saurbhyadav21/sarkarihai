@@ -524,4 +524,9 @@ class JobController extends Controller
 
         return view('jobs.add-job', compact('states', 'categories', 'mineducation'));
     }
+
+    public function admitEdit()
+    {
+        echo 's';
+    }
 }

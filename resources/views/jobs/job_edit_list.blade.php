@@ -64,6 +64,9 @@
                                             {{ $job->admit_card }}
                                         @else
                                             <span class="badge bg-danger">Not Announced</span>
+                                            <a href="{{ route('job.admitEdit', $job->id) }}" class="btn btn-warning btn-sm">
+                                            admit Edit
+                                            </a>
                                         @endif
                                     </td>
 
@@ -99,15 +102,16 @@
 
                                     <td>
                                         <!-- Delete Button -->
-                                    <form action="{{ route('job.destroy', $job->id) }}" method="POST" style="display:inline-block;"
-      onsubmit="return confirm('Delete karna hai kya?')">
-    @csrf
-    @method('DELETE')
+                                        <form action="{{ route('job.destroy', $job->id) }}" method="POST"
+                                            style="display:inline-block;"
+                                            onsubmit="return confirm('Delete karna hai kya?')">
+                                            @csrf
+                                            @method('DELETE')
 
-    <button type="submit" class="btn btn-danger btn-sm">
-        Delete
-    </button>
-</form>
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </td>
 
                                     <td>
