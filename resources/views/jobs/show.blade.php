@@ -784,7 +784,7 @@
                 {
                     return trim($value) == 'To Be Announced' || empty($value);
                 }
-                
+
                 $admitLocked = isLocked($job->admit_card);
                 $resultLocked = isLocked($job->result_date);
 
@@ -799,28 +799,28 @@
                         <h6 class="mb-0 fw-bold text-white">
                             {{ $job->title }} – Admit Card
                         </h6>
+
                         <span
                             class="badge status-badge 
-                            {{ $admitLocked ? 'bg-dark' : 'bg-light text-success' }}">
-
+                {{ $admitLocked ? 'bg-dark' : 'bg-light text-success' }}">
                             {{ $admitLocked ? '🔒 Not Released' : '🟢 Released' }}
-
                         </span>
                     </div>
 
                     <!-- Body -->
                     <div class="card-body p-3">
 
-                        <!-- Top Row -->
+                        <!-- Top Info -->
                         <div class="d-flex justify-content-between align-items-center flex-wrap mb-2">
 
                             <div class="small fw-semibold text-primary">
                                 <i class="fa-solid fa-calendar-days"></i>
-                                Exam: March 2026
+                                Exam: {{ $admitCard->exam_list[0]['date'] ?? 'Coming Soon' }}
                             </div>
 
-                            <a href="{{ $job->admit_card_link }}" target="_blank" class="btn download-btn">
-                                <i class="fa-solid fa-download"></i> Download
+                            <!-- View Details Button -->
+                            <a href="{{ url('admit-card/' . $admitCard->slug) }}" class="btn view-btn">
+                                🔍 View Details
                             </a>
 
                         </div>
@@ -835,12 +835,12 @@
 
                             <div class="col-6 mb-2 info-box">
                                 <i class="fa-solid fa-location-dot text-danger"></i>
-                                Center: Check Card
+                                Center: Check Admit Card
                             </div>
 
                             <div class="col-6 mb-2 info-box">
                                 <i class="fa-solid fa-id-card text-success"></i>
-                                Carry ID Proof
+                                Carry Valid ID
                             </div>
 
                             <div class="col-6 mb-2 info-box">
@@ -856,25 +856,9 @@
                             Login → Download → Print
                         </div>
 
-                        <!-- Detailed Instructions -->
-                        <div class="instruction-box mt-2">
-                            <h6 class="mb-2">
-                                <i class="fa-solid fa-circle-info"></i> How to Download Admit Card
-                            </h6>
-
-                            <ul class="mb-0 ps-3">
-                                <li>Download button par click karein.</li>
-                                <li>Apna Registration Number / Roll Number enter karein.</li>
-                                <li>Date of Birth / Password fill karein.</li>
-                                <li>Login / Submit button par click karein.</li>
-                                <li>Admit Card screen par show ho jayega.</li>
-                                <li>PDF download karke print nikal lein.</li>
-                            </ul>
-                        </div>
-
                         <!-- Warning -->
                         <div class="warning-box mt-2">
-                            ⚠️ Admit Card mandatory for exam entry
+                            ⚠️ Admit Card is mandatory for exam entry
                         </div>
 
                     </div>
@@ -948,6 +932,20 @@
                     border-radius: 6px;
                     font-size: 13px;
                     text-align: center;
+                }
+
+                .view-btn {
+                    background: linear-gradient(45deg, #28a745, #00c851);
+                    color: #fff;
+                    border: none;
+                    padding: 6px 14px;
+                    font-size: 13px;
+                    border-radius: 20px;
+                    font-weight: 600;
+                }
+
+                .view-btn:hover {
+                    opacity: 0.9;
                 }
             </style>
 
