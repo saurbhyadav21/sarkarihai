@@ -603,18 +603,31 @@ class JobController extends Controller
 
         return view('jobs.admit-card', compact('id', 'admit'));
     }
+
+
+    public function admitShow($slug)
+    {
+        $admitCard = AdmitCard::where('slug', $slug)->firstOrFail();
+
+        // Agar multiple exams filter karna ho (upcoming only)
+        $exams = [];
+        if ($admitCard->exam_dates) {
+            $parts = explode('#', $admitCard->exam_dates);
+            foreach ($parts as $part) {
+                $data = explode('$', $part);
+                if (count($data) == 2) {
+                    $date = \Carbon\Carbon::parse($data[1]);
+                    if ($date->isToday() || $date->isFuture()) {
+                        $exams[] = [
+                            'name' => $data[0],
+                            'date' => $data[1]
+                        ];
+                    }
+                }
+            }
+        }
+        $admitCard->exam_list = $exams;
+
+        return view('welcome', compact('admitCard'));
+    }
 }
-
-
-
-
-
-
-// public function addJob()
-//     {
-//         $states = State::all();
-//         $categories = Category::all();
-//         $mineducation = Mineducation::all();
-
-//         return view('jobs.add-job', compact('states', 'categories', 'mineducation'));
-//     }
