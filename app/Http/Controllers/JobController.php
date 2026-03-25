@@ -648,4 +648,12 @@ class JobController extends Controller
         // 3️⃣ View return karo
         return view('jobs/admitcardshow', compact('admitCard', 'job'));
     }
+
+
+    public function admitIndex()
+    {
+        $admitCards = AdmitCard::orderBy('admit_card_release_date', 'asc')->get();
+
+        return view('admitcard-list', compact('admitCards'));
+    }
 }

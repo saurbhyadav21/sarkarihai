@@ -48,3 +48,5 @@ Route::post('/add-admit', [JobController::class, 'admitStoreJson'])->name('job.a
 
 // 3️⃣ Frontend view: Admit card show by slug (SEO-friendly)
 Route::get('/admit/{slug}', [JobController::class, 'admitShow'])->name('admit.show');
+
+Route::get('/admit-cards', [JobController::class, 'admitIndex'])->name('admitIndex');
