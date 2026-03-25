@@ -815,17 +815,29 @@
 
                             <div class="small fw-semibold text-primary">
                                 <i class="fa-solid fa-calendar-days"></i>
-                                {{-- Exam: {{ $admitCard->exam_list[0]['date'] ?? 'Coming Soon' }} --}}
+
                                 @if (!empty($admitCard->exam_dates))
-                                @foreach ($admitCard->exam_dates as $exam)
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <span>Exam Date ({{ $loop->iteration }}) - {{ $exam['name'] }}</span>
-                                        <span class="badge bg-primary">
-                                            {{ date('d M Y', strtotime($exam['date'])) }}
-                                        </span>
-                                    </li>
-                                @endforeach
-                            @endif
+                                    @php
+                                        $dates = explode('#', $admitCard->exam_dates);
+                                    @endphp
+
+                                    @foreach ($dates as $date)
+                                        @php
+                                            $data = explode('$', $date);
+                                        @endphp
+
+                                        @if (count($data) == 2)
+                                            <div>
+                                                {{ $loop->iteration }}. {{ trim($data[0]) }} -
+                                                <span class="badge bg-primary">
+                                                    {{ date('d M Y', strtotime($data[1])) }}
+                                                </span>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <span class="text-muted">Exam Date: Coming Soon</span>
+                                @endif
                             </div>
 
                             <!-- View Details Button -->
