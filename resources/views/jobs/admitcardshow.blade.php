@@ -14,7 +14,86 @@
         <div class="container mt-3">
             <img src="https://sarkarihai.com/public/job-images/1774179425.png" class="img-fluid banner-img" alt="Job Image">
         </div>
+        <div class="row align-items-stretch gy-4" style="margin-bottom: 10px;">
 
+            <!-- Important Info -->
+            <div class="col-md-12">
+                <div class="card h-100">
+                    <div class="card-body">
+
+
+                        <div class="container my-5">
+
+                            <div class="card shadow">
+                                <div class="card-header bg-primary text-white">
+                                    <h1 class="mb-0">
+                                        SSC Combined Graduate Level CGL Recruitment 2025
+                                    </h1>
+                                </div>
+                                <div class="card-body">
+
+                                    <p>
+                                        <strong>SSC Combined Graduate Level CGL Recruitment 2025</strong> has released
+                                        notification for various
+                                        posts
+                                        <strong>Assistant Audit Officer, Assistant Section Officer, Inspector of Income Tax,
+                                            Central Excise Inspector, Sub Inspector CBI, Junior Statistical Officer,
+                                            Auditor, Tax Assistant, Upper Division Clerk</strong> under
+                                        SSC-CGL.
+                                        Interested candidates can apply online from
+                                        <strong>09-06-2025</strong>
+                                        to
+                                        <strong>04-07-2025</strong>
+                                        at offical website : <a href="https://ssc.gov.in" target="_blank">
+                                            Click Here
+                                        </a>
+                                    </p>
+
+                                    <h5>Post Details:</h5>
+                                    <ul>
+                                        <li><strong>Post Name:</strong>
+                                            Assistant Audit Officer, Assistant Section Officer, Inspector of Income Tax,
+                                            Central Excise Inspector, Sub Inspector CBI, Junior Statistical Officer,
+                                            Auditor, Tax Assistant, Upper Division Clerk</li>
+                                        <li><strong>Salary:</strong> ₹25,500 -
+                                            ₹151,100</li>
+                                        <li><strong>Minimum Qualification:</strong>
+                                            Graduate
+                                        </li>
+                                        <li><strong>Minimum Age:</strong> 18 years</li>
+                                        <li><strong>Total Vacancies:</strong>
+                                            15,130</li>
+                                        <li><strong>Exam Date:</strong>
+                                            To Be Announced
+                                        </li>
+
+
+
+                                    </ul>
+
+                                    <p>
+                                        Read the notification for recruitment eligibility, post information, selection
+                                        procedure, Physical Eligibility, pay scale and all other information..
+                                    </p>
+
+                                    <p style="color: red;">
+                                        Note – छात्रो से ये अनुरोध किया जाता है की वो अपना फॉर्म भरने से पहले Official
+                                        Notification को ध्यान से जरूर पढे उसके बाद ही अपना फॉर्म भरे । (Last Date, Age
+                                        Limit, &amp; Education Qualification)
+                                    </p>
+
+                                    <a href="#date-fee" class="btn btn-success">Read Official
+                                        Notification / Apply Online</a>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
         <div class="row align-items-stretch gy-4 ">
 
             <!-- Important Dates -->
