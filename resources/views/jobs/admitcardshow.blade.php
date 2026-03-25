@@ -223,7 +223,7 @@
                 <div class="card w-100 h-100 shadow-sm border-0">
                     <div class="card-body d-flex flex-column">
 
-                        <h2 class="card-title mb-3 text-center text-primary fw-bold" style="color: red !important;">
+                        <h2 class="card-title mb-3 text-center text-primary fw-bold" style="color: #fff !important;">
                             🔗 {{ $admitCard->job_title ?? 'Admit Card' }} – Important Links
                         </h2>
 
@@ -261,7 +261,7 @@
         </div>
 
         <!-- How to Download Admit Card -->
-        <div class="col-12 section-box mt-4" id="how-to-download">
+        <div class="col-12 section-box mt-4" id="how-to-download" style="color: #fff">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
 
