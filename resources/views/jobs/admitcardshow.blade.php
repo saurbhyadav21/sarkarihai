@@ -12,7 +12,7 @@
 
 <div class="container mt-4">
     <div class="container mt-3">
-            <img src="{{ asset('public/job-images/' . $job->image) }}" class="img-fluid banner-img" alt="Job Image">
+            <img src="https://sarkarihai.com/public/job-images/1774179425.png" class="img-fluid banner-img" alt="Job Image">
         </div>
     <!-- Title -->
     <div class="card shadow mb-3">
