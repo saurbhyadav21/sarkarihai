@@ -259,11 +259,39 @@
             </div>
 
         </div>
-        <!-- Title -->
-        <div class="card shadow mb-3">
-            <div class="card-body text-center">
-                <h1>{{ $admitCard->title }}</h1>
-                <p class="text-muted">Latest Admit Card Updates</p>
+
+        <!-- How to Download Admit Card -->
+        <div class="col-12 section-box mt-4" id="how-to-download">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+
+                    <h2 class="card-title mb-3 text-center text-success fw-bold">
+                        📥 {{ $admitCard->job_title ?? 'Admit Card' }} – How to Download Admit Card
+                    </h2>
+
+                    <ul class="list-group list-group-numbered">
+
+                        @if (!empty($admitCard->how_to_download_admit_card))
+                            @php
+                                $steps = explode('#', $admitCard->how_to_download_admit_card);
+                            @endphp
+
+                            @foreach ($steps as $step)
+                                @if (!empty(trim($step)))
+                                    <li class="list-group-item">
+                                        {{ trim($step) }}
+                                    </li>
+                                @endif
+                            @endforeach
+                        @else
+                            <li class="list-group-item text-muted">
+                                Steps will be updated soon.
+                            </li>
+                        @endif
+
+                    </ul>
+
+                </div>
             </div>
         </div>
 
