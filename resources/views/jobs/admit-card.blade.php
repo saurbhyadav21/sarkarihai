@@ -7,7 +7,18 @@
     </div>
 
     <br>
+
     <input type="hidden" name="job_id" value="{{ $id }}">
+
+    <!-- ✅ 5 Link Rows -->
+    @for($i = 1; $i <= 5; $i++)
+        <div style="margin-bottom:10px;">
+            <input type="text" name="link_title[]" placeholder="Title {{ $i }}" style="width:30%;">
+            <input type="text" name="link_url[]" placeholder="URL {{ $i }}" style="width:60%;">
+        </div>
+    @endfor
+
+    <br>
 
     <div>
         <label>Upload Image</label><br>

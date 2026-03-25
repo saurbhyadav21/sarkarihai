@@ -463,45 +463,37 @@ class JobController extends Controller
 
     public function admitStoreJson(Request $request)
     {
-        // ✅ Validation
         $request->validate([
             'admit_json' => 'required|json',
-            'job_image' => 'nullable',
             'job_id' => 'required'
         ]);
 
-        // ✅ JSON decode
         $data = json_decode($request->admit_json, true);
 
-        if (!$data) {
-            return back()->with('error', 'Invalid JSON format');
+        // ✅ Convert links to: title$url#
+        $links = '';
+        if ($request->link_title && $request->link_url) {
+            foreach ($request->link_title as $key => $title) {
+                $url = $request->link_url[$key] ?? null;
+
+                if (!empty($title) && !empty($url)) {
+                    $links .= trim($title) . '$' . trim($url) . '#';
+                }
+            }
         }
 
-        // ✅ Image Upload
-        $imageName = null;
-
-        if ($request->hasFile('job_image')) {
-            $image = $request->file('job_image');
-
-            // SEO friendly name
-            $imageName = Str::slug($data['job_title'] ?? 'job') . '-' . time() . '.' . $image->getClientOriginalExtension();
-
-            $image->move(public_path('uploads/jobs'), $imageName);
-        }
-        
-        // ✅ Save in DB
+        // ✅ Save
         AdmitCard::create([
-            'job_id' => $request->job_id, // 🔥 yaha use ho raha hai
+            'job_id' => $request->job_id,
             'job_title' => $data['job_title'] ?? null,
             'full_title' => $data['full_title'] ?? null,
             'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
             'exam_dates' => $data['exam_dates'] ?? null,
             'how_to_download_admit_card' => $data['how_to_download_admit_card'] ?? null,
-            'official_link' => $data['official_link'] ?? null,
-            'logo' => $imageName,
+            'official_link' => $links, // 🔥 yaha save hoga
         ]);
 
-        return back()->with('success', 'Job Added Successfully ✅');
+        return back()->with('success', 'Saved Successfully ✅');
     }
 
 
