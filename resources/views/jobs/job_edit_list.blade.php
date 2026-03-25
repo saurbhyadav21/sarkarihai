@@ -60,10 +60,13 @@
 
                                     <!-- Admit Date -->
                                     <td>
-                                            {{ $job->admit_card }}
-                                            <a href="{{ route('job.admitEdit', $job->id) }}" class="btn btn-warning btn-sm">
-                                            admit Edit
-                                            </a>
+                                        {{ $job->admit_card }}
+
+                                        <a href="{{ route('job.admitEdit', $job->id) }}"
+                                            class="btn btn-sm {{ $job->admit_card == 'To Be Announced' ? 'btn-danger' : 'btn-success' }}">
+
+                                            {{ $job->admit_card == 'To Be Announced' ? 'Update Admit' : 'Edit Admit' }}
+                                        </a>
                                     </td>
 
                                     <!-- Exam Date -->
