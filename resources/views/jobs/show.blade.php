@@ -121,14 +121,39 @@
             html {
                 scroll-behavior: smooth;
             }
-            .locked-card {
-    opacity: 0.6;
-    pointer-events: none;
-}
 
-.disabled-btn {
-    cursor: not-allowed;
-}
+            .locked-card {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .locked-card .card-body {
+                filter: blur(3px);
+                opacity: 0.5;
+                pointer-events: none;
+            }
+
+            /* Overlay */
+            .locked-card::after {
+                content: "🔒 Coming Soon";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                background: rgba(0, 0, 0, 0.7);
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 8px;
+                font-weight: bold;
+                font-size: 16px;
+                letter-spacing: 0.5px;
+                text-align: center;
+            }
+
+            .disabled-btn {
+                cursor: not-allowed;
+            }
         </style>
 
         <!-- JS -->
@@ -753,458 +778,457 @@
 
             </style>
             <!-- Font Awesome -->
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-                @php
-                    function isLocked($value)
-                    {
-                        return trim($value) == 'To Be Announced' || empty($value);
-                    }
-                    $examLocked = isLocked($job->exam_date);
-                    $admitLocked = isLocked($job->admit_card);
-                    $resultLocked = isLocked($job->result_date);
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+            @php
+                function isLocked($value)
+                {
+                    return trim($value) == 'To Be Announced' || empty($value);
+                }
+                $examLocked = isLocked($job->exam_date);
+                $admitLocked = isLocked($job->admit_card);
+                $resultLocked = isLocked($job->result_date);
 
-                   
-                @endphp
+            @endphp
 
-                {{-- ADmit card --}}
-                <div class="container mt-3" id="admit">
-                    <div class="card admit-card border-0 {{ $admitLocked ? 'locked-card' : '' }}">
+            {{-- ADmit card --}}
+            <div class="container mt-3" id="admit">
+                <div class="card admit-card border-0 {{ $admitLocked ? 'locked-card' : '' }}">
 
-                        <!-- Header -->
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0 fw-bold text-white">
-                                {{ $job->title }} – Admit Card
-                            </h6>
-                            <span class="badge status-badge">
-                                🟢 Released
-                            </span>
-                        </div>
-
-                        <!-- Body -->
-                        <div class="card-body p-3">
-
-                            <!-- Top Row -->
-                            <div class="d-flex justify-content-between align-items-center flex-wrap mb-2">
-
-                                <div class="small fw-semibold text-primary">
-                                    <i class="fa-solid fa-calendar-days"></i>
-                                    Exam: March 2026
-                                </div>
-
-                                <a href="{{ $job->admit_card_link }}" target="_blank" class="btn download-btn">
-                                    <i class="fa-solid fa-download"></i> Download
-                                </a>
-
-                            </div>
-
-                            <!-- Info Grid -->
-                            <div class="row small text-dark">
-
-                                <div class="col-6 mb-2 info-box">
-                                    <i class="fa-solid fa-key text-warning"></i>
-                                    Login: Reg No / DOB
-                                </div>
-
-                                <div class="col-6 mb-2 info-box">
-                                    <i class="fa-solid fa-location-dot text-danger"></i>
-                                    Center: Check Card
-                                </div>
-
-                                <div class="col-6 mb-2 info-box">
-                                    <i class="fa-solid fa-id-card text-success"></i>
-                                    Carry ID Proof
-                                </div>
-
-                                <div class="col-6 mb-2 info-box">
-                                    <i class="fa-solid fa-print text-info"></i>
-                                    Print A4 Size
-                                </div>
-
-                            </div>
-
-                            <!-- Quick Steps -->
-                            <div class="steps-box mt-2">
-                                <i class="fa-solid fa-circle-info"></i>
-                                Login → Download → Print
-                            </div>
-
-                            <!-- Detailed Instructions -->
-                            <div class="instruction-box mt-2">
-                                <h6 class="mb-2">
-                                    <i class="fa-solid fa-circle-info"></i> How to Download Admit Card
-                                </h6>
-
-                                <ul class="mb-0 ps-3">
-                                    <li>Download button par click karein.</li>
-                                    <li>Apna Registration Number / Roll Number enter karein.</li>
-                                    <li>Date of Birth / Password fill karein.</li>
-                                    <li>Login / Submit button par click karein.</li>
-                                    <li>Admit Card screen par show ho jayega.</li>
-                                    <li>PDF download karke print nikal lein.</li>
-                                </ul>
-                            </div>
-
-                            <!-- Warning -->
-                            <div class="warning-box mt-2">
-                                ⚠️ Admit Card mandatory for exam entry
-                            </div>
-
-                        </div>
+                    <!-- Header -->
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0 fw-bold text-white">
+                            {{ $job->title }} – Admit Card
+                        </h6>
+                        <span class="badge status-badge">
+                            🟢 Released
+                        </span>
                     </div>
-                </div>
-                <style>
-                    .admit-card {
-                        border-radius: 12px;
-                        overflow: hidden;
-                        background: #fff;
-                    }
 
-                    /* Header Gradient */
-                    .admit-card .card-header {
-                        background: linear-gradient(45deg, #ff6a00, #ee0979);
-                        padding: 10px 15px;
-                    }
+                    <!-- Body -->
+                    <div class="card-body p-3">
 
-                    /* Status Badge */
-                    .status-badge {
-                        background: #fff;
-                        color: #28a745;
-                        font-weight: bold;
-                        padding: 4px 10px;
-                        border-radius: 20px;
-                    }
+                        <!-- Top Row -->
+                        <div class="d-flex justify-content-between align-items-center flex-wrap mb-2">
 
-                    /* Download Button */
-                    .download-btn {
-                        background: linear-gradient(45deg, #007bff, #00c6ff);
-                        color: #fff;
-                        border: none;
-                        padding: 5px 12px;
-                        font-size: 13px;
-                        border-radius: 20px;
-                    }
+                            <div class="small fw-semibold text-primary">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                Exam: March 2026
+                            </div>
 
-                    .download-btn:hover {
-                        opacity: 0.9;
-                    }
+                            <a href="{{ $job->admit_card_link }}" target="_blank" class="btn download-btn">
+                                <i class="fa-solid fa-download"></i> Download
+                            </a>
 
-                    /* Info Boxes */
-                    .info-box {
-                        background: #f8f9fa;
-                        padding: 6px 8px;
-                        border-radius: 6px;
-                    }
+                        </div>
 
-                    /* Steps */
-                    .steps-box {
-                        background: #e3f2fd;
-                        padding: 6px 10px;
-                        border-radius: 6px;
-                        font-size: 13px;
-                    }
+                        <!-- Info Grid -->
+                        <div class="row small text-dark">
 
-                    /* Instructions */
-                    .instruction-box {
-                        background: #fff3cd;
-                        border-left: 4px solid #ffc107;
-                        padding: 10px;
-                        border-radius: 6px;
-                        font-size: 13px;
-                    }
+                            <div class="col-6 mb-2 info-box">
+                                <i class="fa-solid fa-key text-warning"></i>
+                                Login: Reg No / DOB
+                            </div>
 
-                    /* Warning */
-                    .warning-box {
-                        background: #ffe5e5;
-                        color: #d63031;
-                        padding: 6px;
-                        border-radius: 6px;
-                        font-size: 13px;
-                        text-align: center;
-                    }
-                </style>
+                            <div class="col-6 mb-2 info-box">
+                                <i class="fa-solid fa-location-dot text-danger"></i>
+                                Center: Check Card
+                            </div>
 
-                {{-- Result --}}
-                <div class="container mt-3" id="result">
-                    <div class="card admit-card border-0">
+                            <div class="col-6 mb-2 info-box">
+                                <i class="fa-solid fa-id-card text-success"></i>
+                                Carry ID Proof
+                            </div>
 
-                        <!-- Header -->
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0 fw-bold text-white">
-                                {{ $job->title }} – Result
+                            <div class="col-6 mb-2 info-box">
+                                <i class="fa-solid fa-print text-info"></i>
+                                Print A4 Size
+                            </div>
+
+                        </div>
+
+                        <!-- Quick Steps -->
+                        <div class="steps-box mt-2">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Login → Download → Print
+                        </div>
+
+                        <!-- Detailed Instructions -->
+                        <div class="instruction-box mt-2">
+                            <h6 class="mb-2">
+                                <i class="fa-solid fa-circle-info"></i> How to Download Admit Card
                             </h6>
-                            <span class="badge status-badge">
-                                🟢 Result Declared
-                            </span>
-                        </div>
 
-                        <!-- Body -->
-                        <div class="card-body p-3">
-
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-
-                                <div class="small fw-semibold text-success">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                    Result Date: Coming Soon
-                                </div>
-
-                                <a href="{{ $job->result_link }}" target="_blank" class="btn download-btn">
-                                    <i class="fa-solid fa-square-poll-vertical"></i> Check Result
-                                </a>
-
-                            </div>
-
-                            <!-- Info -->
-                            <div class="row small">
-
-                                <div class="col-6 mb-2 info-box">
-                                    <i class="fa-solid fa-user"></i>
-                                    Login: Roll No / DOB
-                                </div>
-
-                                <div class="col-6 mb-2 info-box">
-                                    <i class="fa-solid fa-list"></i>
-                                    Merit List Available
-                                </div>
-
-                            </div>
-
-                            <!-- Steps -->
-                            <div class="steps-box mt-2">
-                                <i class="fa-solid fa-circle-info"></i>
-                                Login → View Result → Download
-                            </div>
-
-                            <!-- Instructions -->
-                            <div class="instruction-box mt-2">
-                                <h6 class="mb-2">
-                                    <i class="fa-solid fa-circle-info"></i> How to Check Result
-                                </h6>
-                                <ul class="mb-0 ps-3">
-                                    <li>Check Result button par click karein.</li>
-                                    <li>Apna Roll Number / Registration Number enter karein.</li>
-                                    <li>Date of Birth fill karein.</li>
-                                    <li>Submit button par click karein.</li>
-                                    <li>Result screen par show ho jayega.</li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                {{-- syllbus --}}
-                <div class="container mt-3" id="syllabus">
-                    <div class="card admit-card border-0">
-
-                        <!-- Header -->
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0 fw-bold text-white">
-                                {{ $job->title }} – Syllabus
-                            </h6>
-                            <span class="badge status-badge">
-                                📘 Available
-                            </span>
-                        </div>
-
-                        <!-- Body -->
-                        <div class="card-body p-3">
-
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-
-                                <div class="small fw-semibold text-primary">
-                                    <i class="fa-solid fa-book"></i>
-                                    Subject Wise Syllabus
-                                </div>
-
-                                <a href="{{ $job->syllabus_link }}" target="_blank" class="btn download-btn">
-                                    <i class="fa-solid fa-download"></i> Download PDF
-                                </a>
-
-                            </div>
-
-                            <!-- Subjects -->
-                            <div class="row small">
-
-                                <div class="col-6 mb-2 info-box">
-                                    <i class="fa-solid fa-brain"></i>
-                                    Reasoning
-                                </div>
-
-                                <div class="col-6 mb-2 info-box">
-                                    <i class="fa-solid fa-calculator"></i>
-                                    Mathematics
-                                </div>
-
-                                <div class="col-6 mb-2 info-box">
-                                    <i class="fa-solid fa-globe"></i>
-                                    General Knowledge
-                                </div>
-
-                                <div class="col-6 mb-2 info-box">
-                                    <i class="fa-solid fa-language"></i>
-                                    English / Hindi
-                                </div>
-
-                            </div>
-
-                            <!-- Steps -->
-                            <div class="steps-box mt-2">
-                                <i class="fa-solid fa-circle-info"></i>
-                                Download → Read → Prepare
-                            </div>
-
-                            <!-- Instructions -->
-                            <div class="instruction-box mt-2">
-                                <h6 class="mb-2">
-                                    <i class="fa-solid fa-circle-info"></i> Syllabus Details
-                                </h6>
-                                <ul class="mb-0 ps-3">
-                                    <li>Official syllabus PDF download karein.</li>
-                                    <li>Har subject ke topics check karein.</li>
-                                    <li>Important topics par focus karein.</li>
-                                    <li>Previous year questions practice karein.</li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="container mt-5 section-box" id="faq">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-
-                            <h2 class="card-title text-center mb-4">{{ $job->title }} – Frequently Asked
-                                Questions (FAQ)
-                            </h2>
-
-                            <ul class="list-group list-group-flush">
-
-                                <li class="list-group-item">
-                                    <a href="#date-fee">
-                                        <b>1. What are the important dates for {{ $job->title }} recruitment 2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#date-fee">
-                                        <b>2. When will the Apply Online start for {{ $job->title }} recruitment
-                                            2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#date-fee">
-                                        <b>3. What is the last date to apply for {{ $job->title }} online form 2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#date-fee">
-                                        <b>4. What is the last date for fee payment in {{ $job->title }} recruitment
-                                            2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#date-fee">
-                                        <b>5. What is the correction last date for {{ $job->title }} application form
-                                            2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#date-fee">
-                                        <b>6. When will the exam be conducted for {{ $job->title }} recruitment 2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#date-fee">
-                                        <b>7. When will the admit card release for {{ $job->title }} exam 2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#date-fee">
-                                        <b>8. When will the result be declared for {{ $job->title }} recruitment
-                                            2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#age-limit">
-                                        <b>9. What is the age limit for {{ $job->title }} recruitment 2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#application-fee">
-                                        <b>10. What is the application fee for General, OBC, SC and ST candidates in
-                                            {{ $job->title }} recruitment 2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#total-post">
-                                        <b>11. What is the total number of vacancies in {{ $job->title }} recruitment
-                                            2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#total-post">
-                                        <b>12. What is the salary or pay scale for {{ $job->title }} paramedical
-                                            posts?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#category-post">
-                                        <b>13. What is the category wise vacancy distribution in {{ $job->title }}
-                                            recruitment
-                                            2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#selection-process">
-                                        <b>14. What is the selection process for {{ $job->title }} recruitment 2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#eligibility">
-                                        <b>15. What is the eligibility criteria for {{ $job->title }} paramedical
-                                            posts?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#eligibility">
-                                        <b>16. Which posts are available in {{ $job->title }} recruitment 2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#online-form">
-                                        <b>17. How to fill the {{ $job->title }} online application form 2026?</b>
-                                    </a>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <a href="#documents">
-                                        <b>18. What documents are required while filling {{ $job->title }} online form
-                                            2026?</b>
-                                    </a>
-                                </li>
-
+                            <ul class="mb-0 ps-3">
+                                <li>Download button par click karein.</li>
+                                <li>Apna Registration Number / Roll Number enter karein.</li>
+                                <li>Date of Birth / Password fill karein.</li>
+                                <li>Login / Submit button par click karein.</li>
+                                <li>Admit Card screen par show ho jayega.</li>
+                                <li>PDF download karke print nikal lein.</li>
                             </ul>
-
                         </div>
+
+                        <!-- Warning -->
+                        <div class="warning-box mt-2">
+                            ⚠️ Admit Card mandatory for exam entry
+                        </div>
+
                     </div>
                 </div>
+            </div>
+            <style>
+                .admit-card {
+                    border-radius: 12px;
+                    overflow: hidden;
+                    background: #fff;
+                }
+
+                /* Header Gradient */
+                .admit-card .card-header {
+                    background: linear-gradient(45deg, #ff6a00, #ee0979);
+                    padding: 10px 15px;
+                }
+
+                /* Status Badge */
+                .status-badge {
+                    background: #fff;
+                    color: #28a745;
+                    font-weight: bold;
+                    padding: 4px 10px;
+                    border-radius: 20px;
+                }
+
+                /* Download Button */
+                .download-btn {
+                    background: linear-gradient(45deg, #007bff, #00c6ff);
+                    color: #fff;
+                    border: none;
+                    padding: 5px 12px;
+                    font-size: 13px;
+                    border-radius: 20px;
+                }
+
+                .download-btn:hover {
+                    opacity: 0.9;
+                }
+
+                /* Info Boxes */
+                .info-box {
+                    background: #f8f9fa;
+                    padding: 6px 8px;
+                    border-radius: 6px;
+                }
+
+                /* Steps */
+                .steps-box {
+                    background: #e3f2fd;
+                    padding: 6px 10px;
+                    border-radius: 6px;
+                    font-size: 13px;
+                }
+
+                /* Instructions */
+                .instruction-box {
+                    background: #fff3cd;
+                    border-left: 4px solid #ffc107;
+                    padding: 10px;
+                    border-radius: 6px;
+                    font-size: 13px;
+                }
+
+                /* Warning */
+                .warning-box {
+                    background: #ffe5e5;
+                    color: #d63031;
+                    padding: 6px;
+                    border-radius: 6px;
+                    font-size: 13px;
+                    text-align: center;
+                }
+            </style>
+
+            {{-- Result --}}
+            <div class="container mt-3" id="result">
+                <div class="card admit-card border-0">
+
+                    <!-- Header -->
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0 fw-bold text-white">
+                            {{ $job->title }} – Result
+                        </h6>
+                        <span class="badge status-badge">
+                            🟢 Result Declared
+                        </span>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body p-3">
+
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+
+                            <div class="small fw-semibold text-success">
+                                <i class="fa-solid fa-calendar-check"></i>
+                                Result Date: Coming Soon
+                            </div>
+
+                            <a href="{{ $job->result_link }}" target="_blank" class="btn download-btn">
+                                <i class="fa-solid fa-square-poll-vertical"></i> Check Result
+                            </a>
+
+                        </div>
+
+                        <!-- Info -->
+                        <div class="row small">
+
+                            <div class="col-6 mb-2 info-box">
+                                <i class="fa-solid fa-user"></i>
+                                Login: Roll No / DOB
+                            </div>
+
+                            <div class="col-6 mb-2 info-box">
+                                <i class="fa-solid fa-list"></i>
+                                Merit List Available
+                            </div>
+
+                        </div>
+
+                        <!-- Steps -->
+                        <div class="steps-box mt-2">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Login → View Result → Download
+                        </div>
+
+                        <!-- Instructions -->
+                        <div class="instruction-box mt-2">
+                            <h6 class="mb-2">
+                                <i class="fa-solid fa-circle-info"></i> How to Check Result
+                            </h6>
+                            <ul class="mb-0 ps-3">
+                                <li>Check Result button par click karein.</li>
+                                <li>Apna Roll Number / Registration Number enter karein.</li>
+                                <li>Date of Birth fill karein.</li>
+                                <li>Submit button par click karein.</li>
+                                <li>Result screen par show ho jayega.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {{-- syllbus --}}
+            <div class="container mt-3" id="syllabus">
+                <div class="card admit-card border-0">
+
+                    <!-- Header -->
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0 fw-bold text-white">
+                            {{ $job->title }} – Syllabus
+                        </h6>
+                        <span class="badge status-badge">
+                            📘 Available
+                        </span>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body p-3">
+
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+
+                            <div class="small fw-semibold text-primary">
+                                <i class="fa-solid fa-book"></i>
+                                Subject Wise Syllabus
+                            </div>
+
+                            <a href="{{ $job->syllabus_link }}" target="_blank" class="btn download-btn">
+                                <i class="fa-solid fa-download"></i> Download PDF
+                            </a>
+
+                        </div>
+
+                        <!-- Subjects -->
+                        <div class="row small">
+
+                            <div class="col-6 mb-2 info-box">
+                                <i class="fa-solid fa-brain"></i>
+                                Reasoning
+                            </div>
+
+                            <div class="col-6 mb-2 info-box">
+                                <i class="fa-solid fa-calculator"></i>
+                                Mathematics
+                            </div>
+
+                            <div class="col-6 mb-2 info-box">
+                                <i class="fa-solid fa-globe"></i>
+                                General Knowledge
+                            </div>
+
+                            <div class="col-6 mb-2 info-box">
+                                <i class="fa-solid fa-language"></i>
+                                English / Hindi
+                            </div>
+
+                        </div>
+
+                        <!-- Steps -->
+                        <div class="steps-box mt-2">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Download → Read → Prepare
+                        </div>
+
+                        <!-- Instructions -->
+                        <div class="instruction-box mt-2">
+                            <h6 class="mb-2">
+                                <i class="fa-solid fa-circle-info"></i> Syllabus Details
+                            </h6>
+                            <ul class="mb-0 ps-3">
+                                <li>Official syllabus PDF download karein.</li>
+                                <li>Har subject ke topics check karein.</li>
+                                <li>Important topics par focus karein.</li>
+                                <li>Previous year questions practice karein.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container mt-5 section-box" id="faq">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+
+                        <h2 class="card-title text-center mb-4">{{ $job->title }} – Frequently Asked
+                            Questions (FAQ)
+                        </h2>
+
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item">
+                                <a href="#date-fee">
+                                    <b>1. What are the important dates for {{ $job->title }} recruitment 2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#date-fee">
+                                    <b>2. When will the Apply Online start for {{ $job->title }} recruitment
+                                        2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#date-fee">
+                                    <b>3. What is the last date to apply for {{ $job->title }} online form 2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#date-fee">
+                                    <b>4. What is the last date for fee payment in {{ $job->title }} recruitment
+                                        2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#date-fee">
+                                    <b>5. What is the correction last date for {{ $job->title }} application form
+                                        2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#date-fee">
+                                    <b>6. When will the exam be conducted for {{ $job->title }} recruitment 2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#date-fee">
+                                    <b>7. When will the admit card release for {{ $job->title }} exam 2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#date-fee">
+                                    <b>8. When will the result be declared for {{ $job->title }} recruitment
+                                        2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#age-limit">
+                                    <b>9. What is the age limit for {{ $job->title }} recruitment 2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#application-fee">
+                                    <b>10. What is the application fee for General, OBC, SC and ST candidates in
+                                        {{ $job->title }} recruitment 2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#total-post">
+                                    <b>11. What is the total number of vacancies in {{ $job->title }} recruitment
+                                        2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#total-post">
+                                    <b>12. What is the salary or pay scale for {{ $job->title }} paramedical
+                                        posts?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#category-post">
+                                    <b>13. What is the category wise vacancy distribution in {{ $job->title }}
+                                        recruitment
+                                        2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#selection-process">
+                                    <b>14. What is the selection process for {{ $job->title }} recruitment 2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#eligibility">
+                                    <b>15. What is the eligibility criteria for {{ $job->title }} paramedical
+                                        posts?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#eligibility">
+                                    <b>16. Which posts are available in {{ $job->title }} recruitment 2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#online-form">
+                                    <b>17. How to fill the {{ $job->title }} online application form 2026?</b>
+                                </a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="#documents">
+                                    <b>18. What documents are required while filling {{ $job->title }} online form
+                                        2026?</b>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
     </main>
