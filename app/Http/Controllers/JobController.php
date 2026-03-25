@@ -470,7 +470,7 @@ class JobController extends Controller
         ]);
 
         // ✅ JSON decode
-        $data = json_decode($request->job_json, true);
+        $data = json_decode($request->admit_json, true);
 dd($data);
         if (!$data) {
             return back()->with('error', 'Invalid JSON format');
