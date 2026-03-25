@@ -607,12 +607,13 @@ class JobController extends Controller
 
     public function admitShow($slug)
     {
+        // 1️⃣ Slug se admit card fetch karo
         $admitCard = AdmitCard::where('slug', $slug)->firstOrFail();
 
-        // Agar multiple exams filter karna ho (upcoming only)
+        // 2️⃣ Only upcoming exams filter karo
         $exams = [];
-        if ($admitCard->exam_dates) {
-            $parts = explode('#', $admitCard->exam_dates);
+        if ($admitCard->exam_dates) {                           
+            $parts = explode('#',              $admitCard->exam_dates);
             foreach ($parts as $part) {
                 $data = explode('$', $part);
                 if (count($data) == 2) {
@@ -626,8 +627,10 @@ class JobController extends Controller
                 }
             }
         }
+
         $admitCard->exam_list = $exams;
 
+        // 3️⃣ View return karo
         return view('jobs/admitcardshow', compact('admitCard'));
     }
 }

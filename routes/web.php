@@ -40,6 +40,11 @@ Route::get('/jobs/{state}/{category}', [JobController::class, 'stateCategoryJobs
 
 
 //admit card edit
+// 1️⃣ Admit card edit page (admin ya form)
 Route::get('/job/{id}/admit', [JobController::class, 'admitEdit'])->name('job.admitEdit');
+
+// 2️⃣ Admit card store / save
 Route::post('/add-admit', [JobController::class, 'admitStoreJson'])->name('job.admitStoreJson');
+
+// 3️⃣ Frontend view: Admit card show by slug (SEO-friendly)
 Route::get('/admit/{slug}', [JobController::class, 'admitShow'])->name('admit.show');
