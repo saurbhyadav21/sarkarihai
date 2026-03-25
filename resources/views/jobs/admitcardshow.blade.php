@@ -170,22 +170,21 @@
             </div>
 
         </div>
-        <div class="row align-items-stretch gy-4 ">
-            []
+        <div class="row gy-4">
+
             <!-- Important Dates -->
-            <div class="col-md-6 section-box" id="dates">
-                <div class="card h-100">
-                    <div class="card-body">
+            <div class="col-md-6 d-flex">
+                <div class="card w-100 h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
 
                         <h2 class="card-title mb-3 text-center">
                             {{ $admitCard->job_title ?? 'Admit Card' }} – Important Dates
                         </h2>
 
-                        <ul class="list-group list-group-flush">
+                        <ul class="list-group list-group-flush flex-grow-1">
 
-                            {{-- Admit Card Release Date --}}
                             @if (!empty($admitCard->admit_card_release_date))
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <li class="list-group-item d-flex justify-content-between">
                                     <span>Admit Card Release Date</span>
                                     <span class="badge bg-success">
                                         {{ date('d M Y', strtotime($admitCard->admit_card_release_date)) }}
@@ -193,10 +192,9 @@
                                 </li>
                             @endif
 
-                            {{-- Exam Dates --}}
                             @if (!empty($admitCard->exam_list))
                                 @foreach ($admitCard->exam_list as $exam)
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <li class="list-group-item d-flex justify-content-between">
                                         <span>Exam Date ({{ $loop->iteration }}) - {{ $exam['name'] }}</span>
                                         <span class="badge bg-primary">
                                             {{ date('d M Y', strtotime($exam['date'])) }}
@@ -211,26 +209,22 @@
                 </div>
             </div>
 
-            <!-- Application Fee -->
-            <div class="col-md-6 section-box" id="fee">
-                <div class="card h-100 shadow-sm border-0">
-                    <div class="card-body">
+            <!-- Important Links -->
+            <div class="col-md-6 d-flex">
+                <div class="card w-100 h-100 shadow-sm border-0">
+                    <div class="card-body d-flex flex-column">
 
                         <h2 class="card-title mb-3 text-center text-primary fw-bold">
                             🔗 {{ $admitCard->job_title ?? 'Admit Card' }} – Important Links
                         </h2>
 
-                        <ul class="list-group list-group-flush">
+                        <ul class="list-group list-group-flush flex-grow-1">
 
                             @if (!empty($admitCard->official_link))
-                                @php
-                                    $links = explode('#', $admitCard->official_link);
-                                @endphp
+                                @php $links = explode('#', $admitCard->official_link); @endphp
 
                                 @foreach ($links as $link)
-                                    @php
-                                        $data = explode('$', $link);
-                                    @endphp
+                                    @php $data = explode('$', $link); @endphp
 
                                     @if (count($data) == 2)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
