@@ -33,9 +33,9 @@
                                 <div class="card-body">
 
                                     <p>
-                                        The <strong><a href="{{ url('job/' . $job->slug) }}">
-                                                {{ $job->title }}
-                                            </a></strong> has been officially
+                                        The <strong><a href="{{ url('sarkari-naukri/' . $job->slug) }}">
+    {{ $job->title }}
+</a></strong> has been officially
                                         released by <strong>{ORGANIZATION NAME}</strong> for candidates who applied under
                                         <strong>{ADVERTISEMENT NO / RECRUITMENT DETAILS}</strong>. Applicants for the
                                         <strong>{TOTAL VACANCIES} (Group A, B, C / Various Posts)</strong> can now
