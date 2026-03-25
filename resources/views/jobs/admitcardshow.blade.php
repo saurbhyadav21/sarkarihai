@@ -47,7 +47,7 @@
     {{ trim($post) }}@if(!$loop->last), @endif
 @endforeach
 </strong></strong> can now
-                                        <a href="https://sarkarihai.com" target="_blank"><strong>check details and download
+                                        <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}" target="_blank"><strong>check details and download
                                                 {Admit Card / Result / Answer Key / Application Form}</strong></a> through
                                         the official portal.
 
