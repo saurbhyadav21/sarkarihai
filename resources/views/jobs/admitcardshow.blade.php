@@ -116,11 +116,13 @@
                                         procedure, Physical Eligibility, pay scale and all other information..
                                     </p>
 
-                                    <p style="color: red;">
-                                        Note – छात्रो से ये अनुरोध किया जाता है की वो अपना फॉर्म भरने से पहले Official
-                                        Notification को ध्यान से जरूर पढे उसके बाद ही अपना फॉर्म भरे । (Last Date, Age
-                                        Limit, &amp; Education Qualification)
-                                    </p>
+                                   <p>
+<strong>Note –</strong> सभी उम्मीदवारों से अनुरोध किया जाता है कि वे अपना 
+<strong>Admit Card डाउनलोड करने से पहले Official Notification</strong> को ध्यान से जरूर पढ़ें। 
+Admit Card पर दिए गए <strong>Exam Date, Exam Center, Shift Timing, Reporting Time</strong> 
+और अन्य महत्वपूर्ण निर्देशों को ध्यानपूर्वक जांच लें। परीक्षा के दिन 
+<strong>Admit Card के साथ एक वैध ID Proof</strong> अवश्य लेकर जाएं।
+</p>
 
                                     <a href="#date-fee" class="btn btn-success">Read Official
                                         Notification / Apply Online</a>
