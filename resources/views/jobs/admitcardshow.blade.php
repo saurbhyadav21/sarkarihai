@@ -172,51 +172,7 @@
         </div>
         <div class="row align-items-stretch gy-4 ">
 []
-            <!-- Important Dates -->
-<div class="col-md-6 section-box" id="dates">
-    <div class="card h-100">
-        <div class="card-body">
-
-            <h2 class="card-title mb-3 text-center">
-                {{ $admitCard->title ?? 'Admit Card' }} – Important Dates
-            </h2>
-
-            <ul class="list-group list-group-flush">
-
-                @if(!empty($admitCard->apply_start_date))
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>Apply Online Start Date</span>
-                    <span class="badge bg-success">
-                        {{ date('d M Y', strtotime($admitCard->apply_start_date)) }}
-                    </span>
-                </li>
-                @endif
-
-                @if(!empty($admitCard->apply_last_date))
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>Last Date to Apply</span>
-                    <span class="badge bg-danger">
-                        {{ date('d M Y', strtotime($admitCard->apply_last_date)) }}
-                    </span>
-                </li>
-                @endif
-
-                @if(!empty($admitCard->exam_list))
-                    @foreach($admitCard->exam_list as $exam)
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>{{ $exam['name'] }}</span>
-                        <span class="badge bg-primary">
-                            {{ date('d M Y', strtotime($exam['date'])) }}
-                        </span>
-                    </li>
-                    @endforeach
-                @endif
-
-            </ul>
-
-        </div>
-    </div>
-</div>
+            <span>Exam Date ({{ $loop->iteration }})</span>
 
             <!-- Application Fee -->
             <div class="col-md-6 section-box" id="fee">
