@@ -33,14 +33,14 @@ class JobController extends Controller
         $admitCard = \App\Models\AdmitCard::where('job_id', $job->id)->first();
 
         // ✅ Lock condition
-       
+
         // SEO
         $seo = [
             'title' => $job->title . ' - ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date, Salary',
             'description' => 'Apply online for ' . $job->title . ' for ' . $job->total_vacancies . ' posts. Check eligibility, application fee, age limit, important dates and direct apply link.',
             'keywords' => $job->title . ', ' . $job->title . ' vacancy, ' . $job->title . ' apply online, ' . $job->title . ' notification, ' . $job->category . ' recruitment'
         ];
-       
+
         return view('jobs.show', compact('job', 'seo', 'admitCard'));
     }
     //     public function show($slug)
@@ -524,6 +524,14 @@ class JobController extends Controller
                 'how_to_download_admit_card' => $data['how_to_download_admit_card'] ?? null,
                 'official_link' => $links,
                 'logo' => $imageName // null bhi ho sakta hai
+            ]
+        );
+
+        Job::updateOrCreate(
+            ['job_id' => $request->job_id], // condition
+            [
+                'admit_card' => $data['admit_card_release_date'] ?? null,
+                'exam_date' => $data['exam_dates'] ?? null,
             ]
         );
 
