@@ -20,7 +20,7 @@ class AdmitCard extends Model
         static::creating(function ($card) {
             
             if(!$card->slug){
-                $card->slug = Str::slug($card->job_title);
+                $card->slug = Str::slug($card->job_title . ' 2026-Admit card out');
             }
         });
     }
