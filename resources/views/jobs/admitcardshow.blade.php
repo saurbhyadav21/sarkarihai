@@ -33,61 +33,65 @@
                                 <div class="card-body">
 
                                     <p>
-    The 
-    <strong>
-        <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}">
-            {{ $job->title }}
-        </a>
-    </strong> 
-    has been officially released by 
-    <strong>{{ $job->category ?? 'the organization' }}</strong> 
+                                        The
+                                        <strong>
+                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}">
+                                                {{ $job->title }}
+                                            </a>
+                                        </strong>
+                                        has been officially released by
+                                        <strong>{{ $job->category ?? 'the organization' }}</strong>
 
-    @if(!empty($job->advertisement_no))
-        for candidates who applied under 
-        <strong>{{ $job->advertisement_no }}</strong>
-    @else
-        for eligible candidates
-    @endif.
+                                        @if (!empty($job->advertisement_no))
+                                            for candidates who applied under
+                                            <strong>{{ $job->advertisement_no }}</strong>
+                                        @else
+                                            for eligible candidates
+                                        @endif.
 
-    Applicants for the 
-    <strong>
-        {{ $job->total_vacancies ?? 'multiple' }} vacancies 
-        @if(!empty($job->post_name))
-            (
-            {{ implode(', ', array_map('trim', explode('#', $job->post_name))) }}
-            )
-        @endif
-    </strong> 
-    can now 
-    <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}" target="_blank">
-        <strong>check details and download updates</strong>
-    </a> through the official portal.
+                                        Applicants for the
+                                        <strong>
+                                            {{ $job->total_vacancies ?? 'multiple' }} vacancies
+                                            @if (!empty($job->post_name))
+                                                (
+                                                {{ implode(', ', array_map('trim', explode('#', $job->post_name))) }}
+                                                )
+                                            @endif
+                                        </strong>
+                                        can now
+                                        <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}" target="_blank">
+                                            <strong>check details and download updates</strong>
+                                        </a> through the official portal.
 
-    @if(!empty($admitCard->exam_list))
-        As per the latest update, the 
-        <strong>exam date</strong> is scheduled for 
-        <strong>
-            @foreach($admitCard->exam_list as $exam)
-                {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}@if(!$loop->last), @endif
-            @endforeach
-        </strong>.
-    @endif
+                                        @if (!empty($admitCard->exam_list))
+                                            As per the latest update, the
+                                            <strong>exam date</strong> is scheduled for
+                                            <strong>
+                                                @foreach ($admitCard->exam_list as $exam)
+                                                    {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}@if (!$loop->last)
+                                                        ,
+                                                    @endif
+                                                @endforeach
+                                            </strong>.
+                                        @endif
 
-    Candidates must check their 
-    <strong>exam date, admit card, result status, exam center, shift timing, and important instructions</strong> 
-    mentioned on the official update.
+                                        Candidates must check their
+                                        <strong>exam date, admit card, result status, exam center, shift timing, and
+                                            important instructions</strong>
+                                        mentioned on the official update.
 
-    To avoid last-minute issues, candidates are advised to 
-    <strong>check updates and download required documents</strong> as early as possible.
+                                        To avoid last-minute issues, candidates are advised to
+                                        <strong>check updates and download required documents</strong> as early as possible.
 
-    For the 
-    <strong>direct link, latest Sarkari result updates, government job notifications, admit cards, answer keys, and exam alerts</strong>, 
-    visit 
-    <a href="https://sarkarihai.com" target="_blank">
-        <strong>SarkariHai.com</strong>
-    </a>, your trusted platform for 
-    <strong>Sarkari jobs, results, admit cards, and सरकारी नौकरी updates</strong>.
-</p>
+                                        For the
+                                        <strong>direct link, latest Sarkari result updates, government job notifications,
+                                            admit cards, answer keys, and exam alerts</strong>,
+                                        visit
+                                        <a href="https://sarkarihai.com" target="_blank">
+                                            <strong>SarkariHai.com</strong>
+                                        </a>, your trusted platform for
+                                        <strong>Sarkari jobs, results, admit cards, and सरकारी नौकरी updates</strong>.
+                                    </p>
 
                                     <h5>Post Details:</h5>
                                     <ul>
@@ -116,15 +120,17 @@
                                         procedure, Physical Eligibility, pay scale and all other information..
                                     </p>
 
-                                   <p>
-<strong>Note –</strong> सभी उम्मीदवारों से अनुरोध किया जाता है कि वे अपना 
-<strong>Admit Card डाउनलोड करने से पहले Official Notification</strong> को ध्यान से जरूर पढ़ें। 
-Admit Card पर दिए गए <strong>Exam Date, Exam Center, Shift Timing, Reporting Time</strong> 
-और अन्य महत्वपूर्ण निर्देशों को ध्यानपूर्वक जांच लें। परीक्षा के दिन 
-<strong>Admit Card के साथ एक वैध ID Proof</strong> अवश्य लेकर जाएं।
-</p>
+                                    <p style="color: red">
+                                        <strong>Note –</strong> सभी उम्मीदवारों से अनुरोध किया जाता है कि वे अपना
+                                        <strong>Admit Card डाउनलोड करने से पहले Official Notification</strong> को ध्यान से
+                                        जरूर पढ़ें।
+                                        Admit Card पर दिए गए <strong>Exam Date, Exam Center, Shift Timing, Reporting
+                                            Time</strong>
+                                        और अन्य महत्वपूर्ण निर्देशों को ध्यानपूर्वक जांच लें। परीक्षा के दिन
+                                        <strong>Admit Card के साथ एक वैध ID Proof</strong> अवश्य लेकर जाएं।
+                                    </p>
 
-                                    
+
 
                                 </div>
                             </div>
