@@ -465,7 +465,7 @@ class JobController extends Controller
     {
         // ✅ Validation
         $request->validate([
-            'job_json' => 'required|json',
+            'admit_json' => 'required|json',
             'job_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
         ]);
 
