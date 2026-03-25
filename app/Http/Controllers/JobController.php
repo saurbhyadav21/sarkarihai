@@ -22,27 +22,30 @@ class JobController extends Controller
     // Single job show
     public function show($slug)
     {
-        // Sabhi jobs ke saath slug generate kar ke match kare
+        // Job fetch
         $job = Job::all()->firstWhere(fn($j) => Str::slug($j->title, '-') === $slug);
+
+        if (!$job) {
+            abort(404);
+        }
+
+        // ✅ Admit Card fetch using job_id
+        $admitCard = \App\Models\AdmitCard::where('job_id', $job->id)->first();
+
+        // ✅ Lock condition
+        $admitLocked = true;
+        if ($admitCard && !empty($admitCard->admit_card_release_date)) {
+            $admitLocked = \Carbon\Carbon::parse($admitCard->admit_card_release_date)->isFuture();
+        }
+
+        // SEO
         $seo = [
             'title' => $job->title . ' - ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date, Salary',
             'description' => 'Apply online for ' . $job->title . ' for ' . $job->total_vacancies . ' posts. Check eligibility, application fee, age limit, important dates and direct apply link.',
-
-
-
-            'keywords' => $job->title . ', ' . $job->title . ' vacancy ' . ', ' . $job->title . ' apply online, ' .
-                $job->title . ' notification ' . ', ' . $job->category . ' recruitment'
-
-
-
+            'keywords' => $job->title . ', ' . $job->title . ' vacancy, ' . $job->title . ' apply online, ' . $job->title . ' notification, ' . $job->category . ' recruitment'
         ];
 
-
-        if (!$job) {
-            abort(404); // Agar slug match na ho
-        }
-
-        return view('jobs.show', compact('job', 'seo'));
+        return view('jobs.show', compact('job', 'seo', 'admitCard', 'admitLocked'));
     }
     //     public function show($slug)
     // {
