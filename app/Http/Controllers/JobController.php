@@ -654,6 +654,6 @@ class JobController extends Controller
     {
         $admitCards = AdmitCard::orderBy('admit_card_release_date', 'asc')->get();
 
-        return view('admitcard-list', compact('admitCards'));
+        return view('jobs/admitcard-list', compact('admitCards'));
     }
 }
