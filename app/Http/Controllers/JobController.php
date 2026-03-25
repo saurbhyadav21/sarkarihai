@@ -466,7 +466,8 @@ class JobController extends Controller
         // ✅ Validation
         $request->validate([
             'admit_json' => 'required|json',
-            'job_image' => 'nullable'
+            'job_image' => 'nullable',
+            'job_id' => 'required'
         ]);
 
         // ✅ JSON decode
@@ -490,7 +491,7 @@ class JobController extends Controller
         
         // ✅ Save in DB
         AdmitCard::create([
-            'job_id' => uniqid(),
+            'job_id' => $request->job_id, // 🔥 yaha use ho raha hai
             'job_title' => $data['job_title'] ?? null,
             'full_title' => $data['full_title'] ?? null,
             'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
@@ -569,11 +570,13 @@ class JobController extends Controller
         return view('jobs.add-job', compact('states', 'categories', 'mineducation'));
     }
 
-    public function admitEdit(Request $request)
+    public function admitEdit(Request $request, $id)
     {
-        return view('jobs.admit-card');
+        return view('jobs.admit-card', compact('id'));
     }
 }
+
+
 
 
 

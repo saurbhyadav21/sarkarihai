@@ -7,6 +7,7 @@
     </div>
 
     <br>
+    <input type="hidden" name="job_id" value="{{ $id }}">
 
     <div>
         <label>Upload Image</label><br>
