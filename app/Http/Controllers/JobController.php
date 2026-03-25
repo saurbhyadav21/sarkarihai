@@ -460,6 +460,90 @@ class JobController extends Controller
     }
 
 
+    public function editStoreJson(Request $request)
+    {
+        dd($request);
+        // dd($request);   
+        // Validate JSON
+        // $request->validate([
+        //     'job_json' => 'required|json',
+        //     'states' => 'required|array',
+        //     'category_id' => 'required',
+        //     'min_education' => 'required'
+        // ]);
+
+        // Decode JSON
+        // $json = json_decode($request->job_json, true);
+        // $state = is_array($request->states)
+        //     ? implode(',', $request->states)
+        //     : $request->states;
+        // Map fields
+        // $data = [
+        //     'title'             => $json['title'] ?? null,
+        //     'state'             => $state ?? null,
+        //     'start_date'        => $json['start_date'] ?? null,
+        //     'end_date'          => $json['last_date'] ?? null,
+        //     'min_salary'        => $json['salary_min'] ?? null,
+        //     'max_salary'        => $json['salary_max'] ?? null,
+        //     'min_age'           => $json['age_min'] ?? null,
+        //     'max_age_genral'    => $json['age_max'] ?? null,
+        //     'min_qulification'  => $request->min_education ?? null,
+        //     'total_vacancies'  => $json['total_vacancy'] ?? null,
+        //     // 'exam_date'        => $json['exam_date'] ?? null,
+        //     'website'          => $json['official_website'] ?? null,
+        //     'category'          => $request->category_id ?? null,
+        //     'last_fee_date'          => $json['last_fee_date'] ?? null,
+        //     'correction_date'          => $json['correction_date'] ?? null,
+        //     // 'exam_date'          => $json['exam_date'] ?? null,
+        //     // 'admit_card'          => $json['admit_card'] ?? null,
+        //     // 'result_date'          => $json['result_date'] ?? null,
+        //     'genral_fees'          => $json['genral_fees'] ?? null,
+        //     'obc_fees'          => $json['obc_fees'] ?? null,
+        //     'sc_fees'          => $json['sc_fees'] ?? null,
+        //     'st_fees'          => $json['st_fees'] ?? null,
+        //     'extra_charge'          => $json['extra_charge'] ?? null,
+        //     'min_age'          => $json['age_min'] ?? null,
+        //     'max_age_genral'          => $json['age_max'] ?? null,
+        //     'max_age_obc'          => $json['max_age_obc'] ?? null,
+        //     'max_age_sc_st'          => $json['max_age_sc_st'] ?? null,
+        //     'max_age_female'          => $json['max_age_female'] ?? null,
+        //     'relaxation'          => $json['relaxation'] ?? null,
+        //     'genral_post'          => $json['genral_post'] ?? null,
+        //     'ews_post'          => $json['ews_post'] ?? null,
+        //     'obc_post'          => $json['obc_post'] ?? null,
+        //     'sc_post'          => $json['sc_post'] ?? null,
+        //     'st_post'          => $json['st_post'] ?? null,
+        //     'mode_selection'          => $json['Mode_Of_Selection'] ?? null,
+        //     'post_name'          => $json['post_name'] ?? null,
+        //     'post_eligibility'          => $json['post_eligibility'] ?? null,
+        //     'post_salary'          => $json['post_salary'] ?? null,
+        //     'instruction'          => $json['instruction'] ?? null,
+        //     'doc'          => $json['doc'] ?? null,
+        //     'link'          => $json['link'] ?? null,
+
+        // ];
+        // $data = [
+        //     
+
+        //     
+
+
+
+        //     
+        //     'post_eligibility' => $json['qualification'] ?? null,
+        //     
+        //     
+        //     
+        //     
+        // ];
+        // dd($data);
+        // Save
+        // Job::create($data);
+
+        // return back()->with('success', 'Job added via JSON!');
+    }
+
+
     public function stateJobs($state)
     {
         $state = urldecode($state); // URL se decode

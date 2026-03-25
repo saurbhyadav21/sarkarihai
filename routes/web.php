@@ -30,6 +30,7 @@ Route::delete('/job/{id}', [JobController::class, 'destroy'])->name('job.destroy
 // });
 
 Route::post('/add-job', [JobController::class, 'storeJson'])->name('job.store.json');
+Route::post('/edit-job', [JobController::class, 'editStoreJson'])->name('job.editStore.json');
 
 
 Route::get('/state/{state}/jobs', [JobController::class, 'stateJobs'])->name('state.jobs');
