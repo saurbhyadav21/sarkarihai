@@ -763,7 +763,7 @@
                     $admitLocked = isLocked($job->admit_card);
                     $resultLocked = isLocked($job->result_date);
 
-                    echo $admitLocked;
+                   
                 @endphp
 
                 {{-- ADmit card --}}
