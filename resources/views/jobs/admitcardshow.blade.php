@@ -34,11 +34,19 @@
 
                                     <p>
                                         The <strong><a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}">
-    {{ $job->title }}
-</a></strong> has been officially
-                                        released by <strong>{ORGANIZATION NAME}</strong> for candidates who applied under
-                                        <strong>{ADVERTISEMENT NO / RECRUITMENT DETAILS}</strong>. Applicants for the
-                                        <strong>{TOTAL VACANCIES} (Group A, B, C / Various Posts)</strong> can now
+                                                {{ $job->title }}
+                                            </a></strong> has been officially
+                                        released by <strong>{{ $job->category }}</strong> for candidates who applied under
+                                        officially released advertisement. Applicants for the
+                                        <strong>{{ $job->total_vacancies }} <strong>
+@php
+    $posts = explode('#', $job->post_name);
+@endphp
+
+@foreach($posts as $index => $post)
+    {{ trim($post) }}@if(!$loop->last), @endif
+@endforeach
+</strong></strong> can now
                                         <a href="https://sarkarihai.com" target="_blank"><strong>check details and download
                                                 {Admit Card / Result / Answer Key / Application Form}</strong></a> through
                                         the official portal.
