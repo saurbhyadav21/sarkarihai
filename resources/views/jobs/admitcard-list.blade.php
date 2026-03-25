@@ -201,6 +201,12 @@
         .job-meta {
             font-size: 11px;
         }
+        @media (min-width: 768px) {
+    .col-md-3 {
+        flex: 0 0 auto;
+        width: 26%;
+    }
+}
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
