@@ -3,7 +3,7 @@
 
     <div>
         <label>Paste Job JSON</label><br>
-        <textarea name="job_json" rows="10" style="width:100%;" placeholder="Paste JSON here"></textarea>
+        <textarea name="admit_json" rows="10" style="width:100%;" placeholder="Paste JSON here"></textarea>
     </div>
 
     <br>
