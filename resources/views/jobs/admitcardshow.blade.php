@@ -171,87 +171,83 @@
 
         </div>
         <div class="row align-items-stretch gy-4 ">
-[]
+            []
             <!-- Important Dates -->
-<div class="col-md-6 section-box" id="dates">
-    <div class="card h-100">
-        <div class="card-body">
-
-            <h2 class="card-title mb-3 text-center">
-                {{ $admitCard->job_title ?? 'Admit Card' }} – Important Dates
-            </h2>
-
-            <ul class="list-group list-group-flush">
-
-                {{-- Admit Card Release Date --}}
-                @if(!empty($admitCard->admit_card_release_date))
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span>Admit Card Release Date</span>
-                    <span class="badge bg-success">
-                        {{ date('d M Y', strtotime($admitCard->admit_card_release_date)) }}
-                    </span>
-                </li>
-                @endif
-
-                {{-- Exam Dates --}}
-                @if(!empty($admitCard->exam_list))
-                    @foreach($admitCard->exam_list as $exam)
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>Exam Date ({{ $loop->iteration }}) - {{ $exam['name'] }}</span>
-                        <span class="badge bg-primary">
-                            {{ date('d M Y', strtotime($exam['date'])) }}
-                        </span>
-                    </li>
-                    @endforeach
-                @endif
-
-            </ul>
-
-        </div>
-    </div>
-</div>
-
-            <!-- Application Fee -->
-            <div class="col-md-6 section-box" id="fee">
+            <div class="col-md-6 section-box" id="dates">
                 <div class="card h-100">
                     <div class="card-body">
 
-                        <h2 class="card-title mb-3 text-center" id="application-fee">
-                            SSC Combined Graduate Level CGL Recruitment 2025 – Application Fee
+                        <h2 class="card-title mb-3 text-center">
+                            {{ $admitCard->job_title ?? 'Admit Card' }} – Important Dates
                         </h2>
 
                         <ul class="list-group list-group-flush">
 
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>General Fees</span>
-                                <span class="badge bg-primary">₹100/-</span>
-                            </li>
+                            {{-- Admit Card Release Date --}}
+                            @if (!empty($admitCard->admit_card_release_date))
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Admit Card Release Date</span>
+                                    <span class="badge bg-success">
+                                        {{ date('d M Y', strtotime($admitCard->admit_card_release_date)) }}
+                                    </span>
+                                </li>
+                            @endif
 
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>OBC Fees</span>
-                                <span class="badge bg-info text-dark">₹100/-</span>
-                            </li>
+                            {{-- Exam Dates --}}
+                            @if (!empty($admitCard->exam_list))
+                                @foreach ($admitCard->exam_list as $exam)
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>Exam Date ({{ $loop->iteration }}) - {{ $exam['name'] }}</span>
+                                        <span class="badge bg-primary">
+                                            {{ date('d M Y', strtotime($exam['date'])) }}
+                                        </span>
+                                    </li>
+                                @endforeach
+                            @endif
 
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>SC Fees</span>
-                                <span class="badge bg-success">₹0/-</span>
-                            </li>
+                        </ul>
 
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>ST Fees</span>
-                                <span class="badge bg-secondary">₹0/-</span>
-                            </li>
+                    </div>
+                </div>
+            </div>
 
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>Portal Charge</span>
-                                <span class="badge bg-warning text-dark">₹0/-</span>
-                            </li>
+            <!-- Application Fee -->
+            <div class="col-md-6 section-box" id="fee">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
 
-                            <!-- Payment Info -->
-                            <li class="list-group-item mt-2" style="font-size: 14px; line-height: 1.6;">
-                                <b>Payment Methods:</b><br>
-                                Debit Card, Credit Card, Internet Banking, IMPS, Cash Card / Mobile Wallet
-                            </li>
+                        <h2 class="card-title mb-3 text-center text-primary fw-bold">
+                            🔗 {{ $admitCard->job_title ?? 'Admit Card' }} – Important Links
+                        </h2>
+
+                        <ul class="list-group list-group-flush">
+
+                            @if (!empty($admitCard->official_link))
+                                @php
+                                    $links = explode('#', $admitCard->official_link);
+                                @endphp
+
+                                @foreach ($links as $link)
+                                    @php
+                                        $data = explode('$', $link);
+                                    @endphp
+
+                                    @if (count($data) == 2)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                                            <span class="fw-semibold">
+                                                👉 {{ trim($data[0]) }}
+                                            </span>
+
+                                            <a href="{{ trim($data[1]) }}" target="_blank"
+                                                class="btn btn-sm btn-success fw-bold">
+                                                View
+                                            </a>
+
+                                        </li>
+                                    @endif
+                                @endforeach
+                            @endif
 
                         </ul>
 
