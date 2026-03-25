@@ -7,6 +7,7 @@ use App\Models\Job; // Make sure you have a Job model
 use App\Models\State; // Make sure you have a Job model
 use App\Models\Category; // Make sure you have a Job model
 use App\Models\Mineducation; // Make sure you have a Job model
+use App\Models\AdmitCard; // Make sure you have a Job model
 use Illuminate\Support\Str;
 
 
