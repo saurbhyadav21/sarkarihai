@@ -868,7 +868,7 @@
                             <!-- Button -->
                             <div>
                                  {{-- <a href="{{ route('admit.show', $job->slug) }}" class="job-link"> --}}
-                                <a href="{{ route('admit.show', $job->slug) }}" class="btn view-btn">
+                                {{-- <a href="{{ route('admit.show', $job->slug) }}" class="btn view-btn"> --}}
                                     🔍 View Details
                                 </a>
                             </div>
