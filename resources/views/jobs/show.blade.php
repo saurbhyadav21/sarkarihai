@@ -768,7 +768,7 @@
 
                 {{-- ADmit card --}}
                 <div class="container mt-3" id="admit">
-                    <div class="card admit-card border-0 locked-card{{ $admitLocked ? 'locked-card' : '' }}">
+                    <div class="card admit-card border-0 {{ $admitLocked ? 'locked-card' : '' }}">
 
                         <!-- Header -->
                         <div class="card-header d-flex justify-content-between align-items-center">
