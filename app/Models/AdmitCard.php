@@ -18,9 +18,12 @@ class AdmitCard extends Model
     protected static function booted()
     {
         static::creating(function ($card) {
-            // Agar slug empty ho to generate kar do
-            if(!$card->slug) {
-                $card->slug = Str::slug($card->title . '-' . now()->format('Y'));
+            if(!$card->slug){
+                if($card->title){ 
+                    $card->slug = Str::slug($card->title . '-2026');
+                } else {
+                    $card->slug = 'admit-card-2026'; // fallback
+                }
             }
         });
     }
