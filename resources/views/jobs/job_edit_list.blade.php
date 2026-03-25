@@ -31,7 +31,7 @@
                                 <th>Title</th>
                                 <th>image</th>
                                 <th>admit date</th>
-                                <th>exam date</th>
+                                {{-- <th>exam date</th> --}}
                                 <th>result date</th>
                                 <th>syllabus</th>
                                 <th>Delete</th>
@@ -67,13 +67,13 @@
                                     </td>
 
                                     <!-- Exam Date -->
-                                    <td>
+                                    {{-- <td>
                                         @if (!empty($job->exam_date))
                                             {{ $job->exam_date }}
                                         @else
                                             <span class="badge bg-danger">Not Announced</span>
                                         @endif
-                                    </td>
+                                    </td> --}}
 
                                     <!-- Result Date -->
                                     <td>
