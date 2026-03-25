@@ -848,7 +848,7 @@
                         </div>
 
                         <!-- Info Grid -->
-                        <div class="row small text-dark">
+                        {{-- <div class="row small text-dark">
 
                             <div class="col-6 mb-2 info-box">
                                 <i class="fa-solid fa-key text-warning"></i>
@@ -870,13 +870,13 @@
                                 Print A4 Size
                             </div>
 
-                        </div>
+                        </div> --}}
 
                         <!-- Quick Steps -->
-                        <div class="steps-box mt-2">
+                        {{-- <div class="steps-box mt-2">
                             <i class="fa-solid fa-circle-info"></i>
                             Login → Download → Print
-                        </div>
+                        </div> --}}
 
                         <!-- Warning -->
                         <div class="warning-box mt-2">
