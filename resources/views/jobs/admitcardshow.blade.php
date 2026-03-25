@@ -223,7 +223,7 @@
                 <div class="card w-100 h-100 shadow-sm border-0">
                     <div class="card-body d-flex flex-column">
 
-                        <h2 class="card-title mb-3 text-center text-primary fw-bold">
+                        <h2 class="card-title mb-3 text-center text-primary fw-bold" style="color: red !important;">
                             🔗 {{ $admitCard->job_title ?? 'Admit Card' }} – Important Links
                         </h2>
 
