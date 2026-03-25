@@ -1,4 +1,4 @@
-<form action="{{ route('job.editStore.json') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('job.admitStoreJson') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div>
