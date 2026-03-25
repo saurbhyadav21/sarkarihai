@@ -815,7 +815,7 @@
 
                             <div class="small fw-semibold text-primary">
                                 <i class="fa-solid fa-calendar-days"></i>
-                                Exam Dates : 
+                                Exam Dates :
                                 @if (!empty($admitCard->exam_dates))
                                     @php
                                         $dates = explode('#', $admitCard->exam_dates);
@@ -848,29 +848,74 @@
                         </div>
 
                         <!-- Info Grid -->
-                        {{-- <div class="row small text-dark">
+                        <div class="row small text-dark g-3">
 
-                            <div class="col-6 mb-2 info-box">
-                                <i class="fa-solid fa-key text-warning"></i>
-                                Login: Reg No / DOB
+                            <!-- Release Date -->
+                            <div class="col-md-6">
+                                <div class="info-box d-flex align-items-center justify-content-between">
+                                    <span>
+                                        <i class="fa-solid fa-calendar-check text-success"></i>
+                                        Admit Card Release
+                                    </span>
+
+                                    <span class="badge bg-success">
+                                        {{ !empty($admitCard->admit_card_release_date)
+                                            ? date('d M Y', strtotime($admitCard->admit_card_release_date))
+                                            : 'Coming Soon' }}
+                                    </span>
+                                </div>
                             </div>
 
-                            <div class="col-6 mb-2 info-box">
-                                <i class="fa-solid fa-location-dot text-danger"></i>
-                                Center: Check Admit Card
+                            <!-- Official Links -->
+                            <div class="col-md-6">
+                                <div class="info-box">
+                                    <i class="fa-solid fa-link text-primary"></i>
+                                    <strong>Important Links</strong>
+
+                                    @if (!empty($admitCard->official_link))
+                                        @php $links = explode('#', $admitCard->official_link); @endphp
+
+                                        <div class="mt-1">
+                                            @foreach ($links as $link)
+                                                @php $data = explode('$', $link); @endphp
+
+                                                @if (count($data) == 2)
+                                                    <a href="{{ trim($data[1]) }}" target="_blank"
+                                                        class="d-block text-decoration-none small link-item">
+                                                        👉 {{ trim($data[0]) }}
+                                                    </a>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
 
-                            <div class="col-6 mb-2 info-box">
-                                <i class="fa-solid fa-id-card text-success"></i>
-                                Carry Valid ID
+                            <!-- How to Download -->
+                            <div class="col-12">
+                                <div class="instruction-box">
+
+                                    <h6 class="mb-2">
+                                        <i class="fa-solid fa-download text-warning"></i>
+                                        How to Download Admit Card
+                                    </h6>
+
+                                    @if (!empty($admitCard->how_to_download_admit_card))
+                                        @php $steps = explode('#', $admitCard->how_to_download_admit_card); @endphp
+
+                                        <ul class="mb-0 ps-3">
+                                            @foreach ($steps as $step)
+                                                @if (!empty(trim($step)))
+                                                    <li>{{ trim($step) }}</li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    @endif
+
+                                </div>
                             </div>
 
-                            <div class="col-6 mb-2 info-box">
-                                <i class="fa-solid fa-print text-info"></i>
-                                Print A4 Size
-                            </div>
-
-                        </div> --}}
+                        </div>
 
                         <!-- Quick Steps -->
                         {{-- <div class="steps-box mt-2">
