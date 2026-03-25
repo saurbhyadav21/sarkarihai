@@ -487,7 +487,8 @@ class JobController extends Controller
         if ($request->hasFile('job_image')) {
             $image = $request->file('job_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/jobs'), $imageName);
+            $image->move(public_path('job-images'), $imageName);
+            // $file->move(public_path('job-images'), $name);
         }
 
         // ✅ Create OR Update (🔥 main logic)
