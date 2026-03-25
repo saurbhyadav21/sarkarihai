@@ -124,12 +124,13 @@
         .job-box {
             cursor: pointer;
         }
+
         @media (min-width: 768px) {
-  .col-md-5th {
-    flex: 0 0 20%;
-    max-width: 20%;
-  }
-}
+            .col-md-5th {
+                flex: 0 0 20%;
+                max-width: 20%;
+            }
+        }
     </style>
 
 
@@ -306,59 +307,43 @@
             </span>
         </h2>
         <div class="row">
-            @foreach ($jobs_upcomming as $job)
-                @php
-                    $today = \Carbon\Carbon::today();
-                    $jobEnd = \Carbon\Carbon::parse($job->end_date);
-                    $diff = $today->diffInDays($jobEnd, false);
+            @foreach ($admitCard as $job)
+                @foreach ($job->exam_list as $exam)
+                    <div class="col-6 col-md-5th">
 
-                    if ($diff <= 3) {
-                        $cardColor = 'bg-danger text-white';
-                    } elseif ($diff <= 7) {
-                        $cardColor = 'bg-warning text-dark';
-                    } else {
-                        $cardColor = 'bg-success text-white';
-                    }
-                @endphp
+                        <a href="#" class="job-link">
 
-                <div class="col-6 col-md-5th">
+                            <div class="job-box position-relative">
 
-                    <a href="https://sarkarihai.com/sarkari-naukri/bpssc-enforcement-sub-inspector-esi-recruitment-2024"
-                        class="job-link">
+                                <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                                    class="new-badge">
 
-                        <div class="job-box position-relative">
+                                <img src="https://sarkarihai.com/public/job-images/1774169048.png" class="job-logo">
 
-                            <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
-                                class="new-badge">
-                            <img src="https://sarkarihai.com/public/job-images/1774169048.png" class="job-logo">
+                                <div>
+                                    <div class="job-title">
+                                        {{ $job->title }}
+                                    </div>
 
-                            <div>
-                                <div class="job-title ">
-
-                                    RPSC Assistant Engineer (AE) Mains Admit Card 2026 
- 
-
+                                    <p style="font-size: 10px;margin-bottom:0;">
+                                        {{ $exam['name'] }}
+                                    </p>
                                 </div>
-                                <p style="font-size: 10px;margin-bottom: 0px;">Check Exam Date & Download Link</p>
-
 
                             </div>
 
-                        </div>
+                            <div class="job-meta">
+                                <span style="color: green; font-weight:600;">
+                                    📝 Exam Date: {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}
+                                    <br>
+                                    ⏳ <span class="countdown" data-date="{{ $exam['date'] }}"></span>
+                                </span>
+                            </div>
 
-                        <div class="job-meta">
-                            <span style="color: green; font-weight:600;margin-left: 0px;">
-                            📝 Exam Date: 12 Feb 2026 | ⏳ 7 Days 10 Hours Left
-                            </span>
-                            
-                        
-                            {{-- <span style="color: red;font-weight: 600;float: right;margin-right: 5px;">
-                            ⏳7 Days 10Hr 40min Left
-                            </span> --}}
-                        </div>
-                    </a>
+                        </a>
 
-                </div>
+                    </div>
+                @endforeach
             @endforeach
         </div>
     </div>
@@ -860,4 +845,33 @@
 
         </div>
     </div>
+
+    <script>
+        function startCountdown() {
+            document.querySelectorAll('.countdown').forEach(el => {
+                let examDate = new Date(el.getAttribute('data-date')).getTime();
+
+                function update() {
+                    let now = new Date().getTime();
+                    let diff = examDate - now;
+
+                    if (diff <= 0) {
+                        el.innerHTML = "Exam Started / Over";
+                        return;
+                    }
+
+                    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+                    el.innerHTML = days + " Days " + hours + " Hr " + minutes + " Min Left";
+                }
+
+                update();
+                setInterval(update, 60000);
+            });
+        }
+
+        startCountdown();
+    </script>
 @endsection

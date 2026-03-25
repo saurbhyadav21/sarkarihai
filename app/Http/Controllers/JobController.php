@@ -213,12 +213,29 @@ class JobController extends Controller
             ->values();
 
         //Admit Card
-        $admitCard = Job::whereNotNull('admit_card')
-            ->whereNotNull('exam_date')
-            ->whereDate('admit_card', '<=', now()->addDays(14)) // max 2 week future
-            ->whereDate('exam_date', '>=', now()) // exam abhi baaki hai
-            ->orderBy('exam_date', 'asc')
-            ->get();
+        $admitCard = AdmitCard::orderBy('admit_card_release_date', 'asc')->get();
+
+        foreach ($admitCard as $card) {
+            $exams = [];
+
+            if ($card->exam_dates) {
+                $parts = explode('#', $card->exam_dates);
+
+                foreach ($parts as $part) {
+                    $data = explode('$', $part);
+
+                    if (count($data) == 2) {
+                        $exams[] = [
+                            'name' => $data[0],
+                            'date' => $data[1]
+                        ];
+                    }
+                }
+            }
+
+            $card->exam_list = $exams; // new dynamic property
+        }
+
 
         // dd($admitCard);
         return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories', 'admitCard'));
