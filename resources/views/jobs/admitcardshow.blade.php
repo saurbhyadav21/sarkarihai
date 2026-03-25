@@ -452,5 +452,36 @@
         @endif
 
     </div>
-
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When will the {{ $title }} admit card be released?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The admit card will be released on {{ $releaseDate ?: 'official date announced by authority' }}."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the exam date for {{ $title }}?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The exam is scheduled on {{ $examDate ?: 'official exam date' }}."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to download the {{ $title }} admit card?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Visit official website, login with credentials, and download admit card PDF."
+      }
+    }
+  ]
+}
+</script>
 @endsection
