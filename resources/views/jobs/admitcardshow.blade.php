@@ -295,6 +295,105 @@
             </div>
         </div>
 
+        <!-- FAQ Section -->
+        <div class="col-12 section-box mt-4" id="faq">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+
+                    <h2 class="card-title text-center fw-bold mb-4 text-primary">
+                        ❓ {{ $admitCard->job_title ?? 'Admit Card' }} – Frequently Asked Questions (FAQs)
+                    </h2>
+
+                    @php
+                        $title = $admitCard->job_title ?? 'Admit Card';
+                        $examDate = $admitCard->exam_list[0]['date'] ?? '';
+                        $releaseDate = $admitCard->admit_card_release_date ?? '';
+                    @endphp
+
+                    <div class="accordion" id="faqAccordion">
+
+                        <!-- FAQ 1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    When will the {{ $title }} admit card be released?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The admit card is expected to be released on
+                                    <strong>{{ $releaseDate ?: 'the official date announced by authority' }}</strong>.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    What is the exam date for {{ $title }}?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The exam is scheduled on
+                                    <strong>{{ $examDate ?: 'the officially घोषित exam date' }}</strong>.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    How can I download the {{ $title }} admit card?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Candidates can download their admit card by visiting the official website, entering
+                                    login details, and downloading the hall ticket PDF.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 4 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    What details are mentioned on the admit card?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The admit card contains candidate name, roll number, exam date, shift timing, exam
+                                    center, and important instructions.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 5 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" data-bs-toggle="collapse"
+                                    data-bs-target="#faq5">
+                                    What documents should I carry with the admit card?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Candidates must carry a printed admit card along with a valid photo ID proof like
+                                    Aadhaar Card, PAN Card, or Driving License.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <!-- Exam List -->
         <div class="card shadow">
             <div class="card-header bg-dark text-white">
