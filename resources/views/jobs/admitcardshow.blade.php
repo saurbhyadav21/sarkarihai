@@ -201,7 +201,7 @@
                                 </li>
                             @endif
 
-                            {{$admitCard->exam_list}}
+                           
                             @if (!empty($admitCard->exam_list))
                                 @foreach ($admitCard->exam_list as $exam)
                                     <li class="list-group-item d-flex justify-content-between">
