@@ -18,9 +18,9 @@ class AdmitCard extends Model
     protected static function booted()
     {
         static::creating(function ($card) {
-            dd($card);
+            
             if(!$card->slug){
-                $card->slug = Str::slug($card->title . '-2026');
+                $card->slug = Str::slug($card->job_title . '-2026');
             }
         });
     }
