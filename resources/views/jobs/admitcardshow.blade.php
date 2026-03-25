@@ -21,7 +21,7 @@
     </style>
     <div class="container mt-4">
         <div class="container mt-3">
-            <img src="https://sarkarihai.com/public/job-images/1774179425.png" class="img-fluid banner-img" alt="Job Image">
+            <img src="https://sarkarihai.com/public/job-images/{{$admitCard->logo}}" class="img-fluid banner-img" alt="Job Image">
         </div>
         <div class="row align-items-stretch gy-4" style="margin-bottom: 10px;">
 
