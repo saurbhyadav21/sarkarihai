@@ -528,7 +528,7 @@ class JobController extends Controller
         );
 
         Job::updateOrCreate(
-            ['job_id' => $request->job_id], // condition
+            ['id' => $request->job_id], // condition
             [
                 'admit_card' => $data['admit_card_release_date'] ?? null,
                 'exam_date' => $data['exam_dates'] ?? null,
