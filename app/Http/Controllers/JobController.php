@@ -466,12 +466,12 @@ class JobController extends Controller
         // ✅ Validation
         $request->validate([
             'admit_json' => 'required|json',
-            'job_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
+            'job_image' => 'nullable'
         ]);
 
         // ✅ JSON decode
         $data = json_decode($request->job_json, true);
-
+dd($data);
         if (!$data) {
             return back()->with('error', 'Invalid JSON format');
         }
@@ -487,7 +487,7 @@ class JobController extends Controller
 
             $image->move(public_path('uploads/jobs'), $imageName);
         }
-        dd($data);
+        
         // ✅ Save in DB
         AdmitCard::create([
             'job_id' => uniqid(),
