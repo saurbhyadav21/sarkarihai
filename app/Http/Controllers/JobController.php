@@ -487,7 +487,7 @@ class JobController extends Controller
 
             $image->move(public_path('uploads/jobs'), $imageName);
         }
-
+        dd($data);
         // ✅ Save in DB
         AdmitCard::create([
             'job_id' => uniqid(),
