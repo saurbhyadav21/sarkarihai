@@ -482,18 +482,29 @@ class JobController extends Controller
             }
         }
 
-        // ✅ Save
-        AdmitCard::create([
-            'job_id' => $request->job_id,
-            'job_title' => $data['job_title'] ?? null,
-            'full_title' => $data['full_title'] ?? null,
-            'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
-            'exam_dates' => $data['exam_dates'] ?? null,
-            'how_to_download_admit_card' => $data['how_to_download_admit_card'] ?? null,
-            'official_link' => $links, // 🔥 yaha save hoga
-        ]);
+        // ✅ Image Upload (optional)
+        $imageName = null;
+        if ($request->hasFile('job_image')) {
+            $image = $request->file('job_image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/jobs'), $imageName);
+        }
 
-        return back()->with('success', 'Saved Successfully ✅');
+        // ✅ Create OR Update (🔥 main logic)
+        AdmitCard::updateOrCreate(
+            ['job_id' => $request->job_id], // condition
+            [
+                'job_title' => $data['job_title'] ?? null,
+                'full_title' => $data['full_title'] ?? null,
+                'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
+                'exam_dates' => $data['exam_dates'] ?? null,
+                'how_to_download_admit_card' => $data['how_to_download_admit_card'] ?? null,
+                'official_link' => $links,
+                'logo' => $imageName // null bhi ho sakta hai
+            ]
+        );
+
+        return back()->with('success', 'Saved / Updated Successfully ✅');
     }
 
 
@@ -562,9 +573,12 @@ class JobController extends Controller
         return view('jobs.add-job', compact('states', 'categories', 'mineducation'));
     }
 
-    public function admitEdit(Request $request, $id)
+    public function admitEdit($id)
     {
-        return view('jobs.admit-card', compact('id'));
+        // ✅ check record exist ya nahi
+        $admit = AdmitCard::where('job_id', $id)->first();
+
+        return view('jobs.admit-card', compact('id', 'admit'));
     }
 }
 
