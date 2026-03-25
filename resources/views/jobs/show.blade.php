@@ -801,7 +801,7 @@
                         </h6>
                         <span
                             class="badge status-badge 
-            {{ $admitLocked ? 'bg-dark' : 'bg-light text-success' }}">
+                            {{ $admitLocked ? 'bg-dark' : 'bg-light text-success' }}">
 
                             {{ $admitLocked ? '🔒 Not Released' : '🟢 Released' }}
 
@@ -953,15 +953,22 @@
 
             {{-- Result --}}
             <div class="container mt-3" id="result">
-                <div class="card admit-card border-0">
+                <div class="card admit-card border-0 {{ $resultLocked ? 'locked-card' : '' }}">
 
                     <!-- Header -->
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h6 class="mb-0 fw-bold text-white">
                             {{ $job->title }} – Result
                         </h6>
-                        <span class="badge status-badge">
+                        {{-- <span class="badge status-badge">
                             🟢 Result Declared
+                        </span> --}}
+                        <span
+                            class="badge status-badge 
+                            {{ $resultLocked ? 'bg-dark' : 'bg-light text-success' }}">
+
+                            {{ $resultLocked ? '🔒 Not Released' : '🟢 Result Declared' }}
+
                         </span>
                     </div>
 
