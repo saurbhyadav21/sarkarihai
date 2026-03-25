@@ -815,7 +815,7 @@
 
                             <div class="small fw-semibold text-primary">
                                 <i class="fa-solid fa-calendar-days"></i>
-
+                                Exam Dates : 
                                 @if (!empty($admitCard->exam_dates))
                                     @php
                                         $dates = explode('#', $admitCard->exam_dates);
