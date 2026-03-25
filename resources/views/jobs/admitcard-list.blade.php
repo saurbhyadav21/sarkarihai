@@ -5,7 +5,7 @@
 <div class="container mt-4">
 
     <h2 class="mb-3 c-t d-flex justify-content-between align-items-center flex-wrap">
-        <span><b>Admit Card Out 2026</b></span>
+        <span><b style="color: #fff">Admit Card Out 2026</b></span>
 
         <span class="last-update small text-muted">
             Last Updated : {{ now()->format('d-m-Y H:i') }}
@@ -78,7 +78,7 @@
 {{-- ================= TABLE SECTION ================= --}}
 <div class="container mt-5">
 
-    <h2 class="mb-3 text-center fw-bold">
+    <h2 class="mb-3 text-center fw-bold" style="color: #fff">
         📄 All Admit Cards
     </h2>
 
