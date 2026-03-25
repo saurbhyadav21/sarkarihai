@@ -867,7 +867,8 @@
                             </style>
                             <!-- Button -->
                             <div>
-                                <a href="{{ url('admit-card/' . $admitCard->slug) }}" class="btn view-btn">
+                                 {{-- <a href="{{ route('admit.show', $job->slug) }}" class="job-link"> --}}
+                                <a href="{{ route('admit.show', $job->slug) }}" class="btn view-btn">
                                     🔍 View Details
                                 </a>
                             </div>
