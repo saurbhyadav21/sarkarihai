@@ -628,6 +628,6 @@ class JobController extends Controller
         }
         $admitCard->exam_list = $exams;
 
-        return view('welcome', compact('admitCard'));
+        return view('jobs/admitcardshow', compact('admitCard'));
     }
 }
