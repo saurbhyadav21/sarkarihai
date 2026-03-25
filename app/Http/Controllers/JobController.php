@@ -40,7 +40,7 @@ class JobController extends Controller
             'description' => 'Apply online for ' . $job->title . ' for ' . $job->total_vacancies . ' posts. Check eligibility, application fee, age limit, important dates and direct apply link.',
             'keywords' => $job->title . ', ' . $job->title . ' vacancy, ' . $job->title . ' apply online, ' . $job->title . ' notification, ' . $job->category . ' recruitment'
         ];
-        dd($admitCard);
+       
         return view('jobs.show', compact('job', 'seo', 'admitCard'));
     }
     //     public function show($slug)

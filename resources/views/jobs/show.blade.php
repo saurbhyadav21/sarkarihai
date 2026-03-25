@@ -816,8 +816,8 @@
                             <div class="small fw-semibold text-primary">
                                 <i class="fa-solid fa-calendar-days"></i>
                                 {{-- Exam: {{ $admitCard->exam_list[0]['date'] ?? 'Coming Soon' }} --}}
-                                @if (!empty($admitCard->exam_list))
-                                @foreach ($admitCard->exam_list as $exam)
+                                @if (!empty($admitCard->exam_dates))
+                                @foreach ($admitCard->exam_dates as $exam)
                                     <li class="list-group-item d-flex justify-content-between">
                                         <span>Exam Date ({{ $loop->iteration }}) - {{ $exam['name'] }}</span>
                                         <span class="badge bg-primary">
