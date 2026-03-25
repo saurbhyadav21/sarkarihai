@@ -213,14 +213,14 @@ class JobController extends Controller
 
         //Admit Card
         $admitCard = Job::whereNotNull('admit_card')
-    ->whereNotNull('exam_date')
-    ->whereDate('admit_card', '<=', now()->addDays(14)) // max 2 week future
-    ->whereDate('exam_date', '>=', now()) // exam abhi baaki hai
-    ->orderBy('exam_date', 'asc')
-    ->get();
+            ->whereNotNull('exam_date')
+            ->whereDate('admit_card', '<=', now()->addDays(14)) // max 2 week future
+            ->whereDate('exam_date', '>=', now()) // exam abhi baaki hai
+            ->orderBy('exam_date', 'asc')
+            ->get();
 
-            // dd($admitCard);
-        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories','admitCard'));
+        // dd($admitCard);
+        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories', 'admitCard'));
     }
 
     public function contact()
@@ -294,18 +294,18 @@ class JobController extends Controller
         return view('jobs/job_edit_list', compact('jobs'));
     }
     public function destroy($id)
-{
-    $job = Job::findOrFail($id);
+    {
+        $job = Job::findOrFail($id);
 
-    // Image delete (optional but recommended)
-    if ($job->image && file_exists(public_path('uploads/' . $job->image))) {
-        unlink(public_path('uploads/' . $job->image));
+        // Image delete (optional but recommended)
+        if ($job->image && file_exists(public_path('uploads/' . $job->image))) {
+            unlink(public_path('uploads/' . $job->image));
+        }
+
+        $job->delete();
+
+        return redirect()->back()->with('success', 'Job deleted successfully');
     }
-
-    $job->delete();
-
-    return redirect()->back()->with('success', 'Job deleted successfully');
-}
 
     // Update Data
     public function update(Request $request, $id)
@@ -527,83 +527,18 @@ class JobController extends Controller
 
     public function admitEdit(Request $request)
     {
-        dd($request);   
-        // Validate JSON
-        // $request->validate([
-        //     'job_json' => 'required|json',
-        //     'states' => 'required|array',
-        //     'category_id' => 'required',
-        //     'min_education' => 'required'
-        // ]);
-
-        // // Decode JSON
-        // $json = json_decode($request->job_json, true);
-        // $state = is_array($request->states)
-        //     ? implode(',', $request->states)
-        //     : $request->states;
-        // // Map fields
-        // $data = [
-        //     'title'             => $json['title'] ?? null,
-        //     'state'             => $state ?? null,
-        //     'start_date'        => $json['start_date'] ?? null,
-        //     'end_date'          => $json['last_date'] ?? null,
-        //     'min_salary'        => $json['salary_min'] ?? null,
-        //     'max_salary'        => $json['salary_max'] ?? null,
-        //     'min_age'           => $json['age_min'] ?? null,
-        //     'max_age_genral'    => $json['age_max'] ?? null,
-        //     'min_qulification'  => $request->min_education ?? null,
-        //     'total_vacancies'  => $json['total_vacancy'] ?? null,
-        //     // 'exam_date'        => $json['exam_date'] ?? null,
-        //     'website'          => $json['official_website'] ?? null,
-        //     'category'          => $request->category_id ?? null,
-        //     'last_fee_date'          => $json['last_fee_date'] ?? null,
-        //     'correction_date'          => $json['correction_date'] ?? null,
-        //     // 'exam_date'          => $json['exam_date'] ?? null,
-        //     // 'admit_card'          => $json['admit_card'] ?? null,
-        //     // 'result_date'          => $json['result_date'] ?? null,
-        //     'genral_fees'          => $json['genral_fees'] ?? null,
-        //     'obc_fees'          => $json['obc_fees'] ?? null,
-        //     'sc_fees'          => $json['sc_fees'] ?? null,
-        //     'st_fees'          => $json['st_fees'] ?? null,
-        //     'extra_charge'          => $json['extra_charge'] ?? null,
-        //     'min_age'          => $json['age_min'] ?? null,
-        //     'max_age_genral'          => $json['age_max'] ?? null,
-        //     'max_age_obc'          => $json['max_age_obc'] ?? null,
-        //     'max_age_sc_st'          => $json['max_age_sc_st'] ?? null,
-        //     'max_age_female'          => $json['max_age_female'] ?? null,
-        //     'relaxation'          => $json['relaxation'] ?? null,
-        //     'genral_post'          => $json['genral_post'] ?? null,
-        //     'ews_post'          => $json['ews_post'] ?? null,
-        //     'obc_post'          => $json['obc_post'] ?? null,
-        //     'sc_post'          => $json['sc_post'] ?? null,
-        //     'st_post'          => $json['st_post'] ?? null,
-        //     'mode_selection'          => $json['Mode_Of_Selection'] ?? null,
-        //     'post_name'          => $json['post_name'] ?? null,
-        //     'post_eligibility'          => $json['post_eligibility'] ?? null,
-        //     'post_salary'          => $json['post_salary'] ?? null,
-        //     'instruction'          => $json['instruction'] ?? null,
-        //     'doc'          => $json['doc'] ?? null,
-        //     'link'          => $json['link'] ?? null,
-
-        // ];
-        // $data = [
-        //     
-
-        //     
-
-
-
-        //     
-        //     'post_eligibility' => $json['qualification'] ?? null,
-        //     
-        //     
-        //     
-        //     
-        // ];
-        // dd($data);
-        // Save
-        // Job::create($data);
-
-        // return back()->with('success', 'Job added via JSON!');
+        return view('jobs.admit-card');
     }
 }
+
+
+
+
+// public function addJob()
+//     {
+//         $states = State::all();
+//         $categories = Category::all();
+//         $mineducation = Mineducation::all();
+
+//         return view('jobs.add-job', compact('states', 'categories', 'mineducation'));
+//     }
