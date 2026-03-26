@@ -1077,9 +1077,10 @@ $seoTitle = $job->title
                                 Result Date: {{ $result->result_card_release_date }}
                             </div>
 
-                            {{-- <a href="{{ $job->result_link }}" target="_blank" class="btn download-btn">
+                            <a href="{{ route('result.show', $result->slug) }}" class="btn">
+                            {{-- <a href="{{ $job->result_link }}" target="_blank" class="btn download-btn"> --}}
                                 <i class="fa-solid fa-square-poll-vertical"></i> Check Result
-                            </a> --}}
+                            </a>
 
                         </div>
 
