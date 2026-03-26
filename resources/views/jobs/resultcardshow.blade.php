@@ -82,13 +82,13 @@
     @endphp
 
     <p>
-        As per the latest notification, the <strong>exam dates</strong> are as follows:
+        As per the latest notification, the <strong>exam schedule</strong> is as follows:
         <strong>
             @foreach ($exams as $exam)
                 @php
                     $parts = explode('$', $exam);
                     $name = $parts[0] ?? '';
-                    $date = $parts[1] ?? 'To Be Announced';
+                    $date = !empty($parts[1]) ? date('d M Y', strtotime($parts[1])) : 'To Be Announced';
                 @endphp
 
                 {{ $name }} ({{ $date }})@if (!$loop->last), @endif
