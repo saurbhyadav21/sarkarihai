@@ -210,8 +210,8 @@
                 <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
             </span>
             <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories"
-   class="text-decoration-none fw-bold flicker-btn"
-   style="color: #fff; font-size: 10px; float: right;">
+   class="text-decoration-none fw-bold"
+   style="color: #fff; font-size: 13px; float: right;">
    View All →
 </a>
         </h2>
