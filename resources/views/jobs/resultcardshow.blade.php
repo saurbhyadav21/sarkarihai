@@ -57,22 +57,22 @@
                                             @endif
                                         </strong>
                                         has been officially <strong>released</strong> by
-                                        <strong>{{ $job->category ?? 'the organization' }}</strong>
-                                        @if (!empty($job->advertisement_no))
-                                            for candidates who applied under <strong>{{ $job->advertisement_no }}</strong>
+                                        <strong>{{ $resultCard->category ?? 'the organization' }}</strong>
+                                        @if (!empty($resultCard->advertisement_no))
+                                            for candidates who applied under <strong>{{ $resultCard->advertisement_no }}</strong>
                                         @else
                                             for eligible candidates
                                         @endif.
                                     </p>
 
                                     <p>
-                                        Applicants for the <strong>{{ $job->total_vacancies ?? 'multiple' }}
+                                        Applicants for the <strong>{{ $resultCard->total_vacancies ?? 'multiple' }}
                                             vacancies</strong>
-                                        @if (!empty($job->post_name))
-                                            ({{ implode(', ', array_map('trim', explode('#', $job->post_name))) }})
+                                        @if (!empty($resultCard->post_name))
+                                            ({{ implode(', ', array_map('trim', explode('#', $resultCard->post_name))) }})
                                         @endif
                                         can now
-                                        <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}" target="_blank">
+                                        <a href="{{ url('/') }}" target="_blank">
                                             <strong>check their Sarkari Naukri updates, download admit cards, and verify
                                                 exam details</strong>
                                         </a>
@@ -116,44 +116,44 @@
                                     </p>
 
 
-                                    <h2 class="mt-3">📌 {{ $job->title }} – Post Details, Salary, Eligibility & Exam
+                                    <h2 class="mt-3">📌 {{ $resultCard->title }} – Post Details, Salary, Eligibility & Exam
                                         Date</h2>
 
                                     <ul class="list-unstyled job-details">
 
                                         <li>
                                             <strong>Post Name:</strong>
-                                            {{ !empty($job->post_name) ? str_replace('#', ', ', $job->post_name) : 'Various Posts' }}
+                                            {{ !empty($resultCard->post_name) ? str_replace('#', ', ', $resultCard->post_name) : 'Various Posts' }}
                                         </li>
 
                                         <li>
                                             <strong>Salary / Pay Scale:</strong>
-                                            ₹{{ number_format($job->min_salary ?? 0) }} -
-                                            ₹{{ number_format($job->max_salary ?? 0) }}
+                                            ₹{{ number_format($resultCard->min_salary ?? 0) }} -
+                                            ₹{{ number_format($resultCard->max_salary ?? 0) }}
                                         </li>
 
                                         <li>
                                             <strong>Educational Qualification:</strong>
-                                            {{ !empty($job->min_qulification) ? $job->min_qulification : 'Check Official Notification' }}
+                                            {{ !empty($resultCard->min_qulification) ? $resultCard->min_qulification : 'Check Official Notification' }}
                                         </li>
 
                                         <li>
                                             <strong>Age Limit:</strong>
-                                            {{ $job->min_age ?? 'N/A' }} Years
-                                            @if (!empty($job->max_age))
-                                                - {{ $job->max_age }} Years
+                                            {{ $resultCard->min_age ?? 'N/A' }} Years
+                                            @if (!empty($resultCard->max_age))
+                                                - {{ $resultCard->max_age }} Years
                                             @endif
                                         </li>
 
                                         <li>
                                             <strong>Total Vacancies:</strong>
-                                            {{ !empty($job->total_vacancies) ? number_format($job->total_vacancies) : 'N/A' }}
+                                            {{ !empty($resultCard->total_vacancies) ? number_format($job->total_vacancies) : 'N/A' }}
                                         </li>
 
                                         @php
-                                            $examData =
-                                                "Written Exam$2025-11-02#Physical Standard Test$2026-01-05#Computer Typing Test$2026-02-21#Stenography Test$2026-02-28";
-                                            $exams = explode('#', $examData); // Split by #
+                                            // $examData =
+                                            //     "Written Exam$2025-11-02#Physical Standard Test$2026-01-05#Computer Typing Test$2026-02-21#Stenography Test$2026-02-28";
+                                            $exams = explode('#', $resultCard->exam_dates); // Split by #
                                         @endphp
 
                                         <ul>
@@ -169,7 +169,7 @@
                                             @endforeach
                                         </ul>
                                         <li class="mt-3">
-                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}"
+                                            <a href="{{ url('/') }}"
                                                 class="btn btn-success">
                                                 👉 View Details • Check Notification • Apply Online
                                             </a>
@@ -203,9 +203,9 @@
             </div>
 
         </div>
-        <div class="row gy-4">
+        {{-- <div class="row gy-4">
 
-            <!-- Important Dates -->
+            
             <div class="col-md-6 d-flex">
                 <div class="card w-100 h-100 shadow-sm">
                     <div class="card-body d-flex flex-column">
@@ -288,10 +288,10 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
 
         <!-- How to Download Admit Card -->
-        <div class="col-12 section-box mt-4" id="how-to-download" style="color: #fff">
+        {{-- <div class="col-12 section-box mt-4" id="how-to-download" style="color: #fff">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
 
@@ -323,10 +323,10 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- FAQ Section -->
-        <div class="col-12 section-box mt-4" id="faq">
+        {{-- <div class="col-12 section-box mt-4" id="faq">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
 
@@ -422,10 +422,10 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Exam List -->
-        <div class="card shadow">
+        {{-- <div class="card shadow">
             <div class="card-header bg-dark text-white">
                 <h4 class="mb-0">📅 Upcoming Exams</h4>
             </div>
@@ -457,7 +457,7 @@
                 @endif
 
             </div>
-        </div>
+        </div> --}}
 
 
     </div>
