@@ -817,13 +817,7 @@
             </a>
             <div class="col-6 col-md-6 mb-4 statejob-wrapper">
 
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    {{-- <h2 class="c-t m-0">
-                        <span><b>Latest State Wise Job India - 2026</b></span>
-                    </h2> --}}
-
-
-                </div>
+               
 
                 @foreach ($jobsxxx as $jobx)
                     @php
