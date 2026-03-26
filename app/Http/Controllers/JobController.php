@@ -579,7 +579,7 @@ class JobController extends Controller
             // $file->move(public_path('job-images'), $name);
         }
 
-        // ✅ Create OR Update (🔥 main logic)
+        // ✅ Create OR Update (🔥 mainx logic)
         Result::updateOrCreate(
             ['job_id' => $request->job_id], // condition
             [
