@@ -25,6 +25,7 @@ Route::post('/job/{id}/update', [JobController::class, 'update'])->name('job.upd
 Route::get('/job/edit-list', [JobController::class, 'editList'])->name('job.edit.list');
 
 Route::get('/result/edit-list', [JobController::class, 'resultList'])->name('job.result.list');
+Route::get('/admit-card/edit-list', [JobController::class, 'admitList'])->name('job.admit.list');
 
 Route::get('/add-job', [JobController::class, 'addJob'])->name('job.addjob');
 Route::delete('/job/{id}', [JobController::class, 'destroy'])->name('job.destroy');

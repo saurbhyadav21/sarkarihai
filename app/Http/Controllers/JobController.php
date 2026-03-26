@@ -342,6 +342,14 @@ class JobController extends Controller
         return view('jobs/result_edit_list', compact('result'));
     }
 
+    public function admitList()
+    {
+
+        $admit_card = AdmitCard::latest()->get();
+
+        return view('jobs/admit_card_edit_list', compact('admit_card'));
+    }
+
 
     public function destroy($id)
     {
