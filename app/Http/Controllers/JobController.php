@@ -563,7 +563,7 @@ class JobController extends Controller
             $image->move(public_path('job-images'), $imageName);
             // $file->move(public_path('job-images'), $name);
         }
-
+        dd($request);
         if ($request->job_id == 'add' || empty($request->job_id)) {
 
             // ✅ CREATE
