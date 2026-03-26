@@ -1,16 +1,15 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $job->title }} Recruitment {{ $job->year }} – {{ $job->vacancy }} Posts | Apply Online
+    {{ $seoTitle }}
 @endsection
 
 @section('meta_description')
-    Apply online for {{ $job->title }} Recruitment {{ $job->year }}. Check {{ $job->vacancy }} vacancy, eligibility,
-    age limit, selection process and important dates.
+    Apply online for {{ $job->title }} Recruitment {{ date('Y') }}. Check eligibility, application fee, age limit, important dates, admit card, and result details.
 @endsection
 
 @section('meta_keywords')
-    {{ $job->title }} recruitment {{ $job->year }}, railway apprentice jobs, ITI jobs
+    {{ $job->title }}, {{ $job->title }} recruitment, {{ $job->title }} apply online, {{ $job->category }} jobs, government jobs {{ date('Y') }}
 @endsection
 
 @section('content')
