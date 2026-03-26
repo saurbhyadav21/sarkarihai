@@ -78,11 +78,14 @@
                                             As per the latest update, the
                                             <strong>exam date</strong> is scheduled for
                                             <strong>
-    @foreach (explode('#', $admitCard->exam_list) as $exam)
-        @php [$name, $date] = array_pad(explode('$', $exam), 2, null); @endphp
-        {{ $date ? \Carbon\Carbon::parse($date)->format('d M Y') : 'TBA' }}@if (!$loop->last), @endif
-    @endforeach
-</strong>.
+                                                @foreach (explode('#', $admitCard->exam_list) as $exam)
+                                                    @php [$name, $date] = array_pad(explode('$', $exam), 2, null); @endphp
+                                                    {{ $date ? \Carbon\Carbon::parse($date)->format('d M Y') : 'TBA' }}
+                                                    @if (!$loop->last)
+                                                        ,
+                                                    @endif
+                                                @endforeach
+                                            </strong>.
                                         @endif
 
                                         Candidates must check their
@@ -409,33 +412,47 @@
 
             <div class="card-body">
 
-                @if (count($admitCard->exam_list) > 0)
+                @php
+                    $exams = !empty($admitCard->exam_list) ? explode('#', $admitCard->exam_list) : [];
+                @endphp
+
+                @if (count($exams) > 0)
                     <ul class="list-group">
 
-                        @foreach ($admitCard->exam_list as $exam)
+                        @foreach ($exams as $exam)
                             @php
-                                $date = \Carbon\Carbon::parse($exam['date']);
+                                [$name, $date] = array_pad(explode('$', $exam), 2, null);
+
+                                $dateObj = $date ? \Carbon\Carbon::parse($date) : null;
                                 $today = \Carbon\Carbon::now();
 
-                                $diff = $today->diffInDays($date, false);
+                                $diff = $dateObj ? $today->diffInDays($dateObj, false) : null;
                             @endphp
 
                             <li class="list-group-item d-flex justify-content-between align-items-center">
 
                                 <div>
-                                    <strong>{{ $exam['name'] }}</strong><br>
-                                    <small>{{ $date->format('d M Y') }}</small>
+                                    <strong>{{ $name }}</strong><br>
+                                    <small>
+                                        {{ $dateObj ? $dateObj->format('d M Y') : 'TBA' }}
+                                    </small>
                                 </div>
 
                                 <!-- Badge Logic -->
-                                @if ($date->isToday())
-                                    <span class="badge bg-success">Today</span>
-                                @elseif($diff <= 7)
-                                    <span class="badge bg-warning text-dark">Within 7 Days</span>
-                                @elseif($diff <= 14)
-                                    <span class="badge bg-secondary">Within 2 Weeks</span>
+                                @if ($dateObj)
+                                    @if ($dateObj->isToday())
+                                        <span class="badge bg-success">Today</span>
+                                    @elseif($diff < 0)
+                                        <span class="badge bg-danger">Expired</span>
+                                    @elseif($diff <= 7)
+                                        <span class="badge bg-warning text-dark">Within 7 Days</span>
+                                    @elseif($diff <= 14)
+                                        <span class="badge bg-secondary">Within 2 Weeks</span>
+                                    @else
+                                        <span class="badge bg-primary">Upcoming</span>
+                                    @endif
                                 @else
-                                    <span class="badge bg-primary">Upcoming</span>
+                                    <span class="badge bg-dark">No Date</span>
                                 @endif
 
                             </li>
