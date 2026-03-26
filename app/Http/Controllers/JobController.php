@@ -329,16 +329,16 @@ class JobController extends Controller
     public function editList()
     {
         $jobs = Job::latest()->get();
-      
+
 
         return view('jobs/job_edit_list', compact('jobs'));
     }
 
     public function resultList()
     {
-       
+
         $result = Result::latest()->get();
-        
+
         return view('jobs/result_edit_list', compact('result'));
     }
 
@@ -598,10 +598,11 @@ class JobController extends Controller
         }
 
         // ✅ Create OR Update (🔥 mainx logic)
-        if (!empty($request->job_id)) {
+        if ($request->job_id == 'add' || empty($request->job_id)) {
 
+            // ✅ CREATE
             Result::create([
-                'job_id' => $request->job_id,
+                'job_id' => null,
                 'job_title' => $data['job_title'] ?? null,
                 'full_title' => $data['full_title'] ?? null,
                 'result_card_release_date' => $data['result_card_release_date'] ?? null,
@@ -620,8 +621,32 @@ class JobController extends Controller
                 'max_age' => $data['max_age'] ?? null,
                 'logo' => $imageName
             ]);
-        }
+        } else {
 
+            // ✅ UPDATE
+            Result::updateOrCreate(
+                ['id' => $request->job_id],
+                [
+                    'job_title' => $data['job_title'] ?? null,
+                    'full_title' => $data['full_title'] ?? null,
+                    'result_card_release_date' => $data['result_card_release_date'] ?? null,
+                    'exam_dates' => $data['exam_dates'] ?? null,
+                    'how_to_download_result_card' => $data['how_to_download_result_card'] ?? null,
+                    'official_link' => $links,
+                    'category' => $data['category'] ?? null,
+                    'advertisement_no' => $data['advertisement_no'] ?? null,
+                    'total_vacancies' => $data['total_vacancies'] ?? null,
+                    'post_name' => $data['post_name'] ?? null,
+                    'exam_list' => $data['exam_list'] ?? null,
+                    'min_salary' => $data['min_salary'] ?? null,
+                    'max_salary' => $data['max_salary'] ?? null,
+                    'min_qualification' => $data['min_qualification'] ?? null,
+                    'min_age' => $data['min_age'] ?? null,
+                    'max_age' => $data['max_age'] ?? null,
+                    'logo' => $imageName
+                ]
+            );
+        }
         if (!empty($request->job_id) && is_numeric($request->job_id)) {
 
             Job::updateOrCreate(
@@ -712,7 +737,7 @@ class JobController extends Controller
 
     public function resultEdit($id)
     {
-        
+
         $result = null; // ✅ default define
 
         // ✅ check record exist ya nahi
