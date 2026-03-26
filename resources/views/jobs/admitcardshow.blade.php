@@ -68,7 +68,7 @@
                                             @endif
                                         </strong>
                                         can now
-                                        <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}" target="_blank">
+                                        <a href="{{ url('sarkari-naukri/' . \Str::slug($job->job_title)) }}" target="_blank">
                                             <strong>check details and download updates</strong>
                                         </a> through the official portal.
 
