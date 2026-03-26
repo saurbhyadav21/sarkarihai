@@ -329,8 +329,20 @@ class JobController extends Controller
     public function editList()
     {
         $jobs = Job::latest()->get();
+      
+
         return view('jobs/job_edit_list', compact('jobs'));
     }
+
+    public function resultList()
+    {
+       
+        $result = Result::latest()->get();
+        
+        return view('jobs/result_edit_list', compact('result'));
+    }
+
+
     public function destroy($id)
     {
         $job = Job::findOrFail($id);
