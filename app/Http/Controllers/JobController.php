@@ -360,7 +360,7 @@ class JobController extends Controller
 
     public function resultDestroy($id)
     {
-        $job = Job::findOrFail($id);
+        $job = Result::findOrFail($id);
 
         // Image delete (optional but recommended)
         if ($job->image && file_exists(public_path('uploads/' . $job->image))) {
