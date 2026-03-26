@@ -157,7 +157,7 @@
     .c-t .last-update {
         font-size: 12px;
         display: flex;
-        align-items: center;
+        align-items: center; margin-left: 0px;
     }
 
     /* View All (right side 2nd line) */
@@ -169,8 +169,7 @@
 
     /* Live GIF icon */
     .c-t img {
-        width: 16px;
-        margin-left: 5px;
+      
     }
 }
     </style>
