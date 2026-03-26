@@ -21,7 +21,8 @@
     </style>
     <div class="container mt-4">
         <div class="container mt-3">
-            <img src="https://sarkarihai.com/public/job-images/{{$resultCard->logo}}" class="img-fluid banner-img" alt="Job Image">
+            <img src="https://sarkarihai.com/public/job-images/{{ $resultCard->logo }}" class="img-fluid banner-img"
+                alt="Job Image">
         </div>
         <div class="row align-items-stretch gy-4" style="margin-bottom: 10px;">
 
@@ -73,17 +74,17 @@
                                         </a> through the official portal.
 
                                         @if (!empty($resultCard->exam_list))
-    As per the latest update, the
-    <strong>exam date</strong> is scheduled for
-    <strong>
-        @foreach ($resultCard->exam_list as $exam)
-            {{ $exam['date'] ?? $exam['exam_dates'] ?? 'To Be Announced' }}
-            @if (!$loop->last)
-                ,
-            @endif
-        @endforeach
-    </strong>.
-@endif
+                                            As per the latest update, the
+                                            <strong>exam date</strong> is scheduled for
+                                            <strong>
+                                                @foreach ($resultCard->exam_list as $exam)
+                                                    {{ $exam['date'] ?? ($exam['exam_dates'] ?? 'To Be Announced') }}
+                                                    @if (!$loop->last)
+                                                        ,
+                                                    @endif
+                                                @endforeach
+                                            </strong>.
+                                        @endif
 
                                         Candidates must check their
                                         <strong>exam date, admit card, result status, exam center, shift timing, and
@@ -454,5 +455,5 @@
         @endif --}}
 
     </div>
-    
+
 @endsection
