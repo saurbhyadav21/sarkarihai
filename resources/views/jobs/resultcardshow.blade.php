@@ -36,7 +36,7 @@
                             <div class="card shadow">
                                 <div class="card-header bg-primary text-white">
                                     <h1 class="mb-0">
-                                        {{ $job->title }} - Admit Card 2026 Out
+                                        {{ $job->title }} - Result Out 2026
                                     </h1>
                                 </div>
                                 <div class="card-body">
@@ -72,7 +72,7 @@
                                             <strong>check details and download updates</strong>
                                         </a> through the official portal.
 
-                                        @if (!empty($resultCard->exam_list))
+                                        {{-- @if (!empty($resultCard->exam_list))
                                             As per the latest update, the
                                             <strong>exam date</strong> is scheduled for
                                             <strong>
@@ -82,7 +82,7 @@
                                                     @endif
                                                 @endforeach
                                             </strong>.
-                                        @endif
+                                        @endif --}}
 
                                         Candidates must check their
                                         <strong>exam date, admit card, result status, exam center, shift timing, and
@@ -182,7 +182,7 @@
         <div class="row gy-4">
 
             <!-- Important Dates -->
-            <div class="col-md-6 d-flex">
+            {{-- <div class="col-md-6 d-flex">
                 <div class="card w-100 h-100 shadow-sm">
                     <div class="card-body d-flex flex-column">
 
@@ -217,10 +217,10 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Important Links -->
-            <div class="col-md-6 d-flex">
+            {{-- <div class="col-md-6 d-flex">
                 <div class="card w-100 h-100 shadow-sm border-0">
                     <div class="card-body d-flex flex-column">
 
@@ -257,12 +257,12 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
 
         <!-- How to Download Admit Card -->
-        <div class="col-12 section-box mt-4" id="how-to-download" style="color: #fff">
+        {{-- <div class="col-12 section-box mt-4" id="how-to-download" style="color: #fff">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
 
@@ -294,10 +294,10 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- FAQ Section -->
-        <div class="col-12 section-box mt-4" id="faq">
+        {{-- <div class="col-12 section-box mt-4" id="faq">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
 
@@ -393,7 +393,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Exam List -->
         {{-- <div class="card shadow">
