@@ -667,7 +667,7 @@
             </span>
         </h2>
         <div class="row">
-            @foreach ($admitCard as $job)
+            @foreach ($resultOut as $job)
                 @foreach ($job->exam_list as $exam)
                     <div class="col-6 col-md-5th">
 
