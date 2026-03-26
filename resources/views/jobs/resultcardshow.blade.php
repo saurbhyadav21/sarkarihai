@@ -37,7 +37,7 @@
                             <div class="card shadow">
                                 <div class="card-header bg-primary text-white">
                                     <h1 class="mb-0">
-                                        {{ $job->title }} - Result Out 2026
+                                        {{ !empty($job->title) ? $job->title : $resultCard->job_title }} - Result Out 2026
                                     </h1>
                                 </div>
                                 <div class="card-body">
@@ -46,9 +46,15 @@
                                     <p>
                                         The
                                         <strong>
-                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}">
-                                                {{ $job->title }}
-                                            </a>
+                                            @if (!empty($job->title))
+                                                <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}">
+                                                    {{ $job->title }}
+                                                </a>
+                                            @else
+                                                <a href="{{ url('/') }}">
+                                                    {{ $resultCard->job_title }}
+                                                </a>
+                                            @endif
                                         </strong>
                                         has been officially <strong>released</strong> by
                                         <strong>{{ $job->category ?? 'the organization' }}</strong>
