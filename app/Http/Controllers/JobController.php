@@ -838,8 +838,8 @@ class JobController extends Controller
         $result = null; // ✅ default define
 
         // ✅ check record exist ya nahi
+        $admit = AdmitCard::where('id', $id)->first();
         if ($id != 'add') {
-            $admit = AdmitCard::where('id', $id)->first();
             return view('jobs.admit-card', compact('id', 'admit'));
         } else {
             return view('jobs.admit-card',  compact('id', 'admit'));
