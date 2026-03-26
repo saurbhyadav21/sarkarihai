@@ -283,7 +283,7 @@
 
                     <ul class="list-group list-group-numbered">
 
-                        @if (!empty($resultCard->how_to_download_admit_card))
+                        @if (!empty($resultCard->how_to_download_result_card))
                             @php
                                 $steps = explode('#', $resultCard->how_to_download_admit_card);
                             @endphp
