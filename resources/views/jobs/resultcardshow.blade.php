@@ -72,17 +72,18 @@
                                             <strong>check details and download updates</strong>
                                         </a> through the official portal.
 
-                                        {{-- @if (!empty($resultCard->exam_list))
-                                            As per the latest update, the
-                                            <strong>exam date</strong> is scheduled for
-                                            <strong>
-                                                @foreach ($resultCard->exam_list as $exam)
-                                                    {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}@if (!$loop->last)
-                                                        ,
-                                                    @endif
-                                                @endforeach
-                                            </strong>.
-                                        @endif --}}
+                                        @if (!empty($resultCard->exam_list))
+    As per the latest update, the
+    <strong>exam date</strong> is scheduled for
+    <strong>
+        @foreach ($resultCard->exam_list as $exam)
+            {{ $exam['date'] ?? $exam['exam_dates'] ?? 'To Be Announced' }}
+            @if (!$loop->last)
+                ,
+            @endif
+        @endforeach
+    </strong>.
+@endif
 
                                         Candidates must check their
                                         <strong>exam date, admit card, result status, exam center, shift timing, and
