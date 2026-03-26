@@ -307,6 +307,53 @@
             color: #fff !important;
         }
     </style>
+    <style>
+        .custom-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .custom-col {
+            width: 12.5%;
+            /* 👈 approx 12% (8 items per row) */
+            padding: 5px;
+        }
+
+        /* Responsive Fix */
+        @media (max-width: 992px) {
+            .custom-col {
+                width: 20%;
+            }
+
+            /* 5 per row */
+        }
+
+        @media (max-width: 768px) {
+            .custom-col {
+                width: 25%;
+            }
+
+            /* 4 per row */
+        }
+
+        @media (max-width: 576px) {
+            .custom-col {
+                width: 50%;
+            }
+
+            /* 2 per row */
+        }
+
+        .category-card {
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .category-card:hover {
+            background: #fff3e6;
+            transform: translateY(-3px);
+        }
+    </style>
     <div class="container mt-3">
 
         <h2 class="mb-3 c-t">
@@ -761,16 +808,17 @@
 
            
                 <div class="col-12 col-md-6 mb-4 statejob-wrapper">
+                     <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
+                        style="color: #fff; float: right;
+    font-size: 10px;">
+                        View All →
+                    </a>
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     {{-- <h2 class="c-t m-0">
                         <span><b>Latest State Wise Job India - 2026</b></span>
                     </h2> --}}
 
-                    <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
-                        style="color: #fff; float: right;
-    font-size: 10px;">
-                        View All →
-                    </a>
+                   
                 </div>
 
                 @foreach ($jobsxxx as $jobx)
@@ -830,53 +878,7 @@
         </div>
     </div>
 
-    <style>
-        .custom-row {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .custom-col {
-            width: 12.5%;
-            /* 👈 approx 12% (8 items per row) */
-            padding: 5px;
-        }
-
-        /* Responsive Fix */
-        @media (max-width: 992px) {
-            .custom-col {
-                width: 20%;
-            }
-
-            /* 5 per row */
-        }
-
-        @media (max-width: 768px) {
-            .custom-col {
-                width: 25%;
-            }
-
-            /* 4 per row */
-        }
-
-        @media (max-width: 576px) {
-            .custom-col {
-                width: 50%;
-            }
-
-            /* 2 per row */
-        }
-
-        .category-card {
-            border-radius: 10px;
-            transition: 0.3s;
-        }
-
-        .category-card:hover {
-            background: #fff3e6;
-            transform: translateY(-3px);
-        }
-    </style>
+    
     <div class="container mt-4">
         <h2 class="mb-3 c-t">
             <span><b>Category Wise Jobs</b></span>
