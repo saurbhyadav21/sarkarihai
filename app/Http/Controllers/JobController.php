@@ -662,16 +662,16 @@ class JobController extends Controller
                 $updateData
             );
         }
-        if (!empty($request->job_id) && is_numeric($request->job_id)) {
+        // if (!empty($request->job_id) && is_numeric($request->job_id)) {
 
-            Job::updateOrCreate(
-                ['id' => $request->job_id],
-                [
-                    'result_date' => $data['result_release_date'] ?? null,
-                    'exam_date' => $data['exam_dates'] ?? null,
-                ]
-            );
-        }
+        //     Job::updateOrCreate(
+        //         ['id' => $request->job_id],
+        //         [
+        //             'result_date' => $data['result_release_date'] ?? null,
+        //             'exam_date' => $data['exam_dates'] ?? null,
+        //         ]
+        //     );
+        // }
 
         return back()->with('success', 'Saved / Updated Successfully ✅');
     }
