@@ -21,6 +21,7 @@ Route::get('/sarkari-naukri/{slug}', [JobController::class, 'show'])->name('job.
 
 Route::get('/job/{id}/edit', [JobController::class, 'edit'])->name('job.edit');
 Route::get('/result/{id}/edit', [JobController::class, 'resultEdit'])->name('result.edit');
+Route::get('/admitcard/{id}/edit', [JobController::class, 'admitEdit'])->name('admit.edit');
 Route::post('/job/{id}/update', [JobController::class, 'update'])->name('job.update');
 Route::get('/job/edit-list', [JobController::class, 'editList'])->name('job.edit.list');
 
