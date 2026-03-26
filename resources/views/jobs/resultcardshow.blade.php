@@ -285,7 +285,7 @@
 
                         @if (!empty($resultCard->how_to_download_result_card))
                             @php
-                                $steps = explode('#', $resultCard->how_to_download_admit_card);
+                                $steps = explode('#', $resultCard->how_to_download_result_card);
                             @endphp
 
                             @foreach ($steps as $step)
