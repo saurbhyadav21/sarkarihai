@@ -39,7 +39,7 @@
 
                         <tbody>
 
-                            @foreach ($result as $job)
+                            @foreach ($admit_card as $job)
                                 <tr>
 
                                     <td>{{ $job->id }}</td>
