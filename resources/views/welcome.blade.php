@@ -353,12 +353,13 @@
             background: #fff3e6;
             transform: translateY(-3px);
         }
+
         @media (min-width: 768px) {
-    .col-md-6 {
-        flex: 0 0 50% !important;
-        max-width: 50% !important;
-    }
-}
+            .col-md-6 {
+                flex: 0 0 50% !important;
+                max-width: 50% !important;
+            }
+        }
     </style>
     <div class="container mt-3">
 
@@ -594,7 +595,7 @@
     <div class="container mt-4">
         <h2 class="mb-3 c-t">
             <span><b>Admit Card Out 2026</b></span>
-            <span class="last-update flicker-btn"> 
+            <span class="last-update flicker-btn">
                 Last Updated : {{ now()->format('d-m-Y H:i') }}
                 <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
             </span>
@@ -643,7 +644,7 @@
 
 
 
-    
+
 
 
     <div class="container mt-4">
@@ -811,20 +812,20 @@
                 </script>
             </div>
 
- 
-           <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
-                        style="color: #fff; float: right;
+
+            <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
+                style="color: #fff; float: right;
     font-size: 13px;">
-                        View All →
-                    </a>
-                <div class="col-12 col-md-6 mb-4 statejob-wrapper">
-                     
+                View All →
+            </a>
+            <div class="col-12 col-md-6 mb-4 statejob-wrapper">
+
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     {{-- <h2 class="c-t m-0">
                         <span><b>Latest State Wise Job India - 2026</b></span>
                     </h2> --}}
 
-                   
+
                 </div>
 
                 @foreach ($jobsxxx as $jobx)
@@ -884,7 +885,7 @@
         </div>
     </div>
 
-    
+
     <div class="container mt-4">
         <h2 class="mb-3 c-t">
             <span><b>Category Wise Jobs</b></span>
@@ -918,7 +919,7 @@
     </div>
 
 
-    
+
 
     <script>
         function startCountdown() {
