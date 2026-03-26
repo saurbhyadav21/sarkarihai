@@ -206,7 +206,70 @@
     </style> 
 
 
+<style id="statejob-css">
+                /* Wrapper scope (important) */
+                .statejob-wrapper a {
+                    text-decoration: none;
+                    color: inherit;
+                }
 
+                /* Box */
+                .statejob-box {
+                    padding: 5px 6px;
+                    border-bottom: 1px solid #eee;
+                    transition: 0.3s;
+                    background-color: #ffffff;
+                }
+
+                .statejob-box:hover {
+                    background: #e8e8e8;
+                }
+
+                /* First Line */
+                .statejob-top {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 6px;
+                    align-items: center;
+                }
+
+                /* Title */
+                .statejob-title {
+                    font-weight: 600;
+                    font-size: 13px;
+                    color: #111;
+                }
+
+                /* Meta */
+                .statejob-meta {
+                    font-size: 12px;
+                    color: #555;
+                    float: right;
+                }
+
+                /* States */
+                .statejob-tags {
+                    margin-top: 5px;
+                }
+
+                /* Badge */
+                .statejob-badge {
+                    display: inline-block;
+                    background: #eef2ff;
+                    color: #3749ff;
+                    font-size: 12px;
+                    padding: 3px 8px;
+                    margin: 2px 4px 2px 0;
+                    border-radius: 10px;
+                    font-weight: 500;
+                    transition: 0.2s;
+                }
+
+                .statejob-badge:hover {
+                    background: #3749ff;
+                    color: #fff;
+                }
+            </style>
     <div class="container mt-3">
 
         <h2 class="mb-3 c-t">
@@ -666,70 +729,7 @@
                 </script>
             </div>
 
-            <style id="statejob-css">
-                /* Wrapper scope (important) */
-                .statejob-wrapper a {
-                    text-decoration: none;
-                    color: inherit;
-                }
-
-                /* Box */
-                .statejob-box {
-                    padding: 5px 6px;
-                    border-bottom: 1px solid #eee;
-                    transition: 0.3s;
-                    background-color: #ffffff;
-                }
-
-                .statejob-box:hover {
-                    background: #e8e8e8;
-                }
-
-                /* First Line */
-                .statejob-top {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 6px;
-                    align-items: center;
-                }
-
-                /* Title */
-                .statejob-title {
-                    font-weight: 600;
-                    font-size: 13px;
-                    color: #111;
-                }
-
-                /* Meta */
-                .statejob-meta {
-                    font-size: 12px;
-                    color: #555;
-                    float: right;
-                }
-
-                /* States */
-                .statejob-tags {
-                    margin-top: 5px;
-                }
-
-                /* Badge */
-                .statejob-badge {
-                    display: inline-block;
-                    background: #eef2ff;
-                    color: #3749ff;
-                    font-size: 12px;
-                    padding: 3px 8px;
-                    margin: 2px 4px 2px 0;
-                    border-radius: 10px;
-                    font-weight: 500;
-                    transition: 0.2s;
-                }
-
-                .statejob-badge:hover {
-                    background: #3749ff;
-                    color: #fff;
-                }
-            </style>
+            
             <div class="col-6 col-md-6 mb-4 statejob-wrapper">
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
