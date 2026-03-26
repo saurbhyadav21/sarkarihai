@@ -197,27 +197,32 @@
                         </h2>
 
                         <ul class="list-group list-group-flush flex-grow-1">
-
+                            <li class="list-group-item d-flex justify-content-between">
+                                    <span>Admit Card Release Date</span>
+                                    <span class="badge bg-success">
+                                        {{ date('d M Y', strtotime($job->admit_card)) }}
+                                    </span>
+                                </li>
                             @if (!empty($resultCard->result_card_release_date))
                                 <li class="list-group-item d-flex justify-content-between">
-                                    <span>Admit Card Release Date</span>
+                                    <span>Result Release Date</span>
                                     <span class="badge bg-success">
                                         {{ date('d M Y', strtotime($resultCard->result_card_release_date)) }}
                                     </span>
                                 </li>
                             @endif
 
-                           
-                          @if (!empty($resultCard->exam_list))
-    @foreach ($resultCard->exam_list as $exam)
-        <li class="list-group-item d-flex justify-content-between">
-            <span>Exam Date ({{ $loop->iteration }}) - {{ $exam['name'] }}</span>
-            <span class="badge bg-primary">
-                {{ $exam['date'] ?? ($exam['exam_dates'] ?? 'To Be Announced') }}
-            </span>
-        </li>
-    @endforeach
-@endif
+
+                            @if (!empty($resultCard->exam_list))
+                                @foreach ($resultCard->exam_list as $exam)
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Exam Date ({{ $loop->iteration }}) - {{ $exam['name'] }}</span>
+                                        <span class="badge bg-primary">
+                                            {{ $exam['date'] ?? ($exam['exam_dates'] ?? 'To Be Announced') }}
+                                        </span>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
 
                     </div>
