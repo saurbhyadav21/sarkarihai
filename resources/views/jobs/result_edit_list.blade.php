@@ -48,7 +48,7 @@
 
                                     <td>
                                         <!-- Delete Button -->
-                                        <form action="{{ route('job.destroy', $job->id) }}" method="POST"
+                                        <form action="{{ route('result.destroy', $job->id) }}" method="POST"
                                             style="display:inline-block;"
                                             onsubmit="return confirm('Delete karna hai kya?')">
                                             @csrf

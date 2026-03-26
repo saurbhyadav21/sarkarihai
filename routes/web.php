@@ -29,6 +29,8 @@ Route::get('/result/edit-list', [JobController::class, 'resultList'])->name('job
 Route::get('/add-job', [JobController::class, 'addJob'])->name('job.addjob');
 Route::delete('/job/{id}', [JobController::class, 'destroy'])->name('job.destroy');
 
+Route::delete('/result/{id}', [JobController::class, 'resultDestroy'])->name('result.destroy');
+
 // Route::get('/add-job', function () {
 //     return view('jobs/add-job');
 // });
