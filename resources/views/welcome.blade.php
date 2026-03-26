@@ -810,7 +810,7 @@
                 <div class="col-12 col-md-6 mb-4 statejob-wrapper">
                      <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
                         style="color: #fff; float: right;
-    font-size: 10px;">
+    font-size: 13px;">
                         View All →
                     </a>
                 <div class="d-flex justify-content-between align-items-center mb-3">
