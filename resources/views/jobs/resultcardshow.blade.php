@@ -43,56 +43,53 @@
                                 <div class="card-body">
 
                                     <p>
-                                        The
-                                        <strong>
-                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}">
-                                                {{ $job->title }}
-                                            </a>
-                                        </strong>
-                                        has been officially released by
-                                        <strong>{{ $job->category ?? 'the organization' }}</strong>
+                                        <p>
+    The
+    <strong>
+        <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}">
+            {{ $job->title }}
+        </a>
+    </strong>
+    has been officially <strong>released</strong> by
+    <strong>{{ $job->category ?? 'the organization' }}</strong>
+    @if (!empty($job->advertisement_no))
+        for candidates who applied under <strong>{{ $job->advertisement_no }}</strong>
+    @else
+        for eligible candidates
+    @endif.
+</p>
 
-                                        @if (!empty($job->advertisement_no))
-                                            for candidates who applied under
-                                            <strong>{{ $job->advertisement_no }}</strong>
-                                        @else
-                                            for eligible candidates
-                                        @endif.
+<p>
+    Applicants for the <strong>{{ $job->total_vacancies ?? 'multiple' }} vacancies</strong>
+    @if (!empty($job->post_name))
+        ({{ implode(', ', array_map('trim', explode('#', $job->post_name))) }})
+    @endif
+    can now
+    <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}" target="_blank">
+        <strong>check their Sarkari Naukri updates, download admit cards, and verify exam details</strong>
+    </a>
+    through the official portal.
+</p>
 
-                                        Applicants for the
-                                        <strong>
-                                            {{ $job->total_vacancies ?? 'multiple' }} vacancies
-                                            @if (!empty($job->post_name))
-                                                (
-                                                {{ implode(', ', array_map('trim', explode('#', $job->post_name))) }}
-                                                )
-                                            @endif
-                                        </strong>
-                                        can now
-                                        <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}" target="_blank">
-                                            <strong>check details and download updates</strong>
-                                        </a> through the official portal.
+@if (!empty($resultCard->exam_list))
+    <p>
+        As per the latest notification, the <strong>exam dates</strong> are as follows:
+        <strong>
+            @foreach ($resultCard->exam_list as $exam)
+                {{ $exam['date'] ?? ($exam['exam_dates'] ?? 'To Be Announced') }}
+                @if (!$loop->last), @endif
+            @endforeach
+        </strong>.
+    </p>
+@endif
 
-                                        @if (!empty($resultCard->exam_list))
-                                            As per the latest update, the
-                                            <strong>exam date</strong> is scheduled for
-                                            <strong>
-                                                @foreach ($resultCard->exam_list as $exam)
-                                                    {{ $exam['date'] ?? ($exam['exam_dates'] ?? 'To Be Announced') }}
-                                                    @if (!$loop->last)
-                                                        ,
-                                                    @endif
-                                                @endforeach
-                                            </strong>.
-                                        @endif
+<p>
+    Candidates must carefully check their <strong>exam date, admit card, result status, exam center, shift timing, and important instructions</strong> as provided in the official update.
+</p>
 
-                                        Candidates must check their
-                                        <strong>exam date, admit card, result status, exam center, shift timing, and
-                                            important instructions</strong>
-                                        mentioned on the official update.
-
-                                        To avoid last-minute issues, candidates are advised to
-                                        <strong>check updates and download required documents</strong> as early as possible.
+<p>
+    To avoid last-minute issues, all candidates are advised to <strong>download admit cards, check exam schedule, and follow official Sarkari Naukri notifications</strong> well in advance.
+</p>
 
                                         For the
                                         <strong>direct link, latest Sarkari result updates, government job notifications,
