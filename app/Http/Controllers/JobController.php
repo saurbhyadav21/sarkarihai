@@ -568,7 +568,7 @@ class JobController extends Controller
 
     public function resultStoreJson(Request $request)
     {
-        dd($request);    
+       
         $request->validate([
             'result_json' => 'required|json',
             'job_id' => 'required'
@@ -599,7 +599,7 @@ class JobController extends Controller
 
         // ✅ Create OR Update (🔥 mainx logic)
         if ($request->job_id == 'add' || empty($request->job_id)) {
-
+            dd($data);
             // ✅ CREATE
             Result::create([
                 'job_id' => null,
