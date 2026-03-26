@@ -565,9 +565,9 @@ class JobController extends Controller
         }
         
         if ($request->job_id == 'add' || empty($request->job_id)) {
-            dd('insert');
+            
             // ✅ CREATE
-            Result::create([
+            AdmitCard::create([
                 'job_id' => $request->job_id,
                 'job_title' => $data['job_title'] ?? null,
                 'full_title' => $data['full_title'] ?? null,
@@ -589,10 +589,10 @@ class JobController extends Controller
                 'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
             ]);
         } else {
-     dd('update');
+  
 
             // Pehle existing record nikaalo
-            $existing = Result::where('id', $request->job_id)->first();
+            $existing = AdmitCard::where('id', $request->job_id)->first();
 
             $updateData = [
                 'job_title' => $data['job_title'] ?? null,
@@ -622,7 +622,7 @@ class JobController extends Controller
             }
 
             // ✅ Final update
-            Result::updateOrCreate(
+            AdmitCard::updateOrCreate(
                 ['id' => $request->job_id],
                 $updateData
             );
