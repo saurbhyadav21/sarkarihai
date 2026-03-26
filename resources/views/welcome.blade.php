@@ -139,39 +139,45 @@
 
         @media (max-width: 768px) {
 
-    .c-t {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-    }
+            .c-t {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+            }
 
-    /* Latest Jobs → full width (1st line) */
-    .c-t > span:first-child {
-        width: 100%;
-        display: block;
-        font-size: 35px;
-        margin-bottom: 4px;
-    }
+            /* Latest Jobs → full width (1st line) */
+            .c-t>span:first-child {
+                width: 100%;
+                display: block;
+                font-size: 35px;
+                margin-bottom: 4px;
+            }
 
-    /* Last update (left side 2nd line) */
-    .c-t .last-update {
-        font-size: 12px;
-        display: flex;
-        align-items: center; margin-left: 0px;
-    }
+            /* Last update (left side 2nd line) */
+            .c-t .last-update {
+                font-size: 12px;
+                display: flex;
+                align-items: center;
+                margin-left: 0px;
+            }
 
-    /* View All (right side 2nd line) */
-    .c-t a {
-        margin-left: auto;
-        font-size: 12px;
-        float: none !important; /* important fix */
-    }
+            /* View All (right side 2nd line) */
+            .c-t a {
+                margin-left: auto;
+                font-size: 12px;
+                float: none !important;
+                /* important fix */
+            }
 
-    /* Live GIF icon */
-    .c-t img {
-      
-    }
-}
+            /* Live GIF icon */
+            .c-t img {}
+        }
+
+        @media (max-width: 768px) {
+            .hide-mobile {
+                display: none !important;
+            }
+        }
     </style>
 
 
@@ -255,10 +261,10 @@
                                 ₹{{ number_format($job->max_salary ?? 0) }}
                             </span>
                             |
-                            <span style="color: green; font-weight:600;">
-                                {{ $job->min_qulification ?? '' }}
+                            <span class="hide-mobile" style="color: green; font-weight:600;">
+                                {{ $job->min_qulification ?? '' }} |
                             </span>
-                            |
+
                             <span style="color: {{ $color }}; font-weight:600;">
                                 {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
                             </span>
