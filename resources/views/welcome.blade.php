@@ -149,7 +149,7 @@
     .c-t > span:first-child {
         width: 100%;
         display: block;
-        font-size: 20px;
+        font-size: 35px;
         margin-bottom: 4px;
     }
 
