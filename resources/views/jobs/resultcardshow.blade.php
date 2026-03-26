@@ -396,7 +396,7 @@
         </div>
 
         <!-- Exam List -->
-        <div class="card shadow">
+        {{-- <div class="card shadow">
             <div class="card-header bg-dark text-white">
                 <h4 class="mb-0">📅 Upcoming Exams</h4>
             </div>
@@ -441,16 +441,16 @@
                 @endif
 
             </div>
-        </div>
+        </div> --}}
 
         <!-- Download Button -->
-        @if ($resultCard->link)
+        {{-- @if ($resultCard->link)
             <div class="text-center mt-4">
                 <a href="{{ $resultCard->link }}" target="_blank" class="btn btn-success btn-lg">
                     🎟 Download Admit Card
                 </a>
             </div>
-        @endif
+        @endif --}}
 
     </div>
     
