@@ -602,7 +602,7 @@ class JobController extends Controller
             dd($data);
             // ✅ CREATE
             Result::create([
-                'job_id' => null,
+                'job_id' => $request->job_id,
                 'job_title' => $data['job_title'] ?? null,
                 'full_title' => $data['full_title'] ?? null,
                 'result_card_release_date' => $data['result_card_release_date'] ?? null,
