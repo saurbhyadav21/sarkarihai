@@ -220,7 +220,7 @@
 
                     <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
 
-                        <div class="job-box position-relative">
+                        <div class="job-box position-relative" style="background-color: #aeaeae;">
                             @php
                                 $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
                             @endphp
