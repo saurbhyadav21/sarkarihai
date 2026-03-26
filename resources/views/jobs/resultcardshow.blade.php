@@ -188,7 +188,7 @@
         <div class="row gy-4">
 
             <!-- Important Dates -->
-            {{-- <div class="col-md-6 d-flex">
+            <div class="col-md-6 d-flex">
                 <div class="card w-100 h-100 shadow-sm">
                     <div class="card-body d-flex flex-column">
 
@@ -208,22 +208,21 @@
                             @endif
 
                            
-                            @if (!empty($resultCard->exam_list))
-                                @foreach ($resultCard->exam_list as $exam)
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <span>Exam Date ({{ $loop->iteration }}) - {{ $exam['name'] }}</span>
-                                        <span class="badge bg-primary">
-                                            {{ date('d M Y', strtotime($exam['date'])) }}
-                                        </span>
-                                    </li>
-                                @endforeach
-                            @endif
-
+                          @if (!empty($resultCard->exam_list))
+    @foreach ($resultCard->exam_list as $exam)
+        <li class="list-group-item d-flex justify-content-between">
+            <span>Exam Date ({{ $loop->iteration }}) - {{ $exam['name'] }}</span>
+            <span class="badge bg-primary">
+                {{ $exam['date'] ?? ($exam['exam_dates'] ?? 'To Be Announced') }}
+            </span>
+        </li>
+    @endforeach
+@endif
                         </ul>
 
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
             <!-- Important Links -->
             {{-- <div class="col-md-6 d-flex">
