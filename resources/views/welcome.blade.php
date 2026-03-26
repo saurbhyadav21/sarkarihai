@@ -182,46 +182,21 @@
                 display: none !important;
             }
         }
-
         /* Flicker animation */
-        @keyframes flicker {
-            0% {
-                opacity: 1;
-            }
+@keyframes flicker {
+    0%   { opacity: 1; }
+    20%  { opacity: 0.4; }
+    40%  { opacity: 1; }
+    60%  { opacity: 0.3; }
+    80%  { opacity: 1; }
+    100% { opacity: 0.6; }
+}
 
-            20% {
-                opacity: 0.4;
-            }
-
-            40% {
-                opacity: 1;
-            }
-
-            60% {
-                opacity: 0.3;
-            }
-
-            80% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0.6;
-            }
-        }
-
-        /* Apply animation */
-        .flicker-btn {
-            animation: flicker 1.2s infinite;
-        }
-
-        @media (max-width: 576px) {
-            .row {
-                gap: 0.5rem;
-                /* space between cards on mobile */
-            }
-        }
-    </style>
+/* Apply animation */
+.flicker-btn {
+    animation: flicker 1.2s infinite;
+}
+    </style> 
 
 
 
@@ -234,10 +209,11 @@
                 Last Updated : {{ now()->format('d-m-Y H:i') }}
                 <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
             </span>
-            <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
-                style="color: #fff; font-size: 13px; float: right;">
-                View All →
-            </a>
+            <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories"
+   class="text-decoration-none fw-bold"
+   style="color: #fff; font-size: 13px; float: right;">
+   View All →
+</a>
         </h2>
 
         <div class="row">
@@ -384,13 +360,13 @@
                 </div>
                 {{-- @endfor --}}
             @endforeach
-
+            
         </div>
         <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
-            style="color: #fff;    float: right;
+                style="color: #fff;    float: right;
     font-size: 13px;">
-            View All →
-        </a>
+                View All →
+            </a>
     </div>
 
 
@@ -423,22 +399,32 @@
                     }
                 @endphp
 
-                <div class="col-12 col-sm-4 col-md-3 col-lg-2 mb-3">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
                     <div class="card h-100 shadow-sm {{ $cardColor }}">
                         <div class="card-body p-2 d-flex flex-column text-center">
+
+                            <!-- 👆 TOP: Title -->
                             <h6 class="card-title fw-bold mb-2" style="font-size:14px;">
                                 {{ $job->title }}
                             </h6>
+
+                            <!-- 👇 BOTTOM BLOCK -->
                             <div class="mt-auto">
+
+                                <!-- Last Date -->
                                 <p class="mb-2" style="font-size:12px;">
                                     <b>Last Date:</b>
                                     {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
                                 </p>
+
+                                <!-- Button -->
                                 <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}"
                                     class="btn btn-sm btn-light w-100">
                                     Apply Now
                                 </a>
+
                             </div>
+
                         </div>
                     </div>
                 </div>
