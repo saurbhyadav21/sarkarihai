@@ -757,7 +757,7 @@ class JobController extends Controller
         }
 
         $resultCard->exam_list = $exams;
-        dd($resultCard);
+        // dd($resultCard);
         // 3️⃣ View return karo
         return view('jobs/resultcardshow', compact('resultCard', 'job'));
     }
