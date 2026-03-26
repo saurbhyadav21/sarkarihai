@@ -80,11 +80,13 @@
 
                                     <!-- Result Date -->
                                     <td>
-                                        @if (!empty($job->result_date))
-                                            {{ $job->result_date }}
-                                        @else
-                                            <span class="badge bg-danger">Not Announced</span>
-                                        @endif
+                                        {{ $job->result_date }}
+
+                                        <a href="{{ route('job.resultEdit', $job->id) }}"
+                                            class="btn btn-sm {{ $job->result_date == 'To Be Announced' ? 'btn-danger' : 'btn-success' }}">
+
+                                            {{ $job->result_date == 'To Be Announced' ? 'Update Result' : 'Edit Result' }}
+                                        </a>
                                     </td>
 
                                     <!-- Syllabus -->
