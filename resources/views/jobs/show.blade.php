@@ -1,19 +1,23 @@
 @extends('layouts.app')
 @php
-$seoTitle = $job->title 
-            . ' Recruitment ' . date('Y') 
-            . ' | Apply Online, Eligibility, Exam Date, Admit Card, Result - SarkariHai.com';
+    $seoTitle =
+        $job->title .
+        ' Recruitment ' .
+        date('Y') .
+        ' | Apply Online, Eligibility, Exam Date, Admit Card, Result - SarkariHai.com';
 @endphp
 @section('title')
     {{ $seoTitle }}
 @endsection
 
 @section('meta_description')
-    Apply online for {{ $job->title }} Recruitment {{ date('Y') }}. Check eligibility, application fee, age limit, important dates, admit card, and result details.
+    Apply online for {{ $job->title }} Recruitment {{ date('Y') }}. Check eligibility, application fee, age limit,
+    important dates, admit card, and result details.
 @endsection
 
 @section('meta_keywords')
-    {{ $job->title }}, {{ $job->title }} recruitment, {{ $job->title }} apply online, {{ $job->category }} jobs, government jobs {{ date('Y') }}
+    {{ $job->title }}, {{ $job->title }} recruitment, {{ $job->title }} apply online, {{ $job->category }} jobs,
+    government jobs {{ date('Y') }}
 @endsection
 
 @section('content')
@@ -870,14 +874,14 @@ $seoTitle = $job->title
                             </style>
                             <!-- Button -->
                             <div>
-                                 {{-- <a href="{{ route('admit.show', $job->slug) }}" class="job-link"> --}}
-                               {{-- <a href="{{ route('admit.show', $admitCard->slug) }}" class="btn view-btn">
+                                {{-- <a href="{{ route('admit.show', $job->slug) }}" class="job-link"> --}}
+                                {{-- <a href="{{ route('admit.show', $admitCard->slug) }}" class="btn view-btn">
     🔍 View Details
 </a> --}}
-
-<a href="#" class="btn view-btn">
-    🔍 View Details
-</a>
+                                {{-- <a href="{{ route('result.show', $result->slug) }}" class="btn"> --}}
+                                <a href="{{ route('admit.show', $admitCard->slug) }}" class="btn view-btn">
+                                    🔍 View Details
+                                </a>
                             </div>
 
                         </div>
@@ -1077,10 +1081,13 @@ $seoTitle = $job->title
                                 Result Date: {{ $result->result_card_release_date }}
                             </div>
 
-                            <a href="{{ route('result.show', $result->slug) }}" class="btn">
-                            {{-- <a href="{{ $job->result_link }}" target="_blank" class="btn download-btn"> --}}
+                            {{-- <a href="{{ route('result.show', $result->slug) }}" class="btn">
                                 <i class="fa-solid fa-square-poll-vertical"></i> Check Result
+                            </a> --}}
+                            <a href="{{ route('result.show', $result->slug) }}" class="btn view-btn">
+                                🔍 View Details
                             </a>
+
 
                         </div>
 
