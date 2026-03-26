@@ -585,9 +585,9 @@ class JobController extends Controller
             [
                 'job_title' => $data['job_title'] ?? null,
                 'full_title' => $data['full_title'] ?? null,
-                'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
+                'result_card_release_date' => $data['result_card_release_date'] ?? null,
                 'exam_dates' => $data['exam_dates'] ?? null,
-                'how_to_download_admit_card' => $data['how_to_download_admit_card'] ?? null,
+                'how_to_download_result_card' => $data['how_to_download_result_card'] ?? null,
                 'official_link' => $links,
                 'logo' => $imageName // null bhi ho sakta hai
             ]
