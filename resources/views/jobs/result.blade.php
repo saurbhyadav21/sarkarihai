@@ -25,6 +25,7 @@
                     'min_age' => $result->min_age,
                     'max_age' => $result->max_age,
                     'admit_card_release_date'=>$result->admit_card_release_date,
+                    'logo'=>$result->logo
                 ],
                 JSON_PRETTY_PRINT,
             )

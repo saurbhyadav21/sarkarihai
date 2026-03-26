@@ -625,8 +625,7 @@ class JobController extends Controller
             ]);
         } else {
 
-        dd($request->job_image);
-            dd($imageName);
+        
             // ✅ UPDATE
             Result::updateOrCreate(
                 ['id' => $request->job_id],
