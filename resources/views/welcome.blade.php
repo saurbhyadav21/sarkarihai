@@ -652,7 +652,7 @@
 
         </h2>
         <div class="row">
-            <div class="col-12 col-md-6 mb-4">
+            <div class="col-12 col-6 col-md-6 mb-4">
                 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
                 <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
                 <style>
