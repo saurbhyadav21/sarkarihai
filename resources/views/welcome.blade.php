@@ -206,6 +206,77 @@
         </h2>
 
         <div class="row">
+            @foreach ($pastJobs as $index => $job)
+                @php
+                    $names = explode('#', $job->post_name);
+                    $salaries = explode('#', $job->post_salary);
+                    $eligibilities = explode('#', $job->min_qulification);
+                    $count = max(count($names), count($salaries), count($eligibilities));
+
+                @endphp
+
+                {{-- @for ($i = 0; $i < $count; $i++) --}}
+                <div class="col-6 col-md-2 {{ $index >= 10 ? 'hide-mobile-job' : '' }}">
+
+                    <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
+
+                        <div class="job-box position-relative">
+                            @php
+                                $isNew = \Carbon\Carbon::parse($job->created_at)->diffInDays(now()) <= 2;
+                            @endphp
+
+                            @if ($isNew)
+                                <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                                    class="new-badge">
+                            @endif
+                            <img src="{{ asset('public/job-images/' . $job->image) }}" class="job-logo">
+
+                            <div>
+                                <div class="job-title ">
+                                    {{-- {{ ucfirst($job->title) . (!empty($names[$i]) ? ' - ' . ucfirst($names[$i]) : '') }} --}}
+                                    {{ ucfirst($job->title) }}
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        @php
+                            $endDate = \Carbon\Carbon::parse($job->end_date);
+                            $today = \Carbon\Carbon::now();
+
+                            $daysLeft = $today->diffInDays($endDate, false); // negative bhi allow
+
+                            if ($daysLeft <= 7) {
+                                $color = 'red'; // 1 week
+                            } elseif ($daysLeft <= 14) {
+                                $color = 'orange'; // 2 week
+                            } else {
+                                $color = 'green'; // more than 2 week
+                            }
+                        @endphp
+
+                        <div class="job-meta">
+                            <span style="color: green; font-weight:600;">
+                                ₹{{ number_format($job->min_salary ?? 0) }} -
+                                ₹{{ number_format($job->max_salary ?? 0) }}
+                            </span>
+                            |
+                            <span class="hide-mobile" style="color: green; font-weight:600;">
+                                {{ $job->min_qulification ?? '' }} |
+                            </span>
+
+                            <span style="color: {{ $color }}; font-weight:600;">
+                                {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+                            </span>
+                        </div>
+                    </a>
+
+                </div>
+                {{-- @endfor --}}
+            @endforeach
 
             @foreach ($jobs as $index => $job)
                 @php
