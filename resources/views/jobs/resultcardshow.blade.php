@@ -66,45 +66,52 @@
                                     </p>
 
                                     <p>
-    Applicants for the <strong>{{ $resultCard->total_vacancies ?? 'multiple' }} vacancies</strong>
-    @if (!empty($resultCard->post_name))
-        ({{ implode(', ', array_map('trim', explode('#', $resultCard->post_name))) }})
-    @endif
-    can now
-    <a href="{{ url('/') }}" target="_blank">
-        <strong>check their results, download admit cards, and verify exam details</strong>
-    </a>
-    through the official portal.
-</p>
+                                        Applicants for the <strong>{{ $resultCard->total_vacancies ?? 'multiple' }}
+                                            vacancies</strong>
+                                        @if (!empty($resultCard->post_name))
+                                            ({{ implode(', ', array_map('trim', explode('#', $resultCard->post_name))) }})
+                                        @endif
+                                        can now
+                                        <a href="{{ url('/') }}" target="_blank">
+                                            <strong>check their results, download admit cards, and verify exam
+                                                details</strong>
+                                        </a>
+                                        through the official portal.
+                                    </p>
                                     @if (!empty($resultCard->exam_list))
-    @php
-        if (is_array($resultCard->exam_list)) {
-            $exams = $resultCard->exam_list;
-        } else {
-            $exams = explode('#', $resultCard->exam_list);
-        }
-    @endphp
+                                        @php
+                                            if (is_array($resultCard->exam_list)) {
+                                                $exams = $resultCard->exam_list;
+                                            } else {
+                                                $exams = explode('#', $resultCard->exam_list);
+                                            }
+                                        @endphp
 
-    <p>
-        As per the latest notification, the <strong>exam schedule</strong> is as follows:
-        <strong>
-            @foreach ($exams as $exam)
-                @php
-                    if (is_array($exam)) {
-                        $name = $exam['name'] ?? '';
-                        $date = $exam['date'] ?? 'To Be Announced';
-                    } else {
-                        $parts = explode('$', $exam);
-                        $name = $parts[0] ?? '';
-                        $date = !empty($parts[1]) ? date('d M Y', strtotime($parts[1])) : 'To Be Announced';
-                    }
-                @endphp
+                                        <p>
+                                            As per the latest notification, the <strong>exam schedule</strong> is as
+                                            follows:
+                                            <strong>
+                                                @foreach ($exams as $exam)
+                                                    @php
+                                                        if (is_array($exam)) {
+                                                            $name = $exam['name'] ?? '';
+                                                            $date = $exam['date'] ?? 'To Be Announced';
+                                                        } else {
+                                                            $parts = explode('$', $exam);
+                                                            $name = $parts[0] ?? '';
+                                                            $date = !empty($parts[1])
+                                                                ? date('d M Y', strtotime($parts[1]))
+                                                                : 'To Be Announced';
+                                                        }
+                                                    @endphp
 
-                {{ $name }} ({{ $date }})@if (!$loop->last), @endif
-            @endforeach
-        </strong>.
-    </p>
-@endif
+                                                    {{ $name }} ({{ $date }})@if (!$loop->last)
+                                                        ,
+                                                    @endif
+                                                @endforeach
+                                            </strong>.
+                                        </p>
+                                    @endif
 
                                     <p>
                                         Candidates must carefully check their <strong>exam date, admit card, result status,
@@ -216,7 +223,7 @@
             </div>
 
         </div>
-        {{-- <div class="row gy-4">
+        <div class="row gy-4">
 
             
             <div class="col-md-6 d-flex">
@@ -301,10 +308,10 @@
                 </div>
             </div>
 
-        </div> --}}
+        </div>
 
         <!-- How to Download Admit Card -->
-        {{-- <div class="col-12 section-box mt-4" id="how-to-download" style="color: #fff">
+        <div class="col-12 section-box mt-4" id="how-to-download" style="color: #fff">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
 
@@ -336,10 +343,10 @@
 
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <!-- FAQ Section -->
-        {{-- <div class="col-12 section-box mt-4" id="faq">
+        <div class="col-12 section-box mt-4" id="faq">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
 
@@ -435,10 +442,10 @@
 
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <!-- Exam List -->
-        {{-- <div class="card shadow">
+        <div class="card shadow">
             <div class="card-header bg-dark text-white">
                 <h4 class="mb-0">📅 Upcoming Exams</h4>
             </div>
@@ -470,7 +477,7 @@
                 @endif
 
             </div>
-        </div> --}}
+        </div>
 
 
     </div>
