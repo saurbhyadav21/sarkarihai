@@ -78,7 +78,11 @@
 </p>
                                     @if (!empty($resultCard->exam_list))
     @php
-        $exams = explode('#', $resultCard->exam_list);
+        if (is_array($resultCard->exam_list)) {
+            $exams = $resultCard->exam_list;
+        } else {
+            $exams = explode('#', $resultCard->exam_list);
+        }
     @endphp
 
     <p>
@@ -86,9 +90,14 @@
         <strong>
             @foreach ($exams as $exam)
                 @php
-                    $parts = explode('$', $exam);
-                    $name = $parts[0] ?? '';
-                    $date = !empty($parts[1]) ? date('d M Y', strtotime($parts[1])) : 'To Be Announced';
+                    if (is_array($exam)) {
+                        $name = $exam['name'] ?? '';
+                        $date = $exam['date'] ?? 'To Be Announced';
+                    } else {
+                        $parts = explode('$', $exam);
+                        $name = $parts[0] ?? '';
+                        $date = !empty($parts[1]) ? date('d M Y', strtotime($parts[1])) : 'To Be Announced';
+                    }
                 @endphp
 
                 {{ $name }} ({{ $date }})@if (!$loop->last), @endif
