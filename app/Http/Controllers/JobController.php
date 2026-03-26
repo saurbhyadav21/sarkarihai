@@ -253,7 +253,7 @@ class JobController extends Controller
         $resultOut = Result::orderBy('result_card_release_date', 'asc')->get();
 
 
-        dd($resultOut);
+        
         return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories', 'admitCard', 'pastJobs','resultOut'));
     }
 
