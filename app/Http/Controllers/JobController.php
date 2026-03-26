@@ -619,12 +619,11 @@ class JobController extends Controller
                 'min_qualification' => $data['min_qualification'] ?? null,
                 'min_age' => $data['min_age'] ?? null,
                 'max_age' => $data['max_age'] ?? null,
-                'logo' => $request->logo,
+                'logo' => $imageName,
                 'admit_card_release_date'=>$data['admit_card_release_date'] ?? null,
             ]);
         } else {
-
-        dd()
+            
        
             // ✅ UPDATE
             Result::updateOrCreate(
@@ -646,7 +645,7 @@ class JobController extends Controller
                     'min_qualification' => $data['min_qualification'] ?? null,
                     'min_age' => $data['min_age'] ?? null,
                     'max_age' => $data['max_age'] ?? null,
-                    'logo' => $data['logo'] ?? null,
+                    'logo' => $request->logo ?? null,
                     'admit_card_release_date'=>$data['admit_card_release_date'] ?? null,
                 ]
             );
