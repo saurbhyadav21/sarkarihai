@@ -137,50 +137,38 @@
             }
         }
 
-        .latest-job-heading {
-            display: block;
-        }
-
-        /* First line */
-        .title-row {
-            font-size: 20px;
-        }
-
-        /* Second line */
-        .meta-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        /* Live icon */
-        .live-icon {
-            width: 18px;
-            margin-left: 5px;
-        }
-
-        /* View all */
-        .view-all {
-            color: #fff;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        /* 📱 Mobile view */
         @media (max-width: 768px) {
-            .title-row {
-                width: 100%;
-                display: block;
-            }
 
-            .meta-row {
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-            }
-        }
+    .c-t {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Latest Jobs → full width */
+    .c-t > span:first-child {
+        width: 100%;
+        display: block;
+        font-size: 20px;
+    }
+
+    /* Last update + View all ek line me */
+    .c-t .last-update {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+    }
+
+    .c-t a {
+        margin-left: auto;
+        font-size: 12px;
+    }
+
+    /* icon size adjust */
+    .c-t img {
+        width: 18px;
+        margin-left: 5px;
+    }
+}
     </style>
 
 
