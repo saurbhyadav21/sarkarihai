@@ -248,7 +248,7 @@
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Admit Card Release Date</span>
                                 <span class="badge bg-success">
-                                    {{ date('d M Y', strtotime($resultCard->admit_card)) }}
+                                    {{ date('d M Y', strtotime($resultCard->admit_card_release_date)) }}
                                 </span>
                             </li>
                             @if (!empty($resultCard->result_card_release_date))
