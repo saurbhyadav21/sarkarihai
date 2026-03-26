@@ -624,7 +624,7 @@ class JobController extends Controller
             ]);
         } else {
 
-        dd($data);
+       
             // ✅ UPDATE
             Result::updateOrCreate(
                 ['id' => $request->job_id],
