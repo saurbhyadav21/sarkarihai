@@ -204,7 +204,7 @@
                                 </li>
                             @endif
  
-                                {{$admitCard->exam_list}}
+                               
                             @if (!empty($admitCard->exam_list))
                                 @foreach (explode('#', $admitCard->exam_list) as $exam)
                                     @php
