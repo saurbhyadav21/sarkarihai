@@ -21,7 +21,8 @@
     </style>
     <div class="container mt-4">
         <div class="container mt-3">
-            <img src="https://sarkarihai.com/public/job-images/{{$admitCard->logo}}" class="img-fluid banner-img" alt="Job Image">
+            <img src="https://sarkarihai.com/public/job-images/{{ $admitCard->logo }}" class="img-fluid banner-img"
+                alt="Job Image">
         </div>
         <div class="row align-items-stretch gy-4" style="margin-bottom: 10px;">
 
@@ -68,7 +69,8 @@
                                             @endif
                                         </strong>
                                         can now
-                                        <a href="{{ url('sarkari-naukri/' . \Str::slug($admitCard->job_title)) }}" target="_blank">
+                                        <a href="{{ url('sarkari-naukri/' . \Str::slug($admitCard->job_title)) }}"
+                                            target="_blank">
                                             <strong>check details and download updates</strong>
                                         </a> through the official portal.
 
@@ -103,7 +105,8 @@
                                     </p>
 
 
-                                    <h2 class="mt-3">📌 {{ $admitCard->job_title }} – Post Details, Salary, Eligibility & Exam
+                                    <h2 class="mt-3">📌 {{ $admitCard->job_title }} – Post Details, Salary, Eligibility &
+                                        Exam
                                         Date</h2>
 
                                     <ul class="list-unstyled job-details">
@@ -201,13 +204,17 @@
                                 </li>
                             @endif
 
-                           
+
                             @if (!empty($admitCard->exam_list))
-                                @foreach ($admitCard->exam_list as $exam)
+                                @foreach (explode('#', $admitCard->exam_list) as $exam)
+                                    @php
+                                        [$name, $date] = array_pad(explode('$', $exam), 2, null);
+                                    @endphp
+
                                     <li class="list-group-item d-flex justify-content-between">
-                                        <span>Exam Date ({{ $loop->iteration }}) - {{ $exam['name'] }}</span>
+                                        <span>{{ $loop->iteration }}. {{ $name }}</span>
                                         <span class="badge bg-primary">
-                                            {{ date('d M Y', strtotime($exam['date'])) }}
+                                            {{ $date ? \Carbon\Carbon::parse($date)->format('d M Y') : 'TBA' }}
                                         </span>
                                     </li>
                                 @endforeach
@@ -453,5 +460,5 @@
         @endif
 
     </div>
-    
+
 @endsection
