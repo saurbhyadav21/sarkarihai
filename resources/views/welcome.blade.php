@@ -805,7 +805,7 @@
                 </script>
             </div>
 
-
+ 
            
                 <div class="col-12 col-md-6 mb-4 statejob-wrapper">
                      <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
