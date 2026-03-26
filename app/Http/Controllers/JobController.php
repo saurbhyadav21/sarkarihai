@@ -563,9 +563,9 @@ class JobController extends Controller
             $image->move(public_path('job-images'), $imageName);
             // $file->move(public_path('job-images'), $name);
         }
-        dd($request);
+        
         if ($request->job_id == 'add' || empty($request->job_id)) {
-
+            dd('insert');
             // ✅ CREATE
             Result::create([
                 'job_id' => $request->job_id,
@@ -589,7 +589,7 @@ class JobController extends Controller
                 'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
             ]);
         } else {
-
+     dd('update');
 
             // Pehle existing record nikaalo
             $existing = Result::where('id', $request->job_id)->first();
