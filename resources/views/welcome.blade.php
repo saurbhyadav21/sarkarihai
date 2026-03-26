@@ -716,19 +716,8 @@
         </h2>
         <div class="row g-3">
             <div class="col-12 col-md-6 mb-4">
-
-
                 <div id="container"></div>
-
-
             </div>
-
-
-            <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
-                style="color: #fff; float: right;
-    font-size: 13px;">
-                View All →
-            </a>
             <div class="col-12 col-md-6 mb-4 statejob-wrapper">
 
 
@@ -785,11 +774,14 @@
                 @endforeach
 
             </div>
-
-
         </div>
     </div>
 
+<a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
+                style="color: #fff; float: right;
+    font-size: 13px;">
+                View All →
+            </a>
 
     <div class="container mt-4">
         <h2 class="mb-3 c-t">
