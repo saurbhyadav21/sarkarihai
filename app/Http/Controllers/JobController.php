@@ -717,7 +717,7 @@ class JobController extends Controller
 
         // ✅ check record exist ya nahi
         if ($id != 'add') {
-            $result = Result::where('job_id', $id)->first();
+            $result = Result::where('id', $id)->first();
             return view('jobs.result', compact('id', 'result'));
         } else {
             return view('jobs.result',  compact('id', 'result'));
