@@ -407,52 +407,39 @@
         </div>
 
         <!-- Exam List -->
-        {{-- <div class="card shadow">
-            <div class="card-header bg-dark text-white">
-                <h4 class="mb-0">📅 Upcoming Exams</h4>
-            </div>
+        <div class="card shadow">
+    <div class="card-header bg-dark text-white">
+        <h4 class="mb-0">📅 Upcoming Exams</h4>
+    </div>
 
-            <div class="card-body">
+    <div class="card-body">
 
-                @if (count($resultCard->exam_list) > 0)
-                    <ul class="list-group">
+        @if (!empty($resultCard->exam_list))
+            <ul class="list-group">
+                @foreach ($resultCard->exam_list as $exam)
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
 
-                        @foreach ($resultCard->exam_list as $exam)
-                            @php
-                                $date = \Carbon\Carbon::parse($exam['date']);
-                                $today = \Carbon\Carbon::now();
+                        <div>
+                            <strong>{{ $exam['name'] }}</strong><br>
 
-                                $diff = $today->diffInDays($date, false);
-                            @endphp
+                            <!-- Raw Exam Date from DB -->
+                            <small>
+                                {!! nl2br(str_replace('#', "<br>", $exam['date'] ?? ($exam['exam_dates'] ?? 'To Be Announced'))) !!}
+                            </small>
+                        </div>
 
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <!-- Optional Badge -->
+                        <span class="badge bg-primary">Upcoming</span>
 
-                                <div>
-                                    <strong>{{ $exam['name'] }}</strong><br>
-                                    <small>{{ $date->format('d M Y') }}</small>
-                                </div>
+                    </li>
+                @endforeach
+            </ul>
+        @else
+            <p class="text-center text-danger">No Upcoming Exams Found</p>
+        @endif
 
-                                <!-- Badge Logic -->
-                                @if ($date->isToday())
-                                    <span class="badge bg-success">Today</span>
-                                @elseif($diff <= 7)
-                                    <span class="badge bg-warning text-dark">Within 7 Days</span>
-                                @elseif($diff <= 14)
-                                    <span class="badge bg-secondary">Within 2 Weeks</span>
-                                @else
-                                    <span class="badge bg-primary">Upcoming</span>
-                                @endif
-
-                            </li>
-                        @endforeach
-
-                    </ul>
-                @else
-                    <p class="text-center text-danger">No Upcoming Exams Found</p>
-                @endif
-
-            </div>
-        </div> --}}
+    </div>
+</div>
 
         <!-- Download Button -->
         {{-- @if ($resultCard->link)
