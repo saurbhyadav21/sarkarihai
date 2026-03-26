@@ -313,11 +313,11 @@
                 <div class="card-body">
 
                     <h2 class="card-title text-center fw-bold mb-4 text-primary">
-                        ❓ {{ $resultCard->job_title ?? 'Admit Card' }} – Frequently Asked Questions (FAQs)
+                        ❓ {{ $resultCard->job_title ?? 'Result Out' }} – Frequently Asked Questions (FAQs)
                     </h2>
 
                     @php
-                        $title = $resultCard->job_title ?? 'Admit Card';
+                        $title = $resultCard->job_title ?? 'Result Out';
                         $examDate = $resultCard->exam_list[0]['date'] ?? '';
                         $releaseDate = $resultCard->result_card_release_date ?? '';
                     @endphp
