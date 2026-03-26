@@ -361,6 +361,21 @@
             }
         }
     </style>
+
+    <style>
+        #container {
+            height: 700px;
+            min-width: 310px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .loading {
+            margin-top: 10em;
+            text-align: center;
+            color: gray;
+        }
+    </style>
     <div class="container mt-3">
 
         <h2 class="mb-3 c-t">
@@ -701,22 +716,8 @@
         </h2>
         <div class="row g-3">
             <div class="col-12 col-md-6 mb-4">
-                <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-                <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-                <style>
-                    #container {
-                        height: 700px;
-                        min-width: 310px;
-                        max-width: 800px;
-                        margin: 0 auto;
-                    }
 
-                    .loading {
-                        margin-top: 10em;
-                        text-align: center;
-                        color: gray;
-                    }
-                </style>
+
                 <div id="container"></div>
 
 
@@ -823,7 +824,8 @@
     </div>
 
 
-
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
 
     <script>
         function startCountdown() {
