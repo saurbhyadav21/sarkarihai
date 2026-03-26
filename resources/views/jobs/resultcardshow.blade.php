@@ -56,42 +56,46 @@
                                                 </a>
                                             @endif
                                         </strong>
-                                        has been officially <strong>released</strong> by
-                                        <strong>{{ $resultCard->category ?? 'the organization' }}</strong>
+                                        result has been officially <strong>released</strong>
                                         @if (!empty($resultCard->advertisement_no))
-                                            for candidates who applied under <strong>{{ $resultCard->advertisement_no }}</strong>
+                                            for candidates who applied under <strong>Advertisement No.
+                                                {{ $resultCard->advertisement_no }}</strong>
                                         @else
                                             for eligible candidates
                                         @endif.
                                     </p>
 
                                     <p>
-                                        Applicants for the <strong>{{ $resultCard->total_vacancies ?? 'multiple' }}
-                                            vacancies</strong>
-                                        @if (!empty($resultCard->post_name))
-                                            ({{ implode(', ', array_map('trim', explode('#', $resultCard->post_name))) }})
-                                        @endif
-                                        can now
-                                        <a href="{{ url('/') }}" target="_blank">
-                                            <strong>check their Sarkari Naukri updates, download admit cards, and verify
-                                                exam details</strong>
-                                        </a>
-                                        through the official portal.
-                                    </p>
-
+    Applicants for the <strong>{{ $resultCard->total_vacancies ?? 'multiple' }} vacancies</strong>
+    @if (!empty($resultCard->post_name))
+        ({{ implode(', ', array_map('trim', explode('#', $resultCard->post_name))) }})
+    @endif
+    can now
+    <a href="{{ url('/') }}" target="_blank">
+        <strong>check their results, download admit cards, and verify exam details</strong>
+    </a>
+    through the official portal.
+</p>
                                     @if (!empty($resultCard->exam_list))
-                                        <p>
-                                            As per the latest notification, the <strong>exam dates</strong> are as follows:
-                                            <strong>
-                                                @foreach ($resultCard->exam_list as $exam)
-                                                    {{ $exam['date'] ?? ($exam['exam_dates'] ?? 'To Be Announced') }}
-                                                    @if (!$loop->last)
-                                                        ,
-                                                    @endif
-                                                @endforeach
-                                            </strong>.
-                                        </p>
-                                    @endif
+    @php
+        $exams = explode('#', $resultCard->exam_list);
+    @endphp
+
+    <p>
+        As per the latest notification, the <strong>exam dates</strong> are as follows:
+        <strong>
+            @foreach ($exams as $exam)
+                @php
+                    $parts = explode('$', $exam);
+                    $name = $parts[0] ?? '';
+                    $date = $parts[1] ?? 'To Be Announced';
+                @endphp
+
+                {{ $name }} ({{ $date }})@if (!$loop->last), @endif
+            @endforeach
+        </strong>.
+    </p>
+@endif
 
                                     <p>
                                         Candidates must carefully check their <strong>exam date, admit card, result status,
@@ -116,7 +120,8 @@
                                     </p>
 
 
-                                    <h2 class="mt-3">📌 {{ $resultCard->title }} – Post Details, Salary, Eligibility & Exam
+                                    <h2 class="mt-3">📌 {{ $resultCard->title }} – Post Details, Salary, Eligibility &
+                                        Exam
                                         Date</h2>
 
                                     <ul class="list-unstyled job-details">
@@ -169,8 +174,7 @@
                                             @endforeach
                                         </ul>
                                         <li class="mt-3">
-                                            <a href="{{ url('/') }}"
-                                                class="btn btn-success">
+                                            <a href="{{ url('/') }}" class="btn btn-success">
                                                 👉 View Details • Check Notification • Apply Online
                                             </a>
                                         </li>
