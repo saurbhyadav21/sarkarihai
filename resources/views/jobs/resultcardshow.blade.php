@@ -273,7 +273,7 @@
         </div>
 
         <!-- How to Download Admit Card -->
-        {{-- <div class="col-12 section-box mt-4" id="how-to-download" style="color: #fff">
+        <div class="col-12 section-box mt-4" id="how-to-download" style="color: #fff">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
 
@@ -305,7 +305,7 @@
 
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <!-- FAQ Section -->
         {{-- <div class="col-12 section-box mt-4" id="faq">
