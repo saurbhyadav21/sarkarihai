@@ -137,12 +137,12 @@
                                             {{ !empty($job->total_vacancies) ? number_format($job->total_vacancies) : 'N/A' }}
                                         </li>
 
-                                        @if (!empty($job->exam_date))
+                                        {{-- @if (!empty($job->exam_date))
                                             <li>
                                                 <strong>Exam Date:</strong>
                                                 {{ date('d M Y', strtotime($job->exam_date)) }}
                                             </li>
-                                        @endif
+                                        @endif --}}
 
                                         <li class="mt-3">
                                             <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}"
