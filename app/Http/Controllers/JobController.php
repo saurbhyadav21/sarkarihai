@@ -596,10 +596,10 @@ class JobController extends Controller
             $image->move(public_path('job-images'), $imageName);
             // $file->move(public_path('job-images'), $name);
         }
-        dd($request->job_id);
+        // dd($request->job_id);
         // ✅ Create OR Update (🔥 mainx logic)
         if ($request->job_id == 'add' || empty($request->job_id)) {
-           
+           dd('dd');
             // ✅ CREATE
             Result::create([
                 'job_id' => $request->job_id,
