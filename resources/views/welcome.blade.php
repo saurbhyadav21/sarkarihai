@@ -84,6 +84,11 @@
                 font-size: 12px;
             }
 
+            .col-4 {
+                flex: 0 0 auto;
+                width: 22.333333%;
+            }
+
         }
 
         /* Mobile Optimization */
@@ -318,7 +323,7 @@
                                 <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
                                     class="new-badge">
 
-                                <img src="https://sarkarihai.com/public/job-images/{{$job->logo}}" class="job-logo">
+                                <img src="https://sarkarihai.com/public/job-images/{{ $job->logo }}" class="job-logo">
 
                                 <div>
                                     <div class="job-title" style="font-size:12px;">
