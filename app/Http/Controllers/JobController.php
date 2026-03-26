@@ -568,7 +568,7 @@ class JobController extends Controller
 
     public function resultStoreJson(Request $request)
     {
-       
+
         $request->validate([
             'result_json' => 'required|json',
             'job_id' => 'required'
@@ -589,17 +589,18 @@ class JobController extends Controller
         }
 
         // ✅ Image Upload (optional)
+        // ✅ Image Upload
         $imageName = null;
+
         if ($request->hasFile('job_image')) {
             $image = $request->file('job_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('job-images'), $imageName);
-            // $file->move(public_path('job-images'), $name);
         }
         // dd($request->job_id);
         // ✅ Create OR Update (🔥 mainx logic)
         if ($request->job_id == 'add' || empty($request->job_id)) {
-          
+
             // ✅ CREATE
             Result::create([
                 'job_id' => $request->job_id,
@@ -620,11 +621,11 @@ class JobController extends Controller
                 'min_age' => $data['min_age'] ?? null,
                 'max_age' => $data['max_age'] ?? null,
                 'logo' => $imageName,
-                'admit_card_release_date'=>$data['admit_card_release_date'] ?? null,
+                'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
             ]);
         } else {
-            
-       
+
+           
             // ✅ UPDATE
             Result::updateOrCreate(
                 ['id' => $request->job_id],
@@ -645,8 +646,8 @@ class JobController extends Controller
                     'min_qualification' => $data['min_qualification'] ?? null,
                     'min_age' => $data['min_age'] ?? null,
                     'max_age' => $data['max_age'] ?? null,
-                    'logo' => $request->logo ?? null,
-                    'admit_card_release_date'=>$data['admit_card_release_date'] ?? null,
+                    'logo' => $imageName,
+                    'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
                 ]
             );
         }
