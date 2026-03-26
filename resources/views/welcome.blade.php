@@ -136,27 +136,74 @@
                 max-width: 20%;
             }
         }
+
+        .latest-job-heading {
+            display: block;
+        }
+
+        /* First line */
+        .title-row {
+            font-size: 20px;
+        }
+
+        /* Second line */
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Live icon */
+        .live-icon {
+            width: 18px;
+            margin-left: 5px;
+        }
+
+        /* View all */
+        .view-all {
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* 📱 Mobile view */
+        @media (max-width: 768px) {
+            .title-row {
+                width: 100%;
+                display: block;
+            }
+
+            .meta-row {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
     </style>
 
 
 
     <div class="container mt-3">
 
-        <h2 class="mb-3 c-t">
-            <span><b>Latest Jobs</b></span>
+        <h2 class="mb-3 c-t latest-job-heading">
 
-            <span class="last-update">
-                Last Updated : {{ now()->format('d-m-Y H:i') }}
-                <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
-            </span>
-            <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
-                style="
-    color: #fff;
-    font-size: 10px;
-    float: right;
-    ">
-                View All →
-            </a>
+            <div class="title-row">
+                <b>Latest Jobs</b>
+            </div>
+
+            <div class="meta-row">
+                <span class="last-update">
+                    Last Updated : 26-03-2026 05:16
+                    <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif" class="live-icon">
+                </span>
+
+                <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="view-all">
+                    View All →
+                </a>
+            </div>
+
         </h2>
 
         <div class="row">
