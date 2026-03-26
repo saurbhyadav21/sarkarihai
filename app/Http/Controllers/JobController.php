@@ -564,27 +564,90 @@ class JobController extends Controller
             // $file->move(public_path('job-images'), $name);
         }
 
-        // ✅ Create OR Update (🔥 main logic)
-        AdmitCard::updateOrCreate(
-            ['job_id' => $request->job_id], // condition
-            [
+        if ($request->job_id == 'add' || empty($request->job_id)) {
+
+            // ✅ CREATE
+            Result::create([
+                'job_id' => $request->job_id,
                 'job_title' => $data['job_title'] ?? null,
                 'full_title' => $data['full_title'] ?? null,
-                'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
+                'result_card_release_date' => $data['result_card_release_date'] ?? null,
                 'exam_dates' => $data['exam_dates'] ?? null,
-                'how_to_download_admit_card' => $data['how_to_download_admit_card'] ?? null,
+                'how_to_download_result_card' => $data['how_to_download_result_card'] ?? null,
                 'official_link' => $links,
-                'logo' => $imageName // null bhi ho sakta hai
-            ]
-        );
+                'category' => $data['category'] ?? null,
+                'advertisement_no' => $data['advertisement_no'] ?? null,
+                'total_vacancies' => $data['total_vacancies'] ?? null,
+                'post_name' => $data['post_name'] ?? null,
+                'exam_list' => $data['exam_list'] ?? null,
+                'min_salary' => $data['min_salary'] ?? null,
+                'max_salary' => $data['max_salary'] ?? null,
+                'min_qualification' => $data['min_qualification'] ?? null,
+                'min_age' => $data['min_age'] ?? null,
+                'max_age' => $data['max_age'] ?? null,
+                'logo' => $imageName,
+                'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
+            ]);
+        } else {
 
-        Job::updateOrCreate(
-            ['id' => $request->job_id], // condition
-            [
-                'admit_card' => $data['admit_card_release_date'] ?? null,
-                'exam_date' => $data['exam_dates'] ?? null,
-            ]
-        );
+
+            // Pehle existing record nikaalo
+            $existing = Result::where('id', $request->job_id)->first();
+
+            $updateData = [
+                'job_title' => $data['job_title'] ?? null,
+                'full_title' => $data['full_title'] ?? null,
+                'result_card_release_date' => $data['result_card_release_date'] ?? null,
+                'exam_dates' => $data['exam_dates'] ?? null,
+                'how_to_download_result_card' => $data['how_to_download_result_card'] ?? null,
+                'official_link' => $links,
+                'category' => $data['category'] ?? null,
+                'advertisement_no' => $data['advertisement_no'] ?? null,
+                'total_vacancies' => $data['total_vacancies'] ?? null,
+                'post_name' => $data['post_name'] ?? null,
+                'exam_list' => $data['exam_list'] ?? null,
+                'min_salary' => $data['min_salary'] ?? null,
+                'max_salary' => $data['max_salary'] ?? null,
+                'min_qualification' => $data['min_qualification'] ?? null,
+                'min_age' => $data['min_age'] ?? null,
+                'max_age' => $data['max_age'] ?? null,
+                'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
+            ];
+
+            // ✅ Image logic
+            if ($imageName) {
+                $updateData['logo'] = $imageName; // new image
+            } else {
+                $updateData['logo'] = $existing->logo ?? null; // old image preserve
+            }
+
+            // ✅ Final update
+            Result::updateOrCreate(
+                ['id' => $request->job_id],
+                $updateData
+            );
+        }
+        // ✅ Create OR Update (🔥 main logic)
+        // AdmitCard::updateOrCreate(
+        //     ['job_id' => $request->job_id], // condition
+        //     [
+        //         'job_title' => $data['job_title'] ?? null,
+        //         'full_title' => $data['full_title'] ?? null,
+        //         'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
+        //         'exam_dates' => $data['exam_dates'] ?? null,
+        //         'how_to_download_admit_card' => $data['how_to_download_admit_card'] ?? null,
+        //         'official_link' => $links,
+        //         'logo' => $imageName // null bhi ho sakta hai
+        //     ]
+        // );
+
+        // Job::updateOrCreate(
+        //     ['id' => $request->job_id], // condition
+        //     [
+        //         'admit_card' => $data['admit_card_release_date'] ?? null,
+        //         'exam_date' => $data['exam_dates'] ?? null,
+        //     ]
+        // );
 
         return back()->with('success', 'Saved / Updated Successfully ✅');
     }
