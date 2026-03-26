@@ -144,12 +144,24 @@
                                             {{ !empty($job->total_vacancies) ? number_format($job->total_vacancies) : 'N/A' }}
                                         </li>
 
-                                        @if (!empty($job->exam_date))
-                                            <li>
-                                                <strong>Exam Date:</strong>
-                                                {{ $job->exam_date }}
-                                            </li>
-                                        @endif
+                                        @php
+                                            $examData =
+                                                "Written Exam$2025-11-02#Physical Standard Test$2026-01-05#Computer Typing Test$2026-02-21#Stenography Test$2026-02-28";
+                                            $exams = explode('#', $examData); // Split by #
+                                        @endphp
+
+                                        <ul>
+                                            @foreach ($exams as $exam)
+                                                @php
+                                                    $parts = explode('$', $exam); // Split by $
+                                                    $name = $parts[0] ?? '';
+                                                    $date = $parts[1] ?? '';
+                                                @endphp
+                                                <li>
+                                                    <strong>{{ $name }}:</strong> {{ $date }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                         <li class="mt-3">
                                             <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}"
                                                 class="btn btn-success">
@@ -208,11 +220,11 @@
                                 @endforeach
                             @endif
                             <li class="list-group-item d-flex justify-content-between">
-                                    <span>Admit Card Release Date</span>
-                                    <span class="badge bg-success">
-                                        {{ date('d M Y', strtotime($job->admit_card)) }}
-                                    </span>
-                                </li>
+                                <span>Admit Card Release Date</span>
+                                <span class="badge bg-success">
+                                    {{ date('d M Y', strtotime($job->admit_card)) }}
+                                </span>
+                            </li>
                             @if (!empty($resultCard->result_card_release_date))
                                 <li class="list-group-item d-flex justify-content-between">
                                     <span>Result Release Date</span>
@@ -223,7 +235,7 @@
                             @endif
 
 
-                            
+
                         </ul>
 
                     </div>
@@ -408,40 +420,40 @@
 
         <!-- Exam List -->
         <div class="card shadow">
-    <div class="card-header bg-dark text-white">
-        <h4 class="mb-0">📅 Upcoming Exams</h4>
-    </div>
+            <div class="card-header bg-dark text-white">
+                <h4 class="mb-0">📅 Upcoming Exams</h4>
+            </div>
 
-    <div class="card-body">
+            <div class="card-body">
 
-        @if (!empty($resultCard->exam_list))
-            <ul class="list-group">
-                @foreach ($resultCard->exam_list as $exam)
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                @if (!empty($resultCard->exam_list))
+                    <ul class="list-group">
+                        @foreach ($resultCard->exam_list as $exam)
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
 
-                        <div>
-                            <strong>{{ $exam['name'] }}</strong><br>
+                                <div>
+                                    <strong>{{ $exam['name'] }}</strong><br>
 
-                            <!-- Raw Exam Date from DB -->
-                            <small>
-                                {!! nl2br(str_replace('#', "<br>", $exam['date'] ?? ($exam['exam_dates'] ?? 'To Be Announced'))) !!}
-                            </small>
-                        </div>
+                                    <!-- Raw Exam Date from DB -->
+                                    <small>
+                                        {!! nl2br(str_replace('#', '<br>', $exam['date'] ?? ($exam['exam_dates'] ?? 'To Be Announced'))) !!}
+                                    </small>
+                                </div>
 
-                        <!-- Optional Badge -->
-                        <span class="badge bg-primary">Complted</span>
+                                <!-- Optional Badge -->
+                                <span class="badge bg-primary">Complted</span>
 
-                    </li>
-                @endforeach
-            </ul>
-        @else
-            <p class="text-center text-danger">No Upcoming Exams Found</p>
-        @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <p class="text-center text-danger">No Upcoming Exams Found</p>
+                @endif
 
-    </div>
-</div>
+            </div>
+        </div>
 
-        
+
     </div>
 
 @endsection
