@@ -50,3 +50,17 @@ Route::post('/add-admit', [JobController::class, 'admitStoreJson'])->name('job.a
 Route::get('/admit/{slug}', [JobController::class, 'admitShow'])->name('admit.show');
 
 Route::get('/admit-cards', [JobController::class, 'admitIndex'])->name('admitIndex');
+
+
+
+//Result out
+// 1️⃣ Admit card edit page (admin ya form)
+Route::get('/job/{id}/result', [JobController::class, 'resultEdit'])->name('job.resultEdit');
+
+// 2️⃣ result card store / save
+Route::post('/add-result', [JobController::class, 'resultStoreJson'])->name('job.resultStoreJson');
+
+// 3️⃣ Frontend view: result card show by slug (SEO-friendly)
+Route::get('/result/{slug}', [JobController::class, 'resultShow'])->name('result.show');
+
+Route::get('/result-cards', [JobController::class, 'resultIndex'])->name('resultIndex');

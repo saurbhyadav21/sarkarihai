@@ -671,7 +671,7 @@
                 @foreach ($job->exam_list as $exam)
                     <div class="col-6 col-md-5th">
 
-                        <a href="{{ route('admit.show', $job->slug) }}" class="job-link">
+                        <a href="{{ route('result.show', $job->slug) }}" class="job-link">
 
                             <div class="job-box position-relative">
 
@@ -682,7 +682,7 @@
 
                                 <div>
                                     <div class="job-title" style="font-size:12px;">
-                                        {{ $job->job_title }} <br> {{ $exam['name'] }} - Admit Card Out
+                                        {{ $job->job_title }} <br> {{ $exam['name'] }} - Result Out
                                     </div>
 
                                     {{-- <p style="font-size: 10px;margin-bottom:0;">
@@ -694,7 +694,7 @@
 
                             <div class="job-meta">
                                 <span style="color: green; font-weight:600;">
-                                    📝 Exam Date: {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}
+                                    📝 Result Date: {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}
                                     <br>
                                     ⏳ <span class="countdown" data-date="{{ $exam['date'] }}"></span>
                                 </span>
