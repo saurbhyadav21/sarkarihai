@@ -231,7 +231,7 @@
             </div>
 
             <!-- Important Links -->
-            {{-- <div class="col-md-6 d-flex">
+            <div class="col-md-6 d-flex">
                 <div class="card w-100 h-100 shadow-sm border-0">
                     <div class="card-body d-flex flex-column">
 
@@ -268,7 +268,7 @@
 
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
         </div>
 
