@@ -683,7 +683,7 @@
 
                                     <div>
                                         <div class="job-title" style="font-size:12px;">
-                                            {{ $job->job_title }} <br> {{ $exam['name'] ?? 'Exam Name' }} - Result Out
+                                            {{ $job->job_title }} <br> {{ $job->exam_dates }} - Result Out
                                         </div>
                                     </div>
 
@@ -692,7 +692,7 @@
                                 <div class="job-meta">
                                     <span style="color: green; font-weight:600;">
                                         📝 Result Date:
-                                        {{ $exam['exam_dates'] ?? 'To Be Announced' }}
+                                        {{ $exam['result_card_release_date'] ?? 'To Be Announced' }}
                                     </span>
                                 </div>
 
