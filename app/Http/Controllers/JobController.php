@@ -599,7 +599,7 @@ class JobController extends Controller
 
         // ✅ Create OR Update (🔥 mainx logic)
         if ($request->job_id == 'add' || empty($request->job_id)) {
-            dd($data);
+           
             // ✅ CREATE
             Result::create([
                 'job_id' => $request->job_id,
