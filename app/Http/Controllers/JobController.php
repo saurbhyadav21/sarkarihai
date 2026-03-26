@@ -228,31 +228,31 @@ class JobController extends Controller
         //Admit Card
         $admitCard = AdmitCard::orderBy('admit_card_release_date', 'asc')->get();
 
-        foreach ($admitCard as $card) {
-            $exams = [];
+        // foreach ($admitCard as $card) {
+        //     $exams = [];
 
-            if ($card->exam_dates) {
-                $parts = explode('#', $card->exam_dates);
+        //     if ($card->exam_dates) {
+        //         $parts = explode('#', $card->exam_dates);
 
-                foreach ($parts as $part) {
-                    $data = explode('$', $part);
+        //         foreach ($parts as $part) {
+        //             $data = explode('$', $part);
 
-                    if (count($data) == 2) {
-                        $examDate =  \Carbon\Carbon::parse($data[1]);
+        //             if (count($data) == 2) {
+        //                 $examDate =  \Carbon\Carbon::parse($data[1]);
 
-                        // ✅ Only future or today exams
-                        if ($examDate->isToday() || $examDate->isFuture()) {
-                            $exams[] = [
-                                'name' => $data[0],
-                                'date' => $data[1]
-                            ];
-                        }
-                    }
-                }
-            }
+        //                 // ✅ Only future or today exams
+        //                 if ($examDate->isToday() || $examDate->isFuture()) {
+        //                     $exams[] = [
+        //                         'name' => $data[0],
+        //                         'date' => $data[1]
+        //                     ];
+        //                 }
+        //             }
+        //         }
+        //     }
 
-            $card->exam_list = $exams; // dynamic property
-        }
+        //     $card->exam_list = $exams; // dynamic property
+        // }
 
         $resultOut = Result::orderBy('result_card_release_date', 'asc')->get();
 
