@@ -203,7 +203,7 @@
                                     </span>
                                 </li>
                             @endif
-
+ 
 
                             @if (!empty($admitCard->exam_list))
                                 @foreach (explode('#', $admitCard->exam_list) as $exam)
