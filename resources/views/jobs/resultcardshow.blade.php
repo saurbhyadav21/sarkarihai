@@ -37,7 +37,7 @@
                             <div class="card shadow">
                                 <div class="card-header bg-primary text-white">
                                     <h1 class="mb-0">
-                                        {{ !empty($job->title) ? $job->title : $resultCard->job_title }} - Result Out 2026
+                                        {{ !empty($resultCard->title) ? $resultCard->title : $resultCard->job_title }} - Result Out 2026
                                     </h1>
                                 </div>
                                 <div class="card-body">
@@ -46,9 +46,9 @@
                                     <p>
                                         The
                                         <strong>
-                                            @if (!empty($job->title))
-                                                <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}">
-                                                    {{ $job->title }}
+                                            @if (!empty($resultCard->title))
+                                                <a href="{{ url('sarkari-naukri/' . \Str::slug($resultCard->title)) }}">
+                                                    {{ $resultCard->title }}
                                                 </a>
                                             @else
                                                 <a href="{{ url('/') }}">
@@ -248,7 +248,7 @@
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Admit Card Release Date</span>
                                 <span class="badge bg-success">
-                                    {{ date('d M Y', strtotime($job->admit_card)) }}
+                                    {{ date('d M Y', strtotime($resultCard->admit_card)) }}
                                 </span>
                             </li>
                             @if (!empty($resultCard->result_card_release_date))
