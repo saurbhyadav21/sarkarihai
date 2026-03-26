@@ -775,13 +775,14 @@
 
             </div>
         </div>
-    </div>
-
-<a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
+        <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
                 style="color: #fff; float: right;
     font-size: 13px;">
                 View All →
             </a>
+    </div>
+
+
 
     <div class="container mt-4">
         <h2 class="mb-3 c-t">
