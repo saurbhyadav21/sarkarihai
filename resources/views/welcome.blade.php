@@ -182,6 +182,20 @@
                 display: none !important;
             }
         }
+        /* Flicker animation */
+@keyframes flicker {
+    0%   { opacity: 1; }
+    20%  { opacity: 0.4; }
+    40%  { opacity: 1; }
+    60%  { opacity: 0.3; }
+    80%  { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* Apply animation */
+.flicker-btn {
+    animation: flicker 1.2s infinite;
+}
     </style>
 
 
