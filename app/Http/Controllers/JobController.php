@@ -250,9 +250,9 @@ class JobController extends Controller
             $card->exam_list = $exams; // dynamic property
         }
 
-
+        $resultOut = Result::orderBy('result_card_release_date', 'asc')->get();
         // dd($admitCard);
-        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories', 'admitCard', 'pastJobs'));
+        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories', 'admitCard', 'pastJobs','resultOut'));
     }
 
     public function contact()
