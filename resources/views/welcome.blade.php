@@ -668,36 +668,41 @@
         </h2>
         <div class="row">
             @foreach ($resultOut as $job)
-    @foreach ($job->exam_list as $exam)
-        <div class="col-6 col-md-5th">
-            <a href="{{ route('result.show', $job->slug) }}" class="job-link">
+    @if(!empty($job->exam_list) && is_array($job->exam_list))
+        @foreach ($job->exam_list as $exam)
+            <div class="col-6 col-md-5th">
+                <a href="{{ route('result.show', $job->slug) }}" class="job-link">
 
-                <div class="job-box position-relative">
+                    <div class="job-box position-relative">
 
-                    <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
-                        class="new-badge-p">
+                        <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                            class="new-badge-p">
 
-                    <img src="https://sarkarihai.com/public/job-images/{{ $job->logo }}" class="job-logo">
+                        <img src="https://sarkarihai.com/public/job-images/{{ $job->logo }}" class="job-logo">
 
-                    <div>
-                        <div class="job-title" style="font-size:12px;">
-                            {{ $job->job_title }} <br> {{ $exam['name'] }} - Result Out
+                        <div>
+                            <div class="job-title" style="font-size:12px;">
+                                {{ $job->job_title }} <br> {{ $exam['name'] ?? 'Exam Name' }} - Result Out
+                            </div>
                         </div>
+
                     </div>
 
-                </div>
+                    <div class="job-meta">
+                        <span style="color: green; font-weight:600;">
+                            📝 Result Date: 
+                            {{ $exam['exam_dates'] ?? 'To Be Announced' }}
+                        </span>
+                    </div>
 
-                <div class="job-meta">
-                    <span style="color: green; font-weight:600;">
-                        📝 Result Date: 
-                        <!-- Print raw exam dates exactly as in DB -->
-                        {{ $exam['exam_dates'] ?? 'To Be Announced' }}
-                    </span>
-                </div>
-
-            </a>
+                </a>
+            </div>
+        @endforeach
+    @else
+        <div class="col-12">
+            <p style="color:red;">No exam data available for this job.</p>
         </div>
-    @endforeach
+    @endif
 @endforeach
         </div>
     </div>
