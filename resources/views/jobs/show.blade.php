@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+@php
+$seoTitle = $job->title 
+            . ' Recruitment ' . date('Y') 
+            . ' | Apply Online, Eligibility, Exam Date, Admit Card, Result - SarkariHai.com';
+@endphp
 @section('title')
     {{ $seoTitle }}
 @endsection
