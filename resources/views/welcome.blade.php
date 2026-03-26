@@ -668,43 +668,37 @@
         </h2>
         <div class="row">
             @foreach ($resultOut as $job)
-                @foreach ($job->exam_list as $exam)
-                    <div class="col-6 col-md-5th">
-                        {{$job->slug}}
-                        <a href="{{ route('result.show', $job->slug) }}" class="job-link">
+    @foreach ($job->exam_list as $exam)
+        <div class="col-6 col-md-5th">
+            <a href="{{ route('result.show', $job->slug) }}" class="job-link">
 
-                            <div class="job-box position-relative">
+                <div class="job-box position-relative">
 
-                                <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
-                                    class="new-badge-p">
+                    <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                        class="new-badge-p">
 
-                                <img src="https://sarkarihai.com/public/job-images/{{ $job->logo }}" class="job-logo">
+                    <img src="https://sarkarihai.com/public/job-images/{{ $job->logo }}" class="job-logo">
 
-                                <div>
-                                    <div class="job-title" style="font-size:12px;">
-                                        {{ $job->job_title }} <br> {{ $exam['name'] }} - Result Out
-                                    </div>
-
-                                    {{-- <p style="font-size: 10px;margin-bottom:0;">
-                                        {{ $exam['name'] }}
-                                    </p> --}}
-                                </div>
-
-                            </div>
-
-                            <div class="job-meta">
-                                <span style="color: green; font-weight:600;">
-                                    📝 Result Date: {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}
-                                    <br>
-                                    ⏳ <span class="countdown" data-date="{{ $exam['date'] }}"></span>
-                                </span>
-                            </div>
-
-                        </a>
-
+                    <div>
+                        <div class="job-title" style="font-size:12px;">
+                            {{ $job->job_title }} <br> {{ $exam['name'] }} - Result Out
+                        </div>
                     </div>
-                @endforeach
-            @endforeach
+
+                </div>
+
+                <div class="job-meta">
+                    <span style="color: green; font-weight:600;">
+                        📝 Result Date: 
+                        <!-- Print raw exam dates exactly as in DB -->
+                        {{ $exam['exam_dates'] ?? 'To Be Announced' }}
+                    </span>
+                </div>
+
+            </a>
+        </div>
+    @endforeach
+@endforeach
         </div>
     </div>
 
