@@ -177,6 +177,10 @@
             .hide-mobile {
                 display: none !important;
             }
+
+            .hide-mobile-job {
+                display: none !important;
+            }
         }
     </style>
 
@@ -203,7 +207,7 @@
 
         <div class="row">
 
-            @foreach ($jobs as $job)
+            @foreach ($jobs as $index => $job)
                 @php
                     $names = explode('#', $job->post_name);
                     $salaries = explode('#', $job->post_salary);
@@ -213,7 +217,7 @@
                 @endphp
 
                 {{-- @for ($i = 0; $i < $count; $i++) --}}
-                <div class="col-6 col-md-2">
+                <div class="col-6 col-md-2 {{ $index >= 10 ? 'hide-mobile-job' : '' }}">
 
                     <a href="{{ route('job.show', ['slug' => Str::slug($job->title)]) }}" class="job-link">
 
