@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $admitCard->title }} Admit Card 2026 Download
+    {{ $admitCard->job_title }} Admit Card 2026 Download
 @endsection
 
 @section('meta_description')
-    Download {{ $admitCard->title }} Admit Card 2026. Check exam dates, hall ticket and official link.
+    Download {{ $admitCard->job_title }} Admit Card 2026. Check exam dates, hall ticket and official link.
 @endsection
 
 @section('content')
@@ -44,7 +44,7 @@
                                     <p>
                                         The
                                         <strong>
-                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($admitCard->title)) }}">
+                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($admitCard->job_title)) }}">
                                                 {{ $admitCard->job_title }}
                                             </a>
                                         </strong>
@@ -103,7 +103,7 @@
                                     </p>
 
 
-                                    <h2 class="mt-3">📌 {{ $admitCard->title }} – Post Details, Salary, Eligibility & Exam
+                                    <h2 class="mt-3">📌 {{ $admitCard->job_title }} – Post Details, Salary, Eligibility & Exam
                                         Date</h2>
 
                                     <ul class="list-unstyled job-details">
@@ -145,7 +145,7 @@
                                         @endif
 
                                         <li class="mt-3">
-                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($admitCard->title)) }}"
+                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($admitCard->job_title)) }}"
                                                 class="btn btn-success">
                                                 👉 View Details • Check Notification • Apply Online
                                             </a>
