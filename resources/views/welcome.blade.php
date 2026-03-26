@@ -541,7 +541,7 @@
     <div class="container mt-4">
         <h2 class="mb-3 c-t">
             <span><b>Admit Card Out 2026</b></span>
-            <span class="last-update">
+            <span class="last-update flicker-btn">
                 Last Updated : {{ now()->format('d-m-Y H:i') }}
                 <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
             </span>
@@ -767,7 +767,7 @@
                     </h2> --}}
 
                     <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
-                        style="color: #fff;
+                        style="color: #fff; float: right;
     font-size: 10px;">
                         View All →
                     </a>
