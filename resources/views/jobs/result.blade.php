@@ -10,9 +10,9 @@
                 [
                     'job_title' => $result->job_title,
                     'full_title' => $result->full_title,
-                    'result_release_date' => $result->result_release_date,
+                    'result_card_release_date' => $result->result_card_release_date,
                     'exam_dates' => $result->exam_dates,
-                    'how_to_download_result' => $result->how_to_download_result,
+                    'how_to_download_result_card' => $result->how_to_download_result_card,
                     'official_link' => $result->official_link,
                     'category' => $result->category,
                     'advertisement_no' => $result->advertisement_no,
