@@ -8,6 +8,7 @@ use App\Models\State; // Make sure you have a Job model
 use App\Models\Category; // Make sure you have a Job model
 use App\Models\Mineducation; // Make sure you have a Job model
 use App\Models\AdmitCard; // Make sure you have a Job model
+use App\Models\Result; // Make sure you have a Job model
 use Illuminate\Support\Str;
 
 
@@ -547,6 +548,62 @@ class JobController extends Controller
         return back()->with('success', 'Saved / Updated Successfully ✅');
     }
 
+    public function resultStoreJson(Request $request)
+    {
+        // dd($request);    
+        $request->validate([
+            'admit_json' => 'required|json',
+            'job_id' => 'required'
+        ]);
+
+        $data = json_decode($request->admit_json, true);
+
+        // ✅ Convert links to: title$url#
+        $links = '';
+        if ($request->link_title && $request->link_url) {
+            foreach ($request->link_title as $key => $title) {
+                $url = $request->link_url[$key] ?? null;
+
+                if (!empty($title) && !empty($url)) {
+                    $links .= trim($title) . '$' . trim($url) . '#';
+                }
+            }
+        }
+
+        // ✅ Image Upload (optional)
+        $imageName = null;
+        if ($request->hasFile('job_image')) {
+            $image = $request->file('job_image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('job-images'), $imageName);
+            // $file->move(public_path('job-images'), $name);
+        }
+
+        // ✅ Create OR Update (🔥 main logic)
+        AdmitCard::updateOrCreate(
+            ['job_id' => $request->job_id], // condition
+            [
+                'job_title' => $data['job_title'] ?? null,
+                'full_title' => $data['full_title'] ?? null,
+                'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
+                'exam_dates' => $data['exam_dates'] ?? null,
+                'how_to_download_admit_card' => $data['how_to_download_admit_card'] ?? null,
+                'official_link' => $links,
+                'logo' => $imageName // null bhi ho sakta hai
+            ]
+        );
+
+        Job::updateOrCreate(
+            ['id' => $request->job_id], // condition
+            [
+                'admit_card' => $data['admit_card_release_date'] ?? null,
+                'exam_date' => $data['exam_dates'] ?? null,
+            ]
+        );
+
+        return back()->with('success', 'Saved / Updated Successfully ✅');
+    }
+
 
     public function stateJobs($state)
     {
@@ -619,6 +676,14 @@ class JobController extends Controller
         $admit = AdmitCard::where('job_id', $id)->first();
 
         return view('jobs.admit-card', compact('id', 'admit'));
+    }
+
+    public function resultEdit($id)
+    {
+        // ✅ check record exist ya nahi
+        $result = Result::where('job_id', $id)->first();
+
+        return view('jobs.result', compact('id', 'result'));
     }
 
 

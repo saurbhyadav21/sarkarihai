@@ -1,0 +1,72 @@
+<form action="{{ route('job.resultStoreJson') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+
+    <input type="hidden" name="job_id" value="{{ $id }}">
+
+    @php
+        // ✅ JSON prefill
+        $jsonData = $result ? json_encode([
+            'job_title' => $result->job_title,
+            'full_title' => $result->full_title,
+            'result_card_release_date' => $result->result_card_release_date,
+            'exam_dates' => $result->exam_dates,
+            'how_to_download_result_card' => $result->how_to_download_result_card,
+            'official_link' => $result->official_link,
+        ], JSON_PRETTY_PRINT) : '';
+        
+        // ✅ Links split
+        $links = [];
+        if ($result && $result->official_link) {
+            $items = explode('#', $result->official_link);
+            foreach ($items as $item) {
+                if (!empty($item)) {
+                    $parts = explode('$', $item);
+                    $links[] = [
+                        'title' => $parts[0] ?? '',
+                        'url' => $parts[1] ?? ''
+                    ];
+                }
+            }
+        }
+    @endphp
+
+    <!-- ✅ JSON -->
+    <div>
+        <label>Paste Job JSON</label><br>
+        <textarea name="result_json" rows="10" style="width:100%;">{{ $jsonData }}</textarea>
+    </div>
+
+    <br>
+
+    <!-- ✅ 5 Link Rows (Prefill) -->
+    @for($i = 0; $i < 5; $i++)
+        <div style="margin-bottom:10px;">
+            <input type="text" name="link_title[]" 
+                value="{{ $links[$i]['title'] ?? '' }}" 
+                placeholder="Title {{ $i+1 }}" style="width:30%;">
+
+            <input type="text" name="link_url[]" 
+                value="{{ $links[$i]['url'] ?? '' }}" 
+                placeholder="URL {{ $i+1 }}" style="width:60%;">
+        </div>
+    @endfor
+
+    <br>
+
+    <!-- ✅ Image -->
+    <div>
+        <label>Upload Image</label><br>
+        <input type="file" name="job_image" accept="image/*">
+
+        @if($result && $result->logo)
+            <br><br>
+            <img src="{{ asset('public/job-images/'.$result->logo) }}" width="120">
+        @endif
+    </div>
+
+    <br>
+
+    <button type="submit">
+        {{ $result ? 'Update Job' : 'Submit Job' }}
+    </button>
+</form>
