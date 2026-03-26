@@ -34,7 +34,7 @@ class JobController extends Controller
         $admitCard = \App\Models\AdmitCard::where('job_id', $job->id)->first();
 
 
-       
+
         $result = \App\Models\Result::where('job_id', $job->id)->first();
 
         // ✅ Lock condition
@@ -599,13 +599,16 @@ class JobController extends Controller
             ]
         );
 
-        Job::updateOrCreate(
-            ['id' => $request->job_id], // condition
-            [
-                'result_date' => $data['result_card_release_date'] ?? null,
-                'exam_date' => $data['exam_dates'] ?? null,
-            ]
-        );
+        if (!empty($request->job_id) && is_numeric($request->job_id)) {
+
+            Job::updateOrCreate(
+                ['id' => $request->job_id],
+                [
+                    'result_date' => $data['result_release_date'] ?? null,
+                    'exam_date' => $data['exam_dates'] ?? null,
+                ]
+            );
+        }
 
         return back()->with('success', 'Saved / Updated Successfully ✅');
     }
@@ -686,16 +689,15 @@ class JobController extends Controller
 
     public function resultEdit($id)
     {
-    $result = null; // ✅ default define
-    
-    // ✅ check record exist ya nahi
-        if($id != 'add'){
+        $result = null; // ✅ default define
+
+        // ✅ check record exist ya nahi
+        if ($id != 'add') {
             $result = Result::where('job_id', $id)->first();
             return view('jobs.result', compact('id', 'result'));
-        }else{
+        } else {
             return view('jobs.result',  compact('id', 'result'));
         }
-        
     }
 
 
