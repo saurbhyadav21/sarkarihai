@@ -617,7 +617,7 @@
         </h2>
         <div class="row">
             @foreach ($admitCard as $job)
-                @foreach ($job->exam_list as $exam)
+                {{-- @foreach ($job->exam_list as $exam) --}}
                     <div class="col-6 col-md-5th">
 
                         <a href="{{ route('admit.show', $job->slug) }}" class="job-link">
@@ -652,7 +652,7 @@
                         </a>
 
                     </div>
-                @endforeach
+                {{-- @endforeach --}}
             @endforeach
         </div>
     </div>
