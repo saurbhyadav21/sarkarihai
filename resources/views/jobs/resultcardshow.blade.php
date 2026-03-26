@@ -441,15 +441,7 @@
     </div>
 </div>
 
-        <!-- Download Button -->
-        {{-- @if ($resultCard->link)
-            <div class="text-center mt-4">
-                <a href="{{ $resultCard->link }}" target="_blank" class="btn btn-success btn-lg">
-                    🎟 Download Admit Card
-                </a>
-            </div>
-        @endif --}}
-
+        
     </div>
 
 @endsection
