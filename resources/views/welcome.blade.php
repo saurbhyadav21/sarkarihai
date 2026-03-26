@@ -670,7 +670,7 @@
             @foreach ($resultOut as $job)
                 @foreach ($job->exam_list as $exam)
                     <div class="col-6 col-md-5th">
-
+                        {{$job->slug}}
                         <a href="{{ route('result.show', $job->slug) }}" class="job-link">
 
                             <div class="job-box position-relative">
