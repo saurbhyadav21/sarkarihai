@@ -35,7 +35,7 @@
                                 <th>image</th>
                                 <th>admit date</th>
                                 {{-- <th>exam date</th> --}}
-                                <th>result date</th>
+                                {{-- <th>result date</th> --}}
                                 <th>syllabus</th>
                                 <th>Delete</th>
                                 <th>Action</th>
@@ -82,7 +82,7 @@
                                     </td> --}}
 
                                     <!-- Result Date -->
-                                    <td>
+                                    {{-- <td>
                                         {{ $job->result_date }}
 
                                         <a href="{{ route('job.resultEdit', $job->id) }}"
@@ -90,7 +90,7 @@
 
                                             {{ $job->result_date == 'To Be Announced' ? 'Update Result' : 'Edit Result' }}
                                         </a>
-                                    </td>
+                                    </td> --}}
 
                                     <!-- Syllabus -->
                                     <td>
