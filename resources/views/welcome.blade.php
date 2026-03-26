@@ -196,7 +196,7 @@
 .flicker-btn {
     animation: flicker 1.2s infinite;
 }
-    </style>
+    </style> 
 
 
 
