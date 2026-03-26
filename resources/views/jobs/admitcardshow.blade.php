@@ -121,7 +121,7 @@
 
                                         <li>
                                             <strong>Educational Qualification:</strong>
-                                            {{ !empty($admitCard->min_qulification) ? $admitCard->min_qulification : 'Check Official Notification' }}
+                                            {{ !empty($admitCard->min_qualification) ? $admitCard->min_qualification : 'Check Official Notification' }}
                                         </li>
 
                                         <li>
