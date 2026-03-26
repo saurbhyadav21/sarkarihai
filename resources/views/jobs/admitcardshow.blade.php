@@ -36,7 +36,7 @@
                             <div class="card shadow">
                                 <div class="card-header bg-primary text-white">
                                     <h1 class="mb-0">
-                                        {{ $job->job_title }} - Admit Card 2026 Out
+                                        {{ $admitCard->job_title }} - Admit Card 2026 Out
                                     </h1>
                                 </div>
                                 <div class="card-body">
@@ -44,31 +44,31 @@
                                     <p>
                                         The
                                         <strong>
-                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}">
-                                                {{ $job->job_title }}
+                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($admitCard->title)) }}">
+                                                {{ $admitCard->job_title }}
                                             </a>
                                         </strong>
                                         has been officially released by
-                                        <strong>{{ $job->category ?? 'the organization' }}</strong>
+                                        <strong>{{ $admitCard->category ?? 'the organization' }}</strong>
 
-                                        @if (!empty($job->advertisement_no))
+                                        @if (!empty($admitCard->advertisement_no))
                                             for candidates who applied under
-                                            <strong>{{ $job->advertisement_no }}</strong>
+                                            <strong>{{ $admitCard->advertisement_no }}</strong>
                                         @else
                                             for eligible candidates
                                         @endif.
 
                                         Applicants for the
                                         <strong>
-                                            {{ $job->total_vacancies ?? 'multiple' }} vacancies
-                                            @if (!empty($job->post_name))
+                                            {{ $admitCard->total_vacancies ?? 'multiple' }} vacancies
+                                            @if (!empty($admitCard->post_name))
                                                 (
-                                                {{ implode(', ', array_map('trim', explode('#', $job->post_name))) }}
+                                                {{ implode(', ', array_map('trim', explode('#', $admitCard->post_name))) }}
                                                 )
                                             @endif
                                         </strong>
                                         can now
-                                        <a href="{{ url('sarkari-naukri/' . \Str::slug($job->job_title)) }}" target="_blank">
+                                        <a href="{{ url('sarkari-naukri/' . \Str::slug($admitCard->job_title)) }}" target="_blank">
                                             <strong>check details and download updates</strong>
                                         </a> through the official portal.
 
@@ -103,49 +103,49 @@
                                     </p>
 
 
-                                    <h2 class="mt-3">📌 {{ $job->title }} – Post Details, Salary, Eligibility & Exam
+                                    <h2 class="mt-3">📌 {{ $admitCard->title }} – Post Details, Salary, Eligibility & Exam
                                         Date</h2>
 
                                     <ul class="list-unstyled job-details">
 
                                         <li>
                                             <strong>Post Name:</strong>
-                                            {{ !empty($job->post_name) ? str_replace('#', ', ', $job->post_name) : 'Various Posts' }}
+                                            {{ !empty($admitCard->post_name) ? str_replace('#', ', ', $admitCard->post_name) : 'Various Posts' }}
                                         </li>
 
                                         <li>
                                             <strong>Salary / Pay Scale:</strong>
-                                            ₹{{ number_format($job->min_salary ?? 0) }} -
-                                            ₹{{ number_format($job->max_salary ?? 0) }}
+                                            ₹{{ number_format($admitCard->min_salary ?? 0) }} -
+                                            ₹{{ number_format($admitCard->max_salary ?? 0) }}
                                         </li>
 
                                         <li>
                                             <strong>Educational Qualification:</strong>
-                                            {{ !empty($job->min_qulification) ? $job->min_qulification : 'Check Official Notification' }}
+                                            {{ !empty($admitCard->min_qulification) ? $admitCard->min_qulification : 'Check Official Notification' }}
                                         </li>
 
                                         <li>
                                             <strong>Age Limit:</strong>
-                                            {{ $job->min_age ?? 'N/A' }} Years
-                                            @if (!empty($job->max_age))
-                                                - {{ $job->max_age }} Years
+                                            {{ $admitCard->min_age ?? 'N/A' }} Years
+                                            @if (!empty($admitCard->max_age))
+                                                - {{ $admitCard->max_age }} Years
                                             @endif
                                         </li>
 
                                         <li>
                                             <strong>Total Vacancies:</strong>
-                                            {{ !empty($job->total_vacancies) ? number_format($job->total_vacancies) : 'N/A' }}
+                                            {{ !empty($admitCard->total_vacancies) ? number_format($admitCard->total_vacancies) : 'N/A' }}
                                         </li>
 
-                                        @if (!empty($job->exam_date))
+                                        @if (!empty($admitCard->exam_date))
                                             <li>
                                                 <strong>Exam Date:</strong>
-                                                {{ date('d M Y', strtotime($job->exam_date)) }}
+                                                {{ date('d M Y', strtotime($admitCard->exam_date)) }}
                                             </li>
                                         @endif
 
                                         <li class="mt-3">
-                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($job->title)) }}"
+                                            <a href="{{ url('sarkari-naukri/' . \Str::slug($admitCard->title)) }}"
                                                 class="btn btn-success">
                                                 👉 View Details • Check Notification • Apply Online
                                             </a>
