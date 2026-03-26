@@ -594,6 +594,16 @@
 
 
     <div class="container mt-4">
+        <h2 class="mb-3 c-t">
+
+            <span><b>Latest State Wise Job India - 2026</b></span>
+
+            <span class="last-update flicker-btn">
+                Last Updated : {{ now()->format('d-m-Y H:i') }}
+                <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
+            </span>
+
+        </h2>
         <div class="row">
             <div class="col-6 col-md-6 mb-4">
                 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
@@ -752,9 +762,9 @@
             <div class="col-6 col-md-6 mb-4 statejob-wrapper">
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h2 class="c-t m-0">
+                    {{-- <h2 class="c-t m-0">
                         <span><b>Latest State Wise Job India - 2026</b></span>
-                    </h2>
+                    </h2> --}}
 
                     <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
                         style="color: #fff;
