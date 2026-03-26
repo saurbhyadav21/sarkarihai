@@ -136,6 +136,43 @@
                 max-width: 20%;
             }
         }
+
+        @media (max-width: 768px) {
+
+    .c-t {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    /* Latest Jobs → full width (1st line) */
+    .c-t > span:first-child {
+        width: 100%;
+        display: block;
+        font-size: 20px;
+        margin-bottom: 4px;
+    }
+
+    /* Last update (left side 2nd line) */
+    .c-t .last-update {
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* View All (right side 2nd line) */
+    .c-t a {
+        margin-left: auto;
+        font-size: 12px;
+        float: none !important; /* important fix */
+    }
+
+    /* Live GIF icon */
+    .c-t img {
+        width: 16px;
+        margin-left: 5px;
+    }
+}
     </style>
 
 
