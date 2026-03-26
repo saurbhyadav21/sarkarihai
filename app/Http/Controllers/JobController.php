@@ -33,6 +33,10 @@ class JobController extends Controller
         // ✅ Admit Card fetch using job_id
         $admitCard = \App\Models\AdmitCard::where('job_id', $job->id)->first();
 
+
+       
+        $result = \App\Models\Result::where('job_id', $job->id)->first();
+
         // ✅ Lock condition
 
         // SEO
@@ -42,7 +46,7 @@ class JobController extends Controller
             'keywords' => $job->title . ', ' . $job->title . ' vacancy, ' . $job->title . ' apply online, ' . $job->title . ' notification, ' . $job->category . ' recruitment'
         ];
 
-        return view('jobs.show', compact('job', 'seo', 'admitCard'));
+        return view('jobs.show', compact('job', 'seo', 'admitCard', 'result'));
     }
     //     public function show($slug)
     // {
