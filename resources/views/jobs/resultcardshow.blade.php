@@ -72,11 +72,11 @@
                                             <strong>check details and download updates</strong>
                                         </a> through the official portal.
 
-                                        @if (!empty($admitCard->exam_list))
+                                        @if (!empty($resultCard->exam_list))
                                             As per the latest update, the
                                             <strong>exam date</strong> is scheduled for
                                             <strong>
-                                                @foreach ($admitCard->exam_list as $exam)
+                                                @foreach ($resultCard->exam_list as $exam)
                                                     {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}@if (!$loop->last)
                                                         ,
                                                     @endif
@@ -187,23 +187,23 @@
                     <div class="card-body d-flex flex-column">
 
                         <h2 class="card-title mb-3 text-center">
-                            {{ $admitCard->job_title ?? 'Admit Card' }} – Important Dates
+                            {{ $resultCard->job_title ?? 'Admit Card' }} – Important Dates
                         </h2>
 
                         <ul class="list-group list-group-flush flex-grow-1">
 
-                            @if (!empty($admitCard->admit_card_release_date))
+                            @if (!empty($resultCard->result_card_release_date))
                                 <li class="list-group-item d-flex justify-content-between">
                                     <span>Admit Card Release Date</span>
                                     <span class="badge bg-success">
-                                        {{ date('d M Y', strtotime($admitCard->admit_card_release_date)) }}
+                                        {{ date('d M Y', strtotime($resultCard->result_card_release_date)) }}
                                     </span>
                                 </li>
                             @endif
 
                            
-                            @if (!empty($admitCard->exam_list))
-                                @foreach ($admitCard->exam_list as $exam)
+                            @if (!empty($resultCard->exam_list))
+                                @foreach ($resultCard->exam_list as $exam)
                                     <li class="list-group-item d-flex justify-content-between">
                                         <span>Exam Date ({{ $loop->iteration }}) - {{ $exam['name'] }}</span>
                                         <span class="badge bg-primary">
@@ -225,13 +225,13 @@
                     <div class="card-body d-flex flex-column">
 
                         <h2 class="card-title mb-3 text-center text-primary fw-bold" style="color: #fff !important;">
-                            🔗 {{ $admitCard->job_title ?? 'Admit Card' }} – Important Links
+                            🔗 {{ $resultCard->job_title ?? 'Admit Card' }} – Important Links
                         </h2>
 
                         <ul class="list-group list-group-flush flex-grow-1">
 
-                            @if (!empty($admitCard->official_link))
-                                @php $links = explode('#', $admitCard->official_link); @endphp
+                            @if (!empty($resultCard->official_link))
+                                @php $links = explode('#', $resultCard->official_link); @endphp
 
                                 @foreach ($links as $link)
                                     @php $data = explode('$', $link); @endphp
@@ -267,14 +267,14 @@
                 <div class="card-body">
 
                     <h2 class="card-title mb-3 text-center text-success fw-bold">
-                        📥 {{ $admitCard->job_title ?? 'Admit Card' }} – How to Download Admit Card
+                        📥 {{ $resultCard->job_title ?? 'Admit Card' }} – How to Download Admit Card
                     </h2>
 
                     <ul class="list-group list-group-numbered">
 
-                        @if (!empty($admitCard->how_to_download_admit_card))
+                        @if (!empty($resultCard->how_to_download_admit_card))
                             @php
-                                $steps = explode('#', $admitCard->how_to_download_admit_card);
+                                $steps = explode('#', $resultCard->how_to_download_admit_card);
                             @endphp
 
                             @foreach ($steps as $step)
@@ -302,13 +302,13 @@
                 <div class="card-body">
 
                     <h2 class="card-title text-center fw-bold mb-4 text-primary">
-                        ❓ {{ $admitCard->job_title ?? 'Admit Card' }} – Frequently Asked Questions (FAQs)
+                        ❓ {{ $resultCard->job_title ?? 'Admit Card' }} – Frequently Asked Questions (FAQs)
                     </h2>
 
                     @php
-                        $title = $admitCard->job_title ?? 'Admit Card';
-                        $examDate = $admitCard->exam_list[0]['date'] ?? '';
-                        $releaseDate = $admitCard->admit_card_release_date ?? '';
+                        $title = $resultCard->job_title ?? 'Admit Card';
+                        $examDate = $resultCard->exam_list[0]['date'] ?? '';
+                        $releaseDate = $resultCard->result_card_release_date ?? '';
                     @endphp
 
                     <div class="accordion" id="faqAccordion">
@@ -403,10 +403,10 @@
 
             <div class="card-body">
 
-                @if (count($admitCard->exam_list) > 0)
+                @if (count($resultCard->exam_list) > 0)
                     <ul class="list-group">
 
-                        @foreach ($admitCard->exam_list as $exam)
+                        @foreach ($resultCard->exam_list as $exam)
                             @php
                                 $date = \Carbon\Carbon::parse($exam['date']);
                                 $today = \Carbon\Carbon::now();
@@ -444,9 +444,9 @@
         </div>
 
         <!-- Download Button -->
-        @if ($admitCard->link)
+        @if ($resultCard->link)
             <div class="text-center mt-4">
-                <a href="{{ $admitCard->link }}" target="_blank" class="btn btn-success btn-lg">
+                <a href="{{ $resultCard->link }}" target="_blank" class="btn btn-success btn-lg">
                     🎟 Download Admit Card
                 </a>
             </div>
