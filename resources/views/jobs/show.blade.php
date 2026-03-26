@@ -1053,7 +1053,7 @@ $seoTitle = $job->title
                     <!-- Header -->
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h6 class="mb-0 fw-bold text-white">
-                            {{ $job->title }} – Result
+                            {{ $job->title }} – Result Out
                         </h6>
                         {{-- <span class="badge status-badge">
                             🟢 Result Declared
@@ -1123,7 +1123,7 @@ $seoTitle = $job->title
             </div>
 
             {{-- syllbus --}}
-            <div class="container mt-3" id="syllabus">
+            {{-- <div class="container mt-3" id="syllabus">
                 <div class="card admit-card border-0 locked-card">
 
                     <!-- Header -->
@@ -1198,7 +1198,7 @@ $seoTitle = $job->title
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
 
             <div class="container mt-5 section-box" id="faq">
