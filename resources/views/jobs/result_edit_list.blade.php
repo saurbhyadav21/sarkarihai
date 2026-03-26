@@ -44,7 +44,7 @@
 
                                     <td>{{ $job->id }}</td>
 
-                                    <td>{{ $job->title }}</td>
+                                    <td>{{ $job->job_title }}</td>
 
                                     <td>
                                         <!-- Delete Button -->
