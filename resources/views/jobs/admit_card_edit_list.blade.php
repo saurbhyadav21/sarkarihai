@@ -62,7 +62,7 @@
 
                                     <td>
 
-                                        <a href="{{ route('result.edit', $job->id) }}" class="btn btn-warning btn-sm">
+                                        <a href="{{ route('admit_card.edit', $job->id) }}" class="btn btn-warning btn-sm">
                                             Edit
                                         </a>
 
