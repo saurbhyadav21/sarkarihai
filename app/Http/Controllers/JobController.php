@@ -876,7 +876,7 @@ class JobController extends Controller
         // 2️⃣ Only upcoming exams filter karo
         $exams = [];
         if ($admitCard->exam_dates) {
-            $parts = explode('#',              $admitCard->exam_dates);
+            $parts = explode('#',$admitCard->exam_dates);
             foreach ($parts as $part) {
                 $data = explode('$', $part);
                 if (count($data) == 2) {
