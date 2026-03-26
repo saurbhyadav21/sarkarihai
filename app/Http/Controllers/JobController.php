@@ -120,7 +120,9 @@ class JobController extends Controller
 
     public function landing()
     {
-        $jobs = Job::orderBy('end_date', 'asc')
+        $jobs = Job::whereDate('end_date', '>=', \Carbon\Carbon::today())
+            ->whereDate('end_date', '<=', \Carbon\Carbon::today()->addDays(45))
+            ->orderBy('end_date', 'asc')
             ->limit(30)
             ->get();
 
