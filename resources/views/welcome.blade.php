@@ -617,42 +617,40 @@
         </h2>
         <div class="row">
             @foreach ($admitCard as $job)
-                {{-- @foreach ($job->exam_list as $exam) --}}
-                    <div class="col-6 col-md-5th">
-
-                        <a href="{{ route('admit.show', $job->slug) }}" class="job-link">
-
-                            <div class="job-box position-relative">
-
-                                <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
-                                    class="new-badge-p">
-
-                                <img src="https://sarkarihai.com/public/job-images/{{ $job->logo }}" class="job-logo">
-
-                                <div>
-                                    <div class="job-title" style="font-size:12px;">
-                                        {{ $job->job_title }} <br> {{ $exam['name'] }} - Admit Card Out
-                                    </div>
-
-                                    {{-- <p style="font-size: 10px;margin-bottom:0;">
-                                        {{ $exam['name'] }}
-                                    </p> --}}
+                <div class="col-6 col-md-5th">
+                    <a href="{{ route('admit.show', $job->slug) }}" class="job-link">
+                        <div class="job-box position-relative">
+                            <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                                class="new-badge-p">
+                            <img src="https://sarkarihai.com/public/job-images/{{ $job->logo }}" class="job-logo">
+                            <div>
+                                <div class="job-title" style="font-size:12px;">
+                                    {{ $job->job_title }} - Admit Card Out
                                 </div>
-
                             </div>
+                        </div>
+                        @php
+                            $examName = '';
+                            $examDate = '';
 
-                            <div class="job-meta">
-                                <span style="color: green; font-weight:600;">
-                                    📝 Exam Date: {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}
-                                    <br>
-                                    ⏳ <span class="countdown" data-date="{{ $exam['date'] }}"></span>
-                                </span>
-                            </div>
+                            if (!empty($job->exam_dates)) {
+                                $firstExam = explode('#', $job->exam_dates)[0] ?? '';
+                                $parts = explode('$', $firstExam);
 
-                        </a>
-
-                    </div>
-                {{-- @endforeach --}}
+                                $examName = $parts[0] ?? '';
+                                $examDate = $parts[1] ?? '';
+                            }
+                        @endphp
+                        <div class="job-meta">
+                            <span style="color: green; font-weight:600;">
+                                📝 {{ $examName }}:
+                                {{ $examDate ? \Carbon\Carbon::parse($examDate)->format('d M Y') : 'To Be Announced' }}
+                                <br>
+                                ⏳ <span class="countdown" data-date="{{ $examDate }}"></span>
+                            </span>
+                        </div>
+                    </a>
+                </div>
             @endforeach
         </div>
     </div>
