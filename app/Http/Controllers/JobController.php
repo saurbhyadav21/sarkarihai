@@ -552,11 +552,11 @@ class JobController extends Controller
     {
         // dd($request);    
         $request->validate([
-            'admit_json' => 'required|json',
+            'result_json' => 'required|json',
             'job_id' => 'required'
         ]);
 
-        $data = json_decode($request->admit_json, true);
+        $data = json_decode($request->result_json, true);
 
         // ✅ Convert links to: title$url#
         $links = '';
@@ -580,7 +580,7 @@ class JobController extends Controller
         }
 
         // ✅ Create OR Update (🔥 main logic)
-        AdmitCard::updateOrCreate(
+        Result::updateOrCreate(
             ['job_id' => $request->job_id], // condition
             [
                 'job_title' => $data['job_title'] ?? null,
@@ -596,7 +596,7 @@ class JobController extends Controller
         Job::updateOrCreate(
             ['id' => $request->job_id], // condition
             [
-                'admit_card' => $data['admit_card_release_date'] ?? null,
+                'result' => $data['result_card_release_date'] ?? null,
                 'exam_date' => $data['exam_dates'] ?? null,
             ]
         );
