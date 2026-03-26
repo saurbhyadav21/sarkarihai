@@ -541,7 +541,7 @@
     <div class="container mt-4">
         <h2 class="mb-3 c-t">
             <span><b>Admit Card Out 2026</b></span>
-            <span class="last-update flicker-btn">
+            <span class="last-update flicker-btn"> 
                 Last Updated : {{ now()->format('d-m-Y H:i') }}
                 <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
             </span>
