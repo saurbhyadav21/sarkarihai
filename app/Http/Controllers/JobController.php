@@ -121,6 +121,7 @@ class JobController extends Controller
     public function landing()
     {
         $jobs = Job::whereDate('end_date', '>=', \Carbon\Carbon::today())
+            ->whereDate('end_date', '>=', \Carbon\Carbon::today()->subDays(2)) // 2 din pehle tak
             ->whereDate('end_date', '<=', \Carbon\Carbon::today()->addDays(45))
             ->orderBy('end_date', 'asc')
             ->limit(30)
