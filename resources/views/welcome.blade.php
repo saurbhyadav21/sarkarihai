@@ -17,6 +17,13 @@
             z-index: 10;
             right: -3px;
         }
+        .new-badge-p {
+            position: absolute;
+            top: -5px;
+            width: 39px;
+            z-index: 10;
+            right: -3px;
+        }
 
         .job-box {
             border: 1px solid #eee;
@@ -450,7 +457,7 @@
                             <div class="job-box position-relative">
 
                                 <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
-                                    class="new-badge">
+                                    class="new-badge-p">
 
                                 <img src="https://sarkarihai.com/public/job-images/{{ $job->logo }}" class="job-logo">
 
