@@ -253,8 +253,8 @@ class JobController extends Controller
         $resultOut = Result::orderBy('result_card_release_date', 'asc')->get();
 
 
-        
-        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories', 'admitCard', 'pastJobs','resultOut'));
+
+        return view('welcome', compact('jobs', 'jobsxxx', 'stateCounts', 'jobs_upcomming', 'categories', 'admitCard', 'pastJobs', 'resultOut'));
     }
 
     public function contact()
@@ -740,17 +740,14 @@ class JobController extends Controller
         // 2️⃣ Only upcoming exams filter karo
         $exams = [];
         if ($resultCard->exam_dates) {
-            $parts = explode('#',              $resultCard->exam_dates);
+            $parts = explode('#', $resultCard->exam_dates); // split multiple stages
             foreach ($parts as $part) {
-                $data = explode('$', $part);
-                if (count($data) == 2) {
-                    $date = \Carbon\Carbon::parse($data[1]);
-                    if ($date->isToday() || $date->isFuture()) {
-                        $exams[] = [
-                            'name' => $data[0],
-                            'date' => $data[1]
-                        ];
-                    }
+                $data = explode('$', $part); // split name and date
+                if (count($data) >= 1) {
+                    $exams[] = [
+                        'name' => $data[0],                    // exam/stage name
+                        'date' => $data[1] ?? ''               // date if exists, else empty
+                    ];
                 }
             }
         }
