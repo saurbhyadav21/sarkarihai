@@ -5,15 +5,30 @@
 
     @php
         // ✅ JSON prefill
-        $jsonData = $result ? json_encode([
-            'job_title' => $result->job_title,
-            'full_title' => $result->full_title,
-            'result_card_release_date' => $result->result_card_release_date,
-            'exam_dates' => $result->exam_dates,
-            'how_to_download_result_card' => $result->how_to_download_result_card,
-            'official_link' => $result->official_link,
-        ], JSON_PRETTY_PRINT) : '';
-        
+        $jsonData = $result
+            ? json_encode(
+                [
+                    'job_title' => $result->job_title,
+                    'full_title' => $result->full_title,
+                    'result_release_date' => $result->result_release_date,
+                    'exam_dates' => $result->exam_dates,
+                    'how_to_download_result' => $result->how_to_download_result,
+                    'official_link' => $result->official_link,
+                    'category' => $result->category,
+                    'advertisement_no' => $result->advertisement_no,
+                    'total_vacancies' => $result->total_vacancies,
+                    'post_name' => $result->post_name,
+                    'exam_list' => $result->exam_list,
+                    'min_salary' => $result->min_salary,
+                    'max_salary' => $result->max_salary,
+                    'min_qualification' => $result->min_qualification,
+                    'min_age' => $result->min_age,
+                    'max_age' => $result->max_age,
+                ],
+                JSON_PRETTY_PRINT,
+            )
+            : '';
+
         // ✅ Links split
         $links = [];
         if ($result && $result->official_link) {
@@ -23,7 +38,7 @@
                     $parts = explode('$', $item);
                     $links[] = [
                         'title' => $parts[0] ?? '',
-                        'url' => $parts[1] ?? ''
+                        'url' => $parts[1] ?? '',
                     ];
                 }
             }
@@ -39,15 +54,13 @@
     <br>
 
     <!-- ✅ 5 Link Rows (Prefill) -->
-    @for($i = 0; $i < 5; $i++)
+    @for ($i = 0; $i < 5; $i++)
         <div style="margin-bottom:10px;">
-            <input type="text" name="link_title[]" 
-                value="{{ $links[$i]['title'] ?? '' }}" 
-                placeholder="Title {{ $i+1 }}" style="width:30%;">
+            <input type="text" name="link_title[]" value="{{ $links[$i]['title'] ?? '' }}"
+                placeholder="Title {{ $i + 1 }}" style="width:30%;">
 
-            <input type="text" name="link_url[]" 
-                value="{{ $links[$i]['url'] ?? '' }}" 
-                placeholder="URL {{ $i+1 }}" style="width:60%;">
+            <input type="text" name="link_url[]" value="{{ $links[$i]['url'] ?? '' }}"
+                placeholder="URL {{ $i + 1 }}" style="width:60%;">
         </div>
     @endfor
 
@@ -58,9 +71,9 @@
         <label>Upload Image</label><br>
         <input type="file" name="job_image" accept="image/*">
 
-        @if($result && $result->logo)
+        @if ($result && $result->logo)
             <br><br>
-            <img src="{{ asset('public/job-images/'.$result->logo) }}" width="120">
+            <img src="{{ asset('public/job-images/' . $result->logo) }}" width="120">
         @endif
     </div>
 
