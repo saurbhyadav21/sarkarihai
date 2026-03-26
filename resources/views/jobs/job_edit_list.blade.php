@@ -18,7 +18,10 @@
             <div class="card-header bg-dark text-white">
                 <h5 class="mb-0">Job Edit List</h5>
             </div>
-
+            <a href="{{ route('job.resultEdit', 'add') }}"
+                                            class="btn btn-sm">
+            Add Result
+                                        </a>
             <div class="card-body">
 
                 <div class="table-responsive">
