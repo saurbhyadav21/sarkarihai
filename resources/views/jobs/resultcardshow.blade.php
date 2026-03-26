@@ -429,7 +429,7 @@
                         </div>
 
                         <!-- Optional Badge -->
-                        <span class="badge bg-primary">Upcoming</span>
+                        <span class="badge bg-primary">Complted</span>
 
                     </li>
                 @endforeach
