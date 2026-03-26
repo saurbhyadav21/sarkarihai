@@ -586,28 +586,29 @@ class JobController extends Controller
         }
 
         // ✅ Create OR Update (🔥 mainx logic)
-        Result::updateOrCreate(
-    ['job_id' => $request->job_id], // condition
-    [
-        'job_title' => $data['job_title'] ?? null,
-        'full_title' => $data['full_title'] ?? null,
-        'result_release_date' => $data['result_release_date'] ?? null,
-        'exam_dates' => $data['exam_dates'] ?? null,
-        'how_to_download_result' => $data['how_to_download_result'] ?? null,
-        'official_link' => $links,
-        'category' => $data['category'] ?? null,
-        'advertisement_no' => $data['advertisement_no'] ?? null,
-        'total_vacancies' => $data['total_vacancies'] ?? null,
-        'post_name' => $data['post_name'] ?? null,
-        'exam_list' => $data['exam_list'] ?? null,
-        'min_salary' => $data['min_salary'] ?? null,
-        'max_salary' => $data['max_salary'] ?? null,
-        'min_qualification' => $data['min_qualification'] ?? null,
-        'min_age' => $data['min_age'] ?? null,
-        'max_age' => $data['max_age'] ?? null,
-        'logo' => $imageName // null bhi ho sakta hai
-    ]
-);
+        if (!empty($request->job_id)) {
+
+            Result::create([
+                'job_id' => $request->job_id,
+                'job_title' => $data['job_title'] ?? null,
+                'full_title' => $data['full_title'] ?? null,
+                'result_release_date' => $data['result_release_date'] ?? null,
+                'exam_dates' => $data['exam_dates'] ?? null,
+                'how_to_download_result' => $data['how_to_download_result'] ?? null,
+                'official_link' => $links,
+                'category' => $data['category'] ?? null,
+                'advertisement_no' => $data['advertisement_no'] ?? null,
+                'total_vacancies' => $data['total_vacancies'] ?? null,
+                'post_name' => $data['post_name'] ?? null,
+                'exam_list' => $data['exam_list'] ?? null,
+                'min_salary' => $data['min_salary'] ?? null,
+                'max_salary' => $data['max_salary'] ?? null,
+                'min_qualification' => $data['min_qualification'] ?? null,
+                'min_age' => $data['min_age'] ?? null,
+                'max_age' => $data['max_age'] ?? null,
+                'logo' => $imageName
+            ]);
+        }
 
         if (!empty($request->job_id) && is_numeric($request->job_id)) {
 
