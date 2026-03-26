@@ -136,62 +136,27 @@
                 max-width: 20%;
             }
         }
-
-        @media (max-width: 768px) {
-
-    .c-t {
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* Latest Jobs → full width */
-    .c-t > span:first-child {
-        width: 100%;
-        display: block;
-        font-size: 20px;
-    }
-
-    /* Last update + View all ek line me */
-    .c-t .last-update {
-        display: flex;
-        align-items: center;
-        font-size: 12px;
-    }
-
-    .c-t a {
-        margin-left: auto;
-        font-size: 12px;
-    }
-
-    /* icon size adjust */
-    .c-t img {
-        width: 18px;
-        margin-left: 5px;
-    }
-}
     </style>
 
 
 
     <div class="container mt-3">
 
-        <h2 class="mb-3 c-t latest-job-heading">
+        <h2 class="mb-3 c-t">
+            <span><b>Latest Jobs</b></span>
 
-            <div class="title-row">
-                <b>Latest Jobs</b>
-            </div>
-
-            <div class="meta-row">
-                <span class="last-update">
-                    Last Updated : 26-03-2026 05:16
-                    <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif" class="live-icon">
-                </span>
-
-                <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="view-all">
-                    View All →
-                </a>
-            </div>
-
+            <span class="last-update">
+                Last Updated : {{ now()->format('d-m-Y H:i') }}
+                <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
+            </span>
+            <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
+                style="
+    color: #fff;
+    font-size: 10px;
+    float: right;
+    ">
+                View All →
+            </a>
         </h2>
 
         <div class="row">
