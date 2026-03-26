@@ -712,6 +712,7 @@ class JobController extends Controller
 
     public function resultEdit($id)
     {
+        dd($id);
         $result = null; // ✅ default define
 
         // ✅ check record exist ya nahi
