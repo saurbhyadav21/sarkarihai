@@ -355,11 +355,11 @@
         }
 
         @media (min-width: 768px) {
-    .col-md-6 {
-        flex: 0 0 50% !important;
-        max-width: 50% !important;
-    }
-}
+            .col-md-6 {
+                flex: 0 0 50% !important;
+                max-width: 50% !important;
+            }
+        }
     </style>
     <div class="container mt-3">
 
@@ -643,8 +643,49 @@
     </div>
 
 
+    @php
+        $stateMap = [
+            'Andhra Pradesh' => 'in-ap',
+            'Arunachal Pradesh' => 'in-ar',
+            'Assam' => 'in-as',
+            'Bihar' => 'in-br',
+            'Chhattisgarh' => 'in-cg',
+            'Goa' => 'in-ga',
+            'Gujarat' => 'in-gj',
+            'Haryana' => 'in-hr',
+            'Himachal Pradesh' => 'in-hp',
+            'Jharkhand' => 'in-jh',
+            'Karnataka' => 'in-ka',
+            'Kerala' => 'in-kl',
+            'Madhya Pradesh' => 'in-mp',
+            'Maharashtra' => 'in-mh',
+            'Manipur' => 'in-mn',
+            'Meghalaya' => 'in-ml',
+            'Mizoram' => 'in-mz',
+            'Nagaland' => 'in-nl',
+            'Odisha' => 'in-od',
+            'Punjab' => 'in-pb',
+            'Rajasthan' => 'in-rj',
+            'Sikkim' => 'in-sk',
+            'Tamil Nadu' => 'in-tn',
+            'Telangana' => 'in-ts',
+            'Tripura' => 'in-tr',
+            'Uttar Pradesh' => 'in-up',
+            'Uttarakhand' => 'in-uk',
+            'West Bengal' => 'in-wb',
 
-    
+            // 🔥 Union Territories
+            'Delhi' => 'in-dl',
+            'Jammu and Kashmir' => 'in-jk',
+            'Ladakh' => 'in-la',
+            'Chandigarh' => 'in-ch',
+            'Puducherry' => 'in-py',
+            'Andaman and Nicobar Islands' => 'in-an',
+            'Lakshadweep' => 'in-ld',
+            'Dadra and Nagar Haveli and Daman and Diu' => 'in-dn', // ⚠️ correct code
+        ];
+    @endphp
+
 
 
     <div class="container mt-4">
@@ -677,139 +718,8 @@
                     }
                 </style>
                 <div id="container"></div>
-                @php
-                    $stateMap = [
-                        'Andhra Pradesh' => 'in-ap',
-                        'Arunachal Pradesh' => 'in-ar',
-                        'Assam' => 'in-as',
-                        'Bihar' => 'in-br',
-                        'Chhattisgarh' => 'in-cg',
-                        'Goa' => 'in-ga',
-                        'Gujarat' => 'in-gj',
-                        'Haryana' => 'in-hr',
-                        'Himachal Pradesh' => 'in-hp',
-                        'Jharkhand' => 'in-jh',
-                        'Karnataka' => 'in-ka',
-                        'Kerala' => 'in-kl',
-                        'Madhya Pradesh' => 'in-mp',
-                        'Maharashtra' => 'in-mh',
-                        'Manipur' => 'in-mn',
-                        'Meghalaya' => 'in-ml',
-                        'Mizoram' => 'in-mz',
-                        'Nagaland' => 'in-nl',
-                        'Odisha' => 'in-od',
-                        'Punjab' => 'in-pb',
-                        'Rajasthan' => 'in-rj',
-                        'Sikkim' => 'in-sk',
-                        'Tamil Nadu' => 'in-tn',
-                        'Telangana' => 'in-ts',
-                        'Tripura' => 'in-tr',
-                        'Uttar Pradesh' => 'in-up',
-                        'Uttarakhand' => 'in-uk',
-                        'West Bengal' => 'in-wb',
-
-                        // 🔥 Union Territories
-                        'Delhi' => 'in-dl',
-                        'Jammu and Kashmir' => 'in-jk',
-                        'Ladakh' => 'in-la',
-                        'Chandigarh' => 'in-ch',
-                        'Puducherry' => 'in-py',
-                        'Andaman and Nicobar Islands' => 'in-an',
-                        'Lakshadweep' => 'in-ld',
-                        'Dadra and Nagar Haveli and Daman and Diu' => 'in-dn', // ⚠️ correct code
-                    ];
-                @endphp
-                <script>
-                    const data = [
-                        @foreach ($stateCounts as $state => $count)
-                            @if (isset($stateMap[$state]))
-                                ['{{ $stateMap[$state] }}', {{ $count }}],
-                            @endif
-                        @endforeach
-                    ];
-                    // console.log(data1);
-                </script>
-                <script>
-                    (async () => {
-
-                        const topology = await fetch(
-                            'https://code.highcharts.com/mapdata/countries/in/in-all.topo.json'
-                        ).then(response => response.json());
 
 
-
-
-                        Highcharts.mapChart('container', {
-                            chart: {
-                                map: topology,
-                                backgroundColor: '#0b1224', // 🔴 red background
-                                panning: false,
-                                zooming: {
-                                    mouseWheel: false,
-                                    pinchType: null
-                                }
-                            },
-
-                            title: {
-                                text: null
-                            },
-
-                            subtitle: {
-
-                            },
-
-                            mapNavigation: {
-                                enabled: false,
-                                buttonOptions: {
-                                    verticalAlign: 'bottom'
-                                }
-                            },
-
-                            colorAxis: {
-                                min: 0
-                            },
-
-
-                            series: [{
-                                data: data,
-                                name: 'Total Govt Jobs 2026 In',
-                                cursor: 'pointer',
-
-                                point: {
-                                    events: {
-                                        click: function() {
-
-                                            // State name (Highcharts se)
-                                            let stateName = this.name;
-
-                                            // URL slug (space remove + encode)
-                                            // let url = "/state/" + encodeURIComponent(stateName) + "/jobs";
-                                            let stateSlug = stateName.toLowerCase().replace(/\s+/g, '-');
-                                            let categorySlug = "All Categories".toLowerCase().replace(
-                                                /\s+/g, '-');
-
-                                            let url = "/jobs/" + stateSlug + "/" + categorySlug;
-                                            //https://sarkarihai.com/jobs/Bihar/All%20Categories
-                                            window.location.href = url;
-                                        }
-                                    }
-                                },
-
-                                states: {
-                                    hover: {
-                                        color: '#ff7a00'
-                                    }
-                                },
-
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.name}'
-                                }
-                            }]
-                        });
-
-                    })();
-                </script>
             </div>
 
 
@@ -820,7 +730,7 @@
             </a>
             <div class="col-12 col-md-6 mb-4 statejob-wrapper">
 
-               
+
 
                 @foreach ($jobsxxx as $jobx)
                     @php
@@ -942,5 +852,97 @@
         }
 
         startCountdown();
+    </script>
+
+    <script>
+        const data = [
+            @foreach ($stateCounts as $state => $count)
+                @if (isset($stateMap[$state]))
+                    ['{{ $stateMap[$state] }}', {{ $count }}],
+                @endif
+            @endforeach
+        ];
+        // console.log(data1);
+    </script>
+    <script>
+        (async () => {
+
+            const topology = await fetch(
+                'https://code.highcharts.com/mapdata/countries/in/in-all.topo.json'
+            ).then(response => response.json());
+
+
+
+
+            Highcharts.mapChart('container', {
+                chart: {
+                    map: topology,
+                    backgroundColor: '#0b1224', // 🔴 red background
+                    panning: false,
+                    zooming: {
+                        mouseWheel: false,
+                        pinchType: null
+                    }
+                },
+
+                title: {
+                    text: null
+                },
+
+                subtitle: {
+
+                },
+
+                mapNavigation: {
+                    enabled: false,
+                    buttonOptions: {
+                        verticalAlign: 'bottom'
+                    }
+                },
+
+                colorAxis: {
+                    min: 0
+                },
+
+
+                series: [{
+                    data: data,
+                    name: 'Total Govt Jobs 2026 In',
+                    cursor: 'pointer',
+
+                    point: {
+                        events: {
+                            click: function() {
+
+                                // State name (Highcharts se)
+                                let stateName = this.name;
+
+                                // URL slug (space remove + encode)
+                                // let url = "/state/" + encodeURIComponent(stateName) + "/jobs";
+                                let stateSlug = stateName.toLowerCase().replace(/\s+/g, '-');
+                                let categorySlug = "All Categories".toLowerCase().replace(
+                                    /\s+/g, '-');
+
+                                let url = "/jobs/" + stateSlug + "/" + categorySlug;
+                                //https://sarkarihai.com/jobs/Bihar/All%20Categories
+                                window.location.href = url;
+                            }
+                        }
+                    },
+
+                    states: {
+                        hover: {
+                            color: '#ff7a00'
+                        }
+                    },
+
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }]
+            });
+
+        })();
     </script>
 @endsection
