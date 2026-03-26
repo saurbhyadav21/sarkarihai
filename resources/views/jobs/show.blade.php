@@ -1092,39 +1092,29 @@
                         </div>
 
                         <!-- Info -->
-                        <div class="row small">
-
-                            <div class="col-6 mb-2 info-box">
-                                <i class="fa-solid fa-user"></i>
-                                Login: Roll No / DOB
-                            </div>
-
-                            <div class="col-6 mb-2 info-box">
-                                <i class="fa-solid fa-list"></i>
-                                Merit List Available
-                            </div>
-
-                        </div>
+                       
 
                         <!-- Steps -->
-                        <div class="steps-box mt-2">
-                            <i class="fa-solid fa-circle-info"></i>
-                            Login → View Result → Download
-                        </div>
+                     
 
                         <!-- Instructions -->
                         <div class="instruction-box mt-2">
-                            <h6 class="mb-2">
-                                <i class="fa-solid fa-circle-info"></i> How to Check Result
-                            </h6>
-                            <ul class="mb-0 ps-3">
-                                <li>Check Result button par click karein.</li>
-                                <li>Apna Roll Number / Registration Number enter karein.</li>
-                                <li>Date of Birth fill karein.</li>
-                                <li>Submit button par click karein.</li>
-                                <li>Result screen par show ho jayega.</li>
-                            </ul>
-                        </div>
+    <h6 class="mb-2">
+        <i class="fa-solid fa-circle-info"></i> How to Check Result
+    </h6>
+    <ul class="mb-0 ps-3">
+        @php
+            // Result steps ko '#' se split kar do
+            $steps = explode('#', $result->how_to_download_result_card);
+        @endphp
+
+        @foreach($steps as $step)
+            @if(trim($step) != '')
+                <li>{{ trim($step) }}</li>
+            @endif
+        @endforeach
+    </ul>
+</div>
 
                     </div>
                 </div>
