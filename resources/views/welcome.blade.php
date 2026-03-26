@@ -658,6 +658,57 @@
     </div>
 
 
+    <div class="container mt-4">
+        <h2 class="mb-3 c-t">
+            <span><b>Result Out 2026</b></span>
+            <span class="last-update flicker-btn">
+                Last Updated : {{ now()->format('d-m-Y H:i') }}
+                <img src="https://i.pinimg.com/originals/41/de/77/41de7763b09c771b14c8eb302b9bc4d2.gif">
+            </span>
+        </h2>
+        <div class="row">
+            @foreach ($admitCard as $job)
+                @foreach ($job->exam_list as $exam)
+                    <div class="col-6 col-md-5th">
+
+                        <a href="{{ route('admit.show', $job->slug) }}" class="job-link">
+
+                            <div class="job-box position-relative">
+
+                                <img src="https://media.tenor.com/UBNApyolWz4AAAAj/new-blinking-new-blinking-without-background.gif"
+                                    class="new-badge-p">
+
+                                <img src="https://sarkarihai.com/public/job-images/{{ $job->logo }}" class="job-logo">
+
+                                <div>
+                                    <div class="job-title" style="font-size:12px;">
+                                        {{ $job->job_title }} <br> {{ $exam['name'] }} - Admit Card Out
+                                    </div>
+
+                                    {{-- <p style="font-size: 10px;margin-bottom:0;">
+                                        {{ $exam['name'] }}
+                                    </p> --}}
+                                </div>
+
+                            </div>
+
+                            <div class="job-meta">
+                                <span style="color: green; font-weight:600;">
+                                    📝 Exam Date: {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}
+                                    <br>
+                                    ⏳ <span class="countdown" data-date="{{ $exam['date'] }}"></span>
+                                </span>
+                            </div>
+
+                        </a>
+
+                    </div>
+                @endforeach
+            @endforeach
+        </div>
+    </div>
+
+
     @php
         $stateMap = [
             'Andhra Pradesh' => 'in-ap',
@@ -776,10 +827,10 @@
             </div>
         </div>
         <a href="https://sarkarihai.com/jobs/all%20states/All%20Categories" class="text-decoration-none fw-bold"
-                style="color: #fff; float: right;
+            style="color: #fff; float: right;
     font-size: 13px;">
-                View All →
-            </a>
+            View All →
+        </a>
     </div>
 
 
