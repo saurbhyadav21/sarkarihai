@@ -725,6 +725,42 @@ class JobController extends Controller
         return view('jobs/admitcardshow', compact('admitCard', 'job'));
     }
 
+    public function resultShow($slug)
+    {
+        // 1️⃣ Slug se admit card fetch karo
+        $resultCard = Result::where('slug', $slug)->firstOrFail();
+
+        // 👉 Direct job fetch using job_id
+        $job = null;
+        if ($resultCard->job_id) {
+            $job = Job::where('id', $resultCard->job_id)->first();
+        }
+
+
+        // 2️⃣ Only upcoming exams filter karo
+        $exams = [];
+        if ($resultCard->exam_dates) {
+            $parts = explode('#',              $resultCard->exam_dates);
+            foreach ($parts as $part) {
+                $data = explode('$', $part);
+                if (count($data) == 2) {
+                    $date = \Carbon\Carbon::parse($data[1]);
+                    if ($date->isToday() || $date->isFuture()) {
+                        $exams[] = [
+                            'name' => $data[0],
+                            'date' => $data[1]
+                        ];
+                    }
+                }
+            }
+        }
+
+        $resultCard->exam_list = $exams;
+
+        // 3️⃣ View return karo
+        return view('jobs/resultcardshow', compact('resultCard', 'job'));
+    }
+
 
     public function admitIndex()
     {
