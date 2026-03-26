@@ -867,34 +867,34 @@ class JobController extends Controller
         $admitCard = AdmitCard::where('slug', $slug)->firstOrFail();
 
         // 👉 Direct job fetch using job_id
-        $job = null;
-        if ($admitCard->job_id) {
-            $job = Job::where('id', $admitCard->job_id)->first();
-        }
+        // $job = null;
+        // if ($admitCard->job_id) {
+        //     $job = Job::where('id', $admitCard->job_id)->first();
+        // }
 
 
         // 2️⃣ Only upcoming exams filter karo
-        $exams = [];
-        if ($admitCard->exam_dates) {
-            $parts = explode('#',$admitCard->exam_dates);
-            foreach ($parts as $part) {
-                $data = explode('$', $part);
-                if (count($data) == 2) {
-                    $date = \Carbon\Carbon::parse($data[1]);
-                    if ($date->isToday() || $date->isFuture()) {
-                        $exams[] = [
-                            'name' => $data[0],
-                            'date' => $data[1]
-                        ];
-                    }
-                }
-            }
-        }
+        // $exams = [];
+        // if ($admitCard->exam_dates) {
+        //     $parts = explode('#',$admitCard->exam_dates);
+        //     foreach ($parts as $part) {
+        //         $data = explode('$', $part);
+        //         if (count($data) == 2) {
+        //             $date = \Carbon\Carbon::parse($data[1]);
+        //             if ($date->isToday() || $date->isFuture()) {
+        //                 $exams[] = [
+        //                     'name' => $data[0],
+        //                     'date' => $data[1]
+        //                 ];
+        //             }
+        //         }
+        //     }
+        // }
 
-        $admitCard->exam_list = $exams;
+        // $admitCard->exam_list = $exams;
 
         // 3️⃣ View return karo
-        return view('jobs/admitcardshow', compact('admitCard', 'job'));
+        return view('jobs/admitcardshow', compact('admitCard'));
     }
 
     public function resultShow($slug)
