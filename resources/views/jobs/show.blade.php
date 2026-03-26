@@ -1074,7 +1074,7 @@ $seoTitle = $job->title
 
                             <div class="small fw-semibold text-success">
                                 <i class="fa-solid fa-calendar-check"></i>
-                                Result Date: {{ $job->result_date }}
+                                Result Date: {{ $result->result_card_release_date }}
                             </div>
 
                             {{-- <a href="{{ $job->result_link }}" target="_blank" class="btn download-btn">
