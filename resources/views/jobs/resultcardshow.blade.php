@@ -147,7 +147,7 @@
 
                                         <li>
                                             <strong>Total Vacancies:</strong>
-                                            {{ !empty($resultCard->total_vacancies) ? number_format($job->total_vacancies) : 'N/A' }}
+                                            {{ !empty($resultCard->total_vacancies) ? number_format($resultCard->total_vacancies) : 'N/A' }}
                                         </li>
 
                                         @php
