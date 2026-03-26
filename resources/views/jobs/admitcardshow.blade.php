@@ -78,12 +78,11 @@
                                             As per the latest update, the
                                             <strong>exam date</strong> is scheduled for
                                             <strong>
-                                                @foreach ($admitCard->exam_list as $exam)
-                                                    {{ \Carbon\Carbon::parse($exam['date'])->format('d M Y') }}@if (!$loop->last)
-                                                        ,
-                                                    @endif
-                                                @endforeach
-                                            </strong>.
+    @foreach (explode('#', $admitCard->exam_list) as $exam)
+        @php [$name, $date] = array_pad(explode('$', $exam), 2, null); @endphp
+        {{ $date ? \Carbon\Carbon::parse($date)->format('d M Y') : 'TBA' }}@if (!$loop->last), @endif
+    @endforeach
+</strong>.
                                         @endif
 
                                         Candidates must check their
@@ -204,7 +203,7 @@
                                 </li>
                             @endif
 
-                            
+
                             @if (!empty($admitCard->exam_list))
                                 @foreach (explode('#', $admitCard->exam_list) as $exam)
                                     @php
