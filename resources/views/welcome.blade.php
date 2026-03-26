@@ -355,10 +355,7 @@
         }
 
         @media (min-width: 768px) {
-            .col-md-6 {
-                flex: 0 0 50% !important;
-                max-width: 50% !important;
-            }
+            
         }
     </style>
     <div class="container mt-3">
