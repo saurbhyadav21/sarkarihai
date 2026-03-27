@@ -45,7 +45,14 @@
                                     <td>{{ $job->id }}</td>
 
                                     <td>{{ $job->job_title }}</td>
-
+                                    <td>
+                                        @if (!empty($job->logo))
+                                            <img src="{{ asset('/public/job-images/' . $job->logo) }}" width="60"
+                                                height="60" style="object-fit:cover;">
+                                        @else
+                                            <span class="badge bg-danger">No Image</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         <!-- Delete Button -->
                                         <form action="{{ route('result.destroy', $job->id) }}" method="POST"
