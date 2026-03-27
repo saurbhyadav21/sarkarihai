@@ -136,19 +136,28 @@
                                                 - {{ $admitCard->max_age }} Years
                                             @endif
                                         </li>
+                                        <li>
+                                            <p>{{$admitCard->age_P}}</p>
+                                        </li>
 
                                         <li>
                                             <strong>Total Vacancies:</strong>
                                             {{ !empty($admitCard->total_vacancies) ? number_format($admitCard->total_vacancies) : 'N/A' }}
                                         </li>
-
+                                        <li>
+                                            <p>{{$admitCard->vaccancy_p}}</p>
+                                        </li>
                                         @if (!empty($admitCard->exam_date))
                                             <li>
                                                 <strong>Exam Date:</strong>
                                                 {{ date('d M Y', strtotime($admitCard->exam_date)) }}
                                             </li>
                                         @endif
-
+                                            <li>
+                                            <p>{{$admitCard->category_p}}</p>
+                                            <p>{{$admitCard->selection_p}}</p>
+                                            <p>{{$admitCard->post_p}}</p>
+                                        </li>
                                         <li class="mt-3">
                                             <a href="{{ url('sarkari-naukri/' . \Str::slug($admitCard->job_title)) }}"
                                                 class="btn btn-success">
@@ -162,6 +171,8 @@
                                         Read the notification for recruitment eligibility, post information, selection
                                         procedure, Physical Eligibility, pay scale and all other information..
                                     </p>
+
+                                    <p>{{$admitCard->main_p}}</p>
 
                                     <p style="color: red">
                                         <strong>Note –</strong> सभी उम्मीदवारों से अनुरोध किया जाता है कि वे अपना
@@ -194,7 +205,7 @@
                         <h2 class="card-title mb-3 text-center">
                             {{ $admitCard->job_title ?? 'Admit Card' }} – Important Dates
                         </h2>
-
+                        <p>{{$admitCard->date_P}}</p>
                         <ul class="list-group list-group-flush flex-grow-1">
 
                             @if (!empty($admitCard->admit_card_release_date))
@@ -236,7 +247,7 @@
                         <h2 class="card-title mb-3 text-center text-primary fw-bold" style="color: #fff !important;">
                             🔗 {{ $admitCard->job_title ?? 'Admit Card' }} – Important Links
                         </h2>
-
+                        <p>{{$admitCard->fee_P}}</p>
                         <ul class="list-group list-group-flush flex-grow-1">
 
                             @if (!empty($admitCard->official_link))
