@@ -598,6 +598,16 @@ class JobController extends Controller
                 'max_age' => $data['max_age'] ?? null,
                 'logo' => $imageName,
                 'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
+
+                // 🔥 NEW FIELDS
+                'main_p' => $data['main_p'] ?? null,
+                'date_p' => $data['date_p'] ?? null,
+                'fee_p' => $data['fee_p'] ?? null,
+                'age_p' => $data['age_p'] ?? null,
+                'vaccancy_p' => $data['vaccancy_p'] ?? null,
+                'category_p' => $data['category_p'] ?? null,
+                'selection_p' => $data['selection_p'] ?? null,
+                'post_p' => $data['post_p'] ?? null,
             ]);
         } else {
 
@@ -623,6 +633,16 @@ class JobController extends Controller
                 'min_age' => $data['min_age'] ?? null,
                 'max_age' => $data['max_age'] ?? null,
                 'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
+
+
+                'main_p' => $data['main_p'] ?? null,
+                'date_p' => $data['date_p'] ?? null,
+                'fee_p' => $data['fee_p'] ?? null,
+                'age_p' => $data['age_p'] ?? null,
+                'vaccancy_p' => $data['vaccancy_p'] ?? null,
+                'category_p' => $data['category_p'] ?? null,
+                'selection_p' => $data['selection_p'] ?? null,
+                'post_p' => $data['post_p'] ?? null,
             ];
 
             // ✅ Image logic
