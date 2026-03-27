@@ -1084,7 +1084,7 @@
 
                             <div class="small fw-semibold text-success">
                                 <i class="fa-solid fa-calendar-check"></i>
-                                @if($result)
+                                @if ($result)
                                     Result Date: {{ $result->result_card_release_date }}
                                 @else
                                     <span class="text-danger">Result Date Not Available</span>
@@ -1094,7 +1094,7 @@
                             {{-- <a href="{{ route('result.show', $result->slug) }}" class="btn">
                                 <i class="fa-solid fa-square-poll-vertical"></i> Check Result
                             </a> --}}
-                            @if($result && $result->slug)
+                            @if ($result && $result->slug)
                                 <a href="{{ route('result.show', $result->slug) }}" class="btn view-btn">
                                     🔍 View Details
                                 </a>
@@ -1118,18 +1118,21 @@
                             <h6 class="mb-2">
                                 <i class="fa-solid fa-circle-info"></i> How to Check Result
                             </h6>
-                            <ul class="mb-0 ps-3">
-                                @php
-                                    // Result steps ko '#' se split kar do
-                                    $steps = explode('#', $result->how_to_download_result_card);
-                                @endphp
+                            @if ($result && $result->how_to_download_result_card)
+                                <ul class="mb-0 ps-3">
+                                    @php
+                                        $steps = explode('#', $result->how_to_download_result_card);
+                                    @endphp
 
-                                @foreach ($steps as $step)
-                                    @if (trim($step) != '')
-                                        <li>{{ trim($step) }}</li>
-                                    @endif
-                                @endforeach
-                            </ul>
+                                    @foreach ($steps as $step)
+                                        @if (trim($step) != '')
+                                            <li>{{ trim($step) }}</li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            @else
+                                <p class="text-danger">Steps Not Available</p>
+                            @endif
                         </div>
 
                     </div>
