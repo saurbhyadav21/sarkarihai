@@ -80,45 +80,45 @@
     </div>
 
     <br>
-     <div class="mb-3">
-        <label class="form-label">Main</label>
-        <textarea name="main_p" class="form-control" rows="3">{{ $result->main_p }}</textarea>
-    </div>
-
     <div class="mb-3">
-        <label class="form-label">Date</label>
-        <textarea name="date_p" class="form-control" rows="3">{{ $result->date_p }}</textarea>
-    </div>
+    <label class="form-label">Main</label>
+    <textarea name="main_p" class="form-control" rows="3">{{ old('main_p', $result->main_p ?? '') }}</textarea>
+</div>
 
-    <div class="mb-3">
-        <label class="form-label">Fee</label>
-        <textarea name="fee_p" class="form-control" rows="3">{{ $result->fee_p }}</textarea>
-    </div>
+<div class="mb-3">
+    <label class="form-label">Date</label>
+    <textarea name="date_p" class="form-control" rows="3">{{ old('date_p', $result->date_p ?? '') }}</textarea>
+</div>
 
-    <div class="mb-3">
-        <label class="form-label">Age</label>
-        <textarea name="age_p" class="form-control" rows="3">{{ $result->age_p }}</textarea>
-    </div>
+<div class="mb-3">
+    <label class="form-label">Fee</label>
+    <textarea name="fee_p" class="form-control" rows="3">{{ old('fee_p', $result->fee_p ?? '') }}</textarea>
+</div>
 
-    <div class="mb-3">
-        <label class="form-label">Vacancy</label>
-        <textarea name="vaccancy_p" class="form-control" rows="3">{{ $result->vaccancy_p }}</textarea>
-    </div>
+<div class="mb-3">
+    <label class="form-label">Age</label>
+    <textarea name="age_p" class="form-control" rows="3">{{ old('age_p', $result->age_p ?? '') }}</textarea>
+</div>
 
-    <div class="mb-3">
-        <label class="form-label">Category</label>
-        <textarea name="category_p" class="form-control" rows="3">{{ $result->category_p }}</textarea>
-    </div>
+<div class="mb-3">
+    <label class="form-label">Vacancy</label>
+    <textarea name="vaccancy_p" class="form-control" rows="3">{{ old('vaccancy_p', $result->vaccancy_p ?? '') }}</textarea>
+</div>
 
-    <div class="mb-3">
-        <label class="form-label">Selection</label>
-        <textarea name="selection_p" class="form-control" rows="3">{{ $result->selection_p }}</textarea>
-    </div>
+<div class="mb-3">
+    <label class="form-label">Category</label>
+    <textarea name="category_p" class="form-control" rows="3">{{ old('category_p', $result->category_p ?? '') }}</textarea>
+</div>
 
-    <div class="mb-3">
-        <label class="form-label">Post</label>
-        <textarea name="post_p" class="form-control" rows="3">{{ $result->post_p }}</textarea>
-    </div>
+<div class="mb-3">
+    <label class="form-label">Selection</label>
+    <textarea name="selection_p" class="form-control" rows="3">{{ old('selection_p', $result->selection_p ?? '') }}</textarea>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Post</label>
+    <textarea name="post_p" class="form-control" rows="3">{{ old('post_p', $result->post_p ?? '') }}</textarea>
+</div>
     <button type="submit">
         {{ $result ? 'Update Job' : 'Submit Job' }}
     </button>
