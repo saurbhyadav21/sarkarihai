@@ -1094,9 +1094,15 @@
                             {{-- <a href="{{ route('result.show', $result->slug) }}" class="btn">
                                 <i class="fa-solid fa-square-poll-vertical"></i> Check Result
                             </a> --}}
-                            <a href="{{ route('result.show', $result->slug) }}" class="btn view-btn">
-                                🔍 View Details
-                            </a>
+                            @if($result && $result->slug)
+                                <a href="{{ route('result.show', $result->slug) }}" class="btn view-btn">
+                                    🔍 View Details
+                                </a>
+                            @else
+                                <a href="/" class="btn view-btn">
+                                    🔍 View Details
+                                </a>
+                            @endif
 
 
                         </div>
