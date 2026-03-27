@@ -423,6 +423,17 @@ class JobController extends Controller
             'link' => 'nullable|string',
             'doc' => 'nullable|string',
             'website' => 'nullable|string',
+
+            // 👇 YE TERE NEW FIELDS ADD KIYE
+            'main_p' => 'nullable|string',
+            'date_p' => 'nullable|string',
+            'fee_p' => 'nullable|string',
+            'age_p' => 'nullable|string',
+            'vaccancy_p' => 'nullable|string',
+            'category_p' => 'nullable|string',
+            'selection_p' => 'nullable|string',
+            'post_p' => 'nullable|string',
+
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
@@ -563,9 +574,9 @@ class JobController extends Controller
             $image->move(public_path('job-images'), $imageName);
             // $file->move(public_path('job-images'), $name);
         }
-        
+
         if ($request->job_id == 'add' || empty($request->job_id)) {
-            
+
             // ✅ CREATE
             AdmitCard::create([
                 'job_id' => $request->job_id,
@@ -589,7 +600,7 @@ class JobController extends Controller
                 'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
             ]);
         } else {
-  
+
 
             // Pehle existing record nikaalo
             $existing = AdmitCard::where('id', $request->job_id)->first();

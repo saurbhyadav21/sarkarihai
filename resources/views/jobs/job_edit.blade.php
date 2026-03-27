@@ -37,22 +37,20 @@
                             <label class="form-label">End Date</label>
                             <input type="text" name="end_date" value="{{ $job->end_date }}" class="form-control">
                         </div>
-                       
+
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Min Salary</label>
-                            <input type="text" name="min_salary" value="{{ $job->min_salary }}"
-                                class="form-control">
+                            <input type="text" name="min_salary" value="{{ $job->min_salary }}" class="form-control">
                         </div>
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Max Salary</label>
-                            <input type="text" name="max_salary" value="{{ $job->max_salary }}"
-                                class="form-control">
+                            <input type="text" name="max_salary" value="{{ $job->max_salary }}" class="form-control">
                         </div>
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Min Age</label>
                             <input type="text" name="min_age" value="{{ $job->min_age }}" class="form-control">
                         </div>
-                         <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label class="form-label">min_qulification</label>
                             {{-- <input type="text" name="post_eligibility" value="{{ $job->post_eligibility }}" class="form-control"> --}}
                             <textarea name="min_qulification" class="form-control" rows="3">{{ $job->min_qulification }}</textarea>
@@ -66,7 +64,7 @@
                         <!-- new image -->
                         <input type="file" name="image" class="form-control mb-2">
 
-                         <div class="col-md-3 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label class="form-label">Total Vacancies</label>
                             <input type="text" name="total_vacancies" value="{{ $job->total_vacancies }}"
                                 class="form-control">
@@ -76,15 +74,15 @@
                             <input type="text" name="exam_date" value="{{ $job->exam_date }}" class="form-control">
                         </div>
 
-                         <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label class="form-label">website</label>
                             <input type="text" name="website" value="{{ $job->website }}" class="form-control">
                         </div>
-                        
-                        
-                        
+
+
+
                     </div>
---------------------------------------------
+                    --------------------------------------------
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Description</label>
@@ -104,7 +102,7 @@
                             <input type="text" name="correction_date" value="{{ $job->correction_date }}"
                                 class="form-control">
                         </div>
-                        
+
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Admit Card Date</label>
                             <input type="text" name="admit_card" value="{{ $job->admit_card }}"
@@ -120,7 +118,8 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Info Date</label>
-                            <input type="text" name="info_date" value="{{ $job->info_date }}" class="form-control">
+                            <input type="text" name="info_date" value="{{ $job->info_date }}"
+                                class="form-control">
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Mode of Selection</label>
@@ -137,7 +136,8 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label class="form-label">OBC Fees</label>
-                            <input type="text" name="obc_fees" value="{{ $job->obc_fees }}" class="form-control">
+                            <input type="text" name="obc_fees" value="{{ $job->obc_fees }}"
+                                class="form-control">
                         </div>
                         <div class="col-md-3 mb-3">
                             <label class="form-label">SC Fees</label>
@@ -155,7 +155,7 @@
                     </div>
 
                     <div class="row">
-                        
+
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Max Age General</label>
                             <input type="text" name="max_age_genral" value="{{ $job->max_age_genral }}"
@@ -185,7 +185,7 @@
                                 class="form-control">
                         </div>
 
-                        
+
                         <div class="col-md-3 mb-3">
                             <label class="form-label">genral_post</label>
                             <input type="text" name="genral_post" value="{{ $job->genral_post }}"
@@ -222,7 +222,7 @@
                             {{-- <input type="text" name="post_eligibility" value="{{ $job->post_eligibility }}" class="form-control"> --}}
                             <textarea name="post_eligibility" class="form-control" rows="3">{{ $job->post_eligibility }}</textarea>
                         </div>
-                       
+
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Post Salary</label>
                             {{-- <input type="text" name="post_salary" value="{{ $job->post_salary }}" class="form-control"> --}}
@@ -246,6 +246,46 @@
                             {{-- <input type="text" name="doc" value="{{ $job->doc }}" class="form-control"> --}}
                             <textarea name="doc" class="form-control" rows="3">{{ $job->doc }}</textarea>
                         </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Main</label>
+                        <textarea name="main_p" class="form-control" rows="3">{{ $job->main_p }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Date</label>
+                        <textarea name="date_p" class="form-control" rows="3">{{ $job->date_p }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Fee</label>
+                        <textarea name="fee_p" class="form-control" rows="3">{{ $job->fee_p }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Age</label>
+                        <textarea name="age_p" class="form-control" rows="3">{{ $job->age_p }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Vacancy</label>
+                        <textarea name="vaccancy_p" class="form-control" rows="3">{{ $job->vaccancy_p }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <textarea name="category_p" class="form-control" rows="3">{{ $job->category_p }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Selection</label>
+                        <textarea name="selection_p" class="form-control" rows="3">{{ $job->selection_p }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Post</label>
+                        <textarea name="post_p" class="form-control" rows="3">{{ $job->post_p }}</textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Update Job</button>
