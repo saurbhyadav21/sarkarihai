@@ -250,7 +250,7 @@
                                         </p>
 
                                         <p>
-                                            {{$job->main_p}}
+                                            {{ $job->main_p }}
                                         </p>
 
                                         <h5>Post Details:</h5>
@@ -307,7 +307,9 @@
                             <h2 class="card-title mb-3 text-center">
                                 {{ $job->title }} – Important Dates
                             </h2>
-
+                            <p>
+                                {{ $job->date_p }}
+                            </p>
                             <ul class="list-group list-group-flush">
 
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -363,7 +365,9 @@
                             <h2 class="card-title mb-3 text-center" id="application-fee">
                                 {{ $job->title }} – Application Fee
                             </h2>
-
+                            <p>
+                                {{ $job->fee_p }}
+                            </p>
                             <ul class="list-group list-group-flush">
 
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -416,7 +420,9 @@
                             <h2 class="card-title mb-3 text-center" id="age-limit">
                                 {{ $job->title }} – Age Limit
                             </h2>
-
+                            <p>
+                                {{ $job->age_p }}
+                            </p>
                             <ul class="list-group list-group-flush">
 
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -481,7 +487,9 @@
                             </div>
 
                             <div>{{ $job->title }} – Salary / Pay Scale</div>
-
+                             <p>
+                                {{ $job->vaccancy_p }}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -498,7 +506,7 @@
                             <div class="card-body">
 
                                 <h2 class="card-title mb-3 text-center">{{ $job->title }} – Category Wise Post</h2>
-
+                                {{ $job->category_p }}
                                 @php
                                     $categories = [
                                         'General' => $job->genral_post,
@@ -575,7 +583,7 @@
                                 <h2 class="card-title mb-3 text-center" id="selection-process">
                                     {{ $job->title }} – Mode Of Selection
                                 </h2>
-
+                                {{ $job->selection_p }}
                                 <ul class="list-group list-group-flush">
                                     @php
                                         $modes = explode(',', $job->mode_selection);
@@ -611,7 +619,7 @@
                                     <h2 class="card-title mb-4 text-center">
                                         {{ $job->title }} – Post Details
                                     </h2>
-
+                                     {{ $job->post_p }}
                                     @php
                                         $names = explode('#', $job->post_name);
                                         $eligibilities = explode('#', $job->post_eligibility);
