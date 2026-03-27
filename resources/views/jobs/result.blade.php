@@ -82,42 +82,42 @@
     <br>
      <div class="mb-3">
         <label class="form-label">Main</label>
-        <textarea name="main_p" class="form-control" rows="3">{{ $admit->main_p }}</textarea>
+        <textarea name="main_p" class="form-control" rows="3">{{ $result->main_p }}</textarea>
     </div>
 
     <div class="mb-3">
         <label class="form-label">Date</label>
-        <textarea name="date_p" class="form-control" rows="3">{{ $admit->date_p }}</textarea>
+        <textarea name="date_p" class="form-control" rows="3">{{ $result->date_p }}</textarea>
     </div>
 
     <div class="mb-3">
         <label class="form-label">Fee</label>
-        <textarea name="fee_p" class="form-control" rows="3">{{ $admit->fee_p }}</textarea>
+        <textarea name="fee_p" class="form-control" rows="3">{{ $result->fee_p }}</textarea>
     </div>
 
     <div class="mb-3">
         <label class="form-label">Age</label>
-        <textarea name="age_p" class="form-control" rows="3">{{ $admit->age_p }}</textarea>
+        <textarea name="age_p" class="form-control" rows="3">{{ $result->age_p }}</textarea>
     </div>
 
     <div class="mb-3">
         <label class="form-label">Vacancy</label>
-        <textarea name="vaccancy_p" class="form-control" rows="3">{{ $admit->vaccancy_p }}</textarea>
+        <textarea name="vaccancy_p" class="form-control" rows="3">{{ $result->vaccancy_p }}</textarea>
     </div>
 
     <div class="mb-3">
         <label class="form-label">Category</label>
-        <textarea name="category_p" class="form-control" rows="3">{{ $admit->category_p }}</textarea>
+        <textarea name="category_p" class="form-control" rows="3">{{ $result->category_p }}</textarea>
     </div>
 
     <div class="mb-3">
         <label class="form-label">Selection</label>
-        <textarea name="selection_p" class="form-control" rows="3">{{ $admit->selection_p }}</textarea>
+        <textarea name="selection_p" class="form-control" rows="3">{{ $result->selection_p }}</textarea>
     </div>
 
     <div class="mb-3">
         <label class="form-label">Post</label>
-        <textarea name="post_p" class="form-control" rows="3">{{ $admit->post_p }}</textarea>
+        <textarea name="post_p" class="form-control" rows="3">{{ $result->post_p }}</textarea>
     </div>
     <button type="submit">
         {{ $result ? 'Update Job' : 'Submit Job' }}
