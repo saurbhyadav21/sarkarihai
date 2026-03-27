@@ -879,9 +879,15 @@
     🔍 View Details
 </a> --}}
                                 {{-- <a href="{{ route('result.show', $result->slug) }}" class="btn"> --}}
-                                <a href="{{ route('admit.show', $admitCard->slug) }}" class="btn view-btn">
-                                    🔍 View Details
-                                </a>
+                                @if ($admitCard)
+                                    <a href="{{ route('admit.show', $admitCard->slug) }}" class="btn view-btn">
+                                        🔍 View Details
+                                    </a>
+                                @else
+                                    <a href="/" class="btn view-btn">
+                                        🔍 View Details
+                                    </a>
+                                @endif
                             </div>
 
                         </div>
@@ -1092,29 +1098,29 @@
                         </div>
 
                         <!-- Info -->
-                       
+
 
                         <!-- Steps -->
-                     
+
 
                         <!-- Instructions -->
                         <div class="instruction-box mt-2">
-    <h6 class="mb-2">
-        <i class="fa-solid fa-circle-info"></i> How to Check Result
-    </h6>
-    <ul class="mb-0 ps-3">
-        @php
-            // Result steps ko '#' se split kar do
-            $steps = explode('#', $result->how_to_download_result_card);
-        @endphp
+                            <h6 class="mb-2">
+                                <i class="fa-solid fa-circle-info"></i> How to Check Result
+                            </h6>
+                            <ul class="mb-0 ps-3">
+                                @php
+                                    // Result steps ko '#' se split kar do
+                                    $steps = explode('#', $result->how_to_download_result_card);
+                                @endphp
 
-        @foreach($steps as $step)
-            @if(trim($step) != '')
-                <li>{{ trim($step) }}</li>
-            @endif
-        @endforeach
-    </ul>
-</div>
+                                @foreach ($steps as $step)
+                                    @if (trim($step) != '')
+                                        <li>{{ trim($step) }}</li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
 
                     </div>
                 </div>
