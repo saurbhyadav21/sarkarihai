@@ -135,7 +135,7 @@ class JobController extends Controller
             // ->whereDate('end_date', '>=', \Carbon\Carbon::today()->subDays(2)) // 2 din pehle tak
             ->whereDate('end_date', '<=', \Carbon\Carbon::today()->addDays(45))
             ->orderBy('end_date', 'asc')
-            ->limit(36)
+            ->limit(34)
             ->get();
 
         $jobsxxx = Job::orderBy('created_at', 'desc')
