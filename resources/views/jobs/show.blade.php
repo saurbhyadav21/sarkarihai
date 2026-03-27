@@ -249,6 +249,10 @@
                                             </a>
                                         </p>
 
+                                        <p>
+                                            {{$job->main_p}}
+                                        </p>
+
                                         <h5>Post Details:</h5>
                                         <ul>
                                             <li><strong>Post Name:</strong>
