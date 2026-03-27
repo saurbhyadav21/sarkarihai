@@ -1084,7 +1084,11 @@
 
                             <div class="small fw-semibold text-success">
                                 <i class="fa-solid fa-calendar-check"></i>
-                                Result Date: {{ $result->result_card_release_date }}
+                                @if($result)
+                                    Result Date: {{ $result->result_card_release_date }}
+                                @else
+                                    <span class="text-danger">Result Date Not Available</span>
+                                @endif
                             </div>
 
                             {{-- <a href="{{ route('result.show', $result->slug) }}" class="btn">
