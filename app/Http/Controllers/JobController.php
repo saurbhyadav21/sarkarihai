@@ -600,14 +600,14 @@ class JobController extends Controller
                 'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
 
                 // 🔥 NEW FIELDS
-                'main_p' => $data['main_p'] ?? null,
-                'date_p' => $data['date_p'] ?? null,
-                'fee_p' => $data['fee_p'] ?? null,
-                'age_p' => $data['age_p'] ?? null,
-                'vaccancy_p' => $data['vaccancy_p'] ?? null,
-                'category_p' => $data['category_p'] ?? null,
-                'selection_p' => $data['selection_p'] ?? null,
-                'post_p' => $data['post_p'] ?? null,
+                'main_p' => $request->main_p,
+                'date_p' => $request->date_p,
+                'fee_p' => $request->fee_p,
+                'age_p' => $request->age_p,
+                'vaccancy_p' => $request->vaccancy_p,
+                'category_p' => $request->category_p,
+                'selection_p' => $request->selection_p,
+                'post_p' => $request->post_p,
             ]);
         } else {
 
