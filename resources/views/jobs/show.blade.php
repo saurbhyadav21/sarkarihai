@@ -458,7 +458,7 @@
                                 <!-- Relaxation -->
                                 <li class="list-group-item mt-2" style="font-size: 14px; line-height: 1.6;">
                                     <b>Age Relaxation:</b><br>
-                                    {{ $job->relaxation }}
+                                    <p>{{ $job->relaxation }}</p>
                                 </li>
 
                             </ul>
@@ -506,7 +506,7 @@
                             <div class="card-body">
 
                                 <h2 class="card-title mb-3 text-center">{{ $job->title }} – Category Wise Post</h2>
-                                {{ $job->category_p }}
+                               <p> {{ $job->category_p }}</p>
                                 @php
                                     $categories = [
                                         'General' => $job->genral_post,
@@ -583,7 +583,7 @@
                                 <h2 class="card-title mb-3 text-center" id="selection-process">
                                     {{ $job->title }} – Mode Of Selection
                                 </h2>
-                                {{ $job->selection_p }}
+                                <p>{{ $job->selection_p }}</p>
                                 <ul class="list-group list-group-flush">
                                     @php
                                         $modes = explode(',', $job->mode_selection);
@@ -619,7 +619,9 @@
                                     <h2 class="card-title mb-4 text-center">
                                         {{ $job->title }} – Post Details
                                     </h2>
-                                     {{ $job->post_p }}
+                                     <p>
+                                        {{ $job->post_p }}
+                                     </p>
                                     @php
                                         $names = explode('#', $job->post_name);
                                         $eligibilities = explode('#', $job->post_eligibility);
