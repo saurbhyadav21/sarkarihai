@@ -32,6 +32,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Title</th>
+                                <th>image</th>
                                 <th>Delete</th>
                                 <th>Action</th>
                             </tr>
