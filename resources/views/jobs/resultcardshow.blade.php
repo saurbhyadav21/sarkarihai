@@ -188,6 +188,12 @@
                                                     <strong>{{ $name }}:</strong> {{ $date }}
                                                 </li>
                                             @endforeach
+
+                                            <li><p>{{$resultCard->age_p}}</p></li>
+                                            <li><p>{{$resultCard->vaccancy_p}}</p></li>
+                                            <li><p>{{$resultCard->category_p}}</p></li>
+                                            <li><p>{{$resultCard->selection_p}}</p></li>
+                                            <li><p>{{$resultCard->post_p}}</p></li>
                                         </ul>
                                         <li class="mt-3">
                                             <a href="{{ url('/') }}" class="btn btn-success">
@@ -212,6 +218,7 @@
                                         <strong>Admit Card के साथ एक वैध ID Proof</strong> अवश्य लेकर जाएं।
                                     </p>
 
+                                    <p>{{$resultCard->main_p}}</p>
 
 
                                 </div>
@@ -233,7 +240,7 @@
                         <h2 class="card-title mb-3 text-center">
                             {{ $resultCard->job_title ?? 'Admit Card' }} – Important Dates
                         </h2>
-
+                        <p>{{$resultCard->date_p}}</p>
                         <ul class="list-group list-group-flush flex-grow-1">
                             @if (!empty($resultCard->exam_list))
                                 @foreach ($resultCard->exam_list as $exam)
@@ -276,7 +283,7 @@
                         <h2 class="card-title mb-3 text-center text-primary fw-bold" style="color: #fff !important;">
                             🔗 {{ $resultCard->job_title ?? 'Admit Card' }} – Important Links
                         </h2>
-
+                        <p>{{$resultCard->fee_p}}</p>
                         <ul class="list-group list-group-flush flex-grow-1">
 
                             @if (!empty($resultCard->official_link))
