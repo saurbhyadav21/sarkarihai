@@ -474,9 +474,9 @@ class JobController extends Controller
 
         // Decode JSON
         $json = json_decode($request->job_json, true);
-        $state = is_array($request->states)
-            ? implode(',', $request->states)
-            : $request->states;
+        // $state = is_array($request->states)
+        //     ? implode(',', $request->states)
+        //     : $request->states;
         // Map fields
         $data = [
             'title'             => $json['title'] ?? null,
