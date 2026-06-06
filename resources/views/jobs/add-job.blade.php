@@ -38,13 +38,16 @@
             Add Category
         </button>
     </div>
-
-    <br>
-<br>
-
 <button type="button" id="deleteCategoryBtn">
     Delete Selected Category
 </button>
+    <br>
+<br><br>
+<br><br>
+<br><br>
+<br>
+
+
     <button type="submit">Submit Job</button>
 </form>
 
