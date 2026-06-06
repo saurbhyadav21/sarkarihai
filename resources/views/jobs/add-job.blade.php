@@ -23,9 +23,9 @@
                 </option>
             @endforeach
         </select>
-    </div>
+    </div> <br> <br>
 <button type="submit" class="btn btn-primary">Submit Job</button>
-    <br>
+    <br> <br> <br> <br> <br> <br> <br> <br>
 
     <!-- ADD NEW CATEGORY -->
     <div>
