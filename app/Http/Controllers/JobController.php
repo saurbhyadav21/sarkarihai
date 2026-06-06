@@ -487,7 +487,7 @@ class JobController extends Controller
             'max_salary'        => $json['salary_max'] ?? null,
             'min_age'           => $json['age_min'] ?? null,
             'max_age_genral'    => $json['age_max'] ?? null,
-            'min_qulification'  =>$json['age_max'] ?? null,
+            'min_qulification'  => $json['age_max'] ?? null,
             'total_vacancies'  => $json['qualification'] ?? null,
             // 'exam_date'        => $json['exam_date'] ?? null,
             'website'          => $json['official_website'] ?? null,
@@ -635,7 +635,7 @@ class JobController extends Controller
                 'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
 
 
-                  'main_p' => $request->main_p,
+                'main_p' => $request->main_p,
                 'date_p' => $request->date_p,
                 'fee_p' => $request->fee_p,
                 'age_p' => $request->age_p,
@@ -740,7 +740,7 @@ class JobController extends Controller
                 'logo' => $imageName,
                 'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
 
-                 // 🔥 NEW FIELDS
+                // 🔥 NEW FIELDS
                 'main_p' => $data['main_p'] ?? null,
                 'date_p' => $data['date_p'] ?? null,
                 'fee_p' => $data['fee_p'] ?? null,
@@ -775,7 +775,7 @@ class JobController extends Controller
                 'max_age' => $data['max_age'] ?? null,
                 'admit_card_release_date' => $data['admit_card_release_date'] ?? null,
 
-                   'main_p' => $request->main_p,
+                'main_p' => $request->main_p,
                 'date_p' => $request->date_p,
                 'fee_p' => $request->fee_p,
                 'age_p' => $request->age_p,
@@ -986,5 +986,21 @@ class JobController extends Controller
         $admitCards = AdmitCard::orderBy('admit_card_release_date', 'asc')->get();
 
         return view('jobs/admitcard-list', compact('admitCards'));
+    }
+
+    public function storeCategory(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|unique:categories,name'
+        ]);
+
+        $category = Category::create([
+            'name' => $request->name
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'name' => $category->name
+        ]);
     }
 }

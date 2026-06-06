@@ -74,3 +74,6 @@ Route::post('/add-result', [JobController::class, 'resultStoreJson'])->name('job
 Route::get('/result/{slug}', [JobController::class, 'resultShow'])->name('result.show');
 
 Route::get('/result-cards', [JobController::class, 'resultIndex'])->name('resultIndex');
+
+Route::post('/category/ajax/store', [JobController::class, 'storeCategory'])
+    ->name('category.ajax.store');
