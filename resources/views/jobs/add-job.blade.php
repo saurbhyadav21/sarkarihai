@@ -48,7 +48,7 @@
 <br>
 
 
-    <button type="submit">Submit Job</button>
+    <button type="submit" class="btn btn-primary">Submit Job</button>
 </form>
 
 
