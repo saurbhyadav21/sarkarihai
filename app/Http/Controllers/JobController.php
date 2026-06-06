@@ -872,7 +872,7 @@ class JobController extends Controller
     public function addJob()
     {
         $states = State::all();
-        $categories = Category::all();
+         $categories = Category::orderBy('name', 'asc')->get();
         $mineducation = Mineducation::all();
 
         return view('jobs.add-job', compact('states', 'categories', 'mineducation'));
