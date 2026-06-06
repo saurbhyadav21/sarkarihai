@@ -480,15 +480,15 @@ class JobController extends Controller
         // Map fields
         $data = [
             'title'             => $json['title'] ?? null,
-            'state'             => $state ?? null,
+            'state'             => $json['state'] ?? null,
             'start_date'        => $json['start_date'] ?? null,
             'end_date'          => $json['last_date'] ?? null,
             'min_salary'        => $json['salary_min'] ?? null,
             'max_salary'        => $json['salary_max'] ?? null,
             'min_age'           => $json['age_min'] ?? null,
             'max_age_genral'    => $json['age_max'] ?? null,
-            'min_qulification'  => $request->min_education ?? null,
-            'total_vacancies'  => $json['total_vacancy'] ?? null,
+            'min_qulification'  =>$json['age_max'] ?? null,
+            'total_vacancies'  => $json['qualification'] ?? null,
             // 'exam_date'        => $json['exam_date'] ?? null,
             'website'          => $json['official_website'] ?? null,
             'category'          => $request->category_id ?? null,

@@ -12,7 +12,7 @@
     
 
     <!-- STATES CHECKBOX -->
-    <div>
+    {{-- <div>
         <label><b>Select States</b></label><br>
 
         @foreach($states as $state)
@@ -21,7 +21,7 @@
                 {{ $state->name }}
             </label>
         @endforeach
-    </div>
+    </div> --}}
 
     <br>
 
@@ -42,7 +42,7 @@
     <br>
 
     <!-- Min Education -->
-    <div>
+    {{-- <div>
         <label><b>Select Min Education</b></label><br>
 
        
@@ -54,7 +54,7 @@
                 </option>
             @endforeach
         </select>
-    </div>
+    </div> --}}
 
     <br>
 
