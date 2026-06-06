@@ -24,7 +24,7 @@
             @endforeach
         </select>
     </div>
-
+<button type="submit" class="btn btn-primary">Submit Job</button>
     <br>
 
     <!-- ADD NEW CATEGORY -->
@@ -48,7 +48,7 @@
 <br>
 
 
-    <button type="submit" class="btn btn-primary">Submit Job</button>
+    
 </form>
 
 <!-- Bootstrap CSS -->
