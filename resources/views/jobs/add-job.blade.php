@@ -40,7 +40,11 @@
     </div>
 
     <br>
+<br>
 
+<button type="button" id="deleteCategoryBtn">
+    Delete Selected Category
+</button>
     <button type="submit">Submit Job</button>
 </form>
 
@@ -75,6 +79,42 @@ $("#addCategoryBtn").click(function(){
             $("#new_category").val('');
 
             alert("Category Added Successfully");
+        },
+        error:function(){
+            alert("Something went wrong");
+        }
+    });
+
+});
+
+
+$("#deleteCategoryBtn").click(function () {
+
+    let category = $("#category_id").val();
+
+    if(category == ''){
+        alert("Select category first");
+        return;
+    }
+
+    if(!confirm("Delete this category?")){
+        return;
+    }
+
+    $.ajax({
+        url: "{{ route('category.ajax.delete') }}",
+        type: "POST",
+        data: {
+            _token: "{{ csrf_token() }}",
+            name: category
+        },
+        success: function(response){
+
+            $("#category_id option:selected").remove();
+
+            $("#category_id").val('');
+
+            alert("Category Deleted Successfully");
         },
         error:function(){
             alert("Something went wrong");

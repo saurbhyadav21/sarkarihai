@@ -47,7 +47,9 @@ Route::get('/state/{state}/jobs', [JobController::class, 'stateJobs'])->name('st
 Route::get('/jobs/{state}/{category}', [JobController::class, 'stateCategoryJobs'])
     ->name('state.category.jobs');
 
-
+Route::post('/category/ajax/delete',
+    [JobController::class, 'deleteCategory']
+)->name('category.ajax.delete');
 
 //admit card edit
 // 1️⃣ Admit card edit page (admin ya form)

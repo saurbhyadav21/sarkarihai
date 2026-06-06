@@ -1003,4 +1003,23 @@ class JobController extends Controller
             'name' => $category->name
         ]);
     }
+
+
+    public function deleteCategory(Request $request)
+{
+    $category = Category::where('name', $request->name)->first();
+
+    if(!$category){
+        return response()->json([
+            'status' => false,
+            'message' => 'Category not found'
+        ],404);
+    }
+
+    $category->delete();
+
+    return response()->json([
+        'status' => true
+    ]);
+}
 }
