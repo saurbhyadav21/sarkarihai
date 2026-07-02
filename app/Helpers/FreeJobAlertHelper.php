@@ -566,7 +566,7 @@ class FreeJobAlertHelper
                 $fee
             );
 
-            return $json;
+        return $json;
     }
 
     public static function findKey($arr, $keys)
@@ -766,5 +766,33 @@ class FreeJobAlertHelper
             $fees['ph_fees'] = $m[1];
 
         return $fees;
+    }
+
+
+    public static function parseReservation($text)
+    {
+        $r = '';
+
+        preg_match('/UR\s*[:\-]?\s*(\d+)/i', $text, $m);
+        if (isset($m[1]))
+            $r .= 'UR:' . $m[1] . '#';
+
+        preg_match('/EWS\s*[:\-]?\s*(\d+)/i', $text, $m);
+        if (isset($m[1]))
+            $r .= 'EWS:' . $m[1] . '#';
+
+        preg_match('/OBC\s*[:\-]?\s*(\d+)/i', $text, $m);
+        if (isset($m[1]))
+            $r .= 'OBC:' . $m[1] . '#';
+
+        preg_match('/SC\s*[:\-]?\s*(\d+)/i', $text, $m);
+        if (isset($m[1]))
+            $r .= 'SC:' . $m[1] . '#';
+
+        preg_match('/ST\s*[:\-]?\s*(\d+)/i', $text, $m);
+        if (isset($m[1]))
+            $r .= 'ST:' . $m[1] . '#';
+
+        return $r;
     }
 }
