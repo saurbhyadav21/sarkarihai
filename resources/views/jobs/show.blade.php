@@ -475,6 +475,10 @@ text-align:center;
         .highlight-box p {
             font-size: 14px;
         }
+        .sidebar-inner{
+    position:sticky;
+    top:90px;
+}
     </style>
 
 
