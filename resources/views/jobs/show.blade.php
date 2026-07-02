@@ -484,6 +484,7 @@ text-align:center;
         <!-- LEFT -->
 
         <div class="sidebar">
+            <div class="sidebar-inner">
 
             <div class="sidebar-card">
 
@@ -616,7 +617,7 @@ text-align:center;
                 </ul>
 
             </div>
-
+             </div>
         </div>
 
 
