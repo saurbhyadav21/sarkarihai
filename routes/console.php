@@ -16,3 +16,13 @@ Artisan::command('inspire', function () {
 
 Schedule::command('jobs:fetch-news')
     ->everyMinute();
+
+
+Schedule::call(function () {
+
+    file_put_contents(
+        storage_path('cron_test.txt'),
+        date('Y-m-d H:i:s') . PHP_EOL,
+        FILE_APPEND
+    );
+})->everyMinute();
