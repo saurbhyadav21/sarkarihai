@@ -3,148 +3,78 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
+use App\Models\JobFeed;
 use App\Helpers\FreeJobAlertHelper;
 
 class ProcessOneJob extends Command
 {
-    protected $signature =
-        'app:process-one-job';
+    protected $signature = 'jobs:process-one';
 
     protected $description =
         'Process one pending job';
 
     public function handle()
     {
-        $feed =
-            DB::table('job_feeds')
-            ->where(
-                'scrape_status',
-                'pending'
-            )
-            ->orderBy('id')
-            ->first();
+        /*
+        ONE PENDING JOB
+        */
+
+        $feed = JobFeed::where(
+                    'scrape_status',
+                    'pending'
+                )
+                ->where(
+                    'url_type',
+                    'job'
+                )
+                ->orderBy('id')
+                ->first();
 
         if (!$feed)
         {
             $this->info(
-                'No pending rows'
+                'No pending jobs found'
             );
 
             return;
         }
 
-        $title =
-            strtolower(
-                $feed->title
-            );
-
-        /*
-        ignore non jobs
-        */
-
-        $ignore = [
-
-            'admit card',
-
-            'result',
-
-            'answer key',
-
-            'syllabus',
-
-            'hall ticket',
-
-            'score card',
-
-            'cut off',
-
-            'merit list',
-
-            'interview schedule'
-        ];
-
-        foreach ($ignore as $word)
-        {
-            if (
-                strpos(
-                    $title,
-                    $word
-                ) !== false
-            )
-            {
-                DB::table('job_feeds')
-                    ->where(
-                        'id',
-                        $feed->id
-                    )
-                    ->update([
-
-                        'scrape_status'
-                            =>
-                            'ignored'
-                    ]);
-
-                $this->warn(
-                    'Ignored'
-                );
-
-                return;
-            }
-        }
-
-        DB::table('job_feeds')
-            ->where(
-                'id',
-                $feed->id
-            )
-            ->update([
-
-                'scrape_status'
-                    =>
-                    'processing'
-            ]);
-
         try
         {
+            /*
+            SCRAPE
+            */
+
             $json =
                 FreeJobAlertHelper::scrape(
                     $feed->url
                 );
 
-            echo
-                json_encode(
-                    $json,
-                    JSON_PRETTY_PRINT
-                    |
-                    JSON_UNESCAPED_UNICODE
-                );
+            /*
+            STATUS DONE
+            */
 
-            DB::table('job_feeds')
-                ->where(
-                    'id',
-                    $feed->id
-                )
-                ->update([
+            $feed->scrape_status =
+                'done';
 
-                    'scrape_status'
-                        =>
-                        'completed'
-                ]);
+            $feed->save();
+
+            /*
+            OUTPUT JSON
+            */
+
+            echo json_encode(
+                $json,
+                JSON_PRETTY_PRINT |
+                JSON_UNESCAPED_UNICODE
+            );
         }
         catch (\Exception $e)
         {
-            DB::table('job_feeds')
-                ->where(
-                    'id',
-                    $feed->id
-                )
-                ->update([
+            $feed->scrape_status =
+                'failed';
 
-                    'scrape_status'
-                        =>
-                        'failed'
-                ]);
+            $feed->save();
 
             $this->error(
                 $e->getMessage()
