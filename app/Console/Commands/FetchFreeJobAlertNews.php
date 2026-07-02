@@ -65,7 +65,7 @@ class FetchFreeJobAlertNews extends Command
 
             if (!$articleId)
                 continue;
-
+dd($title);
             JobFeed::updateOrCreate(
                 [
                     'article_id' => $articleId
