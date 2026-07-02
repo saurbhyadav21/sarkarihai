@@ -318,3 +318,333 @@ Download Notification
 </div>
 
 </section>
+
+<style>
+
+/* MAIN LAYOUT */
+
+.page-layout{
+    display:flex;
+    gap:25px;
+    align-items:flex-start;
+}
+
+/* LEFT TOC */
+
+.toc{
+    width:280px;
+    position:sticky;
+    top:90px;
+}
+
+.toc-card{
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    padding:20px;
+}
+
+.toc-card h3{
+    color:#0F3D91;
+    margin-bottom:15px;
+}
+
+.toc-card ul{
+    list-style:none;
+}
+
+.toc-card li{
+    margin:12px 0;
+}
+
+.toc-card a{
+    text-decoration:none;
+    color:#444;
+    font-size:15px;
+}
+
+.toc-card a:hover{
+    color:#0F3D91;
+}
+
+/* CONTENT */
+
+.main-content{
+    flex:1;
+}
+
+.card{
+    background:#fff;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.card h2{
+    color:#0F3D91;
+    margin-bottom:20px;
+    border-left:5px solid #FFB703;
+    padding-left:12px;
+}
+
+.job-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.job-table td{
+    border:1px solid #e5e7eb;
+    padding:14px;
+}
+
+.job-table tr:nth-child(even){
+    background:#f8faff;
+}
+
+.highlight{
+    font-weight:600;
+    width:35%;
+}
+
+@media(max-width:900px){
+
+.page-layout{
+    flex-direction:column;
+}
+
+.toc{
+    width:100%;
+    position:relative;
+    top:0;
+}
+
+}
+
+</style>
+
+
+<div class="page-layout">
+
+
+<!-- LEFT SIDEBAR -->
+
+<div class="toc">
+
+<div class="toc-card">
+
+<h3>📋 Table Of Contents</h3>
+
+<ul>
+
+<li><a href="#overview">Overview</a></li>
+
+<li><a href="#dates">Important Dates</a></li>
+
+<li><a href="#fees">Application Fee</a></li>
+
+<li><a href="#age">Age Limit</a></li>
+
+<li><a href="#vacancy">Vacancy Details</a></li>
+
+<li><a href="#eligibility">Eligibility</a></li>
+
+<li><a href="#selection">Selection Process</a></li>
+
+<li><a href="#salary">Salary</a></li>
+
+<li><a href="#documents">Documents</a></li>
+
+<li><a href="#apply">How To Apply</a></li>
+
+<li><a href="#links">Important Links</a></li>
+
+<li><a href="#faq">FAQs</a></li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+<!-- RIGHT CONTENT -->
+
+<div class="main-content">
+
+
+<!-- OVERVIEW -->
+
+<div class="card" id="overview">
+
+<h2>Job Overview</h2>
+
+<table class="job-table">
+
+<tr>
+<td class="highlight">Organization</td>
+<td>Staff Selection Commission</td>
+</tr>
+
+<tr>
+<td class="highlight">Department</td>
+<td>SSC</td>
+</tr>
+
+<tr>
+<td class="highlight">Post Name</td>
+<td>Combined Graduate Level</td>
+</tr>
+
+<tr>
+<td class="highlight">Total Vacancy</td>
+<td>14582</td>
+</tr>
+
+<tr>
+<td class="highlight">Job Location</td>
+<td>All India</td>
+</tr>
+
+<tr>
+<td class="highlight">Apply Mode</td>
+<td>Online</td>
+</tr>
+
+<tr>
+<td class="highlight">Job Type</td>
+<td>Permanent</td>
+</tr>
+
+<tr>
+<td class="highlight">Official Website</td>
+<td>ssc.gov.in</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<!-- IMPORTANT DATES -->
+
+<div class="card" id="dates">
+
+<h2>Important Dates</h2>
+
+<table class="job-table">
+
+<tr>
+<td class="highlight">Notification Date</td>
+<td>03 July 2026</td>
+</tr>
+
+<tr>
+<td class="highlight">Apply Start Date</td>
+<td>05 July 2026</td>
+</tr>
+
+<tr>
+<td class="highlight">Last Date</td>
+<td>30 July 2026</td>
+</tr>
+
+<tr>
+<td class="highlight">Last Fee Date</td>
+<td>30 July 2026</td>
+</tr>
+
+<tr>
+<td class="highlight">Correction Date</td>
+<td>05 August 2026</td>
+</tr>
+
+<tr>
+<td class="highlight">Exam Date</td>
+<td>September 2026</td>
+</tr>
+
+<tr>
+<td class="highlight">Admit Card</td>
+<td>Before Exam</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<!-- APPLICATION FEE -->
+
+<div class="card" id="fees">
+
+<h2>Application Fee</h2>
+
+<table class="job-table">
+
+<tr>
+<td class="highlight">General</td>
+<td>₹100</td>
+</tr>
+
+<tr>
+<td class="highlight">OBC</td>
+<td>₹100</td>
+</tr>
+
+<tr>
+<td class="highlight">EWS</td>
+<td>₹100</td>
+</tr>
+
+<tr>
+<td class="highlight">SC/ST</td>
+<td>₹0</td>
+</tr>
+
+<tr>
+<td class="highlight">Female</td>
+<td>₹0</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<!-- AGE LIMIT -->
+
+<div class="card" id="age">
+
+<h2>Age Limit</h2>
+
+<table class="job-table">
+
+<tr>
+<td class="highlight">Minimum Age</td>
+<td>18 Years</td>
+</tr>
+
+<tr>
+<td class="highlight">Maximum Age</td>
+<td>30 Years</td>
+</tr>
+
+<tr>
+<td class="highlight">OBC Relaxation</td>
+<td>3 Years</td>
+</tr>
+
+<tr>
+<td class="highlight">SC/ST Relaxation</td>
+<td>5 Years</td>
+</tr>
+
+<tr>
+<td class="highlight">PwD Relaxation</td>
+<td>10 Years</td>
+</tr>
+
+</table>
+
+</div>
