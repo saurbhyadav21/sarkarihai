@@ -955,3 +955,369 @@ Monthly In-Hand Salary:
 </div>
 
 </div>
+
+
+<!-- QUICK SUMMARY -->
+
+<div class="card">
+
+<h2>Job Highlights</h2>
+
+<div style="
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+">
+
+<div style="
+background:#f8faff;
+padding:20px;
+border-radius:10px;
+border:1px solid #e5e7eb;
+">
+
+<h4 style="color:#777">
+Application Mode
+</h4>
+
+<p style="
+font-size:20px;
+font-weight:700;
+color:#0F3D91;
+margin-top:10px;
+">
+Online
+</p>
+
+</div>
+
+<div style="
+background:#f8faff;
+padding:20px;
+border-radius:10px;
+border:1px solid #e5e7eb;
+">
+
+<h4 style="color:#777">
+Job Location
+</h4>
+
+<p style="
+font-size:20px;
+font-weight:700;
+color:#0F3D91;
+margin-top:10px;
+">
+All India
+</p>
+
+</div>
+
+<div style="
+background:#f8faff;
+padding:20px;
+border-radius:10px;
+border:1px solid #e5e7eb;
+">
+
+<h4 style="color:#777">
+Job Type
+</h4>
+
+<p style="
+font-size:20px;
+font-weight:700;
+color:#0F3D91;
+margin-top:10px;
+">
+Permanent
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- DOCUMENTS -->
+
+<div class="card" id="documents">
+
+<h2>Documents Required</h2>
+
+<table class="job-table">
+
+<tr>
+<td>Recent Passport Size Photograph</td>
+</tr>
+
+<tr>
+<td>Candidate Signature</td>
+</tr>
+
+<tr>
+<td>Aadhaar Card / PAN Card / Voter ID</td>
+</tr>
+
+<tr>
+<td>Educational Certificates</td>
+</tr>
+
+<tr>
+<td>Caste Certificate</td>
+</tr>
+
+<tr>
+<td>Domicile Certificate</td>
+</tr>
+
+<tr>
+<td>Experience Certificate (If Required)</td>
+</tr>
+
+</table>
+
+</div>
+
+
+
+<!-- HOW TO APPLY -->
+
+<div class="card" id="apply">
+
+<h2>How To Apply</h2>
+
+<div style="
+background:#f8faff;
+padding:25px;
+border-radius:10px;
+">
+
+<ol style="
+padding-left:25px;
+line-height:40px;
+">
+
+<li>
+Read official notification carefully.
+</li>
+
+<li>
+Visit official website.
+</li>
+
+<li>
+Click on Apply Online.
+</li>
+
+<li>
+Fill application form carefully.
+</li>
+
+<li>
+Upload photograph and signature.
+</li>
+
+<li>
+Upload required documents.
+</li>
+
+<li>
+Pay application fee.
+</li>
+
+<li>
+Verify all details.
+</li>
+
+<li>
+Submit application form.
+</li>
+
+<li>
+Take final printout.
+</li>
+
+</ol>
+
+</div>
+
+</div>
+
+
+
+<!-- IMPORTANT INSTRUCTIONS -->
+
+<div class="card">
+
+<h2>Important Instructions</h2>
+
+<div style="
+background:#fff8e6;
+padding:25px;
+border-radius:10px;
+line-height:35px;
+">
+
+<ul style="
+padding-left:25px;
+">
+
+<li>
+Read official notification before applying.
+</li>
+
+<li>
+Check eligibility criteria carefully.
+</li>
+
+<li>
+Keep all documents ready.
+</li>
+
+<li>
+Upload correct information only.
+</li>
+
+<li>
+Verify application before final submission.
+</li>
+
+<li>
+Keep registration number safe.
+</li>
+
+<li>
+Take printout of final application.
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+
+<!-- IMPORTANT LINKS -->
+
+<div class="card" id="links">
+
+<h2>Important Links</h2>
+
+<table class="job-table">
+
+<tr>
+
+<td class="highlight">
+Apply Online
+</td>
+
+<td>
+<a href="#"
+style="
+color:#0F3D91;
+font-weight:700;
+">
+Click Here
+</a>
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="highlight">
+Official Notification
+</td>
+
+<td>
+<a href="#"
+style="
+color:#0F3D91;
+font-weight:700;
+">
+Download PDF
+</a>
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="highlight">
+Official Website
+</td>
+
+<td>
+<a href="#"
+style="
+color:#0F3D91;
+font-weight:700;
+">
+Visit Website
+</a>
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="highlight">
+Latest Jobs
+</td>
+
+<td>
+<a href="#"
+style="
+color:#0F3D91;
+font-weight:700;
+">
+View All
+</a>
+</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<div style="
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+">
+
+<a href="#"
+style="
+background:#0F3D91;
+color:#fff;
+padding:15px 30px;
+text-decoration:none;
+border-radius:8px;
+font-weight:700;
+">
+Apply Online
+</a>
+
+<a href="#"
+style="
+background:#FFB703;
+color:#000;
+padding:15px 30px;
+text-decoration:none;
+border-radius:8px;
+font-weight:700;
+">
+Download Notification
+</a>
+
+</div>
+
+</div>
