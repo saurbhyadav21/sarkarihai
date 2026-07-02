@@ -326,22 +326,24 @@ text-align:center;
     <style>
         /* MAIN LAYOUT */
 
-        .main-wrapper {
-            width: 1200px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 25px;
-            align-items: start;
-            margin-bottom: 40px;
-        }
+        .main-wrapper{
+    width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:25px;
+    align-items:start;
+}
 
         /* LEFT SIDEBAR */
 
-        .sidebar {
-            position: sticky;
-            top: 20px;
-        }
+        .sidebar{
+    position:sticky;
+    position:-webkit-sticky;
+    top:90px;
+    align-self:start;
+    height:fit-content;
+}
 
         .sidebar-card {
             background: #fff;
