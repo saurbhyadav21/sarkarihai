@@ -565,6 +565,8 @@ class FreeJobAlertHelper
                 $json,
                 $fee
             );
+
+            return $json;
     }
 
     public static function findKey($arr, $keys)
