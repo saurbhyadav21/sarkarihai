@@ -26,3 +26,8 @@ Schedule::call(function () {
         FILE_APPEND
     );
 })->everyMinute();
+
+
+
+Schedule::command('jobs:process-one')
+    ->everyMinute();
