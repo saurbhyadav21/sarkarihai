@@ -1321,3 +1321,417 @@ Download Notification
 </div>
 
 </div>
+
+
+<!-- FAQ -->
+
+<div class="card" id="faq">
+
+<h2>
+Frequently Asked Questions (FAQ)
+</h2>
+
+<div style="
+display:flex;
+flex-direction:column;
+gap:15px;
+">
+
+<details open>
+
+<summary style="
+cursor:pointer;
+font-weight:700;
+padding:15px;
+background:#f8faff;
+border-radius:8px;
+">
+What is the last date to apply?
+</summary>
+
+<p style="
+padding:20px;
+line-height:30px;
+">
+The last date to apply online is
+30 July 2026.
+</p>
+
+</details>
+
+
+<details>
+
+<summary style="
+cursor:pointer;
+font-weight:700;
+padding:15px;
+background:#f8faff;
+border-radius:8px;
+">
+What is the qualification required?
+</summary>
+
+<p style="
+padding:20px;
+line-height:30px;
+">
+Candidates should possess
+Bachelor Degree from a recognized university.
+</p>
+
+</details>
+
+
+<details>
+
+<summary style="
+cursor:pointer;
+font-weight:700;
+padding:15px;
+background:#f8faff;
+border-radius:8px;
+">
+How many vacancies are available?
+</summary>
+
+<p style="
+padding:20px;
+line-height:30px;
+">
+Total vacancies are
+14582 posts.
+</p>
+
+</details>
+
+
+<details>
+
+<summary style="
+cursor:pointer;
+font-weight:700;
+padding:15px;
+background:#f8faff;
+border-radius:8px;
+">
+What is the selection process?
+</summary>
+
+<p style="
+padding:20px;
+line-height:30px;
+">
+Selection will be based on
+Tier-I, Tier-II,
+Document Verification
+and Medical Examination.
+</p>
+
+</details>
+
+</div>
+
+</div>
+
+
+
+<!-- RELATED JOBS -->
+
+<div class="card">
+
+<h2>
+Related Jobs
+</h2>
+
+<table class="job-table">
+
+<tr>
+<td>
+SSC CHSL Recruitment 2026
+</td>
+<td>
+<a href="#">
+View
+</a>
+</td>
+</tr>
+
+<tr>
+<td>
+UPSC Recruitment 2026
+</td>
+<td>
+<a href="#">
+View
+</a>
+</td>
+</tr>
+
+<tr>
+<td>
+Railway Recruitment 2026
+</td>
+<td>
+<a href="#">
+View
+</a>
+</td>
+</tr>
+
+<tr>
+<td>
+Bank PO Recruitment 2026
+</td>
+<td>
+<a href="#">
+View
+</a>
+</td>
+</tr>
+
+</table>
+
+</div>
+
+
+
+<!-- LATEST JOBS -->
+
+<div class="card">
+
+<h2>
+Latest Government Jobs
+</h2>
+
+<ul style="
+padding-left:20px;
+line-height:40px;
+">
+
+<li>
+SSC CGL Recruitment 2026
+</li>
+
+<li>
+IBPS PO Recruitment 2026
+</li>
+
+<li>
+Railway NTPC Recruitment 2026
+</li>
+
+<li>
+UP Police Recruitment 2026
+</li>
+
+<li>
+DRDO Recruitment 2026
+</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- FOOTER -->
+
+<footer style="
+background:#0F3D91;
+margin-top:40px;
+color:#fff;
+">
+
+<div style="
+max-width:1400px;
+margin:auto;
+padding:50px 20px;
+">
+
+<div style="
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:40px;
+">
+
+<div>
+
+<h3>
+SarkariHai
+</h3>
+
+<br>
+
+<p style="
+line-height:28px;
+">
+Latest Government Jobs,
+Admit Card,
+Results,
+Answer Key
+and Recruitment Updates.
+</p>
+
+</div>
+
+
+<div>
+
+<h3>
+Important
+</h3>
+
+<br>
+
+<p>Latest Jobs</p>
+<p>Admit Card</p>
+<p>Results</p>
+<p>Syllabus</p>
+
+</div>
+
+
+<div>
+
+<h3>
+Legal
+</h3>
+
+<br>
+
+<p>About Us</p>
+<p>Contact Us</p>
+<p>Privacy Policy</p>
+<p>Disclaimer</p>
+
+</div>
+
+
+<div>
+
+<h3>
+Support
+</h3>
+
+<br>
+
+<p>FAQ</p>
+<p>DMCA</p>
+<p>Advertise</p>
+<p>Sitemap</p>
+
+</div>
+
+</div>
+
+
+<hr style="
+margin:40px 0;
+border-color:rgba(255,255,255,.2);
+">
+
+
+<div style="
+text-align:center;
+">
+
+© 2026 SarkariHai.com
+All Rights Reserved.
+
+</div>
+
+</div>
+
+</footer>
+
+
+
+<!-- FAQ SCHEMA -->
+
+<script type="application/ld+json">
+
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+
+{
+"@type":"Question",
+"name":"What is the last date to apply?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"The last date to apply is 30 July 2026."
+}
+},
+
+{
+"@type":"Question",
+"name":"What is the qualification?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"Bachelor Degree."
+}
+},
+
+{
+"@type":"Question",
+"name":"How many vacancies are available?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"14582 vacancies."
+}
+}
+
+]
+
+}
+
+</script>
+
+
+
+<!-- BREADCRUMB SCHEMA -->
+
+<script type="application/ld+json">
+
+{
+"@context":"https://schema.org",
+"@type":"BreadcrumbList",
+"itemListElement":[
+
+{
+"@type":"ListItem",
+"position":1,
+"name":"Home",
+"item":"https://sarkarihai.com"
+},
+
+{
+"@type":"ListItem",
+"position":2,
+"name":"Latest Jobs",
+"item":"https://sarkarihai.com/jobs"
+},
+
+{
+"@type":"ListItem",
+"position":3,
+"name":"SSC CGL Recruitment 2026"
+}
+
+]
+}
+
+</script>
+
+
+
+</body>
+
+</html>
