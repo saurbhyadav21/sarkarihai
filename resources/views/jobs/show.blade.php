@@ -1652,83 +1652,12 @@ All Rights Reserved.
 
 
 
-<!-- FAQ SCHEMA -->
-
-<script type="application/ld+json">
-
-{
-"@context":"https://schema.org",
-"@type":"FAQPage",
-"mainEntity":[
-
-{
-"@type":"Question",
-"name":"What is the last date to apply?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"The last date to apply is 30 July 2026."
-}
-},
-
-{
-"@type":"Question",
-"name":"What is the qualification?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"Bachelor Degree."
-}
-},
-
-{
-"@type":"Question",
-"name":"How many vacancies are available?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"14582 vacancies."
-}
-}
-
-]
-
-}
-
-</script>
 
 
 
 <!-- BREADCRUMB SCHEMA -->
 
-<script type="application/ld+json">
 
-{
-"@context":"https://schema.org",
-"@type":"BreadcrumbList",
-"itemListElement":[
-
-{
-"@type":"ListItem",
-"position":1,
-"name":"Home",
-"item":"https://sarkarihai.com"
-},
-
-{
-"@type":"ListItem",
-"position":2,
-"name":"Latest Jobs",
-"item":"https://sarkarihai.com/jobs"
-},
-
-{
-"@type":"ListItem",
-"position":3,
-"name":"SSC CGL Recruitment 2026"
-}
-
-]
-}
-
-</script>
 
 
 
