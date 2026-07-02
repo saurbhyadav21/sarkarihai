@@ -542,45 +542,45 @@ class FreeJobAlertHelper
         $json['important_links']
             =
             $json['link'];
-$json['instruction']
-    =
-    self::defaultInstructions();
+        $json['instruction']
+            =
+            self::defaultInstructions();
 
 
-    $json['is_walkin']
-    =
-    stripos(
-        $json['title'],
-        'walk'
-    )!==false;
+        $json['is_walkin']
+            =
+            stripos(
+                $json['title'],
+                'walk'
+            ) !== false;
 
-$json['is_contractual']
-    =
-    stripos(
-        $json['job_type'],
-        'contract'
-    )!==false;
+        $json['is_contractual']
+            =
+            stripos(
+                $json['job_type'],
+                'contract'
+            ) !== false;
 
-$json['is_apprentice']
-    =
-    stripos(
-        $json['title'],
-        'apprentice'
-    )!==false;
+        $json['is_apprentice']
+            =
+            stripos(
+                $json['title'],
+                'apprentice'
+            ) !== false;
 
-$json['is_interview_only']
-    =
-    stripos(
-        $json['Mode_Of_Selection'],
-        'Interview'
-    )!==false
-    &&
-    stripos(
-        $json['Mode_Of_Selection'],
-        'Exam'
-    )===false;
+        $json['is_interview_only']
+            =
+            stripos(
+                $json['Mode_Of_Selection'],
+                'Interview'
+            ) !== false
+            &&
+            stripos(
+                $json['Mode_Of_Selection'],
+                'Exam'
+            ) === false;
 
-    
+
 
         $json['important_dates']
             =
@@ -642,9 +642,9 @@ $json['is_interview_only']
                 . '#';
         }
 
-$json['doc']
-    =
-    self::defaultDocuments();
+        $json['doc']
+            =
+            self::defaultDocuments();
 
 
 
@@ -1069,14 +1069,14 @@ $json['doc']
 
 
     public static function defaultInstructions()
-{
-    return
-        'Read official notification carefully before applying.#'
-        .'Keep photograph and signature ready.#'
-        .'Fill application form carefully.#'
-        .'Upload required documents.#'
-        .'Pay application fee if applicable.#'
-        .'Verify all details before final submit.#'
-        .'Take printout of submitted application.#';
-}
+    {
+        return
+            'Read official notification carefully before applying.#'
+            . 'Keep photograph and signature ready.#'
+            . 'Fill application form carefully.#'
+            . 'Upload required documents.#'
+            . 'Pay application fee if applicable.#'
+            . 'Verify all details before final submit.#'
+            . 'Take printout of submitted application.#';
+    }
 }
