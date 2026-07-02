@@ -648,3 +648,310 @@ Download Notification
 </table>
 
 </div>
+
+
+<!-- VACANCY DETAILS -->
+
+<div class="card" id="vacancy">
+
+<h2>Vacancy Details</h2>
+
+<table class="job-table">
+
+<tr>
+<td class="highlight">Assistant Section Officer</td>
+<td>4521</td>
+</tr>
+
+<tr>
+<td class="highlight">Inspector</td>
+<td>3862</td>
+</tr>
+
+<tr>
+<td class="highlight">Auditor</td>
+<td>6199</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<!-- CATEGORY WISE VACANCY -->
+
+<div class="card">
+
+<h2>Category Wise Vacancy</h2>
+
+<table class="job-table">
+
+<tr>
+<td class="highlight">General</td>
+<td>6200</td>
+</tr>
+
+<tr>
+<td class="highlight">EWS</td>
+<td>1458</td>
+</tr>
+
+<tr>
+<td class="highlight">OBC</td>
+<td>3924</td>
+</tr>
+
+<tr>
+<td class="highlight">SC</td>
+<td>2100</td>
+</tr>
+
+<tr>
+<td class="highlight">ST</td>
+<td>900</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<!-- ELIGIBILITY -->
+
+<div class="card" id="eligibility">
+
+<h2>Educational Qualification</h2>
+
+<p style="line-height:30px;">
+
+Candidates should possess a
+<strong>Bachelor Degree</strong>
+from any recognized university
+in India.
+
+</p>
+
+<br>
+
+<table class="job-table">
+
+<tr>
+<td class="highlight">
+Assistant Section Officer
+</td>
+<td>
+Bachelor Degree
+</td>
+</tr>
+
+<tr>
+<td class="highlight">
+Inspector
+</td>
+<td>
+Bachelor Degree
+</td>
+</tr>
+
+<tr>
+<td class="highlight">
+Auditor
+</td>
+<td>
+Bachelor Degree
+</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<!-- EXPERIENCE -->
+
+<div class="card">
+
+<h2>Experience Required</h2>
+
+<table class="job-table">
+
+<tr>
+<td class="highlight">
+Experience
+</td>
+
+<td>
+Freshers Eligible
+</td>
+</tr>
+
+<tr>
+<td class="highlight">
+Minimum Experience
+</td>
+
+<td>
+0 Years
+</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<!-- SELECTION PROCESS -->
+
+<div class="card" id="selection">
+
+<h2>Selection Process</h2>
+
+<div style="
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+">
+
+<div style="
+padding:20px;
+background:#f8faff;
+border-radius:10px;
+border:1px solid #e5e7eb;
+">
+
+<h3 style="color:#0F3D91">
+01
+</h3>
+
+<p>
+Tier-I Examination
+</p>
+
+</div>
+
+
+<div style="
+padding:20px;
+background:#f8faff;
+border-radius:10px;
+border:1px solid #e5e7eb;
+">
+
+<h3 style="color:#0F3D91">
+02
+</h3>
+
+<p>
+Tier-II Examination
+</p>
+
+</div>
+
+
+<div style="
+padding:20px;
+background:#f8faff;
+border-radius:10px;
+border:1px solid #e5e7eb;
+">
+
+<h3 style="color:#0F3D91">
+03
+</h3>
+
+<p>
+Document Verification
+</p>
+
+</div>
+
+
+<div style="
+padding:20px;
+background:#f8faff;
+border-radius:10px;
+border:1px solid #e5e7eb;
+">
+
+<h3 style="color:#0F3D91">
+04
+</h3>
+
+<p>
+Medical Examination
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SALARY -->
+
+<div class="card" id="salary">
+
+<h2>Salary Details</h2>
+
+<table class="job-table">
+
+<tr>
+<td class="highlight">
+Pay Scale
+</td>
+
+<td>
+₹35,400 - ₹1,12,400
+</td>
+</tr>
+
+<tr>
+<td class="highlight">
+Pay Level
+</td>
+
+<td>
+Level-6
+</td>
+</tr>
+
+<tr>
+<td class="highlight">
+Grade Pay
+</td>
+
+<td>
+As Per Rules
+</td>
+</tr>
+
+<tr>
+<td class="highlight">
+Allowances
+</td>
+
+<td>
+DA + HRA + TA + Other Benefits
+</td>
+</tr>
+
+</table>
+
+<br>
+
+<div style="
+background:#e7efff;
+padding:20px;
+border-radius:10px;
+">
+
+<b>
+Monthly In-Hand Salary:
+</b>
+
+₹55,000 to ₹75,000 Approx.
+
+</div>
+
+</div>
