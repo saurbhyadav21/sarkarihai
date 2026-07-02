@@ -110,141 +110,394 @@ class FreeJobAlertHelper
 
         $json = [];
 
-        $json['title'] =
-            $raw['title'] ?? '';
+        // $json['title'] =
+        //     $raw['title'] ?? '';
 
-        $json['state'] =
-            self::getState(
-                $raw['company name'] ?? ''
-            );
+        // $json['state'] =
+        //     self::getState(
+        //         $raw['company name'] ?? ''
+        //     );
 
-        if (!$json['state']) {
-            $json['state'] =
-                self::findKey($raw, [
-                    'job location',
-                    'location',
-                    'state',
-                    'place of posting'
-                ]);
-        }
+        // if (!$json['state']) {
+        //     $json['state'] =
+        //         self::findKey($raw, [
+        //             'job location',
+        //             'location',
+        //             'state',
+        //             'place of posting'
+        //         ]);
+        // }
 
-        if (!$json['state']) {
-            $json['state'] = 'All India';
-        }
+        // if (!$json['state']) {
+        //     $json['state'] = 'All India';
+        // }
 
-        $json['start_date'] =
-            self::formatDate($start);
+        // $json['start_date'] =
+        //     self::formatDate($start);
 
-        $json['last_date'] =
-            self::formatDate($last);
+        // $json['last_date'] =
+        //     self::formatDate($last);
 
-        $salary =
-            $raw['salary'] ?? '';
+        // $salary =
+        //     $raw['salary'] ?? '';
 
-        $json['salary_min'] =
-            self::getSalaryMin($salary);
+        // $json['salary_min'] =
+        //     self::getSalaryMin($salary);
 
-        $json['salary_max'] =
-            self::getSalaryMax($salary);
+        // $json['salary_max'] =
+        //     self::getSalaryMax($salary);
 
-        $age =
-            $raw['age limit'] ?? '';
+        // $age =
+        //     $raw['age limit'] ?? '';
 
-        $json['age_min'] =
-            self::getAgeMin($age);
+        // $json['age_min'] =
+        //     self::getAgeMin($age);
 
-        $json['age_max'] =
-            self::getAgeMax($age);
+        // $json['age_max'] =
+        //     self::getAgeMax($age);
 
-        $json['qualification'] =
-            $raw['qualification'] ?? '';
+        // $json['qualification'] =
+        //     $raw['qualification'] ?? '';
 
-        $json['total_vacancy'] =
-            $raw['no of posts'] ?? '';
+        // $json['total_vacancy'] =
+        //     $raw['no of posts'] ?? '';
 
-        $json['official_website'] =
-            $raw['official website_url'] ?? '';
+        // $json['official_website'] =
+        //     $raw['official website_url'] ?? '';
 
-        $json['sector'] =
+        // $json['sector'] =
+        //     self::detectSector(
+        //         $raw['company name'] ?? ''
+        //     );
+
+        // $json['department'] =
+        //     $raw['company name'] ?? '';
+
+        // $json['last_fee_date'] = '';
+        // $json['correction_date'] = '';
+
+        // $json['genral_fees'] = '';
+        // $json['obc_fees'] = '';
+        // $json['sc_fees'] = '';
+        // $json['st_fees'] = '';
+
+        // $json['extra_charge'] = '';
+
+        // $json['max_age_genral'] =
+        //     $json['age_max'];
+
+        // $json['max_age_obc'] = '';
+        // $json['max_age_sc_st'] = '';
+        // $json['max_age_female'] = '';
+
+        // $json['relaxation'] = '';
+
+        // $post =
+        //     $raw['post name'] ?? '';
+
+        // $vacancy =
+        //     $raw['no of posts'] ?? '';
+
+        // $json['genral_post'] =
+        //     $post . '$' . $vacancy;
+
+        // $json['ews_post'] = '';
+        // $json['obc_post'] = '';
+        // $json['sc_post'] = '';
+        // $json['st_post'] = '';
+
+        // $json['Mode_Of_Selection'] = '';
+
+        // $json['post_name'] =
+        //     $post;
+
+        // $json['post_eligibility'] =
+        //     $json['qualification'];
+
+        // $json['post_salary'] =
+        //     $salary;
+
+        // $json['instruction'] = '';
+
+        // $json['link'] = '';
+
+        // if (isset($raw['official website_url'])) {
+        //     $json['link'] .=
+        //         'Official Website$'
+        //         . $raw['official website_url']
+        //         . '#';
+        // }
+
+        // if (isset($raw['apply online_url'])) {
+        //     $json['link'] .=
+        //         'Apply Online$'
+        //         . $raw['apply online_url']
+        //         . '#';
+        // }
+
+        // if (isset($raw['official notification pdf_url'])) {
+        //     $json['link'] .=
+        //         'Notification PDF$'
+        //         . $raw['official notification pdf_url']
+        //         . '#';
+        // }
+
+        // $json['doc'] = '';
+
+        // return $json;
+
+        $json = [
+
+            'title' => $raw['title'] ?? '',
+
+            'slug' => strtolower(
+                trim(
+                    preg_replace(
+                        '/[^a-z0-9]+/i',
+                        '-',
+                        $raw['title'] ?? ''
+                    ),
+                    '-'
+                )
+            ),
+
+            'year' => date('Y'),
+
+            'organization' =>
+            $raw['company name']
+                ?? '',
+
+            'department' =>
+            $raw['company name']
+                ?? '',
+
+            'sector' =>
             self::detectSector(
-                $raw['company name'] ?? ''
-            );
+                $raw['company name']
+                    ?? ''
+            ),
 
-        $json['department'] =
-            $raw['company name'] ?? '';
+            'sub_sector' => '',
 
-        $json['last_fee_date'] = '';
-        $json['correction_date'] = '';
+            'state' =>
+            self::getState(
+                $raw['company name']
+                    ?? ''
+            ),
 
-        $json['genral_fees'] = '';
-        $json['obc_fees'] = '';
-        $json['sc_fees'] = '';
-        $json['st_fees'] = '';
+            'job_location' => '',
 
-        $json['extra_charge'] = '';
+            'job_location_type' =>
+            'Pan India',
 
-        $json['max_age_genral'] =
-            $json['age_max'];
+            'job_type' =>
+            $raw['job type']
+                ?? '',
 
-        $json['max_age_obc'] = '';
-        $json['max_age_sc_st'] = '';
-        $json['max_age_female'] = '';
+            'employment_type' =>
+            'Regular',
 
-        $json['relaxation'] = '';
+            'notification_date' =>
+            self::formatDate(
+                self::findKey(
+                    $raw,
+                    [
+                        'notification date',
+                        'notification release date'
+                    ]
+                )
+            ),
 
-        $post =
-            $raw['post name'] ?? '';
+            'start_date' =>
+            self::formatDate(
+                $start
+            ),
 
-        $vacancy =
-            $raw['no of posts'] ?? '';
+            'last_date' =>
+            self::formatDate(
+                $last
+            ),
 
-        $json['genral_post'] =
-            $post . '$' . $vacancy;
+            'last_fee_date' => '',
+            'correction_date' => '',
+            'exam_date' => '',
+            'admit_card_date' => '',
+            'result_date' => '',
+            'interview_date' => '',
+            'walkin_date' => '',
 
-        $json['ews_post'] = '';
-        $json['obc_post'] = '';
-        $json['sc_post'] = '';
-        $json['st_post'] = '';
+            'total_vacancy' =>
+            $raw['no of posts']
+                ?? '',
 
-        $json['Mode_Of_Selection'] = '';
+            'salary_min' =>
+            self::getSalaryMin(
+                $raw['salary']
+                    ?? ''
+            ),
 
-        $json['post_name'] =
-            $post;
+            'salary_max' =>
+            self::getSalaryMax(
+                $raw['salary']
+                    ?? ''
+            ),
 
-        $json['post_eligibility'] =
-            $json['qualification'];
+            'salary_text' =>
+            $raw['salary']
+                ?? '',
 
-        $json['post_salary'] =
-            $salary;
+            'pay_level' => '',
 
-        $json['instruction'] = '';
+            'age_min' =>
+            self::getAgeMin(
+                $raw['age limit']
+                    ?? ''
+            ),
 
-        $json['link'] = '';
+            'age_max' =>
+            self::getAgeMax(
+                $raw['age limit']
+                    ?? ''
+            ),
 
-        if (isset($raw['official website_url'])) {
-            $json['link'] .=
-                'Official Website$'
-                . $raw['official website_url']
-                . '#';
-        }
+            'max_age_genral' =>
+            self::getAgeMax(
+                $raw['age limit']
+                    ?? ''
+            ),
 
-        if (isset($raw['apply online_url'])) {
-            $json['link'] .=
-                'Apply Online$'
-                . $raw['apply online_url']
-                . '#';
-        }
+            'max_age_obc' => '',
+            'max_age_sc_st' => '',
+            'max_age_female' => '',
 
-        if (isset($raw['official notification pdf_url'])) {
-            $json['link'] .=
-                'Notification PDF$'
-                . $raw['official notification pdf_url']
-                . '#';
-        }
+            'relaxation' => '',
 
-        $json['doc'] = '';
+            'qualification' =>
+            $raw['qualification']
+                ?? '',
 
-        return $json;
+            'experience' =>
+            'Fresher Eligible',
+
+            'experience_years' => 0,
+
+            'genral_fees' => '',
+            'ews_fees' => '',
+            'obc_fees' => '',
+            'sc_fees' => '',
+            'st_fees' => '',
+            'ph_fees' => '',
+            'female_fees' => '',
+            'extra_charge' => '',
+
+            'apply_mode' =>
+            $raw['apply mode']
+                ?? '',
+
+            'Mode_Of_Selection' => '',
+
+            'genral_post' => ($raw['post name'] ?? '')
+                . '$'
+                . ($raw['no of posts'] ?? '')
+                . '#',
+
+            'ews_post' => '',
+            'obc_post' => '',
+            'sc_post' => '',
+            'st_post' => '',
+
+            'post_name' => ($raw['post name']
+                ?? '')
+                . '#',
+
+            'post_eligibility' => ($raw['qualification']
+                ?? '')
+                . '#',
+
+            'post_salary' => ($raw['salary']
+                ?? '')
+                . '#',
+
+            'post_age_limit' => (
+                self::getAgeMin(
+                    $raw['age limit']
+                        ?? ''
+                )
+            )
+                . '-'
+                .
+                (
+                    self::getAgeMax(
+                        $raw['age limit']
+                            ?? ''
+                    )
+                )
+                . ' Years#',
+
+            'post_experience' =>
+            'Fresher#',
+
+            'application_process' =>
+            '',
+
+            'instruction' => '',
+
+            'doc' => '',
+
+            'advt_no' =>
+            $raw['advt no']
+                ?? '',
+
+            'notification_number' =>
+            $raw['advt no']
+                ?? '',
+
+            'official_website' =>
+            $raw['official website_url']
+                ?? '',
+
+            'official_notification_pdf' =>
+            $raw['official notification pdf_url']
+                ?? '',
+
+            'apply_online_link' =>
+            $raw['apply online_url']
+                ?? '',
+
+            'answer_key_link' => '',
+            'admit_card_link' => '',
+            'result_link' => '',
+
+            'link' => '',
+
+            'reservation' => '',
+
+            'important_dates' => '',
+
+            'important_links' => '',
+
+            'is_interview_only' => false,
+
+            'is_exam_required' => true,
+
+            'is_walkin' => false,
+
+            'is_contractual' => false,
+
+            'is_apprentice' => false,
+
+            'status' => 'Active',
+
+            'source' => 'FreeJobAlert',
+
+            'source_url' => $url,
+
+            'created_at' =>
+            date('Y-m-d H:i:s'),
+
+            'updated_at' =>
+            date('Y-m-d H:i:s'),
+        ];
     }
 
     public static function findKey($arr, $keys)
