@@ -518,8 +518,8 @@
 
                         <div class="job-meta">
                             <span style="color: green; font-weight:600;">
-                                ₹{{ number_format($job->min_salary ?? 0) }} -
-                                ₹{{ number_format($job->max_salary ?? 0) }}
+                                {{-- ₹{{ number_format($job->min_salary ?? 0) }} -
+                                ₹{{ number_format($job->max_salary ?? 0) }} --}}
                             </span>
                             |
                             <span class="hide-mobile" style="color: green; font-weight:600;">
