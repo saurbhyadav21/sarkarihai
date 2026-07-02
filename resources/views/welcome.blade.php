@@ -792,8 +792,8 @@
                             </div>
                             <span class="statejob-meta">
                                 ({{ $jobx->min_qulification ?? '' }} |
-                                ₹{{ number_format($jobx->min_salary ?? 0) }} -
-                                ₹{{ number_format($jobx->max_salary ?? 0) }} |
+                                {{-- ₹{{ number_format($jobx->min_salary ?? 0) }} -
+                                ₹{{ number_format($jobx->max_salary ?? 0) }} | --}}
                                 <span style="color: {{ $color }}">
                                     {{ $endDate->format('d M Y') }}
                                 </span>)
