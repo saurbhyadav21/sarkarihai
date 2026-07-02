@@ -578,7 +578,39 @@ class FreeJobAlertHelper
         implode(' ', $raw)
     );
 
+$json['important_dates']='';
 
+if($json['notification_date'])
+{
+    $json['important_dates']
+    .=
+    'Notification Date$'
+    .$json['notification_date']
+    .'#';
+}
+
+if($json['start_date'])
+{
+    $json['important_dates']
+    .=
+    'Apply Start Date$'
+    .$json['start_date']
+    .'#';
+}
+
+if($json['last_date'])
+{
+    $json['important_dates']
+    .=
+    'Last Date$'
+    .$json['last_date']
+    .'#';
+}
+
+
+$json['important_links']
+    =
+    $json['link'];
 
         $json =
             array_merge(
