@@ -559,7 +559,11 @@ class FreeJobAlertHelper
             self::parseFees(
                 implode(' ', $raw)
             );
-
+    $json['reservation']
+    =
+    self::parseReservation(
+        implode(' ', $raw)
+    );
         $json =
             array_merge(
                 $json,
