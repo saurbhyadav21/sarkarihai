@@ -3,1299 +3,1284 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>
-SSC CGL Recruitment 2026 Apply Online For 14582 Posts
-</title>
+    <title>
+        SSC CGL Recruitment 2026 Apply Online For 14582 Posts
+    </title>
 
-<meta name="description"
-content="SSC CGL Recruitment 2026 Notification Released. Apply Online, Eligibility, Age Limit, Salary, Vacancy Details, Important Dates and Official Notification PDF.">
+    <meta name="description"
+        content="SSC CGL Recruitment 2026 Notification Released. Apply Online, Eligibility, Age Limit, Salary, Vacancy Details, Important Dates and Official Notification PDF.">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-html{
-    scroll-behavior:smooth;
-}
+        body {
+            background: #f5f7fb;
+            font-family: Inter, sans-serif;
+            color: #222;
+        }
 
-body{
-    background:#f5f7fb;
-    font-family:Inter,sans-serif;
-    color:#222;
-}
+        /* HEADER */
 
-/* HEADER */
+        .header {
+            background: #0F3D91;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+        }
 
-.header{
-    background:#0F3D91;
-    color:#fff;
-    position:sticky;
-    top:0;
-    z-index:999;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
-}
+        .header-wrap {
+            max-width: 1400px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+        }
 
-.header-wrap{
-    max-width:1400px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:15px;
-}
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+        }
 
-.logo{
-    font-size:26px;
-    font-weight:700;
-}
+        .logo span {
+            color: #FFB703;
+        }
 
-.logo span{
-    color:#FFB703;
-}
+        .menu {
+            display: flex;
+            gap: 25px;
+        }
 
-.menu{
-    display:flex;
-    gap:25px;
-}
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+        }
 
-.menu a{
-    color:#fff;
-    text-decoration:none;
-    font-size:15px;
-}
+        .search {
+            background: #fff;
+            padding: 8px;
+            border-radius: 6px;
+        }
 
-.search{
-    background:#fff;
-    padding:8px;
-    border-radius:6px;
-}
+        .search input {
+            border: none;
+            outline: none;
+            width: 220px;
+        }
 
-.search input{
-    border:none;
-    outline:none;
-    width:220px;
-}
+        /* CONTAINER */
 
-/* CONTAINER */
+        .container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 20px;
+        }
 
-.container{
-    max-width:1400px;
-    margin:auto;
-    padding:20px;
-}
+        /* HERO */
 
-/* HERO */
+        .hero {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+            margin-bottom: 25px;
+        }
 
-.hero{
-    background:#fff;
-    border-radius:10px;
-    padding:30px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-    margin-bottom:25px;
-}
+        .hero h1 {
+            color: #0F3D91;
+            font-size: 32px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
 
-.hero h1{
-    color:#0F3D91;
-    font-size:32px;
-    line-height:1.4;
-    margin-bottom:20px;
-}
+        .badges {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
 
-.badges{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-    margin-bottom:25px;
-}
+        .badge {
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+        }
 
-.badge{
-    padding:10px 18px;
-    border-radius:30px;
-    font-size:14px;
-    font-weight:600;
-}
+        .red {
+            background: #ffe5e5;
+            color: #d90429;
+        }
 
-.red{
-    background:#ffe5e5;
-    color:#d90429;
-}
+        .green {
+            background: #e6fff2;
+            color: #0E9F6E;
+        }
 
-.green{
-    background:#e6fff2;
-    color:#0E9F6E;
-}
+        .yellow {
+            background: #fff4d6;
+            color: #b7791f;
+        }
 
-.yellow{
-    background:#fff4d6;
-    color:#b7791f;
-}
+        .blue {
+            background: #e7efff;
+            color: #0F3D91;
+        }
 
-.blue{
-    background:#e7efff;
-    color:#0F3D91;
-}
+        .action-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-.action-btns{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-}
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
 
-.btn{
-    padding:14px 28px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:600;
-}
+        .apply {
+            background: #0F3D91;
+            color: #fff;
+        }
 
-.apply{
-    background:#0F3D91;
-    color:#fff;
-}
+        .notification {
+            background: #FFB703;
+            color: #000;
+        }
 
-.notification{
-    background:#FFB703;
-    color:#000;
-}
+        /* QUICK CARDS */
 
-/* QUICK CARDS */
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
 
-.quick-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-    margin-top:30px;
-}
+        .quick-card {
+            background: #f8faff;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
 
-.quick-card{
-    background:#f8faff;
-    border:1px solid #e5e7eb;
-    border-radius:10px;
-    padding:20px;
-    text-align:center;
-}
+        .quick-card h4 {
+            color: #777;
+            font-size: 14px;
+        }
 
-.quick-card h4{
-    color:#777;
-    font-size:14px;
-}
+        .quick-card p {
+            margin-top: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F3D91;
+        }
 
-.quick-card p{
-    margin-top:10px;
-    font-size:20px;
-    font-weight:700;
-    color:#0F3D91;
-}
+        @media(max-width:900px) {
 
-@media(max-width:900px){
+            .menu {
+                display: none;
+            }
 
-.menu{
-    display:none;
-}
+            .quick-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
-.quick-grid{
-    grid-template-columns:repeat(2,1fr);
-}
-
-}
-
-</style>
+        }
+    </style>
 
 </head>
 
 <body>
 
-<!-- HEADER -->
+    <!-- HEADER -->
 
-<header class="header">
+    <header class="header">
 
-<div class="header-wrap">
+        <div class="container">
 
-<div class="logo">
-Sarkari<span>Hai</span>
-</div>
+            <div class="logo">
+                Sarkari Hai
+            </div>
 
-<nav class="menu">
+            <nav>
 
-<a href="#">Latest Jobs</a>
+                <a href="/">Home</a>
+                <a href="/jobs">Jobs</a>
+                <a href="/admit-card">Admit Card</a>
+                <a href="/result">Results</a>
+                <a href="/state-wise">State Wise</a>
+                <a href="/news">News</a>
 
-<a href="#">Admit Card</a>
+                <a class="btn-search">
+                    Search Jobs
+                </a>
 
-<a href="#">Results</a>
+            </nav>
 
-<a href="#">Answer Key</a>
+        </div>
 
-<a href="#">Syllabus</a>
+    </header>
 
-</nav>
 
-<div class="search">
+    <div class="container">
 
-<input
-type="text"
-placeholder="Search jobs...">
+        <!-- HERO -->
 
-</div>
+        <section class="hero">
 
-</div>
+            <h1>
+                SSC CGL Recruitment 2026 Apply Online For 14582 Posts
+            </h1>
 
-</header>
+            <div class="badges">
 
+                <div class="badge red">
+                    Last Date : 30 July 2026
+                </div>
 
-<div class="container">
+                <div class="badge green">
+                    14582 Vacancy
+                </div>
 
-<!-- HERO -->
+                <div class="badge yellow">
+                    Salary ₹35400-112400
+                </div>
 
-<section class="hero">
+                <div class="badge blue">
+                    All India Job
+                </div>
 
-<h1>
-SSC CGL Recruitment 2026 Apply Online For 14582 Posts
-</h1>
+            </div>
 
-<div class="badges">
+            <div class="action-btns">
 
-<div class="badge red">
-Last Date : 30 July 2026
-</div>
+                <a href="#" class="btn apply">
+                    Apply Online
+                </a>
 
-<div class="badge green">
-14582 Vacancy
-</div>
+                <a href="#" class="btn notification">
+                    Download Notification
+                </a>
 
-<div class="badge yellow">
-Salary ₹35400-112400
-</div>
+            </div>
 
-<div class="badge blue">
-All India Job
-</div>
+            <div class="quick-grid">
 
-</div>
+                <div class="quick-card">
+                    <h4>Organization</h4>
+                    <p>SSC</p>
+                </div>
 
-<div class="action-btns">
+                <div class="quick-card">
+                    <h4>Qualification</h4>
+                    <p>Graduate</p>
+                </div>
 
-<a href="#" class="btn apply">
-Apply Online
-</a>
+                <div class="quick-card">
+                    <h4>Job Type</h4>
+                    <p>Permanent</p>
+                </div>
 
-<a href="#" class="btn notification">
-Download Notification
-</a>
+                <div class="quick-card">
+                    <h4>Selection</h4>
+                    <p>CBT + DV</p>
+                </div>
 
-</div>
+            </div>
 
-<div class="quick-grid">
+        </section>
 
-<div class="quick-card">
-<h4>Organization</h4>
-<p>SSC</p>
-</div>
+        <style>
+            /* MAIN LAYOUT */
 
-<div class="quick-card">
-<h4>Qualification</h4>
-<p>Graduate</p>
-</div>
+            .page-layout {
+                display: flex;
+                gap: 25px;
+                align-items: flex-start;
+            }
+
+            /* LEFT TOC */
 
-<div class="quick-card">
-<h4>Job Type</h4>
-<p>Permanent</p>
-</div>
+            .toc {
+                width: 280px;
+                position: sticky;
+                top: 90px;
+            }
 
-<div class="quick-card">
-<h4>Selection</h4>
-<p>CBT + DV</p>
-</div>
+            .toc-card {
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+                padding: 20px;
+            }
 
-</div>
-
-</section>
-
-<style>
-
-/* MAIN LAYOUT */
-
-.page-layout{
-    display:flex;
-    gap:25px;
-    align-items:flex-start;
-}
+            .toc-card h3 {
+                color: #0F3D91;
+                margin-bottom: 15px;
+            }
 
-/* LEFT TOC */
+            .toc-card ul {
+                list-style: none;
+            }
 
-.toc{
-    width:280px;
-    position:sticky;
-    top:90px;
-}
+            .toc-card li {
+                margin: 12px 0;
+            }
 
-.toc-card{
-    background:#fff;
-    border-radius:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-    padding:20px;
-}
+            .toc-card a {
+                text-decoration: none;
+                color: #444;
+                font-size: 15px;
+            }
 
-.toc-card h3{
-    color:#0F3D91;
-    margin-bottom:15px;
-}
+            .toc-card a:hover {
+                color: #0F3D91;
+            }
 
-.toc-card ul{
-    list-style:none;
-}
+            /* CONTENT */
 
-.toc-card li{
-    margin:12px 0;
-}
+            .main-content {
+                flex: 1;
+            }
 
-.toc-card a{
-    text-decoration:none;
-    color:#444;
-    font-size:15px;
-}
+            .card {
+                background: #fff;
+                padding: 25px;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+                margin-bottom: 25px;
+            }
 
-.toc-card a:hover{
-    color:#0F3D91;
-}
+            .card h2 {
+                color: #0F3D91;
+                margin-bottom: 20px;
+                border-left: 5px solid #FFB703;
+                padding-left: 12px;
+            }
 
-/* CONTENT */
+            .job-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
 
-.main-content{
-    flex:1;
-}
+            .job-table td {
+                border: 1px solid #e5e7eb;
+                padding: 14px;
+            }
 
-.card{
-    background:#fff;
-    padding:25px;
-    border-radius:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-    margin-bottom:25px;
-}
+            .job-table tr:nth-child(even) {
+                background: #f8faff;
+            }
 
-.card h2{
-    color:#0F3D91;
-    margin-bottom:20px;
-    border-left:5px solid #FFB703;
-    padding-left:12px;
-}
+            .highlight {
+                font-weight: 600;
+                width: 35%;
+            }
 
-.job-table{
-    width:100%;
-    border-collapse:collapse;
-}
+            @media(max-width:900px) {
 
-.job-table td{
-    border:1px solid #e5e7eb;
-    padding:14px;
-}
+                .page-layout {
+                    flex-direction: column;
+                }
 
-.job-table tr:nth-child(even){
-    background:#f8faff;
-}
+                .toc {
+                    width: 100%;
+                    position: relative;
+                    top: 0;
+                }
 
-.highlight{
-    font-weight:600;
-    width:35%;
-}
+            }
+        </style>
 
-@media(max-width:900px){
 
-.page-layout{
-    flex-direction:column;
-}
+        <div class="page-layout">
 
-.toc{
-    width:100%;
-    position:relative;
-    top:0;
-}
 
-}
+            <!-- LEFT SIDEBAR -->
 
-</style>
+            <div class="toc">
 
+                <div class="toc-card">
 
-<div class="page-layout">
+                    <h3>📋 Table Of Contents</h3>
 
+                    <ul>
 
-<!-- LEFT SIDEBAR -->
+                        <li><a href="#overview">Overview</a></li>
 
-<div class="toc">
+                        <li><a href="#dates">Important Dates</a></li>
 
-<div class="toc-card">
+                        <li><a href="#fees">Application Fee</a></li>
 
-<h3>📋 Table Of Contents</h3>
+                        <li><a href="#age">Age Limit</a></li>
 
-<ul>
+                        <li><a href="#vacancy">Vacancy Details</a></li>
 
-<li><a href="#overview">Overview</a></li>
+                        <li><a href="#eligibility">Eligibility</a></li>
 
-<li><a href="#dates">Important Dates</a></li>
+                        <li><a href="#selection">Selection Process</a></li>
 
-<li><a href="#fees">Application Fee</a></li>
+                        <li><a href="#salary">Salary</a></li>
 
-<li><a href="#age">Age Limit</a></li>
+                        <li><a href="#documents">Documents</a></li>
 
-<li><a href="#vacancy">Vacancy Details</a></li>
+                        <li><a href="#apply">How To Apply</a></li>
 
-<li><a href="#eligibility">Eligibility</a></li>
+                        <li><a href="#links">Important Links</a></li>
 
-<li><a href="#selection">Selection Process</a></li>
+                        <li><a href="#faq">FAQs</a></li>
 
-<li><a href="#salary">Salary</a></li>
+                    </ul>
 
-<li><a href="#documents">Documents</a></li>
+                </div>
 
-<li><a href="#apply">How To Apply</a></li>
+            </div>
 
-<li><a href="#links">Important Links</a></li>
 
-<li><a href="#faq">FAQs</a></li>
+            <!-- RIGHT CONTENT -->
 
-</ul>
+            <div class="main-content">
 
-</div>
 
-</div>
+                <!-- OVERVIEW -->
 
+                <div class="card" id="overview">
 
-<!-- RIGHT CONTENT -->
+                    <h2>Job Overview</h2>
 
-<div class="main-content">
+                    <table class="job-table">
 
+                        <tr>
+                            <td class="highlight">Organization</td>
+                            <td>Staff Selection Commission</td>
+                        </tr>
 
-<!-- OVERVIEW -->
+                        <tr>
+                            <td class="highlight">Department</td>
+                            <td>SSC</td>
+                        </tr>
 
-<div class="card" id="overview">
+                        <tr>
+                            <td class="highlight">Post Name</td>
+                            <td>Combined Graduate Level</td>
+                        </tr>
 
-<h2>Job Overview</h2>
+                        <tr>
+                            <td class="highlight">Total Vacancy</td>
+                            <td>14582</td>
+                        </tr>
 
-<table class="job-table">
+                        <tr>
+                            <td class="highlight">Job Location</td>
+                            <td>All India</td>
+                        </tr>
 
-<tr>
-<td class="highlight">Organization</td>
-<td>Staff Selection Commission</td>
-</tr>
+                        <tr>
+                            <td class="highlight">Apply Mode</td>
+                            <td>Online</td>
+                        </tr>
 
-<tr>
-<td class="highlight">Department</td>
-<td>SSC</td>
-</tr>
+                        <tr>
+                            <td class="highlight">Job Type</td>
+                            <td>Permanent</td>
+                        </tr>
 
-<tr>
-<td class="highlight">Post Name</td>
-<td>Combined Graduate Level</td>
-</tr>
+                        <tr>
+                            <td class="highlight">Official Website</td>
+                            <td>ssc.gov.in</td>
+                        </tr>
 
-<tr>
-<td class="highlight">Total Vacancy</td>
-<td>14582</td>
-</tr>
+                    </table>
 
-<tr>
-<td class="highlight">Job Location</td>
-<td>All India</td>
-</tr>
+                </div>
 
-<tr>
-<td class="highlight">Apply Mode</td>
-<td>Online</td>
-</tr>
 
-<tr>
-<td class="highlight">Job Type</td>
-<td>Permanent</td>
-</tr>
+                <!-- IMPORTANT DATES -->
 
-<tr>
-<td class="highlight">Official Website</td>
-<td>ssc.gov.in</td>
-</tr>
+                <div class="card" id="dates">
 
-</table>
+                    <h2>Important Dates</h2>
 
-</div>
+                    <table class="job-table">
 
+                        <tr>
+                            <td class="highlight">Notification Date</td>
+                            <td>03 July 2026</td>
+                        </tr>
 
-<!-- IMPORTANT DATES -->
+                        <tr>
+                            <td class="highlight">Apply Start Date</td>
+                            <td>05 July 2026</td>
+                        </tr>
 
-<div class="card" id="dates">
+                        <tr>
+                            <td class="highlight">Last Date</td>
+                            <td>30 July 2026</td>
+                        </tr>
 
-<h2>Important Dates</h2>
+                        <tr>
+                            <td class="highlight">Last Fee Date</td>
+                            <td>30 July 2026</td>
+                        </tr>
 
-<table class="job-table">
+                        <tr>
+                            <td class="highlight">Correction Date</td>
+                            <td>05 August 2026</td>
+                        </tr>
 
-<tr>
-<td class="highlight">Notification Date</td>
-<td>03 July 2026</td>
-</tr>
+                        <tr>
+                            <td class="highlight">Exam Date</td>
+                            <td>September 2026</td>
+                        </tr>
 
-<tr>
-<td class="highlight">Apply Start Date</td>
-<td>05 July 2026</td>
-</tr>
+                        <tr>
+                            <td class="highlight">Admit Card</td>
+                            <td>Before Exam</td>
+                        </tr>
 
-<tr>
-<td class="highlight">Last Date</td>
-<td>30 July 2026</td>
-</tr>
+                    </table>
 
-<tr>
-<td class="highlight">Last Fee Date</td>
-<td>30 July 2026</td>
-</tr>
+                </div>
 
-<tr>
-<td class="highlight">Correction Date</td>
-<td>05 August 2026</td>
-</tr>
 
-<tr>
-<td class="highlight">Exam Date</td>
-<td>September 2026</td>
-</tr>
+                <!-- APPLICATION FEE -->
 
-<tr>
-<td class="highlight">Admit Card</td>
-<td>Before Exam</td>
-</tr>
+                <div class="card" id="fees">
 
-</table>
+                    <h2>Application Fee</h2>
 
-</div>
+                    <table class="job-table">
 
+                        <tr>
+                            <td class="highlight">General</td>
+                            <td>₹100</td>
+                        </tr>
 
-<!-- APPLICATION FEE -->
+                        <tr>
+                            <td class="highlight">OBC</td>
+                            <td>₹100</td>
+                        </tr>
 
-<div class="card" id="fees">
+                        <tr>
+                            <td class="highlight">EWS</td>
+                            <td>₹100</td>
+                        </tr>
 
-<h2>Application Fee</h2>
+                        <tr>
+                            <td class="highlight">SC/ST</td>
+                            <td>₹0</td>
+                        </tr>
 
-<table class="job-table">
+                        <tr>
+                            <td class="highlight">Female</td>
+                            <td>₹0</td>
+                        </tr>
 
-<tr>
-<td class="highlight">General</td>
-<td>₹100</td>
-</tr>
+                    </table>
 
-<tr>
-<td class="highlight">OBC</td>
-<td>₹100</td>
-</tr>
+                </div>
 
-<tr>
-<td class="highlight">EWS</td>
-<td>₹100</td>
-</tr>
 
-<tr>
-<td class="highlight">SC/ST</td>
-<td>₹0</td>
-</tr>
+                <!-- AGE LIMIT -->
 
-<tr>
-<td class="highlight">Female</td>
-<td>₹0</td>
-</tr>
+                <div class="card" id="age">
 
-</table>
+                    <h2>Age Limit</h2>
 
-</div>
+                    <table class="job-table">
 
+                        <tr>
+                            <td class="highlight">Minimum Age</td>
+                            <td>18 Years</td>
+                        </tr>
 
-<!-- AGE LIMIT -->
+                        <tr>
+                            <td class="highlight">Maximum Age</td>
+                            <td>30 Years</td>
+                        </tr>
 
-<div class="card" id="age">
+                        <tr>
+                            <td class="highlight">OBC Relaxation</td>
+                            <td>3 Years</td>
+                        </tr>
 
-<h2>Age Limit</h2>
+                        <tr>
+                            <td class="highlight">SC/ST Relaxation</td>
+                            <td>5 Years</td>
+                        </tr>
 
-<table class="job-table">
+                        <tr>
+                            <td class="highlight">PwD Relaxation</td>
+                            <td>10 Years</td>
+                        </tr>
 
-<tr>
-<td class="highlight">Minimum Age</td>
-<td>18 Years</td>
-</tr>
+                    </table>
 
-<tr>
-<td class="highlight">Maximum Age</td>
-<td>30 Years</td>
-</tr>
+                </div>
 
-<tr>
-<td class="highlight">OBC Relaxation</td>
-<td>3 Years</td>
-</tr>
 
-<tr>
-<td class="highlight">SC/ST Relaxation</td>
-<td>5 Years</td>
-</tr>
+                <!-- VACANCY DETAILS -->
 
-<tr>
-<td class="highlight">PwD Relaxation</td>
-<td>10 Years</td>
-</tr>
+                <div class="card" id="vacancy">
 
-</table>
+                    <h2>Vacancy Details</h2>
 
-</div>
+                    <table class="job-table">
 
+                        <tr>
+                            <td class="highlight">Assistant Section Officer</td>
+                            <td>4521</td>
+                        </tr>
 
-<!-- VACANCY DETAILS -->
+                        <tr>
+                            <td class="highlight">Inspector</td>
+                            <td>3862</td>
+                        </tr>
 
-<div class="card" id="vacancy">
+                        <tr>
+                            <td class="highlight">Auditor</td>
+                            <td>6199</td>
+                        </tr>
 
-<h2>Vacancy Details</h2>
+                    </table>
 
-<table class="job-table">
+                </div>
 
-<tr>
-<td class="highlight">Assistant Section Officer</td>
-<td>4521</td>
-</tr>
 
-<tr>
-<td class="highlight">Inspector</td>
-<td>3862</td>
-</tr>
+                <!-- CATEGORY WISE VACANCY -->
 
-<tr>
-<td class="highlight">Auditor</td>
-<td>6199</td>
-</tr>
+                <div class="card">
 
-</table>
+                    <h2>Category Wise Vacancy</h2>
 
-</div>
+                    <table class="job-table">
 
+                        <tr>
+                            <td class="highlight">General</td>
+                            <td>6200</td>
+                        </tr>
 
-<!-- CATEGORY WISE VACANCY -->
+                        <tr>
+                            <td class="highlight">EWS</td>
+                            <td>1458</td>
+                        </tr>
 
-<div class="card">
+                        <tr>
+                            <td class="highlight">OBC</td>
+                            <td>3924</td>
+                        </tr>
 
-<h2>Category Wise Vacancy</h2>
+                        <tr>
+                            <td class="highlight">SC</td>
+                            <td>2100</td>
+                        </tr>
 
-<table class="job-table">
+                        <tr>
+                            <td class="highlight">ST</td>
+                            <td>900</td>
+                        </tr>
 
-<tr>
-<td class="highlight">General</td>
-<td>6200</td>
-</tr>
+                    </table>
 
-<tr>
-<td class="highlight">EWS</td>
-<td>1458</td>
-</tr>
+                </div>
 
-<tr>
-<td class="highlight">OBC</td>
-<td>3924</td>
-</tr>
 
-<tr>
-<td class="highlight">SC</td>
-<td>2100</td>
-</tr>
+                <!-- ELIGIBILITY -->
 
-<tr>
-<td class="highlight">ST</td>
-<td>900</td>
-</tr>
+                <div class="card" id="eligibility">
 
-</table>
+                    <h2>Educational Qualification</h2>
 
-</div>
+                    <p style="line-height:30px;">
 
+                        Candidates should possess a
+                        <strong>Bachelor Degree</strong>
+                        from any recognized university
+                        in India.
 
-<!-- ELIGIBILITY -->
+                    </p>
 
-<div class="card" id="eligibility">
+                    <br>
 
-<h2>Educational Qualification</h2>
+                    <table class="job-table">
 
-<p style="line-height:30px;">
+                        <tr>
+                            <td class="highlight">
+                                Assistant Section Officer
+                            </td>
+                            <td>
+                                Bachelor Degree
+                            </td>
+                        </tr>
 
-Candidates should possess a
-<strong>Bachelor Degree</strong>
-from any recognized university
-in India.
+                        <tr>
+                            <td class="highlight">
+                                Inspector
+                            </td>
+                            <td>
+                                Bachelor Degree
+                            </td>
+                        </tr>
 
-</p>
+                        <tr>
+                            <td class="highlight">
+                                Auditor
+                            </td>
+                            <td>
+                                Bachelor Degree
+                            </td>
+                        </tr>
 
-<br>
+                    </table>
 
-<table class="job-table">
+                </div>
 
-<tr>
-<td class="highlight">
-Assistant Section Officer
-</td>
-<td>
-Bachelor Degree
-</td>
-</tr>
 
-<tr>
-<td class="highlight">
-Inspector
-</td>
-<td>
-Bachelor Degree
-</td>
-</tr>
+                <!-- EXPERIENCE -->
 
-<tr>
-<td class="highlight">
-Auditor
-</td>
-<td>
-Bachelor Degree
-</td>
-</tr>
+                <div class="card">
 
-</table>
+                    <h2>Experience Required</h2>
 
-</div>
+                    <table class="job-table">
 
+                        <tr>
+                            <td class="highlight">
+                                Experience
+                            </td>
 
-<!-- EXPERIENCE -->
+                            <td>
+                                Freshers Eligible
+                            </td>
+                        </tr>
 
-<div class="card">
+                        <tr>
+                            <td class="highlight">
+                                Minimum Experience
+                            </td>
 
-<h2>Experience Required</h2>
+                            <td>
+                                0 Years
+                            </td>
+                        </tr>
 
-<table class="job-table">
+                    </table>
 
-<tr>
-<td class="highlight">
-Experience
-</td>
+                </div>
 
-<td>
-Freshers Eligible
-</td>
-</tr>
 
-<tr>
-<td class="highlight">
-Minimum Experience
-</td>
+                <!-- SELECTION PROCESS -->
 
-<td>
-0 Years
-</td>
-</tr>
+                <div class="card" id="selection">
 
-</table>
+                    <h2>Selection Process</h2>
 
-</div>
-
-
-<!-- SELECTION PROCESS -->
-
-<div class="card" id="selection">
-
-<h2>Selection Process</h2>
-
-<div style="
+                    <div style="
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:20px;
 ">
 
-<div style="
+                        <div style="
 padding:20px;
 background:#f8faff;
 border-radius:10px;
 border:1px solid #e5e7eb;
 ">
 
-<h3 style="color:#0F3D91">
-01
-</h3>
+                            <h3 style="color:#0F3D91">
+                                01
+                            </h3>
 
-<p>
-Tier-I Examination
-</p>
+                            <p>
+                                Tier-I Examination
+                            </p>
 
-</div>
+                        </div>
 
 
-<div style="
+                        <div style="
 padding:20px;
 background:#f8faff;
 border-radius:10px;
 border:1px solid #e5e7eb;
 ">
 
-<h3 style="color:#0F3D91">
-02
-</h3>
+                            <h3 style="color:#0F3D91">
+                                02
+                            </h3>
 
-<p>
-Tier-II Examination
-</p>
+                            <p>
+                                Tier-II Examination
+                            </p>
 
-</div>
+                        </div>
 
 
-<div style="
+                        <div style="
 padding:20px;
 background:#f8faff;
 border-radius:10px;
 border:1px solid #e5e7eb;
 ">
 
-<h3 style="color:#0F3D91">
-03
-</h3>
+                            <h3 style="color:#0F3D91">
+                                03
+                            </h3>
 
-<p>
-Document Verification
-</p>
+                            <p>
+                                Document Verification
+                            </p>
 
-</div>
+                        </div>
 
 
-<div style="
+                        <div style="
 padding:20px;
 background:#f8faff;
 border-radius:10px;
 border:1px solid #e5e7eb;
 ">
 
-<h3 style="color:#0F3D91">
-04
-</h3>
+                            <h3 style="color:#0F3D91">
+                                04
+                            </h3>
 
-<p>
-Medical Examination
-</p>
+                            <p>
+                                Medical Examination
+                            </p>
 
-</div>
+                        </div>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
 
-<!-- SALARY -->
+                <!-- SALARY -->
 
-<div class="card" id="salary">
+                <div class="card" id="salary">
 
-<h2>Salary Details</h2>
+                    <h2>Salary Details</h2>
 
-<table class="job-table">
+                    <table class="job-table">
 
-<tr>
-<td class="highlight">
-Pay Scale
-</td>
+                        <tr>
+                            <td class="highlight">
+                                Pay Scale
+                            </td>
 
-<td>
-₹35,400 - ₹1,12,400
-</td>
-</tr>
+                            <td>
+                                ₹35,400 - ₹1,12,400
+                            </td>
+                        </tr>
 
-<tr>
-<td class="highlight">
-Pay Level
-</td>
+                        <tr>
+                            <td class="highlight">
+                                Pay Level
+                            </td>
 
-<td>
-Level-6
-</td>
-</tr>
+                            <td>
+                                Level-6
+                            </td>
+                        </tr>
 
-<tr>
-<td class="highlight">
-Grade Pay
-</td>
+                        <tr>
+                            <td class="highlight">
+                                Grade Pay
+                            </td>
 
-<td>
-As Per Rules
-</td>
-</tr>
+                            <td>
+                                As Per Rules
+                            </td>
+                        </tr>
 
-<tr>
-<td class="highlight">
-Allowances
-</td>
+                        <tr>
+                            <td class="highlight">
+                                Allowances
+                            </td>
 
-<td>
-DA + HRA + TA + Other Benefits
-</td>
-</tr>
+                            <td>
+                                DA + HRA + TA + Other Benefits
+                            </td>
+                        </tr>
 
-</table>
+                    </table>
 
-<br>
+                    <br>
 
-<div style="
+                    <div style="
 background:#e7efff;
 padding:20px;
 border-radius:10px;
 ">
 
-<b>
-Monthly In-Hand Salary:
-</b>
+                        <b>
+                            Monthly In-Hand Salary:
+                        </b>
 
-₹55,000 to ₹75,000 Approx.
+                        ₹55,000 to ₹75,000 Approx.
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
 
-<!-- QUICK SUMMARY -->
+                <!-- QUICK SUMMARY -->
 
-<div class="card">
+                <div class="card">
 
-<h2>Job Highlights</h2>
+                    <h2>Job Highlights</h2>
 
-<div style="
+                    <div style="
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:20px;
 ">
 
-<div style="
+                        <div style="
 background:#f8faff;
 padding:20px;
 border-radius:10px;
 border:1px solid #e5e7eb;
 ">
 
-<h4 style="color:#777">
-Application Mode
-</h4>
+                            <h4 style="color:#777">
+                                Application Mode
+                            </h4>
 
-<p style="
+                            <p style="
 font-size:20px;
 font-weight:700;
 color:#0F3D91;
 margin-top:10px;
 ">
-Online
-</p>
+                                Online
+                            </p>
 
-</div>
+                        </div>
 
-<div style="
+                        <div style="
 background:#f8faff;
 padding:20px;
 border-radius:10px;
 border:1px solid #e5e7eb;
 ">
 
-<h4 style="color:#777">
-Job Location
-</h4>
+                            <h4 style="color:#777">
+                                Job Location
+                            </h4>
 
-<p style="
+                            <p style="
 font-size:20px;
 font-weight:700;
 color:#0F3D91;
 margin-top:10px;
 ">
-All India
-</p>
+                                All India
+                            </p>
 
-</div>
+                        </div>
 
-<div style="
+                        <div style="
 background:#f8faff;
 padding:20px;
 border-radius:10px;
 border:1px solid #e5e7eb;
 ">
 
-<h4 style="color:#777">
-Job Type
-</h4>
+                            <h4 style="color:#777">
+                                Job Type
+                            </h4>
 
-<p style="
+                            <p style="
 font-size:20px;
 font-weight:700;
 color:#0F3D91;
 margin-top:10px;
 ">
-Permanent
-</p>
+                                Permanent
+                            </p>
 
-</div>
+                        </div>
 
-</div>
+                    </div>
 
-</div>
-
-
-
-<!-- DOCUMENTS -->
-
-<div class="card" id="documents">
-
-<h2>Documents Required</h2>
-
-<table class="job-table">
-
-<tr>
-<td>Recent Passport Size Photograph</td>
-</tr>
-
-<tr>
-<td>Candidate Signature</td>
-</tr>
-
-<tr>
-<td>Aadhaar Card / PAN Card / Voter ID</td>
-</tr>
-
-<tr>
-<td>Educational Certificates</td>
-</tr>
-
-<tr>
-<td>Caste Certificate</td>
-</tr>
-
-<tr>
-<td>Domicile Certificate</td>
-</tr>
-
-<tr>
-<td>Experience Certificate (If Required)</td>
-</tr>
-
-</table>
-
-</div>
+                </div>
 
 
 
-<!-- HOW TO APPLY -->
+                <!-- DOCUMENTS -->
 
-<div class="card" id="apply">
+                <div class="card" id="documents">
 
-<h2>How To Apply</h2>
+                    <h2>Documents Required</h2>
 
-<div style="
+                    <table class="job-table">
+
+                        <tr>
+                            <td>Recent Passport Size Photograph</td>
+                        </tr>
+
+                        <tr>
+                            <td>Candidate Signature</td>
+                        </tr>
+
+                        <tr>
+                            <td>Aadhaar Card / PAN Card / Voter ID</td>
+                        </tr>
+
+                        <tr>
+                            <td>Educational Certificates</td>
+                        </tr>
+
+                        <tr>
+                            <td>Caste Certificate</td>
+                        </tr>
+
+                        <tr>
+                            <td>Domicile Certificate</td>
+                        </tr>
+
+                        <tr>
+                            <td>Experience Certificate (If Required)</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+
+
+                <!-- HOW TO APPLY -->
+
+                <div class="card" id="apply">
+
+                    <h2>How To Apply</h2>
+
+                    <div style="
 background:#f8faff;
 padding:25px;
 border-radius:10px;
 ">
 
-<ol style="
+                        <ol style="
 padding-left:25px;
 line-height:40px;
 ">
 
-<li>
-Read official notification carefully.
-</li>
+                            <li>
+                                Read official notification carefully.
+                            </li>
 
-<li>
-Visit official website.
-</li>
+                            <li>
+                                Visit official website.
+                            </li>
 
-<li>
-Click on Apply Online.
-</li>
+                            <li>
+                                Click on Apply Online.
+                            </li>
 
-<li>
-Fill application form carefully.
-</li>
+                            <li>
+                                Fill application form carefully.
+                            </li>
 
-<li>
-Upload photograph and signature.
-</li>
+                            <li>
+                                Upload photograph and signature.
+                            </li>
 
-<li>
-Upload required documents.
-</li>
+                            <li>
+                                Upload required documents.
+                            </li>
 
-<li>
-Pay application fee.
-</li>
+                            <li>
+                                Pay application fee.
+                            </li>
 
-<li>
-Verify all details.
-</li>
+                            <li>
+                                Verify all details.
+                            </li>
 
-<li>
-Submit application form.
-</li>
+                            <li>
+                                Submit application form.
+                            </li>
 
-<li>
-Take final printout.
-</li>
+                            <li>
+                                Take final printout.
+                            </li>
 
-</ol>
+                        </ol>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
 
 
-<!-- IMPORTANT INSTRUCTIONS -->
+                <!-- IMPORTANT INSTRUCTIONS -->
 
-<div class="card">
+                <div class="card">
 
-<h2>Important Instructions</h2>
+                    <h2>Important Instructions</h2>
 
-<div style="
+                    <div style="
 background:#fff8e6;
 padding:25px;
 border-radius:10px;
 line-height:35px;
 ">
 
-<ul style="
+                        <ul style="
 padding-left:25px;
 ">
 
-<li>
-Read official notification before applying.
-</li>
+                            <li>
+                                Read official notification before applying.
+                            </li>
 
-<li>
-Check eligibility criteria carefully.
-</li>
+                            <li>
+                                Check eligibility criteria carefully.
+                            </li>
 
-<li>
-Keep all documents ready.
-</li>
+                            <li>
+                                Keep all documents ready.
+                            </li>
 
-<li>
-Upload correct information only.
-</li>
+                            <li>
+                                Upload correct information only.
+                            </li>
 
-<li>
-Verify application before final submission.
-</li>
+                            <li>
+                                Verify application before final submission.
+                            </li>
 
-<li>
-Keep registration number safe.
-</li>
+                            <li>
+                                Keep registration number safe.
+                            </li>
 
-<li>
-Take printout of final application.
-</li>
+                            <li>
+                                Take printout of final application.
+                            </li>
 
-</ul>
+                        </ul>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
 
 
-<!-- IMPORTANT LINKS -->
+                <!-- IMPORTANT LINKS -->
 
-<div class="card" id="links">
+                <div class="card" id="links">
 
-<h2>Important Links</h2>
+                    <h2>Important Links</h2>
 
-<table class="job-table">
+                    <table class="job-table">
 
-<tr>
+                        <tr>
 
-<td class="highlight">
-Apply Online
-</td>
+                            <td class="highlight">
+                                Apply Online
+                            </td>
 
-<td>
-<a href="#"
-style="
+                            <td>
+                                <a href="#" style="
 color:#0F3D91;
 font-weight:700;
 ">
-Click Here
-</a>
-</td>
+                                    Click Here
+                                </a>
+                            </td>
 
-</tr>
+                        </tr>
 
 
-<tr>
+                        <tr>
 
-<td class="highlight">
-Official Notification
-</td>
+                            <td class="highlight">
+                                Official Notification
+                            </td>
 
-<td>
-<a href="#"
-style="
+                            <td>
+                                <a href="#" style="
 color:#0F3D91;
 font-weight:700;
 ">
-Download PDF
-</a>
-</td>
+                                    Download PDF
+                                </a>
+                            </td>
 
-</tr>
+                        </tr>
 
 
-<tr>
+                        <tr>
 
-<td class="highlight">
-Official Website
-</td>
+                            <td class="highlight">
+                                Official Website
+                            </td>
 
-<td>
-<a href="#"
-style="
+                            <td>
+                                <a href="#" style="
 color:#0F3D91;
 font-weight:700;
 ">
-Visit Website
-</a>
-</td>
+                                    Visit Website
+                                </a>
+                            </td>
 
-</tr>
+                        </tr>
 
 
-<tr>
+                        <tr>
 
-<td class="highlight">
-Latest Jobs
-</td>
+                            <td class="highlight">
+                                Latest Jobs
+                            </td>
 
-<td>
-<a href="#"
-style="
+                            <td>
+                                <a href="#" style="
 color:#0F3D91;
 font-weight:700;
 ">
-View All
-</a>
-</td>
+                                    View All
+                                </a>
+                            </td>
 
-</tr>
+                        </tr>
 
-</table>
+                    </table>
 
-<br>
+                    <br>
 
-<div style="
+                    <div style="
 display:flex;
 gap:15px;
 flex-wrap:wrap;
 ">
 
-<a href="#"
-style="
+                        <a href="#"
+                            style="
 background:#0F3D91;
 color:#fff;
 padding:15px 30px;
@@ -1303,11 +1288,11 @@ text-decoration:none;
 border-radius:8px;
 font-weight:700;
 ">
-Apply Online
-</a>
+                            Apply Online
+                        </a>
 
-<a href="#"
-style="
+                        <a href="#"
+                            style="
 background:#FFB703;
 color:#000;
 padding:15px 30px;
@@ -1315,241 +1300,242 @@ text-decoration:none;
 border-radius:8px;
 font-weight:700;
 ">
-Download Notification
-</a>
+                            Download Notification
+                        </a>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
 
-<!-- LAST UPDATED -->
+                <!-- LAST UPDATED -->
 
-<div class="card">
+                <div class="card">
 
-<div style="
+                    <div style="
 display:flex;
 justify-content:space-between;
 align-items:center;
 flex-wrap:wrap;
 ">
 
-<div>
+                        <div>
 
-<span style="
+                            <span style="
 background:#e8f5e9;
 padding:8px 15px;
 border-radius:20px;
 font-weight:700;
 ">
 
-✓ Updated On:
-02 July 2026
+                                ✓ Updated On:
+                                02 July 2026
 
-</span>
+                            </span>
 
-</div>
+                        </div>
 
-<div>
+                        <div>
 
-<span style="
+                            <span style="
 background:#fff3cd;
 padding:8px 15px;
 border-radius:20px;
 font-weight:700;
 ">
 
-🔥 Application Open
+                                🔥 Application Open
 
-</span>
+                            </span>
 
-</div>
+                        </div>
 
-</div>
+                    </div>
 
-</div>
-
-
-
-<!-- AUTHOR -->
-
-<div class="card">
-
-<h2>
-Article Information
-</h2>
-
-<table class="job-table">
-
-<tr>
-<td class="highlight">
-Author
-</td>
-<td>
-Editorial Team
-</td>
-</tr>
-
-<tr>
-<td class="highlight">
-Reviewed By
-</td>
-<td>
-SarkariHai Research Team
-</td>
-</tr>
-
-<tr>
-<td class="highlight">
-Published Date
-</td>
-<td>
-02 July 2026
-</td>
-</tr>
-
-<tr>
-<td class="highlight">
-Last Updated
-</td>
-<td>
-02 July 2026
-</td>
-</tr>
-
-</table>
-
-</div>
+                </div>
 
 
 
-<!-- SHARE -->
+                <!-- AUTHOR -->
 
-<div class="card">
+                <div class="card">
 
-<h2>
-Share This Job
-</h2>
+                    <h2>
+                        Article Information
+                    </h2>
 
-<div style="
+                    <table class="job-table">
+
+                        <tr>
+                            <td class="highlight">
+                                Author
+                            </td>
+                            <td>
+                                Editorial Team
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="highlight">
+                                Reviewed By
+                            </td>
+                            <td>
+                                SarkariHai Research Team
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="highlight">
+                                Published Date
+                            </td>
+                            <td>
+                                02 July 2026
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="highlight">
+                                Last Updated
+                            </td>
+                            <td>
+                                02 July 2026
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+
+
+                <!-- SHARE -->
+
+                <div class="card">
+
+                    <h2>
+                        Share This Job
+                    </h2>
+
+                    <div style="
 display:flex;
 gap:15px;
 flex-wrap:wrap;
 ">
 
-<a href="#"
-style="
+                        <a href="#"
+                            style="
 padding:15px 25px;
 background:#1877f2;
 color:white;
 text-decoration:none;
 border-radius:8px;
 ">
-Facebook
-</a>
+                            Facebook
+                        </a>
 
-<a href="#"
-style="
+                        <a href="#"
+                            style="
 padding:15px 25px;
 background:#25D366;
 color:white;
 text-decoration:none;
 border-radius:8px;
 ">
-WhatsApp
-</a>
+                            WhatsApp
+                        </a>
 
-<a href="#"
-style="
+                        <a href="#"
+                            style="
 padding:15px 25px;
 background:#000;
 color:white;
 text-decoration:none;
 border-radius:8px;
 ">
-X
-</a>
+                            X
+                        </a>
 
-<a href="#"
-style="
+                        <a href="#"
+                            style="
 padding:15px 25px;
 background:#0088cc;
 color:white;
 text-decoration:none;
 border-radius:8px;
 ">
-Telegram
-</a>
+                            Telegram
+                        </a>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
 
 
-<!-- PEOPLE ALSO SEARCH -->
+                <!-- PEOPLE ALSO SEARCH -->
 
-<div class="card">
+                <div class="card">
 
-<h2>
-People Also Search For
-</h2>
+                    <h2>
+                        People Also Search For
+                    </h2>
 
-<div style="
+                    <div style="
 display:flex;
 gap:10px;
 flex-wrap:wrap;
 ">
 
-<span style="
+                        <span style="
 padding:10px 15px;
 background:#f5f5f5;
 border-radius:20px;
 ">
-SSC Jobs
-</span>
+                            SSC Jobs
+                        </span>
 
-<span style="
+                        <span style="
 padding:10px 15px;
 background:#f5f5f5;
 border-radius:20px;
 ">
-Railway Jobs
-</span>
+                            Railway Jobs
+                        </span>
 
-<span style="
+                        <span style="
 padding:10px 15px;
 background:#f5f5f5;
 border-radius:20px;
 ">
-Bank Jobs
-</span>
+                            Bank Jobs
+                        </span>
 
-<span style="
+                        <span style="
 padding:10px 15px;
 background:#f5f5f5;
 border-radius:20px;
 ">
-UPSC Jobs
-</span>
+                            UPSC Jobs
+                        </span>
 
-<span style="
+                        <span style="
 padding:10px 15px;
 background:#f5f5f5;
 border-radius:20px;
 ">
-Defence Jobs
-</span>
+                            Defence Jobs
+                        </span>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
 
 
-<!-- MOBILE STICKY BUTTON -->
+                <!-- MOBILE STICKY BUTTON -->
 
-<div style="
+                <div
+                    style="
 position:fixed;
 bottom:0;
 left:0;
@@ -1561,8 +1547,8 @@ text-align:center;
 box-shadow:0 -2px 10px rgba(0,0,0,.2);
 ">
 
-<a href="#"
-style="
+                    <a href="#"
+                        style="
 background:#FFB703;
 padding:15px 30px;
 border-radius:8px;
@@ -1572,23 +1558,24 @@ color:#000;
 display:inline-block;
 ">
 
-Apply Online
+                        Apply Online
 
-</a>
+                    </a>
 
-</div>
+                </div>
 
 
 
-<!-- ADSENSE PLACE -->
+                <!-- ADSENSE PLACE -->
 
-<div class="card">
+                <div class="card">
 
-<h2>
-Advertisement
-</h2>
+                    <h2>
+                        Advertisement
+                    </h2>
 
-<div style="
+                    <div
+                        style="
 height:280px;
 background:#f7f7f7;
 border:2px dashed #ccc;
@@ -1597,340 +1584,344 @@ align-items:center;
 justify-content:center;
 ">
 
-728 x 280 AdSense Unit
+                        728 x 280 AdSense Unit
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
 
 
-<!-- FAQ -->
+                <!-- FAQ -->
 
-<div class="card" id="faq">
+                <div class="card" id="faq">
 
-<h2>
-Frequently Asked Questions (FAQ)
-</h2>
+                    <h2>
+                        Frequently Asked Questions (FAQ)
+                    </h2>
 
-<div style="
+                    <div style="
 display:flex;
 flex-direction:column;
 gap:15px;
 ">
 
-<details open>
+                        <details open>
 
-<summary style="
+                            <summary
+                                style="
 cursor:pointer;
 font-weight:700;
 padding:15px;
 background:#f8faff;
 border-radius:8px;
 ">
-What is the last date to apply?
-</summary>
+                                What is the last date to apply?
+                            </summary>
 
-<p style="
+                            <p style="
 padding:20px;
 line-height:30px;
 ">
-The last date to apply online is
-30 July 2026.
-</p>
+                                The last date to apply online is
+                                30 July 2026.
+                            </p>
 
-</details>
+                        </details>
 
 
-<details>
+                        <details>
 
-<summary style="
+                            <summary
+                                style="
 cursor:pointer;
 font-weight:700;
 padding:15px;
 background:#f8faff;
 border-radius:8px;
 ">
-What is the qualification required?
-</summary>
+                                What is the qualification required?
+                            </summary>
 
-<p style="
+                            <p style="
 padding:20px;
 line-height:30px;
 ">
-Candidates should possess
-Bachelor Degree from a recognized university.
-</p>
+                                Candidates should possess
+                                Bachelor Degree from a recognized university.
+                            </p>
 
-</details>
+                        </details>
 
 
-<details>
+                        <details>
 
-<summary style="
+                            <summary
+                                style="
 cursor:pointer;
 font-weight:700;
 padding:15px;
 background:#f8faff;
 border-radius:8px;
 ">
-How many vacancies are available?
-</summary>
+                                How many vacancies are available?
+                            </summary>
 
-<p style="
+                            <p style="
 padding:20px;
 line-height:30px;
 ">
-Total vacancies are
-14582 posts.
-</p>
+                                Total vacancies are
+                                14582 posts.
+                            </p>
 
-</details>
+                        </details>
 
 
-<details>
+                        <details>
 
-<summary style="
+                            <summary
+                                style="
 cursor:pointer;
 font-weight:700;
 padding:15px;
 background:#f8faff;
 border-radius:8px;
 ">
-What is the selection process?
-</summary>
+                                What is the selection process?
+                            </summary>
 
-<p style="
+                            <p style="
 padding:20px;
 line-height:30px;
 ">
-Selection will be based on
-Tier-I, Tier-II,
-Document Verification
-and Medical Examination.
-</p>
+                                Selection will be based on
+                                Tier-I, Tier-II,
+                                Document Verification
+                                and Medical Examination.
+                            </p>
 
-</details>
+                        </details>
 
-</div>
+                    </div>
 
-</div>
-
-
-
-<!-- RELATED JOBS -->
-
-<div class="card">
-
-<h2>
-Related Jobs
-</h2>
-
-<table class="job-table">
-
-<tr>
-<td>
-SSC CHSL Recruitment 2026
-</td>
-<td>
-<a href="#">
-View
-</a>
-</td>
-</tr>
-
-<tr>
-<td>
-UPSC Recruitment 2026
-</td>
-<td>
-<a href="#">
-View
-</a>
-</td>
-</tr>
-
-<tr>
-<td>
-Railway Recruitment 2026
-</td>
-<td>
-<a href="#">
-View
-</a>
-</td>
-</tr>
-
-<tr>
-<td>
-Bank PO Recruitment 2026
-</td>
-<td>
-<a href="#">
-View
-</a>
-</td>
-</tr>
-
-</table>
-
-</div>
+                </div>
 
 
 
-<!-- LATEST JOBS -->
+                <!-- RELATED JOBS -->
 
-<div class="card">
+                <div class="card">
 
-<h2>
-Latest Government Jobs
-</h2>
+                    <h2>
+                        Related Jobs
+                    </h2>
 
-<ul style="
+                    <table class="job-table">
+
+                        <tr>
+                            <td>
+                                SSC CHSL Recruitment 2026
+                            </td>
+                            <td>
+                                <a href="#">
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                UPSC Recruitment 2026
+                            </td>
+                            <td>
+                                <a href="#">
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Railway Recruitment 2026
+                            </td>
+                            <td>
+                                <a href="#">
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Bank PO Recruitment 2026
+                            </td>
+                            <td>
+                                <a href="#">
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+
+
+                <!-- LATEST JOBS -->
+
+                <div class="card">
+
+                    <h2>
+                        Latest Government Jobs
+                    </h2>
+
+                    <ul style="
 padding-left:20px;
 line-height:40px;
 ">
 
-<li>
-SSC CGL Recruitment 2026
-</li>
+                        <li>
+                            SSC CGL Recruitment 2026
+                        </li>
 
-<li>
-IBPS PO Recruitment 2026
-</li>
+                        <li>
+                            IBPS PO Recruitment 2026
+                        </li>
 
-<li>
-Railway NTPC Recruitment 2026
-</li>
+                        <li>
+                            Railway NTPC Recruitment 2026
+                        </li>
 
-<li>
-UP Police Recruitment 2026
-</li>
+                        <li>
+                            UP Police Recruitment 2026
+                        </li>
 
-<li>
-DRDO Recruitment 2026
-</li>
+                        <li>
+                            DRDO Recruitment 2026
+                        </li>
 
-</ul>
+                    </ul>
 
-</div>
-
-
-</div>
-
-</div>
+                </div>
 
 
+            </div>
 
-<!-- FOOTER -->
+        </div>
 
-<footer style="
+
+
+        <!-- FOOTER -->
+
+        <footer style="
 background:#0F3D91;
 margin-top:40px;
 color:#fff;
 ">
 
-<div style="
+            <div style="
 max-width:1400px;
 margin:auto;
 padding:50px 20px;
 ">
 
-<div style="
+                <div style="
 display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:40px;
 ">
 
-<div>
+                    <div>
 
-<h3>
-SarkariHai
-</h3>
+                        <h3>
+                            SarkariHai
+                        </h3>
 
-<br>
+                        <br>
 
-<p style="
+                        <p style="
 line-height:28px;
 ">
-Latest Government Jobs,
-Admit Card,
-Results,
-Answer Key
-and Recruitment Updates.
-</p>
+                            Latest Government Jobs,
+                            Admit Card,
+                            Results,
+                            Answer Key
+                            and Recruitment Updates.
+                        </p>
 
-</div>
-
-
-<div>
-
-<h3>
-Important
-</h3>
-
-<br>
-
-<p>Latest Jobs</p>
-<p>Admit Card</p>
-<p>Results</p>
-<p>Syllabus</p>
-
-</div>
+                    </div>
 
 
-<div>
+                    <div>
 
-<h3>
-Legal
-</h3>
+                        <h3>
+                            Important
+                        </h3>
 
-<br>
+                        <br>
 
-<p>About Us</p>
-<p>Contact Us</p>
-<p>Privacy Policy</p>
-<p>Disclaimer</p>
+                        <p>Latest Jobs</p>
+                        <p>Admit Card</p>
+                        <p>Results</p>
+                        <p>Syllabus</p>
 
-</div>
-
-
-<div>
-
-<h3>
-Support
-</h3>
-
-<br>
-
-<p>FAQ</p>
-<p>DMCA</p>
-<p>Advertise</p>
-<p>Sitemap</p>
-
-</div>
-
-</div>
+                    </div>
 
 
-<hr style="
+                    <div>
+
+                        <h3>
+                            Legal
+                        </h3>
+
+                        <br>
+
+                        <p>About Us</p>
+                        <p>Contact Us</p>
+                        <p>Privacy Policy</p>
+                        <p>Disclaimer</p>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Support
+                        </h3>
+
+                        <br>
+
+                        <p>FAQ</p>
+                        <p>DMCA</p>
+                        <p>Advertise</p>
+                        <p>Sitemap</p>
+
+                    </div>
+
+                </div>
+
+
+                <hr style="
 margin:40px 0;
 border-color:rgba(255,255,255,.2);
 ">
 
 
-<div style="
+                <div style="
 text-align:center;
 ">
 
-© 2026 SarkariHai.com
-All Rights Reserved.
+                    © 2026 SarkariHai.com
+                    All Rights Reserved.
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</footer>
+        </footer>
 
 
 
