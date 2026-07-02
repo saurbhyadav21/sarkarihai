@@ -2,411 +2,319 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SSC CGL Recruitment 2026 Apply Online for 14582 Posts</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>
+SSC CGL Recruitment 2026 Apply Online For 14582 Posts
+</title>
 
-        body {
-            background: #f5f7fb;
-            font-family: Arial;
-            color: #222;
-        }
+<meta name="description"
+content="SSC CGL Recruitment 2026 Notification Released. Apply Online, Eligibility, Age Limit, Salary, Vacancy Details, Important Dates and Official Notification PDF.">
 
-        .container {
-            max-width: 1400px;
-            margin: auto;
-            display: flex;
-            gap: 25px;
-            padding: 20px;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        /* TOC */
+<style>
 
-        .toc {
-            width: 280px;
-            position: sticky;
-            top: 20px;
-            height: fit-content;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
-            padding: 20px;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .toc h3 {
-            color: #0f3d91;
-            margin-bottom: 15px;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        .toc ul {
-            list-style: none;
-        }
+body{
+    background:#f5f7fb;
+    font-family:Inter,sans-serif;
+    color:#222;
+}
 
-        .toc li {
-            margin: 12px 0;
-        }
+/* HEADER */
 
-        .toc a {
-            color: #444;
-            text-decoration: none;
-            font-size: 15px;
-        }
+.header{
+    background:#0F3D91;
+    color:#fff;
+    position:sticky;
+    top:0;
+    z-index:999;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
 
-        .toc a:hover {
-            color: #e63946;
-        }
+.header-wrap{
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px;
+}
 
-        /* CONTENT */
+.logo{
+    font-size:26px;
+    font-weight:700;
+}
 
-        .content {
-            flex: 1;
-        }
+.logo span{
+    color:#FFB703;
+}
 
-        .card {
-            background: #fff;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
-        }
+.menu{
+    display:flex;
+    gap:25px;
+}
 
-        h1 {
-            color: #0f3d91;
-            margin-bottom: 20px;
-        }
+.menu a{
+    color:#fff;
+    text-decoration:none;
+    font-size:15px;
+}
 
-        h2 {
-            color: #0f3d91;
-            border-left: 5px solid #ffb703;
-            padding-left: 10px;
-            margin-bottom: 15px;
-        }
+.search{
+    background:#fff;
+    padding:8px;
+    border-radius:6px;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+.search input{
+    border:none;
+    outline:none;
+    width:220px;
+}
 
-        table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-        }
+/* CONTAINER */
 
-        table tr:nth-child(even) {
-            background: #f8f9ff;
-        }
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:20px;
+}
 
-        .important {
-            background: #fff3cd;
-        }
+/* HERO */
 
-        .linkbtn {
-            display: inline-block;
-            background: #0f3d91;
-            color: #fff;
-            padding: 12px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            margin: 5px;
-        }
+.hero{
+    background:#fff;
+    border-radius:10px;
+    padding:30px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
 
-        @media(max-width:900px) {
+.hero h1{
+    color:#0F3D91;
+    font-size:32px;
+    line-height:1.4;
+    margin-bottom:20px;
+}
 
-            .container {
-                flex-direction: column;
-            }
+.badges{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
 
-            .toc {
-                width: 100%;
-                position: relative;
-            }
+.badge{
+    padding:10px 18px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+}
 
-        }
-    </style>
+.red{
+    background:#ffe5e5;
+    color:#d90429;
+}
+
+.green{
+    background:#e6fff2;
+    color:#0E9F6E;
+}
+
+.yellow{
+    background:#fff4d6;
+    color:#b7791f;
+}
+
+.blue{
+    background:#e7efff;
+    color:#0F3D91;
+}
+
+.action-btns{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:14px 28px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.apply{
+    background:#0F3D91;
+    color:#fff;
+}
+
+.notification{
+    background:#FFB703;
+    color:#000;
+}
+
+/* QUICK CARDS */
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-top:30px;
+}
+
+.quick-card{
+    background:#f8faff;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:20px;
+    text-align:center;
+}
+
+.quick-card h4{
+    color:#777;
+    font-size:14px;
+}
+
+.quick-card p{
+    margin-top:10px;
+    font-size:20px;
+    font-weight:700;
+    color:#0F3D91;
+}
+
+@media(max-width:900px){
+
+.menu{
+    display:none;
+}
+
+.quick-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-    <div class="container">
+<!-- HEADER -->
 
-        <!-- LEFT TOC -->
+<header class="header">
 
-        <div class="toc">
+<div class="header-wrap">
 
-            <h3>📋 Contents</h3>
+<div class="logo">
+Sarkari<span>Hai</span>
+</div>
 
-            <ul>
-                <li><a href="#overview">Overview</a></li>
-                <li><a href="#important-dates">Important Dates</a></li>
-                <li><a href="#application-fee">Application Fee</a></li>
-                <li><a href="#age-limit">Age Limit</a></li>
-                <li><a href="#vacancy">Vacancy Details</a></li>
-                <li><a href="#qualification">Eligibility</a></li>
-                <li><a href="#selection">Selection Process</a></li>
-                <li><a href="#salary">Salary</a></li>
-                <li><a href="#documents">Documents Required</a></li>
-                <li><a href="#apply">How To Apply</a></li>
-                <li><a href="#links">Important Links</a></li>
-            </ul>
+<nav class="menu">
 
-        </div>
+<a href="#">Latest Jobs</a>
 
-        <!-- RIGHT CONTENT -->
+<a href="#">Admit Card</a>
 
-        <div class="content">
+<a href="#">Results</a>
 
-            <div class="card">
+<a href="#">Answer Key</a>
 
-                <h1>
-                    SSC CGL Recruitment 2026 Apply Online for 14582 Posts
-                </h1>
+<a href="#">Syllabus</a>
 
-                <p>
-                    Staff Selection Commission (SSC) has released the notification for Combined Graduate Level
-                    Examination 2026. Interested candidates can apply online before the last date.
-                </p>
+</nav>
 
-            </div>
+<div class="search">
 
-            <div class="card" id="overview">
+<input
+type="text"
+placeholder="Search jobs...">
 
-                <h2>Overview</h2>
+</div>
 
-                <table>
-                    <tr>
-                        <td>Organization</td>
-                        <td>Staff Selection Commission</td>
-                    </tr>
+</div>
 
-                    <tr>
-                        <td>Post Name</td>
-                        <td>Combined Graduate Level</td>
-                    </tr>
+</header>
 
-                    <tr>
-                        <td>Total Vacancy</td>
-                        <td>14582</td>
-                    </tr>
 
-                    <tr>
-                        <td>Job Location</td>
-                        <td>All India</td>
-                    </tr>
+<div class="container">
 
-                    <tr>
-                        <td>Apply Mode</td>
-                        <td>Online</td>
-                    </tr>
+<!-- HERO -->
 
-                    <tr>
-                        <td>Salary</td>
-                        <td>₹35,400 - ₹1,12,400</td>
-                    </tr>
-                </table>
+<section class="hero">
 
-            </div>
+<h1>
+SSC CGL Recruitment 2026 Apply Online For 14582 Posts
+</h1>
 
-            <div class="card" id="important-dates">
+<div class="badges">
 
-                <h2>Important Dates</h2>
+<div class="badge red">
+Last Date : 30 July 2026
+</div>
 
-                <table>
+<div class="badge green">
+14582 Vacancy
+</div>
 
-                    <tr>
-                        <td>Notification Date</td>
-                        <td>03 July 2026</td>
-                    </tr>
+<div class="badge yellow">
+Salary ₹35400-112400
+</div>
 
-                    <tr>
-                        <td>Apply Start</td>
-                        <td>05 July 2026</td>
-                    </tr>
+<div class="badge blue">
+All India Job
+</div>
 
-                    <tr>
-                        <td>Last Date</td>
-                        <td>30 July 2026</td>
-                    </tr>
+</div>
 
-                    <tr>
-                        <td>Exam Date</td>
-                        <td>September 2026</td>
-                    </tr>
+<div class="action-btns">
 
-                </table>
+<a href="#" class="btn apply">
+Apply Online
+</a>
 
-            </div>
+<a href="#" class="btn notification">
+Download Notification
+</a>
 
-            <div class="card" id="application-fee">
+</div>
 
-                <h2>Application Fee</h2>
+<div class="quick-grid">
 
-                <table>
+<div class="quick-card">
+<h4>Organization</h4>
+<p>SSC</p>
+</div>
 
-                    <tr>
-                        <td>General/OBC/EWS</td>
-                        <td>₹100</td>
-                    </tr>
+<div class="quick-card">
+<h4>Qualification</h4>
+<p>Graduate</p>
+</div>
 
-                    <tr>
-                        <td>SC/ST/Female</td>
-                        <td>₹0</td>
-                    </tr>
+<div class="quick-card">
+<h4>Job Type</h4>
+<p>Permanent</p>
+</div>
 
-                </table>
+<div class="quick-card">
+<h4>Selection</h4>
+<p>CBT + DV</p>
+</div>
 
-            </div>
+</div>
 
-            <div class="card" id="age-limit">
-
-                <h2>Age Limit</h2>
-
-                <table>
-
-                    <tr>
-                        <td>Minimum Age</td>
-                        <td>18 Years</td>
-                    </tr>
-
-                    <tr>
-                        <td>Maximum Age</td>
-                        <td>30 Years</td>
-                    </tr>
-
-                    <tr>
-                        <td>Age Relaxation</td>
-                        <td>As per SSC Rules</td>
-                    </tr>
-
-                </table>
-
-            </div>
-
-            <div class="card" id="vacancy">
-
-                <h2>Vacancy Details</h2>
-
-                <table>
-
-                    <tr>
-                        <td>Assistant Section Officer</td>
-                        <td>4521</td>
-                    </tr>
-
-                    <tr>
-                        <td>Inspector</td>
-                        <td>3862</td>
-                    </tr>
-
-                    <tr>
-                        <td>Auditor</td>
-                        <td>6199</td>
-                    </tr>
-
-                </table>
-
-            </div>
-
-            <div class="card" id="qualification">
-
-                <h2>Educational Qualification</h2>
-
-                <p>
-                    Bachelor Degree in any recognized university in India.
-                </p>
-
-            </div>
-
-            <div class="card" id="selection">
-
-                <h2>Selection Process</h2>
-
-                <ul>
-                    <li>Tier-I Examination</li>
-                    <li>Tier-II Examination</li>
-                    <li>Document Verification</li>
-                    <li>Medical Examination</li>
-                </ul>
-
-            </div>
-
-            <div class="card" id="salary">
-
-                <h2>Salary Details</h2>
-
-                <p>
-                    ₹35,400 to ₹1,12,400 Per Month.
-                </p>
-
-            </div>
-
-            <div class="card" id="documents">
-
-                <h2>Documents Required</h2>
-
-                <ul>
-                    <li>Photograph</li>
-                    <li>Signature</li>
-                    <li>Aadhaar Card</li>
-                    <li>Educational Certificates</li>
-                    <li>Caste Certificate</li>
-                </ul>
-
-            </div>
-
-            <div class="card" id="apply">
-
-                <h2>How To Apply</h2>
-
-                <ol>
-
-                    <li>Read notification carefully.</li>
-
-                    <li>Open official website.</li>
-
-                    <li>Fill online application form.</li>
-
-                    <li>Upload required documents.</li>
-
-                    <li>Pay fee.</li>
-
-                    <li>Submit application.</li>
-
-                    <li>Take printout.</li>
-
-                </ol>
-
-            </div>
-
-            <div class="card" id="links">
-
-                <h2>Important Links</h2>
-
-                <a href="#" class="linkbtn">
-                    Apply Online
-                </a>
-
-                <a href="#" class="linkbtn">
-                    Download Notification
-                </a>
-
-                <a href="#" class="linkbtn">
-                    Official Website
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</body>
-
-</html>
+</section>
