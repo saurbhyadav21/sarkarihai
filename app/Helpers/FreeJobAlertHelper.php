@@ -57,35 +57,59 @@ class FreeJobAlertHelper
     {
         $title = strtolower($title);
 
-        if (strpos($title, 'admit card') !== false)
-            return 'admit_card';
-
-        if (strpos($title, 'answer key') !== false)
-            return 'answer_key';
-
-        if (strpos($title, 'result') !== false)
+        // RESULT
+        if (
+            strpos($title, 'result') !== false ||
+            strpos($title, 'seat allotment') !== false ||
+            strpos($title, 'merit list') !== false ||
+            strpos($title, 'selection list') !== false ||
+            strpos($title, 'score card') !== false
+        )
             return 'result';
 
-        if (strpos($title, 'syllabus') !== false)
-            return 'syllabus';
+        // ADMIT CARD
+        if (
+            strpos($title, 'admit card') !== false ||
+            strpos($title, 'hall ticket') !== false ||
+            strpos($title, 'call letter') !== false
+        )
+            return 'admit_card';
 
-        if (strpos($title, 'exam date') !== false)
+        // ANSWER KEY
+        if (
+            strpos($title, 'answer key') !== false
+        )
+            return 'answer_key';
+
+        // EXAM DATE
+        if (
+            strpos($title, 'exam date') !== false ||
+            strpos($title, 'exam schedule') !== false
+        )
             return 'exam_date';
 
-        if (strpos($title, 'interview') !== false)
+        // INTERVIEW
+        if (
+            strpos($title, 'interview') !== false
+        )
             return 'interview';
 
-        if (strpos($title, 'merit list') !== false)
-            return 'merit_list';
+        // SYLLABUS
+        if (
+            strpos($title, 'syllabus') !== false
+        )
+            return 'syllabus';
 
-        if (strpos($title, 'cut off') !== false)
-            return 'cut_off';
-
+        // JOB
         if (
             strpos($title, 'recruitment') !== false ||
             strpos($title, 'vacancy') !== false ||
             strpos($title, 'apply online') !== false ||
-            strpos($title, 'apply offline') !== false
+            strpos($title, 'apply offline') !== false ||
+            strpos($title, 'walkin') !== false ||
+            strpos($title, 'walk-in') !== false ||
+            strpos($title, 'notification') !== false ||
+            strpos($title, 'apprentice') !== false
         )
             return 'job';
 
