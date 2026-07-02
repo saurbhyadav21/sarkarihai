@@ -542,7 +542,45 @@ class FreeJobAlertHelper
         $json['important_links']
             =
             $json['link'];
+$json['instruction']
+    =
+    self::defaultInstructions();
 
+
+    $json['is_walkin']
+    =
+    stripos(
+        $json['title'],
+        'walk'
+    )!==false;
+
+$json['is_contractual']
+    =
+    stripos(
+        $json['job_type'],
+        'contract'
+    )!==false;
+
+$json['is_apprentice']
+    =
+    stripos(
+        $json['title'],
+        'apprentice'
+    )!==false;
+
+$json['is_interview_only']
+    =
+    stripos(
+        $json['Mode_Of_Selection'],
+        'Interview'
+    )!==false
+    &&
+    stripos(
+        $json['Mode_Of_Selection'],
+        'Exam'
+    )===false;
+
+    
 
         $json['important_dates']
             =
@@ -559,58 +597,60 @@ class FreeJobAlertHelper
             self::parseFees(
                 implode(' ', $raw)
             );
-    $json['reservation']
+        $json['reservation']
+            =
+            self::parseReservation(
+                implode(' ', $raw)
+            );
+        $post =
+            self::parsePost(
+                $raw['post name'] ?? '',
+                $raw['qualification'] ?? '',
+                $raw['salary'] ?? '',
+                $raw['age limit'] ?? ''
+            );
+
+        $json['Mode_Of_Selection']
+            =
+            self::detectSelection(
+                implode(' ', $raw)
+            );
+
+        $json['important_dates'] = '';
+
+        if ($json['notification_date']) {
+            $json['important_dates']
+                .=
+                'Notification Date$'
+                . $json['notification_date']
+                . '#';
+        }
+
+        if ($json['start_date']) {
+            $json['important_dates']
+                .=
+                'Apply Start Date$'
+                . $json['start_date']
+                . '#';
+        }
+
+        if ($json['last_date']) {
+            $json['important_dates']
+                .=
+                'Last Date$'
+                . $json['last_date']
+                . '#';
+        }
+
+$json['doc']
     =
-    self::parseReservation(
-        implode(' ', $raw)
-    );
-    $post =
-    self::parsePost(
-        $raw['post name'] ?? '',
-        $raw['qualification'] ?? '',
-        $raw['salary'] ?? '',
-        $raw['age limit'] ?? ''
-    );
-
-    $json['Mode_Of_Selection']
-    =
-    self::detectSelection(
-        implode(' ', $raw)
-    );
-
-$json['important_dates']='';
-
-if($json['notification_date'])
-{
-    $json['important_dates']
-    .=
-    'Notification Date$'
-    .$json['notification_date']
-    .'#';
-}
-
-if($json['start_date'])
-{
-    $json['important_dates']
-    .=
-    'Apply Start Date$'
-    .$json['start_date']
-    .'#';
-}
-
-if($json['last_date'])
-{
-    $json['important_dates']
-    .=
-    'Last Date$'
-    .$json['last_date']
-    .'#';
-}
+    self::defaultDocuments();
 
 
-$json['important_links']
-    =
-    $json['link'];
+
+        $json['important_links']
+            =
+            $json['link'];
 
         $json =
             array_merge(
@@ -851,55 +891,192 @@ $json['important_links']
 
 
     public static function detectSelection($text)
-{
-    $sel=[];
+    {
+        $sel = [];
 
-    if(stripos($text,'written')!==false)
-        $sel[]='Written Exam';
+        if (stripos($text, 'written') !== false)
+            $sel[] = 'Written Exam';
 
-    if(stripos($text,'cbt')!==false)
-        $sel[]='Computer Based Test';
+        if (stripos($text, 'cbt') !== false)
+            $sel[] = 'Computer Based Test';
 
-    if(stripos($text,'interview')!==false)
-        $sel[]='Interview';
+        if (stripos($text, 'interview') !== false)
+            $sel[] = 'Interview';
 
-    if(stripos($text,'skill')!==false)
-        $sel[]='Skill Test';
+        if (stripos($text, 'skill') !== false)
+            $sel[] = 'Skill Test';
 
-    if(stripos($text,'medical')!==false)
-        $sel[]='Medical Examination';
+        if (stripos($text, 'medical') !== false)
+            $sel[] = 'Medical Examination';
 
-    if(stripos($text,'document')!==false)
-        $sel[]='Document Verification';
+        if (stripos($text, 'document') !== false)
+            $sel[] = 'Document Verification';
 
-    return implode(', ',$sel);
-}
+        return implode(', ', $sel);
+    }
 
 
 
-public static function parsePost(
-    $post,
-    $qualification,
-    $salary,
-    $age
-)
-{
-    return [
+    public static function parsePost(
+        $post,
+        $qualification,
+        $salary,
+        $age
+    ) {
+        return [
 
-        'post_name'=>
-            $post.'#',
+            'post_name' =>
+            $post . '#',
 
-        'post_eligibility'=>
-            $qualification.'#',
+            'post_eligibility' =>
+            $qualification . '#',
 
-        'post_salary'=>
-            $salary.'#',
+            'post_salary' =>
+            $salary . '#',
 
-        'post_age_limit'=>
-            $age.'#',
+            'post_age_limit' =>
+            $age . '#',
 
-        'post_experience'=>
+            'post_experience' =>
             'Fresher#'
-    ];
+        ];
+    }
+
+
+    public static function parseCategoryVacancy($text)
+    {
+        $out = [];
+
+        $cats = [
+            'UR',
+            'GEN',
+            'GENERAL',
+            'EWS',
+            'OBC',
+            'SC',
+            'ST'
+        ];
+
+        foreach ($cats as $cat) {
+            preg_match(
+                '/' . $cat . '\s*[:\-]?\s*(\d+)/i',
+                $text,
+                $m
+            );
+
+            if (isset($m[1])) {
+                $key = strtoupper($cat);
+
+                if ($key == 'GENERAL')
+                    $key = 'UR';
+
+                if ($key == 'GEN')
+                    $key = 'UR';
+
+                $out[$key] = $m[1];
+            }
+        }
+
+        $str = '';
+
+        foreach ($out as $k => $v) {
+            $str .= $k . ':' . $v . '#';
+        }
+
+        return $str;
+    }
+
+
+    public static function parsePosts($rows)
+    {
+        $post_name = '';
+        $post_eligibility = '';
+        $post_salary = '';
+        $post_age = '';
+        $post_exp = '';
+
+        foreach ($rows as $r) {
+            $post_name
+                .= trim($r['name']) . '#';
+
+            $post_eligibility
+                .= trim($r['qualification']) . '#';
+
+            $post_salary
+                .= trim($r['salary']) . '#';
+
+            $post_age
+                .= trim($r['age']) . '#';
+
+            $post_exp
+                .= trim($r['experience']) . '#';
+        }
+
+        return [
+            'post_name' => $post_name,
+            'post_eligibility' => $post_eligibility,
+            'post_salary' => $post_salary,
+            'post_age_limit' => $post_age,
+            'post_experience' => $post_exp
+        ];
+    }
+
+
+    public static function buildCategoryPosts(
+        $post,
+        $cats
+    ) {
+        return [
+
+            'genral_post' =>
+            isset($cats['UR'])
+                ? $post . '$' . $cats['UR'] . '#'
+                : '',
+
+            'ews_post' =>
+            isset($cats['EWS'])
+                ? $post . '$' . $cats['EWS'] . '#'
+                : '',
+
+            'obc_post' =>
+            isset($cats['OBC'])
+                ? $post . '$' . $cats['OBC'] . '#'
+                : '',
+
+            'sc_post' =>
+            isset($cats['SC'])
+                ? $post . '$' . $cats['SC'] . '#'
+                : '',
+
+            'st_post' =>
+            isset($cats['ST'])
+                ? $post . '$' . $cats['ST'] . '#'
+                : ''
+        ];
+    }
+
+
+    public static function defaultDocuments()
+    {
+        return
+            'Photograph-Recent passport size photograph.#'
+            . 'Signature-Candidate signature.#'
+            . 'Identity Proof-Aadhaar Card, PAN Card, Voter ID or Passport.#'
+            . 'Educational Certificates-All educational certificates and marksheets.#'
+            . 'Category Certificate-SC/ST/OBC/EWS certificate if applicable.#'
+            . 'Experience Certificate-If required in notification.#';
+    }
+
+
+    public static function defaultInstructions()
+{
+    return
+        'Read official notification carefully before applying.#'
+        .'Keep photograph and signature ready.#'
+        .'Fill application form carefully.#'
+        .'Upload required documents.#'
+        .'Pay application fee if applicable.#'
+        .'Verify all details before final submit.#'
+        .'Take printout of submitted application.#';
 }
 }
