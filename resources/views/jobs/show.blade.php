@@ -248,63 +248,33 @@
 
         <section class="hero">
 
-            <h1>
-                SSC CGL Recruitment 2026 Apply Online For 14582 Posts
-            </h1>
+            <div class="container">
 
-            <div class="badges">
+                <div class="breadcrumb">
 
-                <div class="badge red">
-                    Last Date : 30 July 2026
+                    Home /
+                    Latest Jobs /
+                    SSC CGL Recruitment
+
                 </div>
 
-                <div class="badge green">
-                    14582 Vacancy
-                </div>
+                <h1>
+                    SSC CGL Recruitment 2026
+                    Apply Online For 14582 Posts
+                </h1>
 
-                <div class="badge yellow">
-                    Salary ₹35400-112400
-                </div>
+                <p>
 
-                <div class="badge blue">
-                    All India Job
-                </div>
+                    Complete Notification,
+                    Eligibility,
+                    Salary,
+                    Vacancy,
+                    Selection Process,
+                    Exam Pattern,
+                    Important Dates
+                    and Apply Link.
 
-            </div>
-
-            <div class="action-btns">
-
-                <a href="#" class="btn apply">
-                    Apply Online
-                </a>
-
-                <a href="#" class="btn notification">
-                    Download Notification
-                </a>
-
-            </div>
-
-            <div class="quick-grid">
-
-                <div class="quick-card">
-                    <h4>Organization</h4>
-                    <p>SSC</p>
-                </div>
-
-                <div class="quick-card">
-                    <h4>Qualification</h4>
-                    <p>Graduate</p>
-                </div>
-
-                <div class="quick-card">
-                    <h4>Job Type</h4>
-                    <p>Permanent</p>
-                </div>
-
-                <div class="quick-card">
-                    <h4>Selection</h4>
-                    <p>CBT + DV</p>
-                </div>
+                </p>
 
             </div>
 
