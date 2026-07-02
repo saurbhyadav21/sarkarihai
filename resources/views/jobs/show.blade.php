@@ -1323,6 +1323,288 @@ Download Notification
 </div>
 
 
+<!-- LAST UPDATED -->
+
+<div class="card">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+">
+
+<div>
+
+<span style="
+background:#e8f5e9;
+padding:8px 15px;
+border-radius:20px;
+font-weight:700;
+">
+
+✓ Updated On:
+02 July 2026
+
+</span>
+
+</div>
+
+<div>
+
+<span style="
+background:#fff3cd;
+padding:8px 15px;
+border-radius:20px;
+font-weight:700;
+">
+
+🔥 Application Open
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- AUTHOR -->
+
+<div class="card">
+
+<h2>
+Article Information
+</h2>
+
+<table class="job-table">
+
+<tr>
+<td class="highlight">
+Author
+</td>
+<td>
+Editorial Team
+</td>
+</tr>
+
+<tr>
+<td class="highlight">
+Reviewed By
+</td>
+<td>
+SarkariHai Research Team
+</td>
+</tr>
+
+<tr>
+<td class="highlight">
+Published Date
+</td>
+<td>
+02 July 2026
+</td>
+</tr>
+
+<tr>
+<td class="highlight">
+Last Updated
+</td>
+<td>
+02 July 2026
+</td>
+</tr>
+
+</table>
+
+</div>
+
+
+
+<!-- SHARE -->
+
+<div class="card">
+
+<h2>
+Share This Job
+</h2>
+
+<div style="
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+">
+
+<a href="#"
+style="
+padding:15px 25px;
+background:#1877f2;
+color:white;
+text-decoration:none;
+border-radius:8px;
+">
+Facebook
+</a>
+
+<a href="#"
+style="
+padding:15px 25px;
+background:#25D366;
+color:white;
+text-decoration:none;
+border-radius:8px;
+">
+WhatsApp
+</a>
+
+<a href="#"
+style="
+padding:15px 25px;
+background:#000;
+color:white;
+text-decoration:none;
+border-radius:8px;
+">
+X
+</a>
+
+<a href="#"
+style="
+padding:15px 25px;
+background:#0088cc;
+color:white;
+text-decoration:none;
+border-radius:8px;
+">
+Telegram
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- PEOPLE ALSO SEARCH -->
+
+<div class="card">
+
+<h2>
+People Also Search For
+</h2>
+
+<div style="
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+">
+
+<span style="
+padding:10px 15px;
+background:#f5f5f5;
+border-radius:20px;
+">
+SSC Jobs
+</span>
+
+<span style="
+padding:10px 15px;
+background:#f5f5f5;
+border-radius:20px;
+">
+Railway Jobs
+</span>
+
+<span style="
+padding:10px 15px;
+background:#f5f5f5;
+border-radius:20px;
+">
+Bank Jobs
+</span>
+
+<span style="
+padding:10px 15px;
+background:#f5f5f5;
+border-radius:20px;
+">
+UPSC Jobs
+</span>
+
+<span style="
+padding:10px 15px;
+background:#f5f5f5;
+border-radius:20px;
+">
+Defence Jobs
+</span>
+
+</div>
+
+</div>
+
+
+
+<!-- MOBILE STICKY BUTTON -->
+
+<div style="
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#0F3D91;
+padding:15px;
+z-index:9999;
+text-align:center;
+box-shadow:0 -2px 10px rgba(0,0,0,.2);
+">
+
+<a href="#"
+style="
+background:#FFB703;
+padding:15px 30px;
+border-radius:8px;
+font-weight:700;
+text-decoration:none;
+color:#000;
+display:inline-block;
+">
+
+Apply Online
+
+</a>
+
+</div>
+
+
+
+<!-- ADSENSE PLACE -->
+
+<div class="card">
+
+<h2>
+Advertisement
+</h2>
+
+<div style="
+height:280px;
+background:#f7f7f7;
+border:2px dashed #ccc;
+display:flex;
+align-items:center;
+justify-content:center;
+">
+
+728 x 280 AdSense Unit
+
+</div>
+
+</div>
+
+
+
 <!-- FAQ -->
 
 <div class="card" id="faq">
@@ -1651,11 +1933,6 @@ All Rights Reserved.
 </footer>
 
 
-
-
-
-
-<!-- BREADCRUMB SCHEMA -->
 
 
 
