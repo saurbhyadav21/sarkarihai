@@ -4,14 +4,15 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\JobFeed;
+use App\Helpers\FreeJobAlertHelper;
 
 class FetchFreeJobAlertNews extends Command
 {
     protected $signature =
-        'jobs:fetch-news';
+    'jobs:fetch-news';
 
     protected $description =
-        'Fetch FreeJobAlert Google News Sitemap';
+    'Fetch FreeJobAlert Google News Sitemap';
 
     public function handle()
     {
@@ -67,32 +68,27 @@ class FetchFreeJobAlertNews extends Command
 
             JobFeed::updateOrCreate(
                 [
-                    'article_id'
-                        => $articleId
+                    'article_id' => $articleId
                 ],
                 [
-                    'source'
-                        => 'FreeJobAlert',
+                    'source' => 'FreeJobAlert',
 
-                    'url'
-                        => $url,
+                    'url' => $url,
 
-                    'title'
-                        => $title,
+                    'title' => $title,
 
-                    'published_at'
-                        => date(
-                            'Y-m-d H:i:s',
-                            strtotime(
-                                $published
-                            )
-                        )
+                    'url_type' => FreeJobAlertHelper::detect($title),
+
+                    'published_at' => date(
+                        'Y-m-d H:i:s',
+                        strtotime($published)
+                    )
                 ]
             );
 
             $this->info(
                 $articleId
-                . ' inserted'
+                    . ' inserted'
             );
         }
 
