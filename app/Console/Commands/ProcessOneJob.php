@@ -15,70 +15,90 @@ class ProcessOneJob extends Command
 
     public function handle()
     {
-        /*
-        ONE PENDING JOB
-        */
-
         $feed = JobFeed::where(
-                    'scrape_status',
-                    'pending'
-                )
-                ->where(
-                    'url_type',
-                    'job'
-                )
-                ->orderBy('id')
-                ->first();
+            'scrape_status',
+            'pending'
+        )
+        ->where(
+            'url_type',
+            'job'
+        )
+        ->orderBy('id')
+        ->first();
 
-        if (!$feed)
-        {
-            $this->info(
-                'No pending jobs found'
-            );
+if (!$feed)
+{
+    $this->error(
+        'No pending jobs found'
+    );
+    return;
+}
 
-            return;
-        }
+/*
+DEBUG
+*/
 
-        try
-        {
-            /*
-            SCRAPE
-            */
+$this->info(
+    'Processing Feed'
+);
 
-            $json =
-                FreeJobAlertHelper::scrape(
-                    $feed->url
-                );
+$this->line(
+    'ID        : ' . $feed->id
+);
 
-            /*
-            STATUS DONE
-            */
+$this->line(
+    'URL TYPE  : ' . $feed->url_type
+);
 
-            $feed->scrape_status =
-                'done';
+$this->line(
+    'TITLE     : ' . $feed->title
+);
 
-            $feed->save();
+$this->line(
+    'URL       : ' . $feed->url
+);
 
-            /*
-            OUTPUT JSON
-            */
+$this->line(
+    'STATUS    : ' . $feed->scrape_status
+);
 
-            echo json_encode(
-                $json,
-                JSON_PRETTY_PRINT |
-                JSON_UNESCAPED_UNICODE
-            );
-        }
-        catch (\Exception $e)
-        {
-            $feed->scrape_status =
-                'failed';
+try
+{
+    $json =
+        FreeJobAlertHelper::scrape(
+            $feed->url
+        );
 
-            $feed->save();
+    echo "\n";
+    echo "SCRAPED JSON\n";
+    echo "====================\n";
 
-            $this->error(
-                $e->getMessage()
-            );
-        }
-    }
+    echo json_encode(
+        $json,
+        JSON_PRETTY_PRINT |
+        JSON_UNESCAPED_UNICODE
+    );
+
+    echo "\n";
+
+    $feed->scrape_status =
+        'completed';
+
+    $feed->save();
+
+    $this->info(
+        'DONE'
+    );
+}
+catch (\Exception $e)
+{
+    $feed->scrape_status =
+        'failed';
+
+    $feed->save();
+
+    $this->error(
+        $e->getMessage()
+    );
+}}
 }
