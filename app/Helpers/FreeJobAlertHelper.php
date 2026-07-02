@@ -498,6 +498,8 @@ class FreeJobAlertHelper
             'updated_at' =>
             date('Y-m-d H:i:s'),
         ];
+
+         return $json;
     }
 
     public static function findKey($arr, $keys)
