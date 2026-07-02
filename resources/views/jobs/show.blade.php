@@ -257,14 +257,14 @@
                                         <ul>
                                             <li><strong>Post Name:</strong>
                                                 {{ str_replace('#', ', ', $job->post_name ?? '') }}</li>
-                                            <li><strong>Salary:</strong> ₹{{ number_format($job->min_salary ?? 0) }} -
-                                                ₹{{ number_format($job->max_salary ?? 0) }}</li>
+                                            {{-- <li><strong>Salary:</strong> ₹{{ number_format($job->min_salary ?? 0) }} -
+                                                ₹{{ number_format($job->max_salary ?? 0) }}</li> --}}
                                             <li><strong>Minimum Qualification:</strong>
                                                 {{ $job->min_qulification ?? 'N/A' }}
                                             </li>
                                             <li><strong>Minimum Age:</strong> {{ $job->min_age ?? 'N/A' }} years</li>
                                             <li><strong>Total Vacancies:</strong>
-                                                {{ number_format($job->total_vacancies ?? 0) }}</li>
+                                                {{-- {{ number_format($job->total_vacancies ?? 0) }}</li> --}}
                                             <li><strong>Exam Date:</strong>
                                                 {{ $job->exam_date }}
                                             </li>
