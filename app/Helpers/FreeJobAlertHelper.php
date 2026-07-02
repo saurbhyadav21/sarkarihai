@@ -564,10 +564,27 @@ class FreeJobAlertHelper
     self::parseReservation(
         implode(' ', $raw)
     );
+    $post =
+    self::parsePost(
+        $raw['post name'] ?? '',
+        $raw['qualification'] ?? '',
+        $raw['salary'] ?? '',
+        $raw['age limit'] ?? ''
+    );
+
+    $json['Mode_Of_Selection']
+    =
+    self::detectSelection(
+        implode(' ', $raw)
+    );
+
+
+
         $json =
             array_merge(
                 $json,
-                $fee
+                $fee,
+                $post
             );
 
         return $json;
@@ -799,4 +816,58 @@ class FreeJobAlertHelper
 
         return $r;
     }
+
+
+    public static function detectSelection($text)
+{
+    $sel=[];
+
+    if(stripos($text,'written')!==false)
+        $sel[]='Written Exam';
+
+    if(stripos($text,'cbt')!==false)
+        $sel[]='Computer Based Test';
+
+    if(stripos($text,'interview')!==false)
+        $sel[]='Interview';
+
+    if(stripos($text,'skill')!==false)
+        $sel[]='Skill Test';
+
+    if(stripos($text,'medical')!==false)
+        $sel[]='Medical Examination';
+
+    if(stripos($text,'document')!==false)
+        $sel[]='Document Verification';
+
+    return implode(', ',$sel);
+}
+
+
+
+public static function parsePost(
+    $post,
+    $qualification,
+    $salary,
+    $age
+)
+{
+    return [
+
+        'post_name'=>
+            $post.'#',
+
+        'post_eligibility'=>
+            $qualification.'#',
+
+        'post_salary'=>
+            $salary.'#',
+
+        'post_age_limit'=>
+            $age.'#',
+
+        'post_experience'=>
+            'Fresher#'
+    ];
+}
 }
