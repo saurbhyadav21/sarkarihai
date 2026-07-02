@@ -488,6 +488,9 @@ class FreeJobAlertHelper
 
             'status' => 'Active',
 
+
+
+
             'source' => 'FreeJobAlert',
 
             'source_url' => $url,
@@ -498,66 +501,70 @@ class FreeJobAlertHelper
             'updated_at' =>
             date('Y-m-d H:i:s'),
         ];
-        if(!$json['state'])
-{
-    $json['state'] =
-        self::findKey(
-            $raw,
-            [
-                'job location',
-                'location',
-                'state',
-                'place of posting'
-            ]
-        );
-}
+        if (!$json['state']) {
+            $json['state'] =
+                self::findKey(
+                    $raw,
+                    [
+                        'job location',
+                        'location',
+                        'state',
+                        'place of posting'
+                    ]
+                );
+        }
 
-if(!$json['state'])
-{
-    $json['state']='All India';
-}
+        if (!$json['state']) {
+            $json['state'] = 'All India';
+        }
 
-if(isset($raw['official website_url']))
-{
-    $json['link'] .=
-        'Official Website$'
-        .$raw['official website_url']
-        .'#';
-}
+        if (isset($raw['official website_url'])) {
+            $json['link'] .=
+                'Official Website$'
+                . $raw['official website_url']
+                . '#';
+        }
 
-if(isset($raw['apply online_url']))
-{
-    $json['link'] .=
-        'Apply Online$'
-        .$raw['apply online_url']
-        .'#';
-}
+        if (isset($raw['apply online_url'])) {
+            $json['link'] .=
+                'Apply Online$'
+                . $raw['apply online_url']
+                . '#';
+        }
 
-if(isset($raw['official notification pdf_url']))
-{
-    $json['link'] .=
-        'Official Notification PDF$'
-        .$raw['official notification pdf_url']
-        .'#';
-}
+        if (isset($raw['official notification pdf_url'])) {
+            $json['link'] .=
+                'Official Notification PDF$'
+                . $raw['official notification pdf_url']
+                . '#';
+        }
 
-$json['important_links']
-    =
-    $json['link'];
+        $json['important_links']
+            =
+            $json['link'];
 
 
-    $json['important_dates']
-=
-'Notification Date$'
-.$json['notification_date']
-.'#'
-.'Apply Start Date$'
-.$json['start_date']
-.'#'
-.'Last Date$'
-.$json['last_date']
-.'#';
-         return $json;
+        $json['important_dates']
+            =
+            'Notification Date$'
+            . $json['notification_date']
+            . '#'
+            . 'Apply Start Date$'
+            . $json['start_date']
+            . '#'
+            . 'Last Date$'
+            . $json['last_date']
+            . '#';
+        $fee =
+            self::parseFees(
+                implode(' ', $raw)
+            );
+
+        $json =
+            array_merge(
+                $json,
+                $fee
+            );
     }
 
     public static function findKey($arr, $keys)
@@ -719,5 +726,43 @@ $json['important_links']
         }
 
         return 'other';
+    }
+
+
+
+    public static function parseFees($text)
+    {
+        $fees = [
+            'genral_fees' => '',
+            'ews_fees' => '',
+            'obc_fees' => '',
+            'sc_fees' => '',
+            'st_fees' => '',
+            'ph_fees' => '',
+            'female_fees' => '',
+            'extra_charge' => ''
+        ];
+
+        preg_match('/UR.*?(\d+)/i', $text, $m);
+        if (isset($m[1])) {
+            $fees['genral_fees'] = $m[1];
+            $fees['ews_fees'] = $m[1];
+            $fees['obc_fees'] = $m[1];
+            $fees['female_fees'] = $m[1];
+        }
+
+        preg_match('/SC.*?(\d+)/i', $text, $m);
+        if (isset($m[1]))
+            $fees['sc_fees'] = $m[1];
+
+        preg_match('/ST.*?(\d+)/i', $text, $m);
+        if (isset($m[1]))
+            $fees['st_fees'] = $m[1];
+
+        preg_match('/PwBD.*?(\d+)/i', $text, $m);
+        if (isset($m[1]))
+            $fees['ph_fees'] = $m[1];
+
+        return $fees;
     }
 }
