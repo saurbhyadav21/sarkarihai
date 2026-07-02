@@ -18,6 +18,8 @@ class JobFeed extends Model
 
         'published_at',
 
-        'status'
+        'status',
+
+        'url_type'
     ];
 }
