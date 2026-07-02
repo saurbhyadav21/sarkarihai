@@ -55,63 +55,68 @@ class FreeJobAlertHelper
 
     public static function detect($title)
     {
-        $title = strtolower($title);
+        $title = strtolower(trim($title));
 
-        // RESULT
-        if (
-            strpos($title, 'result') !== false ||
-            strpos($title, 'seat allotment') !== false ||
-            strpos($title, 'merit list') !== false ||
-            strpos($title, 'selection list') !== false ||
-            strpos($title, 'score card') !== false
-        )
-            return 'result';
+        $result = [
+            'result',
+            'seat allotment',
+            'merit list',
+            'score card',
+            'selected candidates',
+            'selection list'
+        ];
 
-        // ADMIT CARD
-        if (
-            strpos($title, 'admit card') !== false ||
-            strpos($title, 'hall ticket') !== false ||
-            strpos($title, 'call letter') !== false
-        )
-            return 'admit_card';
+        foreach ($result as $v) {
+            if (str_contains($title, $v))
+                return 'result';
+        }
 
-        // ANSWER KEY
-        if (
-            strpos($title, 'answer key') !== false
-        )
-            return 'answer_key';
+        $admit = [
+            'admit card',
+            'hall ticket',
+            'call letter'
+        ];
 
-        // EXAM DATE
-        if (
-            strpos($title, 'exam date') !== false ||
-            strpos($title, 'exam schedule') !== false
-        )
-            return 'exam_date';
+        foreach ($admit as $v) {
+            if (str_contains($title, $v))
+                return 'admit_card';
+        }
 
-        // INTERVIEW
-        if (
-            strpos($title, 'interview') !== false
-        )
-            return 'interview';
+        $answer = [
+            'answer key',
+            'response sheet'
+        ];
 
-        // SYLLABUS
-        if (
-            strpos($title, 'syllabus') !== false
-        )
-            return 'syllabus';
+        foreach ($answer as $v) {
+            if (str_contains($title, $v))
+                return 'answer_key';
+        }
 
-        // JOB
-        if (
-            strpos($title, 'recruitment') !== false ||
-            strpos($title, 'vacancy') !== false ||
-            strpos($title, 'apply online') !== false ||
-            strpos($title, 'apply offline') !== false ||
-            strpos($title, 'walkin') !== false ||
-            strpos($title, 'walk-in') !== false ||
-            strpos($title, 'notification') !== false ||
-            strpos($title, 'apprentice') !== false
-        )
-            return 'job';
+        $exam = [
+            'exam date',
+            'exam schedule'
+        ];
+
+        foreach ($exam as $v) {
+            if (str_contains($title, $v))
+                return 'exam_date';
+        }
+
+        $job = [
+            'recruitment',
+            'vacancy',
+            'apply online',
+            'apply offline',
+            'walkin',
+            'walk-in',
+            'apprentice',
+            'notification'
+        ];
+
+        foreach ($job as $v) {
+            if (str_contains($title, $v))
+                return 'job';
+        }
 
         return 'other';
     }
