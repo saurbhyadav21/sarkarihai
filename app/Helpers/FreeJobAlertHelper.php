@@ -498,7 +498,65 @@ class FreeJobAlertHelper
             'updated_at' =>
             date('Y-m-d H:i:s'),
         ];
+        if(!$json['state'])
+{
+    $json['state'] =
+        self::findKey(
+            $raw,
+            [
+                'job location',
+                'location',
+                'state',
+                'place of posting'
+            ]
+        );
+}
 
+if(!$json['state'])
+{
+    $json['state']='All India';
+}
+
+if(isset($raw['official website_url']))
+{
+    $json['link'] .=
+        'Official Website$'
+        .$raw['official website_url']
+        .'#';
+}
+
+if(isset($raw['apply online_url']))
+{
+    $json['link'] .=
+        'Apply Online$'
+        .$raw['apply online_url']
+        .'#';
+}
+
+if(isset($raw['official notification pdf_url']))
+{
+    $json['link'] .=
+        'Official Notification PDF$'
+        .$raw['official notification pdf_url']
+        .'#';
+}
+
+$json['important_links']
+    =
+    $json['link'];
+
+
+    $json['important_dates']
+=
+'Notification Date$'
+.$json['notification_date']
+.'#'
+.'Apply Start Date$'
+.$json['start_date']
+.'#'
+.'Last Date$'
+.$json['last_date']
+.'#';
          return $json;
     }
 
