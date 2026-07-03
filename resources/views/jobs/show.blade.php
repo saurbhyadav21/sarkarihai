@@ -463,6 +463,37 @@ text-align:center;
             padding: 10px 20px;
             border-radius: 8px;
         }
+
+        .breadcrumb {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .breadcrumb a {
+            color: #444;
+            text-decoration: none;
+            transition: all .2s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #0d6efd;
+            text-decoration: underline;
+        }
+
+        .breadcrumb span[aria-current="page"] {
+            color: #111;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #111;
+        }
     </style>
 </head>
 
@@ -518,7 +549,7 @@ text-align:center;
                         <a href="{{ route('latest.jobs') }}">
                             Latest Jobs
                         </a>
-                       
+
                         @if ($state)
                             <span> / </span>
 
