@@ -14,7 +14,6 @@ class GenerateJobSlug extends Command
 
     public function handle()
     {
-        // Ek record uthao jiska slug NULL hai
         $job = DB::table('job_details')
             ->whereNull('slug')
             ->whereNotNull('title')
@@ -26,17 +25,55 @@ class GenerateJobSlug extends Command
             return;
         }
 
-        // Optional: Apply Online hata do
-        $title = str_ireplace(
-            [' - Apply Online', ' Apply Online'],
-            '',
-            $job->title
-        );
+        $title = $job->title;
 
-        // Slug banao
+        /*
+        |--------------------------------------------------------------------------
+        | SEO Cleanup Rules
+        |--------------------------------------------------------------------------
+        */
+
+        $removeWords = [
+
+            // Apply related
+            'Apply Online',
+            '- Apply Online',
+            '| Apply Online',
+            'Online Form',
+            'Registration',
+
+            // Extra words
+            'For Men',
+            'For Women',
+            'Men Women',
+            'Men & Women',
+            'Male Female',
+            'Latest Update',
+            'Official Notification',
+            'Notification Out',
+            'Download PDF',
+            'PDF Download',
+
+            // Common fillers
+            'Check Details',
+            'Check Eligibility',
+            'Direct Link',
+            'Apply Now',
+
+        ];
+
+        $title = str_ireplace($removeWords, '', $title);
+
+        // Extra spaces remove
+        $title = preg_replace('/\s+/', ' ', $title);
+
+        // Trim
+        $title = trim($title);
+
+        // Slug generate
         $slug = Str::slug($title);
 
-        // Duplicate slug check
+        // Duplicate slug handling
         $originalSlug = $slug;
         $counter = 1;
 
@@ -50,7 +87,6 @@ class GenerateJobSlug extends Command
             $counter++;
         }
 
-        // Update karo
         DB::table('job_details')
             ->where('id', $job->id)
             ->update([
