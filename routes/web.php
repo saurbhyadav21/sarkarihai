@@ -47,7 +47,8 @@ Route::get('/state/{state}/jobs', [JobController::class, 'stateJobs'])->name('st
 Route::get('/jobs/{state}/{category}', [JobController::class, 'stateCategoryJobs'])
     ->name('state.category.jobs');
 
-Route::post('/category/ajax/delete',
+Route::post(
+    '/category/ajax/delete',
     [JobController::class, 'deleteCategory']
 )->name('category.ajax.delete');
 
@@ -91,5 +92,29 @@ Route::get('/latest-jobs/{state}', [JobController::class, 'latestJobs'])
 Route::get('/latest-jobs/{state}/{category}', [JobController::class, 'latestJobs'])
     ->name('latest.jobs.state.category');
 
-Route::get('/latest-jobs/{state}/{category}/{slug}',[JobController::class, 'jobDetail'])->name('job.detail');
+Route::get('/latest-jobs/{state}/{category}/{slug}', [JobController::class, 'jobDetail'])->name('job.detail');
 
+
+Route::post(
+    '/job/{id}/category',
+    [JobController::class, 'updateCategory']
+)
+    ->name('job.updateCategory');
+
+Route::post(
+    '/job/{id}/sub-category',
+    [JobController::class, 'updateSubCategory']
+)
+    ->name('job.updateSubCategory');
+
+Route::post(
+    '/job/{id}/topic',
+    [JobController::class, 'updateTopic']
+)
+    ->name('job.updateTopic');
+
+Route::post(
+    '/job/{id}/state',
+    [JobController::class, 'updateState']
+)
+    ->name('job.updateState');

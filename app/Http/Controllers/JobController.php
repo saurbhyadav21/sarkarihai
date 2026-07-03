@@ -10,7 +10,7 @@ use App\Models\Mineducation; // Make sure you have a Job model
 use App\Models\AdmitCard; // Make sure you have a Job model
 use App\Models\Result; // Make sure you have a Job model
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\DB;
 
 class JobController extends Controller
 {
@@ -322,9 +322,24 @@ class JobController extends Controller
     public function editList()
     {
         $jobs = Job::latest()->get();
+        $categories = DB::table('job_categories')
+            ->orderBy('name')
+            ->get();
 
+        $subCategories = DB::table('job_sub_categories')
+            ->orderBy('name')
+            ->get();
 
-        return view('jobs/job_edit_list', compact('jobs'));
+        $states = DB::table('job_states')
+            ->orderBy('name')
+            ->get();
+
+        return view('jobs/job_edit_list', compact(
+            'jobs',
+            'categories',
+            'subCategories',
+            'states'
+        ));
     }
 
     public function resultList()
@@ -1038,10 +1053,10 @@ class JobController extends Controller
 
     public function jobDetail($state, $category, $slug)
     {
-       
-    
-    $job = Job::where('slug', $slug)->firstOrFail();
-     
+
+
+        $job = Job::where('slug', $slug)->firstOrFail();
+
         return view('jobs.show', [
             'job' => $job,
             'state' => $state,

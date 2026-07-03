@@ -18,10 +18,9 @@
             <div class="card-header bg-dark text-white">
                 <h5 class="mb-0">Job Edit List</h5>
             </div>
-            <a href="{{ route('job.resultEdit', 'add') }}"
-                                            class="btn btn-sm">
-            Add Result
-                                        </a>
+            <a href="{{ route('job.resultEdit', 'add') }}" class="btn btn-sm">
+                Add Result
+            </a>
             <div class="card-body">
 
                 <div class="table-responsive">
@@ -34,10 +33,10 @@
                                 <th>Title</th>
                                 <th>image</th>
                                 <th>admit date</th>
-                                <th>Main Category</th> 
-                                <th>Sub Category</th>
-                                <th>Topic</th>
-                                <th>State</th>
+                                <th>Job Category</th>
+                                <th>Job Sub Category</th>
+                                <th>Job Topic</th>
+                                <th>Job State</th>
                                 <th>syllabus</th>
                                 <th>Delete</th>
                                 <th>Action</th>
@@ -74,22 +73,92 @@
                                         </a>
                                     </td>
 
-                                    <!-- Exam Date -->
+                                    <!-- Main Category -->
                                     <td>
-                                        x
+                                        <form action="{{ route('job.updateCategory', $job->id) }}" method="POST">
+                                            @csrf
+
+                                            <select name="main_category" class="form-select form-select-sm mb-1">
+                                                <option value="">Select</option>
+
+                                                @foreach ($categories as $cat)
+                                                    <option value="{{ $cat->slug }}"
+                                                        {{ $job->main_category == $cat->slug ? 'selected' : '' }}>
+                                                        {{ $cat->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+
+                                            <input type="text" name="new_main_category"
+                                                class="form-control form-control-sm mb-1" placeholder="Add New">
+
+                                            <button class="btn btn-success btn-sm w-100">
+                                                Save
+                                            </button>
+                                        </form>
                                     </td>
 
-                                    <!-- Result Date -->
+                                    <!-- Sub Category -->
                                     <td>
-                                        zz
+                                        <form action="{{ route('job.updateSubCategory', $job->id) }}" method="POST">
+                                            @csrf
+
+                                            <select name="sub_category" class="form-select form-select-sm mb-1">
+                                                <option value="">Select</option>
+
+                                                @foreach ($subCategories as $sub)
+                                                    <option value="{{ $sub->slug }}"
+                                                        {{ $job->sub_category == $sub->slug ? 'selected' : '' }}>
+                                                        {{ $sub->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+
+                                            <input type="text" name="new_sub_category"
+                                                class="form-control form-control-sm mb-1" placeholder="Add New">
+
+                                            <button class="btn btn-success btn-sm w-100">
+                                                Save
+                                            </button>
+                                        </form>
                                     </td>
 
-                                     <td>
-                                        zz
+                                    <!-- Topic -->
+                                    <td>
+                                        <form action="{{ route('job.updateTopic', $job->id) }}" method="POST">
+                                            @csrf
+
+                                            <input type="text" name="topic" value="{{ $job->topic }}"
+                                                class="form-control form-control-sm mb-1" placeholder="UPTET / SSC CGL">
+
+                                            <button class="btn btn-success btn-sm w-100">
+                                                Save
+                                            </button>
+                                        </form>
                                     </td>
 
-                                     <td>
-                                        zz
+                                    <!-- State -->
+                                    <td>
+                                        <form action="{{ route('job.updateState', $job->id) }}" method="POST">
+                                            @csrf
+
+                                            <select name="state_slug" class="form-select form-select-sm mb-1">
+
+                                                <option value="">Select State</option>
+
+                                                @foreach ($states as $state)
+                                                    <option value="{{ $state->slug }}"
+                                                        {{ $job->state_slug == $state->slug ? 'selected' : '' }}>
+                                                        {{ $state->name }}
+                                                    </option>
+                                                @endforeach
+
+                                            </select>
+
+                                            <button class="btn btn-success btn-sm w-100">
+                                                Save
+                                            </button>
+                                        </form>
                                     </td>
 
                                     <!-- Syllabus -->
