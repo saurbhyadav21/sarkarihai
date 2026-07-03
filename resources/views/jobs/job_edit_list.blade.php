@@ -73,24 +73,14 @@
                                     </td>
 
                                     <!-- Exam Date -->
-                                    {{-- <td>
-                                        @if (!empty($job->exam_date))
-                                            {{ $job->exam_date }}
-                                        @else
-                                            <span class="badge bg-danger">Not Announced</span>
-                                        @endif
-                                    </td> --}}
+                                    <td>
+                                        x
+                                    </td>
 
                                     <!-- Result Date -->
-                                    {{-- <td>
-                                        {{ $job->result_date }}
-
-                                        <a href="{{ route('job.resultEdit', $job->id) }}"
-                                            class="btn btn-sm {{ $job->result_date == 'To Be Announced' ? 'btn-danger' : 'btn-success' }}">
-
-                                            {{ $job->result_date == 'To Be Announced' ? 'Update Result' : 'Edit Result' }}
-                                        </a>
-                                    </td> --}}
+                                    <td>
+                                        zz
+                                    </td>
 
                                     <!-- Syllabus -->
                                     <td>
