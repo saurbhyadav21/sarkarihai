@@ -484,7 +484,7 @@ text-align:center;
         }
 
         .breadcrumb span[aria-current="page"] {
-            color: #111;
+            color: #F59E0B;
             font-weight: 600;
         }
 
