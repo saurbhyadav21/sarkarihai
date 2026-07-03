@@ -1475,7 +1475,8 @@ class JobController extends Controller
                     )
                 ),
 
-                'post_age_limit' => $json['acf']['age_limit_for'],
+                'post_age_limit'  => $json['acf']['age_limit_for']
+                    ?? null,
 
                 // 26-33
                 'total_vacancies'       => $json['acf']['total_post'] ?? null,
@@ -1540,7 +1541,7 @@ class JobController extends Controller
                 'ph_fees'               => null,
                 'female_fees'           => null,
                 'apply_mode'            => null,
-                'post_age_limit'        => $json['acf']['age_limits_details'] ?? null,
+                
                 'post_experience'       => null,
                 'application_process'  => $json['acf']['application_fee'] ?? null,
 
