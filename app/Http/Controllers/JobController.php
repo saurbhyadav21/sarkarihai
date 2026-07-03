@@ -10,7 +10,8 @@ use App\Models\Mineducation; // Make sure you have a Job model
 use App\Models\AdmitCard; // Make sure you have a Job model
 use App\Models\Result; // Make sure you have a Job model
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\FacadesDB;
+
 
 class JobController extends Controller
 {
@@ -1063,4 +1064,88 @@ class JobController extends Controller
             'category' => $category,
         ]);
     }
+
+    public function updateCategory($id)
+{
+    $main_category = request('main_category');
+
+    if (request()->filled('new_main_category')) {
+
+        $main_category = \Illuminate\Support\Str::slug(
+            request('new_main_category')
+        );
+
+        DB::table('job_categories')->insert([
+            'slug' => $main_category,
+            'name' => request('new_main_category'),
+        ]);
+    }
+
+    DB::table('job_details')
+        ->where('id', $id)
+        ->update([
+            'main_category' => $main_category
+        ]);
+
+    return back();
+}
+
+
+
+public function updateSubCategory($id)
+{
+    $sub_category = request('sub_category');
+
+    if (request()->filled('new_sub_category')) {
+
+        $sub_category = \Illuminate\Support\Str::slug(
+            request('new_sub_category')
+        );
+
+        DB::table('job_sub_categories')->insert([
+            'slug' => $sub_category,
+            'name' => request('new_sub_category'),
+            'category_slug' => null,
+        ]);
+    }
+
+    DB::table('job_details')
+        ->where('id', $id)
+        ->update([
+            'sub_category' => $sub_category
+        ]);
+
+    return back();
+}
+
+
+
+
+public function updateTopic($id)
+{
+    DB::table('job_details')
+        ->where('id', $id)
+        ->update([
+            'topic' => request('topic')
+        ]);
+
+    return back();
+}
+
+
+
+public function updateState($id)
+{
+    DB::table('job_details')
+        ->where('id', $id)
+        ->update([
+            'state_slug' => request('state_slug')
+        ]);
+
+    return back();
+}
+
+
+
+
 }
