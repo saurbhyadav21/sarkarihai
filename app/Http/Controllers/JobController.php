@@ -1203,4 +1203,129 @@ class JobController extends Controller
 
         return count($posts) . ' posts imported';
     }
+
+    public function testSarkariResult($id)
+    {
+        $feed = DB::table('job_feeds')
+            ->where('id', $id)
+            ->first();
+
+        if (!$feed) {
+            return 'Feed not found';
+        }
+
+        $json = json_decode(
+            $feed->item,
+            true
+        );
+
+        DB::table('job_details')->updateOrInsert(
+
+            [
+                'source_url' =>
+                $json['link']
+            ],
+
+            [
+
+                'title' =>
+                html_entity_decode(
+                    $json['acf']['long_post_title']
+                        ?? $json['title']['rendered']
+                        ?? ''
+                ),
+
+                'source' =>
+                'sarkariresult.com.cm',
+
+                'source_url' =>
+                $json['link'] ?? '',
+
+                'website' =>
+                $json['link'] ?? '',
+
+                'slug' =>
+                $json['slug'] ?? '',
+
+                'status' =>
+                $json['status'] ?? '',
+
+                'year' =>
+                date(
+                    'Y',
+                    strtotime(
+                        $json['date']
+                    )
+                ),
+
+                'notification_date' =>
+                date(
+                    'd M Y',
+                    strtotime(
+                        $json['date']
+                    )
+                ),
+
+                'info_date' =>
+                date(
+                    'd M Y',
+                    strtotime(
+                        $json['date']
+                    )
+                ),
+
+                'desce' =>
+                strip_tags(
+                    $json['acf']['short_details:']
+                        ?? ''
+                ),
+
+                'important_dates' =>
+                $json['acf']['important_dates']
+                    ?? '',
+
+                'application_process' =>
+                $json['acf']['application_fee']
+                    ?? '',
+
+                'post_age_limit' =>
+                $json['acf']['age_limits_details']
+                    ?? '',
+
+                'vaccancy_p' =>
+                $json['acf']['vacancy_details']
+                    ?? '',
+
+                'total_vacancies' =>
+                $json['acf']['total_post']
+                    ?? '',
+
+                'organization' =>
+                $json['acf']['long_post_title']
+                    ?? '',
+
+                'official_notification_pdf' =>
+                $json['link']
+                    ?? '',
+
+                'image' =>
+                $json['featured_media']
+                    ?? null,
+
+                'created_at' =>
+                now(),
+
+                'updated_at' =>
+                now()
+            ]
+        );
+
+        return response()->json([
+            'success' => true,
+            'feed_id' => $feed->id,
+            'title' => $json['title']['rendered'] ?? '',
+            'url' => $json['link'] ?? '',
+            'message' => 'Inserted into job_details'
+        ]);
+    }
 }
