@@ -1363,6 +1363,33 @@ class JobController extends Controller
         preg_match('/Admit Card\s*:.*?(\d{1,2}\s+[A-Za-z]+\s+\d{4})/i', $important_dates, $admit);
         preg_match('/Result Date\s*:.*?(\d{1,2}\s+[A-Za-z]+\s+\d{4})/i', $important_dates, $result);
 
+        $fee = strip_tags(
+            html_entity_decode(
+                $json['acf']['application_fee'] ?? ''
+            )
+        );
+        $general = null;
+        $obc = null;
+        $sc = null;
+        $st = null;
+
+        if (preg_match(
+            '/General.*?₹\s*([0-9]+)/i',
+            $fee,
+            $m
+        )) {
+            $general = $m[1];
+            $obc = $m[1];
+        }
+
+        if (preg_match(
+            '/SC\s*\/\s*ST.*?₹\s*([0-9]+)/i',
+            $fee,
+            $m
+        )) {
+            $sc = $m[1];
+            $st = $m[1];
+        }
         DB::table('job_details')->updateOrInsert(
 
             [
@@ -1390,11 +1417,11 @@ class JobController extends Controller
 
                 // 14-19
                 'info_date'             => $json['date'] ?? null,
-                'genral_fees'           => null,
-                'obc_fees'              => null,
-                'sc_fees'               => null,
-                'st_fees'               => null,
-                'extra_charge'          => null,
+                'genral_fees'  => $general,
+                'obc_fees'     => $obc,
+                'sc_fees'      => $sc,
+                'st_fees'      => $st,
+                'extra_charge' => null,
 
                 // 20-25
                 'min_age'               => null,
