@@ -1038,7 +1038,9 @@ class JobController extends Controller
 
     public function jobDetail($state, $category, $slug)
     {
-        $job = Job::where('slug', $slug)->firstOrFail();
+       
+    dd($state, $category, $slug);
+    $job = Job::where('slug', $slug)->firstOrFail();
         dd($job);
         return view('jobs.show', [
             'job' => $job,
