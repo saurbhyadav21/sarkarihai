@@ -598,26 +598,12 @@ text-align:center;
                         {{ $job->title }}
                     </h1>
 
-
-                    <h1>
-
-                        Latest Government Jobs
-
-                        @if ($state)
-                            in {{ ucwords(str_replace('-', ' ', $state)) }}
-                        @endif
-
-                        @if ($category)
-                            - {{ ucwords(str_replace('-', ' ', $category)) }}
-                        @endif
-
-                    </h1>
-
                     <p>
-                        Complete Notification, Eligibility,
-                        Vacancy, Salary, Selection Process,
-                        Important Dates, Exam Pattern,
-                        Documents and Apply Online Link.
+                        Check complete notification, eligibility,
+                        vacancy details, age limit, salary,
+                        selection process, important dates,
+                        exam pattern, required documents,
+                        and apply online process.
                     </p>
 
                 </div>
