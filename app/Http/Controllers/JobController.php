@@ -1035,4 +1035,15 @@ class JobController extends Controller
             'category' => $category,
         ]);
     }
+
+    public function jobDetail($state, $category, $slug)
+    {
+        $job = Job::where('slug', $slug)->firstOrFail();
+
+        return view('jobs.show', [
+            'job' => $job,
+            'state' => $state,
+            'category' => $category,
+        ]);
+    }
 }
