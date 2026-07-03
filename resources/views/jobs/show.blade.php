@@ -518,7 +518,7 @@ text-align:center;
                         <a href="{{ route('latest.jobs') }}">
                             Latest Jobs
                         </a>
-                        {{ dd($state, $category) }}
+                       
                         @if ($state)
                             <span> / </span>
 
