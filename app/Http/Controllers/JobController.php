@@ -1084,7 +1084,7 @@ class JobController extends Controller
     DB::table('job_details')
         ->where('id', $id)
         ->update([
-            'main_category' => $main_category
+            'category' => $main_category
         ]);
 
     return back();
