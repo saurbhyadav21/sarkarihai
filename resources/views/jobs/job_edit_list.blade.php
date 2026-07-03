@@ -75,7 +75,7 @@
 
                                     <!-- Main Category -->
                                     <td>
-                                        <span class="badge rounded-pill bg-dark px-3 py-2">
+                                        <span class="badge rounded-pill {{ !empty($job->category) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
         {{ strtoupper($job->category ?? 'NOT SET') }}
     </span>
                                         <form action="{{ route('job.updateCategory', $job->id) }}" method="POST">
