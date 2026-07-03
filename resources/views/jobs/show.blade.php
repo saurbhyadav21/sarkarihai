@@ -511,9 +511,7 @@ text-align:center;
                         Home / Latest Jobs / SSC CGL Recruitment
                     </div>
 
-                    <h1>
-                        SSC CGL Recruitment 2026
-                    </h1>
+                    <h1>{{ $job->title }}</h1>
 
                     <p>
                         Complete Notification, Eligibility,
