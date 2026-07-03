@@ -52,7 +52,7 @@ class JobController extends Controller
         $job = Job::all()->firstWhere(fn($j) => Str::slug($j->title, '-') === $slug);
         return view('jobs.show', compact('job'));
     }
-    
+
 
     // Show insert form
     public function create()
@@ -832,9 +832,9 @@ class JobController extends Controller
 
     public function stateCategoryJobs($state = null, $category = null)
     {
-        
-         $state = $state ?? 'all-states';
-    $category = $category ?? 'all-categories';
+
+        $state = $state ?? 'all-states';
+        $category = $category ?? 'all-categories';
         // dd($category);
         // Get all jobs
         $jobs = Job::all();
@@ -868,7 +868,7 @@ class JobController extends Controller
     public function addJob()
     {
         $states = State::all();
-         $categories = Category::orderBy('name', 'asc')->get();
+        $categories = Category::orderBy('name', 'asc')->get();
         $mineducation = Mineducation::all();
 
         return view('jobs.add-job', compact('states', 'categories', 'mineducation'));
@@ -1002,20 +1002,61 @@ class JobController extends Controller
 
 
     public function deleteCategory(Request $request)
-{
-    $category = Category::where('name', $request->name)->first();
+    {
+        $category = Category::where('name', $request->name)->first();
 
-    if(!$category){
+        if (!$category) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Category not found'
+            ], 404);
+        }
+
+        $category->delete();
+
         return response()->json([
-            'status' => false,
-            'message' => 'Category not found'
-        ],404);
+            'status' => true
+        ]);
     }
 
-    $category->delete();
 
-    return response()->json([
-        'status' => true
-    ]);
-}
+    public function latestJobs()
+    {
+        $jobs = Job::latest()->get();
+
+        $state = null;
+        $category = null;
+
+        return view('jobs.job_state_category', compact(
+            'jobs',
+            'state',
+            'category'
+        ));
+    }
+
+
+    public function latestJobsByState($state)
+    {
+        $jobs = Job::latest()->get();
+
+        $category = null;
+
+        return view('jobs.job_state_category', compact(
+            'jobs',
+            'state',
+            'category'
+        ));
+    }
+
+
+    public function latestJobsByStateCategory($state, $category)
+    {
+        $jobs = Job::latest()->get();
+
+        return view('jobs.job_state_category', compact(
+            'jobs',
+            'state',
+            'category'
+        ));
+    }
 }
