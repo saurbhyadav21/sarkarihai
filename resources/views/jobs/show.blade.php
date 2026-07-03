@@ -596,7 +596,7 @@ text-align:center;
         .sidebar {
             position: sticky;
             position: -webkit-sticky;
-            top: 90px;
+            top: 0px;
             align-self: start;
             height: fit-content;
         }
