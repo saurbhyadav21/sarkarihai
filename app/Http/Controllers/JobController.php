@@ -1154,7 +1154,7 @@ public function updateState($id)
 
     public function importWpPosts($page = 1)
 {
-    $url = "https://sarkariresult.com.cm/wp-json/wp/v2/posts?per_page=1&page=".$page;
+    $url = "https://sarkariresult.com.cm/wp-json/wp/v2/posts?per_page=100&page=".$page;
 
     $response = Http::timeout(60)->get($url);
 
