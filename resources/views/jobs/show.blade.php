@@ -511,7 +511,7 @@ text-align:center;
     <a href="{{ url('/') }}">Home</a>
     <span>/</span>
 
-    <a href="{{ route('latest-jobs') }}">Latest Jobs</a>
+    <a href="{{ route('jobs') }}">Latest Jobs</a>
 
     @if(!empty($state_name) && strtolower($state_name) != 'all states')
         <span>/</span>
