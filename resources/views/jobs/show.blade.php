@@ -1420,454 +1420,462 @@ text-align:center;
 
             </div>
 
-        </div>
 
 
-    </div>
+            <!-- APPLICATION PROCESS -->
 
+            <div class="content-card" id="apply">
 
+                <h2>
+                    How To Apply
+                </h2>
 
+                <div style="padding:20px">
 
-
-
-
-
-
-
-
-    <!-- APPLICATION PROCESS -->
-
-    <div class="content-card" id="apply">
-
-        <h2>
-            How To Apply
-        </h2>
-
-        <div style="padding:20px">
-
-            <div style="
+                    <div
+                        style="
 background:#0B4F6C;
 color:#fff;
 padding:15px;
 border-radius:10px;
 margin-bottom:15px;">
-                STEP 1 : Read Official Notification
-            </div>
+                        STEP 1 : Read Official Notification
+                    </div>
 
-            <div style="
+                    <div
+                        style="
 background:#0F766E;
 color:#fff;
 padding:15px;
 border-radius:10px;
 margin-bottom:15px;">
-                STEP 2 : Register Online
-            </div>
+                        STEP 2 : Register Online
+                    </div>
 
-            <div style="
+                    <div
+                        style="
 background:#F59E0B;
 color:#fff;
 padding:15px;
 border-radius:10px;
 margin-bottom:15px;">
-                STEP 3 : Upload Documents
-            </div>
+                        STEP 3 : Upload Documents
+                    </div>
 
-            <div style="
+                    <div
+                        style="
 background:#0B4F6C;
 color:#fff;
 padding:15px;
 border-radius:10px;
 margin-bottom:15px;">
-                STEP 4 : Pay Application Fee
-            </div>
+                        STEP 4 : Pay Application Fee
+                    </div>
 
-            <div style="
+                    <div style="
 background:#0F766E;
 color:#fff;
 padding:15px;
 border-radius:10px;">
-                STEP 5 : Final Submit & Print
-            </div>
+                        STEP 5 : Final Submit & Print
+                    </div>
 
-        </div>
-
-    </div>
-
-
-
-    <!-- IMPORTANT HIGHLIGHTS -->
-
-    <div class="content-card">
-
-        <h2>
-            Important Highlights
-        </h2>
-
-        <div class="highlight-grid">
-
-            <div class="highlight-box">
-                <h3>
-                    ₹44900
-                </h3>
-                <p>
-                    Starting Salary
-                </p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>
-                    500
-                </h3>
-                <p>
-                    Vacancies
-                </p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>
-                    18-27
-                </h3>
-                <p>
-                    Age Limit
-                </p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>
-                    Graduate
-                </h3>
-                <p>
-                    Qualification
-                </p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>
-                    Online
-                </h3>
-                <p>
-                    Apply Mode
-                </p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>
-                    India
-                </h3>
-                <p>
-                    Posting
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- IMPORTANT DATES TIMELINE -->
-
-    <div class="content-card" id="timeline">
-
-        <h2>
-            Important Dates Timeline
-        </h2>
-
-        <div class="timeline">
-
-            <div class="timeline-item">
-                <div class="timeline-date">01 Jul 2026</div>
-                <div class="timeline-content">
-                    Notification Released
                 </div>
+
             </div>
 
-            <div class="timeline-item">
-                <div class="timeline-date">02 Jul 2026</div>
-                <div class="timeline-content">
-                    Application Started
+
+
+            <!-- IMPORTANT HIGHLIGHTS -->
+
+            <div class="content-card">
+
+                <h2>
+                    Important Highlights
+                </h2>
+
+                <div class="highlight-grid">
+
+                    <div class="highlight-box">
+                        <h3>
+                            ₹44900
+                        </h3>
+                        <p>
+                            Starting Salary
+                        </p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>
+                            500
+                        </h3>
+                        <p>
+                            Vacancies
+                        </p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>
+                            18-27
+                        </h3>
+                        <p>
+                            Age Limit
+                        </p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>
+                            Graduate
+                        </h3>
+                        <p>
+                            Qualification
+                        </p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>
+                            Online
+                        </h3>
+                        <p>
+                            Apply Mode
+                        </p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>
+                            India
+                        </h3>
+                        <p>
+                            Posting
+                        </p>
+                    </div>
+
                 </div>
+
             </div>
 
-            <div class="timeline-item">
-                <div class="timeline-date">15 Jul 2026</div>
-                <div class="timeline-content">
-                    Last Date To Apply
+
+            <!-- IMPORTANT DATES TIMELINE -->
+
+            <div class="content-card" id="timeline">
+
+                <h2>
+                    Important Dates Timeline
+                </h2>
+
+                <div class="timeline">
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">01 Jul 2026</div>
+                        <div class="timeline-content">
+                            Notification Released
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">02 Jul 2026</div>
+                        <div class="timeline-content">
+                            Application Started
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">15 Jul 2026</div>
+                        <div class="timeline-content">
+                            Last Date To Apply
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">TBA</div>
+                        <div class="timeline-content">
+                            Exam Date
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
 
-            <div class="timeline-item">
-                <div class="timeline-date">TBA</div>
-                <div class="timeline-content">
-                    Exam Date
+
+
+            <!-- IMPORTANT LINKS -->
+
+            <div class="content-card" id="links">
+
+                <h2>
+                    Important Links
+                </h2>
+
+                <table class="info-table">
+
+                    <tr>
+                        <td>
+                            Apply Online
+                        </td>
+                        <td>
+                            <a href="#">
+                                Apply Here
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Official Notification
+                        </td>
+                        <td>
+                            <a href="#">
+                                Download PDF
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Official Website
+                        </td>
+                        <td>
+                            <a href="#">
+                                Visit Website
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Join Telegram
+                        </td>
+                        <td>
+                            <a href="#">
+                                Join Now
+                            </a>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+
+            <!-- FAQ -->
+
+            <div class="content-card" id="faq">
+
+                <h2>
+                    Frequently Asked Questions
+                </h2>
+
+                <details class="faq-box">
+                    <summary>
+                        What is the last date to apply?
+                    </summary>
+                    <p>
+                        The last date to submit the online application is
+                        15 July 2026.
+                    </p>
+                </details>
+
+
+                <details class="faq-box">
+                    <summary>
+                        What is the age limit?
+                    </summary>
+                    <p>
+                        Candidates must be between
+                        18 to 27 years.
+                    </p>
+                </details>
+
+
+                <details class="faq-box">
+                    <summary>
+                        What is the qualification?
+                    </summary>
+                    <p>
+                        Candidates should possess
+                        a Graduate Degree.
+                    </p>
+                </details>
+
+
+                <details class="faq-box">
+                    <summary>
+                        How many vacancies are available?
+                    </summary>
+                    <p>
+                        There are total
+                        500 vacancies.
+                    </p>
+                </details>
+
+            </div>
+
+
+
+            <!-- RELATED JOBS -->
+
+            <div class="content-card">
+
+                <h2>
+                    Related Jobs
+                </h2>
+
+                <div class="related-jobs">
+
+                    <div class="job-box">
+                        <h3>
+                            SSC CGL 2026
+                        </h3>
+                        <p>
+                            14582 Vacancies
+                        </p>
+                        <a href="#">
+                            View Details
+                        </a>
+                    </div>
+
+
+                    <div class="job-box">
+                        <h3>
+                            IBPS PO 2026
+                        </h3>
+                        <p>
+                            5208 Vacancies
+                        </p>
+                        <a href="#">
+                            View Details
+                        </a>
+                    </div>
+
+
+                    <div class="job-box">
+                        <h3>
+                            Railway NTPC
+                        </h3>
+                        <p>
+                            11558 Vacancies
+                        </p>
+                        <a href="#">
+                            View Details
+                        </a>
+                    </div>
+
                 </div>
+
             </div>
 
-        </div>
+            <!-- STICKY APPLY BUTTON -->
 
-    </div>
+            <div class="sticky-apply">
 
-
-
-    <!-- IMPORTANT LINKS -->
-
-    <div class="content-card" id="links">
-
-        <h2>
-            Important Links
-        </h2>
-
-        <table class="info-table">
-
-            <tr>
-                <td>
+                <a href="#">
                     Apply Online
-                </td>
-                <td>
-                    <a href="#">
-                        Apply Here
-                    </a>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    Official Notification
-                </td>
-                <td>
-                    <a href="#">
-                        Download PDF
-                    </a>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    Official Website
-                </td>
-                <td>
-                    <a href="#">
-                        Visit Website
-                    </a>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    Join Telegram
-                </td>
-                <td>
-                    <a href="#">
-                        Join Now
-                    </a>
-                </td>
-            </tr>
-
-        </table>
-
-    </div>
-
-
-
-    <!-- FAQ -->
-
-    <div class="content-card" id="faq">
-
-        <h2>
-            Frequently Asked Questions
-        </h2>
-
-        <details class="faq-box">
-            <summary>
-                What is the last date to apply?
-            </summary>
-            <p>
-                The last date to submit the online application is
-                15 July 2026.
-            </p>
-        </details>
-
-
-        <details class="faq-box">
-            <summary>
-                What is the age limit?
-            </summary>
-            <p>
-                Candidates must be between
-                18 to 27 years.
-            </p>
-        </details>
-
-
-        <details class="faq-box">
-            <summary>
-                What is the qualification?
-            </summary>
-            <p>
-                Candidates should possess
-                a Graduate Degree.
-            </p>
-        </details>
-
-
-        <details class="faq-box">
-            <summary>
-                How many vacancies are available?
-            </summary>
-            <p>
-                There are total
-                500 vacancies.
-            </p>
-        </details>
-
-    </div>
-
-
-
-    <!-- RELATED JOBS -->
-
-    <div class="content-card">
-
-        <h2>
-            Related Jobs
-        </h2>
-
-        <div class="related-jobs">
-
-            <div class="job-box">
-                <h3>
-                    SSC CGL 2026
-                </h3>
-                <p>
-                    14582 Vacancies
-                </p>
-                <a href="#">
-                    View Details
                 </a>
+
             </div>
 
 
-            <div class="job-box">
-                <h3>
-                    IBPS PO 2026
-                </h3>
-                <p>
-                    5208 Vacancies
-                </p>
-                <a href="#">
-                    View Details
-                </a>
+
+            <!-- SOCIAL SHARE -->
+
+            <div class="content-card">
+
+                <h2>
+                    Share This Job
+                </h2>
+
+                <div class="share-buttons">
+
+                    <a href="#" class="share-btn">
+                        WhatsApp
+                    </a>
+
+                    <a href="#" class="share-btn">
+                        Telegram
+                    </a>
+
+                    <a href="#" class="share-btn">
+                        Facebook
+                    </a>
+
+                    <a href="#" class="share-btn">
+                        Twitter
+                    </a>
+
+                </div>
+
             </div>
 
 
-            <div class="job-box">
-                <h3>
-                    Railway NTPC
-                </h3>
-                <p>
-                    11558 Vacancies
-                </p>
-                <a href="#">
-                    View Details
-                </a>
+
+            <!-- DISCLAIMER -->
+
+            <div class="content-card">
+
+                <h2>
+                    Important Disclaimer
+                </h2>
+
+                <div class="notice-box">
+
+                    We provide job information for educational purposes only.
+                    Candidates are advised to verify all details from the
+                    official notification before applying. We are not
+                    responsible for any changes made by the recruiting authority.
+
+                </div>
+
             </div>
 
-        </div>
-
-    </div>
-
-    <!-- STICKY APPLY BUTTON -->
-
-    <div class="sticky-apply">
-
-        <a href="#">
-            Apply Online
-        </a>
-
-    </div>
 
 
+            <!-- AUTHOR BOX -->
 
-    <!-- SOCIAL SHARE -->
+            <div class="content-card">
 
-    <div class="content-card">
+                <div class="author-box">
 
-        <h2>
-            Share This Job
-        </h2>
+                    <div class="author-image">
+                        SH
+                    </div>
 
-        <div class="share-buttons">
+                    <div class="author-content">
 
-            <a href="#" class="share-btn">
-                WhatsApp
-            </a>
+                        <h3>
+                            Team SarkariHai
+                        </h3>
 
-            <a href="#" class="share-btn">
-                Telegram
-            </a>
+                        <p>
+                            Verified Government Job Research Team with
+                            experience in analyzing recruitment notifications,
+                            eligibility criteria, vacancy details and application
+                            processes.
+                        </p>
 
-            <a href="#" class="share-btn">
-                Facebook
-            </a>
+                    </div>
 
-            <a href="#" class="share-btn">
-                Twitter
-            </a>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- DISCLAIMER -->
-
-    <div class="content-card">
-
-        <h2>
-            Important Disclaimer
-        </h2>
-
-        <div class="notice-box">
-
-            We provide job information for educational purposes only.
-            Candidates are advised to verify all details from the
-            official notification before applying. We are not
-            responsible for any changes made by the recruiting authority.
-
-        </div>
-
-    </div>
-
-
-
-    <!-- AUTHOR BOX -->
-
-    <div class="content-card">
-
-        <div class="author-box">
-
-            <div class="author-image">
-                SH
-            </div>
-
-            <div class="author-content">
-
-                <h3>
-                    Team SarkariHai
-                </h3>
-
-                <p>
-                    Verified Government Job Research Team with
-                    experience in analyzing recruitment notifications,
-                    eligibility criteria, vacancy details and application
-                    processes.
-                </p>
+                </div>
 
             </div>
 
         </div>
 
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
