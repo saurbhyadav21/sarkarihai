@@ -1126,7 +1126,7 @@ public function updateTopic($id)
     DB::table('job_details')
         ->where('id', $id)
         ->update([
-            'topic' => request('topic')
+            'job_topics' => request('topic')
         ]);
 
     return back();
