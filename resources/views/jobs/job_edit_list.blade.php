@@ -75,6 +75,7 @@
 
                                     <!-- Main Category -->
                                     <td>
+                                        {{ $job->category}}
                                         <form action="{{ route('job.updateCategory', $job->id) }}" method="POST">
                                             @csrf
 
