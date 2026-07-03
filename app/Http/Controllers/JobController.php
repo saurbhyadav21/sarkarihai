@@ -1072,136 +1072,135 @@ class JobController extends Controller
     }
 
     public function updateCategory($id)
-{
-    $main_category = request('main_category');
+    {
+        $main_category = request('main_category');
 
-    if (request()->filled('new_main_category')) {
+        if (request()->filled('new_main_category')) {
 
-        $main_category = \Illuminate\Support\Str::slug(
-            request('new_main_category')
-        );
+            $main_category = \Illuminate\Support\Str::slug(
+                request('new_main_category')
+            );
 
-        DB::table('job_categories')->insert([
-            'slug' => $main_category,
-            'name' => request('new_main_category'),
-        ]);
+            DB::table('job_categories')->insert([
+                'slug' => $main_category,
+                'name' => request('new_main_category'),
+            ]);
+        }
+
+        DB::table('job_details')
+            ->where('id', $id)
+            ->update([
+                'category' => $main_category
+            ]);
+
+        return back();
     }
 
-    DB::table('job_details')
-        ->where('id', $id)
-        ->update([
-            'category' => $main_category
-        ]);
-
-    return back();
-}
 
 
+    public function updateSubCategory($id)
+    {
+        $sub_category = request('sub_category');
 
-public function updateSubCategory($id)
-{
-    $sub_category = request('sub_category');
+        if (request()->filled('new_sub_category')) {
 
-    if (request()->filled('new_sub_category')) {
+            $sub_category = \Illuminate\Support\Str::slug(
+                request('new_sub_category')
+            );
 
-        $sub_category = \Illuminate\Support\Str::slug(
-            request('new_sub_category')
-        );
+            DB::table('job_sub_categories')->insert([
+                'slug' => $sub_category,
+                'name' => request('new_sub_category'),
+                'category_slug' => null,
+            ]);
+        }
 
-        DB::table('job_sub_categories')->insert([
-            'slug' => $sub_category,
-            'name' => request('new_sub_category'),
-            'category_slug' => null,
-        ]);
+        DB::table('job_details')
+            ->where('id', $id)
+            ->update([
+                'job_sub_categories' => $sub_category
+            ]);
+
+        return back();
     }
 
-    DB::table('job_details')
-        ->where('id', $id)
-        ->update([
-            'job_sub_categories' => $sub_category
-        ]);
-
-    return back();
-}
 
 
 
+    public function updateTopic($id)
+    {
+        DB::table('job_details')
+            ->where('id', $id)
+            ->update([
+                'job_topics' => request('topic')
+            ]);
 
-public function updateTopic($id)
-{
-    DB::table('job_details')
-        ->where('id', $id)
-        ->update([
-            'job_topics' => request('topic')
-        ]);
-
-    return back();
-}
-
+        return back();
+    }
 
 
-public function updateState($id)
-{
-    DB::table('job_details')
-        ->where('id', $id)
-        ->update([
-            'state' => request('state_slug')
-        ]);
 
-    return back();
-}
+    public function updateState($id)
+    {
+        DB::table('job_details')
+            ->where('id', $id)
+            ->update([
+                'state' => request('state_slug')
+            ]);
+
+        return back();
+    }
 
 
     public function importWpPosts($page = 1)
-{
-    $url = "https://sarkariresult.com.cm/wp-json/wp/v2/posts?per_page=100&page=".$page;
+    {
+        $url = "https://sarkariresult.com.cm/wp-json/wp/v2/posts?per_page=100&page=" . $page;
 
-    $response = Http::timeout(60)->get($url);
+        $response = Http::timeout(60)->get($url);
 
-    if (!$response->successful()) {
-        return "API Error";
-    }
+        if (!$response->successful()) {
+            return "API Error";
+        }
 
-    $posts = $response->json();
+        $posts = $response->json();
 
-    foreach ($posts as $post) {
+        foreach ($posts as $post) {
 
-        DB::table('job_feeds')->updateOrInsert(
+            DB::table('job_feeds')->updateOrInsert(
 
-            [
-                'article_id' => $post['id'],
-                'source' => 'sarkariresult.com.cm'
-            ],
+                [
+                    'article_id' => $post['id'],
+                    'source' => 'sarkariresult.com.cm'
+                ],
 
-            [
-                'url' => $post['link'] ?? '',
-                'title' => html_entity_decode(
-                    $post['title']['rendered'] ?? ''
-                ),
+                [
+                    'url' => $post['link'] ?? '',
+                    'title' => html_entity_decode(
+                        $post['title']['rendered'] ?? ''
+                    ),
 
-                'published_at' =>
+                    'published_at' =>
                     $post['date_gmt'] ?? now(),
 
-                'status' => 'pending',
+                    'status' => 'pending',
 
-                'scrape_status' => 'pending',
+                    'scrape_status' => 'pending',
 
-                'url_type'  => FreeJobAlertHelper::detectUrlType($post),
-                
+                    'url_type'  => FreeJobAlertHelper::detectUrlType($post),
 
-                // pura json save kar do
-                'item' => json_encode(
-                    $post,
-                    JSON_UNESCAPED_UNICODE
-                ),
 
-                'updated_at' => now(),
-                'created_at' => now(),
-            ]
-        );
+                    // pura json save kar do
+                    'item' => json_encode(
+                        $post,
+                        JSON_UNESCAPED_UNICODE
+                    ),
+
+                    'updated_at' => now(),
+                    'created_at' => now(),
+                ]
+            );
+        }
+
+        return count($posts) . ' posts imported';
     }
-
-    return count($posts) . ' posts imported';
-}
-
 }
