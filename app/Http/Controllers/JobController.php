@@ -1020,43 +1020,19 @@ class JobController extends Controller
     }
 
 
-    public function latestJobs()
+    public function latestJobs($state = null, $category = null)
     {
+        // Default values
+        $state = $state ?: null;
+        $category = $category ?: null;
+
+        // Jobs
         $jobs = Job::latest()->get();
 
-        $state = null;
-        $category = null;
-
-        return view('jobs.show', compact(
-            'jobs',
-            'state',
-            'category'
-        ));
-    }
-
-
-    public function latestJobsByState($state)
-    {
-        $jobs = Job::latest()->get();
-
-        $category = null;
-
-        return view('jobs.show', compact(
-            'jobs',
-            'state',
-            'category'
-        ));
-    }
-
-
-    public function latestJobsByStateCategory($state, $category)
-    {
-        $jobs = Job::latest()->get();
-
-        return view('jobs.show', compact(
-            'jobs',
-            'state',
-            'category'
-        ));
+        return view('jobs.job_state_category', [
+            'jobs' => $jobs,
+            'state' => $state,
+            'category' => $category,
+        ]);
     }
 }

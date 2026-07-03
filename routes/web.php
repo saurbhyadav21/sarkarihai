@@ -85,8 +85,8 @@ Route::post('/category/ajax/store', [JobController::class, 'storeCategory'])
 Route::get('/latest-jobs', [JobController::class, 'latestJobs'])
     ->name('latest.jobs');
 
-Route::get('/latest-jobs/{state}', [JobController::class, 'latestJobsByState'])
+Route::get('/latest-jobs/{state}', [JobController::class, 'latestJobs'])
     ->name('latest.jobs.state');
 
-Route::get('/latest-jobs/{state}/{category}', [JobController::class, 'latestJobsByStateCategory'])
+Route::get('/latest-jobs/{state}/{category}', [JobController::class, 'latestJobs'])
     ->name('latest.jobs.state.category');
