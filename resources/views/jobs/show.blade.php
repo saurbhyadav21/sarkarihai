@@ -508,29 +508,48 @@ text-align:center;
                 <div>
 
                     <nav aria-label="breadcrumb" class="breadcrumb">
-    <a href="{{ url('/') }}">Home</a>
+
+    <a href="{{ url('/') }}">
+        Home
+    </a>
+
     <span>/</span>
 
-    <a href="{{ route('jobs') }}">Latest Jobs</a>
+    <a href="{{ route('state.category.jobs', [
+        'state' => 'all-states',
+        'category' => 'all-categories'
+    ]) }}">
+        Latest Jobs
+    </a>
 
-    @if(!empty($state_name) && strtolower($state_name) != 'all states')
+    @if($state != 'all-states')
         <span>/</span>
-        <span>{{ $state_name }}</span>
+        <a href="{{ route('state.category.jobs', [
+            'state' => $state,
+            'category' => 'all-categories'
+        ]) }}">
+            {{ ucwords(str_replace('-', ' ', $state)) }}
+        </a>
     @endif
 
-    @if(!empty($category_name) && strtolower($category_name) != 'all categories')
+    @if($category != 'all-categories')
         <span>/</span>
-        <span>{{ $category_name }}</span>
+        <span aria-current="page">
+            {{ ucwords(str_replace('-', ' ', $category)) }}
+        </span>
     @endif
+
 </nav>
 
 <h1>
     Latest Government Jobs
-    @if(!empty($state_name) && strtolower($state_name) != 'all states')
-        in {{ $state_name }}
+
+    @if($state != 'all-states')
+        in {{ ucwords(str_replace('-', ' ', $state)) }}
     @endif
-    @if(!empty($category_name) && strtolower($category_name) != 'all categories')
-        - {{ $category_name }}
+
+    @if($category != 'all-categories')
+        - {{ ucwords(str_replace('-', ' ', $category)) }}
     @endif
 </h1>
 
