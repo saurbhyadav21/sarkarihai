@@ -63,155 +63,182 @@ DEBUG
         );
 
         try {
-            $json =
-                FreeJobAlertHelper::scrape(
-                    $feed->url
+
+            /*
+            SARKARI RESULT JSON
+            */
+            if ($feed->source == 'sarkariresult.com.cm') {
+
+                $this->info('Processing JSON Source');
+
+                $json = json_decode(
+                    $feed->raw_json,
+                    true
                 );
-            DB::table('job_details')
-                ->updateOrInsert(
 
-                    [
-                        // unique condition
-                        'source_url' =>
-                        $json['source_url']
-                    ],
+                // yaha baad me apna
+                // SarkariResult parser likhoge
 
-                    [
+                dd($json);
 
-                        'title' =>
-                        $json['title'],
+                return;
+            }
 
-                        // 'state' =>
-                        // $json['state'],
-                        'state' =>
-                        'All Indiax',
 
-                        'start_date' =>
-                        $json['start_date'],
+            /*
+    FREEJOBALERT SCRAPING
+    */
+            if ($feed->source == 'FreeJobAlert') {
+                $json =
+                    FreeJobAlertHelper::scrape(
+                        $feed->url
+                    );
+                DB::table('job_details')
+                    ->updateOrInsert(
 
-                        'end_date' =>
-                        $json['last_date'],
+                        [
+                            // unique condition
+                            'source_url' =>
+                            $json['source_url']
+                        ],
 
-                        'last_fee_date' =>
-                        $json['last_fee_date'],
+                        [
 
-                        'correction_date' =>
-                        $json['correction_date'],
+                            'title' =>
+                            $json['title'],
 
-                        'exam_date' =>
-                        $json['exam_date'],
+                            // 'state' =>
+                            // $json['state'],
+                            'state' =>
+                            'All Indiax',
 
-                        'info_date' =>
-                        $json['notification_date'],
+                            'start_date' =>
+                            $json['start_date'],
 
-                        'genral_fees' =>
-                        $json['genral_fees'],
+                            'end_date' =>
+                            $json['last_date'],
 
-                        'obc_fees' =>
-                        $json['obc_fees'],
+                            'last_fee_date' =>
+                            $json['last_fee_date'],
 
-                        'sc_fees' =>
-                        $json['sc_fees'],
+                            'correction_date' =>
+                            $json['correction_date'],
 
-                        'st_fees' =>
-                        $json['st_fees'],
+                            'exam_date' =>
+                            $json['exam_date'],
 
-                        'extra_charge' =>
-                        $json['extra_charge'],
+                            'info_date' =>
+                            $json['notification_date'],
 
-                        'min_age' =>
-                        $json['age_min'],
+                            'genral_fees' =>
+                            $json['genral_fees'],
 
-                        'max_age_genral' =>
-                        $json['max_age_genral'],
+                            'obc_fees' =>
+                            $json['obc_fees'],
 
-                        'max_age_obc' =>
-                        $json['max_age_obc'],
+                            'sc_fees' =>
+                            $json['sc_fees'],
 
-                        'max_age_sc_st' =>
-                        $json['max_age_sc_st'],
+                            'st_fees' =>
+                            $json['st_fees'],
 
-                        'max_age_female' =>
-                        $json['max_age_female'],
+                            'extra_charge' =>
+                            $json['extra_charge'],
 
-                        'relaxation' =>
-                        $json['relaxation'],
+                            'min_age' =>
+                            $json['age_min'],
 
-                        'total_vacancies' =>
-                        $json['total_vacancy'],
+                            'max_age_genral' =>
+                            $json['max_age_genral'],
 
-                        'min_salary' =>
-                        $json['salary_min'],
+                            'max_age_obc' =>
+                            $json['max_age_obc'],
 
-                        'max_salary' =>
-                        $json['salary_max'],
+                            'max_age_sc_st' =>
+                            $json['max_age_sc_st'],
 
-                        'genral_post' =>
-                        $json['genral_post'],
+                            'max_age_female' =>
+                            $json['max_age_female'],
 
-                        'ews_post' =>
-                        $json['ews_post'],
+                            'relaxation' =>
+                            $json['relaxation'],
 
-                        'obc_post' =>
-                        $json['obc_post'],
+                            'total_vacancies' =>
+                            $json['total_vacancy'],
 
-                        'sc_post' =>
-                        $json['sc_post'],
+                            'min_salary' =>
+                            $json['salary_min'],
 
-                        'st_post' =>
-                        $json['st_post'],
+                            'max_salary' =>
+                            $json['salary_max'],
 
-                        'mode_selection' =>
-                        $json['Mode_Of_Selection'],
+                            'genral_post' =>
+                            $json['genral_post'],
 
-                        'post_name' =>
-                        $json['post_name'],
+                            'ews_post' =>
+                            $json['ews_post'],
 
-                        'post_eligibility' =>
-                        $json['post_eligibility'],
+                            'obc_post' =>
+                            $json['obc_post'],
 
-                        'post_salary' =>
-                        $json['post_salary'],
+                            'sc_post' =>
+                            $json['sc_post'],
 
-                        'instruction' =>
-                        $json['instruction'],
+                            'st_post' =>
+                            $json['st_post'],
 
-                        'doc' =>
-                        $json['doc'],
+                            'mode_selection' =>
+                            $json['Mode_Of_Selection'],
 
-                        'link' =>
-                        $json['link'],
+                            'post_name' =>
+                            $json['post_name'],
 
-                        'website' =>
-                        $json['official_website'],
+                            'post_eligibility' =>
+                            $json['post_eligibility'],
 
-                        'updated_at' =>
-                        now(),
+                            'post_salary' =>
+                            $json['post_salary'],
 
-                        'created_at' =>
-                        now()
-                    ]
+                            'instruction' =>
+                            $json['instruction'],
+
+                            'doc' =>
+                            $json['doc'],
+
+                            'link' =>
+                            $json['link'],
+
+                            'website' =>
+                            $json['official_website'],
+
+                            'updated_at' =>
+                            now(),
+
+                            'created_at' =>
+                            now()
+                        ]
+                    );
+                echo "\n";
+                echo "SCRAPED JSON\n";
+                echo "====================\n";
+
+                echo json_encode(
+                    $json,
+                    JSON_PRETTY_PRINT |
+                        JSON_UNESCAPED_UNICODE
                 );
-            echo "\n";
-            echo "SCRAPED JSON\n";
-            echo "====================\n";
 
-            echo json_encode(
-                $json,
-                JSON_PRETTY_PRINT |
-                    JSON_UNESCAPED_UNICODE
-            );
+                echo "\n";
 
-            echo "\n";
+                $feed->scrape_status =
+                    'completed';
 
-            $feed->scrape_status =
-                'completed';
+                $feed->save();
 
-            $feed->save();
-
-            $this->info(
-                'DONE'
-            );
+                $this->info(
+                    'DONE'
+                );
+            }
         } catch (\Exception $e) {
             $feed->scrape_status =
                 'failed';
