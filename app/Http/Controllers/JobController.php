@@ -1499,7 +1499,7 @@ class JobController extends Controller
                 'qualification'         => null,
                 'experience'            => null,
                 'experience_years'      => null,
-                'ews_fees'              => null,
+                
                 'ph_fees'               => null,
                 'female_fees'           => null,
                 'apply_mode'            => null,
