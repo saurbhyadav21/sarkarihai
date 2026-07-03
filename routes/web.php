@@ -42,7 +42,14 @@ Route::delete('/result/{id}', [JobController::class, 'resultDestroy'])->name('re
 Route::post('/add-job', [JobController::class, 'storeJson'])->name('job.store.json');
 
 
+Route::get('/latest-jobs',
+    [JobController::class, 'stateCategoryJobs']);
 
+Route::get('/latest-jobs/{state}/{category}',
+    [JobController::class, 'stateCategoryJobs'])
+    ->name('state.category.jobs');
+
+    
 Route::get('/state/{state}/jobs', [JobController::class, 'stateJobs'])->name('state.jobs');
 Route::get('/jobs/{state}/{category}', [JobController::class, 'stateCategoryJobs'])
     ->name('state.category.jobs');
