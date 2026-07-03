@@ -12,6 +12,7 @@ use App\Models\Result; // Make sure you have a Job model
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use App\Helpers\FreeJobAlertHelper;
 
 class JobController extends Controller
 {
@@ -1153,7 +1154,7 @@ public function updateState($id)
 
     public function importWpPosts($page = 1)
 {
-    $url = "https://sarkariresult.com.cm/wp-json/wp/v2/posts?per_page=100&page=".$page;
+    $url = "https://sarkariresult.com.cm/wp-json/wp/v2/posts?per_page=1&page=".$page;
 
     $response = Http::timeout(60)->get($url);
 
@@ -1169,7 +1170,7 @@ public function updateState($id)
 
             [
                 'article_id' => $post['id'],
-                'source' => 'sarkariresult_wp'
+                'source' => 'sarkariresult.com.cm'
             ],
 
             [
@@ -1185,7 +1186,8 @@ public function updateState($id)
 
                 'scrape_status' => 'pending',
 
-                'url_type' => 'job',
+                'url_type'  => FreeJobAlertHelper::detectUrlType($post),
+                
 
                 // pura json save kar do
                 'item' => json_encode(

@@ -1079,4 +1079,68 @@ class FreeJobAlertHelper
             . 'Verify all details before final submit.#'
             . 'Take printout of submitted application.#';
     }
+
+
+
+    public static function detectUrlType($post)
+    {
+        $title = strtolower(
+            html_entity_decode(
+                $post['title']['rendered'] ?? ''
+            )
+        );
+
+        // category ids
+        $cats = $post['categories'] ?? [];
+
+        // title based detection
+        if (
+            str_contains($title, 'result')
+            || str_contains($title, 'final result')
+        ) {
+            return 'result';
+        }
+
+        if (
+            str_contains($title, 'admit card')
+            || str_contains($title, 'hall ticket')
+        ) {
+            return 'admit-card';
+        }
+
+        if (
+            str_contains($title, 'answer key')
+        ) {
+            return 'answer-key';
+        }
+
+        if (
+            str_contains($title, 'syllabus')
+        ) {
+            return 'syllabus';
+        }
+
+        if (
+            str_contains($title, 'exam date')
+        ) {
+            return 'exam-date';
+        }
+
+        if (
+            str_contains($title, 'admission')
+        ) {
+            return 'admission';
+        }
+
+        if (
+            str_contains($title, 'recruitment')
+            || str_contains($title, 'apply online')
+            || str_contains($title, 'apply offline')
+            || str_contains($title, 'vacancy')
+        ) {
+            return 'job';
+        }
+
+        return 'other';
+    }
 }
