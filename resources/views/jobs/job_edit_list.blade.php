@@ -151,6 +151,10 @@
 
                                     <!-- State -->
                                     <td>
+                                        <span
+                                            class="badge rounded-pill {{ !empty($job->state) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
+                                            {{ strtoupper($job->state ?? 'NOT SET') }}
+                                        </span>
                                         <form action="{{ route('job.updateState', $job->id) }}" method="POST">
                                             @csrf
 
