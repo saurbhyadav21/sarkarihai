@@ -1218,6 +1218,16 @@ class JobController extends Controller
             $feed->item,
             true
         );
+        $important_dates = html_entity_decode(
+            $json['acf']['important_dates'] ?? ''
+        );
+
+        preg_match('/Online Apply Start Date\s*:.*?(\d{1,2}\s+[A-Za-z]+\s+\d{4})/i', $important_dates, $start);
+        preg_match('/Online Apply Last Date\s*:.*?(\d{1,2}\s+[A-Za-z]+\s+\d{4})/i', $important_dates, $last);
+        preg_match('/Last Date For Fee Payment\s*:.*?(\d{1,2}\s+[A-Za-z]+\s+\d{4})/i', $important_dates, $fee);
+        preg_match('/Exam Date\s*:.*?(\d{1,2}\s+[A-Za-z]+\s+\d{4})/i', $important_dates, $exam);
+        preg_match('/Admit Card\s*:.*?(\d{1,2}\s+[A-Za-z]+\s+\d{4})/i', $important_dates, $admit);
+        preg_match('/Result Date\s*:.*?(\d{1,2}\s+[A-Za-z]+\s+\d{4})/i', $important_dates, $result);
 
         DB::table('job_details')->updateOrInsert(
 
@@ -1230,18 +1240,19 @@ class JobController extends Controller
                 // 2-5
                 'title'                 => html_entity_decode($json['acf']['long_post_title'] ?? $json['title']['rendered'] ?? ''),
                 'category'              => null,
-                'state'                 => 'All India',
-                'desce'                 => strip_tags($json['acf']['short_details:'] ?? ''),
+                'state'                 => 'All Indiax',
+                'desce'                 => null,
+
 
                 // 6-13
-                'start_date'            => null,
-                'end_date'              => null,
-                'last_fee_date'         => null,
-                'correction_date'       => null,
-                'exam_date'             => 'To Be Announced',
-                'admit_card'            => 'To Be Announced',
-                'result_date'           => 'To Be Announced',
-                'syllabus'              => 'To Be Announced',
+                'start_date'      => $start[1] ?? null,
+                'end_date'        => $last[1] ?? null,
+                'last_fee_date'   => $fee[1] ?? null,
+                'correction_date' => null,
+                'exam_date'       => $exam[1] ?? 'To Be Announced',
+                'admit_card'      => $admit[1] ?? 'To Be Announced',
+                'result_date'     => $result[1] ?? 'To Be Announced',
+                'syllabus'        => 'To Be Announced',
 
                 // 14-19
                 'info_date'             => $json['date'] ?? null,
