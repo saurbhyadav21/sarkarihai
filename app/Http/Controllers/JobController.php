@@ -10,7 +10,7 @@ use App\Models\Mineducation; // Make sure you have a Job model
 use App\Models\AdmitCard; // Make sure you have a Job model
 use App\Models\Result; // Make sure you have a Job model
 use Illuminate\Support\Str;
-use Illuminate\Support\FacadesDB;
+use Illuminate\Support\Facades\DB;
 
 
 class JobController extends Controller
