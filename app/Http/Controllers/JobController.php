@@ -23,43 +23,36 @@ class JobController extends Controller
     // Single job show
     public function show($slug)
     {
+        // // Job fetch
+        // $job = Job::all()->firstWhere(fn($j) => Str::slug($j->title, '-') === $slug);
+
+        // if (!$job) {
+        //     abort(404);
+        // }
+
+        // // ✅ Admit Card fetch using job_id
+        // $admitCard = \App\Models\AdmitCard::where('job_id', $job->id)->first();
+
+
+
+        // $result = \App\Models\Result::where('job_id', $job->id)->first();
+
+        // // ✅ Lock condition
+
+        // // SEO
+        // $seo = [
+        //     'title' => $job->title . ' - ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date, Salary',
+        //     'description' => 'Apply online for ' . $job->title . ' for ' . $job->total_vacancies . ' posts. Check eligibility, application fee, age limit, important dates and direct apply link.',
+        //     'keywords' => $job->title . ', ' . $job->title . ' vacancy, ' . $job->title . ' apply online, ' . $job->title . ' notification, ' . $job->category . ' recruitment'
+        // ];
+
+        // return view('jobs.show', compact('job', 'seo', 'admitCard', 'result'));
+
         // Job fetch
         $job = Job::all()->firstWhere(fn($j) => Str::slug($j->title, '-') === $slug);
-
-        if (!$job) {
-            abort(404);
-        }
-
-        // ✅ Admit Card fetch using job_id
-        $admitCard = \App\Models\AdmitCard::where('job_id', $job->id)->first();
-
-
-
-        $result = \App\Models\Result::where('job_id', $job->id)->first();
-
-        // ✅ Lock condition
-
-        // SEO
-        $seo = [
-            'title' => $job->title . ' - ' . $job->total_vacancies . ' Posts | Apply Online, Eligibility, Last Date, Salary',
-            'description' => 'Apply online for ' . $job->title . ' for ' . $job->total_vacancies . ' posts. Check eligibility, application fee, age limit, important dates and direct apply link.',
-            'keywords' => $job->title . ', ' . $job->title . ' vacancy, ' . $job->title . ' apply online, ' . $job->title . ' notification, ' . $job->category . ' recruitment'
-        ];
-
-        return view('jobs.show', compact('job', 'seo', 'admitCard', 'result'));
+        return view('jobs.show', compact('job'));
     }
-    //     public function show($slug)
-    // {
-    //     $job = Job::where('slug',$slug)->firstOrFail();
-
-    //     $seo = [
-    //         'title' => $job->title.' Recruitment '.$job->year.' – '.$job->vacancy.' Posts | Apply Online',
-    //         'description' => 'Apply online for '.$job->title.' Recruitment '.$job->year.'. Check vacancy details, eligibility, age limit, important dates and direct apply link.',
-    //         'keywords' => $job->title.' recruitment '.$job->year.', railway jobs, apprentice jobs'
-    //     ];
-
-    //     return view('jobs.show', compact('job','seo'));
-    // }
+    
 
     // Show insert form
     public function create()
