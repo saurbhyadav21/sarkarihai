@@ -34,8 +34,8 @@
                                 <th>Title</th>
                                 <th>image</th>
                                 <th>admit date</th>
-                                {{-- <th>exam date</th> --}}
-                                {{-- <th>result date</th> --}}
+                                <th>Category</th> 
+                                <th>State</th>
                                 <th>syllabus</th>
                                 <th>Delete</th>
                                 <th>Action</th>
