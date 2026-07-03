@@ -134,13 +134,13 @@
                                     <!-- Topic -->
                                     <td>
                                         <span
-                                            class="badge rounded-pill {{ !empty($job->topic) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
-                                            {{ strtoupper($job->topic ?? 'NOT SET') }}
+                                            class="badge rounded-pill {{ !empty($job->job_topics) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
+                                            {{ strtoupper($job->job_topics ?? 'NOT SET') }}
                                         </span>
                                         <form action="{{ route('job.updateTopic', $job->id) }}" method="POST">
                                             @csrf
 
-                                            <input type="text" name="topic" value="{{ $job->topic }}"
+                                            <input type="text" name="topic" value="{{ $job->job_topics }}"
                                                 class="form-control form-control-sm mb-1" placeholder="UPTET / SSC CGL">
 
                                             <button class="btn btn-success btn-sm w-100">
