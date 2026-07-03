@@ -124,7 +124,10 @@ Route::get(
     '/import/wp/{page}',
     [JobController::class, 'importWpPosts']
 );
-
+Route::get(
+    '/import/wp/all',
+    [JobController::class, 'importAllWpPosts']
+);
 
 Route::get(
     '/test/sarkariresult/{id}',

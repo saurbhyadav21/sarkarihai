@@ -1166,42 +1166,176 @@ class JobController extends Controller
 
         foreach ($posts as $post) {
 
-            DB::table('job_feeds')->updateOrInsert(
+            $json = json_encode(
+                $post,
+                JSON_UNESCAPED_UNICODE
+            );
 
-                [
-                    'article_id' => $post['id'],
-                    'source' => 'sarkariresult.com.cm'
-                ],
+            $hash = md5($json);
 
-                [
-                    'url' => $post['link'] ?? '',
-                    'title' => html_entity_decode(
+            $old = DB::table('job_feeds')
+                ->where('article_id', $post['id'])
+                ->where('source', 'sarkariresult.com.cm')
+                ->first();
+
+            /*
+        NEW POST
+        */
+            if (!$old) {
+
+                DB::table('job_feeds')->insert([
+
+                    'source'        => 'sarkariresult.com.cm',
+
+                    'article_id'    => $post['id'],
+
+                    'url'           => $post['link'] ?? '',
+
+                    'title'         => html_entity_decode(
                         $post['title']['rendered'] ?? ''
                     ),
 
-                    'published_at' =>
+                    'published_at'  =>
                     $post['date_gmt'] ?? now(),
 
-                    'status' => 'pending',
+                    'status'        => 'pending',
 
                     'scrape_status' => 'pending',
 
-                    'url_type'  => FreeJobAlertHelper::detectUrlType($post),
+                    'url_type'      =>
+                    FreeJobAlertHelper::detectUrlType($post),
 
+                    'item'          => $json,
 
-                    // pura json save kar do
-                    'item' => json_encode(
-                        $post,
-                        JSON_UNESCAPED_UNICODE
-                    ),
+                    'item_hash'     => $hash,
 
-                    'updated_at' => now(),
-                    'created_at' => now(),
-                ]
-            );
+                    'created_at'    => now(),
+
+                    'updated_at'    => now(),
+                ]);
+
+                continue;
+            }
+
+            /*
+        POST UPDATED
+        */
+            if ($old->item_hash != $hash) {
+
+                DB::table('job_feeds')
+                    ->where('id', $old->id)
+                    ->update([
+
+                        'url' => $post['link'] ?? '',
+
+                        'title' => html_entity_decode(
+                            $post['title']['rendered'] ?? ''
+                        ),
+
+                        'published_at' =>
+                        $post['date_gmt'] ?? now(),
+
+                        'url_type' =>
+                        FreeJobAlertHelper::detectUrlType($post),
+
+                        'item' => $json,
+
+                        'item_hash' => $hash,
+
+                        // dobara process hoga
+                        'status' => 'pending',
+
+                        'scrape_status' => 'pending',
+
+                        'updated_at' => now(),
+                    ]);
+            }
         }
 
-        return count($posts) . ' posts imported';
+        return count($posts) . ' posts checked';
+    }
+
+    public function importAllWpPosts()
+    {
+        $total = 0;
+
+        for ($page = 1; $page <= 13; $page++) {
+
+            $url = "https://sarkariresult.com.cm/wp-json/wp/v2/posts?per_page=100&page=" . $page;
+
+            $response = Http::timeout(60)->get($url);
+
+            if (!$response->successful()) {
+                continue;
+            }
+
+            $posts = $response->json();
+
+            foreach ($posts as $post) {
+
+                $json = json_encode(
+                    $post,
+                    JSON_UNESCAPED_UNICODE
+                );
+
+                $hash = md5($json);
+
+                $old = DB::table('job_feeds')
+                    ->where('article_id', $post['id'])
+                    ->where('source', 'sarkariresult.com.cm')
+                    ->first();
+
+                // naya post
+                if (!$old) {
+
+                    DB::table('job_feeds')->insert([
+
+                        'article_id'     => $post['id'],
+                        'source'         => 'sarkariresult.com.cm',
+                        'url'            => $post['link'] ?? '',
+                        'title'          => html_entity_decode(
+                            $post['title']['rendered'] ?? ''
+                        ),
+                        'published_at'   => $post['date_gmt'] ?? now(),
+                        'status'         => 'pending',
+                        'scrape_status'  => 'pending',
+                        'url_type'       => FreeJobAlertHelper::detectUrlType($post),
+                        'item'           => $json,
+                        'hash'           => $hash,
+                        'created_at'     => now(),
+                        'updated_at'     => now(),
+                    ]);
+
+                    $total++;
+                }
+
+                // existing post update hua
+                else if ($old->hash != $hash) {
+
+                    DB::table('job_feeds')
+                        ->where('id', $old->id)
+                        ->update([
+
+                            'url'           => $post['link'] ?? '',
+                            'title'         => html_entity_decode(
+                                $post['title']['rendered'] ?? ''
+                            ),
+                            'published_at'  => $post['date_gmt'] ?? now(),
+                            'item'          => $json,
+                            'hash'          => $hash,
+                            'status'        => 'pending',
+                            'scrape_status' => 'pending',
+                            'updated_at'    => now(),
+                        ]);
+
+                    $total++;
+                }
+            }
+
+            sleep(1); // server load kam
+        }
+
+        return "Imported/Updated : " . $total;
     }
 
     public function testSarkariResult($id)
