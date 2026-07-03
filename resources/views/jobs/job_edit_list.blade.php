@@ -34,7 +34,9 @@
                                 <th>Title</th>
                                 <th>image</th>
                                 <th>admit date</th>
-                                <th>Category</th> 
+                                <th>Main Category</th> 
+                                <th>Sub Category</th>
+                                <th>Topic</th>
                                 <th>State</th>
                                 <th>syllabus</th>
                                 <th>Delete</th>
@@ -79,6 +81,14 @@
 
                                     <!-- Result Date -->
                                     <td>
+                                        zz
+                                    </td>
+
+                                     <td>
+                                        zz
+                                    </td>
+
+                                     <td>
                                         zz
                                     </td>
 
