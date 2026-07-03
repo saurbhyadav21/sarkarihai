@@ -1475,11 +1475,13 @@ class JobController extends Controller
                     )
                 ),
 
-                'post_age_limit'  => strip_tags(
-                    html_entity_decode(
-                        $json['acf']['age_limit_for'] ?? ''
-                    )
-                ),
+                'post_age_limit' => trim(
+    strip_tags(
+        html_entity_decode(
+            $json['acf']['age_limit_for'] ?? ''
+        )
+    )
+),
 
                 // 26-33
                 'total_vacancies'       => $json['acf']['total_post'] ?? null,
