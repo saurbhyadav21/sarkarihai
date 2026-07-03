@@ -42,14 +42,7 @@ Route::delete('/result/{id}', [JobController::class, 'resultDestroy'])->name('re
 Route::post('/add-job', [JobController::class, 'storeJson'])->name('job.store.json');
 
 
-Route::get('/latest-jobs',
-    [JobController::class, 'stateCategoryJobs']);
 
-Route::get('/latest-jobs/{state}/{category}',
-    [JobController::class, 'stateCategoryJobs'])
-    ->name('state.category.jobs');
-
-    
 Route::get('/state/{state}/jobs', [JobController::class, 'stateJobs'])->name('state.jobs');
 Route::get('/jobs/{state}/{category}', [JobController::class, 'stateCategoryJobs'])
     ->name('state.category.jobs');
@@ -86,3 +79,14 @@ Route::get('/result-cards', [JobController::class, 'resultIndex'])->name('result
 
 Route::post('/category/ajax/store', [JobController::class, 'storeCategory'])
     ->name('category.ajax.store');
+
+
+//NewRoute For New Templtes
+Route::get('/latest-jobs', [JobController::class, 'latestJobs'])
+    ->name('latest.jobs');
+
+Route::get('/latest-jobs/{state}', [JobController::class, 'latestJobsByState'])
+    ->name('latest.jobs.state');
+
+Route::get('/latest-jobs/{state}/{category}', [JobController::class, 'latestJobsByStateCategory'])
+    ->name('latest.jobs.state.category');
