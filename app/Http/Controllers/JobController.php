@@ -1029,7 +1029,7 @@ class JobController extends Controller
         // Jobs
         $jobs = Job::latest()->get();
 
-        return view('jobs.job_state_category', [
+        return view('jobs.show', [
             'jobs' => $jobs,
             'state' => $state,
             'category' => $category,
