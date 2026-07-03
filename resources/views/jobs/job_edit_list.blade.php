@@ -133,6 +133,10 @@
 
                                     <!-- Topic -->
                                     <td>
+                                        <span
+                                            class="badge rounded-pill {{ !empty($job->topic) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
+                                            {{ strtoupper($job->topic ?? 'NOT SET') }}
+                                        </span>
                                         <form action="{{ route('job.updateTopic', $job->id) }}" method="POST">
                                             @csrf
 
