@@ -468,7 +468,7 @@ text-align:center;
             font-size: 15px;
             font-weight: 500;
             margin-bottom: 15px;
-            color: #666;
+            color: #fff;
             line-height: 1.7;
         }
 
@@ -479,7 +479,7 @@ text-align:center;
         }
 
         .breadcrumb a:hover {
-            color: #0d6efd;
+            color: #F59E0B;
             text-decoration: underline;
         }
 
@@ -492,7 +492,7 @@ text-align:center;
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 20px;
-            color: #111;
+            color: #fff;
         }
     </style>
 </head>
