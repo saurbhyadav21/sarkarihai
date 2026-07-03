@@ -1060,6 +1060,366 @@ text-align:center;
 
             </div>
 
+
+            <!-- AGE LIMIT -->
+
+            <div class="content-card" id="age">
+
+                <h2>
+                    Age Limit
+                </h2>
+
+                <table class="info-table">
+
+                    <tr>
+                        <td>Minimum Age</td>
+                        <td>18 Years</td>
+                    </tr>
+
+                    <tr>
+                        <td>Maximum Age</td>
+                        <td>27 Years</td>
+                    </tr>
+
+                    <tr>
+                        <td>OBC Relaxation</td>
+                        <td>3 Years</td>
+                    </tr>
+
+                    <tr>
+                        <td>SC/ST Relaxation</td>
+                        <td>5 Years</td>
+                    </tr>
+
+                </table>
+
+                <div class="notice-box">
+
+                    Age relaxation will be provided
+                    as per government rules.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- VACANCY DETAILS -->
+
+            <div class="content-card" id="vacancy">
+
+                <h2>
+                    Vacancy Details
+                </h2>
+
+                <table class="info-table">
+
+                    <tr>
+                        <td>Post Name</td>
+                        <td>Junior Assistant</td>
+                    </tr>
+
+                    <tr>
+                        <td>Total Vacancy</td>
+                        <td>500</td>
+                    </tr>
+
+                    <tr>
+                        <td>Job Location</td>
+                        <td>All India</td>
+                    </tr>
+
+                    <tr>
+                        <td>Job Type</td>
+                        <td>Permanent</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+
+            <!-- CATEGORY WISE -->
+
+            <div class="content-card">
+
+                <h2>
+                    Category Wise Vacancy
+                </h2>
+
+                <div class="highlight-grid">
+
+                    <div class="highlight-box">
+                        <h3>220</h3>
+                        <p>General</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>55</h3>
+                        <p>EWS</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>135</h3>
+                        <p>OBC</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>60</h3>
+                        <p>SC</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>30</h3>
+                        <p>ST</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- QUALIFICATION -->
+
+            <div class="content-card" id="qualification">
+
+                <h2>
+                    Educational Qualification
+                </h2>
+
+                <p>
+
+                    Candidates must possess
+                    Bachelor Degree from
+                    any recognized university.
+
+                </p>
+
+                <table class="info-table">
+
+                    <tr>
+                        <td>Minimum Qualification</td>
+                        <td>Graduate</td>
+                    </tr>
+
+                    <tr>
+                        <td>Experience</td>
+                        <td>Not Required</td>
+                    </tr>
+
+                    <tr>
+                        <td>Eligible Stream</td>
+                        <td>Any Stream</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+
+            <!-- SALARY -->
+
+            <div class="content-card" id="salary">
+
+                <h2>
+                    Salary Details
+                </h2>
+
+                <table class="info-table">
+
+                    <tr>
+                        <td>Minimum Salary</td>
+                        <td>₹44,900</td>
+                    </tr>
+
+                    <tr>
+                        <td>Maximum Salary</td>
+                        <td>₹1,42,400</td>
+                    </tr>
+
+                    <tr>
+                        <td>Pay Level</td>
+                        <td>Level 7</td>
+                    </tr>
+
+                    <tr>
+                        <td>Allowances</td>
+                        <td>As Per Government Rules</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+            <!-- SELECTION PROCESS -->
+
+            <div class="content-card" id="selection">
+
+                <h2>
+                    Selection Process
+                </h2>
+
+                <div class="highlight-grid">
+
+                    <div class="highlight-box">
+                        <h3>01</h3>
+                        <p>Written Exam</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>02</h3>
+                        <p>Skill Test</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>03</h3>
+                        <p>Document Verification</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>04</h3>
+                        <p>Medical Test</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- POST WISE VACANCY -->
+
+            <div class="content-card">
+
+                <h2>
+                    Post Wise Vacancy Details
+                </h2>
+
+                <table class="info-table">
+
+                    <tr>
+                        <td><b>Post Name</b></td>
+                        <td><b>Total Post</b></td>
+                    </tr>
+
+                    <tr>
+                        <td>Junior Assistant</td>
+                        <td>250</td>
+                    </tr>
+
+                    <tr>
+                        <td>Senior Assistant</td>
+                        <td>150</td>
+                    </tr>
+
+                    <tr>
+                        <td>Inspector</td>
+                        <td>100</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+
+            <!-- POST ELIGIBILITY -->
+
+            <div class="content-card">
+
+                <h2>
+                    Post Wise Eligibility
+                </h2>
+
+                <table class="info-table">
+
+                    <tr>
+                        <td>Junior Assistant</td>
+                        <td>
+                            Graduate Degree From Recognized University
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Senior Assistant</td>
+                        <td>
+                            Graduate + Experience
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Inspector</td>
+                        <td>
+                            Bachelor Degree + Physical Standard
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+
+            <!-- DOCUMENTS -->
+
+            <div class="content-card" id="documents">
+
+                <h2>
+                    Required Documents
+                </h2>
+
+                <table class="info-table">
+
+                    <tr>
+                        <td>Photograph</td>
+                        <td>
+                            Recent Passport Size Photo
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Signature</td>
+                        <td>
+                            Scanned Signature
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>ID Proof</td>
+                        <td>
+                            Aadhaar / PAN / Voter ID
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Education</td>
+                        <td>
+                            Marksheet & Certificates
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Category Certificate</td>
+                        <td>
+                            SC/ST/OBC/EWS if applicable
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Experience Certificate</td>
+                        <td>
+                            If Required
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
         </div>
 
 
@@ -1071,364 +1431,7 @@ text-align:center;
 
 
 
-    <!-- AGE LIMIT -->
 
-    <div class="content-card" id="age">
-
-        <h2>
-            Age Limit
-        </h2>
-
-        <table class="info-table">
-
-            <tr>
-                <td>Minimum Age</td>
-                <td>18 Years</td>
-            </tr>
-
-            <tr>
-                <td>Maximum Age</td>
-                <td>27 Years</td>
-            </tr>
-
-            <tr>
-                <td>OBC Relaxation</td>
-                <td>3 Years</td>
-            </tr>
-
-            <tr>
-                <td>SC/ST Relaxation</td>
-                <td>5 Years</td>
-            </tr>
-
-        </table>
-
-        <div class="notice-box">
-
-            Age relaxation will be provided
-            as per government rules.
-
-        </div>
-
-    </div>
-
-
-
-    <!-- VACANCY DETAILS -->
-
-    <div class="content-card" id="vacancy">
-
-        <h2>
-            Vacancy Details
-        </h2>
-
-        <table class="info-table">
-
-            <tr>
-                <td>Post Name</td>
-                <td>Junior Assistant</td>
-            </tr>
-
-            <tr>
-                <td>Total Vacancy</td>
-                <td>500</td>
-            </tr>
-
-            <tr>
-                <td>Job Location</td>
-                <td>All India</td>
-            </tr>
-
-            <tr>
-                <td>Job Type</td>
-                <td>Permanent</td>
-            </tr>
-
-        </table>
-
-    </div>
-
-
-
-    <!-- CATEGORY WISE -->
-
-    <div class="content-card">
-
-        <h2>
-            Category Wise Vacancy
-        </h2>
-
-        <div class="highlight-grid">
-
-            <div class="highlight-box">
-                <h3>220</h3>
-                <p>General</p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>55</h3>
-                <p>EWS</p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>135</h3>
-                <p>OBC</p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>60</h3>
-                <p>SC</p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>30</h3>
-                <p>ST</p>
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- QUALIFICATION -->
-
-    <div class="content-card" id="qualification">
-
-        <h2>
-            Educational Qualification
-        </h2>
-
-        <p>
-
-            Candidates must possess
-            Bachelor Degree from
-            any recognized university.
-
-        </p>
-
-        <table class="info-table">
-
-            <tr>
-                <td>Minimum Qualification</td>
-                <td>Graduate</td>
-            </tr>
-
-            <tr>
-                <td>Experience</td>
-                <td>Not Required</td>
-            </tr>
-
-            <tr>
-                <td>Eligible Stream</td>
-                <td>Any Stream</td>
-            </tr>
-
-        </table>
-
-    </div>
-
-
-
-    <!-- SALARY -->
-
-    <div class="content-card" id="salary">
-
-        <h2>
-            Salary Details
-        </h2>
-
-        <table class="info-table">
-
-            <tr>
-                <td>Minimum Salary</td>
-                <td>₹44,900</td>
-            </tr>
-
-            <tr>
-                <td>Maximum Salary</td>
-                <td>₹1,42,400</td>
-            </tr>
-
-            <tr>
-                <td>Pay Level</td>
-                <td>Level 7</td>
-            </tr>
-
-            <tr>
-                <td>Allowances</td>
-                <td>As Per Government Rules</td>
-            </tr>
-
-        </table>
-
-    </div>
-
-
-    <!-- SELECTION PROCESS -->
-
-    <div class="content-card" id="selection">
-
-        <h2>
-            Selection Process
-        </h2>
-
-        <div class="highlight-grid">
-
-            <div class="highlight-box">
-                <h3>01</h3>
-                <p>Written Exam</p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>02</h3>
-                <p>Skill Test</p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>03</h3>
-                <p>Document Verification</p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>04</h3>
-                <p>Medical Test</p>
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- POST WISE VACANCY -->
-
-    <div class="content-card">
-
-        <h2>
-            Post Wise Vacancy Details
-        </h2>
-
-        <table class="info-table">
-
-            <tr>
-                <td><b>Post Name</b></td>
-                <td><b>Total Post</b></td>
-            </tr>
-
-            <tr>
-                <td>Junior Assistant</td>
-                <td>250</td>
-            </tr>
-
-            <tr>
-                <td>Senior Assistant</td>
-                <td>150</td>
-            </tr>
-
-            <tr>
-                <td>Inspector</td>
-                <td>100</td>
-            </tr>
-
-        </table>
-
-    </div>
-
-
-
-    <!-- POST ELIGIBILITY -->
-
-    <div class="content-card">
-
-        <h2>
-            Post Wise Eligibility
-        </h2>
-
-        <table class="info-table">
-
-            <tr>
-                <td>Junior Assistant</td>
-                <td>
-                    Graduate Degree From Recognized University
-                </td>
-            </tr>
-
-            <tr>
-                <td>Senior Assistant</td>
-                <td>
-                    Graduate + Experience
-                </td>
-            </tr>
-
-            <tr>
-                <td>Inspector</td>
-                <td>
-                    Bachelor Degree + Physical Standard
-                </td>
-            </tr>
-
-        </table>
-
-    </div>
-
-
-
-    <!-- DOCUMENTS -->
-
-    <div class="content-card" id="documents">
-
-        <h2>
-            Required Documents
-        </h2>
-
-        <table class="info-table">
-
-            <tr>
-                <td>Photograph</td>
-                <td>
-                    Recent Passport Size Photo
-                </td>
-            </tr>
-
-            <tr>
-                <td>Signature</td>
-                <td>
-                    Scanned Signature
-                </td>
-            </tr>
-
-            <tr>
-                <td>ID Proof</td>
-                <td>
-                    Aadhaar / PAN / Voter ID
-                </td>
-            </tr>
-
-            <tr>
-                <td>Education</td>
-                <td>
-                    Marksheet & Certificates
-                </td>
-            </tr>
-
-            <tr>
-                <td>Category Certificate</td>
-                <td>
-                    SC/ST/OBC/EWS if applicable
-                </td>
-            </tr>
-
-            <tr>
-                <td>Experience Certificate</td>
-                <td>
-                    If Required
-                </td>
-            </tr>
-
-        </table>
-
-    </div>
 
 
 
