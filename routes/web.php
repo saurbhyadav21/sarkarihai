@@ -91,11 +91,11 @@ Route::get('/latest-jobs/{state}', [JobController::class, 'latestJobs'])
 Route::get('/latest-jobs/{state}/{category}', [JobController::class, 'latestJobs'])
     ->name('latest.jobs.state.category');
 
-// Route::get('/latest-jobs/{state}/{category}/{slug}',[JobController::class, 'jobDetail'])->name('job.detail');
+Route::get('/latest-jobs/{state}/{category}/{slug}',[JobController::class, 'jobDetail'])->name('job.detail');
 
 
-Route::get('/latest-jobs/{state}/{category}/{slug}', function($state,$category,$slug){
+// Route::get('/latest-jobs/{state}/{category}/{slug}', function($state,$category,$slug){
 
-    dd($state,$category,$slug);
+//     dd($state,$category,$slug);
 
-});
+// });
