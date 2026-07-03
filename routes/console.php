@@ -15,6 +15,9 @@ Schedule::command('jobs:fetch-news')
 Schedule::command('jobs:process-one')
     ->everyTenMinutes();
 
+Schedule::command('jobs:generate-slug')
+            ->everyMinute();
+
 Schedule::call(function () {
 
     File::append(
