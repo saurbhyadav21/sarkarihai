@@ -500,18 +500,18 @@ text-align:center;
 }
 
 .breadcrumb a {
-    color: #444;
+    color: #fff;
     text-decoration: none;
 }
 
 .breadcrumb .current {
-    color: #000;
+    color: #fff;
     font-weight: 700;
 }
 
 .breadcrumb .sep {
     margin: 0 8px;
-    color: #999;
+    color: #fff;
 }
     </style>
 </head>
