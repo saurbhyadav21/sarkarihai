@@ -11,7 +11,7 @@ use App\Models\AdmitCard; // Make sure you have a Job model
 use App\Models\Result; // Make sure you have a Job model
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Http;
 
 class JobController extends Controller
 {
@@ -1151,6 +1151,55 @@ public function updateState($id)
 }
 
 
+    public function importWpPosts($page = 1)
+{
+    $url = "https://sarkariresult.com.cm/wp-json/wp/v2/posts?per_page=100&page=".$page;
 
+    $response = Http::timeout(60)->get($url);
+
+    if (!$response->successful()) {
+        return "API Error";
+    }
+
+    $posts = $response->json();
+
+    foreach ($posts as $post) {
+
+        DB::table('job_feeds')->updateOrInsert(
+
+            [
+                'article_id' => $post['id'],
+                'source' => 'sarkariresult_wp'
+            ],
+
+            [
+                'url' => $post['link'] ?? '',
+                'title' => html_entity_decode(
+                    $post['title']['rendered'] ?? ''
+                ),
+
+                'published_at' =>
+                    $post['date_gmt'] ?? now(),
+
+                'status' => 'pending',
+
+                'scrape_status' => 'pending',
+
+                'url_type' => 'job',
+
+                // pura json save kar do
+                'item' => json_encode(
+                    $post,
+                    JSON_UNESCAPED_UNICODE
+                ),
+
+                'updated_at' => now(),
+                'created_at' => now(),
+            ]
+        );
+    }
+
+    return count($posts) . ' posts imported';
+}
 
 }

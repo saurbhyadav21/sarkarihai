@@ -118,3 +118,9 @@ Route::post(
     [JobController::class, 'updateState']
 )
     ->name('job.updateState');
+
+
+Route::get(
+    '/import/wp/{page}',
+    [JobController::class, 'importWpPosts']
+);
