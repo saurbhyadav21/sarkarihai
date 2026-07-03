@@ -494,25 +494,26 @@ text-align:center;
             margin-bottom: 20px;
             color: #fff;
         }
+
         .breadcrumb {
-    font-size: 16px;
-    font-weight: 500;
-}
+            font-size: 16px;
+            font-weight: 500;
+        }
 
-.breadcrumb a {
-    color: #fff;
-    text-decoration: none;
-}
+        .breadcrumb a {
+            color: #fff;
+            text-decoration: none;
+        }
 
-.breadcrumb .current {
-    color: #fff;
-    font-weight: 700;
-}
+        .breadcrumb .current {
+            color: #fff;
+            font-weight: 700;
+        }
 
-.breadcrumb .sep {
-    margin: 0 8px;
-    color: #fff;
-}
+        .breadcrumb .sep {
+            margin: 0 8px;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -559,31 +560,43 @@ text-align:center;
 
                     <nav aria-label="breadcrumb" class="breadcrumb">
 
-    <a href="{{ url('/') }}">Home</a>
+                        <a href="{{ url('/') }}">
+                            Home
+                        </a>
 
-    <span class="sep">/</span>
+                        <span class="sep">/</span>
 
-    <a href="{{ route('latest.jobs') }}">
-        Latest Jobs
-    </a>
+                        <a href="{{ route('latest.jobs') }}">
+                            Latest Jobs
+                        </a>
 
-    @if($state)
-        <span class="sep">/</span>
+                        <span class="sep">/</span>
 
-        <a href="{{ route('latest.jobs.state',$state) }}">
-            {{ ucwords(str_replace('-',' ',$state)) }}
-        </a>
-    @endif
+                        <a href="{{ route('latest.jobs.state', $state) }}">
+                            {{ ucwords(str_replace('-', ' ', $state)) }}
+                        </a>
 
-    @if($category)
-        <span class="sep">/</span>
+                        <span class="sep">/</span>
 
-        <span class="current">
-            {{ ucwords(str_replace('-',' ',$category)) }}
-        </span>
-    @endif
+                        <a
+                            href="{{ route('latest.jobs.state.category', [
+                                'state' => $state,
+                                'category' => $category,
+                            ]) }}">
+                            {{ ucwords(str_replace('-', ' ', $category)) }}
+                        </a>
 
-</nav>
+                        <span class="sep">/</span>
+
+                        <span class="current" aria-current="page">
+                            {{ $job->title }}
+                        </span>
+
+                    </nav>
+
+                    <h1>
+                        {{ $job->title }}
+                    </h1>
 
 
                     <h1>
