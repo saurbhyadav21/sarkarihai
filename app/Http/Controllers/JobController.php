@@ -1263,7 +1263,7 @@ class JobController extends Controller
 
             $url = "https://sarkariresult.com.cm/wp-json/wp/v2/posts?per_page=100&page=" . $page;
 
-            $response = Http::timeout(60)->get($url);
+            $response = Http::timeout(120)->get($url);
 
             if (!$response->successful()) {
                 continue;
