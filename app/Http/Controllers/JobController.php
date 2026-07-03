@@ -1222,99 +1222,136 @@ class JobController extends Controller
         DB::table('job_details')->updateOrInsert(
 
             [
-                'source_url' =>
-                $json['link']
+                'source_url' => $json['link'] ?? ''
             ],
 
             [
 
-                'title' =>
-                html_entity_decode(
-                    $json['acf']['long_post_title']
-                        ?? $json['title']['rendered']
-                        ?? ''
-                ),
+                // 2-5
+                'title'                 => html_entity_decode($json['acf']['long_post_title'] ?? $json['title']['rendered'] ?? ''),
+                'category'              => null,
+                'state'                 => 'All India',
+                'desce'                 => strip_tags($json['acf']['short_details:'] ?? ''),
 
-                'source' =>
-                'sarkariresult.com.cm',
+                // 6-13
+                'start_date'            => null,
+                'end_date'              => null,
+                'last_fee_date'         => null,
+                'correction_date'       => null,
+                'exam_date'             => 'To Be Announced',
+                'admit_card'            => 'To Be Announced',
+                'result_date'           => 'To Be Announced',
+                'syllabus'              => 'To Be Announced',
 
-                'source_url' =>
-                $json['link'] ?? '',
+                // 14-19
+                'info_date'             => $json['date'] ?? null,
+                'genral_fees'           => null,
+                'obc_fees'              => null,
+                'sc_fees'               => null,
+                'st_fees'               => null,
+                'extra_charge'          => null,
 
-                'website' =>
-                $json['link'] ?? '',
+                // 20-25
+                'min_age'               => null,
+                'max_age_genral'        => null,
+                'max_age_obc'           => null,
+                'max_age_sc_st'         => null,
+                'max_age_female'        => null,
+                'relaxation'            => null,
 
-                'slug' =>
-                $json['slug'] ?? '',
+                // 26-33
+                'total_vacancies'       => $json['acf']['total_post'] ?? null,
+                'min_salary'            => 0,
+                'max_salary'            => 0,
+                'genral_post'           => null,
+                'ews_post'              => null,
+                'obc_post'              => null,
+                'sc_post'               => null,
+                'st_post'               => null,
 
-                'status' =>
-                $json['status'] ?? '',
+                // 34-41
+                'mode_selection'        => null,
+                'post_name'             => null,
+                'post_eligibility'      => null,
+                'min_qulification'      => null,
+                'post_salary'           => null,
+                'instruction'           => null,
+                'link'                  => $json['link'] ?? null,
+                'doc'                   => null,
 
-                'year' =>
-                date(
-                    'Y',
-                    strtotime(
-                        $json['date']
-                    )
-                ),
+                // 42-45
+                'image'                 => $json['featured_media'] ?? null,
+                'website'               => $json['link'] ?? null,
+                'updated_at'            => now(),
+                'created_at'            => now(),
 
-                'notification_date' =>
-                date(
-                    'd M Y',
-                    strtotime(
-                        $json['date']
-                    )
-                ),
+                // 46-53
+                'main_p'                => $json['acf']['short_details:'] ?? null,
+                'date_p'                => $json['acf']['important_dates'] ?? null,
+                'fee_p'                 => $json['acf']['application_fee'] ?? null,
+                'age_p'                 => $json['acf']['age_limits_details'] ?? null,
+                'vaccancy_p'            => $json['acf']['vacancy_details'] ?? null,
+                'category_p'            => null,
+                'selection_p'           => null,
+                'post_p'                => $json['acf']['vacancy_details'] ?? null,
 
-                'info_date' =>
-                date(
-                    'd M Y',
-                    strtotime(
-                        $json['date']
-                    )
-                ),
+                // 54-59
+                'slug'                  => $json['slug'] ?? null,
+                'year'                  => date('Y', strtotime($json['date'] ?? now())),
+                'organization'          => $json['acf']['long_post_title'] ?? null,
+                'department'            => null,
+                'sector'                => null,
+                'sub_sector'            => null,
 
-                'desce' => '',
-                
-               
+                // 60-68
+                'job_location'          => null,
+                'job_location_type'     => null,
+                'job_type'              => null,
+                'employment_type'       => null,
+                'notification_date'     => $json['date'] ?? null,
+                'interview_date'        => null,
+                'walkin_date'           => null,
+                'salary_text'           => null,
+                'pay_level'             => null,
 
-                'important_dates' =>
-                $json['acf']['important_dates']
-                    ?? '',
+                // 69-78
+                'qualification'         => null,
+                'experience'            => null,
+                'experience_years'      => null,
+                'ews_fees'              => null,
+                'ph_fees'               => null,
+                'female_fees'           => null,
+                'apply_mode'            => null,
+                'post_age_limit'        => $json['acf']['age_limits_details'] ?? null,
+                'post_experience'       => null,
+                'application_process'  => $json['acf']['application_fee'] ?? null,
 
-                'application_process' =>
-                $json['acf']['application_fee']
-                    ?? '',
+                // 79-88
+                'advt_no'               => null,
+                'notification_number'   => null,
+                'official_notification_pdf'
+                => $json['link'] ?? null,
+                'apply_online_link'     => null,
+                'answer_key_link'       => null,
+                'admit_card_link'       => null,
+                'result_link'           => null,
+                'reservation'           => null,
+                'important_dates'       => $json['acf']['important_dates'] ?? null,
+                'important_links'       => null,
 
-                'post_age_limit' =>
-                $json['acf']['age_limits_details']
-                    ?? '',
+                // 89-96
+                'is_interview_only'     => 0,
+                'is_exam_required'      => 1,
+                'is_walkin'             => 0,
+                'is_contractual'        => 0,
+                'is_apprentice'         => 0,
+                'status'                => $json['status'] ?? null,
+                'source'                => 'sarkariresult.com.cm',
+                'source_url'            => $json['link'] ?? null,
 
-                'vaccancy_p' =>
-                $json['acf']['vacancy_details']
-                    ?? '',
-
-                'total_vacancies' =>
-                $json['acf']['total_post']
-                    ?? '',
-
-                'organization' =>
-                $json['acf']['long_post_title']
-                    ?? '',
-
-                'official_notification_pdf' =>
-                $json['link']
-                    ?? '',
-
-                'image' =>
-                $json['featured_media']
-                    ?? null,
-
-                'created_at' =>
-                now(),
-
-                'updated_at' =>
-                now()
+                // 97-98
+                'job_sub_categories'    => null,
+                'job_topics'            => null,
             ]
         );
 
