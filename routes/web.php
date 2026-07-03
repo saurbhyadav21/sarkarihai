@@ -125,7 +125,7 @@ Route::get(
     [JobController::class, 'importWpPosts']
 );
 Route::get(
-    '/import/wp/all',
+    '/import/wpx/all',
     [JobController::class, 'importAllWpPosts']
 );
 
