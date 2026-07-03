@@ -508,17 +508,31 @@ text-align:center;
                 <div>
 
                     <nav aria-label="breadcrumb" class="breadcrumb">
-                        <a href="{{ url('/') }}">Home</a>
-                        <span>/</span>
+    <a href="{{ url('/') }}">Home</a>
+    <span>/</span>
 
-                        <a href="{{ route('latest-jobs') }}">Latest Jobs</a>
-                        <span>/</span>
+    <a href="{{ route('latest-jobs') }}">Latest Jobs</a>
 
-                        <span aria-current="page">{{ $job->title }}</span>
-                    </nav>
+    @if(!empty($state_name) && strtolower($state_name) != 'all states')
+        <span>/</span>
+        <span>{{ $state_name }}</span>
+    @endif
 
+    @if(!empty($category_name) && strtolower($category_name) != 'all categories')
+        <span>/</span>
+        <span>{{ $category_name }}</span>
+    @endif
+</nav>
 
-                    <h1>{{ $job->title }}</h1>
+<h1>
+    Latest Government Jobs
+    @if(!empty($state_name) && strtolower($state_name) != 'all states')
+        in {{ $state_name }}
+    @endif
+    @if(!empty($category_name) && strtolower($category_name) != 'all categories')
+        - {{ $category_name }}
+    @endif
+</h1>
 
                     <p>
                         Complete Notification, Eligibility,
