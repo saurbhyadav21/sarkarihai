@@ -81,8 +81,10 @@ DEBUG
                         'title' =>
                         $json['title'],
 
+                        // 'state' =>
+                        // $json['state'],
                         'state' =>
-                        $json['state'],
+                        'All Indiax',
 
                         'start_date' =>
                         $json['start_date'],
