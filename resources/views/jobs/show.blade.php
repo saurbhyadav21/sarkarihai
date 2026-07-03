@@ -540,33 +540,31 @@ text-align:center;
 
                     <nav aria-label="breadcrumb" class="breadcrumb">
 
-                        <a href="{{ url('/') }}">
-                            Home
-                        </a>
+    <a href="{{ url('/') }}">Home</a>
 
-                        <span> / </span>
+    <span class="sep">/</span>
 
-                        <a href="{{ route('latest.jobs') }}">
-                            Latest Jobs
-                        </a>
+    <a href="{{ route('latest.jobs') }}">
+        Latest Jobs
+    </a>
 
-                        @if ($state)
-                            <span> / </span>
+    @if($state)
+        <span class="sep">/</span>
 
-                            <a href="{{ route('latest.jobs.state', $state) }}">
-                                {{ ucwords(str_replace('-', ' ', $state)) }}
-                            </a>
-                        @endif
+        <a href="{{ route('latest.jobs.state',$state) }}">
+            {{ ucwords(str_replace('-',' ',$state)) }}
+        </a>
+    @endif
 
-                        @if ($category)
-                            <span> / </span>
+    @if($category)
+        <span class="sep">/</span>
 
-                            <span aria-current="page">
-                                {{ ucwords(str_replace('-', ' ', $category)) }}
-                            </span>
-                        @endif
+        <span class="current">
+            {{ ucwords(str_replace('-',' ',$category)) }}
+        </span>
+    @endif
 
-                    </nav>
+</nav>
 
 
                     <h1>
