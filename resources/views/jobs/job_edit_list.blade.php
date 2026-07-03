@@ -75,28 +75,43 @@
 
                                     <!-- Main Category -->
                                     <td>
-                                        {{ $job->category}}
-                                        <form action="{{ route('job.updateCategory', $job->id) }}" method="POST">
-                                            @csrf
+                                    <td>
+                                        <div
+                                            style="
+        display:inline-block;
+        background:#e7f1ff;
+        color:#0d6efd;
+        border:1px solid #0d6efd;
+        padding:6px 14px;
+        border-radius:20px;
+        font-weight:600;
+        font-size:14px;
+        box-shadow:0 2px 5px rgba(0,0,0,.1);
+    ">
+                                            {{ $job->category ?? 'No Category' }}
+                                        </div>
+                                    </td>
+                                    <form action="{{ route('job.updateCategory', $job->id) }}" method="POST">
+                                        @csrf
 
-                                            <select name="main_category" class="form-select form-select-sm mb-1">
-                                                <option value="">Select</option>
+                                        <select name="main_category" class="form-select form-select-sm mb-1">
+                                            <option value="">Select</option>
 
-                                                @foreach ($categories as $cat)
-                                                    <option value="{{ $cat->slug }}"
-                                                        {{ $job->main_category == $cat->slug ? 'selected' : '' }}>
-                                                        {{ $cat->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            @foreach ($categories as $cat)
+                                                <option value="{{ $cat->slug }}"
+                                                    {{ $job->main_category == $cat->slug ? 'selected' : '' }}>
+                                                    {{ $cat->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
 
-                                            <input type="text" name="new_main_category"
-                                                class="form-control form-control-sm mb-1" placeholder="Add New">
+                                        <input type="text" name="new_main_category"
+                                            class="form-control form-control-sm mb-1" placeholder="Add New">
 
-                                            <button class="btn btn-success btn-sm w-100">
-                                                Save
-                                            </button>
-                                        </form>
+                                        <button class="btn btn-success btn-sm w-100">
+                                            Save
+                                        </button>
+                                    </form>
                                     </td>
 
                                     <!-- Sub Category -->
