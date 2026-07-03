@@ -75,9 +75,10 @@
 
                                     <!-- Main Category -->
                                     <td>
-                                        <span class="badge rounded-pill {{ !empty($job->category) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
-        {{ strtoupper($job->category ?? 'NOT SET') }}
-    </span>
+                                        <span
+                                            class="badge rounded-pill {{ !empty($job->category) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
+                                            {{ strtoupper($job->category ?? 'NOT SET') }}
+                                        </span>
                                         <form action="{{ route('job.updateCategory', $job->id) }}" method="POST">
                                             @csrf
 
@@ -103,6 +104,10 @@
 
                                     <!-- Sub Category -->
                                     <td>
+                                        <span
+                                            class="badge rounded-pill {{ !empty($job->job_sub_categories) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
+                                            {{ strtoupper($job->job_sub_categories ?? 'NOT SET') }}
+                                        </span>
                                         <form action="{{ route('job.updateSubCategory', $job->id) }}" method="POST">
                                             @csrf
 

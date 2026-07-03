@@ -1112,7 +1112,7 @@ public function updateSubCategory($id)
     DB::table('job_details')
         ->where('id', $id)
         ->update([
-            'sub_category' => $sub_category
+            'job_sub_categories' => $sub_category
         ]);
 
     return back();
