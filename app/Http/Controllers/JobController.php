@@ -1398,6 +1398,35 @@ class JobController extends Controller
             $st = $m[1];
         }
 
+        $ageText = strip_tags(
+            html_entity_decode(
+                $json['acf']['age_limits_details'] ?? ''
+            )
+        );
+
+        $minAge = null;
+        $maxAge = null;
+
+        if (
+            preg_match(
+                '/Minimum Age\s*:\s*(\d+)/i',
+                $ageText,
+                $m
+            )
+        ) {
+            $minAge = $m[1];
+        }
+
+        if (
+            preg_match(
+                '/Maximum Age\s*:\s*(\d+)/i',
+                $ageText,
+                $m
+            )
+        ) {
+            $maxAge = $m[1];
+        }
+
         DB::table('job_details')->updateOrInsert(
 
             [
@@ -1433,12 +1462,21 @@ class JobController extends Controller
                 'extra_charge' => null,
 
                 // 20-25
-                'min_age'               => null,
-                'max_age_genral'        => null,
-                'max_age_obc'           => null,
-                'max_age_sc_st'         => null,
-                'max_age_female'        => null,
-                'relaxation'            => null,
+                // Age
+                'min_age'         => $minAge,
+                'max_age_genral'  => $maxAge,
+                'max_age_obc'     => $maxAge,
+                'max_age_sc_st'   => $maxAge,
+                'max_age_female'  => $maxAge,
+
+                'relaxation'      => strip_tags(
+                    html_entity_decode(
+                        $json['acf']['age_limits_details'] ?? ''
+                    )
+                ),
+
+                'post_age_limit'  => $json['acf']['age_limit_for']
+                    ?? null,
 
                 // 26-33
                 'total_vacancies'       => $json['acf']['total_post'] ?? null,
@@ -1499,7 +1537,7 @@ class JobController extends Controller
                 'qualification'         => null,
                 'experience'            => null,
                 'experience_years'      => null,
-                
+
                 'ph_fees'               => null,
                 'female_fees'           => null,
                 'apply_mode'            => null,
