@@ -507,9 +507,16 @@ text-align:center;
 
                 <div>
 
-                    <div class="breadcrumb">
-                        Home / Latest Jobs / SSC CGL Recruitment
-                    </div>
+                    <nav aria-label="breadcrumb" class="breadcrumb">
+                        <a href="{{ url('/') }}">Home</a>
+                        <span>/</span>
+
+                        <a href="{{ route('latest-jobs') }}">Latest Jobs</a>
+                        <span>/</span>
+
+                        <span aria-current="page">{{ $job->title }}</span>
+                    </nav>
+
 
                     <h1>{{ $job->title }}</h1>
 
