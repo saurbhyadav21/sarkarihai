@@ -1027,7 +1027,7 @@ class JobController extends Controller
         $state = null;
         $category = null;
 
-        return view('jobs.job_state_category', compact(
+        return view('jobs.show', compact(
             'jobs',
             'state',
             'category'
@@ -1041,7 +1041,7 @@ class JobController extends Controller
 
         $category = null;
 
-        return view('jobs.job_state_category', compact(
+        return view('jobs.show', compact(
             'jobs',
             'state',
             'category'
@@ -1053,7 +1053,7 @@ class JobController extends Controller
     {
         $jobs = Job::latest()->get();
 
-        return view('jobs.job_state_category', compact(
+        return view('jobs.show', compact(
             'jobs',
             'state',
             'category'

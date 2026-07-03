@@ -509,49 +509,48 @@ text-align:center;
 
                     <nav aria-label="breadcrumb" class="breadcrumb">
 
-    <a href="{{ url('/') }}">
-        Home
-    </a>
+                        <a href="{{ url('/') }}">
+                            Home
+                        </a>
 
-    <span>/</span>
+                        <span> / </span>
 
-    <a href="{{ route('state.category.jobs', [
-        'state' => 'all-states',
-        'category' => 'all-categories'
-    ]) }}">
-        Latest Jobs
-    </a>
+                        <a href="{{ route('latest.jobs') }}">
+                            Latest Jobs
+                        </a>
 
-    @if($state != 'all-states')
-        <span>/</span>
-        <a href="{{ route('state.category.jobs', [
-            'state' => $state,
-            'category' => 'all-categories'
-        ]) }}">
-            {{ ucwords(str_replace('-', ' ', $state)) }}
-        </a>
-    @endif
+                        @if ($state)
+                            <span> / </span>
 
-    @if($category != 'all-categories')
-        <span>/</span>
-        <span aria-current="page">
-            {{ ucwords(str_replace('-', ' ', $category)) }}
-        </span>
-    @endif
+                            <a href="{{ route('latest.jobs.state', $state) }}">
+                                {{ ucwords(str_replace('-', ' ', $state)) }}
+                            </a>
+                        @endif
 
-</nav>
+                        @if ($category)
+                            <span> / </span>
 
-<h1>
-    Latest Government Jobs
+                            <span aria-current="page">
+                                {{ ucwords(str_replace('-', ' ', $category)) }}
+                            </span>
+                        @endif
 
-    @if($state != 'all-states')
-        in {{ ucwords(str_replace('-', ' ', $state)) }}
-    @endif
+                    </nav>
 
-    @if($category != 'all-categories')
-        - {{ ucwords(str_replace('-', ' ', $category)) }}
-    @endif
-</h1>
+
+                    <h1>
+
+                        Latest Government Jobs
+
+                        @if ($state)
+                            in {{ ucwords(str_replace('-', ' ', $state)) }}
+                        @endif
+
+                        @if ($category)
+                            - {{ ucwords(str_replace('-', ' ', $category)) }}
+                        @endif
+
+                    </h1>
 
                     <p>
                         Complete Notification, Eligibility,
