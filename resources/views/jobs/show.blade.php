@@ -473,7 +473,7 @@ text-align:center;
         }
 
         .breadcrumb a {
-            color: #444;
+            color: #fff;
             text-decoration: none;
             transition: all .2s ease;
         }
