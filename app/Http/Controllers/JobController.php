@@ -1139,7 +1139,7 @@ public function updateState($id)
     DB::table('job_details')
         ->where('id', $id)
         ->update([
-            'state_slug' => request('state_slug')
+            'state' => request('state_slug')
         ]);
 
     return back();
