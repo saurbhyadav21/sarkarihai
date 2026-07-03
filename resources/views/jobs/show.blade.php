@@ -1026,7 +1026,39 @@ text-align:center;
 
             </div>
 
+            <!-- APPLICATION FEE -->
 
+            <div class="content-card" id="fee">
+
+                <h2>
+                    Application Fee
+                </h2>
+
+                <table class="info-table">
+
+                    <tr>
+                        <td>General / OBC / EWS</td>
+                        <td>₹100</td>
+                    </tr>
+
+                    <tr>
+                        <td>SC / ST</td>
+                        <td>₹0</td>
+                    </tr>
+
+                    <tr>
+                        <td>Female</td>
+                        <td>₹0</td>
+                    </tr>
+
+                    <tr>
+                        <td>Payment Mode</td>
+                        <td>Online / Offline</td>
+                    </tr>
+
+                </table>
+
+            </div>
 
         </div>
 
@@ -1035,39 +1067,7 @@ text-align:center;
 
 
 
-    <!-- APPLICATION FEE -->
 
-    <div class="content-card" id="fee">
-
-        <h2>
-            Application Fee
-        </h2>
-
-        <table class="info-table">
-
-            <tr>
-                <td>General / OBC / EWS</td>
-                <td>₹100</td>
-            </tr>
-
-            <tr>
-                <td>SC / ST</td>
-                <td>₹0</td>
-            </tr>
-
-            <tr>
-                <td>Female</td>
-                <td>₹0</td>
-            </tr>
-
-            <tr>
-                <td>Payment Mode</td>
-                <td>Online / Offline</td>
-            </tr>
-
-        </table>
-
-    </div>
 
 
 
