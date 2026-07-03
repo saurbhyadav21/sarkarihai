@@ -335,11 +335,16 @@ class JobController extends Controller
             ->orderBy('name')
             ->get();
 
+        $job_topics = DB::table('job_topics')
+            ->orderBy('name')
+            ->get();
+
         return view('jobs/job_edit_list', compact(
             'jobs',
             'categories',
             'subCategories',
-            'states'
+            'states',
+            'job_topics'
         ));
     }
 
