@@ -1274,11 +1274,9 @@ class JobController extends Controller
                     )
                 ),
 
-                'desce' =>
-                strip_tags(
-                    $json['acf']['short_details:']
-                        ?? ''
-                ),
+                'desce' => '',
+                
+               
 
                 'important_dates' =>
                 $json['acf']['important_dates']
