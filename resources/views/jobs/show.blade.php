@@ -494,6 +494,25 @@ text-align:center;
             margin-bottom: 20px;
             color: #fff;
         }
+        .breadcrumb {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.breadcrumb a {
+    color: #444;
+    text-decoration: none;
+}
+
+.breadcrumb .current {
+    color: #000;
+    font-weight: 700;
+}
+
+.breadcrumb .sep {
+    margin: 0 8px;
+    color: #999;
+}
     </style>
 </head>
 
