@@ -1622,53 +1622,72 @@ class JobController extends Controller
         // min qulification
         $qualification = [];
 
-        $text = strip_tags(
-            html_entity_decode(
-                $json['acf']['vacancy_details'] ?? ''
-            )
-        );
+$text = strip_tags(
+    html_entity_decode(
+        $json['acf']['vacancy_details'] ?? ''
+    )
+);
 
-        $patterns = [
-            '10th',
-            '12th',
-            'ITI',
-            'Diploma',
-            'BE',
-            'B.Tech',
-            'B.Sc',
-            'BA',
-            'B.Com',
-            'BCA',
-            'BBA',
-            'Graduation',
-            'Post Graduation',
-            'Master Degree',
-            'M.Tech',
-            'MBA',
-            'CA',
-            'LLB',
-            'MBBS',
-            'BDS',
-            'Nursing',
-            'PhD'
-        ];
+$patterns = [
+    '10th',
+    '10\\+2',
+    '12th',
+    'Intermediate',
+    'ITI',
+    'Diploma',
+    'Engineering Diploma',
+    'Polytechnic',
+    'BE',
+    'B.E',
+    'B.Tech',
+    'BTech',
+    'B.Sc',
+    'BA',
+    'B.Com',
+    'BCA',
+    'BBA',
+    'B.Pharm',
+    'D.Pharm',
+    'Graduation',
+    'Any Graduate',
+    'Bachelor Degree',
+    'Post Graduation',
+    'Master Degree',
+    'M.Tech',
+    'MCA',
+    'MBA',
+    'CA',
+    'CS',
+    'CMA',
+    'LLB',
+    'LLM',
+    'MBBS',
+    'BDS',
+    'Nursing',
+    'GNM',
+    'ANM',
+    'PhD'
+];
 
-        foreach ($patterns as $q) {
+foreach ($patterns as $q) {
 
-            if (
-                preg_match(
-                    '/\b' . preg_quote($q, '/') . '\b/i',
-                    $text
-                )
-            ) {
-                $qualification[] = $q;
-            }
-        }
+    if (
+        preg_match(
+            '/\b' . $q . '\b/i',
+            $text
+        )
+    ) {
+        $qualification[] = str_replace('\\', '', $q);
+    }
+}
 
-        $min_qulification =
-            !empty($qualification)
-            ? implode('#', array_unique($qualification))
-            : null;
+$min_qulification =
+    !empty($qualification)
+    ? implode(
+        '#',
+        array_unique($qualification)
+    )
+    : null;
 
 
 
