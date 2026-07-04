@@ -83,7 +83,7 @@ Route::post('/category/ajax/store', [JobController::class, 'storeCategory'])
 
 
 //NewRoute For New Templtes
-Route::get('/latest-jobs', [JobController::class, 'latestJobs'])
+Route::get('/jobs', [JobController::class, 'latestJobs'])
     ->name('latest.jobs');
 
 Route::get('/latest-jobs/{state}', [JobController::class, 'latestJobs'])
