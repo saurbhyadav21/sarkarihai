@@ -211,6 +211,10 @@ DEBUG
                             'website' =>
                             $json['official_website'],
 
+
+                            'source' =>
+                            'freejobalert',
+
                             'updated_at' =>
                             now(),
 
