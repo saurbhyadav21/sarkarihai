@@ -1447,14 +1447,17 @@ class JobController extends Controller
         );
 
         // CATEGORY WISE VACANCY
-        if (
-            stripos($vacancyHtml, 'General') !== false ||
-            stripos($vacancyHtml, 'OBC') !== false ||
-            stripos($vacancyHtml, 'SC') !== false ||
-            stripos($vacancyHtml, 'ST') !== false
-        ) {
+        $isCategoryTable =
+            preg_match('/\b(General|GEN|UR|EWS|OBC|SC|ST)\b/i', $vacancyHtml);
 
-            preg_match('/General[^0-9]*(\d+)/i', $vacancyHtml, $m);
+        $isPostTable =
+            stripos($vacancyHtml, 'Post Name') !== false ||
+            stripos($vacancyHtml, 'Course Name') !== false;
+
+
+        if ($isCategoryTable) {
+
+            preg_match('/(?:General|GEN|UR)[^0-9]*(\d+)/i', $vacancyHtml, $m);
             $genral_post = $m[1] ?? null;
 
             preg_match('/EWS[^0-9]*(\d+)/i', $vacancyHtml, $m);
