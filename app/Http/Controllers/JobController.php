@@ -1552,30 +1552,39 @@ class JobController extends Controller
             $json['acf']['vacancy_details'] ?? ''
         );
 
+        // HTML saaf karo
+        $text = preg_replace('/\r|\n/', "\n", strip_tags($html));
+        $text = html_entity_decode($text);
+
+        // Mode Of Selection section nikalo
         if (
             preg_match(
-                '/Mode Of Selection.*?<ul>(.*?)<\/ul>/is',
-                $html,
+                '/Mode\s*Of\s*Selection(.*?)(Join Our|Important Link|$)/is',
+                $text,
                 $match
             )
         ) {
-            preg_match_all(
-                '/<li.*?>(.*?)<\/li>/is',
-                $match[1],
-                $items
+
+            $lines = preg_split(
+                '/\n+/',
+                trim($match[1])
             );
 
             $modes = [];
 
-            foreach ($items[1] as $item) {
-                $text = trim(strip_tags($item));
+            foreach ($lines as $line) {
 
-                if ($text != '') {
-                    $modes[] = $text;
+                $line = trim($line);
+
+                if ($line != '') {
+                    $modes[] = $line;
                 }
             }
 
-            $mode_selection = implode(', ', $modes);
+            $mode_selection =
+                !empty($modes)
+                ? implode(', ', $modes)
+                : null;
         }
 
         // min qulification
