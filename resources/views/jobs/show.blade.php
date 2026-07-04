@@ -526,7 +526,7 @@ text-align:center;
             <div class="nav">
 
                 <div class="logo">
-                    Sarkari Hai
+                    <a href="/">Sarkari Hai</a>
                 </div>
 
                 <div class="menu">
