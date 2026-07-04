@@ -1,627 +1,284 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-
-    <title>SSC CGL Recruitment 2026</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Poppins, sans-serif;
-        }
-
-        body {
-            background: #f4f6f8;
-            color: #222;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        /* HEADER */
-
-        .header {
-            background: #ffffff;
-            height: 70px;
-            box-shadow: 0 2px 12px rgba(11, 79, 108, .08);
-        }
-
-        .container {
-            width: 1200px;
-            margin: auto;
-        }
-
-        .nav {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: #0B4F6C;
-        }
-
-        .menu {
-            display: flex;
-            gap: 30px;
-        }
-
-        .menu a {
-            color: #333;
-            font-size: 14px;
-        }
-
-        .search-btn {
-            background: #F59E0B;
-            color: #fff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-        }
-
-        /* HERO */
-
-        .hero {
-            background: linear-gradient(135deg,
-                    #0B4F6C,
-                    #0F766E);
-            padding: 55px 0;
-            color: #fff;
-        }
-
-        .breadcrumb {
-            font-size: 13px;
-            opacity: .8;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 16px;
-            line-height: 28px;
-            opacity: .9;
-            max-width: 900px;
-        }
-
-        /* SEARCH BOX */
-
-        .hero-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 30px;
-        }
-
-        .search-card {
-            background: #ffffff;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow:
-                0 10px 30px rgba(0, 0, 0, .08);
-        }
-
-        .search-card h3 {
-            color: #222;
-            margin-bottom: 15px;
-        }
-
-        .search-card input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        /* STICKY APPLY */
-
-        .sticky-apply {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            z-index: 999;
-        }
-
-        .sticky-apply a {
-            background: #F59E0B;
-            color: #fff;
-            padding: 16px 28px;
-            border-radius: 50px;
-            font-weight: 700;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
-            display: inline-block;
-        }
-
-
-        /* SHARE */
-
-        .share-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .share-btn {
-            background: #0B4F6C;
-            color: #fff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            display: inline-block;
-        }
-
-
-        /* AUTHOR */
-
-        .author-box {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .author-image {
-            width: 70px;
-            height: 70px;
-            background: #F59E0B;
-            color: #fff;
-            font-size: 28px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-
-        .author-content h3 {
-            margin-bottom: 10px;
-            color: #0B4F6C;
-        }
-
-
-        /* FOOTER */
-
-        .site-footer {
-            background: #0B4F6C;
-            color: #fff;
-            margin-top: 60px;
-            padding: 60px 0 20px;
-        }
-
-        .footer-grid {
-            width: 1200px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 50px;
-        }
-
-        .site-footer h3 {
-            margin-bottom: 20px;
-            color: #F59E0B;
-        }
-
-        .site-footer ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .site-footer li {
-            margin-bottom: 12px;
-        }
-
-        .site-footer a {
-            color: #fff;
-        }
-
-        .copyright {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, .1);
-        }
-
-
-        /* MOBILE */
-
-        @media(max-width:992px) {
-
-            .main-wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                display: none;
-            }
-
-            .footer-grid {
-                width: 95%;
-                grid-template-columns: 1fr;
-            }
-
-            .related-jobs {
-                grid-template-columns: 1fr;
-            }
-
-            .highlight-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .author-box {
-                flex-direction: column;
-                text-align: center;
-            }
-
-        }
-
-        @media(max-width:576px) {
-
-            .highlight-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .info-table td {
-                display: block;
-                width: 100%;
-            }
-
-            .share-buttons {
-                flex-direction: column;
-            }
-
-            .sticky-apply {
-                left: 10px;
-                right: 10px;
-                bottom: 10px;
-            }
-
-            .sticky-apply a {
-                display: block;
-                text-align: center;
-            }
-
-        }
-
-        .search-card button {
-            width: 100%;
-            padding: 14px;
-            background: #f59e0b;
-            border: none;
-            color: #fff;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* SUMMARY */
-
-        .summary {
-            margin-top: -40px;
-            margin-bottom: 30px;
-        }
-
-        /* .summary-card{
-background:#fff;
-border-radius:15px;
-box-shadow:
-0 10px 30px rgba(0,0,0,.08);
-padding:30px;
-border-top:4px solid #F59E0B;
-display:grid;
+<!-- ======================================================
+HOME PAGE - PART 1
+HEADER + HERO + SEARCH + QUICK LINKS
+BOOTSTRAP 5 REQUIRED
+====================================================== -->
+
+<style>
+:root{
+    --primary:#0a5467;
+    --primary-dark:#08384b;
+    --yellow:#f4b400;
+    --light:#f5f7fa;
+    --border:#e7edf3;
+    --text:#173b5b;
 }
 
-.summary-item{
-text-align:center;
-} */
-        .summary-card {
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
+body{
+    background:#f3f5f8;
+}
 
-        .summary-item {
-            text-align: center;
-        }
+/* HEADER */
 
-        .summary-item small {
-            display: block;
-            color: #888;
-            margin-bottom: 10px;
-        }
+.top-header{
+    background:#fff;
+    border-bottom:1px solid var(--border);
+}
 
-        .summary-item strong {
-            font-size: 20px;
-            color: #0B4F6C;
-        }
+.site-logo{
+    font-size:28px;
+    font-weight:700;
+    color:var(--primary);
+    text-decoration:none;
+}
 
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #0B4F6C;
-            margin-bottom: 20px;
-        }
+.main-menu a{
+    color:#1f3556;
+    text-decoration:none;
+    font-weight:600;
+    margin:0 12px;
+    font-size:15px;
+}
 
-        .card-title {
-            font-size: 26px;
-            font-weight: 700;
-            color: #0F766E;
-            margin-bottom: 20px;
-        }
+.main-menu a:hover{
+    color:var(--primary);
+}
 
-        .apply-btn {
-            background: #F59E0B;
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-weight: 700;
-            display: inline-block;
-        }
+.header-btn{
+    background:var(--yellow);
+    border:none;
+    padding:10px 20px;
+    border-radius:6px;
+    font-weight:700;
+}
 
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-        }
+/* HERO */
 
-        .timeline:before {
-            content: '';
-            position: absolute;
-            left: 8px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: #0F766E;
-        }
+.hero-section{
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-dark)
+    );
+    color:#fff;
+    border-radius:10px;
+    padding:40px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 30px;
-        }
+.hero-title{
+    font-size:42px;
+    font-weight:700;
+    line-height:1.2;
+}
 
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: -30px;
-            top: 5px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #F59E0B;
-        }
+.hero-desc{
+    opacity:.9;
+    margin-top:15px;
+    font-size:16px;
+}
 
-        .timeline-date {
-            font-weight: 700;
-            color: #0B4F6C;
-            margin-bottom: 8px;
-        }
+.search-card{
+    background:#fff;
+    border-radius:10px;
+    padding:25px;
+    box-shadow:0 5px 25px rgba(0,0,0,.1);
+}
 
-        .timeline-content {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 10px;
-        }
+.search-card h5{
+    color:var(--text);
+    font-weight:700;
+}
 
-        .faq-box {
-            border: 1px solid #eee;
-            padding: 18px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-        }
+.search-btn{
+    background:var(--yellow);
+    border:none;
+    font-weight:700;
+}
 
-        .faq-box summary {
-            cursor: pointer;
-            font-weight: 600;
-            color: #0B4F6C;
-        }
+/* QUICK LINKS */
 
-        .faq-box p {
-            margin-top: 15px;
-            line-height: 28px;
-        }
+.quick-card{
+    border-radius:10px;
+    color:#fff;
+    text-decoration:none;
+    display:block;
+    padding:20px;
+    text-align:center;
+    font-weight:700;
+    transition:.2s;
+}
 
-        .related-jobs {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+.quick-card:hover{
+    transform:translateY(-3px);
+    color:#fff;
+}
 
-        .job-box {
-            background: #f8fafc;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            border-top: 4px solid #F59E0B;
-        }
+.bg1{background:#0a5467;}
+.bg2{background:#1565c0;}
+.bg3{background:#00897b;}
+.bg4{background:#ef6c00;}
+.bg5{background:#8e24aa;}
+.bg6{background:#3949ab;}
 
-        .job-box h3 {
-            color: #0B4F6C;
-            margin-bottom: 10px;
-        }
+/* SECTION */
 
-        .job-box a {
-            display: inline-block;
-            margin-top: 15px;
-            background: #0B4F6C;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 8px;
-        }
+.home-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:10px;
+    margin-bottom:20px;
+}
 
-        .breadcrumb {
-            font-size: 15px;
-            font-weight: 500;
-            margin-bottom: 15px;
-            color: #fff;
-            line-height: 1.7;
-        }
+.section-title{
+    font-size:24px;
+    color:var(--text);
+    font-weight:700;
+    margin-bottom:20px;
+}
 
-        .breadcrumb a {
-            color: #fff;
-            text-decoration: none;
-            transition: all .2s ease;
-        }
+/* UPDATES */
 
-        .breadcrumb a:hover {
-            color: #F59E0B;
-            text-decoration: underline;
-        }
+.update-box{
+    background:#fff7e0;
+    border-left:5px solid var(--yellow);
+    padding:15px;
+    border-radius:6px;
+}
 
-        .breadcrumb span[aria-current="page"] {
-            color: #F59E0B;
-            font-weight: 600;
-        }
+/* STATS */
 
-        h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #fff;
-        }
+.stats{
+    text-align:center;
+    padding:30px;
+    border-right:1px solid #eee;
+}
 
-        .breadcrumb {
-            font-size: 16px;
-            font-weight: 500;
-        }
+.stats:last-child{
+    border-right:none;
+}
 
-        .breadcrumb a {
-            color: #fff;
-            text-decoration: none;
-        }
+.stats-number{
+    color:var(--primary);
+    font-size:32px;
+    font-weight:700;
+}
 
-        .breadcrumb .current {
-            color: #fff;
-            font-weight: 700;
-        }
+.stats-title{
+    color:#666;
+}
+</style>
 
-        .breadcrumb .sep {
-            margin: 0 8px;
-            color: #fff;
-        }
-    </style>
-</head>
 
-<body>
+<!-- HEADER -->
 
-    <header class="header">
+<header class="top-header">
 
-        <div class="container">
+    <div class="container">
 
-            <div class="nav">
+        <div class="d-flex
+                    justify-content-between
+                    align-items-center
+                    py-3">
 
-                <div class="logo">
-                    <a href="/">Sarkari Hai</a>
-                </div>
+            <a href="/"
+               class="site-logo">
+                Sarkari Hai
+            </a>
 
-                <div class="menu">
-                    <a href="#">Home</a>
-                    <a href="#">Jobs</a>
-                    <a href="#">Results</a>
-                    <a href="#">Admit Card</a>
-                    <a href="#">State Wise</a>
-                    <a href="#">News</a>
-                </div>
+            <nav class="main-menu
+                        d-none
+                        d-lg-block">
 
-                <a href="#" class="search-btn">
-                    Search Jobs
+                <a href="#">
+                    Latest Jobs
                 </a>
 
-            </div>
+                <a href="#">
+                    Admit Card
+                </a>
+
+                <a href="#">
+                    Result
+                </a>
+
+                <a href="#">
+                    Syllabus
+                </a>
+
+                <a href="#">
+                    Answer Key
+                </a>
+
+                <a href="#">
+                    Contact
+                </a>
+
+            </nav>
+
+            <button class="header-btn">
+                Search Jobs
+            </button>
 
         </div>
 
-    </header>
+    </div>
+
+</header>
 
 
 
-    <section class="hero">
+<div class="container">
 
-        <div class="container">
 
-            <div class="hero-flex">
+    <!-- HERO -->
 
-                <div>
+    <section class="hero-section">
 
-                    
+        <div class="row align-items-center">
 
-                        @php
-                            $state = request()->segment(2);
-                            $category = request()->segment(3);
-                        @endphp
+            <div class="col-lg-8">
 
-                        <nav aria-label="breadcrumb" class="breadcrumb">
+                <h1 class="hero-title">
 
-                            <a href="{{ url('/') }}">
-                                Home
-                            </a>
+                    Sarkari Result 2026<br>
 
-                            <span class="sep">/</span>
+                    Latest Sarkari Naukri,
+                    Admit Card & Results
 
-                            <a href="{{ route('sarkari.naukri') }}">
-                                Sarkari Naukri
-                            </a>
+                </h1>
 
-                            @if ($state)
-                                <span class="sep">/</span>
+                <div class="hero-desc">
 
-                                <a href="{{ route('sarkari.naukri.state', $state) }}">
-                                    {{ ucwords(str_replace('-', ' ', $state)) }}
-                                </a>
-                            @endif
-
-                            @if ($category)
-                                <span class="sep">/</span>
-
-                                <a
-                                    href="{{ route('sarkari.naukri.category', [
-                                        'state' => $state,
-                                        'category' => $category,
-                                    ]) }}">
-                                    {{ ucwords(str_replace('-', ' ', $category)) }}
-                                </a>
-                            @endif
-
-                        </nav>
-
-                       
-
-                    <h1>
-
-                    </h1>
-
-                    <p>
-                        Show all job here
-                    </p>
+                    Find Latest Government Jobs,
+                    Admit Cards,
+                    Results,
+                    Answer Keys,
+                    Admissions,
+                    and Official Notifications.
 
                 </div>
 
+            </div>
+
+            <div class="col-lg-4">
 
                 <div class="search-card">
 
-                    <h3>
-                        Search Job
-                    </h3>
+                    <h5>
+                        Search Jobs
+                    </h5>
 
-                    <input type="text" placeholder="SSC, Railway, Bank">
+                    <input
+                        class="form-control mt-3"
+                        placeholder="SSC CGL, Railway, UPSC">
 
-                    <button>
+                    <button
+                        class="btn search-btn w-100 mt-3">
+
                         Search
+
                     </button>
 
                 </div>
@@ -634,30 +291,152 @@ text-align:center;
 
 
 
-    <div class="container">
+    <!-- QUICK LINKS -->
 
-        <div class="summary">
+    <div class="row g-3 mb-4">
 
-            <div class="summary-card">
+        <div class="col-lg-2 col-6">
+            <a href="#"
+               class="quick-card bg1">
+                Latest Jobs
+            </a>
+        </div>
 
-                <div class="summary-item">
-                    <small>Organization</small>
-                    <strong>SSC</strong>
+        <div class="col-lg-2 col-6">
+            <a href="#"
+               class="quick-card bg2">
+                Results
+            </a>
+        </div>
+
+        <div class="col-lg-2 col-6">
+            <a href="#"
+               class="quick-card bg3">
+                Admit Card
+            </a>
+        </div>
+
+        <div class="col-lg-2 col-6">
+            <a href="#"
+               class="quick-card bg4">
+                Answer Key
+            </a>
+        </div>
+
+        <div class="col-lg-2 col-6">
+            <a href="#"
+               class="quick-card bg5">
+                Admission
+            </a>
+        </div>
+
+        <div class="col-lg-2 col-6">
+            <a href="#"
+               class="quick-card bg6">
+                Syllabus
+            </a>
+        </div>
+
+    </div>
+
+
+
+    <!-- LATEST UPDATES -->
+
+    <div class="home-card">
+
+        <div class="card-body">
+
+            <h3 class="section-title">
+                Latest Updates
+            </h3>
+
+            <div class="update-box">
+
+                🔥 SSC CGL Recruitment 2026 •
+
+                RRB NTPC Answer Key 2026 •
+
+                IBPS PO Recruitment 2026 •
+
+                UPSC NDA II Form 2026 •
+
+                Railway Technician Vacancy 2026
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- STATS -->
+
+    <div class="home-card">
+
+        <div class="row">
+
+            <div class="col-md-3">
+
+                <div class="stats">
+
+                    <div class="stats-number">
+                        9540+
+                    </div>
+
+                    <div class="stats-title">
+                        Active Jobs
+                    </div>
+
                 </div>
 
-                <div class="summary-item">
-                    <small>Total Vacancy</small>
-                    <strong>14582</strong>
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stats">
+
+                    <div class="stats-number">
+                        1350+
+                    </div>
+
+                    <div class="stats-title">
+                        Results
+                    </div>
+
                 </div>
 
-                <div class="summary-item">
-                    <small>Application Mode</small>
-                    <strong>Online</strong>
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stats">
+
+                    <div class="stats-number">
+                        820+
+                    </div>
+
+                    <div class="stats-title">
+                        Admit Cards
+                    </div>
+
                 </div>
 
-                <div class="summary-item">
-                    <small>Last Date</small>
-                    <strong>30 July 2026</strong>
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stats">
+
+                    <div class="stats-number">
+                        350+
+                    </div>
+
+                    <div class="stats-title">
+                        Admissions
+                    </div>
+
                 </div>
 
             </div>
@@ -666,283 +445,4 @@ text-align:center;
 
     </div>
 
-    <style>
-        /* MAIN LAYOUT */
-
-        .main-wrapper {
-            width: 1200px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 25px;
-            align-items: start;
-        }
-
-        /* LEFT SIDEBAR */
-
-        .sidebar {
-            position: sticky;
-            position: -webkit-sticky;
-            top: 0px;
-            align-self: start;
-            height: fit-content;
-        }
-
-        .sidebar-card {
-            background: #fff;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
-            margin-bottom: 20px;
-        }
-
-        .sidebar-title {
-            background: #0B4F6C;
-            color: #fff;
-            padding: 16px 20px;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar ul li {
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .sidebar ul li:last-child {
-            border: none;
-        }
-
-        .sidebar ul li a {
-            display: block;
-            padding: 14px 20px;
-            color: #444;
-            font-size: 14px;
-            transition: .3s;
-        }
-
-        .sidebar ul li a:hover {
-            background: #F8FAFC;
-            padding-left: 28px;
-            color: #0B4F6C;
-        }
-
-        /* CONTENT AREA */
-
-        .content {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        /* CONTENT CARD */
-
-        .content-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
-        }
-
-        .content-card h2 {
-            font-size: 32px;
-            color: #0B4F6C;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .content-card p {
-            line-height: 30px;
-            font-size: 15px;
-            color: #444;
-        }
-
-        /* INFO TABLE */
-
-        .info-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .info-table tr {
-            border-bottom: 1px solid #eee;
-        }
-
-        .info-table td {
-            padding: 16px;
-        }
-
-        .info-table td:first-child {
-            width: 280px;
-            font-weight: 600;
-            background: #f8fafc;
-        }
-
-        /* ALERT BOX */
-
-        .notice-box {
-            background: #FEF3C7;
-            border-left: 5px solid #F59E0B;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        /* HIGHLIGHT BOXES */
-
-        .highlight-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .highlight-box {
-            background: #fff;
-            border: 1px solid #eee;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .highlight-box h3 {
-            font-size: 30px;
-            color: #0F766E;
-            margin-bottom: 10px;
-        }
-
-        .highlight-box p {
-            font-size: 14px;
-        }
-
-        .sidebar-inner {
-            position: sticky;
-            top: 90px;
-        }
-    </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- FOOTER -->
-
-    <footer class="site-footer">
-
-        <div class="footer-grid">
-
-            <div>
-
-                <h3>
-                    SarkariHai
-                </h3>
-
-                <p>
-                    Latest Government Jobs, Admit Card,
-                    Result, Answer Key and Sarkari Yojana updates.
-                </p>
-
-            </div>
-
-            <div>
-
-                <h3>
-                    Quick Links
-                </h3>
-
-                <ul>
-
-                    <li>
-                        <a href="#">
-                            Latest Jobs
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Admit Card
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Results
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Answer Key
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-            <div>
-
-                <h3>
-                    Important
-                </h3>
-
-                <ul>
-
-                    <li>
-                        <a href="#">
-                            About Us
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Contact
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Disclaimer
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Privacy Policy
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-        <div class="copyright">
-
-            © 2026 SarkariHai. All Rights Reserved.
-
-        </div>
-
-    </footer>
+</div>
