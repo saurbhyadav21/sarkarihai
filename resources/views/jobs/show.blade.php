@@ -570,9 +570,16 @@ text-align:center;
                             Sarkari Naukri
                         </a>
 
-                        <nav aria-label="breadcrumb" class="breadcrumb">
+                        @php
+    $state = request()->segment(2);
+    $category = request()->segment(3);
+@endphp
 
-    <a href="{{ url('/') }}">Home</a>
+<nav aria-label="breadcrumb" class="breadcrumb">
+
+    <a href="{{ url('/') }}">
+        Home
+    </a>
 
     <span class="sep">/</span>
 
@@ -580,20 +587,23 @@ text-align:center;
         Sarkari Naukri
     </a>
 
-    @if(!empty($state))
+    @if($state)
         <span class="sep">/</span>
 
-        <span>
+        <a href="{{ route('sarkari.naukri.state', $state) }}">
             {{ ucwords(str_replace('-', ' ', $state)) }}
-        </span>
+        </a>
     @endif
 
-    @if(!empty($category))
+    @if($category)
         <span class="sep">/</span>
 
-        <span>
+        <a href="{{ route('sarkari.naukri.category', [
+            'state' => $state,
+            'category' => $category
+        ]) }}">
             {{ ucwords(str_replace('-', ' ', $category)) }}
-        </span>
+        </a>
     @endif
 
 </nav>
