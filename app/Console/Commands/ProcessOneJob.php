@@ -67,22 +67,22 @@ DEBUG
             /*
             SARKARI RESULT JSON
             */
-            if ($feed->source == 'sarkariresult.com.cm') {
+            // if ($feed->source == 'sarkariresult.com.cm') {
 
-                $this->info('Processing JSON Source');
+            //     $this->info('Processing JSON Source');
 
-                $json = json_decode(
-                    $feed->raw_json,
-                    true
-                );
+            //     $json = json_decode(
+            //         $feed->raw_json,
+            //         true
+            //     );
 
-                // yaha baad me apna
-                // SarkariResult parser likhoge
+            //     // yaha baad me apna
+            //     // SarkariResult parser likhoge
 
-                dd($json);
+            //     dd($json);
 
-                return;
-            }
+            //     return;
+            // }
 
 
             /*
