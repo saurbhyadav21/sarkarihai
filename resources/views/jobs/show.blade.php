@@ -566,7 +566,7 @@ text-align:center;
 
                         <span class="sep">/</span>
 
-                        <a href="{{ route('latest.jobs') }}">
+                        <a href="{{ route('sarkari.naukri') }}">
                             Latest Jobs
                         </a>
 
