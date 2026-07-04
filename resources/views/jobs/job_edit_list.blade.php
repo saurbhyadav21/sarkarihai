@@ -50,7 +50,25 @@
 
                                     <td>{{ $job->id }}</td>
 
-                                    <td>{{ $job->title }}</td>
+                                    <td>
+    {{ $job->title }}
+
+    <br>
+
+    <small
+        style="
+            background:#fff3cd;
+            color:#856404;
+            padding:2px 8px;
+            border-radius:4px;
+            font-weight:bold;
+            display:inline-block;
+            margin-top:5px;
+        "
+    >
+        {{ $job->source }}
+    </small>
+</td>
 
                                     <!-- Image -->
                                     <td>
