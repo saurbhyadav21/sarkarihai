@@ -2091,7 +2091,7 @@ class JobController extends Controller
             ->orderBy('category')
             ->pluck('category');
 
-        return view('home', compact(
+        return view('welcome', compact(
             'latestJobs',
             'lastDateJobs',
             'results',
