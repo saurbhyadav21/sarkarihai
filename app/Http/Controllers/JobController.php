@@ -1045,29 +1045,29 @@ class JobController extends Controller
 
 
     public function latestJobs($state = null, $category = null)
-    {
-        $jobs = Job::query();
+{
+    $query = DB::table('job_details');
 
-        // state filter
-        if (!empty($state)) {
-            $jobs->where('state', $state);
-        }
-
-        // category filter
-        if (!empty($category)) {
-            $jobs->where('category', $category);
-        }
-
-        $jobs = $jobs
-            ->latest()
-            ->paginate(20);
-
-        return view('jobs.show', [
-            'jobs' => $jobs,
-            'state' => $state,
-            'category' => $category,
-        ]);
+    // State filter
+    if (!empty($state)) {
+        $query->where('state', $state);
     }
+
+    // Category filter
+    if (!empty($category)) {
+        $query->where('category', $category);
+    }
+
+    $jobs = $query
+        ->orderBy('id', 'DESC')
+        ->paginate(20);
+
+    return view('jobs.show', [
+        'jobs' => $jobs,
+        'state' => $state,
+        'category' => $category,
+    ]);
+}
 
     public function jobDetail($state, $category, $slug)
     {
