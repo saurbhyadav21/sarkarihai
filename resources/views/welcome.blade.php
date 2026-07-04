@@ -93,13 +93,13 @@
         }
 
         .live-update {
-        background: rgba(229,57,53,.15);
-        border: 1px solid rgba(229,57,53,.3);
-        padding: 12px;
-        border-radius: 8px;
-        color: white;
-        margin-top: 20px;
-    }
+            background: rgba(229, 57, 53, .15);
+            border: 1px solid rgba(229, 57, 53, .3);
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -176,7 +176,7 @@
 
                         🔥 <strong>Latest Updates :</strong>
 
-                        SSC CGL Recruitment 2026 •  
+                        SSC CGL Recruitment 2026 •
                         RRB NTPC UG Answer Key 2026 •
                         IBPS PO Recruitment 2026 •
                         UPSC NDA II Online Form 2026
@@ -299,45 +299,43 @@ PART 2 - MAIN CONTENT BLOCK
                 <!-- LATEST JOBS -->
                 <div class="section-title">Latest Government Jobs</div>
 
-                @foreach($latestJobs as $job)
+                @foreach ($latestJobs as $job)
+                    <div class="job-card">
 
-<div class="job-card">
+                        {{-- 🔥 NEW BADGE --}}
+                        @if (!empty($job->created_at) && \Carbon\Carbon::parse($job->created_at)->diffInDays() <= 3)
+                            <span class="badge-new">NEW</span>
+                        @endif
 
-    {{-- 🔥 NEW BADGE --}}
-    @if(!empty($job->created_at) && \Carbon\Carbon::parse($job->created_at)->diffInDays() <= 3)
-        <span class="badge-new">NEW</span>
-    @endif
+                        {{-- 🧾 TITLE --}}
+                        <a href="{{ url('sarkari-naukri/' . ($job->state ?? 'all-india') . '/' . $job->category . '/' . $job->slug) }}"
+                            class="job-title">
 
-    {{-- 🧾 TITLE --}}
-    <a href="{{ url('sarkari-naukri/'.($job->state ?? 'all-india').'/'.$job->category.'/'.$job->slug) }}"
-       class="job-title">
+                            {{ $job->title }}
 
-        {{ $job->title }}
+                        </a>
 
-    </a>
+                        {{-- 📊 META INFO --}}
+                        <div class="job-meta">
 
-    {{-- 📊 META INFO --}}
-    <div class="job-meta">
+                            {{-- Posts --}}
+                            {{ $job->total_vacancies ?? 'N/A' }} Posts
 
-        {{-- Posts --}}
-        {{ $job->total_vacancies ?? 'N/A' }} Posts
+                            |
 
-        |
+                            {{-- Last Date --}}
+                            Last Date:
+                            {{ $job->last_fee_date ?? 'Not Available' }}
 
-        {{-- Last Date --}}
-        Last Date:
-        {{ $job->last_fee_date ?? 'Not Available' }}
+                            |
 
-        |
+                            {{-- Apply Mode --}}
+                            {{ $job->apply_mode ?? 'Online' }}
 
-        {{-- Apply Mode --}}
-        {{ $job->apply_mode ?? 'Online' }}
+                        </div>
 
-    </div>
-
-</div>
-
-@endforeach
+                    </div>
+                @endforeach
 
                 <div class="job-card">
                     <span class="badge-new">NEW</span>
