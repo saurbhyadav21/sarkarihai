@@ -570,34 +570,35 @@ text-align:center;
                             Sarkari Naukri
                         </a>
 
-                        @if($state)
-    <span class="sep">/</span>
-    <a href="{{ route('sarkari.naukri.state', $state) }}">
-        {{ ucwords(str_replace('-', ' ', $state)) }}
-    </a>
-@endif
+                        @if ($state)
+                            <span class="sep">/</span>
+                            <a href="{{ route('sarkari.naukri.state', $state) }}">
+                                {{ ucwords(str_replace('-', ' ', $state)) }}
+                            </a>
+                        @endif
 
 
-                        @if($category)
-    <span class="sep">/</span>
-    <a href="{{ route('sarkari.naukri.category', [
-        'state' => $state,
-        'category' => $category
-    ]) }}">
-        {{ ucwords(str_replace('-', ' ', $category)) }}
-    </a>
-@endif
+                        @if ($category)
+                            <span class="sep">/</span>
+                            <a
+                                href="{{ route('sarkari.naukri.category', [
+                                    'state' => $state,
+                                    'category' => $category,
+                                ]) }}">
+                                {{ ucwords(str_replace('-', ' ', $category)) }}
+                            </a>
+                        @endif
 
                         <span class="sep">/</span>
 
                         <span class="current">
-                          
+
                         </span>
 
                     </nav>
 
                     <h1>
-                       
+
                     </h1>
 
                     <p>
