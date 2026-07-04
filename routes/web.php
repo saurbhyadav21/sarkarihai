@@ -83,16 +83,29 @@ Route::post('/category/ajax/store', [JobController::class, 'storeCategory'])
 
 
 //NewRoute For New Templtes
-Route::get('/jobs', [JobController::class, 'latestJobs'])
-    ->name('latest.jobs');
+// All Sarkari Naukri
+Route::get(
+    '/sarkari-naukri',
+    [JobController::class, 'latestJobs']
+)->name('sarkari.naukri');
 
-Route::get('/latest-jobs/{state}', [JobController::class, 'latestJobs'])
-    ->name('latest.jobs.state');
+// State Wise
+Route::get(
+    '/sarkari-naukri/{state}',
+    [JobController::class, 'latestJobs']
+)->name('sarkari.naukri.state');
 
-Route::get('/latest-jobs/{state}/{category}', [JobController::class, 'latestJobs'])
-    ->name('latest.jobs.state.category');
+// State + Category Wise
+Route::get(
+    '/sarkari-naukri/{state}/{category}',
+    [JobController::class, 'latestJobs']
+)->name('sarkari.naukri.category');
 
-Route::get('/latest-jobs/{state}/{category}/{slug}', [JobController::class, 'jobDetail'])->name('job.detail');
+// Job Detail Page
+Route::get(
+    '/sarkari-naukri/{state}/{category}/{slug}',
+    [JobController::class, 'jobDetail']
+)->name('sarkari.naukri.detail');
 
 
 Route::post(
