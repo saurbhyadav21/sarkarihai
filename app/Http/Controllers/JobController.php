@@ -1427,6 +1427,356 @@ class JobController extends Controller
             $maxAge = $m[1];
         }
 
+
+        //vacancy detials
+
+        $genral_post = null;
+        $ews_post = null;
+        $obc_post = null;
+        $sc_post = null;
+        $st_post = null;
+
+        $post_name = null;
+        $post_eligibility = null;
+        $post_salary = null;
+
+        $vacancyHtml = html_entity_decode(
+            $json['acf']['vacancy_details'] ?? ''
+        );
+
+        // CATEGORY WISE VACANCY
+        if (
+            stripos($vacancyHtml, 'General') !== false ||
+            stripos($vacancyHtml, 'OBC') !== false ||
+            stripos($vacancyHtml, 'SC') !== false ||
+            stripos($vacancyHtml, 'ST') !== false
+        ) {
+
+            preg_match('/General[^0-9]*(\d+)/i', $vacancyHtml, $m);
+            $genral_post = $m[1] ?? null;
+
+            preg_match('/EWS[^0-9]*(\d+)/i', $vacancyHtml, $m);
+            $ews_post = $m[1] ?? null;
+
+            preg_match('/OBC[^0-9]*(\d+)/i', $vacancyHtml, $m);
+            $obc_post = $m[1] ?? null;
+
+            preg_match('/SC[^0-9]*(\d+)/i', $vacancyHtml, $m);
+            $sc_post = $m[1] ?? null;
+
+            preg_match('/ST[^0-9]*(\d+)/i', $vacancyHtml, $m);
+            $st_post = $m[1] ?? null;
+        }
+
+        // POST NAME TABLE
+        else if (
+            stripos($vacancyHtml, 'Post Name') !== false ||
+            stripos($vacancyHtml, 'Course Name') !== false
+        ) {
+
+            $names = [];
+            $counts = [];
+            $eligibility = [];
+
+            preg_match_all(
+                '/<tr[^>]*>(.*?)<\/tr>/is',
+                $vacancyHtml,
+                $rows
+            );
+
+            foreach ($rows[1] as $row) {
+
+                preg_match_all(
+                    '/<td[^>]*>(.*?)<\/td>/is',
+                    $row,
+                    $cols
+                );
+
+                if (count($cols[1]) == 3) {
+
+                    $name = trim(strip_tags($cols[1][0]));
+
+                    if (
+                        stripos($name, 'Post Name') !== false ||
+                        stripos($name, 'Course Name') !== false
+                    ) {
+                        continue;
+                    }
+
+                    $names[] = $name;
+                    $counts[] = trim(strip_tags($cols[1][1]));
+                    $eligibility[] = trim(
+                        preg_replace(
+                            '/\s+/',
+                            ' ',
+                            strip_tags($cols[1][2])
+                        )
+                    );
+                } elseif (count($cols[1]) == 2) {
+
+                    $name = trim(strip_tags($cols[1][0]));
+
+                    if (
+                        stripos($name, 'Course Name') !== false
+                    ) {
+                        continue;
+                    }
+
+                    $names[] = $name;
+                    $eligibility[] = trim(
+                        preg_replace(
+                            '/\s+/',
+                            ' ',
+                            strip_tags($cols[1][1])
+                        )
+                    );
+                }
+            }
+
+            $post_name = implode('#', $names);
+            $post_salary = implode('#', $counts);
+            $post_eligibility = implode('#', $eligibility);
+        }
+
+        // vacncy end
+
+
+        $mode_selection = null;
+
+        $html = html_entity_decode(
+            $json['acf']['how_to_fill'] ?? ''
+        );
+
+        if (
+            preg_match(
+                '/Mode Of Selection.*?<ul>(.*?)<\/ul>/is',
+                $html,
+                $match
+            )
+        ) {
+            preg_match_all(
+                '/<li.*?>(.*?)<\/li>/is',
+                $match[1],
+                $items
+            );
+
+            $modes = [];
+
+            foreach ($items[1] as $item) {
+                $text = trim(strip_tags($item));
+
+                if ($text != '') {
+                    $modes[] = $text;
+                }
+            }
+
+            $mode_selection = implode(', ', $modes);
+        }
+
+        // min qulification
+        $qualification = [];
+
+        $text = strip_tags(
+            html_entity_decode(
+                $json['acf']['vacancy_details'] ?? ''
+            )
+        );
+
+        $patterns = [
+            '10th',
+            '12th',
+            'ITI',
+            'Diploma',
+            'BE',
+            'B.Tech',
+            'B.Sc',
+            'BA',
+            'B.Com',
+            'BCA',
+            'BBA',
+            'Graduation',
+            'Post Graduation',
+            'Master Degree',
+            'M.Tech',
+            'MBA',
+            'CA',
+            'LLB',
+            'MBBS',
+            'BDS',
+            'Nursing',
+            'PhD'
+        ];
+
+        foreach ($patterns as $q) {
+
+            if (
+                preg_match(
+                    '/\b' . preg_quote($q, '/') . '\b/i',
+                    $text
+                )
+            ) {
+                $qualification[] = $q;
+            }
+        }
+
+        $min_qulification =
+            !empty($qualification)
+            ? implode('#', array_unique($qualification))
+            : null;
+
+
+
+        $instruction = null;
+
+        $html = html_entity_decode(
+            $json['acf']['vacancy_details'] ?? ''
+        );
+
+        // How To Fill section pakdo
+        if (
+            preg_match(
+                '/How\s+To\s+Fill.*?<ul>(.*?)<\/ul>/is',
+                $html,
+                $match
+            )
+        ) {
+
+            preg_match_all(
+                '/<li[^>]*>(.*?)<\/li>/is',
+                $match[1],
+                $items
+            );
+
+            $instructions = [];
+
+            foreach ($items[1] as $item) {
+
+                $text = trim(
+                    preg_replace(
+                        '/\s+/',
+                        ' ',
+                        strip_tags($item)
+                    )
+                );
+
+                if ($text != '') {
+                    $instructions[] = $text;
+                }
+            }
+
+            $instruction = implode('#', $instructions);
+        }
+
+
+        $html = html_entity_decode(
+            $json['acf']['important_links'] ?? ''
+        );
+
+        $important_links = [];
+
+        libxml_use_internal_errors(true);
+
+        $dom = new DOMDocument();
+        $dom->loadHTML(
+            '<?xml encoding="utf-8" ?>' . $html
+        );
+
+        $xpath = new DOMXPath($dom);
+
+        foreach ($xpath->query('//tr') as $tr) {
+
+            // row me pehla link nikalo
+            $a = $tr->getElementsByTagName('a')
+                ->item(0);
+
+            if (!$a) {
+                continue;
+            }
+
+            $url = trim(
+                $a->getAttribute('href')
+            );
+
+            if (!$url) {
+                continue;
+            }
+
+            // poori row ka text
+            $rowText = trim(
+                preg_replace(
+                    '/\s+/',
+                    ' ',
+                    strip_tags(
+                        $tr->textContent
+                    )
+                )
+            );
+
+            // Click Here, Follow Now hata do
+            $title = preg_replace(
+                '/(Click Here|Follow Now)$/i',
+                '',
+                $rowText
+            );
+
+            $title = trim($title);
+
+            if ($title != '') {
+                $important_links[] =
+                    $title . '$' . $url;
+            }
+        }
+
+        $important_links =
+            !empty($important_links)
+            ? implode('#', $important_links)
+            : null;
+
+        $website = null;
+
+        if (!empty($important_links)) {
+
+            foreach ($important_links as $item) {
+
+                list($title, $link) =
+                    array_pad(
+                        explode('$', $item, 2),
+                        2,
+                        null
+                    );
+
+                if (
+                    stripos($title, 'official website') !== false
+                    || stripos($title, 'official site') !== false
+                ) {
+                    $website = $link;
+                    break;
+                }
+            }
+        }
+
+
+        $title = html_entity_decode(
+            $json['acf']['long_post_title']
+                ?? $json['title']['rendered']
+                ?? ''
+        );
+
+        $jobYear = null;
+
+        // 2000-2099 ka pehla year nikalo
+        if (preg_match('/\b20\d{2}\b/', $title, $match)) {
+            $jobYear = $match[0];
+        }
+
+
+
+
+
+
+
+
+
         DB::table('job_details')->updateOrInsert(
 
             [
@@ -1482,42 +1832,42 @@ class JobController extends Controller
                 'total_vacancies'       => $json['acf']['total_post'] ?? null,
                 'min_salary'            => 0,
                 'max_salary'            => 0,
-                'genral_post'           => null,
-                'ews_post'              => null,
-                'obc_post'              => null,
-                'sc_post'               => null,
-                'st_post'               => null,
+                'genral_post' => $genral_post,
+                'ews_post'    => $ews_post,
+                'obc_post'    => $obc_post,
+                'sc_post'     => $sc_post,
+                'st_post'     => $st_post,
 
                 // 34-41
-                'mode_selection'        => null,
-                'post_name'             => null,
-                'post_eligibility'      => null,
-                'min_qulification'      => null,
-                'post_salary'           => null,
-                'instruction'           => null,
-                'link'                  => $json['link'] ?? null,
+                'mode_selection' => $mode_selection,
+                'post_name'        => $post_name,
+                'post_eligibility' => $post_eligibility,
+                'post_salary'      => $post_salary,
+                'min_qulification'      => $min_qulification,
+                'instruction'           => $instruction,
+                'link'                  => $important_links,
                 'doc'                   => null,
 
                 // 42-45
-                'image'                 => $json['featured_media'] ?? null,
-                'website'               => $json['link'] ?? null,
+                'image'                 => null,
+                'website'               => $website,
                 'updated_at'            => now(),
                 'created_at'            => now(),
 
                 // 46-53
-                'main_p'                => $json['acf']['short_details:'] ?? null,
-                'date_p'                => $json['acf']['important_dates'] ?? null,
-                'fee_p'                 => $json['acf']['application_fee'] ?? null,
-                'age_p'                 => $json['acf']['age_limits_details'] ?? null,
-                'vaccancy_p'            => $json['acf']['vacancy_details'] ?? null,
+                'main_p'                => null,
+                'date_p'                => null,
+                'fee_p'                 => null,
+                'age_p'                 => null,
+                'vaccancy_p'            => null,
                 'category_p'            => null,
                 'selection_p'           => null,
-                'post_p'                => $json['acf']['vacancy_details'] ?? null,
+                'post_p'                => null,
 
                 // 54-59
-                'slug'                  => $json['slug'] ?? null,
-                'year'                  => date('Y', strtotime($json['date'] ?? now())),
-                'organization'          => $json['acf']['long_post_title'] ?? null,
+                'slug'                  => null,
+                'year'                  => $jobYear,
+                'organization'          => null,
                 'department'            => null,
                 'sector'                => null,
                 'sub_sector'            => null,
@@ -1541,21 +1891,20 @@ class JobController extends Controller
                 'ph_fees'               => null,
                 'female_fees'           => null,
                 'apply_mode'            => null,
-                
+
                 'post_experience'       => null,
-                'application_process'  => $json['acf']['application_fee'] ?? null,
+                'application_process'  => null,
 
                 // 79-88
                 'advt_no'               => null,
                 'notification_number'   => null,
-                'official_notification_pdf'
-                => $json['link'] ?? null,
+                'official_notification_pdf' =>  null,
                 'apply_online_link'     => null,
                 'answer_key_link'       => null,
                 'admit_card_link'       => null,
                 'result_link'           => null,
                 'reservation'           => null,
-                'important_dates'       => $json['acf']['important_dates'] ?? null,
+                'important_dates'        => null,
                 'important_links'       => null,
 
                 // 89-96
