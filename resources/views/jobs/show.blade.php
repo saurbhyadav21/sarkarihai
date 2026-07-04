@@ -567,25 +567,23 @@ text-align:center;
                         <span class="sep">/</span>
 
                         <a href="{{ route('sarkari.naukri') }}">
-                            Latest Jobs
+                            Sarkari Naukri
                         </a>
 
+                        @if ($job->state)
+                            <span class="sep">/</span>
 
-
-                        @if (!empty($job->state))
                             <a href="{{ route('sarkari.naukri.state', $job->state) }}">
                                 {{ ucwords(str_replace('-', ' ', $job->state)) }}
                             </a>
-                        @else
-                            All India
                         @endif
-
 
                         @if ($job->category)
                             <span class="sep">/</span>
+
                             <a
                                 href="{{ route('sarkari.naukri.category', [
-                                    'state' => $job->state,
+                                    'state' => $job->state ?: 'all-india',
                                     'category' => $job->category,
                                 ]) }}">
                                 {{ ucwords(str_replace('-', ' ', $job->category)) }}
@@ -594,7 +592,7 @@ text-align:center;
 
                         <span class="sep">/</span>
 
-                        <span class="current" aria-current="page">
+                        <span class="current">
                             {{ $job->title }}
                         </span>
 

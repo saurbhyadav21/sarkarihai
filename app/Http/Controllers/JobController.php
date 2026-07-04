@@ -1046,12 +1046,21 @@ class JobController extends Controller
 
     public function latestJobs($state = null, $category = null)
     {
-        // Default values
-        $state = $state ?: null;
-        $category = $category ?: null;
-        
-        // Jobs
-        $jobs = Job::latest()->get();
+        $jobs = Job::query();
+
+        // state filter
+        if (!empty($state)) {
+            $jobs->where('state', $state);
+        }
+
+        // category filter
+        if (!empty($category)) {
+            $jobs->where('category', $category);
+        }
+
+        $jobs = $jobs
+            ->latest()
+            ->paginate(20);
 
         return view('jobs.show', [
             'jobs' => $jobs,
@@ -2001,7 +2010,7 @@ class JobController extends Controller
                 'updated_at'    => now(),
             ]);
 
-        
+
 
         return response()->json([
             'success' => true,
