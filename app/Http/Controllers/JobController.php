@@ -2037,7 +2037,6 @@ $latestJobs = (clone $baseQuery)
     ->limit(10)
     ->get();
 
-dd($latestJobs);
         // ======================
         // LAST DATE JOBS (URGENT)
         // ======================
