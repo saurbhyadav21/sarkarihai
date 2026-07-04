@@ -579,16 +579,16 @@ text-align:center;
 @endif
 
 
-                        @if ($category)
-                            <span class="sep">/</span>
-                            <a
-                                href="{{ route('sarkari.naukri.category', [
-                                    'state' => $state,
-                                    'category' => $category,
-                                ]) }}">
-                                {{ ucwords(str_replace('-', ' ', $category)) }}
-                            </a>
-                        @endif
+                        @if(isset($category) && $category)
+    <span class="sep">/</span>
+
+    <a href="{{ route('sarkari.naukri.category', [
+        'state' => $state ?? 'all-india',
+        'category' => $category
+    ]) }}">
+        {{ ucwords(str_replace('-', ' ', $category)) }}
+    </a>
+@endif
 
                         <span class="sep">/</span>
 
