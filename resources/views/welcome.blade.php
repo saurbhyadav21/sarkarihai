@@ -1162,3 +1162,371 @@ LATEST JOBS / DEADLINE / RESULTS / ADMIT
     </div>
 
 </div>
+
+<!-- ====================================
+HOME PAGE PART 3
+STATE / CATEGORY / ORGANIZATION
+==================================== -->
+
+<style>
+.directory-card{
+    background:#fff;
+    border:1px solid #e8edf3;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+    margin-bottom:25px;
+}
+
+.directory-header{
+    background:#0a5467;
+    color:#fff;
+    padding:15px 20px;
+    font-size:20px;
+    font-weight:700;
+}
+
+.directory-body{
+    padding:20px;
+}
+
+.directory-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fill,minmax(160px,1fr));
+    gap:12px;
+}
+
+.directory-grid a{
+    background:#f7fafc;
+    border:1px solid #edf1f7;
+    border-radius:8px;
+    padding:12px;
+    text-align:center;
+    text-decoration:none;
+    color:#173b5b;
+    font-weight:600;
+    transition:.2s;
+}
+
+.directory-grid a:hover{
+    background:#0a5467;
+    color:#fff;
+}
+
+.popular-search{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.popular-search a{
+    background:#f4b400;
+    color:#000;
+    padding:8px 15px;
+    border-radius:25px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:14px;
+}
+
+.popular-search a:hover{
+    color:#000;
+}
+</style>
+
+
+
+<!-- STATE WISE -->
+
+<div class="directory-card">
+
+    <div class="directory-header">
+        State Wise Sarkari Jobs
+    </div>
+
+    <div class="directory-body">
+
+        <div class="directory-grid">
+
+            <a href="#">
+                All India
+            </a>
+
+            <a href="#">
+                Delhi
+            </a>
+
+            <a href="#">
+                Uttar Pradesh
+            </a>
+
+            <a href="#">
+                Bihar
+            </a>
+
+            <a href="#">
+                Rajasthan
+            </a>
+
+            <a href="#">
+                Haryana
+            </a>
+
+            <a href="#">
+                Punjab
+            </a>
+
+            <a href="#">
+                Maharashtra
+            </a>
+
+            <a href="#">
+                Gujarat
+            </a>
+
+            <a href="#">
+                Madhya Pradesh
+            </a>
+
+            <a href="#">
+                West Bengal
+            </a>
+
+            <a href="#">
+                Karnataka
+            </a>
+
+            <a href="#">
+                Tamil Nadu
+            </a>
+
+            <a href="#">
+                Andhra Pradesh
+            </a>
+
+            <a href="#">
+                Telangana
+            </a>
+
+            <a href="#">
+                Odisha
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- CATEGORY -->
+
+<div class="directory-card">
+
+    <div class="directory-header">
+        Category Wise Sarkari Jobs
+    </div>
+
+    <div class="directory-body">
+
+        <div class="directory-grid">
+
+            <a href="#">
+                Railway Jobs
+            </a>
+
+            <a href="#">
+                SSC Jobs
+            </a>
+
+            <a href="#">
+                UPSC Jobs
+            </a>
+
+            <a href="#">
+                Bank Jobs
+            </a>
+
+            <a href="#">
+                Defence Jobs
+            </a>
+
+            <a href="#">
+                Police Jobs
+            </a>
+
+            <a href="#">
+                Teaching Jobs
+            </a>
+
+            <a href="#">
+                PSU Jobs
+            </a>
+
+            <a href="#">
+                Engineering Jobs
+            </a>
+
+            <a href="#">
+                Medical Jobs
+            </a>
+
+            <a href="#">
+                ITI Jobs
+            </a>
+
+            <a href="#">
+                Diploma Jobs
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ORGANIZATION -->
+
+<div class="directory-card">
+
+    <div class="directory-header">
+        Organization Wise Jobs
+    </div>
+
+    <div class="directory-body">
+
+        <div class="directory-grid">
+
+            <a href="#">
+                SSC
+            </a>
+
+            <a href="#">
+                UPSC
+            </a>
+
+            <a href="#">
+                Railway
+            </a>
+
+            <a href="#">
+                IBPS
+            </a>
+
+            <a href="#">
+                SBI
+            </a>
+
+            <a href="#">
+                RBI
+            </a>
+
+            <a href="#">
+                BPSC
+            </a>
+
+            <a href="#">
+                UPPSC
+            </a>
+
+            <a href="#">
+                MPESB
+            </a>
+
+            <a href="#">
+                DSSSB
+            </a>
+
+            <a href="#">
+                DRDO
+            </a>
+
+            <a href="#">
+                ISRO
+            </a>
+
+            <a href="#">
+                Indian Army
+            </a>
+
+            <a href="#">
+                Indian Navy
+            </a>
+
+            <a href="#">
+                Air Force
+            </a>
+
+            <a href="#">
+                High Court
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- POPULAR SEARCH -->
+
+<div class="directory-card">
+
+    <div class="directory-header">
+        Popular Searches
+    </div>
+
+    <div class="directory-body">
+
+        <div class="popular-search">
+
+            <a href="#">
+                SSC CGL Recruitment
+            </a>
+
+            <a href="#">
+                Railway Recruitment
+            </a>
+
+            <a href="#">
+                Bank Jobs
+            </a>
+
+            <a href="#">
+                Police Vacancy
+            </a>
+
+            <a href="#">
+                UPSC Recruitment
+            </a>
+
+            <a href="#">
+                Defence Jobs
+            </a>
+
+            <a href="#">
+                Teaching Jobs
+            </a>
+
+            <a href="#">
+                Sarkari Result
+            </a>
+
+            <a href="#">
+                Admit Card
+            </a>
+
+            <a href="#">
+                Answer Key
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
