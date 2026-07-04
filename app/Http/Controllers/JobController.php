@@ -1046,9 +1046,9 @@ class JobController extends Controller
 
     public function latestJobs($state = null, $category = null)
     {
-    
+
         $query = DB::table('job_details');
-        
+
         // State filter
         if (!empty($state)) {
             $query->where('state', $state);
@@ -2020,5 +2020,54 @@ class JobController extends Controller
             'url' => $json['link'] ?? '',
             'message' => 'Inserted into job_details'
         ]);
+    }
+
+
+
+    public function home()
+    {
+        $latestJobs = Job::query()
+            ->latest()
+            ->limit(10)
+            ->get();
+
+        $lastDateJobs = Job::query()
+            ->whereNotNull('last_date')
+            ->orderBy('last_date', 'asc')
+            ->limit(10)
+            ->get();
+
+        $results = Job::query()
+            ->where('type', 'result')
+            ->latest()
+            ->limit(10)
+            ->get();
+
+        $admitCards = Job::query()
+            ->where('type', 'admit_card')
+            ->latest()
+            ->limit(10)
+            ->get();
+
+        $states = Job::query()
+            ->select('state')
+            ->whereNotNull('state')
+            ->distinct()
+            ->pluck('state');
+
+        $categories = Job::query()
+            ->select('category')
+            ->whereNotNull('category')
+            ->distinct()
+            ->pluck('category');
+
+        return view('home', compact(
+            'latestJobs',
+            'lastDateJobs',
+            'results',
+            'admitCards',
+            'states',
+            'categories'
+        ));
     }
 }
