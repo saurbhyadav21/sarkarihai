@@ -570,21 +570,27 @@ text-align:center;
                             Latest Jobs
                         </a>
 
-                        <span class="sep">/</span>
+                        
 
-                        <a href="{{ route('sarkari.naukri.state', $state) }}">
-                            {{ ucwords(str_replace('-', ' ', $state)) }}
-                        </a>
+                        @if ($job->state)
+                            <span class="sep">/</span>
+                            <a href="{{ route('sarkari.naukri.state', $job->state) }}">
+                                {{ ucwords(str_replace('-', ' ', $job->state)) }}
+                            </a>
+                        @endif
 
-                        <span class="sep">/</span>
+                        
 
-                        <a
-                            href="{{ route('sarkari.naukri.category', [
-                                'state' => $state,
-                                'category' => $category,
-                            ]) }}">
-                            {{ ucwords(str_replace('-', ' ', $category)) }}
-                        </a>
+                        @if ($job->category)
+                            <span class="sep">/</span>
+                            <a
+                                href="{{ route('sarkari.naukri.category', [
+                                    'state' => $job->state,
+                                    'category' => $job->category,
+                                ]) }}">
+                                {{ ucwords(str_replace('-', ' ', $job->category)) }}
+                            </a>
+                        @endif
 
                         <span class="sep">/</span>
 
