@@ -13,6 +13,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use App\Helpers\FreeJobAlertHelper;
+use DOMDocument;
+use DOMXPath;
 
 class JobController extends Controller
 {
