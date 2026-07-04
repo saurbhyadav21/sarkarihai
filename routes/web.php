@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\SitemapController;
 
-Route::get('/', [JobController::class, 'landing'])->name('landing'); // Landing page
+Route::get('/', [JobController::class, 'home'])->name('home');
+
 Route::get('/contact', [JobController::class, 'contact'])->name('contact'); // Landing page
 Route::get('/privacy-policy', [JobController::class, 'privacy'])->name('privacy'); // Landing page
 Route::get('/disclaimer', [JobController::class, 'disclaimer'])->name('disclaimer'); // Landing page
