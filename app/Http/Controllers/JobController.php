@@ -2026,18 +2026,19 @@ class JobController extends Controller
 
     public function home()
     {
-        // BASE QUERY (reuse everywhere)
-        $baseQuery = Job::query()
-            ->where('status', 'active');
+        // BASE QUERY
+$baseQuery = DB::table('job_details')
+    ->where('status', 'active');
 
-        // ======================
-        // LATEST JOBS
-        // ======================
-        $latestJobs = (clone $baseQuery)
-            ->latest('id')
-            ->limit(10)
-            ->get();
-    dd( $latestJobs);
+// ======================
+// LATEST JOBS
+// ======================
+$latestJobs = (clone $baseQuery)
+    ->orderBy('id', 'desc')
+    ->limit(10)
+    ->get();
+
+dd($latestJobs);
         // ======================
         // LAST DATE JOBS (URGENT)
         // ======================
