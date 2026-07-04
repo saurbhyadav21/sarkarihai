@@ -1736,7 +1736,7 @@ class JobController extends Controller
 
         $website = null;
 
-        if (!empty($important_links)) {
+        if (!empty($important_links) && is_array($important_links)) {
 
             foreach ($important_links as $item) {
 
@@ -1757,6 +1757,10 @@ class JobController extends Controller
             }
         }
 
+        // $important_links =
+        //     !empty($important_links)
+        //     ? implode('#', $important_links)
+        //     : null;
 
         $title = html_entity_decode(
             $json['acf']['long_post_title']
