@@ -572,14 +572,14 @@ text-align:center;
 
                         <span class="sep">/</span>
 
-                        <a href="{{ route('latest.jobs.state', $state) }}">
+                        <a href="{{ route('sarkari.naukri.state', $state) }}">
                             {{ ucwords(str_replace('-', ' ', $state)) }}
                         </a>
 
                         <span class="sep">/</span>
 
                         <a
-                            href="{{ route('latest.jobs.state.category', [
+                            href="{{ route('sarkari.naukri.category', [
                                 'state' => $state,
                                 'category' => $category,
                             ]) }}">
