@@ -558,63 +558,48 @@ text-align:center;
 
                 <div>
 
-                    <nav aria-label="breadcrumb" class="breadcrumb">
-
-                        <a href="{{ url('/') }}">
-                            Home
-                        </a>
-
-                        <span class="sep">/</span>
-
-                        <a href="{{ route('sarkari.naukri') }}">
-                            Sarkari Naukri
-                        </a>
+                    
 
                         @php
-    $state = request()->segment(2);
-    $category = request()->segment(3);
-@endphp
+                            $state = request()->segment(2);
+                            $category = request()->segment(3);
+                        @endphp
 
-<nav aria-label="breadcrumb" class="breadcrumb">
+                        <nav aria-label="breadcrumb" class="breadcrumb">
 
-    <a href="{{ url('/') }}">
-        Home
-    </a>
+                            <a href="{{ url('/') }}">
+                                Home
+                            </a>
 
-    <span class="sep">/</span>
+                            <span class="sep">/</span>
 
-    <a href="{{ route('sarkari.naukri') }}">
-        Sarkari Naukri
-    </a>
+                            <a href="{{ route('sarkari.naukri') }}">
+                                Sarkari Naukri
+                            </a>
 
-    @if($state)
-        <span class="sep">/</span>
+                            @if ($state)
+                                <span class="sep">/</span>
 
-        <a href="{{ route('sarkari.naukri.state', $state) }}">
-            {{ ucwords(str_replace('-', ' ', $state)) }}
-        </a>
-    @endif
+                                <a href="{{ route('sarkari.naukri.state', $state) }}">
+                                    {{ ucwords(str_replace('-', ' ', $state)) }}
+                                </a>
+                            @endif
 
-    @if($category)
-        <span class="sep">/</span>
+                            @if ($category)
+                                <span class="sep">/</span>
 
-        <a href="{{ route('sarkari.naukri.category', [
-            'state' => $state,
-            'category' => $category
-        ]) }}">
-            {{ ucwords(str_replace('-', ' ', $category)) }}
-        </a>
-    @endif
+                                <a
+                                    href="{{ route('sarkari.naukri.category', [
+                                        'state' => $state,
+                                        'category' => $category,
+                                    ]) }}">
+                                    {{ ucwords(str_replace('-', ' ', $category)) }}
+                                </a>
+                            @endif
 
-</nav>
+                        </nav>
 
-                        <span class="sep">/</span>
-
-                        <span class="current">
-
-                        </span>
-
-                    </nav>
+                       
 
                     <h1>
 
