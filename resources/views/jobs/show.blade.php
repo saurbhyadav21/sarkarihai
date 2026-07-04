@@ -570,7 +570,9 @@ text-align:center;
                             Sarkari Naukri
                         </a>
 
-                        @if ($job->state)
+                        @if 
+                        print_r($jobs);
+                        ($job->state)
                             <span class="sep">/</span>
 
                             <a href="{{ route('sarkari.naukri.state', $job->state) }}">

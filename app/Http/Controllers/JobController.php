@@ -1063,7 +1063,7 @@ class JobController extends Controller
             ->paginate(20);
 
         return view('jobs.show', [
-            'job' => $jobs,
+            'jobs' => $jobs,
             'state' => $state,
             'category' => $category,
         ]);
