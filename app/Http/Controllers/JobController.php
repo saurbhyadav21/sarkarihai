@@ -1343,10 +1343,10 @@ class JobController extends Controller
     public function testSarkariResult()
     {
         $feed = DB::table('job_feeds')
-        ->where('source', 'sarkariresult.com.cm')
-        ->where('scrape_status', 'pending')
-        ->orderBy('id')
-        ->first();
+            ->where('source', 'sarkariresult.com.cm')
+            ->where('scrape_status', 'pending')
+            ->orderBy('id')
+            ->first();
 
         if (!$feed) {
             return 'Feed not found';
@@ -1991,6 +1991,17 @@ class JobController extends Controller
                 'job_topics'            => null,
             ]
         );
+
+
+        // successful hone par
+        DB::table('job_feeds')
+            ->where('id', $feed->id)
+            ->update([
+                'scrape_status' => 'completed',
+                'updated_at'    => now(),
+            ]);
+
+        
 
         return response()->json([
             'success' => true,
