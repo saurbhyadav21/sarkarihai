@@ -572,7 +572,7 @@ text-align:center;
 
                         
 
-                        @if ($job->state)
+                        @if ($jobs->state)
                             <span class="sep">/</span>
                             <a href="{{ route('sarkari.naukri.state', $job->state) }}">
                                 {{ ucwords(str_replace('-', ' ', $job->state)) }}
