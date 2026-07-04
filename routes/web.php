@@ -142,3 +142,10 @@ Route::get(
     '/test/sarkariresult',
     [JobController::class, 'testSarkariResult']
 );
+
+
+// Header
+// Hero Banner
+// Search Section
+// Statistics
+// Quick Navigation Cards
