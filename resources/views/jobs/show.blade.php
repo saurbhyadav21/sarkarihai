@@ -570,16 +570,16 @@ text-align:center;
                             Latest Jobs
                         </a>
 
-                        
 
-                        @if ($jobs->state)
-                            <span class="sep">/</span>
+
+                        @if (!empty($job->state))
                             <a href="{{ route('sarkari.naukri.state', $job->state) }}">
                                 {{ ucwords(str_replace('-', ' ', $job->state)) }}
                             </a>
+                        @else
+                            All India
                         @endif
 
-                        
 
                         @if ($job->category)
                             <span class="sep">/</span>
