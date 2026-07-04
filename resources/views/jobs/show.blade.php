@@ -570,12 +570,13 @@ text-align:center;
                             Sarkari Naukri
                         </a>
 
-                        @if ($state)
-                            <span class="sep">/</span>
-                            <a href="{{ route('sarkari.naukri.state', $state) }}">
-                                {{ ucwords(str_replace('-', ' ', $state)) }}
-                            </a>
-                        @endif
+                        @if(isset($state) && $state)
+    <span class="sep">/</span>
+
+    <a href="{{ route('sarkari.naukri.state', $state) }}">
+        {{ ucwords(str_replace('-', ' ', $state)) }}
+    </a>
+@endif
 
 
                         @if ($category)
