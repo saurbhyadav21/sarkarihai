@@ -1049,7 +1049,7 @@ class JobController extends Controller
         // Default values
         $state = $state ?: null;
         $category = $category ?: null;
-
+        dd($state);
         // Jobs
         $jobs = Job::latest()->get();
 
