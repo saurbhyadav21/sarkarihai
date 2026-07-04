@@ -1047,7 +1047,7 @@ class JobController extends Controller
     public function latestJobs($state = null, $category = null)
     {
         $query = DB::table('job_details');
-
+        dd($state);
         // State filter
         if (!empty($state)) {
             $query->where('state', $state);
