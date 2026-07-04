@@ -816,3 +816,349 @@ SEARCH + STATS + QUICK NAVIGATION
     </div>
 
 </div>
+
+
+<!-- =====================================
+HOME PAGE PART 2
+LATEST JOBS / DEADLINE / RESULTS / ADMIT
+===================================== -->
+
+<style>
+.home-section{
+    background:#fff;
+    border:1px solid #e8edf3;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:25px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.home-section-header{
+    background:#0a5467;
+    color:#fff;
+    padding:15px 20px;
+    font-size:20px;
+    font-weight:700;
+}
+
+.home-job-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.home-job-list li{
+    border-bottom:1px solid #edf1f7;
+}
+
+.home-job-list li:last-child{
+    border-bottom:none;
+}
+
+.home-job-list a{
+    display:block;
+    padding:14px 18px;
+    color:#173b5b;
+    text-decoration:none;
+    font-size:15px;
+    transition:.2s;
+}
+
+.home-job-list a:hover{
+    background:#f7fafc;
+    color:#0a5467;
+}
+
+.job-date{
+    float:right;
+    color:#f44336;
+    font-weight:600;
+    font-size:13px;
+}
+
+.view-all{
+    background:#f8fafc;
+    padding:15px;
+    text-align:center;
+}
+
+.view-all a{
+    background:#0a5467;
+    color:#fff;
+    text-decoration:none;
+    padding:10px 20px;
+    border-radius:6px;
+    font-weight:600;
+}
+
+.view-all a:hover{
+    color:#fff;
+}
+</style>
+
+
+<div class="row mt-4">
+
+    <!-- LATEST JOBS -->
+
+    <div class="col-lg-6">
+
+        <div class="home-section">
+
+            <div class="home-section-header">
+                Latest Sarkari Jobs
+            </div>
+
+            <ul class="home-job-list">
+
+                <li>
+                    <a href="#">
+                        SSC CGL Recruitment 2026
+                        <span class="job-date">
+                            New
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Railway RRB Technician Recruitment 2026
+                        <span class="job-date">
+                            New
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        UPSC NDA II Online Form 2026
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        IBPS PO Recruitment 2026
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Delhi Police Recruitment 2026
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Bihar BPSC Recruitment 2026
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="view-all">
+
+                <a href="/sarkari-naukri">
+                    View All Jobs
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DEADLINE -->
+
+    <div class="col-lg-6">
+
+        <div class="home-section">
+
+            <div class="home-section-header">
+                Last Date Soon
+            </div>
+
+            <ul class="home-job-list">
+
+                <li>
+                    <a href="#">
+                        SSC CHSL Recruitment
+                        <span class="job-date">
+                            10 Jul
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        RRB NTPC Recruitment
+                        <span class="job-date">
+                            12 Jul
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        IBPS Clerk Online Form
+                        <span class="job-date">
+                            15 Jul
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        UPSC CAPF Recruitment
+                        <span class="job-date">
+                            17 Jul
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        SBI PO Recruitment
+                        <span class="job-date">
+                            18 Jul
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        MPESB Vacancy
+                        <span class="job-date">
+                            20 Jul
+                        </span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="row">
+
+    <!-- RESULTS -->
+
+    <div class="col-lg-6">
+
+        <div class="home-section">
+
+            <div class="home-section-header">
+                Latest Results
+            </div>
+
+            <ul class="home-job-list">
+
+                <li>
+                    <a href="#">
+                        SSC GD Result 2026
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Railway ALP Result 2026
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        UPSC CDS Result 2026
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        SBI Clerk Result 2026
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        IBPS PO Result 2026
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="view-all">
+
+                <a href="/result">
+                    View All Results
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ADMIT -->
+
+    <div class="col-lg-6">
+
+        <div class="home-section">
+
+            <div class="home-section-header">
+                Latest Admit Card
+            </div>
+
+            <ul class="home-job-list">
+
+                <li>
+                    <a href="#">
+                        SSC CGL Admit Card 2026
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Railway NTPC Admit Card
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        UPSC NDA Admit Card
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        SBI PO Admit Card
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        IBPS Clerk Admit Card
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="view-all">
+
+                <a href="/admit-card">
+                    View All Admit Card
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
