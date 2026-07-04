@@ -105,7 +105,7 @@ HEADER
 
                 <!-- Logo -->
                 <a href="/" class="logo">
-                    <img src="/logo.png" alt="Sarkari Hai" height="42">
+                    saRAKRI HAI
                 </a>
 
                 <!-- Desktop Menu -->
