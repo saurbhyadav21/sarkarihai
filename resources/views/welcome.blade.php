@@ -1,186 +1,151 @@
-<!-- =========================
-    HOME HERO SECTION
-========================== -->
+<!DOCTYPE html>
+<html>
 
-<style>
-    :root {
-        --bg: #020b22;
-        --card: #081735;
-        --red: #e53935;
-        --yellow: #ffc107;
-        --border: #1d2f57;
-        --white: #ffffff;
-        --muted: #c6d0e3;
-    }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    body {
-        background: var(--bg);
-    }
+    <title>xs</title>
 
-    .hero-section {
-        background: linear-gradient(135deg,#081735,#020b22);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 30px;
-        margin-bottom: 25px;
-    }
+    <style>
+        /* ===========================
+HEADER
+=========================== */
 
-    .hero-title {
-        color: #fff;
-        font-size: 34px;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
+        .main-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e8edf3;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, .05);
+        }
 
-    .hero-subtitle {
-        color: var(--muted);
-        font-size: 16px;
-        margin-bottom: 25px;
-    }
+        .logo img {
+            max-height: 42px;
+        }
 
-    .quick-btn {
-        display: block;
-        padding: 14px;
-        text-align: center;
-        color: white;
-        font-weight: 700;
-        text-decoration: none;
-        border-radius: 8px;
-        transition: .3s;
-    }
+        .desktop-menu {
+            gap: 28px;
+        }
 
-    .quick-btn:hover {
-        transform: translateY(-2px);
-        color: white;
-    }
+        .desktop-menu a {
+            color: #173b5b;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: .2s;
+        }
 
-    .btn-job {
-        background: #00b050;
-    }
+        .desktop-menu a:hover {
+            color: #0a5467;
+        }
 
-    .btn-admit {
-        background: #1e88e5;
-    }
+        .search-box {
+            display: flex;
+            border: 2px solid #edf1f7;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
 
-    .btn-result {
-        background: #e53935;
-    }
+        .search-box input {
+            border: none;
+            outline: none;
+            width: 220px;
+            padding: 10px 15px;
+        }
 
-    .btn-answer {
-        background: #fb8c00;
-    }
+        .search-box button {
+            border: none;
+            background: #0a5467;
+            color: #fff;
+            padding: 0 18px;
+        }
 
-    .btn-admission {
-        background: #8e24aa;
-    }
+        .mobile-toggle {
+            border: none;
+            background: #0a5467;
+            color: #fff;
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            font-size: 20px;
+        }
 
-    .btn-syllabus {
-        background: #3949ab;
-    }
+        .offcanvas-body a {
+            display: block;
+            padding: 12px 0;
+            color: #173b5b;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+    <!-- ===========================
+HEADER
+=========================== -->
 
-    .search-box {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 20px;
-    }
+    <header class="main-header">
 
-    .search-input {
-        background: #071126;
-        border: 1px solid #2a3e6a;
-        color: white;
-        height: 55px;
-    }
+        <div class="container">
 
-    .search-input:focus {
-        background: #071126;
-        color: white;
-        box-shadow: none;
-        border-color: var(--yellow);
-    }
+            <div class="d-flex align-items-center justify-content-between">
 
-    .search-btn {
-        background: var(--red);
-        border: none;
-        height: 55px;
-        font-weight: 700;
-    }
+                <!-- Logo -->
+                <a href="/" class="logo">
+                    <img src="/logo.png" alt="Sarkari Hai" height="42">
+                </a>
 
-    .live-update {
-        background: rgba(229,57,53,.15);
-        border: 1px solid rgba(229,57,53,.3);
-        padding: 12px;
-        border-radius: 8px;
-        color: white;
-        margin-top: 20px;
-    }
+                <!-- Desktop Menu -->
+                <nav class="desktop-menu d-none d-lg-flex">
 
-    .stats-card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 20px;
-        text-align: center;
-        height: 100%;
-    }
+                    <a href="/sarkari-naukri">
+                        Latest Jobs
+                    </a>
 
-    .stats-number {
-        font-size: 28px;
-        font-weight: 700;
-        color: var(--yellow);
-    }
+                    <a href="/admit-card">
+                        Admit Card
+                    </a>
 
-    .stats-title {
-        color: white;
-        font-size: 15px;
-    }
-</style>
+                    <a href="/result">
+                        Result
+                    </a>
 
+                    <a href="/syllabus">
+                        Syllabus
+                    </a>
 
-<section class="container mt-4">
+                    <a href="/answer-key">
+                        Answer Key
+                    </a>
 
-    <!-- HERO -->
+                    <a href="/admission">
+                        Admission
+                    </a>
 
-    <div class="hero-section">
+                </nav>
 
-        <div class="row align-items-center">
+                <!-- Search -->
+                <div class="header-right d-flex align-items-center">
 
-            <div class="col-lg-8">
+                    <form class="search-box">
 
-                <h1 class="hero-title">
-                    Sarkari Result 2026 | Latest Sarkari Naukri,
-                    Admit Card & Results
-                </h1>
+                        <input type="text" placeholder="Search Jobs...">
 
-                <p class="hero-subtitle">
-                    Get latest government jobs, admit cards,
-                    answer keys, results, admissions,
-                    and all official updates in one place.
-                </p>
+                        <button type="submit">
+                            🔍
+                        </button>
 
-            </div>
+                    </form>
 
-            <div class="col-lg-4">
+                    <!-- Mobile Menu -->
+                    <button class="mobile-toggle d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
 
-                <div class="row g-3">
+                        ☰
 
-                    <div class="col-6">
-                        <div class="stats-card">
-                            <div class="stats-number">9,540+</div>
-                            <div class="stats-title">
-                                Active Jobs
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="stats-card">
-                            <div class="stats-number">650+</div>
-                            <div class="stats-title">
-                                Results
-                            </div>
-                        </div>
-                    </div>
+                    </button>
 
                 </div>
 
@@ -188,84 +153,49 @@
 
         </div>
 
-    </div>
+    </header>
 
 
-    <!-- QUICK BUTTONS -->
 
-    <div class="row g-3 mb-4">
+    <!-- MOBILE MENU -->
 
-        <div class="col-md-2 col-6">
-            <a href="#" class="quick-btn btn-job">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
+
+        <div class="offcanvas-header">
+
+            <h5>Sarkari Hai</h5>
+
+            <button class="btn-close" data-bs-dismiss="offcanvas">
+            </button>
+
+        </div>
+
+        <div class="offcanvas-body">
+
+            <a href="/sarkari-naukri">
                 Latest Jobs
             </a>
-        </div>
 
-        <div class="col-md-2 col-6">
-            <a href="#" class="quick-btn btn-admit">
+            <a href="/admit-card">
                 Admit Card
             </a>
-        </div>
 
-        <div class="col-md-2 col-6">
-            <a href="#" class="quick-btn btn-result">
-                Results
+            <a href="/result">
+                Result
             </a>
-        </div>
 
-        <div class="col-md-2 col-6">
-            <a href="#" class="quick-btn btn-answer">
-                Answer Key
-            </a>
-        </div>
-
-        <div class="col-md-2 col-6">
-            <a href="#" class="quick-btn btn-admission">
-                Admission
-            </a>
-        </div>
-
-        <div class="col-md-2 col-6">
-            <a href="#" class="quick-btn btn-syllabus">
+            <a href="/syllabus">
                 Syllabus
             </a>
-        </div>
 
-    </div>
+            <a href="/answer-key">
+                Answer Key
+            </a>
 
-
-    <!-- SEARCH -->
-
-    <div class="search-box">
-
-        <div class="row">
-
-            <div class="col-lg-10">
-                <input
-                    type="text"
-                    class="form-control search-input"
-                    placeholder="Search Sarkari Jobs, Results, Admit Card...">
-            </div>
-
-            <div class="col-lg-2">
-                <button class="btn btn-danger w-100 search-btn">
-                    Search
-                </button>
-            </div>
-
-        </div>
-
-        <div class="live-update">
-
-            🔥 <strong>Latest Updates :</strong>
-
-            SSC CGL Recruitment 2026 •
-            RRB NTPC UG Answer Key 2026 •
-            IBPS PO Recruitment 2026 •
-            UPSC NDA II Online Form 2026
+            <a href="/admission">
+                Admission
+            </a>
 
         </div>
 
     </div>
-
-</section>
