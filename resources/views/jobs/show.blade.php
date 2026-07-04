@@ -591,13 +591,13 @@ text-align:center;
                         <span class="sep">/</span>
 
                         <span class="current">
-                            {{ $job->title }}
+                            {{ $title }}
                         </span>
 
                     </nav>
 
                     <h1>
-                        {{ $job->title }}
+                        {{ $title }}
                     </h1>
 
                     <p>
