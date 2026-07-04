@@ -1549,7 +1549,7 @@ class JobController extends Controller
         $mode_selection = null;
 
         $html = html_entity_decode(
-            $json['acf']['how_to_fill'] ?? ''
+            $json['acf']['vacancy_details'] ?? ''
         );
 
         if (
