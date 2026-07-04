@@ -2026,39 +2026,69 @@ class JobController extends Controller
 
     public function home()
     {
-        $latestJobs = Job::query()
-            ->latest()
+        // BASE QUERY (reuse everywhere)
+        $baseQuery = Job::query()
+            ->where('status', 'active');
+
+        // ======================
+        // LATEST JOBS
+        // ======================
+        $latestJobs = (clone $baseQuery)
+            ->latest('id')
             ->limit(10)
             ->get();
 
-        $lastDateJobs = Job::query()
-            ->whereNotNull('last_date')
-            ->orderBy('last_date', 'asc')
+        // ======================
+        // LAST DATE JOBS (URGENT)
+        // ======================
+        $lastDateJobs = (clone $baseQuery)
+            ->whereNotNull('last_fee_date')
+            ->orderBy('last_fee_date', 'asc')
             ->limit(10)
             ->get();
 
-        $results = Job::query()
-            ->where('type', 'result')
-            ->latest()
+        // ======================
+        // RESULTS (SAFE TYPE CHECK)
+        // ======================
+        $results = (clone $baseQuery)
+            ->where(function ($q) {
+                $q->where('result_date', '!=', null)
+                    ->where('result_date', '!=', 'To Be Announced');
+            })
+            ->latest('id')
             ->limit(10)
             ->get();
 
-        $admitCards = Job::query()
-            ->where('type', 'admit_card')
-            ->latest()
+        // ======================
+        // ADMIT CARDS
+        // ======================
+        $admitCards = (clone $baseQuery)
+            ->where(function ($q) {
+                $q->where('admit_card', '!=', null)
+                    ->where('admit_card', '!=', 'To Be Announced');
+            })
+            ->latest('id')
             ->limit(10)
             ->get();
 
-        $states = Job::query()
-            ->select('state')
+        // ======================
+        // STATES (SAFE + CLEAN)
+        // ======================
+        $states = Job::select('state')
             ->whereNotNull('state')
+            ->where('state', '!=', '')
             ->distinct()
+            ->orderBy('state')
             ->pluck('state');
 
-        $categories = Job::query()
-            ->select('category')
+        // ======================
+        // CATEGORIES (SAFE)
+        // ======================
+        $categories = Job::select('category')
             ->whereNotNull('category')
+            ->where('category', '!=', '')
             ->distinct()
+            ->orderBy('category')
             ->pluck('category');
 
         return view('home', compact(
