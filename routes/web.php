@@ -89,24 +89,20 @@ Route::get(
     [JobController::class, 'latestJobs']
 )->name('sarkari.naukri');
 
-// State Wise
 Route::get(
     '/sarkari-naukri/{state}',
     [JobController::class, 'latestJobs']
 )->name('sarkari.naukri.state');
 
-// State + Category Wise
 Route::get(
     '/sarkari-naukri/{state}/{category}',
     [JobController::class, 'latestJobs']
 )->name('sarkari.naukri.category');
 
-// Job Detail Page
 Route::get(
     '/sarkari-naukri/{state}/{category}/{slug}',
     [JobController::class, 'jobDetail']
 )->name('sarkari.naukri.detail');
-
 
 Route::post(
     '/job/{id}/category',

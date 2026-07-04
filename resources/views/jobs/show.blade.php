@@ -581,7 +581,7 @@ text-align:center;
                         @endif
 
 
-                        {{-- @if ($job->category)
+                        @if ($job->category)
                             <span class="sep">/</span>
                             <a
                                 href="{{ route('sarkari.naukri.category', [
@@ -590,7 +590,7 @@ text-align:center;
                                 ]) }}">
                                 {{ ucwords(str_replace('-', ' ', $job->category)) }}
                             </a>
-                        @endif --}}
+                        @endif
 
                         <span class="sep">/</span>
 
