@@ -826,11 +826,7 @@ text-align:center;
     </style>
 
 
-    <div class="main-wrapper">
-
-
-        
-    </div>
+    
 
 
 
