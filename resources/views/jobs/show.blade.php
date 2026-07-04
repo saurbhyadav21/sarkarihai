@@ -570,25 +570,26 @@ text-align:center;
                             Sarkari Naukri
                         </a>
 
-                        @if(isset($state) && $state)
-    <span class="sep">/</span>
+                        @if (isset($state) && $state)
+                            <span class="sep">/</span>
 
-    <a href="{{ route('sarkari.naukri.state', $state) }}">
-        {{ ucwords(str_replace('-', ' ', $state)) }}
-    </a>
-@endif
+                            <a href="{{ route('sarkari.naukri.state', $state) }}">
+                                {{ ucwords(str_replace('-', ' ', $state)) }}
+                            </a>
+                        @endif
 
 
-                        @if(isset($category) && $category)
-    <span class="sep">/</span>
+                        @if (isset($category) && $category)
+                            <span class="sep">/</span>
 
-    <a href="{{ route('sarkari.naukri.category', [
-        'state' => $state ?? 'all-india',
-        'category' => $category
-    ]) }}">
-        {{ ucwords(str_replace('-', ' ', $category)) }}
-    </a>
-@endif
+                            <a
+                                href="{{ route('sarkari.naukri.category', [
+                                    'state' => $state ?? 'all-india',
+                                    'category' => $category,
+                                ]) }}">
+                                {{ ucwords(str_replace('-', ' ', $category)) }}
+                            </a>
+                        @endif
 
                         <span class="sep">/</span>
 
