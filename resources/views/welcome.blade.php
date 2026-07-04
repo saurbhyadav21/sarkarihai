@@ -561,6 +561,205 @@ PART 2 - MAIN CONTENT BLOCK
 
     </div>
 
+
+
+    <style>
+        /* FAQ */
+        .faq-box {
+            background: #fff;
+            border: 1px solid #e8edf3;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+
+        .faq-q {
+            font-weight: 800;
+            color: #0a5467;
+            margin-bottom: 5px;
+        }
+
+        .faq-a {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ABOUT */
+        .about-box {
+            background: #fff;
+            border: 1px solid #e8edf3;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .about-box h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0a5467;
+            margin-bottom: 10px;
+        }
+
+        .about-box p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #0a5467;
+            color: #fff;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+            opacity: .9;
+        }
+
+        .footer a:hover {
+            opacity: 1;
+        }
+
+        .footer-title {
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .bottom-bar {
+            text-align: center;
+            padding: 10px;
+            background: #083b49;
+            color: #fff;
+            font-size: 13px;
+        }
+    </style>
+
+    <div class="container">
+
+        <!-- ================= FAQ ================= -->
+        <div class="faq-box">
+
+            <h3 style="font-weight:800;color:#0a5467;">Frequently Asked Questions</h3>
+
+            <div class="faq-item">
+                <div class="faq-q">What is Sarkari Result?</div>
+                <div class="faq-a">
+                    Sarkari Result provides latest government jobs, admit cards, results, answer keys and admissions
+                    updates.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">How to apply for Sarkari Jobs?</div>
+                <div class="faq-a">
+                    You can apply through official apply online links given in each job post.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Is SarkariHai free?</div>
+                <div class="faq-a">
+                    Yes, all information on SarkariHai is completely free for users.
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ================= ABOUT ================= -->
+        <div class="about-box">
+
+            <h2>About Sarkari Result 2026</h2>
+
+            <p>
+                SarkariHai.com is a fast and reliable platform for latest government job notifications,
+                admit cards, results, answer keys and admission updates across India.
+            </p>
+
+            <p>
+                We cover SSC, UPSC, Railway, Bank, Police, Defence, Teaching and State Government jobs
+                in one place with updated information.
+            </p>
+
+            <p>
+                Our aim is to provide simple, fast and accurate job updates for every student and job seeker.
+            </p>
+
+        </div>
+
+
+        <!-- ================= FOOTER ================= -->
+        <div class="footer">
+
+            <div class="row">
+
+                <div class="col-lg-4">
+
+                    <div class="footer-title">SarkariHai</div>
+                    <p style="font-size:14px;opacity:.9;">
+                        Latest Government Jobs, Admit Card,
+                        Results & Answer Key Updates.
+                    </p>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <div class="footer-title">Important Links</div>
+
+                    <a href="#">Latest Jobs</a>
+                    <a href="#">Admit Card</a>
+                    <a href="#">Results</a>
+                    <a href="#">Answer Key</a>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <div class="footer-title">Quick Pages</div>
+
+                    <a href="#">State Jobs</a>
+                    <a href="#">Category Jobs</a>
+                    <a href="#">Contact</a>
+                    <a href="#">About</a>
+
+                </div>
+
+                <div class="col-lg-2">
+
+                    <div class="footer-title">Support</div>
+
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Disclaimer</a>
+                    <a href="#">DMCA</a>
+                    <a href="#">Sitemap</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="bottom-bar">
+            © 2026 SarkariHai.com | All Rights Reserved
+        </div>
+
+    </div>
+
 </body>
 
 </html>
