@@ -571,8 +571,8 @@ text-align:center;
                         </a>
 
                         @if 
-                        print_r($jobs);
-                        ($job->state)
+                        
+                        ($jobs->state)
                             <span class="sep">/</span>
 
                             <a href="{{ route('sarkari.naukri.state', $job->state) }}">
