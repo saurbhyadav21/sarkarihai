@@ -602,11 +602,7 @@ text-align:center;
                     </h1>
 
                     <p>
-                        Check complete notification, eligibility,
-                        vacancy details, age limit, salary,
-                        selection process, important dates,
-                        exam pattern, required documents,
-                        and apply online process.
+                        Show all job here
                     </p>
 
                 </div>
