@@ -299,13 +299,45 @@ PART 2 - MAIN CONTENT BLOCK
                 <!-- LATEST JOBS -->
                 <div class="section-title">Latest Government Jobs</div>
 
-                <div class="job-card">
-                    <span class="badge-new">NEW</span>
-                    <a href="#" class="job-title">SSC CGL Recruitment 2026</a>
-                    <div class="job-meta">
-                        14582 Posts | Last Date: 25 July 2026 | Apply Online
-                    </div>
-                </div>
+                @foreach($latestJobs as $job)
+
+<div class="job-card">
+
+    {{-- 🔥 NEW BADGE --}}
+    @if(!empty($job->created_at) && \Carbon\Carbon::parse($job->created_at)->diffInDays() <= 3)
+        <span class="badge-new">NEW</span>
+    @endif
+
+    {{-- 🧾 TITLE --}}
+    <a href="{{ url('sarkari-naukri/'.($job->state ?? 'all-india').'/'.$job->category.'/'.$job->slug) }}"
+       class="job-title">
+
+        {{ $job->title }}
+
+    </a>
+
+    {{-- 📊 META INFO --}}
+    <div class="job-meta">
+
+        {{-- Posts --}}
+        {{ $job->total_vacancies ?? 'N/A' }} Posts
+
+        |
+
+        {{-- Last Date --}}
+        Last Date:
+        {{ $job->last_fee_date ?? 'Not Available' }}
+
+        |
+
+        {{-- Apply Mode --}}
+        {{ $job->apply_mode ?? 'Online' }}
+
+    </div>
+
+</div>
+
+@endforeach
 
                 <div class="job-card">
                     <span class="badge-new">NEW</span>
