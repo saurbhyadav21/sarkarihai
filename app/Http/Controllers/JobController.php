@@ -2027,9 +2027,8 @@ class JobController extends Controller
     public function home()
     {
         // BASE QUERY
-$baseQuery = DB::table('job_details')
-    ->where('status', 'active');
-
+$baseQuery = DB::table('job_details');
+    
 // ======================
 // LATEST JOBS
 // ======================
