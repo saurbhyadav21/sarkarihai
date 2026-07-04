@@ -373,6 +373,194 @@ PART 2 - MAIN CONTENT BLOCK
 
     </div>
 
+
+    <style>
+        /* SECTION TITLE */
+        .sec-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin: 25px 0 15px;
+            color: #0a5467;
+        }
+
+        /* GRID BUTTON STYLE */
+        .link-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .link-grid a {
+            background: #fff;
+            border: 1px solid #e8edf3;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            text-decoration: none;
+            color: #333;
+            transition: .2s;
+        }
+
+        .link-grid a:hover {
+            background: #0a5467;
+            color: #fff;
+        }
+
+        /* CATEGORY CARDS */
+        .cat-card {
+            background: #fff;
+            border: 1px solid #e8edf3;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: .2s;
+        }
+
+        .cat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+        }
+
+        .cat-card i {
+            font-size: 22px;
+            color: #0a5467;
+            margin-bottom: 5px;
+        }
+
+        .cat-title {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* POPULAR TAGS */
+        .tag {
+            display: inline-block;
+            background: #f4b400;
+            color: #000;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin: 5px;
+            text-decoration: none;
+        }
+
+        .tag:hover {
+            background: #ffcc00;
+        }
+    </style>
+
+    <div class="container mt-4">
+
+        <!-- ================= STATE WISE ================= -->
+        <div class="sec-title">State Wise Government Jobs</div>
+
+        <div class="link-grid mb-4">
+            <a href="#">All India</a>
+            <a href="#">Delhi</a>
+            <a href="#">Uttar Pradesh</a>
+            <a href="#">Bihar</a>
+            <a href="#">Rajasthan</a>
+            <a href="#">Maharashtra</a>
+            <a href="#">Gujarat</a>
+            <a href="#">West Bengal</a>
+            <a href="#">Karnataka</a>
+            <a href="#">Tamil Nadu</a>
+            <a href="#">Punjab</a>
+            <a href="#">Haryana</a>
+        </div>
+
+
+        <!-- ================= CATEGORY WISE ================= -->
+        <div class="sec-title">Category Wise Jobs</div>
+
+        <div class="row g-3 mb-4">
+
+            <div class="col-6 col-md-3">
+                <div class="cat-card">
+                    <div class="cat-title">Railway Jobs</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="cat-card">
+                    <div class="cat-title">SSC Jobs</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="cat-card">
+                    <div class="cat-title">Bank Jobs</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="cat-card">
+                    <div class="cat-title">UPSC Jobs</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="cat-card">
+                    <div class="cat-title">Police Jobs</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="cat-card">
+                    <div class="cat-title">Defence Jobs</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="cat-card">
+                    <div class="cat-title">Teaching Jobs</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="cat-card">
+                    <div class="cat-title">PSU Jobs</div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ================= ORGANIZATION WISE ================= -->
+        <div class="sec-title">Organization Wise Jobs</div>
+
+        <div class="link-grid mb-4">
+            <a href="#">SSC</a>
+            <a href="#">UPSC</a>
+            <a href="#">Railway</a>
+            <a href="#">IBPS</a>
+            <a href="#">SBI</a>
+            <a href="#">RBI</a>
+            <a href="#">BPSC</a>
+            <a href="#">DRDO</a>
+            <a href="#">ISRO</a>
+            <a href="#">Indian Army</a>
+            <a href="#">Indian Navy</a>
+            <a href="#">Air Force</a>
+        </div>
+
+
+        <!-- ================= POPULAR SEARCHES ================= -->
+        <div class="sec-title">Popular Searches</div>
+
+        <div>
+            <a class="tag" href="#">SSC CGL 2026</a>
+            <a class="tag" href="#">Railway Recruitment</a>
+            <a class="tag" href="#">Bank Jobs</a>
+            <a class="tag" href="#">Police Vacancy</a>
+            <a class="tag" href="#">UPSC Exam</a>
+            <a class="tag" href="#">Admit Card</a>
+            <a class="tag" href="#">Answer Key</a>
+            <a class="tag" href="#">Sarkari Result</a>
+        </div>
+
+    </div>
+
 </body>
 
 </html>
