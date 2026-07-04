@@ -1574,7 +1574,6 @@ class JobController extends Controller
         ? implode('#', $eligibility)
         : null;
 }
-        }
 
         // vacncy end
 
