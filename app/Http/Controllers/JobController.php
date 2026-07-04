@@ -1075,7 +1075,7 @@ class JobController extends Controller
 
         $job = Job::where('slug', $slug)->firstOrFail();
 
-        return view('jobs.show', [
+        return view('jobs.show_details', [
             'job' => $job,
             'state' => $state,
             'category' => $category,
