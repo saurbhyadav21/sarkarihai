@@ -468,3 +468,351 @@ HERO BANNER
     </div>
 
 </section>
+
+<!-- ===================================
+SEARCH + STATS + QUICK NAVIGATION
+=================================== -->
+
+<style>
+.home-search-card,
+.stats-card,
+.quick-card{
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 2px 15px rgba(0,0,0,.06);
+    border:1px solid #edf1f7;
+}
+
+.section-title{
+    color:#173b5b;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.stats-card{
+    text-align:center;
+    transition:.2s;
+}
+
+.stats-card:hover{
+    transform:translateY(-3px);
+}
+
+.stats-number{
+    font-size:30px;
+    font-weight:700;
+    color:#0a5467;
+}
+
+.stats-text{
+    color:#666;
+    font-size:14px;
+}
+
+.quick-card{
+    text-align:center;
+    text-decoration:none;
+    display:block;
+    transition:.2s;
+    height:100%;
+}
+
+.quick-card:hover{
+    transform:translateY(-4px);
+}
+
+.quick-icon{
+    width:55px;
+    height:55px;
+    line-height:55px;
+    border-radius:50%;
+    margin:auto;
+    margin-bottom:15px;
+    color:#fff;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.q-job{
+    background:#0a5467;
+}
+
+.q-admit{
+    background:#2e7d32;
+}
+
+.q-result{
+    background:#d32f2f;
+}
+
+.q-answer{
+    background:#f57c00;
+}
+
+.q-admission{
+    background:#7b1fa2;
+}
+
+.q-syllabus{
+    background:#1565c0;
+}
+
+.quick-title{
+    color:#173b5b;
+    font-weight:600;
+    font-size:15px;
+}
+
+.quick-count{
+    color:#777;
+    font-size:13px;
+}
+</style>
+
+
+<!-- SEARCH -->
+
+<div class="row mt-4">
+
+    <div class="col-lg-12">
+
+        <div class="home-search-card">
+
+            <h4 class="section-title">
+                Search Sarkari Jobs
+            </h4>
+
+            <form>
+
+                <div class="row">
+
+                    <div class="col-lg-10">
+
+                        <input
+                            type="text"
+                            class="form-control form-control-lg"
+                            placeholder="Search SSC, Railway, UPSC, Bank, State Jobs">
+
+                    </div>
+
+                    <div class="col-lg-2">
+
+                        <button
+                            class="btn btn-warning w-100 btn-lg">
+
+                            Search
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- STATISTICS -->
+
+<div class="row mt-4">
+
+    <div class="col-lg-3 col-6 mb-3">
+
+        <div class="stats-card">
+
+            <div class="stats-number">
+                9,540+
+            </div>
+
+            <div class="stats-text">
+                Active Jobs
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-6 mb-3">
+
+        <div class="stats-card">
+
+            <div class="stats-number">
+                650+
+            </div>
+
+            <div class="stats-text">
+                Results
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-6 mb-3">
+
+        <div class="stats-card">
+
+            <div class="stats-number">
+                450+
+            </div>
+
+            <div class="stats-text">
+                Admit Cards
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-6 mb-3">
+
+        <div class="stats-card">
+
+            <div class="stats-number">
+                120+
+            </div>
+
+            <div class="stats-text">
+                Admissions
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- QUICK NAVIGATION -->
+
+<div class="row mt-4">
+
+    <div class="col-lg-2 col-md-4 col-6 mb-4">
+
+        <a href="/sarkari-naukri" class="quick-card">
+
+            <div class="quick-icon q-job">
+                💼
+            </div>
+
+            <div class="quick-title">
+                Latest Jobs
+            </div>
+
+            <div class="quick-count">
+                9500+ Jobs
+            </div>
+
+        </a>
+
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6 mb-4">
+
+        <a href="/admit-card" class="quick-card">
+
+            <div class="quick-icon q-admit">
+                🪪
+            </div>
+
+            <div class="quick-title">
+                Admit Card
+            </div>
+
+            <div class="quick-count">
+                450+
+            </div>
+
+        </a>
+
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6 mb-4">
+
+        <a href="/result" class="quick-card">
+
+            <div class="quick-icon q-result">
+                📋
+            </div>
+
+            <div class="quick-title">
+                Results
+            </div>
+
+            <div class="quick-count">
+                650+
+            </div>
+
+        </a>
+
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6 mb-4">
+
+        <a href="/answer-key" class="quick-card">
+
+            <div class="quick-icon q-answer">
+                🔑
+            </div>
+
+            <div class="quick-title">
+                Answer Key
+            </div>
+
+            <div class="quick-count">
+                220+
+            </div>
+
+        </a>
+
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6 mb-4">
+
+        <a href="/admission" class="quick-card">
+
+            <div class="quick-icon q-admission">
+                🎓
+            </div>
+
+            <div class="quick-title">
+                Admission
+            </div>
+
+            <div class="quick-count">
+                120+
+            </div>
+
+        </a>
+
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6 mb-4">
+
+        <a href="/syllabus" class="quick-card">
+
+            <div class="quick-icon q-syllabus">
+                📚
+            </div>
+
+            <div class="quick-title">
+                Syllabus
+            </div>
+
+            <div class="quick-count">
+                300+
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
