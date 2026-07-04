@@ -1475,72 +1475,105 @@ class JobController extends Controller
 
         // POST NAME TABLE
         else if (
-            stripos($vacancyHtml, 'Post Name') !== false ||
-            stripos($vacancyHtml, 'Course Name') !== false
-        ) {
+    stripos($vacancyHtml, 'Post Name') !== false ||
+    stripos($vacancyHtml, 'Course Name') !== false
+) {
 
-            $names = [];
-            $counts = [];
-            $eligibility = [];
+    $names = [];
+    $counts = [];
+    $eligibility = [];
 
-            preg_match_all(
-                '/<tr[^>]*>(.*?)<\/tr>/is',
-                $vacancyHtml,
-                $rows
-            );
+    preg_match_all(
+        '/<tr[^>]*>(.*?)<\/tr>/is',
+        $vacancyHtml,
+        $rows
+    );
 
-            foreach ($rows[1] as $row) {
+    foreach ($rows[1] as $row) {
 
-                preg_match_all(
-                    '/<td[^>]*>(.*?)<\/td>/is',
-                    $row,
-                    $cols
-                );
+        preg_match_all(
+            '/<td[^>]*>(.*?)<\/td>/is',
+            $row,
+            $cols
+        );
 
-                if (count($cols[1]) == 3) {
+        if (count($cols[1]) == 3) {
 
-                    $name = trim(strip_tags($cols[1][0]));
+            $name = trim(strip_tags($cols[1][0]));
 
-                    if (
-                        stripos($name, 'Post Name') !== false ||
-                        stripos($name, 'Course Name') !== false
-                    ) {
-                        continue;
-                    }
-
-                    $names[] = $name;
-                    $counts[] = trim(strip_tags($cols[1][1]));
-                    $eligibility[] = trim(
-                        preg_replace(
-                            '/\s+/',
-                            ' ',
-                            strip_tags($cols[1][2])
-                        )
-                    );
-                } elseif (count($cols[1]) == 2) {
-
-                    $name = trim(strip_tags($cols[1][0]));
-
-                    if (
-                        stripos($name, 'Course Name') !== false
-                    ) {
-                        continue;
-                    }
-
-                    $names[] = $name;
-                    $eligibility[] = trim(
-                        preg_replace(
-                            '/\s+/',
-                            ' ',
-                            strip_tags($cols[1][1])
-                        )
-                    );
-                }
+            if (
+                stripos($name, 'Post Name') !== false ||
+                stripos($name, 'Course Name') !== false ||
+                stripos($name, 'Join Our') !== false ||
+                stripos($name, 'WhatsApp') !== false ||
+                stripos($name, 'Telegram') !== false ||
+                stripos($name, 'Follow Now') !== false ||
+                stripos($name, 'You May Also Check') !== false ||
+                stripos($name, 'How To Fill') !== false
+            ) {
+                continue;
             }
 
-            $post_name = implode('#', $names);
-            $post_salary = implode('#', $counts);
-            $post_eligibility = implode('#', $eligibility);
+            $names[] = $name;
+
+            $counts[] = trim(
+                preg_replace(
+                    '/\s+/',
+                    ' ',
+                    strip_tags($cols[1][1])
+                )
+            );
+
+            $eligibility[] = trim(
+                preg_replace(
+                    '/\s+/',
+                    ' ',
+                    strip_tags($cols[1][2])
+                )
+            );
+        }
+
+        elseif (count($cols[1]) == 2) {
+
+            $name = trim(strip_tags($cols[1][0]));
+
+            if (
+                stripos($name, 'Post Name') !== false ||
+                stripos($name, 'Course Name') !== false ||
+                stripos($name, 'Join Our') !== false ||
+                stripos($name, 'WhatsApp') !== false ||
+                stripos($name, 'Telegram') !== false ||
+                stripos($name, 'Follow Now') !== false ||
+                stripos($name, 'You May Also Check') !== false ||
+                stripos($name, 'How To Fill') !== false
+            ) {
+                continue;
+            }
+
+            $names[] = $name;
+
+            $eligibility[] = trim(
+                preg_replace(
+                    '/\s+/',
+                    ' ',
+                    strip_tags($cols[1][1])
+                )
+            );
+        }
+    }
+
+    $post_name = !empty($names)
+        ? implode('#', $names)
+        : null;
+
+    $post_salary = !empty($counts)
+        ? implode('#', $counts)
+        : null;
+
+    $post_eligibility = !empty($eligibility)
+        ? implode('#', $eligibility)
+        : null;
+}
         }
 
         // vacncy end
