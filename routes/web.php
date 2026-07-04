@@ -130,6 +130,6 @@ Route::get(
 );
 
 Route::get(
-    '/test/sarkariresult/{id}',
+    '/test/sarkariresult',
     [JobController::class, 'testSarkariResult']
 );

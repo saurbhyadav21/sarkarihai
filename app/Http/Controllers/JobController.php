@@ -1340,11 +1340,13 @@ class JobController extends Controller
         return "Imported/Updated : " . $total;
     }
 
-    public function testSarkariResult($id)
+    public function testSarkariResult()
     {
         $feed = DB::table('job_feeds')
-            ->where('id', $id)
-            ->first();
+        ->where('source', 'sarkariresult.com.cm')
+        ->where('scrape_status', 'pending')
+        ->orderBy('id')
+        ->first();
 
         if (!$feed) {
             return 'Feed not found';
