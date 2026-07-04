@@ -591,13 +591,13 @@ text-align:center;
                         <span class="sep">/</span>
 
                         <span class="current">
-                            {{ $title }}
+                          
                         </span>
 
                     </nav>
 
                     <h1>
-                        {{ $title }}
+                       
                     </h1>
 
                     <p>
