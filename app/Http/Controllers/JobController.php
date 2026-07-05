@@ -326,7 +326,7 @@ class JobController extends Controller
     public function editList()
     {
         $jobs = Job::orderBy('id', 'desc')
-           
+
             ->get();
 
         $categories = DB::table('job_categories')
@@ -2093,13 +2093,38 @@ class JobController extends Controller
             ->orderBy('category')
             ->pluck('category');
 
+        $totalJobs = DB::table('job_details')
+            ->where('status', 'active')
+            ->count();
+
+        $totalResults = DB::table('job_details')
+            ->whereNotNull('result_date')
+            ->where('result_date', '!=', 'To Be Announced')
+            ->count();
+
+        $totalAdmitCards = DB::table('job_details')
+            ->whereNotNull('admit_card')
+            ->where('admit_card', '!=', 'To Be Announced')
+            ->count();
+
+        $totalAdmissions = DB::table('job_details')
+            ->where(function ($q) {
+                $q->where('category', 'like', '%admission%')
+                    ->orWhere('title', 'like', '%admission%');
+            })
+            ->count();
+
         return view('welcome', compact(
             'latestJobs',
             'lastDateJobs',
             'results',
             'admitCards',
             'states',
-            'categories'
+            'categories',
+            'totalJobs',
+            'totalResults',
+            'totalAdmitCards',
+            'totalAdmissions'
         ));
     }
 }
