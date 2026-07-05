@@ -1222,13 +1222,13 @@ PART 2 - MAIN CONTENT BLOCK
 
     <span class="search-separator">|</span>
 
-    <span class="search-posts">
+    <span class="search-posts" style="font-size: 11px;">
         👥 ${job.total_vacancies ?? 'N/A'} Posts
     </span>
 
     <span class="search-separator">|</span>
 
-    <span class="search-date">
+    <span class="search-date" style="font-size: 11px;">
         📅 ${job.end_date ?? 'Open'}
     </span>
 
