@@ -139,7 +139,14 @@
                 <div class="col-lg-8">
 
                     <h1>Sarkari Result 2026</h1>
-                    <p>Latest Sarkari Naukri, Admit Card, Results, Answer Key & Government Updates</p>
+                    {{-- <p>Latest Sarkari Naukri, Admit Card, Results, Answer Key & Government Updates</p> --}}
+<p>
+Explore the latest Sarkari Naukri 2026, Admit Cards, Results, Answer Keys, Admissions, and 
+Government Job notifications from Central and State Government organizations. Stay updated 
+with SSC, Railway, Banking, UPSC, Police, Defence, Teaching, and Public Sector recruitment 
+opportunities across India.
+</p>
+
 
                     <div class="row mt-4">
 
