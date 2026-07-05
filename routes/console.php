@@ -13,7 +13,7 @@ Schedule::command('jobs:fetch-news')
     ->everyMinute();
 
 Schedule::command('jobs:process-one')
-    ->everyMinute();
+    ->everyTenMinutes();
 
 Schedule::command('jobs:generate-slug')
             ->everyMinute();
