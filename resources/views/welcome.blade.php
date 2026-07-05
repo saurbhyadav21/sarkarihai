@@ -873,10 +873,7 @@ PART 2 - MAIN CONTENT BLOCK
 
         <div class="link-grid mb-4">
 
-    <a href="{{ route('sarkari.naukri.state', 'all-india') }}">
-        All India
-    </a>
-
+    
     @foreach($states as $state)
 
         <a href="{{ route('sarkari.naukri.state', $state->slug) }}">
