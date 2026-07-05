@@ -193,87 +193,87 @@
                 color: #f5b301;
             }
 
-            .latest-ticker{
-    display:flex;
-    align-items:center;
-    background:#10263b;
-    border-radius:12px;
-    overflow:hidden;
-    margin:25px 0;
-    border:1px solid rgba(255,255,255,0.08);
-    box-shadow:0 8px 25px rgba(0,0,0,0.12);
-}
+            .latest-ticker {
+                display: flex;
+                align-items: center;
+                background: #10263b;
+                border-radius: 12px;
+                overflow: hidden;
+                margin: 25px 0;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            }
 
-.ticker-heading{
-    background:linear-gradient(135deg,#ff9800,#ffb300);
-    color:#111;
-    font-size:18px;
-    font-weight:700;
-    padding:16px 22px;
-    min-width:220px;
-    text-align:center;
-    white-space:nowrap;
-    position:relative;
-}
+            .ticker-heading {
+                background: linear-gradient(135deg, #ff9800, #ffb300);
+                color: #111;
+                font-size: 18px;
+                font-weight: 700;
+                padding: 16px 22px;
+                min-width: 220px;
+                text-align: center;
+                white-space: nowrap;
+                position: relative;
+            }
 
-.ticker-heading:after{
-    content:'';
-    position:absolute;
-    right:-15px;
-    top:0;
-    width:0;
-    height:0;
-    border-top:28px solid transparent;
-    border-bottom:28px solid transparent;
-    border-left:15px solid #ffb300;
-}
+            .ticker-heading:after {
+                content: '';
+                position: absolute;
+                right: -15px;
+                top: 0;
+                width: 0;
+                height: 0;
+                border-top: 28px solid transparent;
+                border-bottom: 28px solid transparent;
+                border-left: 15px solid #ffb300;
+            }
 
-.latest-ticker marquee{
-    padding:15px 20px;
-    background:#18344d;
-}
+            .latest-ticker marquee {
+                padding: 15px 20px;
+                background: #18344d;
+            }
 
-.latest-ticker a{
-    color:#ffffff;
-    text-decoration:none;
-    font-size:15px;
-    font-weight:500;
-    transition:.2s;
-}
+            .latest-ticker a {
+                color: #ffffff;
+                text-decoration: none;
+                font-size: 15px;
+                font-weight: 500;
+                transition: .2s;
+            }
 
-.latest-ticker a:hover{
-    color:#ffb300;
-    text-decoration:underline;
-}
+            .latest-ticker a:hover {
+                color: #ffb300;
+                text-decoration: underline;
+            }
 
-.ticker-separator{
-    color:#ffb300;
-    margin:0 18px;
-    font-size:18px;
-    font-weight:bold;
-}
+            .ticker-separator {
+                color: #ffb300;
+                margin: 0 18px;
+                font-size: 18px;
+                font-weight: bold;
+            }
 
-@media(max-width:768px){
+            @media(max-width:768px) {
 
-    .latest-ticker{
-        flex-direction:column;
-    }
+                .latest-ticker {
+                    flex-direction: column;
+                }
 
-    .ticker-heading{
-        width:100%;
-        min-width:100%;
-        border-radius:0;
-    }
+                .ticker-heading {
+                    width: 100%;
+                    min-width: 100%;
+                    border-radius: 0;
+                }
 
-    .ticker-heading:after{
-        display:none;
-    }
+                .ticker-heading:after {
+                    display: none;
+                }
 
-    .latest-ticker marquee{
-        padding:12px;
-    }
+                .latest-ticker marquee {
+                    padding: 12px;
+                }
 
-}
+            }
         }
     </style>
 </head>
@@ -353,35 +353,27 @@
                     </div>
                     <div class="latest-ticker">
 
-    <div class="ticker-heading">
-        🔥 Latest Updates
-    </div>
+                        <div class="ticker-heading">
+                            🔥 Latest Updates
+                        </div>
 
-    <marquee
-        behavior="scroll"
-        direction="left"
-        scrollamount="5"
-        onmouseover="this.stop();"
-        onmouseout="this.start();">
+                        <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();"
+                            onmouseout="this.start();">
 
-        @foreach($latestUpdates as $job)
+                            @foreach ($latestUpdates as $job)
+                                <a
+                                    href="{{ url(
+                                        'sarkari-naukri/' . ($job->state ?? 'all-india') . '/' . ($job->category ?? 'government') . '/' . $job->slug,
+                                    ) }}">
+                                    {{ $job->title }}
+                                </a>
 
-            <a href="{{ url(
-                'sarkari-naukri/' .
-                ($job->state ?? 'all-india') . '/' .
-                ($job->category ?? 'government') . '/' .
-                $job->slug
-            ) }}">
-                {{ $job->title }}
-            </a>
+                                <span class="ticker-separator">●</span>
+                            @endforeach
 
-            <span class="ticker-separator">●</span>
+                        </marquee>
 
-        @endforeach
-
-    </marquee>
-
-</div>
+                    </div>
 
                 </div>
 
