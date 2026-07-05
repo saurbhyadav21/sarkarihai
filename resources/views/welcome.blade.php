@@ -140,9 +140,10 @@
 
                     <h1>Sarkari Result 2026</h1>
 
-<p>
-Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards, Results, and Exam Updates in one place.
-</p>
+                    <p>
+                        Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards, Results, and Exam Updates in
+                        one place.
+                    </p>
 
                     <div class="row mt-4">
 
