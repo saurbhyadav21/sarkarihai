@@ -149,29 +149,29 @@
 
                         <div class="col-3">
                             <div class="stats">
-                                <h3>9500+</h3>
+                                <h3>{{ number_format($totalJobs) }}+</h3>
                                 <small>Jobs</small>
                             </div>
                         </div>
 
                         <div class="col-3">
                             <div class="stats">
-                                <h3>1200+</h3>
+                                <h3>{{ number_format($totalResults) }}+</h3>
                                 <small>Results</small>
                             </div>
                         </div>
 
                         <div class="col-3">
                             <div class="stats">
-                                <h3>800+</h3>
+                                <h3>{{ number_format($totalAdmitCards) }}+</h3>
                                 <small>Admit Card</small>
                             </div>
                         </div>
 
                         <div class="col-3">
                             <div class="stats">
-                                <h3>300+</h3>
-                                <small>Admissions</small>
+                                <h3>{{ $totalStates }}+</h3>
+                                <small>States</small>
                             </div>
                         </div>
 

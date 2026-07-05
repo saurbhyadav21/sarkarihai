@@ -2107,12 +2107,10 @@ class JobController extends Controller
             ->where('admit_card', '!=', 'To Be Announced')
             ->count();
 
-        $totalAdmissions = DB::table('job_details')
-            ->where(function ($q) {
-                $q->where('category', 'like', '%admission%')
-                    ->orWhere('title', 'like', '%admission%');
-            })
-            ->count();
+        $totalStates = DB::table('job_details')
+    ->whereNotNull('state')
+    ->distinct()
+    ->count('state');
 
         return view('welcome', compact(
             'latestJobs',
@@ -2124,7 +2122,7 @@ class JobController extends Controller
             'totalJobs',
             'totalResults',
             'totalAdmitCards',
-            'totalAdmissions'
+            'totalStates'
         ));
     }
 }
