@@ -160,6 +160,65 @@
             }
 
         }
+        .latest-ticker{
+    display:flex;
+    align-items:center;
+    background:#1b2d42;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:10px;
+    overflow:hidden;
+    margin:20px 0;
+}
+
+.ticker-label{
+    background:#ffb703;
+    color:#111;
+    font-weight:700;
+    padding:14px 18px;
+    white-space:nowrap;
+}
+
+.ticker-wrapper{
+    overflow:hidden;
+    width:100%;
+    position:relative;
+}
+
+.ticker{
+    display:inline-block;
+    white-space:nowrap;
+    padding-left:100%;
+    animation:ticker 40s linear infinite;
+}
+
+.ticker:hover{
+    animation-play-state:paused;
+}
+
+.ticker a{
+    color:#fff;
+    text-decoration:none;
+    margin:0 10px;
+    font-size:15px;
+}
+
+.ticker a:hover{
+    color:#ffb703;
+}
+
+.ticker-dot{
+    color:#ffb703;
+    margin:0 15px;
+}
+
+@keyframes ticker{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-100%);
+    }
+}
     </style>
 </head>
 
@@ -236,30 +295,32 @@
                         </div>
 
                     </div>
-                    <div class="latest-update-box">
+                    <div class="latest-ticker">
 
-    <div class="update-title">
+    <div class="ticker-label">
         🔥 Latest Updates
     </div>
 
-    <div class="update-links">
+    <div class="ticker-wrapper">
 
-        @foreach($latestUpdates as $job)
+        <div class="ticker">
 
-            <a href="{{ url(
-                'sarkari-naukri/' .
-                ($job->state ?? 'all-india') . '/' .
-                ($job->category ?? 'government') . '/' .
-                $job->slug
-            ) }}">
-                {{ $job->title }}
-            </a>
+            @foreach($latestUpdates as $job)
 
-            @if(!$loop->last)
-                <span class="divider"></span>
-            @endif
+                <a href="{{ url(
+                    'sarkari-naukri/' .
+                    ($job->state ?? 'all-india') . '/' .
+                    ($job->category ?? 'government') . '/' .
+                    $job->slug
+                ) }}">
+                    {{ \Illuminate\Support\Str::limit($job->title, 80) }}
+                </a>
 
-        @endforeach
+                <span class="ticker-dot">●</span>
+
+            @endforeach
+
+        </div>
 
     </div>
 
