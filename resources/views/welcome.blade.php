@@ -83,7 +83,6 @@
             padding: 20px;
             border-radius: 12px;
             color: #000;
-            height: 270px;
         }
 
         .search-card button {
@@ -276,171 +275,7 @@
 
             }
 
-            #searchResults {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: #fff;
-                border: none;
-                border-radius: 12px;
-                margin-top: 8px;
-                overflow: hidden;
-                z-index: 9999;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
-                max-height: 400px;
-                overflow-y: auto;
-                display: none;
-            }
-
-            .search-item {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 14px 16px;
-                text-decoration: none;
-                color: #222;
-                border-bottom: 1px solid #f1f1f1;
-                transition: .2s;
-            }
-
-            .search-item:last-child {
-                border-bottom: none;
-            }
-
-            .search-item:hover {
-                background: #f8fbff;
-                color: #0d6efd;
-            }
-
-            .search-icon {
-                width: 38px;
-                height: 38px;
-                border-radius: 50%;
-                background: #eaf2ff;
-                color: #0d6efd;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 18px;
-                flex-shrink: 0;
-            }
-
-            .search-content {
-                flex: 1;
-            }
-
-            .search-title {
-                font-size: 15px;
-                font-weight: 600;
-                margin-bottom: 4px;
-                line-height: 1.4;
-            }
-
-            .search-meta {
-                font-size: 12px;
-                color: #777;
-            }
-            .search-card{
-    background:#fff;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,.12);
-}
-
-.search-heading{
-    font-size:38px;
-    font-weight:700;
-    color:#0f2b46;
-    margin-bottom:25px;
-}
-
-.search-wrapper{
-    position:relative;
-}
-
-.search-input{
-    width:100%;
-    height:65px;
-    border:3px solid #2f6fff;
-    border-radius:18px;
-    padding:0 25px;
-    font-size:24px;
-    outline:none;
-}
-
-#searchResults{
-    position:absolute;
-    top:75px;
-    left:0;
-    right:0;
-    background:#fff;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 20px 50px rgba(0,0,0,.15);
-    z-index:9999;
-    max-height:500px;
-    overflow-y:auto;
-}
-
-.search-item{
-    display:flex;
-    align-items:center;
-    gap:20px;
-    padding:25px;
-    text-decoration:none;
-    color:#111;
-    border-bottom:1px solid #eee;
-    transition:.2s;
-}
-
-.search-item:hover{
-    background:#f7faff;
-}
-
-.search-icon{
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:#edf3ff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:28px;
-    flex-shrink:0;
-}
-
-.search-content{
-    flex:1;
-}
-
-.search-title{
-    font-size:24px;
-    font-weight:700;
-    line-height:1.5;
-    color:#13233d;
-}
-
-.search-meta{
-    margin-top:8px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:18px;
-    color:#666;
-}
-
-.dot{
-    width:10px;
-    height:10px;
-    background:#25b84a;
-    border-radius:50%;
-}
-
-.search-arrow{
-    font-size:32px;
-    color:#999;
-}
+            
         }
     </style>
 </head>
@@ -554,7 +389,7 @@
                 <!-- RIGHT SEARCH -->
                 <div class="col-lg-4 mt-4 mt-lg-0">
 
-                    {{-- <div class="search-card">
+                    <div class="search-card">
 
                         <h5 class="mb-3">
                             Search Sarkari Jobs
@@ -566,53 +401,6 @@
                                 placeholder="SSC, Railway, UPSC..." autocomplete="off">
 
                             <div id="searchResults"></div>
-
-                        </div>
-
-                    </div> --}}
-                    <div class="search-card">
-
-                        <h4 class="search-heading">
-                            <i class="fa fa-search"></i>
-                            Search Sarkari Jobs
-                        </h4>
-
-                        <div class="search-wrapper">
-
-                            <input type="text" id="jobSearch" class="search-input"
-                                placeholder="Search SSC, Railway, UPSC..." autocomplete="off">
-
-                            <div id="searchResults">
-
-                                <!-- ITEM -->
-                                <a href="#" class="search-item">
-
-                                    <div class="search-icon">
-                                        📄
-                                    </div>
-
-                                    <div class="search-content">
-
-                                        <div class="search-title">
-                                            DRDO ACEM Apprentice Recruitment 2026-27:
-                                            Vacancy, Eligibility & Apply Details
-                                        </div>
-
-                                        <div class="search-meta">
-                                            <span>Apprentice</span>
-                                            <span class="dot"></span>
-                                            <span>Government Job</span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="search-arrow">
-                                        →
-                                    </div>
-
-                                </a>
-
-                            </div>
 
                         </div>
 
@@ -1228,70 +1016,7 @@ PART 2 - MAIN CONTENT BLOCK
         </div>
 
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script>
-        $('#jobSearch').keyup(function() {
 
-            let q = $(this).val();
-
-            if (q.length < 1) {
-                $('#searchResults').hide();
-                return;
-            }
-
-            $.get(
-                "{{ route('search.jobs') }}", {
-                    q: q
-                },
-                function(data) {
-
-                    let html = '';
-
-                    data.forEach(function(job) {
-
-                        html += `
-<a class="search-item"
-   href="/sarkari-naukri/${
-      job.state ?? 'all-india'
-   }/${
-      job.category ?? 'government'
-   }/${
-      job.slug
-   }">
-
-    <div class="search-icon" style="float: left;">
-        📄
-    </div>
-
-    <div class="search-content">
-
-        <div class="search-title" style="font-size: 12px;">
-            ${job.title}- ${
-                job.category ?? 'Government Job'
-            }
-        </div>
-
-        
-
-    </div>
-
-</a>
-`;
-                    });
-
-                    $('#searchResults')
-                        .html(html)
-                        .show();
-                }
-            );
-
-        });
-
-        $(document).click(function() {
-            $('#searchResults').hide();
-        });
-    </script>
 </body>
 
 </html>
