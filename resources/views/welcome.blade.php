@@ -1240,26 +1240,7 @@ PART 2 - MAIN CONTENT BLOCK
                     `;
                         });
 
-                        // footer
-                        html += `
-                <div class="search-footer">
-
-                    <div class="search-footer-icon">
-                        🔎
-                    </div>
-
-                    <div class="search-footer-text">
-                        View all results for
-                        <strong>"${q}"</strong>
-                    </div>
-
-                    <a href="/sarkari-naukri?search=${encodeURIComponent(q)}"
-                       class="search-footer-btn">
-                        See all results →
-                    </a>
-
-                </div>
-                `;
+                        
 
                     } else {
 
