@@ -2094,7 +2094,7 @@ class JobController extends Controller
             ->pluck('category');
 
         $totalJobs = DB::table('job_details')
-            ->where('status', 'active')
+            // ->where('status', 'active')
             ->count();
 
         $totalResults = DB::table('job_details')
