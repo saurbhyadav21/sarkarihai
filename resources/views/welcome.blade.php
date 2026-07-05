@@ -364,7 +364,7 @@
                                 <a
                                     href="{{ url(
                                         'sarkari-naukri/' . ($job->state ?? 'all-india') . '/' . ($job->category ?? 'government') . '/' . $job->slug,
-                                    ) }}">
+                                    ) }}" style="color: #fff;">
                                     {{ $job->title }}
                                 </a>
 
