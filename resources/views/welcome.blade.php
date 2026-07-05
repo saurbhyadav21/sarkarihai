@@ -676,7 +676,7 @@ PART 2 - MAIN CONTENT BLOCK
                         @endif
 
                         {{-- 🧾 TITLE --}}
-                        <a href="{{ url('sarkari-naukri/' . ($job->state ?? 'all-india') . '/' . $job->category . '/' . $job->slug) }}"
+                        <a href="{{ url('sarkari-naukri/' . ($job->state ?? 'all-indiax') . '/' . $job->category . '/' . $job->slug) }}"
                             class="job-title">
 
                             {{ $job->title }}
