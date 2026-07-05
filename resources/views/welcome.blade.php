@@ -83,6 +83,7 @@
             padding: 20px;
             border-radius: 12px;
             color: #000;
+            height: 270px;
         }
 
         .search-card button {
@@ -1122,14 +1123,12 @@ PART 2 - MAIN CONTENT BLOCK
     <div class="search-content">
 
         <div class="search-title">
-            ${job.title}
-        </div>
-
-        <div class="search-meta">
-            ${
+            ${job.title}- ${
                 job.category ?? 'Government Job'
             }
         </div>
+
+        
 
     </div>
 
