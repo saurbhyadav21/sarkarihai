@@ -678,7 +678,7 @@
 
                                 </a>
 
-                                
+
                             </div>
 
                         </div>
@@ -1295,7 +1295,117 @@ PART 2 - MAIN CONTENT BLOCK
         </div>
 
     </div>
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <script>
+        $('#jobSearch').keyup(function() {
 
+            let q = $(this).val();
+
+            if (q.length < 2) {
+                $('.search-dropdown').hide().html('');
+                return;
+            }
+
+            $.get(
+                "{{ route('search.jobs') }}", {
+                    q: q
+                },
+                function(data) {
+
+                    let html = '';
+
+                    if (data.length > 0) {
+
+                        data.forEach(function(job) {
+
+                            html += `
+                    <a href="/sarkari-naukri/${job.state ?? 'all-india'}/${job.category ?? 'government'}/${job.slug}"
+                       class="search-item">
+
+                        <div class="search-icon">
+                            📄
+                        </div>
+
+                        <div class="search-body">
+
+                            <div class="search-title">
+                                ${job.title}
+                            </div>
+
+                            <div class="search-meta">
+
+                                <span class="search-category">
+                                    💼 ${job.category ?? 'Government'}
+                                </span>
+
+                                <span class="search-separator">
+                                    |
+                                </span>
+
+                                <span class="search-type">
+                                    🟢 Government Job
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="search-arrow">
+                            ❯
+                        </div>
+
+                    </a>
+                    `;
+                        });
+
+                        // footer
+                        html += `
+                <div class="search-footer">
+
+                    <div class="search-footer-icon">
+                        🔎
+                    </div>
+
+                    <div class="search-footer-text">
+                        View all results for
+                        <strong>"${q}"</strong>
+                    </div>
+
+                    <a href="/sarkari-naukri?search=${encodeURIComponent(q)}"
+                       class="search-footer-btn">
+                        See all results →
+                    </a>
+
+                </div>
+                `;
+
+                    } else {
+
+                        html = `
+                <div class="p-4 text-center">
+                    No Sarkari Jobs Found
+                </div>
+                `;
+                    }
+
+                    $('.search-dropdown')
+                        .html(html)
+                        .show();
+
+                }
+            );
+        });
+
+
+        // outside click hide
+        $(document).click(function(e) {
+
+            if (!$(e.target).closest('.position-relative').length) {
+                $('.search-dropdown').hide();
+            }
+
+        });
+    </script>
 </body>
 
 </html>
