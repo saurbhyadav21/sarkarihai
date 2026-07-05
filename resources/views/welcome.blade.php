@@ -252,9 +252,7 @@
                 font-size: 18px;
                 font-weight: bold;
             }
-            marquee a:hover{
-                color:red;
-            }
+           
             @media(max-width:768px) {
 
                 .latest-ticker {
