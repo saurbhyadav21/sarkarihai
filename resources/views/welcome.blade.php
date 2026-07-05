@@ -159,40 +159,80 @@
                 display: inline;
             }
 
-            .news-ticker{
-    display:flex;
-    align-items:center;
-    background:#13293d;
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:10px;
-    overflow:hidden;
-    margin-bottom:15px;
-}
+            .news-ticker {
+                display: flex;
+                align-items: center;
+                background: #13293d;
+                border: 1px solid rgba(255, 255, 255, .1);
+                border-radius: 10px;
+                overflow: hidden;
+                margin-bottom: 15px;
+            }
 
-.ticker-title{
-    background:#f5b301;
-    color:#111;
-    font-weight:700;
-    padding:12px 18px;
-    min-width:180px;
-    text-align:center;
-}
+            .ticker-title {
+                background: #f5b301;
+                color: #111;
+                font-weight: 700;
+                padding: 12px 18px;
+                min-width: 180px;
+                text-align: center;
+            }
 
-.news-ticker marquee{
-    padding:12px;
-    color:#fff;
-}
+            .news-ticker marquee {
+                padding: 12px;
+                color: #fff;
+            }
 
-.news-ticker marquee a{
-    color:#fff;
-    text-decoration:none;
-    font-weight:500;
-}
+            .news-ticker marquee a {
+                color: #fff;
+                text-decoration: none;
+                font-weight: 500;
+            }
 
-.news-ticker marquee a:hover{
-    color:#f5b301;
-}
+            .news-ticker marquee a:hover {
+                color: #f5b301;
+            }
 
+            .latest-ticker {
+                display: flex;
+                align-items: center;
+                background: #162c43;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, .15);
+                margin: 25px 0;
+                border: 1px solid rgba(255, 255, 255, .08);
+            }
+
+            .ticker-heading {
+                background: #ffb703;
+                color: #111;
+                font-size: 18px;
+                font-weight: 700;
+                padding: 16px 22px;
+                white-space: nowrap;
+            }
+
+            .latest-ticker marquee {
+                padding: 14px 10px;
+            }
+
+            .latest-ticker a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 15px;
+                font-weight: 500;
+            }
+
+            .latest-ticker a:hover {
+                color: #ffb703;
+            }
+
+            .ticker-separator {
+                color: #ffb703;
+                margin: 0 18px;
+                font-size: 18px;
+            }
         }
     </style>
 </head>
@@ -270,72 +310,31 @@
                         </div>
 
                     </div>
-                    <!-- Marquee 1 -->
-<div class="news-ticker mb-2">
+                    <div class="latest-ticker">
 
-    <div class="ticker-title">
-        🔥 Latest Jobs
-    </div>
+                        <div class="ticker-heading">
+                            🔥 Latest Updates
+                        </div>
 
-    <marquee
-        behavior="scroll"
-        direction="left"
-        scrollamount="5"
-        onmouseover="this.stop();"
-        onmouseout="this.start();">
+                        <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();"
+                            onmouseout="this.start();">
 
-        @foreach($latestJobs as $job)
+                            @foreach ($latestUpdates as $job)
+                                <a
+                                    href="{{ url(
+                                        'sarkari-naukri/' . ($job->state ?? 'all-india') . '/' . ($job->category ?? 'government') . '/' . $job->slug,
+                                    ) }}">
+                                    {{ $job->title }}
+                                </a>
 
-            <a href="{{ url('sarkari-naukri/'.
-                ($job->state ?? 'all-india').'/'
-                .($job->category ?? 'government').'/'
-                .$job->slug) }}">
+                                <span class="ticker-separator">
+                                    ●
+                                </span>
+                            @endforeach
 
-                {{ $job->title }}
+                        </marquee>
 
-            </a>
-
-            &nbsp; ● &nbsp;
-
-        @endforeach
-
-    </marquee>
-
-</div>
-
-
-<!-- Marquee 2 -->
-<div class="news-ticker">
-
-    <div class="ticker-title bg-danger">
-        📢 Latest Results
-    </div>
-
-    <marquee
-        behavior="scroll"
-        direction="right"
-        scrollamount="5"
-        onmouseover="this.stop();"
-        onmouseout="this.start();">
-
-        @foreach($results as $job)
-
-            <a href="{{ url('sarkari-naukri/'.
-                ($job->state ?? 'all-india').'/'
-                .($job->category ?? 'government').'/'
-                .$job->slug) }}">
-
-                {{ $job->title }}
-
-            </a>
-
-            &nbsp; ● &nbsp;
-
-        @endforeach
-
-    </marquee>
-
-</div>
+                    </div>
 
                 </div>
 
