@@ -1122,7 +1122,7 @@ PART 2 - MAIN CONTENT BLOCK
 
     <div class="search-content">
 
-        <div class="search-title">
+        <div class="search-title" style="font-size: 12px;">
             ${job.title}- ${
                 job.category ?? 'Government Job'
             }
