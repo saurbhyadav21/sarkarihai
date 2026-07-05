@@ -323,36 +323,35 @@ class JobController extends Controller
         return view('jobs/job_edit', compact('job'));
     }
 
-    public function editList()
-    {
-        $jobs = Job::orderBy('id', 'desc')
+    public function editList($limit = 10)
+{
+    $jobs = Job::orderBy('id', 'desc')
+        ->paginate($limit);
 
-            ->get();
+    $categories = DB::table('job_categories')
+        ->orderBy('name')
+        ->get();
 
-        $categories = DB::table('job_categories')
-            ->orderBy('name')
-            ->get();
+    $subCategories = DB::table('job_sub_categories')
+        ->orderBy('name')
+        ->get();
 
-        $subCategories = DB::table('job_sub_categories')
-            ->orderBy('name')
-            ->get();
+    $states = DB::table('job_states')
+        ->orderBy('name')
+        ->get();
 
-        $states = DB::table('job_states')
-            ->orderBy('name')
-            ->get();
+    $job_topics = DB::table('job_topics')
+        ->orderBy('name')
+        ->get();
 
-        $job_topics = DB::table('job_topics')
-            ->orderBy('name')
-            ->get();
-
-        return view('jobs/job_edit_list', compact(
-            'jobs',
-            'categories',
-            'subCategories',
-            'states',
-            'job_topics'
-        ));
-    }
+    return view('jobs/job_edit_list', compact(
+        'jobs',
+        'categories',
+        'subCategories',
+        'states',
+        'job_topics'
+    ));
+}
 
     public function resultList()
     {
