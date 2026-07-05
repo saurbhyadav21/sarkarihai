@@ -2115,7 +2115,13 @@ class JobController extends Controller
         // STATES (SAFE + CLEAN)
         // ======================
         $states = DB::table('job_states as s')
-    ->leftJoin('job_details as j', 'j.state', '=', 's.slug')
+    ->leftJoin('job_details as j', function ($join) {
+        $join->on(
+            DB::raw('j.state COLLATE utf8mb4_unicode_ci'),
+            '=',
+            's.slug'
+        );
+    })
     ->select(
         's.name',
         's.slug',
