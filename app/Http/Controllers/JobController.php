@@ -2171,17 +2171,17 @@ class JobController extends Controller
     }
 
     public function searchJobs(Request $request)
-{
-    return DB::table('job_details')
-        ->select(
-            'title',
-            'slug',
-            'state',
-            'category'
-        )
-        ->where('title', 'like', '%'.$request->q.'%')
-        ->orderByDesc('id')
-        ->limit(8)
-        ->get();
-}
+    {
+        return DB::table('job_details')
+            ->select(
+                'title',
+                'slug',
+                'state',
+                'category'
+            )
+            ->where('title', 'like', '%' . $request->q . '%')
+            ->orderByDesc('id')
+            ->limit(8)
+            ->get();
+    }
 }
