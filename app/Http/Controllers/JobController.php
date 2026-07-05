@@ -2114,8 +2114,19 @@ class JobController extends Controller
         // ======================
         // STATES (SAFE + CLEAN)
         // ======================
-        $states = DB::table('job_states')
-    ->orderBy('name')
+        $states = DB::table('job_states as s')
+    ->leftJoin('job_details as j', 'j.state', '=', 's.slug')
+    ->select(
+        's.name',
+        's.slug',
+        DB::raw('COUNT(j.id) as total_jobs')
+    )
+    ->groupBy(
+        's.id',
+        's.name',
+        's.slug'
+    )
+    ->orderBy('s.name')
     ->get();
 
         // ======================
