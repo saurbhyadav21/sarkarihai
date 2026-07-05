@@ -159,66 +159,41 @@
                 display: inline;
             }
 
-        }
-        .latest-ticker{
+            .news-ticker{
     display:flex;
     align-items:center;
-    background:#1b2d42;
-    border:1px solid rgba(255,255,255,.08);
+    background:#13293d;
+    border:1px solid rgba(255,255,255,.1);
     border-radius:10px;
     overflow:hidden;
-    margin:20px 0;
+    margin-bottom:15px;
 }
 
-.ticker-label{
-    background:#ffb703;
+.ticker-title{
+    background:#f5b301;
     color:#111;
     font-weight:700;
-    padding:14px 18px;
-    white-space:nowrap;
+    padding:12px 18px;
+    min-width:180px;
+    text-align:center;
 }
 
-.ticker-wrapper{
-    overflow:hidden;
-    width:100%;
-    position:relative;
+.news-ticker marquee{
+    padding:12px;
+    color:#fff;
 }
 
-.ticker{
-    display:inline-block;
-    white-space:nowrap;
-    padding-left:100%;
-    animation:ticker 40s linear infinite;
-}
-
-.ticker:hover{
-    animation-play-state:paused;
-}
-
-.ticker a{
+.news-ticker marquee a{
     color:#fff;
     text-decoration:none;
-    margin:0 10px;
-    font-size:15px;
+    font-weight:500;
 }
 
-.ticker a:hover{
-    color:#ffb703;
+.news-ticker marquee a:hover{
+    color:#f5b301;
 }
 
-.ticker-dot{
-    color:#ffb703;
-    margin:0 15px;
-}
-
-@keyframes ticker{
-    from{
-        transform:translateX(0);
-    }
-    to{
-        transform:translateX(-100%);
-    }
-}
+        }
     </style>
 </head>
 
@@ -295,34 +270,70 @@
                         </div>
 
                     </div>
-                    <div class="latest-ticker">
+                    <!-- Marquee 1 -->
+<div class="news-ticker mb-2">
 
-    <div class="ticker-label">
-        🔥 Latest Updates
+    <div class="ticker-title">
+        🔥 Latest Jobs
     </div>
 
-    <div class="ticker-wrapper">
+    <marquee
+        behavior="scroll"
+        direction="left"
+        scrollamount="5"
+        onmouseover="this.stop();"
+        onmouseout="this.start();">
 
-        <div class="ticker">
+        @foreach($latestJobs as $job)
 
-            @foreach($latestUpdates as $job)
+            <a href="{{ url('sarkari-naukri/'.
+                ($job->state ?? 'all-india').'/'
+                .($job->category ?? 'government').'/'
+                .$job->slug) }}">
 
-                <a href="{{ url(
-                    'sarkari-naukri/' .
-                    ($job->state ?? 'all-india') . '/' .
-                    ($job->category ?? 'government') . '/' .
-                    $job->slug
-                ) }}">
-                    {{ \Illuminate\Support\Str::limit($job->title, 80) }}
-                </a>
+                {{ $job->title }}
 
-                <span class="ticker-dot">●</span>
+            </a>
 
-            @endforeach
+            &nbsp; ● &nbsp;
 
-        </div>
+        @endforeach
 
+    </marquee>
+
+</div>
+
+
+<!-- Marquee 2 -->
+<div class="news-ticker">
+
+    <div class="ticker-title bg-danger">
+        📢 Latest Results
     </div>
+
+    <marquee
+        behavior="scroll"
+        direction="right"
+        scrollamount="5"
+        onmouseover="this.stop();"
+        onmouseout="this.start();">
+
+        @foreach($results as $job)
+
+            <a href="{{ url('sarkari-naukri/'.
+                ($job->state ?? 'all-india').'/'
+                .($job->category ?? 'government').'/'
+                .$job->slug) }}">
+
+                {{ $job->title }}
+
+            </a>
+
+            &nbsp; ● &nbsp;
+
+        @endforeach
+
+    </marquee>
 
 </div>
 
