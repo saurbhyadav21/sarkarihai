@@ -872,18 +872,17 @@ PART 2 - MAIN CONTENT BLOCK
         <div class="sec-title">State Wise Government Jobs</div>
 
         <div class="link-grid mb-4">
-            <a href="#">All India</a>
-            <a href="#">Delhi</a>
-            <a href="#">Uttar Pradesh</a>
-            <a href="#">Bihar</a>
-            <a href="#">Rajasthan</a>
-            <a href="#">Maharashtra</a>
-            <a href="#">Gujarat</a>
-            <a href="#">West Bengal</a>
-            <a href="#">Karnataka</a>
-            <a href="#">Tamil Nadu</a>
-            <a href="#">Punjab</a>
-            <a href="#">Haryana</a>
+
+            <a href="{{ route('sarkari.naukri.state', 'all-india') }}">
+                All India
+            </a>
+
+            @foreach ($states as $state)
+                <a href="{{ route('sarkari.naukri.state', $state) }}">
+                    {{ ucwords(str_replace('-', ' ', $state)) }}
+                </a>
+            @endforeach
+
         </div>
 
 
