@@ -2138,12 +2138,21 @@ class JobController extends Controller
         // ======================
         // CATEGORIES (SAFE)
         // ======================
-        $categories = Job::select('category')
-            ->whereNotNull('category')
-            ->where('category', '!=', '')
-            ->distinct()
-            ->orderBy('category')
-            ->pluck('category');
+        $categories = DB::table('job_categories as c')
+    ->leftJoin('job_details as j', 'j.category', '=', 'c.slug')
+    ->select(
+        'c.name',
+        'c.slug',
+        DB::raw('COUNT(j.id) as total_jobs')
+    )
+    ->groupBy(
+        'c.id',
+        'c.name',
+        'c.slug'
+    )
+    ->orderBy('c.name')
+    ->limit(8)
+    ->get();
 
         $totalJobs = DB::table('job_details')
             ->count();

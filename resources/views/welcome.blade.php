@@ -898,59 +898,41 @@ PART 2 - MAIN CONTENT BLOCK
 
 
         <!-- ================= CATEGORY WISE ================= -->
-        <div class="sec-title">Category Wise Jobs</div>
+<div class="sec-title">
+    Category Wise Jobs
+</div>
 
-        <div class="row g-3 mb-4">
+<div class="row g-3 mb-4">
 
-            <div class="col-6 col-md-3">
+    @foreach($categories as $category)
+
+        <div class="col-6 col-md-3">
+
+            <a href="{{ route('sarkari.naukri.category', [
+                'state' => 'all-india',
+                'category' => $category->slug
+            ]) }}"
+               class="text-decoration-none">
+
                 <div class="cat-card">
-                    <div class="cat-title">Railway Jobs</div>
-                </div>
-            </div>
 
-            <div class="col-6 col-md-3">
-                <div class="cat-card">
-                    <div class="cat-title">SSC Jobs</div>
-                </div>
-            </div>
+                    <div class="cat-title">
+                        {{ $category->name }}
+                    </div>
 
-            <div class="col-6 col-md-3">
-                <div class="cat-card">
-                    <div class="cat-title">Bank Jobs</div>
-                </div>
-            </div>
+                    <small>
+                        {{ $category->total_jobs }} Jobs
+                    </small>
 
-            <div class="col-6 col-md-3">
-                <div class="cat-card">
-                    <div class="cat-title">UPSC Jobs</div>
                 </div>
-            </div>
 
-            <div class="col-6 col-md-3">
-                <div class="cat-card">
-                    <div class="cat-title">Police Jobs</div>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-3">
-                <div class="cat-card">
-                    <div class="cat-title">Defence Jobs</div>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-3">
-                <div class="cat-card">
-                    <div class="cat-title">Teaching Jobs</div>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-3">
-                <div class="cat-card">
-                    <div class="cat-title">PSU Jobs</div>
-                </div>
-            </div>
+            </a>
 
         </div>
+
+    @endforeach
+
+</div>
 
 
         <!-- ================= ORGANIZATION WISE ================= -->
