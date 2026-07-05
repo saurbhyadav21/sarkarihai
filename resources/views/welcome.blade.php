@@ -176,7 +176,9 @@
                         </div>
 
                     </div>
-                    <div class="latest-updates">
+                    <div class="live-update">
+
+                       <div class="latest-updates">
     <strong>🔥 Latest Updates :</strong>
 
     @foreach($latestUpdates as $job)
@@ -196,6 +198,8 @@
         @endif
     @endforeach
 </div>
+
+                    </div>
 
                 </div>
 
