@@ -1216,19 +1216,23 @@ PART 2 - MAIN CONTENT BLOCK
 
                             <div class="search-meta">
 
-                                <span class="search-category">
-                                    💼 ${job.category ?? 'Government'}
-                                </span>
+    <span class="search-category">
+        💼 ${job.category ?? 'Government'}
+    </span>
 
-                                <span class="search-separator">
-                                    |
-                                </span>
+    <span class="search-separator">|</span>
 
-                                <span class="search-type">
-                                    🟢 Government Job
-                                </span>
+    <span class="search-posts">
+        👥 ${job.total_vacancies ?? 'N/A'} Posts
+    </span>
 
-                            </div>
+    <span class="search-separator">|</span>
+
+    <span class="search-date">
+        📅 ${job.end_date ?? 'Open'}
+    </span>
+
+</div>
 
                         </div>
 
@@ -1240,7 +1244,7 @@ PART 2 - MAIN CONTENT BLOCK
                     `;
                         });
 
-                        
+
 
                     } else {
 
