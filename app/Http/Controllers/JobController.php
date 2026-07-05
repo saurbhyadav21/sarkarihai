@@ -2113,7 +2113,7 @@ class JobController extends Controller
         $latestUpdates = DB::table('job_details')
             // ->where('status', 'active')
             ->orderBy('id', 'desc')
-            ->limit(10)
+            ->limit(6)
             ->get();
 
         return view('welcome', compact(
