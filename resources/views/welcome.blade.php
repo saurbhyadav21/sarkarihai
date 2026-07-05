@@ -351,9 +351,9 @@
                         </div>
 
                     </div>
-                    <div class="latest-ticker">
+                    <div class="latest-tickxer">
 
-                        <div class="ticker-heading">
+                        <div class="ticker-heading" style="margin-top: 30px;font-size: 18px;">
                             🔥 Latest Updates
                         </div>
 
