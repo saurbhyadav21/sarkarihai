@@ -275,7 +275,7 @@
 
             }
 
-            
+
         }
     </style>
 </head>
@@ -391,18 +391,94 @@
 
                     <div class="search-card">
 
-                        <h5 class="mb-3">
-                            Search Sarkari Jobs
+                        <h5 class="mb-3 fw-bold">
+                            🔍 Search Sarkari Jobs
                         </h5>
 
                         <div class="position-relative">
 
-                            <input type="text" id="jobSearch" class="form-control"
-                                placeholder="SSC, Railway, UPSC..." autocomplete="off">
+                            <!-- Search Input -->
+                            <input type="text" id="jobSearch"
+                                class="form-control form-control-lg rounded-4 shadow-sm"
+                                placeholder="Search SSC, Railway, UPSC..." autocomplete="off">
 
-                            <div id="searchResults"></div>
+                            <!-- Dropdown -->
+                            <div id="searchResults" class="search-dropdown">
 
-                        </div>
+                                <!-- Item -->
+                                <a href="#" class="search-item">
+
+                                    <div class="search-icon">
+                                        📄
+                                    </div>
+
+                                    <div class="search-content">
+
+                                        <div class="search-title">
+                                            SSC CGL Recruitment 2026 Apply Online
+                                        </div>
+
+                                        <div class="search-meta">
+                                            <span class="badge bg-primary">
+                                                SSC
+                                            </span>
+
+                                            <span class="text-muted">
+                                                Government Job
+                                            </span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="search-arrow">
+                                        →
+                                    </div>
+
+                                </a>
+
+                                <!-- Item -->
+                                <a href="#" class="search-item">
+
+                                    <div class="search-icon">
+                                        🚂
+                                    </div>
+
+                                    <div class="search-content">
+
+                                        <div class="search-title">
+                                            Railway NTPC Recruitment 2026
+                                        </div>
+
+                                        <div class="search-meta">
+                                            <span class="badge bg-danger">
+                                                Railway
+                                            </span>
+
+                                            <span class="text-muted">
+                                                Government Job
+                                            </span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="search-arrow">
+                                        →
+                                    </div>
+
+                                </a>
+
+                                <!-- Footer -->
+                                <div class="search-footer">
+
+                                    <a href="#">
+                                        View all results →
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>  
 
                     </div>
 
