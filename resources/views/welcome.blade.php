@@ -252,7 +252,9 @@
                 font-size: 18px;
                 font-weight: bold;
             }
-
+            marquee a:hover{
+                color:red;
+            }
             @media(max-width:768px) {
 
                 .latest-ticker {
@@ -364,7 +366,7 @@
                                 <a
                                     href="{{ url(
                                         'sarkari-naukri/' . ($job->state ?? 'all-india') . '/' . ($job->category ?? 'government') . '/' . $job->slug,
-                                    ) }}" style="color: #fff;">
+                                    ) }}" style="color: #fff;text-decoration: none;">
                                     {{ $job->title }}
                                 </a>
 
