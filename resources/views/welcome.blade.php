@@ -176,16 +176,26 @@
                         </div>
 
                     </div>
-                    <div class="live-update">
+                    <div class="latest-updates">
+    <strong>🔥 Latest Updates :</strong>
 
-                        🔥 <strong>Latest Updates :</strong>
+    @foreach($latestUpdates as $job)
+        <a href="{{ route(
+            'sarkari.naukri.detail',
+            [
+                'state' => $job->state ?? 'all-india',
+                'category' => $job->category ?? 'government',
+                'slug' => $job->slug
+            ]
+        ) }}">
+            {{ $job->title }}
+        </a>
 
-                        SSC CGL Recruitment 2026 •
-                        RRB NTPC UG Answer Key 2026 •
-                        IBPS PO Recruitment 2026 •
-                        UPSC NDA II Online Form 2026
-
-                    </div>
+        @if(!$loop->last)
+            •
+        @endif
+    @endforeach
+</div>
 
                 </div>
 

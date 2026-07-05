@@ -2110,6 +2110,11 @@ class JobController extends Controller
             ->whereNotNull('state')
             // ->distinct()
             ->count('state');
+        $latestUpdates = DB::table('job_details')
+            // ->where('status', 'active')
+            ->orderBy('id', 'desc')
+            ->limit(10)
+            ->get();
 
         return view('welcome', compact(
             'latestJobs',
@@ -2121,7 +2126,8 @@ class JobController extends Controller
             'totalJobs',
             'totalResults',
             'totalAdmitCards',
-            'totalStates'
+            'totalStates',
+            'latestUpdates'
         ));
     }
 }
