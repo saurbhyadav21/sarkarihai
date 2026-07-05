@@ -403,80 +403,142 @@
                                 placeholder="Search SSC, Railway, UPSC..." autocomplete="off">
 
                             <!-- Dropdown -->
-                            <div id="searchResults" class="search-dropdown">
+                            <div class="search-dropdown">
 
-                                <!-- Item -->
-                                <a href="#" class="search-item">
+    <!-- Search Item -->
+    <a href="#" class="search-item">
 
-                                    <div class="search-icon">
-                                        📄
-                                    </div>
+        <div class="search-icon">
+            📄
+        </div>
 
-                                    <div class="search-content">
+        <div class="search-body">
 
-                                        <div class="search-title">
-                                            SSC CGL Recruitment 2026 Apply Online
-                                        </div>
+            <div class="search-title">
+                DRDO ACEM Apprentice Recruitment 2026-27:
+                Vacancy, Eligibility & Apply Details
+            </div>
 
-                                        <div class="search-meta">
-                                            <span class="badge bg-primary">
-                                                SSC
-                                            </span>
+            <div class="search-meta">
 
-                                            <span class="text-muted">
-                                                Government Job
-                                            </span>
-                                        </div>
+                <span class="search-category">
+                    💼 Apprentice
+                </span>
 
-                                    </div>
+                <span class="search-separator">
+                    |
+                </span>
 
-                                    <div class="search-arrow">
-                                        →
-                                    </div>
+                <span class="search-type">
+                    🟢 Government Job
+                </span>
 
-                                </a>
+            </div>
 
-                                <!-- Item -->
-                                <a href="#" class="search-item">
+        </div>
 
-                                    <div class="search-icon">
-                                        🚂
-                                    </div>
+        <div class="search-arrow">
+            ❯
+        </div>
 
-                                    <div class="search-content">
+    </a>
 
-                                        <div class="search-title">
-                                            Railway NTPC Recruitment 2026
-                                        </div>
+    <!-- Search Item -->
+    <a href="#" class="search-item">
 
-                                        <div class="search-meta">
-                                            <span class="badge bg-danger">
-                                                Railway
-                                            </span>
+        <div class="search-icon">
+            📄
+        </div>
 
-                                            <span class="text-muted">
-                                                Government Job
-                                            </span>
-                                        </div>
+        <div class="search-body">
 
-                                    </div>
+            <div class="search-title">
+                Telangana Anganwadi Recruitment 2026 -
+                Apply Online for 178 Anganwadi Teacher
+                & Helper Posts
+            </div>
 
-                                    <div class="search-arrow">
-                                        →
-                                    </div>
+            <div class="search-meta">
 
-                                </a>
+                <span class="search-category">
+                    💼 Teacher / Helper
+                </span>
 
-                                <!-- Footer -->
-                                <div class="search-footer">
+                <span class="search-separator">
+                    |
+                </span>
 
-                                    <a href="#">
-                                        View all results →
-                                    </a>
+                <span class="search-type">
+                    🟢 Government Job
+                </span>
 
-                                </div>
+            </div>
 
-                            </div>
+        </div>
+
+        <div class="search-arrow">
+            ❯
+        </div>
+
+    </a>
+
+    <!-- Search Item -->
+    <a href="#" class="search-item">
+
+        <div class="search-icon">
+            📄
+        </div>
+
+        <div class="search-body">
+
+            <div class="search-title">
+                UP Police Computer Operator Grade-A
+                Exam Date 2026
+            </div>
+
+            <div class="search-meta">
+
+                <span class="search-category">
+                    💼 Computer Operator
+                </span>
+
+                <span class="search-separator">
+                    |
+                </span>
+
+                <span class="search-type">
+                    🟢 Government Job
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="search-arrow">
+            ❯
+        </div>
+
+    </a>
+
+    <!-- Footer -->
+    <div class="search-footer">
+
+        <div class="search-footer-icon">
+            🔎
+        </div>
+
+        <div class="search-footer-text">
+            View all results for
+            <strong>"de"</strong>
+        </div>
+
+        <button class="search-footer-btn">
+            See all results →
+        </button>
+
+    </div>
+
+</div>
 
                         </div>  
 
