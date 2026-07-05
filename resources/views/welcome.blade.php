@@ -100,6 +100,66 @@
             color: white;
             margin-top: 20px;
         }
+
+        .latest-update-box {
+            background: linear-gradient(135deg, #12273a, #1c3348);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-left: 4px solid #ffb703;
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin: 20px 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+        }
+
+        .update-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 14px;
+        }
+
+        .update-links {
+            line-height: 2;
+        }
+
+        .update-links a {
+            color: #f5f7fa;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: .2s;
+        }
+
+        .update-links a:hover {
+            color: #ffc107;
+        }
+
+        .divider {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background: #ffb703;
+            border-radius: 50%;
+            margin: 0 12px;
+            vertical-align: middle;
+        }
+
+        @media(max-width:768px) {
+
+            .latest-update-box {
+                padding: 15px;
+            }
+
+            .update-title {
+                font-size: 22px;
+            }
+
+            .update-links a {
+                font-size: 14px;
+                display: inline;
+            }
+
+        }
     </style>
 </head>
 
@@ -176,28 +236,43 @@
                         </div>
 
                     </div>
-                    <div class="live-update">
+                    <div class="latest-update-box">
 
-                       <div class="latest-updates">
-    <strong>🔥 Latest Updates :</strong>
+                        <div class="update-title">
+                            🔥 Latest Updates
+                        </div>
 
-    @foreach($latestUpdates as $job)
-        <a href="{{ route(
-            'sarkari.naukri.detail',
-            [
-                'state' => $job->state ?? 'all-india',
-                'category' => $job->category ?? 'government',
-                'slug' => $job->slug
-            ]
-        ) }}">
-            {{ $job->title }}
-        </a>
+                        <div class="update-links">
 
-        @if(!$loop->last)
-            •
-        @endif
-    @endforeach
-</div>
+                            <a href="#">
+                                MGNREGA South Andaman Gram Rozgar Sevak Recruitment 2026 - Apply Offline
+                            </a>
+
+                            <span class="divider"></span>
+
+                            <a href="#">
+                                UPSSSC Junior Analyst Medicine 2024 Final Result
+                            </a>
+
+                            <span class="divider"></span>
+
+                            <a href="#">
+                                Railway RRC CR Apprentice Recruitment 2026
+                            </a>
+
+                            <span class="divider"></span>
+
+                            <a href="#">
+                                DRDO ACEM Apprentice Recruitment 2026-27
+                            </a>
+
+                            <span class="divider"></span>
+
+                            <a href="#">
+                                Bihar BTSC Diary Officer Recruitment 2026
+                            </a>
+
+                        </div>
 
                     </div>
 
