@@ -1047,30 +1047,69 @@ class JobController extends Controller
     }
 
 
-    public function latestJobs($state = null, $category = null)
-    {
+    // public function latestJobs($state = null, $category = null)
+    // {
 
-        $query = DB::table('job_details');
+    //     $query = DB::table('job_details');
 
-        // State filter
-        if (!empty($state)) {
-            $query->where('state', $state);
+    //     // State filter
+    //     if (!empty($state)) {
+    //         $query->where('state', $state);
+    //     }
+
+    //     // Category filter
+    //     if (!empty($category)) {
+    //         $query->where('category', $category);
+    //     }
+
+    //     $jobs = $query
+    //         ->orderBy('id', 'DESC')
+    //         ->paginate(20);
+
+    //     return view('jobs.show', [
+    //         'jobs' => $jobs,
+    //         'state' => $state,
+    //         'category' => $category,
+    //     ]);
+    // }
+
+    public function latestJobs(
+        Request $request,
+        $state = null,
+        $category = null
+    ) {
+        $jobs = Job::query();
+
+        if ($request->filled('search')) {
+
+            $search = $request->search;
+
+            $jobs->where(function ($q) use ($search) {
+
+                $q->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('category', 'LIKE', "%{$search}%")
+                    ->orWhere('organization', 'LIKE', "%{$search}%")
+                    ->orWhere('state', 'LIKE', "%{$search}%");
+            });
         }
 
-        // Category filter
-        if (!empty($category)) {
-            $query->where('category', $category);
+        if ($state && $state != 'all-india') {
+            $jobs->where('state', $state);
         }
 
-        $jobs = $query
-            ->orderBy('id', 'DESC')
+        if ($category) {
+            $jobs->where('category', $category);
+        }
+
+        $jobs = $jobs
+            ->latest('id')
             ->paginate(20);
 
-        return view('jobs.show', [
-            'jobs' => $jobs,
-            'state' => $state,
-            'category' => $category,
-        ]);
+        return view('jobs.show', compact(
+            'jobs',
+            'state',
+            'category'
+        ));
     }
 
     public function jobDetail($state, $category, $slug)

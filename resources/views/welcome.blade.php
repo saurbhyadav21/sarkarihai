@@ -204,7 +204,7 @@
                 box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
             }
 
-            .ticker-heading { 
+            .ticker-heading {
                 background: linear-gradient(135deg, #ff9800, #ffb300);
                 color: #111;
                 font-size: 18px;
@@ -252,7 +252,7 @@
                 font-size: 18px;
                 font-weight: bold;
             }
-           
+
             @media(max-width:768px) {
 
                 .latest-ticker {
@@ -353,7 +353,14 @@
                     </div>
                     <div class="latest-tickxer">
 
-                        <div class="ticker-heading" style="margin-top: 30px;font-size: 18px;">
+                        <div class="ticker-heading"
+                            style="    margin-top: 30px;
+    font-size: 15px;
+    background: #f4b400;
+    width: 16%;
+    color: #000;
+    border-radius: 5px;
+">
                             🔥 Latest Updates
                         </div>
 
@@ -361,10 +368,10 @@
                             onmouseout="this.start();">
 
                             @foreach ($latestUpdates as $job)
-                                <a
-                                    href="{{ url(
-                                        'sarkari-naukri/' . ($job->state ?? 'all-india') . '/' . ($job->category ?? 'government') . '/' . $job->slug,
-                                    ) }}" style="color: #fff;text-decoration: none;">
+                                <a href="{{ url(
+                                    'sarkari-naukri/' . ($job->state ?? 'all-india') . '/' . ($job->category ?? 'government') . '/' . $job->slug,
+                                ) }}"
+                                    style="color: #fff;text-decoration: none;">
                                     {{ $job->title }}
                                 </a>
 
@@ -382,11 +389,20 @@
 
                     <div class="search-card">
 
-                        <h5 class="mb-3">Search Sarkari Jobs</h5>
+                        <h5 class="mb-3">
+                            Search Sarkari Jobs
+                        </h5>
 
-                        <input type="text" class="form-control mb-3" placeholder="SSC, Railway, UPSC">
+                        <form action="{{ route('sarkari.naukri') }}" method="GET">
 
-                        <button class="btn">Search Now</button>
+                            <input type="text" name="search" class="form-control mb-3"
+                                placeholder="SSC CGL, Railway, UPSC, Police..." value="{{ request('search') }}">
+
+                            <button type="submit" class="btn">
+                                Search Now
+                            </button>
+
+                        </form>
 
                     </div>
 
