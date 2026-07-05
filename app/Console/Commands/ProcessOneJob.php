@@ -88,7 +88,7 @@ DEBUG
             /*
     FREEJOBALERT SCRAPING
     */
-            if ($feed->source == 'FreeJobAlert') {
+
                 $json =
                     FreeJobAlertHelper::scrape(
                         $feed->url
@@ -244,7 +244,7 @@ DEBUG
                 $this->info(
                     'DONE'
                 );
-            }
+            
         } catch (\Exception $e) {
             $feed->scrape_status =
                 'failed';
