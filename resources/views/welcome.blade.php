@@ -1116,7 +1116,7 @@ PART 2 - MAIN CONTENT BLOCK
       job.slug
    }">
 
-    <div class="search-icon">
+    <div class="search-icon" style="float: left;">
         📄
     </div>
 
