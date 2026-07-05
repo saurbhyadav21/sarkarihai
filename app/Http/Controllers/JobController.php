@@ -325,7 +325,10 @@ class JobController extends Controller
 
     public function editList()
     {
-        $jobs = Job::latest()->get();
+        $jobs = Job::orderBy('id', 'desc')
+           
+            ->get();
+
         $categories = DB::table('job_categories')
             ->orderBy('name')
             ->get();
@@ -2027,15 +2030,15 @@ class JobController extends Controller
     public function home()
     {
         // BASE QUERY
-$baseQuery = DB::table('job_details');
-    
-// ======================
-// LATEST JOBS
-// ======================
-$latestJobs = (clone $baseQuery)
-    ->orderBy('id', 'desc')
-    ->limit(10)
-    ->get();
+        $baseQuery = DB::table('job_details');
+
+        // ======================
+        // LATEST JOBS
+        // ======================
+        $latestJobs = (clone $baseQuery)
+            ->orderBy('id', 'desc')
+            ->limit(10)
+            ->get();
 
         // ======================
         // LAST DATE JOBS (URGENT)
