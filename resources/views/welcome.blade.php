@@ -1106,18 +1106,35 @@ PART 2 - MAIN CONTENT BLOCK
                     data.forEach(function(job) {
 
                         html += `
-                    <a href="/sarkari-naukri/${
-                        job.state ?? 'all-india'
-                    }/${
-                        job.category ?? 'government'
-                    }/${
-                        job.slug
-                    }">
+<a class="search-item"
+   href="/sarkari-naukri/${
+      job.state ?? 'all-india'
+   }/${
+      job.category ?? 'government'
+   }/${
+      job.slug
+   }">
 
-                        ${job.title}
+    <div class="search-icon">
+        📄
+    </div>
 
-                    </a>
-                `;
+    <div class="search-content">
+
+        <div class="search-title">
+            ${job.title}
+        </div>
+
+        <div class="search-meta">
+            ${
+                job.category ?? 'Government Job'
+            }
+        </div>
+
+    </div>
+
+</a>
+`;
                     });
 
                     $('#searchResults')
