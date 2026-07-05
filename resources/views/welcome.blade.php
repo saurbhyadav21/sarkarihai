@@ -555,130 +555,11 @@
 
                         <div class="position-relative">
 
-                            <!-- Search Input -->
                             <input type="text" id="jobSearch"
                                 class="form-control form-control-lg rounded-4 shadow-sm"
                                 placeholder="Search SSC, Railway, UPSC..." autocomplete="off">
 
-                            <!-- Dropdown -->
-                            <div class="search-dropdown">
-
-                                <!-- Search Item -->
-                                <a href="#" class="search-item">
-
-                                    <div class="search-icon">
-                                        📄
-                                    </div>
-
-                                    <div class="search-body">
-
-                                        <div class="search-title">
-                                            DRDO ACEM Apprentice Recruitment 2026-27:
-                                            Vacancy, Eligibility & Apply Details
-                                        </div>
-
-                                        <div class="search-meta">
-
-                                            <span class="search-category">
-                                                💼 Apprentice
-                                            </span>
-
-                                            <span class="search-separator">
-                                                |
-                                            </span>
-
-                                            <span class="search-type">
-                                                🟢 Government Job
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="search-arrow">
-                                        ❯
-                                    </div>
-
-                                </a>
-
-                                <!-- Search Item -->
-                                <a href="#" class="search-item">
-
-                                    <div class="search-icon">
-                                        📄
-                                    </div>
-
-                                    <div class="search-body">
-
-                                        <div class="search-title">
-                                            Telangana Anganwadi Recruitment 2026 -
-                                            Apply Online for 178 Anganwadi Teacher
-                                            & Helper Posts
-                                        </div>
-
-                                        <div class="search-meta">
-
-                                            <span class="search-category">
-                                                💼 Teacher / Helper
-                                            </span>
-
-                                            <span class="search-separator">
-                                                |
-                                            </span>
-
-                                            <span class="search-type">
-                                                🟢 Government Job
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="search-arrow">
-                                        ❯
-                                    </div>
-
-                                </a>
-
-                                <!-- Search Item -->
-                                <a href="#" class="search-item">
-
-                                    <div class="search-icon">
-                                        📄
-                                    </div>
-
-                                    <div class="search-body">
-
-                                        <div class="search-title">
-                                            UP Police Computer Operator Grade-A
-                                            Exam Date 2026
-                                        </div>
-
-                                        <div class="search-meta">
-
-                                            <span class="search-category">
-                                                💼 Computer Operator
-                                            </span>
-
-                                            <span class="search-separator">
-                                                |
-                                            </span>
-
-                                            <span class="search-type">
-                                                🟢 Government Job
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="search-arrow">
-                                        ❯
-                                    </div>
-
-                                </a>
-
-
+                            <div class="search-dropdown" style="display:none">
                             </div>
 
                         </div>
@@ -1295,7 +1176,8 @@ PART 2 - MAIN CONTENT BLOCK
         </div>
 
     </div>
-    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
+        crossorigin="anonymous"></script>
     <script>
         $('#jobSearch').keyup(function() {
 
