@@ -238,43 +238,32 @@
                     </div>
                     <div class="latest-update-box">
 
-                        <div class="update-title">
-                            🔥 Latest Updates
-                        </div>
+    <div class="update-title">
+        🔥 Latest Updates
+    </div>
 
-                        <div class="update-links">
+    <div class="update-links">
 
-                            <a href="#">
-                                MGNREGA South Andaman Gram Rozgar Sevak Recruitment 2026 - Apply Offline
-                            </a>
+        @foreach($latestUpdates as $job)
 
-                            <span class="divider"></span>
+            <a href="{{ url(
+                'sarkari-naukri/' .
+                ($job->state ?? 'all-india') . '/' .
+                ($job->category ?? 'government') . '/' .
+                $job->slug
+            ) }}">
+                {{ $job->title }}
+            </a>
 
-                            <a href="#">
-                                UPSSSC Junior Analyst Medicine 2024 Final Result
-                            </a>
+            @if(!$loop->last)
+                <span class="divider"></span>
+            @endif
 
-                            <span class="divider"></span>
+        @endforeach
 
-                            <a href="#">
-                                Railway RRC CR Apprentice Recruitment 2026
-                            </a>
+    </div>
 
-                            <span class="divider"></span>
-
-                            <a href="#">
-                                DRDO ACEM Apprentice Recruitment 2026-27
-                            </a>
-
-                            <span class="divider"></span>
-
-                            <a href="#">
-                                Bihar BTSC Diary Officer Recruitment 2026
-                            </a>
-
-                        </div>
-
-                    </div>
+</div>
 
                 </div>
 
