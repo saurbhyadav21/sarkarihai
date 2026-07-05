@@ -2114,13 +2114,9 @@ class JobController extends Controller
         // ======================
         // STATES (SAFE + CLEAN)
         // ======================
-        $states = DB::table('job_details')
-            ->select('state')
-            ->whereNotNull('state')
-            ->where('state', '!=', '')
-            ->distinct()
-            ->orderBy('state')
-            ->pluck('state');
+        $states = DB::table('job_states')
+    ->orderBy('name')
+    ->get();
 
         // ======================
         // CATEGORIES (SAFE)
