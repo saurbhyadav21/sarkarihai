@@ -2139,7 +2139,13 @@ class JobController extends Controller
         // CATEGORIES (SAFE)
         // ======================
         $categories = DB::table('job_categories as c')
-    ->leftJoin('job_details as j', 'j.category', '=', 'c.slug')
+    ->leftJoin('job_details as j', function ($join) {
+        $join->on(
+            DB::raw('j.category COLLATE utf8mb4_unicode_ci'),
+            '=',
+            'c.slug'
+        );
+    })
     ->select(
         'c.name',
         'c.slug',
