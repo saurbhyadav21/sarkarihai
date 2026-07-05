@@ -93,6 +93,8 @@ DEBUG
                     FreeJobAlertHelper::scrape(
                         $feed->url
                     );
+
+                    dd($json);
                 DB::table('job_details')
                     ->updateOrInsert(
 
