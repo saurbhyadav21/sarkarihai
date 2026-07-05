@@ -204,7 +204,7 @@
                 box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
             }
 
-            .ticker-heading {
+            .ticker-heading { 
                 background: linear-gradient(135deg, #ff9800, #ffb300);
                 color: #111;
                 font-size: 18px;
