@@ -2169,4 +2169,23 @@ class JobController extends Controller
             'latestUpdates'
         ));
     }
+
+    public function searchJobs(Request $request)
+    {
+        $search = $request->q;
+
+        $jobs = DB::table('job_details')
+            ->select(
+                'title',
+                'slug',
+                'state',
+                'category'
+            )
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orderBy('id', 'desc')
+            ->limit(10)
+            ->get();
+
+        return response()->json($jobs);
+    }
 }

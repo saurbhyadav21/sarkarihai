@@ -144,9 +144,7 @@ Route::get(
     [JobController::class, 'testSarkariResult']
 );
 
-
-// Header
-// Hero Banner
-// Search Section
-// Statistics
-// Quick Navigation Cards
+Route::get(
+    '/search-jobs',
+    [JobController::class, 'searchJobs']
+)->name('search.jobs');

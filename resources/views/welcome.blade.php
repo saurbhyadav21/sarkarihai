@@ -274,6 +274,34 @@
                 }
 
             }
+
+            #searchResults {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                z-index: 9999;
+                display: none;
+                max-height: 350px;
+                overflow-y: auto;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, .15);
+            }
+
+            #searchResults a {
+                display: block;
+                padding: 12px 15px;
+                color: #222;
+                text-decoration: none;
+                border-bottom: 1px solid #eee;
+            }
+
+            #searchResults a:hover {
+                background: #f5f5f5;
+                color: #0d6efd;
+            }
         }
     </style>
 </head>
@@ -393,16 +421,14 @@
                             Search Sarkari Jobs
                         </h5>
 
-                        <form action="{{ route('sarkari.naukri') }}" method="GET">
+                        <div class="position-relative">
 
-                            <input type="text" name="search" class="form-control mb-3"
-                                placeholder="SSC CGL, Railway, UPSC, Police..." value="{{ request('search') }}">
+                            <input type="text" id="jobSearch" class="form-control"
+                                placeholder="SSC, Railway, UPSC..." autocomplete="off">
 
-                            <button type="submit" class="btn">
-                                Search Now
-                            </button>
+                            <div id="searchResults"></div>
 
-                        </form>
+                        </div>
 
                     </div>
 
@@ -1016,7 +1042,53 @@ PART 2 - MAIN CONTENT BLOCK
         </div>
 
     </div>
+    <script>
+        $('#jobSearch').keyup(function() {
 
+            let q = $(this).val();
+
+            if (q.length < 1) {
+                $('#searchResults').hide();
+                return;
+            }
+
+            $.get(
+                "{{ route('search.jobs') }}", {
+                    q: q
+                },
+                function(data) {
+
+                    let html = '';
+
+                    data.forEach(function(job) {
+
+                        html += `
+                    <a href="/sarkari-naukri/${
+                        job.state ?? 'all-india'
+                    }/${
+                        job.category ?? 'government'
+                    }/${
+                        job.slug
+                    }">
+
+                        ${job.title}
+
+                    </a>
+                `;
+                    });
+
+                    $('#searchResults')
+                        .html(html)
+                        .show();
+                }
+            );
+
+        });
+
+        $(document).click(function() {
+            $('#searchResults').hide();
+        });
+    </script>
 </body>
 
 </html>
