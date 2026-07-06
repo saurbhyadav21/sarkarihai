@@ -2212,24 +2212,15 @@ $lastDateSoon = DB::table('job_details')
     ->get();
 
 
-    $organizations = DB::table('job_topics')
-    ->leftJoin(
-        'job_details',
-        'job_topics.id',
-        '=',
-        'job_details.topic_id'
-    )
+    $organizations = DB::table('job_details')
     ->select(
-        'job_topics.name',
-        'job_topics.slug',
-        DB::raw('COUNT(job_details.id) as total_jobs')
+        'job_topics',
+        DB::raw('COUNT(*) as total_jobs')
     )
-    ->groupBy(
-        'job_topics.id',
-        'job_topics.name',
-        'job_topics.slug'
-    )
-    ->orderBy('job_topics.name')
+    ->whereNotNull('job_topics')
+    ->where('job_topics', '!=', '')
+    ->groupBy('job_topics')
+    ->orderBy('job_topics')
     ->get();
 
         return view('welcome', compact(

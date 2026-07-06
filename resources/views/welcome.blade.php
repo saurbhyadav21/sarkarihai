@@ -938,8 +938,8 @@ PART 2 - MAIN CONTENT BLOCK
 
     @foreach($organizations as $org)
 
-        <a href="{{ url('organization/' . $org->slug) }}">
-            {{ $org->name }}
+        <a href="#">
+            {{ $org->job_topics }}
             ({{ $org->total_jobs }})
         </a>
 
