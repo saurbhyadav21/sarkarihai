@@ -723,8 +723,24 @@ PART 2 - MAIN CONTENT BLOCK
 
                             {{ \Illuminate\Support\Str::limit($job->title, 35) }}
 
+                            @php
+
+                                $date = null;
+
+                                try {
+                                    if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $job->end_date)) {
+                                        $date = \Carbon\Carbon::parse($job->end_date);
+                                    } else {
+                                        $date = \Carbon\Carbon::createFromFormat('d F Y', trim($job->end_date));
+                                    }
+                                } catch (\Exception $e) {
+                                    $date = null;
+                                }
+
+                            @endphp
+
                             <span class="badge-date">
-                                {{ \Carbon\Carbon::createFromFormat('d F Y', $job->end_date)->format('d M') }}
+                                {{ $date ? $date->format('d M') : '--' }}
                             </span>
 
                         </a>
