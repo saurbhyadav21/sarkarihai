@@ -934,20 +934,18 @@ PART 2 - MAIN CONTENT BLOCK
         <!-- ================= ORGANIZATION WISE ================= -->
         <div class="sec-title">Organization Wise Jobs</div>
 
-        <div class="link-grid mb-4">
-            <a href="#">SSC</a>
-            <a href="#">UPSC</a>
-            <a href="#">Railway</a>
-            <a href="#">IBPS</a>
-            <a href="#">SBI</a>
-            <a href="#">RBI</a>
-            <a href="#">BPSC</a>
-            <a href="#">DRDO</a>
-            <a href="#">ISRO</a>
-            <a href="#">Indian Army</a>
-            <a href="#">Indian Navy</a>
-            <a href="#">Air Force</a>
-        </div>
+<div class="link-grid mb-4">
+
+    @foreach($organizations as $org)
+
+        <a href="{{ url('organization/' . $org->slug) }}">
+            {{ $org->name }}
+            ({{ $org->total_jobs }})
+        </a>
+
+    @endforeach
+
+</div>
 
 
         <!-- ================= POPULAR SEARCHES ================= -->

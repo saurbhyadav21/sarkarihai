@@ -2211,6 +2211,27 @@ $lastDateSoon = DB::table('job_details')
     // ->limit(10)
     ->get();
 
+
+    $organizations = DB::table('job_topics')
+    ->leftJoin(
+        'job_details',
+        'job_topics.id',
+        '=',
+        'job_details.topic_id'
+    )
+    ->select(
+        'job_topics.name',
+        'job_topics.slug',
+        DB::raw('COUNT(job_details.id) as total_jobs')
+    )
+    ->groupBy(
+        'job_topics.id',
+        'job_topics.name',
+        'job_topics.slug'
+    )
+    ->orderBy('job_topics.name')
+    ->get();
+
         return view('welcome', compact(
             'latestJobs',
             'lastDateJobs',
@@ -2223,7 +2244,8 @@ $lastDateSoon = DB::table('job_details')
             'totalAdmitCards',
             'totalStates',
             'latestUpdates',
-            'lastDateSoon'
+            'lastDateSoon',
+            'organizations'
         ));
     }
 
