@@ -719,8 +719,13 @@ PART 2 - MAIN CONTENT BLOCK
  
   
                     @foreach ($lastDateSoon as $job)
-                        <a class="small-link" 
-                            href="{{ url('sarkari-naukri/' . $job->state . '/' . $job->category . '/' . $job->slug) }}">
+                        <a class="small-link"
+   href="{{ url(
+       'sarkari-naukri/' .
+       (!empty($job->state) ? $job->state : 'all-india') . '/' .
+       (!empty($job->category) ? $job->category : 'uncategorized') . '/' .
+       $job->slug
+   ) }}">
 
                             {{ \Illuminate\Support\Str::limit($job->title, 35) }}
 
