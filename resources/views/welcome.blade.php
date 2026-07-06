@@ -705,7 +705,7 @@ PART 2 - MAIN CONTENT BLOCK
                     </div>
                 @endforeach
 
-                
+
             </div>
 
 
@@ -717,21 +717,17 @@ PART 2 - MAIN CONTENT BLOCK
 
                     <div class="side-title">Last Date Soon</div>
 
-                    <a class="small-link" href="#">
-                        SSC CHSL Recruitment <span class="badge-date">10 Jul</span>
-                    </a>
+                    @foreach ($lastDateSoon as $job)
+                        <a class="small-link" href="{{ url($job->slug) }}">
 
-                    <a class="small-link" href="#">
-                        RRB NTPC Recruitment <span class="badge-date">12 Jul</span>
-                    </a>
+                            {{ \Illuminate\Support\Str::limit($job->title, 35) }}
 
-                    <a class="small-link" href="#">
-                        IBPS Clerk Form <span class="badge-date">15 Jul</span>
-                    </a>
+                            <span class="badge-date">
+                                {{ \Carbon\Carbon::parse($job->end_date)->format('d M') }}
+                            </span>
 
-                    <a class="small-link" href="#">
-                        UPSC CAPF Recruitment <span class="badge-date">17 Jul</span>
-                    </a>
+                        </a>
+                    @endforeach
 
                 </div>
 
@@ -850,66 +846,62 @@ PART 2 - MAIN CONTENT BLOCK
 
         <div class="link-grid mb-4">
 
-    <a href="{{ route('sarkari.naukri.state', 'all-india') }}">
-        All India
-        <span>
-            ({{ $totalJobs }})
-        </span>
-    </a>
-
-    @foreach($states as $state)
-
-        <a href="{{ route('sarkari.naukri.state', $state->slug) }}">
-
-            {{ $state->name }}
-
-            <span>
-                ({{ $state->total_jobs }})
-            </span>
-
-        </a>
-
-    @endforeach
-
-</div>
-
-
-        <!-- ================= CATEGORY WISE ================= -->
-<div class="sec-title">
-    Category Wise Jobs
-</div>
-
-<div class="row g-3 mb-4">
-
-    @foreach($categories as $category)
-
-        <div class="col-6 col-md-3">
-
-            <a href="{{ route('sarkari.naukri.category', [
-                'state' => 'all-india',
-                'category' => $category->slug
-            ]) }}"
-               class="text-decoration-none">
-
-                <div class="cat-card">
-
-                    <div class="cat-title">
-                        {{ $category->name }}
-                    </div>
-
-                    <small>
-                        {{ $category->total_jobs }} Jobs
-                    </small>
-
-                </div>
-
+            <a href="{{ route('sarkari.naukri.state', 'all-india') }}">
+                All India
+                <span>
+                    ({{ $totalJobs }})
+                </span>
             </a>
+
+            @foreach ($states as $state)
+                <a href="{{ route('sarkari.naukri.state', $state->slug) }}">
+
+                    {{ $state->name }}
+
+                    <span>
+                        ({{ $state->total_jobs }})
+                    </span>
+
+                </a>
+            @endforeach
 
         </div>
 
-    @endforeach
 
-</div>
+        <!-- ================= CATEGORY WISE ================= -->
+        <div class="sec-title">
+            Category Wise Jobs
+        </div>
+
+        <div class="row g-3 mb-4">
+
+            @foreach ($categories as $category)
+                <div class="col-6 col-md-3">
+
+                    <a href="{{ route('sarkari.naukri.category', [
+                        'state' => 'all-india',
+                        'category' => $category->slug,
+                    ]) }}"
+                        class="text-decoration-none">
+
+                        <div class="cat-card">
+
+                            <div class="cat-title">
+                                {{ $category->name }}
+                            </div>
+
+                            <small>
+                                {{ $category->total_jobs }} Jobs
+                            </small>
+
+                        </div>
+
+                    </a>
+
+                </div>
+            @endforeach
+
+        </div>
 
 
         <!-- ================= ORGANIZATION WISE ================= -->

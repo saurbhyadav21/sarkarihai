@@ -2115,50 +2115,50 @@ class JobController extends Controller
         // STATES (SAFE + CLEAN)
         // ======================
         $states = DB::table('job_states as s')
-    ->leftJoin('job_details as j', function ($join) {
-        $join->on(
-            DB::raw('j.state COLLATE utf8mb4_unicode_ci'),
-            '=',
-            's.slug'
-        );
-    })
-    ->select(
-        's.name',
-        's.slug',
-        DB::raw('COUNT(j.id) as total_jobs')
-    )
-    ->groupBy(
-        's.id',
-        's.name',
-        's.slug'
-    )
-    ->orderBy('s.name')
-    ->get();
+            ->leftJoin('job_details as j', function ($join) {
+                $join->on(
+                    DB::raw('j.state COLLATE utf8mb4_unicode_ci'),
+                    '=',
+                    's.slug'
+                );
+            })
+            ->select(
+                's.name',
+                's.slug',
+                DB::raw('COUNT(j.id) as total_jobs')
+            )
+            ->groupBy(
+                's.id',
+                's.name',
+                's.slug'
+            )
+            ->orderBy('s.name')
+            ->get();
 
         // ======================
         // CATEGORIES (SAFE)
         // ======================
         $categories = DB::table('job_categories as c')
-    ->leftJoin('job_details as j', function ($join) {
-        $join->on(
-            DB::raw('j.category COLLATE utf8mb4_unicode_ci'),
-            '=',
-            'c.slug'
-        );
-    })
-    ->select(
-        'c.name',
-        'c.slug',
-        DB::raw('COUNT(j.id) as total_jobs')
-    )
-    ->groupBy(
-        'c.id',
-        'c.name',
-        'c.slug'
-    )
-    ->orderBy('c.name')
-    ->limit(8)
-    ->get();
+            ->leftJoin('job_details as j', function ($join) {
+                $join->on(
+                    DB::raw('j.category COLLATE utf8mb4_unicode_ci'),
+                    '=',
+                    'c.slug'
+                );
+            })
+            ->select(
+                'c.name',
+                'c.slug',
+                DB::raw('COUNT(j.id) as total_jobs')
+            )
+            ->groupBy(
+                'c.id',
+                'c.name',
+                'c.slug'
+            )
+            ->orderBy('c.name')
+            ->limit(8)
+            ->get();
 
         $totalJobs = DB::table('job_details')
             ->count();
@@ -2183,6 +2183,13 @@ class JobController extends Controller
             ->limit(10)
             ->get();
 
+        $lastDateSoon = DB::table('job_details')
+            ->whereNotNull('end_date')
+            ->where('end_date', '!=', '')
+            ->orderByRaw("STR_TO_DATE(end_date, '%d %M %Y') ASC")
+            ->limit(4)
+            ->get();
+
         return view('welcome', compact(
             'latestJobs',
             'lastDateJobs',
@@ -2194,7 +2201,8 @@ class JobController extends Controller
             'totalResults',
             'totalAdmitCards',
             'totalStates',
-            'latestUpdates'
+            'latestUpdates',
+            'lastDateSoon'
         ));
     }
 
