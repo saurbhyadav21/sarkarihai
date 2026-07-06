@@ -2183,7 +2183,8 @@ class JobController extends Controller
             ->limit(10)
             ->get();
 
-        $today = now()->format('Y-m-d');
+       $today = now()->format('Y-m-d');
+$thirdDay = now()->addDays(2)->format('Y-m-d');
 
 $lastDateSoon = DB::table('job_details')
     ->whereNotNull('end_date')
@@ -2196,8 +2197,8 @@ $lastDateSoon = DB::table('job_details')
             WHEN end_date REGEXP '^[0-9]{1,2} [A-Za-z]+ [0-9]{4}$'
                 THEN STR_TO_DATE(end_date, '%d %M %Y')
             ELSE NULL
-        END >= ?
-    ", [$today])
+        END BETWEEN ? AND ?
+    ", [$today, $thirdDay])
     ->orderByRaw("
         CASE
             WHEN end_date REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
@@ -2207,7 +2208,7 @@ $lastDateSoon = DB::table('job_details')
             ELSE '9999-12-31'
         END ASC
     ")
-    
+    // ->limit(10)
     ->get();
 
         return view('welcome', compact(
