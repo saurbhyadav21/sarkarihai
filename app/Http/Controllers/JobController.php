@@ -2207,7 +2207,7 @@ $lastDateSoon = DB::table('job_details')
             ELSE '9999-12-31'
         END ASC
     ")
-    ->limit(4)
+    ->limit(10)
     ->get();
 
         return view('welcome', compact(
