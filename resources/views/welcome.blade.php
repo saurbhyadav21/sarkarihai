@@ -676,7 +676,9 @@ PART 2 - MAIN CONTENT BLOCK
                         @endif
 
                         {{-- 🧾 TITLE --}}
-                        <a href="{{ url('sarkari-naukri/' . ($job->state ?? 'all-indiax') . '/' . $job->category . '/' . $job->slug) }}"
+                        <a href="{{ url(
+                            'sarkari-naukri/' . ($job->state ?: 'all-indiax') . '/' . ($job->category ?: 'uncategorized') . '/' . $job->slug,
+                        ) }}"
                             class="job-title">
 
                             {{ $job->title }}
@@ -713,19 +715,21 @@ PART 2 - MAIN CONTENT BLOCK
             <div class="col-lg-4">
 
                 <!-- LAST DATE BOX -->
-                <div class="side-box mb-3"> 
+                <div class="side-box mb-3">
 
                     <div class="side-title">Last Date Soon</div>
- 
-  
+
+
                     @foreach ($lastDateSoon as $job)
                         <a class="small-link"
-   href="{{ url(
-       'sarkari-naukri/' .
-       (!empty($job->state) ? $job->state : 'all-india') . '/' .
-       (!empty($job->category) ? $job->category : 'uncategorized') . '/' .
-       $job->slug
-   ) }}">
+                            href="{{ url(
+                                'sarkari-naukri/' .
+                                    (!empty($job->state) ? $job->state : 'all-india') .
+                                    '/' .
+                                    (!empty($job->category) ? $job->category : 'uncategorized') .
+                                    '/' .
+                                    $job->slug,
+                            ) }}">
 
                             {{ \Illuminate\Support\Str::limit($job->title, 35) }}
 
