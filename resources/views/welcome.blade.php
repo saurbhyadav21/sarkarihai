@@ -713,7 +713,7 @@ PART 2 - MAIN CONTENT BLOCK
             <div class="col-lg-4">
 
                 <!-- LAST DATE BOX -->
-                <div class="side-box mb-3">
+                <div class="side-box mb-3"> 
 
                     <div class="side-title">Last Date Soon</div>
 
