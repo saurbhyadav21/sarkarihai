@@ -705,30 +705,7 @@ PART 2 - MAIN CONTENT BLOCK
                     </div>
                 @endforeach
 
-                <div class="job-card">
-                    <span class="badge-new">NEW</span>
-                    <a href="#" class="job-title">Railway RRB Technician Recruitment</a>
-                    <div class="job-meta">
-                        6500 Posts | Last Date: 29 July 2026
-                    </div>
-                </div>
-
-                <div class="job-card">
-                    <span class="badge-new">NEW</span>
-                    <a href="#" class="job-title">UPSC NDA II Online Form 2026</a>
-                    <div class="job-meta">
-                        400+ Posts | Last Date: 20 July 2026
-                    </div>
-                </div>
-
-                <div class="job-card">
-                    <span class="badge-new">NEW</span>
-                    <a href="#" class="job-title">IBPS PO Recruitment 2026</a>
-                    <div class="job-meta">
-                        Bank Jobs | Last Date: 18 July 2026
-                    </div>
-                </div>
-
+                
             </div>
 
 
