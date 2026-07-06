@@ -716,7 +716,7 @@ PART 2 - MAIN CONTENT BLOCK
                 <div class="side-box mb-3">
 
                     <div class="side-title">Last Date Soon</div>
-{{ dd($job->job_category) }}
+{{ dd($job->categories) }}
 
                     @foreach ($lastDateSoon as $job)
                         <a class="small-link"
