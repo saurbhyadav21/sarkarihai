@@ -716,11 +716,11 @@ PART 2 - MAIN CONTENT BLOCK
                 <div class="side-box mb-3">
 
                     <div class="side-title">Last Date Soon</div>
-{{ dd($job->category) }}
+
 
                     @foreach ($lastDateSoon as $job)
                         <a class="small-link"
-                            href="{{ url('latest-jobs/' . Str::slug($states) . '/' . Str::slug($categories) . '/' . $job->slug) }}">
+                            href="{{ url('latest-jobs/' . Str::slug($states) . '/' . Str::slug($job->category) . '/' . $job->slug) }}">
 
                             {{ \Illuminate\Support\Str::limit($job->title, 35) }}
 
