@@ -720,7 +720,7 @@ PART 2 - MAIN CONTENT BLOCK
   
                     @foreach ($lastDateSoon as $job)
                         <a class="small-link" 
-                            href="{{ url('latest-jobs/' . Str::slug($states) . '/' . Str::slug($job->category) . '/' . $job->slug) }}">
+                            href="{{ url('latest-jobs/' . $states . '/' . Str::slug($job->category) . '/' . $job->slug) }}">
 
                             {{ \Illuminate\Support\Str::limit($job->title, 35) }}
 
