@@ -2183,12 +2183,32 @@ class JobController extends Controller
             ->limit(10)
             ->get();
 
-        $lastDateSoon = DB::table('job_details')
-            ->whereNotNull('end_date')
-            ->where('end_date', '!=', '')
-            ->orderByRaw("STR_TO_DATE(end_date, '%d %M %Y') ASC")
-            ->limit(4)
-            ->get();
+        $today = now()->format('Y-m-d');
+
+$lastDateSoon = DB::table('job_details')
+    ->whereNotNull('end_date')
+    ->where('end_date', '!=', '')
+    ->where('end_date', '!=', 'To Be Announced')
+    ->whereRaw("
+        CASE
+            WHEN end_date REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
+                THEN STR_TO_DATE(end_date, '%Y-%m-%d')
+            WHEN end_date REGEXP '^[0-9]{1,2} [A-Za-z]+ [0-9]{4}$'
+                THEN STR_TO_DATE(end_date, '%d %M %Y')
+            ELSE NULL
+        END >= ?
+    ", [$today])
+    ->orderByRaw("
+        CASE
+            WHEN end_date REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
+                THEN STR_TO_DATE(end_date, '%Y-%m-%d')
+            WHEN end_date REGEXP '^[0-9]{1,2} [A-Za-z]+ [0-9]{4}$'
+                THEN STR_TO_DATE(end_date, '%d %M %Y')
+            ELSE '9999-12-31'
+        END ASC
+    ")
+    ->limit(4)
+    ->get();
 
         return view('welcome', compact(
             'latestJobs',

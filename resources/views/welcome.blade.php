@@ -718,12 +718,13 @@ PART 2 - MAIN CONTENT BLOCK
                     <div class="side-title">Last Date Soon</div>
 
                     @foreach ($lastDateSoon as $job)
-                        <a class="small-link" href="{{ url($job->slug) }}">
+                        <a class="small-link"
+                            href="{{ url('latest-jobs/' . Str::slug($job->state) . '/' . Str::slug($job->job_category) . '/' . $job->slug) }}">
 
                             {{ \Illuminate\Support\Str::limit($job->title, 35) }}
 
                             <span class="badge-date">
-                                {{ \Carbon\Carbon::parse($job->end_date)->format('d M') }}
+                                {{ \Carbon\Carbon::createFromFormat('d F Y', $job->end_date)->format('d M') }}
                             </span>
 
                         </a>
