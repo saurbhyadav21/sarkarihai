@@ -2292,9 +2292,8 @@ class JobController extends Controller
         $keyword = trim($request->q);
 
         $popularSearches = Job::where('title', 'LIKE', "%{$keyword}%")
-            // ->orWhere('description', 'LIKE', "%{$keyword}%")
             ->paginate(20);
 
-        return view('search', compact('popularSearches'));
+        return view('search', compact('popularSearches', 'keyword'));
     }
 }

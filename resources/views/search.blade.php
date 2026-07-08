@@ -558,7 +558,7 @@ text-align:center;
 
                 <div>
 
-                    
+
 
                 </div>
 
@@ -926,93 +926,88 @@ text-align:center;
         <div class="content">
 
 
-           <section class="popular-searches-section">
-    <div class="container">
+            <section class="popular-searches-section">
+                <div class="container">
 
-        <div class="section-header">
-            <h2>🔥 Popular Searches</h2>
-            <p>Most searched government jobs, admit cards, results and exams.</p>
-        </div>
+                    <div class="section-header">
+                        <h2>🔥 Popular Searches</h2>
+                        <p>Most searched government jobs, admit cards, results and exams.</p>
+                    </div>
 
-        <div class="popular-tags">
+                    <div class="popular-tags">
 
-            @forelse($popularSearches as $search)
-                <a href="{{ route('search', ['q' => $search->keyword]) }}" class="tag">
-                    🔍 {{ ucwords($search->keyword) }}
-                </a>
-            @empty
+                        @forelse($popularSearches as $search)
+                            <a href="{{ route('search', ['q' => $search->title]) }}" class="tag">
+                                🔍 {{ $search->title }}
+                            </a>
+                        @empty
+                            <a href="{{ route('search', ['q' => 'ssc']) }}" class="tag">SSC</a>
+                            <a href="{{ route('search', ['q' => 'upsc']) }}" class="tag">UPSC</a>
+                            <a href="{{ route('search', ['q' => 'railway']) }}" class="tag">Railway</a>
+                            <a href="{{ route('search', ['q' => 'bank']) }}" class="tag">Bank Jobs</a>
+                            <a href="{{ route('search', ['q' => 'police']) }}" class="tag">Police Vacancy</a>
+                            <a href="{{ route('search', ['q' => 'admit card']) }}" class="tag">Admit Card</a>
+                            <a href="{{ route('search', ['q' => 'answer key']) }}" class="tag">Answer Key</a>
+                            <a href="{{ route('search', ['q' => 'result']) }}" class="tag">Sarkari Result</a>
+                        @endforelse
 
-                <a href="{{ route('search',['q'=>'ssc']) }}" class="tag">SSC</a>
-                <a href="{{ route('search',['q'=>'upsc']) }}" class="tag">UPSC</a>
-                <a href="{{ route('search',['q'=>'railway']) }}" class="tag">Railway</a>
-                <a href="{{ route('search',['q'=>'bank']) }}" class="tag">Bank Jobs</a>
-                <a href="{{ route('search',['q'=>'police']) }}" class="tag">Police Vacancy</a>
-                <a href="{{ route('search',['q'=>'admit card']) }}" class="tag">Admit Card</a>
-                <a href="{{ route('search',['q'=>'answer key']) }}" class="tag">Answer Key</a>
-                <a href="{{ route('search',['q'=>'result']) }}" class="tag">Sarkari Result</a>
+                    </div>
+                </div>
+            </section>
 
-            @endforelse
+            <style>
+                .popular-searches-section {
+                    background: #fff;
+                    padding: 40px 20px;
+                    border-radius: 12px;
+                    margin: 40px 0;
+                    border: 1px solid #e9ecef;
+                }
 
-        </div>
+                .section-header {
+                    text-align: center;
+                    margin-bottom: 25px;
+                }
 
-    </div>
-</section>
+                .section-header h2 {
+                    font-size: 28px;
+                    font-weight: 700;
+                    margin-bottom: 8px;
+                }
 
-<style>
+                .section-header p {
+                    color: #666;
+                    margin: 0;
+                }
 
-.popular-searches-section{
-    background:#fff;
-    padding:40px 20px;
-    border-radius:12px;
-    margin:40px 0;
-    border:1px solid #e9ecef;
-}
+                .popular-tags {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 12px;
+                }
 
-.section-header{
-    text-align:center;
-    margin-bottom:25px;
-}
+                .tag {
+                    display: inline-block;
+                    padding: 10px 18px;
+                    border-radius: 30px;
+                    background: #f5f7fb;
+                    color: #333;
+                    text-decoration: none;
+                    font-size: 15px;
+                    font-weight: 600;
+                    border: 1px solid #ddd;
+                    transition: .3s;
+                }
 
-.section-header h2{
-    font-size:28px;
-    font-weight:700;
-    margin-bottom:8px;
-}
-
-.section-header p{
-    color:#666;
-    margin:0;
-}
-
-.popular-tags{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:12px;
-}
-
-.tag{
-    display:inline-block;
-    padding:10px 18px;
-    border-radius:30px;
-    background:#f5f7fb;
-    color:#333;
-    text-decoration:none;
-    font-size:15px;
-    font-weight:600;
-    border:1px solid #ddd;
-    transition:.3s;
-}
-
-.tag:hover{
-    background:#0d6efd;
-    color:#fff;
-    border-color:#0d6efd;
-    text-decoration:none;
-    transform:translateY(-2px);
-}
-
-</style>
+                .tag:hover {
+                    background: #0d6efd;
+                    color: #fff;
+                    border-color: #0d6efd;
+                    text-decoration: none;
+                    transform: translateY(-2px);
+                }
+            </style>
 
         </div>
 
