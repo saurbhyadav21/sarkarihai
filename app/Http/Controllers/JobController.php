@@ -2223,6 +2223,13 @@ class JobController extends Controller
             ->orderBy('job_topics')
             ->get();
 
+
+            $popularSearches = DB::table('popular_searches')
+    ->orderByDesc('count')
+    ->orderByDesc('updated_at')
+    ->limit(8)
+    ->get();
+
         return view('welcome', compact(
             'latestJobs',
             'lastDateJobs',
@@ -2236,7 +2243,8 @@ class JobController extends Controller
             'totalStates',
             'latestUpdates',
             'lastDateSoon',
-            'organizations'
+            'organizations',
+            'popularSearches'
         ));
     }
 
