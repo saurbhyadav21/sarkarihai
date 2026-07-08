@@ -1161,20 +1161,37 @@ PART 2 - MAIN CONTENT BLOCK
             <!-- ================= ABOUT ================= -->
             <div class="about-box">
 
-                <h2>About Sarkari Result 2026</h2>
+                <h2>About SarkariHai – Latest Sarkari Naukri, Results, Admit Card & Government Jobs 2026</h2>
 
                 <p>
-                    SarkariHai.com is a fast and reliable platform for latest government job notifications,
-                    admit cards, results, answer keys and admission updates across India.
+                    <strong>SarkariHai.com</strong> is a trusted platform for the latest <strong>Sarkari
+                        Naukri</strong>,
+                    <strong>Government Jobs</strong>, <strong>Online Forms</strong>, <strong>Admit Cards</strong>,
+                    <strong>Results</strong>, <strong>Answer Keys</strong>, <strong>Admissions</strong>,
+                    <strong>Syllabus</strong>, and <strong>Exam Updates</strong> across India. We regularly publish
+                    verified
+                    updates for Central Government Jobs, State Government Jobs, PSU Recruitment, Apprentice Jobs, and
+                    other
+                    government employment opportunities.
                 </p>
 
                 <p>
-                    We cover SSC, UPSC, Railway, Bank, Police, Defence, Teaching and State Government jobs
-                    in one place with updated information.
+                    Whether you are preparing for <strong>SSC</strong>, <strong>UPSC</strong>, <strong>Railway</strong>,
+                    <strong>Bank</strong>, <strong>IBPS</strong>, <strong>SBI</strong>, <strong>RBI</strong>,
+                    <strong>Police</strong>, <strong>Defence</strong>, <strong>Teaching</strong>,
+                    <strong>Engineering</strong>, <strong>Medical</strong>, <strong>ISRO</strong>,
+                    <strong>DRDO</strong>, <strong>NTA</strong>, or State Government recruitment exams, SarkariHai helps
+                    you
+                    stay updated with the latest notifications, eligibility, important dates, vacancies, exam patterns,
+                    admit
+                    cards, results, and official application links.
                 </p>
 
                 <p>
-                    Our aim is to provide simple, fast and accurate job updates for every student and job seeker.
+                    Our goal is to make searching for <strong>Sarkari Naukri</strong> and
+                    <strong>Government Jobs</strong> simple, fast, and reliable. Thousands of aspirants visit
+                    <strong>SarkariHai</strong> every day to check the latest job notifications, online forms,
+                    exam results, answer keys, admissions, and recruitment updates from official sources in one place.
                 </p>
 
             </div>
