@@ -2285,4 +2285,16 @@ class JobController extends Controller
             ->limit(5)
             ->get();
     }
+
+
+    public function search(Request $request)
+    {
+        $keyword = trim($request->q);
+
+        $jobs = Job::where('title', 'LIKE', "%{$keyword}%")
+            ->orWhere('description', 'LIKE', "%{$keyword}%")
+            ->paginate(20);
+
+        return view('search', compact('jobs', 'keyword'));
+    }
 }
