@@ -738,7 +738,7 @@ PART 2 - MAIN CONTENT BLOCK
 
                     <span class="last-update">
                         Last Updated:
-                        {{ \Carbon\Carbon::parse($job->updated_at)->format('d M Y H:i:s') }}
+                        {{ \Carbon\Carbon::parse($job->created_at)->format('d M Y H:i:s') }}
                     </span>
                 </div>
 
