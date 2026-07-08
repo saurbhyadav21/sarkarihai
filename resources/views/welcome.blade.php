@@ -685,6 +685,34 @@ PART 2 - MAIN CONTENT BLOCK
         .tab-content.active {
             display: block;
         }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .live-badge {
+            width: 34px;
+            animation: livePulse 1.2s infinite;
+        }
+
+        @keyframes livePulse {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0 rgba(255, 0, 0, 0));
+            }
+
+            50% {
+                transform: scale(1.12);
+                filter: drop-shadow(0 0 8px rgba(255, 0, 0, .9));
+            }
+
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0 rgba(255, 0, 0, 0));
+            }
+        }
     </style>
 
     <div class="container mt-4">
@@ -695,7 +723,10 @@ PART 2 - MAIN CONTENT BLOCK
             <div class="col-lg-8">
 
                 <!-- LATEST JOBS -->
-                <div class="section-title">Latest Government Jobs</div>
+                <div class="section-title">
+                    Latest Government Jobs
+                    <img src="{{ asset('public/images/live.png?v=1') }}" alt="Live" class="live-badge">
+                </div>
 
                 @foreach ($latestJobs as $job)
                     <div class="job-card">
