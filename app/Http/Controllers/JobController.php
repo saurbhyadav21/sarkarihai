@@ -2183,14 +2183,14 @@ class JobController extends Controller
             ->limit(10)
             ->get();
 
-       $today = now()->format('Y-m-d');
-$thirdDay = now()->addDays(2)->format('Y-m-d');
+        $today = now()->format('Y-m-d');
+        $thirdDay = now()->addDays(2)->format('Y-m-d');
 
-$lastDateSoon = DB::table('job_details')
-    ->whereNotNull('end_date')
-    ->where('end_date', '!=', '')
-    ->where('end_date', '!=', 'To Be Announced')
-    ->whereRaw("
+        $lastDateSoon = DB::table('job_details')
+            ->whereNotNull('end_date')
+            ->where('end_date', '!=', '')
+            ->where('end_date', '!=', 'To Be Announced')
+            ->whereRaw("
         CASE
             WHEN end_date REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
                 THEN STR_TO_DATE(end_date, '%Y-%m-%d')
@@ -2199,7 +2199,7 @@ $lastDateSoon = DB::table('job_details')
             ELSE NULL
         END BETWEEN ? AND ?
     ", [$today, $thirdDay])
-    ->orderByRaw("
+            ->orderByRaw("
         CASE
             WHEN end_date REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
                 THEN STR_TO_DATE(end_date, '%Y-%m-%d')
@@ -2208,20 +2208,20 @@ $lastDateSoon = DB::table('job_details')
             ELSE '9999-12-31'
         END ASC
     ")
-    // ->limit(10)
-    ->get();
+            // ->limit(10)
+            ->get();
 
 
-    $organizations = DB::table('job_details')
-    ->select(
-        'job_topics',
-        DB::raw('COUNT(*) as total_jobs')
-    )
-    ->whereNotNull('job_topics')
-    ->where('job_topics', '!=', '')
-    ->groupBy('job_topics')
-    ->orderBy('job_topics')
-    ->get();
+        $organizations = DB::table('job_details')
+            ->select(
+                'job_topics',
+                DB::raw('COUNT(*) as total_jobs')
+            )
+            ->whereNotNull('job_topics')
+            ->where('job_topics', '!=', '')
+            ->groupBy('job_topics')
+            ->orderBy('job_topics')
+            ->get();
 
         return view('welcome', compact(
             'latestJobs',
@@ -2242,6 +2242,19 @@ $lastDateSoon = DB::table('job_details')
 
     public function searchJobs(Request $request)
     {
+        $keyword = trim($request->query('q'));
+        dd($keyword);
+        if ($keyword) {
+            DB::table('popular_searches')->updateOrInsert(
+                ['keyword' => strtolower($keyword)],
+                [
+                    'count' => DB::raw('count + 1'),
+                    'updated_at' => now(),
+                ]
+            );
+        }
+
+
         return DB::table('job_details')
             ->select(
                 'title',
@@ -2251,7 +2264,7 @@ $lastDateSoon = DB::table('job_details')
             )
             ->where('title', 'like', '%' . $request->q . '%')
             ->orderByDesc('id')
-            ->limit(8)
+            ->limit(5)
             ->get();
     }
 }

@@ -934,18 +934,16 @@ PART 2 - MAIN CONTENT BLOCK
         <!-- ================= ORGANIZATION WISE ================= -->
         <div class="sec-title">Organization Wise Jobs</div>
 
-<div class="link-grid mb-4">
+        <div class="link-grid mb-4">
 
-    @foreach($organizations as $org)
+            @foreach ($organizations as $org)
+                <a href="#">
+                    {{ $org->job_topics }}
+                    ({{ $org->total_jobs }})
+                </a>
+            @endforeach
 
-        <a href="#">
-            {{ $org->job_topics }}
-            ({{ $org->total_jobs }})
-        </a>
-
-    @endforeach
-
-</div>
+        </div>
 
 
         <!-- ================= POPULAR SEARCHES ================= -->
