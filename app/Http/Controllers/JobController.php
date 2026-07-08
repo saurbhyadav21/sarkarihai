@@ -2246,6 +2246,7 @@ class JobController extends Controller
             today()->addDays(2),
             today()->addDays(7)
         ])
+        ->limit(10)
             ->orderBy('end_date')
             ->get();
         $weekCount = Job::whereBetween('end_date', [today()->addDays(2), today()->addDays(7)])->count();
