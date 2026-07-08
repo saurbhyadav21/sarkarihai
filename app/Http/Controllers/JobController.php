@@ -2233,18 +2233,24 @@ class JobController extends Controller
 
         $todayJobs = Job::whereDate('end_date', today())
             ->orderBy('end_date')
+            ->limit(10)
             ->get();
+
+        $todayCount = Job::whereDate('end_date', today())->count();
 
         $tomorrowJobs = Job::whereDate('end_date', today()->addDay())
             ->orderBy('end_date')
+            ->limit(10)
             ->get();
 
-        $weekJobs = Job::whereBetween('end_date', [
-            today()->addDays(2),
-            today()->addDays(7)
-        ])
+        $tomorrowCount = Job::whereDate('end_date', today()->addDay())->count();
+
+        $weekJobs = Job::whereBetween('end_date', [today()->addDays(2), today()->addDays(7)])
             ->orderBy('end_date')
+            ->limit(10)
             ->get();
+
+        $weekCount = Job::whereBetween('end_date', [today()->addDays(2), today()->addDays(7)])->count();
 
         return view('welcome', compact(
             'latestJobs',
