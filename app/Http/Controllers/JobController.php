@@ -2234,17 +2234,19 @@ class JobController extends Controller
         $todayJobs = Job::whereDate('end_date', today())
             ->orderBy('end_date')->limit(10)
             ->get();
+        $todayCount = Job::whereDate('end_date', today())->count();
 
         $tomorrowJobs = Job::whereDate('end_date', today()->addDay())
             ->orderBy('end_date')->limit(10)
             ->get();
-
+        $tomorrowCount = Job::whereDate('end_date', today()->addDay())->count();
         $weekJobs = Job::whereBetween('end_date', [
             today()->addDays(2),
             today()->addDays(7)
         ])
             ->orderBy('end_date')
             ->get();
+        $weekCount = Job::whereBetween('end_date', [today()->addDays(2), today()->addDays(7)])->count();
 
         return view('welcome', compact(
             'latestJobs',
@@ -2263,7 +2265,10 @@ class JobController extends Controller
             'popularSearches',
             'todayJobs',
             'tomorrowJobs',
-            'weekJobs'
+            'weekJobs',
+            'todayCount',
+            'tomorrowCount',
+            'weekCount'
         ));
     }
 
