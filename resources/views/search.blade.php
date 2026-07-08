@@ -558,56 +558,7 @@ text-align:center;
 
                 <div>
 
-                    <nav aria-label="breadcrumb" class="breadcrumb">
-
-                        <a href="{{ url('/') }}">
-                            Home
-                        </a>
-
-                        <span class="sep">/</span>
-
-                        <a href="{{ route('sarkari.naukri') }}">
-                            Sarkari Naukri
-                        </a>
-
-                        @if ($state)
-                            <span class="sep">/</span>
-                            <a href="{{ route('sarkari.naukri.state', $state) }}">
-                                {{ ucwords(str_replace('-', ' ', $state)) }}
-                            </a>
-                        @endif
-
-
-                        @if ($category)
-                            <span class="sep">/</span>
-                            <a
-                                href="{{ route('sarkari.naukri.category', [
-                                    'state' => $state,
-                                    'category' => $category,
-                                ]) }}">
-                                {{ ucwords(str_replace('-', ' ', $category)) }}
-                            </a>
-                        @endif
-
-                        <span class="sep">/</span>
-
-                        <span class="current">
-                            {{ $job->title }}
-                        </span>
-
-                    </nav>
-
-                    <h1>
-                        {{ $job->title }}
-                    </h1>
-
-                    <p>
-                        Check complete notification, eligibility,
-                        vacancy details, age limit, salary,
-                        selection process, important dates,
-                        exam pattern, required documents,
-                        and apply online process.
-                    </p>
+                    
 
                 </div>
 
