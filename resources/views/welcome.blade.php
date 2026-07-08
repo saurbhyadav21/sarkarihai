@@ -693,7 +693,7 @@ PART 2 - MAIN CONTENT BLOCK
         }
 
         .live-badge {
-            width: 34px;
+                width: 8%;
             animation: livePulse 1.2s infinite;
         }
 
