@@ -689,29 +689,37 @@ PART 2 - MAIN CONTENT BLOCK
         .section-title {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .live-badge {
-                width: 8%;
+            width: 36px;
+            height: auto;
             animation: livePulse 1.2s infinite;
         }
 
         @keyframes livePulse {
-            0% {
+
+            0%,
+            100% {
+                opacity: 1;
                 transform: scale(1);
-                filter: drop-shadow(0 0 0 rgba(255, 0, 0, 0));
             }
 
             50% {
-                transform: scale(1.12);
-                filter: drop-shadow(0 0 8px rgba(255, 0, 0, .9));
+                opacity: .35;
+                transform: scale(1.08);
             }
+        }
 
-            100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 0 rgba(255, 0, 0, 0));
-            }
+        .last-update {
+            font-size: 12px;
+            color: #666;
+            background: #f5f5f5;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: 600;
         }
     </style>
 
@@ -724,8 +732,14 @@ PART 2 - MAIN CONTENT BLOCK
 
                 <!-- LATEST JOBS -->
                 <div class="section-title">
-                    Latest Government Jobs
-                    <img src="{{ asset('public/images/live.png?v=3') }}" alt="Live" class="live-badge">
+                    <span>Latest Government Jobs</span>
+
+                    <img src="{{ asset('images/live.png') }}" alt="LIVE" class="live-badge">
+
+                    <span class="last-update">
+                        Last Updated:
+                        {{ \Carbon\Carbon::parse($lastUpdated)->format('d M Y') }}
+                    </span>
                 </div>
 
                 @foreach ($latestJobs as $job)
