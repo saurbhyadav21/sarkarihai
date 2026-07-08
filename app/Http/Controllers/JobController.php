@@ -2356,6 +2356,6 @@ class JobController extends Controller
             ->orderBy('end_date')
             ->paginate(30);
 
-        return view('last-date-soon', compact('jobs', 'title'));
+        return view('jobs.last-date-soon', compact('jobs', 'title'));
     }
 }
