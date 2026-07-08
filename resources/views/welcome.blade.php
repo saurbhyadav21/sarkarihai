@@ -286,7 +286,11 @@
     <div class="top-header">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a href="#" class="logo">SARKARI HAI</a>
+           <a href="{{ url('/') }}" class="logo">
+    <img src="{{ asset('images/logo.png') }}"
+         alt="SarkariHai"
+         height="50">
+</a>
 
             <div>
                 <a href="#" class="nav-link d-inline">Latest Jobs</a>
