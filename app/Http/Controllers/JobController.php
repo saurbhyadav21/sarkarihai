@@ -2224,11 +2224,11 @@ class JobController extends Controller
             ->get();
 
 
-            $popularSearches = DB::table('popular_searches')
-    ->orderByDesc('count')
-    ->orderByDesc('updated_at')
-    ->limit(8)
-    ->get();
+        $popularSearches = DB::table('popular_searches')
+            ->orderByDesc('count')
+            // ->orderByDesc('updated_at')
+            ->limit(8)
+            ->get();
 
         return view('welcome', compact(
             'latestJobs',
