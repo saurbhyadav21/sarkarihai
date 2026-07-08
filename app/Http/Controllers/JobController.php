@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Http;
 use App\Helpers\FreeJobAlertHelper;
 use DOMDocument;
 use DOMXPath;
+use Carbon\Carbon;
+
 
 class JobController extends Controller
 {
@@ -2319,5 +2321,40 @@ class JobController extends Controller
             ->paginate(20);
 
         return view('search', compact('popularSearches', 'keyword'));
+    }
+
+    public function lastDateSoon($type)
+    {
+        $query = DB::table('job_details');
+
+        switch ($type) {
+
+            case 'today':
+                $title = 'Today Last Date Jobs';
+                $query->whereDate('end_date', Carbon::today());
+                break;
+
+            case 'tomorrow':
+                $title = 'Tomorrow Last Date Jobs';
+                $query->whereDate('end_date', Carbon::tomorrow());
+                break;
+
+            case 'week':
+                $title = 'Next 7 Days Last Date Jobs';
+                $query->whereBetween('end_date', [
+                    Carbon::today(),
+                    Carbon::today()->addDays(7)
+                ]);
+                break;
+
+            default:
+                abort(404);
+        }
+
+        $jobs = $query
+            ->orderBy('end_date')
+            ->paginate(30);
+
+        return view('last-date-soon', compact('jobs', 'title'));
     }
 }
