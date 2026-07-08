@@ -1129,24 +1129,29 @@ PART 2 - MAIN CONTENT BLOCK
                 <h3 style="font-weight:800;color:#0a5467;">Frequently Asked Questions</h3>
 
                 <div class="faq-item">
-                    <div class="faq-q">What is Sarkari Result?</div>
+                    <div class="faq-q">What is SarkariHai?</div>
                     <div class="faq-a">
-                        Sarkari Result provides latest government jobs, admit cards, results, answer keys and admissions
-                        updates.
+                        SarkariHai provides the latest government job notifications, admit cards, results, answer keys,
+                        admissions, syllabus, and exam updates from Central and State Government organizations across
+                        India.
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-q">How to apply for Sarkari Jobs?</div>
+                    <div class="faq-q">How can I apply for Sarkari Jobs?</div>
                     <div class="faq-a">
-                        You can apply through official apply online links given in each job post.
+                        Open the job notification on SarkariHai, check the eligibility criteria, important dates,
+                        application fee, and required documents, then apply through the official Apply Online link
+                        provided in the job post.
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-q">Is SarkariHai free?</div>
+                    <div class="faq-q">Is SarkariHai free to use?</div>
                     <div class="faq-a">
-                        Yes, all information on SarkariHai is completely free for users.
+                        Yes. SarkariHai is completely free to use. You can access the latest government job
+                        notifications, admit cards, results, answer keys, admissions, and other exam updates without any
+                        subscription or registration.
                     </div>
                 </div>
 
