@@ -792,9 +792,9 @@ PART 2 - MAIN CONTENT BLOCK
                     <div class="side-title">Last Date Soon</div>
 
                     <div class="last-date-tabs">
-                        <button class="tab-btn active" data-tab="today">Today</button>
-                        <button class="tab-btn" data-tab="tomorrow">Tomorrow</button>
-                        <button class="tab-btn" data-tab="week">7 Days</button>
+                        <button class="tab-btn active" data-tab="today">Today ({{ $todayCount }})</button>
+                        <button class="tab-btn" data-tab="tomorrow">Tomorrow ({{ $tomorrowCount }})</button>
+                        <button class="tab-btn" data-tab="week">7 Days ({{ $weekCount }})</button>
                     </div>
 
                     <div id="today" class="tab-content active">
