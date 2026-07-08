@@ -284,82 +284,65 @@
 
     <!-- ================= HEADER ================= -->
     <style>
-        .top-header {
-            background: #fff;
-            padding: 12px 0;
-            border-bottom: 1px solid #e5e5e5;
-        }
+        .top-header{
+    background:#fff;
+    border-bottom:1px solid #e9ecef;
+    padding:12px 0;
+}
 
-        .header-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 25px;
-        }
+.header-wrap{
+    display:flex;
+    align-items:center;
+}
 
-        .logo {
-            flex-shrink: 0;
-        }
+.logo{
+    flex-shrink:0;
+}
 
-        .logo img {
-            height: 58px;
-            width: auto;
-            display: block;
-        }
+.logo img{
+    height:65px;
+    width:auto;
+    display:block;
+}
 
-        .header-menu {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex: 1;
-            justify-content: center;
-        }
+.header-menu{
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
 
-        .header-menu .nav-link {
-            color: #222;
-            font-weight: 600;
-            text-decoration: none;
-            white-space: nowrap;
-        }
+.header-menu .nav-link{
+    color:#222;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
 
-        .header-menu .nav-link:hover {
-            color: #0066cc;
-        }
-
-        .search-box {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-
-        .search-box input {
-            width: 220px;
-        }
+.header-menu .nav-link:hover{
+    color:#0d6efd;
+}
     </style>
     <div class="top-header">
-        <div class="container header-wrap">
+    <div class="container header-wrap">
 
-            <a href="https://sarkarihai.com" class="logo">
-                <img src="https://sarkarihai.com/public/images/logo.png?v=2" alt="SarkariHai">
-            </a>
+        <a href="https://sarkarihai.com" class="logo">
+            <img src="https://sarkarihai.com/public/images/logo.png?v=2"
+                alt="SarkariHai">
+        </a>
 
-            <div class="header-menu">
-                <a href="#" class="nav-link">Latest Jobs</a>
-                <a href="#" class="nav-link">Admit Card</a>
-                <a href="#" class="nav-link">Result</a>
-                <a href="#" class="nav-link">Syllabus</a>
-                <a href="#" class="nav-link">Answer Key</a>
-                <a href="#" class="nav-link">Admission</a>
-            </div>
-
-            <div class="search-box">
-                <input type="text" class="form-control" placeholder="Search Jobs...">
-                <button class="btn btn-primary">Search</button>
-            </div>
-
+        <div class="header-menu">
+            <a href="#" class="nav-link">Latest Jobs</a>
+            <a href="#" class="nav-link">Admit Card</a>
+            <a href="#" class="nav-link">Result</a>
+            <a href="#" class="nav-link">Syllabus</a>
+            <a href="#" class="nav-link">Answer Key</a>
+            <a href="#" class="nav-link">Admission</a>
         </div>
+
     </div>
+</div>
 
     <!-- ================= HERO ================= -->
     <div class="hero">
