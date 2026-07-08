@@ -792,29 +792,15 @@ PART 2 - MAIN CONTENT BLOCK
                     <div class="side-title">Last Date Soon</div>
 
                     <div class="last-date-tabs">
-                        <button class="tab-btn active">
-                            Today ({{ $todayCount }})
-                        </button>
-
-                        <button class="tab-btn">
-                            Tomorrow ({{ $tomorrowCount }})
-                        </button>
-
-                        <button class="tab-btn">
-                            7 Days ({{ $weekCount }})
-                        </button>
+                        <button class="tab-btn active" data-tab="today">Today</button>
+                        <button class="tab-btn" data-tab="tomorrow">Tomorrow</button>
+                        <button class="tab-btn" data-tab="week">7 Days</button>
                     </div>
 
                     <div id="today" class="tab-content active">
                         @foreach ($todayJobs as $job)
                             @include('partials.last-date-job', ['job' => $job])
                         @endforeach
-                        @if ($todayCount > 10)
-                            <a href="#"
-                                class="btn btn-sm btn-primary w-100 mt-2">
-                                View All {{ $todayCount }} Jobs →
-                            </a>
-                        @endif
                     </div>
 
                     <div id="tomorrow" class="tab-content">
