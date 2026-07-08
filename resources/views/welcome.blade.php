@@ -725,7 +725,7 @@ PART 2 - MAIN CONTENT BLOCK
                 <!-- LATEST JOBS -->
                 <div class="section-title">
                     Latest Government Jobs
-                    <img src="{{ asset('public/images/live.png?v=1') }}" alt="Live" class="live-badge">
+                    <img src="{{ asset('public/images/live.png?v=3') }}" alt="Live" class="live-badge">
                 </div>
 
                 @foreach ($latestJobs as $job)
