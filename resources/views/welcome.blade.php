@@ -655,6 +655,36 @@ PART 2 - MAIN CONTENT BLOCK
         .small-link:hover {
             color: #0a5467;
         }
+
+        .last-date-tabs {
+            display: flex;
+            margin: 10px 0;
+            gap: 5px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            border: 0;
+            background: #f3f3f3;
+            padding: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+
+        .tab-btn.active {
+            background: #ffb300;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
     </style>
 
     <div class="container mt-4">
@@ -1278,6 +1308,23 @@ PART 2 - MAIN CONTENT BLOCK
                 if (!$(e.target).closest('.position-relative').length) {
                     $('.search-dropdown').hide();
                 }
+
+            });
+
+
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+
+                btn.addEventListener('click', function() {
+
+                    document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
+
+                    this.classList.add('active');
+
+                    document.getElementById(this.dataset.tab).classList.add('active');
+
+                });
 
             });
         </script>
