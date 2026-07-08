@@ -802,10 +802,10 @@ PART 2 - MAIN CONTENT BLOCK
                             @include('partials.last-date-job', ['job' => $job])
                         @endforeach
                         @if ($todayCount > 10)
-                            <a href="{{ route('last-date-jobs', ['type' => 'today']) }}"
-                                class="btn btn-sm btn-primary w-100 mt-2">
-                                View All {{ $todayCount }} Jobs →
-                            </a>
+                          <a href="{{ route('last-date-soon', ['type' => 'today']) }}"
+   class="btn btn-sm btn-primary w-100 mt-2">
+    View All {{ $todayCount }} Jobs →
+</a>
                         @endif
                     </div>
 
