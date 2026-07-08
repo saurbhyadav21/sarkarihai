@@ -149,3 +149,5 @@ Route::get(
     '/search-jobs',
     [JobController::class, 'searchJobs']
 )->name('search.jobs');
+
+Route::get('/search', [JobController::class, 'search'])->name('search');
