@@ -2243,9 +2243,9 @@ class JobController extends Controller
     public function searchJobs(Request $request)
     {
         $keyword = trim($request->query('q'));
-        dd($keyword);
+        
         if ($keyword) {
-            DB::table('popular_searches')->updateOrInsert(
+            DB::table('search_logs')->updateOrInsert(
                 ['keyword' => strtolower($keyword)],
                 [
                     'count' => DB::raw('count + 1'),
