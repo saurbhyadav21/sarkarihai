@@ -715,7 +715,7 @@ PART 2 - MAIN CONTENT BLOCK
             <div class="col-lg-4">
 
                 <!-- LAST DATE BOX -->
-                <div class="side-box mb-3">
+                {{-- <div class="side-box mb-3">
 
                     <div class="side-title">Last Date Soon</div>
 
@@ -755,6 +755,35 @@ PART 2 - MAIN CONTENT BLOCK
 
                         </a>
                     @endforeach
+
+                </div> --}}
+                <div class="side-box mb-3">
+
+                    <div class="side-title">Last Date Soon</div>
+
+                    <div class="last-date-tabs">
+                        <button class="tab-btn active" data-tab="today">Today</button>
+                        <button class="tab-btn" data-tab="tomorrow">Tomorrow</button>
+                        <button class="tab-btn" data-tab="week">7 Days</button>
+                    </div>
+
+                    <div id="today" class="tab-content active">
+                        @foreach ($todayJobs as $job)
+                            @include('partials.last-date-job', ['job' => $job])
+                        @endforeach
+                    </div>
+
+                    <div id="tomorrow" class="tab-content">
+                        @foreach ($tomorrowJobs as $job)
+                            @include('partials.last-date-job', ['job' => $job])
+                        @endforeach
+                    </div>
+
+                    <div id="week" class="tab-content">
+                        @foreach ($weekJobs as $job)
+                            @include('partials.last-date-job', ['job' => $job])
+                        @endforeach
+                    </div>
 
                 </div>
 
