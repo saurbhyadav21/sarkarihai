@@ -283,28 +283,79 @@
 <body>
 
     <!-- ================= HEADER ================= -->
+    <style>
+        .top-header {
+            background: #fff;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .header-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .logo {
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            height: 58px;
+            width: auto;
+            display: block;
+        }
+
+        .header-menu {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .header-menu .nav-link {
+            color: #222;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .header-menu .nav-link:hover {
+            color: #0066cc;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .search-box input {
+            width: 220px;
+        }
+    </style>
     <div class="top-header">
-        <div class="container d-flex justify-content-between align-items-center">
+        <div class="container header-wrap">
 
-           <a href="{{ url('/') }}" class="logo">
-    <img src="https://sarkarihai.com/public/images/logo.png?v=2"
-         alt="SarkariHai"
-        >
-</a>
+            <a href="https://sarkarihai.com" class="logo">
+                <img src="https://sarkarihai.com/public/images/logo.png?v=2" alt="SarkariHai">
+            </a>
 
-            <div>
-                <a href="#" class="nav-link d-inline">Latest Jobs</a>
-                <a href="#" class="nav-link d-inline">Admit Card</a>
-                <a href="#" class="nav-link d-inline">Result</a>
-                <a href="#" class="nav-link d-inline">Syllabus</a>
-                <a href="#" class="nav-link d-inline">Answer Key</a>
-                <a href="#" class="nav-link d-inline">Admission</a>
+            <div class="header-menu">
+                <a href="#" class="nav-link">Latest Jobs</a>
+                <a href="#" class="nav-link">Admit Card</a>
+                <a href="#" class="nav-link">Result</a>
+                <a href="#" class="nav-link">Syllabus</a>
+                <a href="#" class="nav-link">Answer Key</a>
+                <a href="#" class="nav-link">Admission</a>
             </div>
 
             <div class="search-box">
-                <input type="text" class="form-control d-inline-block" style="width:200px;"
-                    placeholder="Search Jobs...">
-                <button class="btn">Search</button>
+                <input type="text" class="form-control" placeholder="Search Jobs...">
+                <button class="btn btn-primary">Search</button>
             </div>
 
         </div>
