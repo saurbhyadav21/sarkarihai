@@ -734,7 +734,7 @@ PART 2 - MAIN CONTENT BLOCK
                 <div class="section-title">
                     <span>Latest Government Jobs</span>
 
-                    <img src="{{ asset('images/live.png') }}" alt="LIVE" class="live-badge">
+                    <img src="https://sarkarihai.com/public/images/live.png?v=5" alt="LIVE" class="live-badge">
 
                     <span class="last-update">
                         Last Updated:
