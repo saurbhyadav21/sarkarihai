@@ -289,7 +289,7 @@
            <a href="{{ url('/') }}" class="logo">
     <img src="https://sarkarihai.com/public/images/logo.png?v=2"
          alt="SarkariHai"
-         height="50">
+        >
 </a>
 
             <div>
