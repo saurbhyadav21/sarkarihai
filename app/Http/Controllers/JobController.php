@@ -2269,7 +2269,10 @@ class JobController extends Controller
             'popularSearches',
             'todayJobs',
             'tomorrowJobs',
-            'weekJobs'
+            'weekJobs',
+            'todayCount',
+            'tomorrowCount',
+            'weekCount'
         ));
     }
 
