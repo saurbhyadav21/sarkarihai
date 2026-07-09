@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container py-5" style="color: #fff;">
+{{-- <div class="container py-5" style="color: #fff;">
 
     <h1 class="mb-4">Disclaimer</h1>
 
@@ -73,6 +73,6 @@
 
     <p class="mt-4"><strong>Team Sarkarihai</strong></p>
 
-</div>
+</div> --}}
 
 @endsection
