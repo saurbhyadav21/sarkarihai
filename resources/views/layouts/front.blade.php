@@ -497,8 +497,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
                 <div class="footer-title">Support</div>
 
-                <a href="#">Privacy Policy</a>
-                <a href="#">Disclaimer</a>
+                <a href="/privacy-policy">Privacy Policy</a>
+                <a href="/disclaimer">Disclaimer</a>
                 <a href="#">DMCA</a>
                 <a href="#">Sitemap</a>
                 <a href="/contact">Contact</a>
