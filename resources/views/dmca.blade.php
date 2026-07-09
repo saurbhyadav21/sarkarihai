@@ -1152,6 +1152,539 @@ a:hover{
     transition:.35s;
 
 }
+/*==========================================================
+    DMCA.CSS
+    PART-4
+    Responsive + Animation + Polish
+==========================================================*/
+
+
+/*=========================================
+        TABLET (992px)
+=========================================*/
+
+@media (max-width:992px){
+
+.page-hero{
+
+padding:60px 40px;
+
+text-align:center;
+
+}
+
+.page-hero h1{
+
+font-size:42px;
+
+}
+
+.page-hero p{
+
+font-size:17px;
+
+max-width:100%;
+
+}
+
+.page-card{
+
+padding:35px;
+
+}
+
+.feature-card{
+
+margin-bottom:25px;
+
+}
+
+.page-cta{
+
+padding:55px 35px;
+
+}
+
+.page-cta h2{
+
+font-size:34px;
+
+}
+
+}
+
+
+/*=========================================
+        MOBILE (768px)
+=========================================*/
+
+@media (max-width:768px){
+
+.container{
+
+padding-left:15px;
+
+padding-right:15px;
+
+}
+
+/* HERO */
+
+.page-hero{
+
+padding:40px 25px;
+
+border-radius:18px;
+
+}
+
+.page-hero h1{
+
+font-size:32px;
+
+line-height:1.3;
+
+margin-bottom:18px;
+
+}
+
+.page-hero p{
+
+font-size:15px;
+
+line-height:1.8;
+
+}
+
+/* BADGES */
+
+.author-badge{
+
+display:inline-flex;
+
+margin:6px 4px;
+
+padding:10px 15px;
+
+font-size:12px;
+
+}
+
+/* CARD */
+
+.page-card{
+
+padding:25px;
+
+border-radius:18px;
+
+margin-bottom:25px;
+
+}
+
+.page-card h2{
+
+font-size:26px;
+
+}
+
+.page-card h3{
+
+font-size:22px;
+
+}
+
+.page-card p{
+
+font-size:15px;
+
+line-height:1.8;
+
+}
+
+/* FEATURE */
+
+.feature-card{
+
+padding:25px;
+
+}
+
+.feature-icon{
+
+width:65px;
+
+height:65px;
+
+font-size:28px;
+
+}
+
+.feature-card h5{
+
+font-size:20px;
+
+}
+
+/* TIMELINE */
+
+.timeline{
+
+padding-left:35px;
+
+}
+
+.timeline:before{
+
+left:10px;
+
+}
+
+.timeline-item:before{
+
+left:-33px;
+
+width:20px;
+
+height:20px;
+
+border-width:4px;
+
+}
+
+.timeline-title{
+
+font-size:18px;
+
+}
+
+/* CONTACT */
+
+.contact-info{
+
+align-items:flex-start;
+
+}
+
+.contact-icon{
+
+width:55px;
+
+height:55px;
+
+font-size:24px;
+
+}
+
+.contact-value{
+
+font-size:16px;
+
+}
+
+/* CTA */
+
+.page-cta{
+
+padding:40px 20px;
+
+}
+
+.page-cta h2{
+
+font-size:28px;
+
+}
+
+.page-cta p{
+
+font-size:15px;
+
+}
+
+.page-cta .btn{
+
+width:100%;
+
+}
+
+/* FAQ */
+
+.accordion-button{
+
+font-size:16px;
+
+padding:18px;
+
+}
+
+}
+
+
+/*=========================================
+        SMALL MOBILE (480px)
+=========================================*/
+
+@media (max-width:480px){
+
+.page-hero{
+
+padding:35px 20px;
+
+}
+
+.page-hero h1{
+
+font-size:28px;
+
+}
+
+.page-card{
+
+padding:20px;
+
+}
+
+.page-card h2{
+
+font-size:22px;
+
+}
+
+.page-card p{
+
+font-size:14px;
+
+}
+
+.feature-card{
+
+padding:20px;
+
+}
+
+.feature-icon{
+
+width:58px;
+
+height:58px;
+
+font-size:24px;
+
+}
+
+.contact-icon{
+
+width:48px;
+
+height:48px;
+
+font-size:20px;
+
+}
+
+.page-cta{
+
+padding:35px 18px;
+
+}
+
+.page-cta h2{
+
+font-size:24px;
+
+}
+
+.page-cta p{
+
+font-size:14px;
+
+}
+
+}
+
+
+/*=========================================
+        IMAGE
+=========================================*/
+
+img{
+
+max-width:100%;
+
+height:auto;
+
+display:block;
+
+}
+
+
+/*=========================================
+        SCROLLBAR
+=========================================*/
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#0f4cdd;
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#eef4fb;
+
+}
+
+
+/*=========================================
+        SELECTION
+=========================================*/
+
+::selection{
+
+background:#0f4cdd;
+
+color:#fff;
+
+}
+
+
+/*=========================================
+        SMOOTH SCROLL
+=========================================*/
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+
+/*=========================================
+        FADE ANIMATION
+=========================================*/
+
+@keyframes fadeUp{
+
+0%{
+
+opacity:0;
+
+transform:translateY(25px);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.page-card{
+
+animation:fadeUp .5s ease;
+
+}
+
+
+/*=========================================
+        ICON ANIMATION
+=========================================*/
+
+.feature-icon{
+
+transition:.35s;
+
+}
+
+.feature-card:hover .feature-icon{
+
+transform:rotate(10deg) scale(1.08);
+
+}
+
+
+/*=========================================
+        BUTTON EFFECT
+=========================================*/
+
+.btn{
+
+transition:.35s;
+
+}
+
+.btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 12px 25px rgba(0,0,0,.18);
+
+}
+
+
+/*=========================================
+        CARD EFFECT
+=========================================*/
+
+.page-card,
+.feature-card,
+.contact-card{
+
+transition:.35s;
+
+}
+
+.page-card:hover,
+.feature-card:hover,
+.contact-card:hover{
+
+transform:translateY(-5px);
+
+}
+
+
+/*=========================================
+        PRINT MODE
+=========================================*/
+
+@media print{
+
+.page-hero{
+
+background:#fff !important;
+
+color:#000 !important;
+
+box-shadow:none;
+
+}
+
+.page-cta{
+
+display:none;
+
+}
+
+body{
+
+background:#fff;
+
+}
+
+}
 </style>
 <div class="container py-5">
 
