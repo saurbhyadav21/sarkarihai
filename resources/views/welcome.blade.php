@@ -905,40 +905,7 @@
                 font-size: 14px;
             }
 
-            /* FOOTER */
-            .footer {
-                background: #0a5467;
-                color: #fff;
-                padding: 30px;
-                margin-top: 30px;
-                border-radius: 10px 10px 0 0;
-            }
-
-            .footer a {
-                color: #fff;
-                text-decoration: none;
-                display: block;
-                font-size: 14px;
-                margin-bottom: 6px;
-                opacity: .9;
-            }
-
-            .footer a:hover {
-                opacity: 1;
-            }
-
-            .footer-title {
-                font-weight: 800;
-                margin-bottom: 10px;
-            }
-
-            .bottom-bar {
-                text-align: center;
-                padding: 10px;
-                background: #083b49;
-                color: #fff;
-                font-size: 13px;
-            }
+            
         </style>
 
         <div class="container">
