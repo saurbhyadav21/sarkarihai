@@ -498,68 +498,127 @@
 
             <div class="col-lg-7">
 
-                <div class="author-box">
+    <div class="author-box">
 
-                    <h3>
+        <div class="row align-items-center">
 
-                        👨‍💻 About The Author
+            <!-- PHOTO -->
+            <div class="col-md-3 text-center mb-3 mb-md-0">
 
-                    </h3>
+                <img src="{{ asset('public/images/saurbh-yadav.jpg') }}"
+                    class="author-img"
+                    alt="Saurbh Yadav">
 
-                    <p>
+            </div>
 
-                        <strong>Saurbh Yadav</strong> is the founder and content editor of <strong>SarkariHai.com</strong>.
-                        He holds a Bachelor's Degree in Computer Science & Engineering and has more than <strong>10 years of
-                            experience</strong> in web development, education content publishing, and government job
-                        information platforms.
+            <!-- DETAILS -->
+            <div class="col-md-9">
 
-                    </p>
+                <h3 class="mb-1">
+                    👨‍💻 Saurbh Yadav
+                </h3>
 
-                    <p>
+                <div class="author-role mb-3">
+                    Founder • Editor • Full Stack Developer
+                </div>
 
-                        His objective is to provide students and job seekers with accurate, fast, and easy-to-understand
-                        information regarding Government Jobs, Recruitment Notifications, Admit Cards, Results, Answer Keys,
-                        Syllabus, and Admission Updates.
+                <p>
 
-                    </p>
+                    <strong>Saurbh Yadav</strong> is the Founder and Editor of
+                    <strong>SarkariHai.com</strong>.
 
-                    <div class="mt-4">
+                    He holds a Bachelor's Degree in Computer Science & Engineering and has
+                    <strong>10+ years of experience</strong> in software development,
+                    education publishing and Government Job information platforms.
 
-                        <span class="author-badge">
+                </p>
 
-                            10+ Years Experience
+                <p>
 
-                        </span>
+                    His mission is to provide accurate, verified and easy-to-understand
+                    information related to Government Jobs, Admit Cards, Results,
+                    Answer Keys, Admissions and Recruitment Notifications.
 
-                        <span class="author-badge">
+                </p>
 
-                            Government Jobs
+                <div class="author-meta">
 
-                        </span>
+                    <div>
+                        <strong>Experience</strong><br>
+                        10+ Years
+                    </div>
 
-                        <span class="author-badge">
+                    <div>
+                        <strong>Specialization</strong><br>
+                        Government Jobs
+                    </div>
 
-                            Results
-
-                        </span>
-
-                        <span class="author-badge">
-
-                            Admit Cards
-
-                        </span>
-
-                        <span class="author-badge">
-
-                            Education Content
-
-                        </span>
-
+                    <div>
+                        <strong>Education</strong><br>
+                        B.Tech CSE
                     </div>
 
                 </div>
 
             </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <p class="mb-2">
+                    📅 <strong>Last Updated :</strong>
+                    {{ now()->format('d F Y') }}
+                </p>
+
+                <p class="mb-2">
+                    ⏱ <strong>Reading Time :</strong>
+                    3 Minutes
+                </p>
+
+            </div>
+
+            <div class="col-md-6 text-md-end">
+
+                <p class="mb-2">
+                    📧 official.sarkarihai@gmail.com
+                </p>
+
+                <p class="mb-0">
+                    🌐 www.sarkarihai.com
+                </p>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="mt-3">
+
+            <span class="author-badge">✔ Verified Information</span>
+
+            <span class="author-badge">10+ Years Experience</span>
+
+            <span class="author-badge">Government Jobs</span>
+
+            <span class="author-badge">Results</span>
+
+            <span class="author-badge">Admit Cards</span>
+
+            <span class="author-badge">Fact Checked</span>
+
+            <span class="author-badge">Education Content</span>
+
+        </div>
+
+    </div>
+
+</div>
 
         </div>
 
