@@ -182,7 +182,7 @@
                     <div class="latest-ticker">
 
                         <div class="ticker-heading"
-                            style="margin-top: 30px;font-size: 15px;background: #f4b400;width: 16%;color: #000;border-radius: 5px;">
+                            style="margin-top: 30px;font-size: 15px;background: #f4b400;color: #000;border-radius: 5px;">
                             🔥 Latest Updates
                         </div>
 
