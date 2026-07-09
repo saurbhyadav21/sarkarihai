@@ -10,6 +10,7 @@ Route::get('/contact', [JobController::class, 'contact'])->name('contact'); // L
 Route::get('/privacy-policy', [JobController::class, 'privacy'])->name('privacy'); // Landing page
 Route::get('/disclaimer', [JobController::class, 'disclaimer'])->name('disclaimer'); // Landing page
 Route::get('/fact-checking-policy', [JobController::class, 'policy'])->name('policy'); // Landing page
+Route::get('/dmca', [JobController::class, 'dmca'])->name('dmca'); // Landing page
 
 
 Route::get('/job/create', [JobController::class, 'create'])->name('job.create');

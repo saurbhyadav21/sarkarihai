@@ -319,6 +319,22 @@ class JobController extends Controller
     }
 
 
+    public function dmca()
+    {
+        $seo = [
+            'title' => 'dmca',
+            'description' => 'dmca',
+
+
+
+            'keywords' => 'dd'
+
+
+
+        ];
+        return view('dmca', compact('seo'));
+    }
+
     public function edit($id)
     {
         $job = Job::findOrFail($id);
