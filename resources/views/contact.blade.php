@@ -203,7 +203,7 @@
     </div> --}}
     <style>
         .contact-hero {
-            background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+            background: linear-gradient(135deg, #062a3a, #0a5467);
             color: #fff;
             padding: 60px 40px;
             border-radius: 18px;
