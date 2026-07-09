@@ -9,6 +9,13 @@
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <link rel="icon" href="https://sarkarihai.com/public/images/fevicon.ico" sizes="any">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="https://sarkarihai.com/public/images/fevicon.ico">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="https://sarkarihai.com/public/images/fevicon.ico">
+
+    <link rel="apple-touch-icon" href="https://sarkarihai.com/public/images/fevicon.ico">
     <style>
         body {
             background: #f5f7fb;
@@ -342,62 +349,62 @@
 
         </div>
     </div>
-     @yield('content')
-     <!-- ================= FOOTER ================= -->
-        <div class="footer">
+    @yield('content')
+    <!-- ================= FOOTER ================= -->
+    <div class="footer">
 
-            <div class="row">
+        <div class="row">
 
-                <div class="col-lg-4">
+            <div class="col-lg-4">
 
-                    <div class="footer-title">SarkariHai</div>
-                    <p style="font-size:14px;opacity:.9;">
-                        Latest Government Jobs, Admit Card,
-                        Results & Answer Key Updates.
-                    </p>
+                <div class="footer-title">SarkariHai</div>
+                <p style="font-size:14px;opacity:.9;">
+                    Latest Government Jobs, Admit Card,
+                    Results & Answer Key Updates.
+                </p>
 
-                </div>
+            </div>
 
-                <div class="col-lg-3">
+            <div class="col-lg-3">
 
-                    <div class="footer-title">Important Links</div>
+                <div class="footer-title">Important Links</div>
 
-                    <a href="#">Latest Jobs</a>
-                    <a href="#">Admit Card</a>
-                    <a href="#">Results</a>
-                    <a href="#">Answer Key</a>
+                <a href="#">Latest Jobs</a>
+                <a href="#">Admit Card</a>
+                <a href="#">Results</a>
+                <a href="#">Answer Key</a>
 
-                </div>
+            </div>
 
-                <div class="col-lg-3">
+            <div class="col-lg-3">
 
-                    <div class="footer-title">Quick Pages</div>
+                <div class="footer-title">Quick Pages</div>
 
-                    <a href="#">State Jobs</a>
-                    <a href="#">Category Jobs</a>
-                    <a href="#">Contact</a>
-                    <a href="#">About</a>
+                <a href="#">State Jobs</a>
+                <a href="#">Category Jobs</a>
+                <a href="#">Contact</a>
+                <a href="#">About</a>
 
-                </div>
+            </div>
 
-                <div class="col-lg-2">
+            <div class="col-lg-2">
 
-                    <div class="footer-title">Support</div>
+                <div class="footer-title">Support</div>
 
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Disclaimer</a>
-                    <a href="#">DMCA</a>
-                    <a href="#">Sitemap</a>
-
-                </div>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Disclaimer</a>
+                <a href="#">DMCA</a>
+                <a href="#">Sitemap</a>
 
             </div>
 
         </div>
 
-        <div class="bottom-bar">
-            © 2026 SarkariHai.com | All Rights Reserved
-        </div>
+    </div>
+
+    <div class="bottom-bar">
+        © 2026 SarkariHai.com | All Rights Reserved
+    </div>
 
     </div>
     <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
@@ -514,6 +521,6 @@
 
         });
     </script>
-    </body>
+</body>
 
-    </html>
+</html>
