@@ -1,4 +1,4 @@
-@extends('front.layouts')
+@extends('layouts.front')
 @section('content')
 <!-- ================= HERO ================= -->
 <div class="hero">
