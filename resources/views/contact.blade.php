@@ -82,7 +82,7 @@
 
         }
     </style>
-    <div class="container py-5" style="    color: #fff;">
+    <div class="container py-5" style="    ">
 
         <h1 class="mb-4">Contact Us</h1>
 
