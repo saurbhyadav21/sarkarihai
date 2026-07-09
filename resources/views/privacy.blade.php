@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container py-5" style="">
+{{-- <div class="container py-5" style="">
 
     <h1 class="mb-4">Privacy Policy</h1>
 
@@ -143,6 +143,287 @@
         हालांकि हम आपकी जानकारी की सुरक्षा के लिए उचित प्रयास करते हैं,
         लेकिन इंटरनेट पर कोई भी प्रणाली पूरी तरह सुरक्षित नहीं होती।
     </p>
+
+</div> --}}
+
+<div class="container py-5">
+
+    <!-- ================= HERO ================= -->
+
+    <div class="contact-hero">
+
+        <h1>Privacy Policy</h1>
+
+        <p>
+
+            At <strong>SarkariHai.com</strong>, we respect your privacy and are committed
+            to protecting your personal information. This Privacy Policy explains
+            what information we collect, how we use it, and the choices you have
+            regarding your data while using our website.
+
+        </p>
+
+        <div class="mt-4">
+
+            <span class="author-badge">
+                🔒 Privacy First
+            </span>
+
+            <span class="author-badge">
+                📅 Last Updated: {{ now()->format('d F Y') }}
+            </span>
+
+            <span class="author-badge">
+                🌐 Effective Worldwide
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= QUICK SUMMARY ================= -->
+
+    <div class="contact-card">
+
+        <h2>📌 Privacy at a Glance</h2>
+
+        <div class="row mt-4">
+
+            <div class="col-md-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🔐</div>
+
+                    <h4>Secure</h4>
+
+                    <p>
+
+                        We take reasonable measures to protect user information.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🍪</div>
+
+                    <h4>Cookies</h4>
+
+                    <p>
+
+                        Cookies help improve website functionality and user experience.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">📊</div>
+
+                    <h4>Analytics</h4>
+
+                    <p>
+
+                        Anonymous usage data helps us improve our services.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">✅</div>
+
+                    <h4>Transparency</h4>
+
+                    <p>
+
+                        We clearly explain how and why your information is used.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= INFORMATION WE COLLECT ================= -->
+
+    <div class="contact-card">
+
+        <h2>📂 Information We Collect</h2>
+
+        <p>
+
+            Depending on how you interact with SarkariHai.com, we may collect
+            certain information to improve your browsing experience and provide
+            relevant services.
+
+        </p>
+
+        <div class="row mt-4">
+
+            <div class="col-md-6">
+
+                <div class="feature-card text-start">
+
+                    <h4>👤 Personal Information</h4>
+
+                    <ul class="mb-0">
+
+                        <li>Name (if voluntarily provided)</li>
+
+                        <li>Email Address</li>
+
+                        <li>Contact Information</li>
+
+                        <li>Information submitted through forms</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="feature-card text-start">
+
+                    <h4>💻 Technical Information</h4>
+
+                    <ul class="mb-0">
+
+                        <li>IP Address</li>
+
+                        <li>Browser Type</li>
+
+                        <li>Operating System</li>
+
+                        <li>Device Information</li>
+
+                        <li>Pages Visited</li>
+
+                        <li>Time Spent on Website</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= HOW WE USE INFORMATION ================= -->
+
+    <div class="contact-card">
+
+        <h2>⚙️ How We Use Your Information</h2>
+
+        <p>
+
+            The information collected helps us maintain and improve SarkariHai.com
+            while providing users with a better experience.
+
+        </p>
+
+        <div class="row mt-4">
+
+            <div class="col-md-6">
+
+                <ul>
+
+                    <li>Improve website performance and usability.</li>
+
+                    <li>Respond to user queries and feedback.</li>
+
+                    <li>Provide requested services and support.</li>
+
+                    <li>Maintain website security.</li>
+
+                </ul>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <ul>
+
+                    <li>Analyze website traffic.</li>
+
+                    <li>Display relevant advertisements.</li>
+
+                    <li>Improve content quality.</li>
+
+                    <li>Detect technical issues and spam.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= COOKIES ================= -->
+
+    <div class="contact-card">
+
+        <h2>🍪 Cookies Policy</h2>
+
+        <p>
+
+            SarkariHai.com uses cookies to improve website functionality,
+            remember user preferences and analyze visitor behavior.
+
+        </p>
+
+        <p>
+
+            Cookies are small text files stored on your device by your browser.
+            They help us understand how visitors use our website and enable
+            certain features to work properly.
+
+        </p>
+
+        <div class="alert alert-info mt-4">
+
+            <strong>Note:</strong>
+
+            You can disable cookies anytime through your browser settings.
+            However, some features of the website may not function properly
+            after disabling cookies.
+
+        </div>
+
+    </div>
 
 </div>
 
