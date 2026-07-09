@@ -501,6 +501,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 <a href="#">Disclaimer</a>
                 <a href="#">DMCA</a>
                 <a href="#">Sitemap</a>
+                <a href="/contact">Contact</a>
 
             </div>
 
