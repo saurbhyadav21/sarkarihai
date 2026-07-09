@@ -2,6 +2,11 @@
 
 @section('content')
     <style>
+        /* ===========================================================
+       SARKARIHAI DISCLAIMER PAGE
+       Version : 1.0
+    =========================================================== */
+
         body {
             background: #f4f7fb;
             font-family: 'Segoe UI', sans-serif;
@@ -309,55 +314,6 @@
         .alert-danger {
 
             background: #fdecec;
-
-            color: #842029;
-
-        }
-
-
-        /* =========================================
-       DISCLAIMER PAGE
-    ========================================= */
-
-        .disclaimer-warning {
-
-            background: #fff8e6;
-
-            border-left: 5px solid #ffc107;
-
-            padding: 20px;
-
-            border-radius: 10px;
-
-            color: #6c4d00;
-
-            margin-top: 20px;
-
-        }
-
-        .disclaimer-success {
-
-            background: #eefbf3;
-
-            border-left: 5px solid #28a745;
-
-            padding: 20px;
-
-            border-radius: 10px;
-
-            color: #1d6f42;
-
-        }
-
-        .disclaimer-danger {
-
-            background: #fff0f0;
-
-            border-left: 5px solid #dc3545;
-
-            padding: 20px;
-
-            border-radius: 10px;
 
             color: #842029;
 
