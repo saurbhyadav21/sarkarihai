@@ -645,7 +645,7 @@
 
         <!-- ================= INFORMATION WE COLLECT ================= -->
 
-        <div class="contact-card">
+        <div class="page-card">
 
             <h2>📂 Information We Collect</h2>
 
@@ -715,7 +715,7 @@
 
         <!-- ================= HOW WE USE INFORMATION ================= -->
 
-        <div class="contact-card">
+        <div class="page-card">
 
             <h2>⚙️ How We Use Your Information</h2>
 
@@ -768,7 +768,7 @@
 
         <!-- ================= COOKIES ================= -->
 
-        <div class="contact-card">
+        <div class="page-card">
 
             <h2>🍪 Cookies Policy</h2>
 
