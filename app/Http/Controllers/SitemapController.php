@@ -129,29 +129,23 @@ class SitemapController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    foreach($jobs as $job){
+    foreach ($jobs as $job) {
 
-        $xml .= '
-        <url>
+    $jobUrl = url(
+        'sarkari-naukri/' .
+        Str::slug($job->state ?: 'all-india') . '/' .
+        Str::slug($job->category ?: 'government') . '/' .
+        $job->slug
+    );
 
-            <loc>'.
-            url(
-                'sarkari-naukri/'.
-                ($job->state ?: 'all-india').'/'
-                .($job->category ?: 'government').'/'
-                .$job->slug
-            )
-            .'</loc>
-
-            <lastmod>'.\Carbon\Carbon::parse($job->updated_at)->toAtomString().'</lastmod>
-
-            <changefreq>daily</changefreq>
-
-            <priority>0.9</priority>
-
-        </url>';
-
-    }
+    $xml .= '
+    <url>
+        <loc>' . htmlspecialchars($jobUrl, ENT_XML1, 'UTF-8') . '</loc>
+        <lastmod>' . \Carbon\Carbon::parse($job->updated_at)->toAtomString() . '</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>';
+}
 
     $xml .= '</urlset>';
 
