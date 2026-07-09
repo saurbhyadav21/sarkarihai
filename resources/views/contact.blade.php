@@ -680,6 +680,241 @@
             </div>
 
         </div>
+        <!-- ================= FINAL CTA ================= -->
+
+        <div class="contact-card text-center">
+
+            <h2>Need Help?</h2>
+
+            <p class="mb-4">
+
+                If you have any questions, feedback, correction requests or business enquiries,
+                feel free to contact our team.
+
+                We usually respond within <strong>24–48 hours.</strong>
+
+            </p>
+
+            <a href="mailto:official.sarkarihai@gmail.com" class="btn btn-primary btn-lg px-5">
+
+                📧 Contact Us
+
+            </a>
+
+        </div>
+
+
+
+        <!-- ================= FAQ ================= -->
+
+        <div class="contact-card">
+
+            <h2 class="mb-4">Frequently Asked Questions</h2>
+
+            <div class="accordion" id="faqAccordion">
+
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header">
+
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+
+                            Is SarkariHai an official Government website?
+
+                        </button>
+
+                    </h2>
+
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+
+                        <div class="accordion-body">
+
+                            No. SarkariHai.com is an independent educational information portal.
+                            We are not associated with any Government department or recruitment agency.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header">
+
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq2">
+
+                            How often is SarkariHai updated?
+
+                        </button>
+
+                    </h2>
+
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+
+                        <div class="accordion-body">
+
+                            Our editorial team updates the website regularly whenever official
+                            recruitment notifications, admit cards, results or answer keys are released.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header">
+
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq3">
+
+                            Can I report an incorrect job notification?
+
+                        </button>
+
+                    </h2>
+
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+
+                        <div class="accordion-body">
+
+                            Yes. Please email us with the correct information and the page URL.
+                            Our team will verify the details and update the article if necessary.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header">
+
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq4">
+
+                            Is SarkariHai free to use?
+
+                        </button>
+
+                    </h2>
+
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+
+                        <div class="accordion-body">
+
+                            Yes. All Government Job notifications, Results, Admit Cards,
+                            Answer Keys and educational updates available on SarkariHai.com
+                            are completely free for users.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= HINDI SECTION ================= -->
+
+        <div class="contact-card">
+
+            <h2>संपर्क करें</h2>
+
+            <p>
+
+                <strong>SarkariHai.com</strong> पर आने के लिए आपका धन्यवाद।
+
+                हमारा उद्देश्य सरकारी नौकरियों, एडमिट कार्ड, रिजल्ट, उत्तर कुंजी,
+                प्रवेश और अन्य शिक्षा संबंधी जानकारी सरल, सटीक और समय पर उपलब्ध कराना है।
+
+            </p>
+
+            <p>
+
+                यदि आपको वेबसाइट पर किसी प्रकार की त्रुटि दिखाई देती है,
+                किसी भर्ती की जानकारी अपडेट करनी है,
+                या आपके पास कोई सुझाव है,
+                तो आप हमें ईमेल के माध्यम से संपर्क कर सकते हैं।
+
+            </p>
+
+            <div class="alert alert-success mt-4">
+
+                <strong>ईमेल :</strong>
+
+                official.sarkarihai@gmail.com
+
+            </div>
+
+            <p>
+
+                हमारी टीम प्रत्येक वास्तविक सुझाव और सुधार अनुरोध की समीक्षा करती है
+                और आवश्यकता होने पर संबंधित लेख को अपडेट करती है।
+
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= TRUST BOX ================= -->
+
+        <div class="contact-card text-center">
+
+            <h2>Why Millions of Users Trust SarkariHai</h2>
+
+            <div class="row mt-4">
+
+                <div class="col-md-3">
+
+                    <h3 class="text-primary fw-bold">✓</h3>
+
+                    <p>Official Sources</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h3 class="text-primary fw-bold">✓</h3>
+
+                    <p>Regular Updates</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h3 class="text-primary fw-bold">✓</h3>
+
+                    <p>Fact Checked Content</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h3 class="text-primary fw-bold">✓</h3>
+
+                    <p>100% Free Access</p>
+
+                </div>
+
+            </div>
+
+        </div>
         <!-- ================= CONTENT TRANSPARENCY ================= -->
 
         <div class="row mt-5">
