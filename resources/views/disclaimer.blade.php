@@ -17,7 +17,7 @@
 
         .page-hero {
 
-            background: linear-gradient(135deg, #0d6efd, #0056d6);
+            background: linear-gradient(135deg, #062a3a, #0a5467);
 
             color: #fff;
 
