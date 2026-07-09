@@ -330,7 +330,41 @@
         .header-menu .nav-link:hover {
             color: #0d6efd;
         }
+
+        .menu-btn {
+            margin-left: auto;
+            border: 0;
+            background: transparent;
+            font-size: 30px;
+            line-height: 1;
+        }
+
+        .mobile-link {
+            display: block;
+            padding: 14px 0;
+            color: #222;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-link:hover {
+            color: #0d6efd;
+        }
+
+        @media (max-width:991px) {
+
+            .top-header {
+                padding: 8px 0;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+        }
     </style>
+    <!-- ================= HEADER ================= -->
     <div class="top-header">
         <div class="container header-wrap">
 
@@ -338,7 +372,8 @@
                 <img src="https://sarkarihai.com/public/images/logo.png?v=2" alt="SarkariHai">
             </a>
 
-            <div class="header-menu">
+            <!-- Desktop Menu -->
+            <div class="header-menu d-none d-lg-flex">
                 <a href="#" class="nav-link">Latest Jobs</a>
                 <a href="#" class="nav-link">Admit Card</a>
                 <a href="#" class="nav-link">Result</a>
@@ -347,7 +382,39 @@
                 <a href="#" class="nav-link">Admission</a>
             </div>
 
+            <!-- Mobile Menu Button -->
+            <button class="menu-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                <i class="bi bi-list"></i>
+            </button>
+
         </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
+
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Menu</h5>
+
+            <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+
+        <div class="offcanvas-body">
+
+            <a href="#" class="mobile-link">Latest Jobs</a>
+
+            <a href="#" class="mobile-link">Admit Card</a>
+
+            <a href="#" class="mobile-link">Result</a>
+
+            <a href="#" class="mobile-link">Syllabus</a>
+
+            <a href="#" class="mobile-link">Answer Key</a>
+
+            <a href="#" class="mobile-link">Admission</a>
+
+        </div>
+
     </div>
     @yield('content')
     <!-- ================= FOOTER ================= -->
