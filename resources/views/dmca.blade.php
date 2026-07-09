@@ -4,98 +4,315 @@
 
 
 <style>
-    /*==========================================================
-    DMCA PAGE EXTRA CSS
+/*==========================================================
+    SARKARIHAI.COM
+    DMCA POLICY
+    Premium CSS v2.0
+    Part-1
 ==========================================================*/
 
-/* DMCA Hero */
+
+/*==============================
+        ROOT COLORS
+==============================*/
+
+:root{
+
+    --primary:#0f4cdd;
+    --primary-dark:#0b3eb2;
+    --secondary:#1e88e5;
+
+    --bg:#f5f8fc;
+    --white:#ffffff;
+
+    --text:#1e293b;
+    --text-light:#64748b;
+
+    --border:#e7edf5;
+
+    --success:#16a34a;
+    --danger:#dc2626;
+    --warning:#f59e0b;
+
+    --radius:18px;
+
+    --shadow-sm:0 8px 24px rgba(15,76,221,.08);
+
+    --shadow:0 20px 50px rgba(15,76,221,.12);
+
+    --transition:.35s ease;
+
+}
+
+
+/*==============================
+        BODY
+==============================*/
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:
+    Inter,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+
+    font-size:16px;
+
+    line-height:1.8;
+
+}
+
+
+/*==============================
+        CONTAINER
+==============================*/
+
+.container{
+
+    max-width:1240px;
+
+}
+
+
+/*==============================
+        LINKS
+==============================*/
+
+a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+a:hover{
+
+    color:var(--primary-dark);
+
+}
+
+
+/*==============================
+        HERO
+==============================*/
+
 .page-hero{
 
-    background:linear-gradient(135deg,#0d47a1,#1976d2);
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+    135deg,
+    #0f4cdd,
+    #1f7fff);
+
+    color:#fff;
+
+    padding:85px 70px;
+
+    border-radius:24px;
+
+    margin-bottom:55px;
+
+    box-shadow:var(--shadow);
 
 }
 
 
-/* Contact Card */
+/* decorative circles */
 
-.contact-card{
+.page-hero:before{
 
-    background:#f8fbff;
+    content:"";
 
-    border:1px solid #e6eefb;
+    position:absolute;
 
-    border-radius:18px;
+    right:-80px;
 
-    padding:25px;
+    top:-80px;
 
-}
+    width:280px;
 
-.contact-info{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
-
-    padding:18px 0;
-
-    border-bottom:1px solid #edf2f7;
-
-}
-
-.contact-info:last-child{
-
-    border-bottom:none;
-
-}
-
-.contact-icon{
-
-    width:58px;
-
-    height:58px;
+    height:280px;
 
     border-radius:50%;
 
-    background:#0d6efd;
+    background:rgba(255,255,255,.08);
 
-    color:#fff;
+}
 
-    display:flex;
+.page-hero:after{
+
+    content:"";
+
+    position:absolute;
+
+    left:-70px;
+
+    bottom:-70px;
+
+    width:210px;
+
+    height:210px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.06);
+
+}
+
+
+/*==============================
+        HERO TITLE
+==============================*/
+
+.page-hero h1{
+
+    position:relative;
+
+    z-index:2;
+
+    font-size:54px;
+
+    font-weight:800;
+
+    letter-spacing:-1px;
+
+    margin-bottom:22px;
+
+}
+
+
+/*==============================
+        HERO TEXT
+==============================*/
+
+.page-hero p{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:850px;
+
+    font-size:19px;
+
+    color:rgba(255,255,255,.92);
+
+    line-height:1.9;
+
+}
+
+
+/*==============================
+        BADGES
+==============================*/
+
+.author-badge{
+
+    position:relative;
+
+    z-index:2;
+
+    display:inline-flex;
 
     align-items:center;
 
-    justify-content:center;
+    gap:8px;
 
-    font-size:24px;
+    margin:8px 8px 0 0;
 
-    flex-shrink:0;
+    padding:12px 20px;
 
-}
+    border-radius:50px;
 
+    background:rgba(255,255,255,.16);
 
-/* CTA */
+    border:1px solid rgba(255,255,255,.20);
 
-.page-cta{
-
-    background:linear-gradient(135deg,#0d6efd,#0dcaf0);
+    backdrop-filter:blur(10px);
 
     color:#fff;
 
-    text-align:center;
+    font-size:14px;
 
-    padding:55px;
-
-    border-radius:18px;
-
-    margin-top:45px;
+    font-weight:600;
 
 }
 
-.page-cta h2{
+
+/*==============================
+        PAGE CARD
+==============================*/
+
+.page-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:45px;
+
+    margin-bottom:35px;
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow-sm);
+
+    transition:var(--transition);
+
+}
+
+.page-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow);
+
+}
+
+
+/*==============================
+        HEADINGS
+==============================*/
+
+.page-card h2{
 
     font-size:34px;
+
+    font-weight:800;
+
+    margin-bottom:20px;
+
+    color:#0f172a;
+
+}
+
+.page-card h3{
+
+    font-size:26px;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+    color:#1e293b;
+
+}
+
+.page-card h4{
+
+    font-size:22px;
 
     font-weight:700;
 
@@ -103,556 +320,327 @@
 
 }
 
-.page-cta p{
 
-    font-size:18px;
-
-    max-width:750px;
-
-    margin:0 auto 30px;
-
-    line-height:1.8;
-
-}
-
-.page-cta .btn{
-
-    padding:14px 36px;
-
-    border-radius:30px;
-
-    font-weight:600;
-
-}
-
-
-/* FAQ */
-
-.accordion-item{
-
-    border:1px solid #e9edf5;
-
-    border-radius:12px !important;
-
-    overflow:hidden;
-
-    margin-bottom:15px;
-
-}
-
-.accordion-button{
-
-    font-weight:600;
-
-    padding:18px 20px;
-
-}
-
-.accordion-button:not(.collapsed){
-
-    background:#eef6ff;
-
-    color:#0d47a1;
-
-    box-shadow:none;
-
-}
-
-.accordion-button:focus{
-
-    box-shadow:none;
-
-}
-
-
-/* Mobile */
-
-@media(max-width:768px){
-
-.page-hero{
-
-padding:45px 25px;
-
-}
-
-.page-hero h1{
-
-font-size:32px;
-
-}
-
-.page-card{
-
-padding:22px;
-
-}
-
-.page-cta{
-
-padding:40px 20px;
-
-}
-
-.page-cta h2{
-
-font-size:26px;
-
-}
-
-.contact-info{
-
-align-items:flex-start;
-
-}
-
-}
-/*==========================================================
-    RESPONSIVE CSS
-    Static Pages
-==========================================================*/
-
-
-/*======================
-        Tablet
-======================*/
-
-@media (max-width:992px){
-
-.page-hero{
-
-padding:55px 35px;
-
-text-align:center;
-
-}
-
-.page-hero h1{
-
-font-size:38px;
-
-}
-
-.page-hero p{
-
-font-size:17px;
-
-}
-
-.page-card{
-
-padding:30px;
-
-}
-
-.feature-card{
-
-margin-bottom:25px;
-
-}
-
-.author-meta{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:15px;
-
-}
-
-.contact-card{
-
-margin-top:25px;
-
-}
-
-.page-cta{
-
-padding:45px 30px;
-
-}
-
-.page-cta h2{
-
-font-size:30px;
-
-}
-
-}
-
-
-/*======================
-        Mobile
-======================*/
-
-@media (max-width:768px){
-
-.container{
-
-padding-left:15px;
-
-padding-right:15px;
-
-}
-
-.page-hero{
-
-padding:40px 22px;
-
-border-radius:15px;
-
-}
-
-.page-hero h1{
-
-font-size:30px;
-
-line-height:1.3;
-
-}
-
-.page-hero p{
-
-font-size:15px;
-
-line-height:1.8;
-
-}
-
-.author-badge{
-
-display:inline-block;
-
-margin:5px 4px;
-
-font-size:13px;
-
-padding:8px 14px;
-
-}
-
-.page-card{
-
-padding:22px;
-
-border-radius:15px;
-
-margin-bottom:25px;
-
-}
-
-.page-card h2{
-
-font-size:25px;
-
-}
-
-.page-card h3{
-
-font-size:21px;
-
-}
+/*==============================
+        PARAGRAPHS
+==============================*/
 
 .page-card p{
 
-font-size:15px;
+    color:var(--text-light);
 
-line-height:1.9;
+    font-size:17px;
 
-}
+    line-height:2;
 
-.page-card li{
-
-font-size:15px;
-
-line-height:1.8;
+    margin-bottom:18px;
 
 }
 
-.feature-card{
 
-padding:22px;
+/*==============================
+        STRONG
+==============================*/
 
-margin-bottom:20px;
+.page-card strong{
 
-}
+    color:#0f172a;
 
-.feature-icon{
-
-width:65px;
-
-height:65px;
-
-font-size:28px;
-
-}
-
-.contact-info{
-
-flex-direction:row;
-
-align-items:flex-start;
-
-gap:15px;
-
-}
-
-.contact-icon{
-
-width:50px;
-
-height:50px;
-
-font-size:22px;
-
-}
-
-.timeline{
-
-padding-left:28px;
-
-}
-
-.timeline:before{
-
-left:10px;
-
-}
-
-.timeline-item:before{
-
-left:-23px;
-
-width:16px;
-
-height:16px;
-
-}
-
-.timeline-title{
-
-font-size:18px;
-
-}
-
-.author-meta{
-
-grid-template-columns:1fr;
-
-}
-
-.info-box{
-
-padding:18px;
-
-font-size:15px;
-
-}
-
-.alert{
-
-padding:16px;
-
-font-size:15px;
-
-}
-
-.page-cta{
-
-padding:35px 20px;
-
-border-radius:15px;
-
-}
-
-.page-cta h2{
-
-font-size:25px;
-
-}
-
-.page-cta p{
-
-font-size:15px;
-
-}
-
-.page-cta .btn{
-
-width:100%;
-
-margin-top:10px;
-
-}
-
-.accordion-button{
-
-font-size:15px;
-
-padding:16px;
-
-}
-
-.table-responsive{
-
-overflow-x:auto;
-
-}
-
-.check-table{
-
-min-width:650px;
-
-}
+    font-weight:700;
 
 }
 
 
-/*======================
-      Small Mobile
-======================*/
+/*==============================
+        HORIZONTAL LINE
+==============================*/
 
-@media (max-width:480px){
+.page-card hr{
 
-.page-hero{
+    border:none;
 
-padding:35px 18px;
+    border-top:1px solid var(--border);
 
-}
-
-.page-hero h1{
-
-font-size:26px;
-
-}
-
-.page-card{
-
-padding:18px;
-
-}
-
-.page-card h2{
-
-font-size:22px;
-
-}
-
-.page-card p{
-
-font-size:14px;
-
-}
-
-.feature-card{
-
-padding:18px;
-
-}
-
-.feature-icon{
-
-width:58px;
-
-height:58px;
-
-font-size:24px;
-
-}
-
-.author-badge{
-
-font-size:12px;
-
-padding:7px 12px;
-
-}
-
-.contact-icon{
-
-width:45px;
-
-height:45px;
-
-font-size:20px;
-
-}
-
-.page-cta{
-
-padding:30px 18px;
-
-}
-
-.page-cta h2{
-
-font-size:22px;
-
-}
-
-.page-cta p{
-
-font-size:14px;
-
-}
+    margin:35px 0;
 
 }
 
 
-/*======================
-      Image Responsive
-======================*/
-
-img{
-
-max-width:100%;
-
-height:auto;
-
-display:block;
-
-}
-
-
-/*======================
-      Smooth Scroll
-======================*/
-
-html{
-
-scroll-behavior:smooth;
-
-}
-
-
-/*======================
-      Selection
-======================*/
+/*==============================
+        TEXT SELECTION
+==============================*/
 
 ::selection{
 
-background:#0d6efd;
+    background:#0f4cdd;
 
-color:#fff;
+    color:#fff;
 
 }
-
 /*==========================================================
     DMCA.CSS
     PART-2
+    Cards • Lists • Timeline • Alerts
 ==========================================================*/
 
-/*==========================
-      TIMELINE
-==========================*/
+
+/*==============================
+        FEATURE GRID
+==============================*/
+
+.feature-card{
+
+    background:#fff;
+
+    border:1px solid #e9eef6;
+
+    border-radius:22px;
+
+    padding:35px 28px;
+
+    text-align:center;
+
+    height:100%;
+
+    transition:.35s;
+
+    box-shadow:
+    0 12px 30px rgba(15,76,221,.05);
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 25px 55px rgba(15,76,221,.15);
+
+    border-color:#d7e6ff;
+
+}
+
+.feature-icon{
+
+    width:78px;
+
+    height:78px;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:34px;
+
+    background:
+    linear-gradient(135deg,#0f4cdd,#3fa2ff);
+
+    color:#fff;
+
+    box-shadow:
+    0 18px 35px rgba(15,76,221,.25);
+
+}
+
+.feature-card h5{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+    color:#111827;
+
+}
+
+.feature-card p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:15px;
+
+    line-height:1.9;
+
+}
+
+
+/*==============================
+        LISTS
+==============================*/
+
+.page-card ul{
+
+    margin:25px 0;
+
+    padding:0;
+
+    list-style:none;
+
+}
+
+.page-card ul li{
+
+    position:relative;
+
+    padding-left:38px;
+
+    margin-bottom:18px;
+
+    color:#475569;
+
+    font-size:16px;
+
+    line-height:1.9;
+
+}
+
+.page-card ul li:before{
+
+    content:"✔";
+
+    position:absolute;
+
+    left:0;
+
+    top:2px;
+
+    width:24px;
+
+    height:24px;
+
+    border-radius:50%;
+
+    background:#e8f3ff;
+
+    color:#0f4cdd;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+/*==============================
+        INFO BOX
+==============================*/
+
+.info-box{
+
+    margin-top:30px;
+
+    padding:28px;
+
+    border-radius:18px;
+
+    background:
+
+    linear-gradient(
+    135deg,
+    #eef5ff,
+    #f8fbff);
+
+    border-left:6px solid #0f4cdd;
+
+    color:#334155;
+
+    line-height:1.9;
+
+    box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.7);
+
+}
+
+
+/*==============================
+        ALERTS
+==============================*/
+
+.alert{
+
+    margin-top:25px;
+
+    border:none;
+
+    border-radius:18px;
+
+    padding:24px 28px;
+
+    line-height:1.9;
+
+    font-size:16px;
+
+}
+
+.alert-success{
+
+    background:#edfdf3;
+
+    color:#166534;
+
+    border-left:6px solid #22c55e;
+
+}
+
+.alert-warning{
+
+    background:#fff8eb;
+
+    color:#9a6700;
+
+    border-left:6px solid #f59e0b;
+
+}
+
+.alert-danger{
+
+    background:#fff1f2;
+
+    color:#b42318;
+
+    border-left:6px solid #ef4444;
+
+}
+
+.alert-primary{
+
+    background:#eef6ff;
+
+    color:#0f4cdd;
+
+    border-left:6px solid #0f4cdd;
+
+}
+
+
+/*==============================
+        TIMELINE
+==============================*/
 
 .timeline{
 
     position:relative;
 
-    margin-top:30px;
+    margin-top:35px;
 
-    padding-left:45px;
+    padding-left:70px;
 
 }
 
@@ -662,7 +650,7 @@ color:#fff;
 
     position:absolute;
 
-    left:15px;
+    left:24px;
 
     top:0;
 
@@ -670,9 +658,12 @@ color:#fff;
 
     width:4px;
 
-    background:linear-gradient(180deg,#0d6efd,#00c6ff);
+    border-radius:50px;
 
-    border-radius:20px;
+    background:
+    linear-gradient(
+    #0f4cdd,
+    #5ab2ff);
 
 }
 
@@ -680,7 +671,7 @@ color:#fff;
 
     position:relative;
 
-    padding-bottom:35px;
+    padding-bottom:45px;
 
 }
 
@@ -696,134 +687,115 @@ color:#fff;
 
     position:absolute;
 
-    left:-37px;
+    left:-56px;
 
-    top:5px;
+    top:2px;
 
-    width:20px;
+    width:28px;
 
-    height:20px;
+    height:28px;
 
     border-radius:50%;
 
-    background:#0d6efd;
+    background:#fff;
 
-    border:4px solid #fff;
+    border:6px solid #0f4cdd;
 
-    box-shadow:0 0 0 5px rgba(13,110,253,.15);
+    box-shadow:
+    0 0 0 6px rgba(15,76,221,.10);
 
 }
 
 .timeline-title{
 
-    font-size:21px;
+    font-size:23px;
 
     font-weight:700;
 
-    color:#0d47a1;
+    color:#0f172a;
 
-    margin-bottom:12px;
+    margin-bottom:10px;
 
 }
 
 .timeline p{
 
-    color:#555;
+    color:#64748b;
+
+    margin:0;
+
+}
+
+
+/*==============================
+        QUOTE BOX
+==============================*/
+
+.quote-box{
+
+    margin-top:30px;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    background:#f8fbff;
+
+    border-left:6px solid #0f4cdd;
+
+    font-size:18px;
+
+    color:#475569;
+
+    font-style:italic;
 
     line-height:1.9;
 
 }
 
 
-/*==========================
-        INFO BOX
-==========================*/
+/*==============================
+        SECTION GAP
+==============================*/
 
-.info-box{
+.page-card+.page-card{
 
-    margin-top:25px;
-
-    background:#eef6ff;
-
-    border-left:5px solid #0d6efd;
-
-    padding:20px 25px;
-
-    border-radius:12px;
-
-    color:#084298;
-
-    line-height:1.8;
+    margin-top:40px;
 
 }
+/*==========================================================
+    DMCA.CSS
+    PART-3
+    Contact • FAQ • CTA • Buttons
+==========================================================*/
 
 
-/*==========================
-        ALERTS
-==========================*/
-
-.alert{
-
-    border:none;
-
-    border-radius:12px;
-
-    padding:18px 22px;
-
-    margin-top:25px;
-
-    line-height:1.8;
-
-}
-
-.alert-success{
-
-    background:#e9f8ef;
-
-    color:#146c43;
-
-}
-
-.alert-warning{
-
-    background:#fff4db;
-
-    color:#8a6d3b;
-
-}
-
-.alert-danger{
-
-    background:#fdecec;
-
-    color:#842029;
-
-}
-
-.alert-primary{
-
-    background:#eef5ff;
-
-    color:#084298;
-
-}
-
-
-/*==========================
-        CONTACT CARD
-==========================*/
+/*=========================================
+            CONTACT CARD
+=========================================*/
 
 .contact-card{
 
-    background:#fff;
+    background:#ffffff;
 
-    border-radius:18px;
+    border-radius:22px;
 
-    border:1px solid #edf2f7;
+    padding:35px;
 
-    padding:25px;
+    border:1px solid #e8eef8;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.05);
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.06);
+
+}
+
+.contact-card h3{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin-bottom:25px;
 
 }
 
@@ -837,7 +809,7 @@ color:#fff;
 
     padding:18px 0;
 
-    border-bottom:1px solid #edf2f7;
+    border-bottom:1px solid #eef3f8;
 
 }
 
@@ -849,15 +821,13 @@ color:#fff;
 
 .contact-icon{
 
-    width:58px;
+    width:65px;
 
-    height:58px;
+    height:65px;
 
-    border-radius:50%;
+    flex-shrink:0;
 
-    background:#0d6efd;
-
-    color:#fff;
+    border-radius:18px;
 
     display:flex;
 
@@ -865,48 +835,85 @@ color:#fff;
 
     justify-content:center;
 
-    font-size:24px;
+    background:
+    linear-gradient(135deg,#0f4cdd,#53b2ff);
 
-    flex-shrink:0;
+    color:#fff;
+
+    font-size:28px;
+
+    box-shadow:
+    0 15px 30px rgba(15,76,221,.18);
+
+}
+
+.contact-title{
+
+    font-size:15px;
+
+    color:#64748b;
+
+    margin-bottom:3px;
+
+}
+
+.contact-value{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#111827;
 
 }
 
 
-/*==========================
-            FAQ
-==========================*/
+
+/*=========================================
+              ACCORDION
+=========================================*/
+
+.accordion{
+
+    margin-top:25px;
+
+}
 
 .accordion-item{
 
-    border:1px solid #e9edf5;
+    border:none;
 
-    border-radius:12px !important;
+    border-radius:18px !important;
 
     overflow:hidden;
 
-    margin-bottom:15px;
+    margin-bottom:18px;
+
+    box-shadow:
+
+        0 12px 28px rgba(0,0,0,.05);
 
 }
 
 .accordion-button{
 
-    padding:18px 20px;
+    background:#fff;
 
-    font-size:17px;
+    font-size:18px;
 
     font-weight:600;
 
-    background:#fff;
+    padding:22px 24px;
+
+    color:#111827;
 
 }
 
 .accordion-button:not(.collapsed){
 
-    background:#eef6ff;
+    background:#0f4cdd;
 
-    color:#0d47a1;
-
-    box-shadow:none;
+    color:#fff;
 
 }
 
@@ -918,97 +925,231 @@ color:#fff;
 
 .accordion-body{
 
-    padding:20px;
+    background:#ffffff;
+
+    padding:22px 24px;
+
+    color:#64748b;
 
     line-height:1.9;
-
-    color:#555;
 
 }
 
 
-/*==========================
-            CTA
-==========================*/
+
+/*=========================================
+              CTA
+=========================================*/
 
 .page-cta{
 
-    margin-top:50px;
+    margin-top:60px;
 
-    background:linear-gradient(135deg,#0d6efd,#0dcaf0);
+    border-radius:24px;
 
-    border-radius:18px;
+    overflow:hidden;
 
-    color:#fff;
+    padding:70px 50px;
 
     text-align:center;
 
-    padding:55px 35px;
+    background:
+
+    linear-gradient(135deg,#0f4cdd,#2563eb,#38bdf8);
+
+    color:#fff;
+
+    position:relative;
+
+}
+
+.page-cta::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    right:-100px;
+
+    top:-100px;
+
+}
+
+.page-cta::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+
+    height:240px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.06);
+
+    left:-80px;
+
+    bottom:-80px;
 
 }
 
 .page-cta h2{
 
-    font-size:34px;
+    position:relative;
 
-    font-weight:700;
+    z-index:2;
 
-    margin-bottom:15px;
+    font-size:42px;
+
+    font-weight:800;
+
+    margin-bottom:18px;
 
 }
 
 .page-cta p{
 
+    position:relative;
+
+    z-index:2;
+
+    font-size:18px;
+
     max-width:760px;
 
     margin:auto;
 
-    margin-bottom:30px;
-
     line-height:1.9;
 
-    font-size:18px;
+    color:rgba(255,255,255,.92);
 
 }
 
 .page-cta .btn{
 
-    border-radius:35px;
+    position:relative;
 
-    padding:14px 35px;
+    z-index:2;
 
-    font-weight:700;
+    margin-top:35px;
 
 }
 
 
-/*==========================
-      HOVER EFFECTS
-==========================*/
 
-.page-card{
+/*=========================================
+             BUTTONS
+=========================================*/
+
+.btn-primary{
+
+    background:#0f4cdd;
+
+    border:none;
+
+    padding:14px 32px;
+
+    border-radius:50px;
+
+    font-weight:600;
 
     transition:.35s;
 
 }
 
-.page-card:hover{
+.btn-primary:hover{
+
+    background:#0b3eb2;
 
     transform:translateY(-3px);
 
-    box-shadow:0 20px 45px rgba(0,0,0,.08);
+}
+
+
+
+.btn-light{
+
+    padding:14px 34px;
+
+    border-radius:50px;
+
+    font-weight:700;
+
+    transition:.35s;
 
 }
+
+.btn-light:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+
+/*=========================================
+         SMALL LABELS
+=========================================*/
+
+.badge-soft{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:40px;
+
+    background:#eef5ff;
+
+    color:#0f4cdd;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+
+/*=========================================
+        HOVER EFFECTS
+=========================================*/
 
 .contact-card:hover{
 
-    transform:translateY(-3px);
+    transform:translateY(-5px);
+
+    transition:.35s;
 
 }
 
-.feature-card:hover{
+.feature-card:hover .feature-icon{
 
-    transform:translateY(-6px);
+    transform:rotate(8deg) scale(1.05);
+
+}
+
+.timeline-item:hover{
+
+    transform:translateX(5px);
+
+    transition:.3s;
+
+}
+
+.page-card{
+
+    transition:.35s;
 
 }
 </style>
