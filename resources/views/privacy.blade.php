@@ -1530,17 +1530,3 @@ FAQ
 @endsection
 
 
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"WebPage",
-  "name":"Privacy Policy - SarkariHai",
-  "url":"https://sarkarihai.com/privacy-policy",
-  "description":"Read the Privacy Policy of SarkariHai.com to understand how we collect, use and protect your information.",
-  "publisher":{
-    "@type":"Organization",
-    "name":"SarkariHai",
-    "url":"https://sarkarihai.com"
-  }
-}
-</script>
