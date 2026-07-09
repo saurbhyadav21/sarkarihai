@@ -1,948 +1,551 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('front.app')
+@section('content')
+<!-- ================= HERO ================= -->
+<div class="hero">
+    <div class="container">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarkari Result 2026 | Latest Jobs, Admit Card, Results</title>
+        <div class="row align-items-center">
 
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+            <!-- LEFT -->
+            <div class="col-lg-8">
 
-    <style>
-        body {
-            background: #f5f7fb;
-            font-family: system-ui;
-        }
+                <h1>Sarkari Result 2026</h1>
 
-        /* HEADER */
-        .top-header {
-            background: #ffffff;
-            border-bottom: 1px solid #eee;
-            padding: 10px 0;
-        }
+                <p>
+                    Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards, Results, and Exam Updates in
+                    one place.
+                </p>
 
-        .logo {
-            font-weight: 800;
-            font-size: 20px;
-            color: #0a5467;
-            text-decoration: none;
-        }
+                <div class="row mt-4">
 
-        .nav-link {
-            color: #333 !important;
-            font-weight: 600;
-            margin: 0 8px;
-        }
+                    <div class="col-3">
+                        <div class="stats">
+                            <h3>{{ number_format($totalJobs) }}+</h3>
+                            <small>Jobs</small>
+                        </div>
+                    </div>
 
-        .nav-link:hover {
-            color: #0a5467 !important;
-        }
+                    <div class="col-3">
+                        <div class="stats">
+                            <h3>{{ number_format($totalResults) }}+</h3>
+                            <small>Results</small>
+                        </div>
+                    </div>
 
-        .search-box input {
-            border-radius: 8px;
-        }
+                    <div class="col-3">
+                        <div class="stats">
+                            <h3>{{ number_format($totalAdmitCards) }}+</h3>
+                            <small>Admit Card</small>
+                        </div>
+                    </div>
 
-        .search-box button {
-            background: #f4b400;
-            border: none;
-            font-weight: 600;
-        }
+                    <div class="col-3">
+                        <div class="stats">
+                            <h3>{{ $totalStates }}+</h3>
+                            <small>States</small>
+                        </div>
+                    </div>
 
-        /* HERO */
-        .hero {
-            background: linear-gradient(135deg, #062a3a, #0a5467);
-            color: #fff;
-            padding: 40px 20px;
-            border-radius: 0 0 20px 20px;
-        }
+                </div>
+                <div class="latest-ticker">
 
-        .hero h1 {
-            font-size: 30px;
-            font-weight: 800;
-        }
+                    <div class="ticker-heading"
+                        style="margin-top: 30px;font-size: 15px;background: #f4b400;width: 16%;color: #000;border-radius: 5px;">
+                        🔥 Latest Updates
+                    </div>
 
-        .hero p {
-            opacity: .85;
-        }
+                    <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();"
+                        onmouseout="this.start();">
 
-        .stats {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-        }
+                        @foreach ($latestUpdates as $job)
+                            <a href="{{ url(
+                                'sarkari-naukri/' . ($job->state ?? 'all-india') . '/' . ($job->category ?? 'government') . '/' . $job->slug,
+                            ) }}"
+                                style="color: #fff;text-decoration: none;">
+                                {{ $job->title }}
+                            </a>
 
-        .stats h3 {
-            color: #f4b400;
-            font-weight: 800;
-        }
+                            <span class="ticker-separator">●</span>
+                        @endforeach
 
-        .search-card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            color: #000;
-        }
+                    </marquee>
 
-        .search-card button {
-            width: 100%;
-            background: #f4b400;
-            border: none;
-            font-weight: 700;
-        }
+                </div>
 
-        .live-update {
-            background: rgba(229, 57, 53, .15);
-            border: 1px solid rgba(229, 57, 53, .3);
-            padding: 12px;
-            border-radius: 8px;
-            color: white;
-            margin-top: 20px;
-        }
-
-        .latest-update-box {
-            background: linear-gradient(135deg, #12273a, #1c3348);
-            border: 1px solid rgba(255, 255, 255, .08);
-            border-left: 4px solid #ffb703;
-            border-radius: 12px;
-            padding: 18px 22px;
-            margin: 20px 0;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
-        }
-
-        .update-title {
-            font-size: 26px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 14px;
-        }
-
-        .update-links {
-            line-height: 2;
-        }
-
-        .update-links a {
-            color: #f5f7fa;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            transition: .2s;
-        }
-
-        .update-links a:hover {
-            color: #ffc107;
-        }
-
-        .divider {
-            display: inline-block;
-            width: 7px;
-            height: 7px;
-            background: #ffb703;
-            border-radius: 50%;
-            margin: 0 12px;
-            vertical-align: middle;
-        }
-
-        @media(max-width:768px) {
-
-            .latest-update-box {
-                padding: 15px;
-            }
-
-            .update-title {
-                font-size: 22px;
-            }
-
-            .update-links a {
-                font-size: 14px;
-                display: inline;
-            }
-
-            .news-ticker {
-                display: flex;
-                align-items: center;
-                background: #13293d;
-                border: 1px solid rgba(255, 255, 255, .1);
-                border-radius: 10px;
-                overflow: hidden;
-                margin-bottom: 15px;
-            }
-
-            .ticker-title {
-                background: #f5b301;
-                color: #111;
-                font-weight: 700;
-                padding: 12px 18px;
-                min-width: 180px;
-                text-align: center;
-            }
-
-            .news-ticker marquee {
-                padding: 12px;
-                color: #fff;
-            }
-
-            .news-ticker marquee a {
-                color: #fff;
-                text-decoration: none;
-                font-weight: 500;
-            }
-
-            .news-ticker marquee a:hover {
-                color: #f5b301;
-            }
-
-            .latest-ticker {
-                display: flex;
-                align-items: center;
-                background: #10263b;
-                border-radius: 12px;
-                overflow: hidden;
-                margin: 25px 0;
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-            }
-
-            .ticker-heading {
-                background: linear-gradient(135deg, #ff9800, #ffb300);
-                color: #111;
-                font-size: 18px;
-                font-weight: 700;
-                padding: 16px 22px;
-                min-width: 220px;
-                text-align: center;
-                white-space: nowrap;
-                position: relative;
-            }
-
-            .ticker-heading:after {
-                content: '';
-                position: absolute;
-                right: -15px;
-                top: 0;
-                width: 0;
-                height: 0;
-                border-top: 28px solid transparent;
-                border-bottom: 28px solid transparent;
-                border-left: 15px solid #ffb300;
-            }
-
-            .latest-ticker marquee {
-                padding: 15px 20px;
-                background: #18344d;
-            }
-
-            .latest-ticker a {
-                color: #ffffff;
-                text-decoration: none;
-                font-size: 15px;
-                font-weight: 500;
-                transition: .2s;
-            }
-
-            .latest-ticker a:hover {
-                color: #ffb300;
-                text-decoration: underline;
-            }
-
-            .ticker-separator {
-                color: #ffb300;
-                margin: 0 18px;
-                font-size: 18px;
-                font-weight: bold;
-            }
-
-            @media(max-width:768px) {
-
-                .latest-ticker {
-                    flex-direction: column;
+            </div>
+            <style>
+                /* DROPDOWN BOX */
+                .search-dropdown {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background: #fff;
+                    border-radius: 20px;
+                    overflow: hidden;
+                    margin-top: 12px;
+                    z-index: 99999;
+                    box-shadow:
+                        0 10px 30px rgba(0, 0, 0, .10),
+                        0 1px 3px rgba(0, 0, 0, .08);
+                    border: 1px solid #e8edf5;
+                    max-height: 600px;
+                    overflow-y: auto;
                 }
 
-                .ticker-heading {
-                    width: 100%;
-                    min-width: 100%;
-                    border-radius: 0;
+                /* ITEM */
+                .search-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    padding: 24px;
+                    text-decoration: none;
+                    color: #111827;
+                    border-bottom: 1px solid #edf2f7;
+                    transition: all .2s ease;
                 }
 
-                .ticker-heading:after {
-                    display: none;
+                .search-item:hover {
+                    background: #f8fbff;
+                    text-decoration: none;
+                    color: #111827;
                 }
 
-                .latest-ticker marquee {
-                    padding: 12px;
+                /* LEFT ICON */
+                .search-icon {
+                    
+                    border-radius: 50%;
+                    background: #eef4ff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 28px;
+                    margin-top: 0px;
                 }
 
-            }
+                /* CONTENT */
+                .search-body {
+                    flex: 1;
+                }
 
+                .search-title {
+                    font-size: 11px;
+                    font-weight: 700;
+                    line-height: 1.4;
+                    color: #0f172a;
+                    margin-bottom: 10px;
+                }
 
-        }
-    </style>
-</head>
+                .search-meta {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    flex-wrap: wrap;
+                }
 
-<body>
+                .search-category {
+                    color: #2563eb;
+                    font-size: 13px;
+                    font-weight: 500;
+                }
 
-    <!-- ================= HEADER ================= -->
-    <style>
-        .top-header{
-    background:#fff;
-    border-bottom:1px solid #e9ecef;
-    padding:12px 0;
-}
+                .search-separator {
+                    color: #9ca3af;
+                }
 
-.header-wrap{
-    display:flex;
-    align-items:center;
-}
+                .search-type {
+                    color: #4b5563;
+                    font-size: 13px;
+                }
 
-.logo{
-    flex-shrink:0;
-}
+                /* RIGHT ARROW */
+                .search-arrow {
+                    font-size: 13px;
+                    color: #94a3b8;
+                    transition: .2s;
+                }
 
-.logo img{
-    height:65px;
-    width:auto;
-    display:block;
-}
+                .search-item:hover .search-arrow {
+                    color: #2563eb;
+                    transform: translateX(5px);
+                }
 
-.header-menu{
-    margin-left:auto;
-    display:flex;
-    align-items:center;
-    gap:28px;
-}
+                /* FOOTER */
+                .search-footer {
+                    background: #f3f7fd;
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    padding: 22px 28px;
+                }
 
-.header-menu .nav-link{
-    color:#222;
-    text-decoration:none;
-    font-size:15px;
-    font-weight:600;
-    transition:.3s;
-}
+                .search-footer-icon {
+                    width: 60px;
+                    height: 60px;
+                    background: #2563eb;
+                    color: #fff;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                }
 
-.header-menu .nav-link:hover{
-    color:#0d6efd;
-}
-    </style>
-    <div class="top-header">
-    <div class="container header-wrap">
+                .search-footer-text {
+                    flex: 1;
+                    font-size: 22px;
+                    color: #0f172a;
+                }
 
-        <a href="https://sarkarihai.com" class="logo">
-            <img src="https://sarkarihai.com/public/images/logo.png?v=2"
-                alt="SarkariHai">
-        </a>
+                .search-footer-text strong {
+                    color: #2563eb;
+                }
 
-        <div class="header-menu">
-            <a href="#" class="nav-link">Latest Jobs</a>
-            <a href="#" class="nav-link">Admit Card</a>
-            <a href="#" class="nav-link">Result</a>
-            <a href="#" class="nav-link">Syllabus</a>
-            <a href="#" class="nav-link">Answer Key</a>
-            <a href="#" class="nav-link">Admission</a>
+                .search-footer-btn {
+                    background: #2563eb;
+                    color: #fff;
+                    border: none;
+                    padding: 15px 28px;
+                    border-radius: 14px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    transition: .2s;
+                }
+
+                .search-footer-btn:hover {
+                    background: #1d4ed8;
+                }
+
+                /* SCROLLBAR */
+                .search-dropdown::-webkit-scrollbar {
+                    width: 8px;
+                }
+
+                .search-dropdown::-webkit-scrollbar-thumb {
+                    background: #cbd5e1;
+                    border-radius: 10px;
+                }
+
+                .search-dropdown::-webkit-scrollbar-track {
+                    background: #f8fafc;
+                }
+            </style>
+            <!-- RIGHT SEARCH -->
+            <div class="col-lg-4 mt-4 mt-lg-0">
+
+                <div class="search-card">
+
+                    <h5 class="mb-3 fw-bold">
+                        🔍 Search Sarkari Jobs
+                    </h5>
+
+                    <div class="position-relative">
+
+                        <input type="text" id="jobSearch" class="form-control form-control-lg rounded-4 shadow-sm"
+                            placeholder="Search SSC, Railway, UPSC..." autocomplete="off">
+
+                        <div class="search-dropdown" style="display:none">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
     </div>
 </div>
 
-    <!-- ================= HERO ================= -->
-    <div class="hero">
-        <div class="container">
-
-            <div class="row align-items-center">
-
-                <!-- LEFT -->
-                <div class="col-lg-8">
-
-                    <h1>Sarkari Result 2026</h1>
-
-                    <p>
-                        Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards, Results, and Exam Updates in
-                        one place.
-                    </p>
-
-                    <div class="row mt-4">
-
-                        <div class="col-3">
-                            <div class="stats">
-                                <h3>{{ number_format($totalJobs) }}+</h3>
-                                <small>Jobs</small>
-                            </div>
-                        </div>
-
-                        <div class="col-3">
-                            <div class="stats">
-                                <h3>{{ number_format($totalResults) }}+</h3>
-                                <small>Results</small>
-                            </div>
-                        </div>
-
-                        <div class="col-3">
-                            <div class="stats">
-                                <h3>{{ number_format($totalAdmitCards) }}+</h3>
-                                <small>Admit Card</small>
-                            </div>
-                        </div>
-
-                        <div class="col-3">
-                            <div class="stats">
-                                <h3>{{ $totalStates }}+</h3>
-                                <small>States</small>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="latest-tickxer">
-
-                        <div class="ticker-heading"
-                            style="    margin-top: 30px;
-    font-size: 15px;
-    background: #f4b400;
-    width: 16%;
-    color: #000;
-    border-radius: 5px;
-">
-                            🔥 Latest Updates
-                        </div>
-
-                        <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();"
-                            onmouseout="this.start();">
-
-                            @foreach ($latestUpdates as $job)
-                                <a href="{{ url(
-                                    'sarkari-naukri/' . ($job->state ?? 'all-india') . '/' . ($job->category ?? 'government') . '/' . $job->slug,
-                                ) }}"
-                                    style="color: #fff;text-decoration: none;">
-                                    {{ $job->title }}
-                                </a>
-
-                                <span class="ticker-separator">●</span>
-                            @endforeach
-
-                        </marquee>
-
-                    </div>
-
-                </div>
-                <style>
-                    /* DROPDOWN BOX */
-                    .search-dropdown {
-                        position: absolute;
-                        top: 100%;
-                        left: 0;
-                        right: 0;
-                        background: #fff;
-                        border-radius: 20px;
-                        overflow: hidden;
-                        margin-top: 12px;
-                        z-index: 99999;
-                        box-shadow:
-                            0 10px 30px rgba(0, 0, 0, .10),
-                            0 1px 3px rgba(0, 0, 0, .08);
-                        border: 1px solid #e8edf5;
-                        max-height: 600px;
-                        overflow-y: auto;
-                    }
-
-                    /* ITEM */
-                    .search-item {
-                        display: flex;
-                        align-items: center;
-                        gap: 5px;
-                        padding: 24px;
-                        text-decoration: none;
-                        color: #111827;
-                        border-bottom: 1px solid #edf2f7;
-                        transition: all .2s ease;
-                    }
-
-                    .search-item:hover {
-                        background: #f8fbff;
-                        text-decoration: none;
-                        color: #111827;
-                    }
-
-                    /* LEFT ICON */
-                    .search-icon {
-                        /* width:70px;
-    height:70px;
-    min-width:70px; */
-                        border-radius: 50%;
-                        background: #eef4ff;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 28px;
-                        margin-top: 0px;
-                    }
-
-                    /* CONTENT */
-                    .search-body {
-                        flex: 1;
-                    }
-
-                    .search-title {
-                        font-size: 11px;
-                        font-weight: 700;
-                        line-height: 1.4;
-                        color: #0f172a;
-                        margin-bottom: 10px;
-                    }
-
-                    .search-meta {
-                        display: flex;
-                        align-items: center;
-                        gap: 5px;
-                        flex-wrap: wrap;
-                    }
-
-                    .search-category {
-                        color: #2563eb;
-                        font-size: 13px;
-                        font-weight: 500;
-                    }
-
-                    .search-separator {
-                        color: #9ca3af;
-                    }
-
-                    .search-type {
-                        color: #4b5563;
-                        font-size: 13px;
-                    }
-
-                    /* RIGHT ARROW */
-                    .search-arrow {
-                        font-size: 13px;
-                        color: #94a3b8;
-                        transition: .2s;
-                    }
-
-                    .search-item:hover .search-arrow {
-                        color: #2563eb;
-                        transform: translateX(5px);
-                    }
-
-                    /* FOOTER */
-                    .search-footer {
-                        background: #f3f7fd;
-                        display: flex;
-                        align-items: center;
-                        gap: 20px;
-                        padding: 22px 28px;
-                    }
-
-                    .search-footer-icon {
-                        width: 60px;
-                        height: 60px;
-                        background: #2563eb;
-                        color: #fff;
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 24px;
-                    }
-
-                    .search-footer-text {
-                        flex: 1;
-                        font-size: 22px;
-                        color: #0f172a;
-                    }
-
-                    .search-footer-text strong {
-                        color: #2563eb;
-                    }
-
-                    .search-footer-btn {
-                        background: #2563eb;
-                        color: #fff;
-                        border: none;
-                        padding: 15px 28px;
-                        border-radius: 14px;
-                        font-size: 18px;
-                        font-weight: 600;
-                        transition: .2s;
-                    }
-
-                    .search-footer-btn:hover {
-                        background: #1d4ed8;
-                    }
-
-                    /* SCROLLBAR */
-                    .search-dropdown::-webkit-scrollbar {
-                        width: 8px;
-                    }
-
-                    .search-dropdown::-webkit-scrollbar-thumb {
-                        background: #cbd5e1;
-                        border-radius: 10px;
-                    }
-
-                    .search-dropdown::-webkit-scrollbar-track {
-                        background: #f8fafc;
-                    }
-                </style>
-                <!-- RIGHT SEARCH -->
-                <div class="col-lg-4 mt-4 mt-lg-0">
-
-                    <div class="search-card">
-
-                        <h5 class="mb-3 fw-bold">
-                            🔍 Search Sarkari Jobs
-                        </h5>
-
-                        <div class="position-relative">
-
-                            <input type="text" id="jobSearch"
-                                class="form-control form-control-lg rounded-4 shadow-sm"
-                                placeholder="Search SSC, Railway, UPSC..." autocomplete="off">
-
-                            <div class="search-dropdown" style="display:none">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    <!-- =========================
+<!-- =========================
 PART 2 - MAIN CONTENT BLOCK
 ========================= -->
 
-    <style>
-        .section-title {
-            font-size: 22px;
-            font-weight: 800;
-            color: #0a5467;
-            margin: 25px 0 15px;
+<style>
+    .section-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: #0a5467;
+        margin: 25px 0 15px;
+    }
+
+    .job-card {
+        background: #fff;
+        border: 1px solid #e8edf3;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        transition: .2s;
+    }
+
+    .job-card:hover {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+        transform: translateY(-2px);
+    }
+
+    .job-title {
+        font-weight: 700;
+        font-size: 16px;
+        color: #173b5b;
+        text-decoration: none;
+    }
+
+    .job-meta {
+        font-size: 13px;
+        color: #666;
+        margin-top: 5px;
+    }
+
+    .badge-new {
+        background: #ff3d00;
+        color: #fff;
+        font-size: 11px;
+        padding: 3px 8px;
+        border-radius: 5px;
+        float: right;
+    }
+
+    .badge-date {
+        background: #f4b400;
+        color: #000;
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 5px;
+        float: right;
+    }
+
+    .side-box {
+        background: #fff;
+        border: 1px solid #e8edf3;
+        border-radius: 10px;
+        padding: 15px;
+    }
+
+    .side-title {
+        font-weight: 800;
+        margin-bottom: 10px;
+        color: #0a5467;
+    }
+
+    .small-link {
+        display: block;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+    }
+
+    .small-link:hover {
+        color: #0a5467;
+    }
+
+    .last-date-tabs {
+        display: flex;
+        margin: 10px 0;
+        gap: 5px;
+    }
+
+    .tab-btn {
+        flex: 1;
+        border: 0;
+        background: #f3f3f3;
+        padding: 6px;
+        cursor: pointer;
+        font-size: 12px;
+        border-radius: 4px;
+    }
+
+    .tab-btn.active {
+        background: #ffb300;
+        color: #000;
+        font-weight: 600;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .live-badge {
+        width: 7%;
+        height: auto;
+        animation: livePulse 1.2s infinite;
+    }
+
+    @keyframes livePulse {
+
+        0%,
+        100% {
+            opacity: 1;
+            transform: scale(1);
         }
 
-        .job-card {
-            background: #fff;
-            border: 1px solid #e8edf3;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            transition: .2s;
+        50% {
+            opacity: .35;
+            transform: scale(1.08);
         }
+    }
 
-        .job-card:hover {
-            box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
-            transform: translateY(-2px);
-        }
+    .last-update {
+        font-size: 12px;
+        color: #666;
+        background: #f5f5f5;
+        padding: 3px 8px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+</style>
 
-        .job-title {
-            font-weight: 700;
-            font-size: 16px;
-            color: #173b5b;
-            text-decoration: none;
-        }
+<div class="container mt-4">
 
-        .job-meta {
-            font-size: 13px;
-            color: #666;
-            margin-top: 5px;
-        }
+    <div class="row">
 
-        .badge-new {
-            background: #ff3d00;
-            color: #fff;
-            font-size: 11px;
-            padding: 3px 8px;
-            border-radius: 5px;
-            float: right;
-        }
+        <!-- LEFT MAIN CONTENT -->
+        <div class="col-lg-8">
 
-        .badge-date {
-            background: #f4b400;
-            color: #000;
-            font-size: 12px;
-            padding: 3px 8px;
-            border-radius: 5px;
-            float: right;
-        }
+            <!-- LATEST JOBS -->
+            <div class="section-title">
+                <span>Latest Government Jobs</span>
 
-        .side-box {
-            background: #fff;
-            border: 1px solid #e8edf3;
-            border-radius: 10px;
-            padding: 15px;
-        }
+                <img src="https://sarkarihai.com/public/images/live.png?v=5" alt="LIVE" class="live-badge">
 
-        .side-title {
-            font-weight: 800;
-            margin-bottom: 10px;
-            color: #0a5467;
-        }
+                <span class="last-update">
+                    Last Updated:
+                    {{ \Carbon\Carbon::parse($job->created_at)->format('d M Y H:i:s') }}
+                </span>
+            </div>
 
-        .small-link {
-            display: block;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            text-decoration: none;
-            color: #333;
-            font-size: 14px;
-        }
+            @foreach ($latestJobs as $job)
+                <div class="job-card">
 
-        .small-link:hover {
-            color: #0a5467;
-        }
+                    {{-- 🔥 NEW BADGE --}}
+                    @if (!empty($job->created_at) && \Carbon\Carbon::parse($job->created_at)->diffInDays() <= 3)
+                        <span class="badge-new">NEW</span>
+                    @endif
 
-        .last-date-tabs {
-            display: flex;
-            margin: 10px 0;
-            gap: 5px;
-        }
+                    {{-- 🧾 TITLE --}}
+                    <a href="{{ url(
+                        'sarkari-naukri/' . ($job->state ?: 'all-indiax') . '/' . ($job->category ?: 'uncategorized') . '/' . $job->slug,
+                    ) }}"
+                        class="job-title">
 
-        .tab-btn {
-            flex: 1;
-            border: 0;
-            background: #f3f3f3;
-            padding: 6px;
-            cursor: pointer;
-            font-size: 12px;
-            border-radius: 4px;
-        }
+                        {{ $job->title }}
 
-        .tab-btn.active {
-            background: #ffb300;
-            color: #000;
-            font-weight: 600;
-        }
+                    </a>
 
-        .tab-content {
-            display: none;
-        }
+                    {{-- 📊 META INFO --}}
+                    <div class="job-meta">
 
-        .tab-content.active {
-            display: block;
-        }
+                        {{-- Posts --}}
+                        {{ $job->total_vacancies ?? 'N/A' }} Posts
 
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+                        |
 
-        .live-badge {
-            width: 7%;
-            height: auto;
-            animation: livePulse 1.2s infinite;
-        }
+                        {{-- Last Date --}}
+                        Last Date:
+                        {{ $job->last_fee_date ?? 'Not Available' }}
 
-        @keyframes livePulse {
+                        |
 
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: .35;
-                transform: scale(1.08);
-            }
-        }
-
-        .last-update {
-            font-size: 12px;
-            color: #666;
-            background: #f5f5f5;
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-    </style>
-
-    <div class="container mt-4">
-
-        <div class="row">
-
-            <!-- LEFT MAIN CONTENT -->
-            <div class="col-lg-8">
-
-                <!-- LATEST JOBS -->
-                <div class="section-title">
-                    <span>Latest Government Jobs</span>
-
-                    <img src="https://sarkarihai.com/public/images/live.png?v=5" alt="LIVE" class="live-badge">
-
-                    <span class="last-update">
-                        Last Updated:
-                        {{ \Carbon\Carbon::parse($job->created_at)->format('d M Y H:i:s') }}
-                    </span>
-                </div>
-
-                @foreach ($latestJobs as $job)
-                    <div class="job-card">
-
-                        {{-- 🔥 NEW BADGE --}}
-                        @if (!empty($job->created_at) && \Carbon\Carbon::parse($job->created_at)->diffInDays() <= 3)
-                            <span class="badge-new">NEW</span>
-                        @endif
-
-                        {{-- 🧾 TITLE --}}
-                        <a href="{{ url(
-                            'sarkari-naukri/' . ($job->state ?: 'all-indiax') . '/' . ($job->category ?: 'uncategorized') . '/' . $job->slug,
-                        ) }}"
-                            class="job-title">
-
-                            {{ $job->title }}
-
-                        </a>
-
-                        {{-- 📊 META INFO --}}
-                        <div class="job-meta">
-
-                            {{-- Posts --}}
-                            {{ $job->total_vacancies ?? 'N/A' }} Posts
-
-                            |
-
-                            {{-- Last Date --}}
-                            Last Date:
-                            {{ $job->last_fee_date ?? 'Not Available' }}
-
-                            |
-
-                            {{-- Apply Mode --}}
-                            {{ $job->apply_mode ?? 'Online' }}
-
-                        </div>
+                        {{-- Apply Mode --}}
+                        {{ $job->apply_mode ?? 'Online' }}
 
                     </div>
-                @endforeach
 
+                </div>
+            @endforeach
+
+
+        </div>
+
+
+        <!-- RIGHT SIDEBAR -->
+        <div class="col-lg-4">
+
+            <!-- LAST DATE BOX -->
+            <div class="side-box mb-3">
+
+                <div class="side-title">Last Date Soon</div>
+
+                <div class="last-date-tabs">
+                    <button class="tab-btn active" data-tab="today">Today ({{ $todayCount }})</button>
+                    <button class="tab-btn" data-tab="tomorrow">Tomorrow ({{ $tomorrowCount }})</button>
+                    <button class="tab-btn" data-tab="week">7 Days ({{ $weekCount }})</button>
+                </div>
+
+                <div id="today" class="tab-content active">
+                    @foreach ($todayJobs as $job)
+                        @include('partials.last-date-job', ['job' => $job])
+                    @endforeach
+                    @if ($todayCount > 10)
+                        <a href="{{ route('last-date-soon', ['type' => 'today']) }}"
+                            class="btn btn-sm btn-primary w-100 mt-2">
+                            View All {{ $todayCount }} Jobs →
+                        </a>
+                    @endif
+                </div>
+
+                <div id="tomorrow" class="tab-content">
+                    @foreach ($tomorrowJobs as $job)
+                        @include('partials.last-date-job', ['job' => $job])
+                    @endforeach
+                    @if ($todayCount > 10)
+                        <a href="{{ route('last-date-soon', ['type' => 'tomorrow']) }}"
+                            class="btn btn-sm btn-warning w-100 mt-2">
+                            View All {{ $tomorrowCount }} Jobs →
+                        </a>
+                    @endif
+                </div>
+
+                <div id="week" class="tab-content">
+                    @foreach ($weekJobs as $job)
+                        @include('partials.last-date-job', ['job' => $job])
+                    @endforeach
+                    @if ($todayCount > 10)
+                        <a href="{{ route('last-date-soon', ['type' => 'week']) }}"
+                            class="btn btn-sm btn-success w-100 mt-2">
+                            View All {{ $weekCount }} Jobs →
+                        </a>
+                    @endif
+                </div>
 
             </div>
 
 
-            <!-- RIGHT SIDEBAR -->
-            <div class="col-lg-4">
+            <!-- RESULT BOX -->
+            <div class="side-box mb-3">
 
-                <!-- LAST DATE BOX -->
-                {{-- <div class="side-box mb-3">
+                <div class="side-title">Latest Results</div>
 
-                    <div class="side-title">Last Date Soon</div>
+                <a class="small-link" href="#">SSC GD Result 2026</a>
+                <a class="small-link" href="#">Railway ALP Result</a>
+                <a class="small-link" href="#">UPSC CDS Result</a>
+                <a class="small-link" href="#">SBI Clerk Result</a>
 
-
-                    @foreach ($lastDateSoon as $job)
-                        <a class="small-link"
-                            href="{{ url(
-                                'sarkari-naukri/' .
-                                    (!empty($job->state) ? $job->state : 'all-india') .
-                                    '/' .
-                                    (!empty($job->category) ? $job->category : 'uncategorized') .
-                                    '/' .
-                                    $job->slug,
-                            ) }}">
-
-                            {{ \Illuminate\Support\Str::limit($job->title, 35) }}
-
-                            @php
-
-                                $date = null;
-
-                                try {
-                                    if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $job->end_date)) {
-                                        $date = \Carbon\Carbon::parse($job->end_date);
-                                    } else {
-                                        $date = \Carbon\Carbon::createFromFormat('d F Y', trim($job->end_date));
-                                    }
-                                } catch (\Exception $e) {
-                                    $date = null;
-                                }
-
-                            @endphp
-
-                            <span class="badge-date">
-                                {{ $date ? $date->format('d M') : '--' }}
-                            </span>
-
-                        </a>
-                    @endforeach
-
-                </div> --}}
-                <div class="side-box mb-3">
-
-                    <div class="side-title">Last Date Soon</div>
-
-                    <div class="last-date-tabs">
-                        <button class="tab-btn active" data-tab="today">Today ({{ $todayCount }})</button>
-                        <button class="tab-btn" data-tab="tomorrow">Tomorrow ({{ $tomorrowCount }})</button>
-                        <button class="tab-btn" data-tab="week">7 Days ({{ $weekCount }})</button>
-                    </div>
-
-                    <div id="today" class="tab-content active">
-                        @foreach ($todayJobs as $job)
-                            @include('partials.last-date-job', ['job' => $job])
-                        @endforeach
-                        @if ($todayCount > 10)
-                            <a href="{{ route('last-date-soon', ['type' => 'today']) }}"
-                                class="btn btn-sm btn-primary w-100 mt-2">
-                                View All {{ $todayCount }} Jobs →
-                            </a>
-                        @endif
-                    </div>
-
-                    <div id="tomorrow" class="tab-content">
-                        @foreach ($tomorrowJobs as $job)
-                            @include('partials.last-date-job', ['job' => $job])
-                        @endforeach
-                        @if ($todayCount > 10)
-                            <a href="{{ route('last-date-soon', ['type' => 'tomorrow']) }}"
-                                class="btn btn-sm btn-warning w-100 mt-2">
-                                View All {{ $tomorrowCount }} Jobs →
-                            </a>
-                        @endif
-                    </div>
-
-                    <div id="week" class="tab-content">
-                        @foreach ($weekJobs as $job)
-                            @include('partials.last-date-job', ['job' => $job])
-                        @endforeach
-                        @if ($todayCount > 10)
-                            <a href="{{ route('last-date-soon', ['type' => 'week']) }}"
-                                class="btn btn-sm btn-success w-100 mt-2">
-                                View All {{ $weekCount }} Jobs →
-                            </a>
-                        @endif
-                    </div>
-
-                </div>
+            </div>
 
 
-                <!-- RESULT BOX -->
-                <div class="side-box mb-3">
+            <!-- ADMIT CARD BOX -->
+            <div class="side-box">
 
-                    <div class="side-title">Latest Results</div>
+                <div class="side-title">Admit Card</div>
 
-                    <a class="small-link" href="#">SSC GD Result 2026</a>
-                    <a class="small-link" href="#">Railway ALP Result</a>
-                    <a class="small-link" href="#">UPSC CDS Result</a>
-                    <a class="small-link" href="#">SBI Clerk Result</a>
-
-                </div>
-
-
-                <!-- ADMIT CARD BOX -->
-                <div class="side-box">
-
-                    <div class="side-title">Admit Card</div>
-
-                    <a class="small-link" href="#">SSC CGL Admit Card</a>
-                    <a class="small-link" href="#">RRB NTPC Admit Card</a>
-                    <a class="small-link" href="#">UPSC NDA Admit Card</a>
-                    <a class="small-link" href="#">IBPS PO Admit Card</a>
-
-                </div>
+                <a class="small-link" href="#">SSC CGL Admit Card</a>
+                <a class="small-link" href="#">RRB NTPC Admit Card</a>
+                <a class="small-link" href="#">UPSC NDA Admit Card</a>
+                <a class="small-link" href="#">IBPS PO Admit Card</a>
 
             </div>
 
@@ -950,507 +553,336 @@ PART 2 - MAIN CONTENT BLOCK
 
     </div>
 
+</div>
+
+
+<style>
+    /* SECTION TITLE */
+    .sec-title {
+        font-size: 20px;
+        font-weight: 800;
+        margin: 25px 0 15px;
+        color: #0a5467;
+    }
+
+    /* GRID BUTTON STYLE */
+    .link-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .link-grid a {
+        background: #fff;
+        border: 1px solid #e8edf3;
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-size: 14px;
+        text-decoration: none;
+        color: #333;
+        transition: .2s;
+    }
+
+    .link-grid a:hover {
+        background: #0a5467;
+        color: #fff;
+    }
+
+    /* CATEGORY CARDS */
+    .cat-card {
+        background: #fff;
+        border: 1px solid #e8edf3;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        transition: .2s;
+    }
+
+    .cat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+    }
+
+    .cat-card i {
+        font-size: 22px;
+        color: #0a5467;
+        margin-bottom: 5px;
+    }
+
+    .cat-title {
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    /* POPULAR TAGS */
+    .tag {
+        display: inline-block;
+        background: #f4b400;
+        color: #000;
+        padding: 6px 10px;
+        border-radius: 20px;
+        font-size: 13px;
+        margin: 5px;
+        text-decoration: none;
+    }
+
+    .tag:hover {
+        background: #ffcc00;
+    }
+</style>
+
+<div class="container mt-4">
+
+    <!-- ================= STATE WISE ================= -->
+    <div class="sec-title">State Wise Government Jobs</div>
+
+    <div class="link-grid mb-4">
+
+        <a href="{{ route('sarkari.naukri.state', 'all-india') }}">
+            All India
+            <span>
+                ({{ $totalJobs }})
+            </span>
+        </a>
+
+        @foreach ($states as $state)
+            <a href="{{ route('sarkari.naukri.state', $state->slug) }}">
+
+                {{ $state->name }}
+
+                <span>
+                    ({{ $state->total_jobs }})
+                </span>
+
+            </a>
+        @endforeach
+
+    </div>
+
+
+    <!-- ================= CATEGORY WISE ================= -->
+    <div class="sec-title">
+        Category Wise Jobs
+    </div>
+
+    <div class="row g-3 mb-4">
+
+        @foreach ($categories as $category)
+            <div class="col-6 col-md-3">
+
+                <a href="{{ route('sarkari.naukri.category', [
+                    'state' => 'all-india',
+                    'category' => $category->slug,
+                ]) }}"
+                    class="text-decoration-none">
+
+                    <div class="cat-card">
+
+                        <div class="cat-title">
+                            {{ $category->name }}
+                        </div>
+
+                        <small>
+                            {{ $category->total_jobs }} Jobs
+                        </small>
+
+                    </div>
+
+                </a>
+
+            </div>
+        @endforeach
+
+    </div>
+
+
+    <!-- ================= ORGANIZATION WISE ================= -->
+    <div class="sec-title">Organization Wise Jobs</div>
+
+    <div class="link-grid mb-4">
+
+        @foreach ($organizations as $org)
+            <a href="#">
+                {{ $org->job_topics }}
+                ({{ $org->total_jobs }})
+            </a>
+        @endforeach
+
+    </div>
+
+
+    <!-- ================= POPULAR SEARCHES ================= -->
+    <div class="sec-title">Popular Searches</div>
+
+    <div>
+        @foreach ($popularSearches as $search)
+            <a class="tag" href="{{ url('/search?q=' . urlencode($search->keyword)) }}">
+                {{ strtoupper($search->keyword) }}
+            </a>
+        @endforeach
+    </div>
+
+
 
     <style>
-        /* SECTION TITLE */
-        .sec-title {
-            font-size: 20px;
-            font-weight: 800;
-            margin: 25px 0 15px;
-            color: #0a5467;
-        }
-
-        /* GRID BUTTON STYLE */
-        .link-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .link-grid a {
-            background: #fff;
-            border: 1px solid #e8edf3;
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-size: 14px;
-            text-decoration: none;
-            color: #333;
-            transition: .2s;
-        }
-
-        .link-grid a:hover {
-            background: #0a5467;
-            color: #fff;
-        }
-
-        /* CATEGORY CARDS */
-        .cat-card {
+        /* FAQ */
+        .faq-box {
             background: #fff;
             border: 1px solid #e8edf3;
             border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            transition: .2s;
+            padding: 20px;
+            margin-top: 25px;
         }
 
-        .cat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
         }
 
-        .cat-card i {
-            font-size: 22px;
+        .faq-q {
+            font-weight: 800;
             color: #0a5467;
             margin-bottom: 5px;
         }
 
-        .cat-title {
-            font-weight: 700;
+        .faq-a {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ABOUT */
+        .about-box {
+            background: #fff;
+            border: 1px solid #e8edf3;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .about-box h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0a5467;
+            margin-bottom: 10px;
+        }
+
+        .about-box p {
+            color: #555;
+            line-height: 1.7;
             font-size: 14px;
         }
 
-        /* POPULAR TAGS */
-        .tag {
-            display: inline-block;
-            background: #f4b400;
-            color: #000;
-            padding: 6px 10px;
-            border-radius: 20px;
-            font-size: 13px;
-            margin: 5px;
-            text-decoration: none;
+        /* FOOTER */
+        .footer {
+            background: #0a5467;
+            color: #fff;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 10px 10px 0 0;
         }
 
-        .tag:hover {
-            background: #ffcc00;
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+            opacity: .9;
+        }
+
+        .footer a:hover {
+            opacity: 1;
+        }
+
+        .footer-title {
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .bottom-bar {
+            text-align: center;
+            padding: 10px;
+            background: #083b49;
+            color: #fff;
+            font-size: 13px;
         }
     </style>
 
-    <div class="container mt-4">
+    <div class="container">
 
-        <!-- ================= STATE WISE ================= -->
-        <div class="sec-title">State Wise Government Jobs</div>
+        <!-- ================= FAQ ================= -->
+        <div class="faq-box">
 
-        <div class="link-grid mb-4">
+            <h3 style="font-weight:800;color:#0a5467;">Frequently Asked Questions</h3>
 
-            <a href="{{ route('sarkari.naukri.state', 'all-india') }}">
-                All India
-                <span>
-                    ({{ $totalJobs }})
-                </span>
-            </a>
-
-            @foreach ($states as $state)
-                <a href="{{ route('sarkari.naukri.state', $state->slug) }}">
-
-                    {{ $state->name }}
-
-                    <span>
-                        ({{ $state->total_jobs }})
-                    </span>
-
-                </a>
-            @endforeach
-
-        </div>
-
-
-        <!-- ================= CATEGORY WISE ================= -->
-        <div class="sec-title">
-            Category Wise Jobs
-        </div>
-
-        <div class="row g-3 mb-4">
-
-            @foreach ($categories as $category)
-                <div class="col-6 col-md-3">
-
-                    <a href="{{ route('sarkari.naukri.category', [
-                        'state' => 'all-india',
-                        'category' => $category->slug,
-                    ]) }}"
-                        class="text-decoration-none">
-
-                        <div class="cat-card">
-
-                            <div class="cat-title">
-                                {{ $category->name }}
-                            </div>
-
-                            <small>
-                                {{ $category->total_jobs }} Jobs
-                            </small>
-
-                        </div>
-
-                    </a>
-
+            <div class="faq-item">
+                <div class="faq-q">What is SarkariHai?</div>
+                <div class="faq-a">
+                    SarkariHai provides the latest government job notifications, admit cards, results, answer keys,
+                    admissions, syllabus, and exam updates from Central and State Government organizations across
+                    India.
                 </div>
-            @endforeach
-
-        </div>
-
-
-        <!-- ================= ORGANIZATION WISE ================= -->
-        <div class="sec-title">Organization Wise Jobs</div>
-
-        <div class="link-grid mb-4">
-
-            @foreach ($organizations as $org)
-                <a href="#">
-                    {{ $org->job_topics }}
-                    ({{ $org->total_jobs }})
-                </a>
-            @endforeach
-
-        </div>
-
-
-        <!-- ================= POPULAR SEARCHES ================= -->
-        <div class="sec-title">Popular Searches</div>
-
-        <div>
-            @foreach ($popularSearches as $search)
-                <a class="tag" href="{{ url('/search?q=' . urlencode($search->keyword)) }}">
-                    {{ strtoupper($search->keyword) }}
-                </a>
-            @endforeach
-        </div>
-
-
-
-        <style>
-            /* FAQ */
-            .faq-box {
-                background: #fff;
-                border: 1px solid #e8edf3;
-                border-radius: 10px;
-                padding: 20px;
-                margin-top: 25px;
-            }
-
-            .faq-item {
-                border-bottom: 1px solid #eee;
-                padding: 15px 0;
-            }
-
-            .faq-q {
-                font-weight: 800;
-                color: #0a5467;
-                margin-bottom: 5px;
-            }
-
-            .faq-a {
-                color: #555;
-                font-size: 14px;
-                line-height: 1.6;
-            }
-
-            /* ABOUT */
-            .about-box {
-                background: #fff;
-                border: 1px solid #e8edf3;
-                border-radius: 10px;
-                padding: 25px;
-                margin-top: 25px;
-            }
-
-            .about-box h2 {
-                font-size: 22px;
-                font-weight: 800;
-                color: #0a5467;
-                margin-bottom: 10px;
-            }
-
-            .about-box p {
-                color: #555;
-                line-height: 1.7;
-                font-size: 14px;
-            }
-
-            /* FOOTER */
-            .footer {
-                background: #0a5467;
-                color: #fff;
-                padding: 30px;
-                margin-top: 30px;
-                border-radius: 10px 10px 0 0;
-            }
-
-            .footer a {
-                color: #fff;
-                text-decoration: none;
-                display: block;
-                font-size: 14px;
-                margin-bottom: 6px;
-                opacity: .9;
-            }
-
-            .footer a:hover {
-                opacity: 1;
-            }
-
-            .footer-title {
-                font-weight: 800;
-                margin-bottom: 10px;
-            }
-
-            .bottom-bar {
-                text-align: center;
-                padding: 10px;
-                background: #083b49;
-                color: #fff;
-                font-size: 13px;
-            }
-        </style>
-
-        <div class="container">
-
-            <!-- ================= FAQ ================= -->
-            <div class="faq-box">
-
-                <h3 style="font-weight:800;color:#0a5467;">Frequently Asked Questions</h3>
-
-                <div class="faq-item">
-                    <div class="faq-q">What is SarkariHai?</div>
-                    <div class="faq-a">
-                        SarkariHai provides the latest government job notifications, admit cards, results, answer keys,
-                        admissions, syllabus, and exam updates from Central and State Government organizations across
-                        India.
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-q">How can I apply for Sarkari Jobs?</div>
-                    <div class="faq-a">
-                        Open the job notification on SarkariHai, check the eligibility criteria, important dates,
-                        application fee, and required documents, then apply through the official Apply Online link
-                        provided in the job post.
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-q">Is SarkariHai free to use?</div>
-                    <div class="faq-a">
-                        Yes. SarkariHai is completely free to use. You can access the latest government job
-                        notifications, admit cards, results, answer keys, admissions, and other exam updates without any
-                        subscription or registration.
-                    </div>
-                </div>
-
             </div>
 
-
-            <!-- ================= ABOUT ================= -->
-            <div class="about-box">
-
-                <h2>About SarkariHai – Latest Sarkari Naukri, Results, Admit Card & Government Jobs 2026</h2>
-
-                <p>
-                    <strong>SarkariHai.com</strong> is a trusted platform for the latest <strong>Sarkari
-                        Naukri</strong>,
-                    <strong>Government Jobs</strong>, <strong>Online Forms</strong>, <strong>Admit Cards</strong>,
-                    <strong>Results</strong>, <strong>Answer Keys</strong>, <strong>Admissions</strong>,
-                    <strong>Syllabus</strong>, and <strong>Exam Updates</strong> across India. We regularly publish
-                    verified
-                    updates for Central Government Jobs, State Government Jobs, PSU Recruitment, Apprentice Jobs, and
-                    other
-                    government employment opportunities.
-                </p>
-
-                <p>
-                    Whether you are preparing for <strong>SSC</strong>, <strong>UPSC</strong>, <strong>Railway</strong>,
-                    <strong>Bank</strong>, <strong>IBPS</strong>, <strong>SBI</strong>, <strong>RBI</strong>,
-                    <strong>Police</strong>, <strong>Defence</strong>, <strong>Teaching</strong>,
-                    <strong>Engineering</strong>, <strong>Medical</strong>, <strong>ISRO</strong>,
-                    <strong>DRDO</strong>, <strong>NTA</strong>, or State Government recruitment exams, SarkariHai helps
-                    you
-                    stay updated with the latest notifications, eligibility, important dates, vacancies, exam patterns,
-                    admit
-                    cards, results, and official application links.
-                </p>
-
-                <p>
-                    Our goal is to make searching for <strong>Sarkari Naukri</strong> and
-                    <strong>Government Jobs</strong> simple, fast, and reliable. Thousands of aspirants visit
-                    <strong>SarkariHai</strong> every day to check the latest job notifications, online forms,
-                    exam results, answer keys, admissions, and recruitment updates from official sources in one place.
-                </p>
-
-            </div>
-
-
-            <!-- ================= FOOTER ================= -->
-            <div class="footer">
-
-                <div class="row">
-
-                    <div class="col-lg-4">
-
-                        <div class="footer-title">SarkariHai</div>
-                        <p style="font-size:14px;opacity:.9;">
-                            Latest Government Jobs, Admit Card,
-                            Results & Answer Key Updates.
-                        </p>
-
-                    </div>
-
-                    <div class="col-lg-3">
-
-                        <div class="footer-title">Important Links</div>
-
-                        <a href="#">Latest Jobs</a>
-                        <a href="#">Admit Card</a>
-                        <a href="#">Results</a>
-                        <a href="#">Answer Key</a>
-
-                    </div>
-
-                    <div class="col-lg-3">
-
-                        <div class="footer-title">Quick Pages</div>
-
-                        <a href="#">State Jobs</a>
-                        <a href="#">Category Jobs</a>
-                        <a href="#">Contact</a>
-                        <a href="#">About</a>
-
-                    </div>
-
-                    <div class="col-lg-2">
-
-                        <div class="footer-title">Support</div>
-
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Disclaimer</a>
-                        <a href="#">DMCA</a>
-                        <a href="#">Sitemap</a>
-
-                    </div>
-
+            <div class="faq-item">
+                <div class="faq-q">How can I apply for Sarkari Jobs?</div>
+                <div class="faq-a">
+                    Open the job notification on SarkariHai, check the eligibility criteria, important dates,
+                    application fee, and required documents, then apply through the official Apply Online link
+                    provided in the job post.
                 </div>
-
             </div>
 
-            <div class="bottom-bar">
-                © 2026 SarkariHai.com | All Rights Reserved
+            <div class="faq-item">
+                <div class="faq-q">Is SarkariHai free to use?</div>
+                <div class="faq-a">
+                    Yes. SarkariHai is completely free to use. You can access the latest government job
+                    notifications, admit cards, results, answer keys, admissions, and other exam updates without any
+                    subscription or registration.
+                </div>
             </div>
 
         </div>
-        <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
-            crossorigin="anonymous"></script>
-        <script>
-            $('#jobSearch').keyup(function() {
-
-                let q = $(this).val();
-
-                if (q.length < 2) {
-                    $('.search-dropdown').hide().html('');
-                    return;
-                }
-
-                $.get(
-                    "{{ route('search.jobs') }}", {
-                        q: q
-                    },
-                    function(data) {
-
-                        let html = '';
-
-                        if (data.length > 0) {
-
-                            data.forEach(function(job) {
-
-                                html += `
-                    <a href="/sarkari-naukri/${job.state ?? 'all-india'}/${job.category ?? 'government'}/${job.slug}"
-                       class="search-item">
-
-                        <div class="search-icon">
-                            📄
-                        </div>
-
-                        <div class="search-body">
-
-                            <div class="search-title">
-                                ${job.title}
-                            </div>
-
-                            <div class="search-meta">
-
-    <span class="search-category">
-        💼 ${job.category ?? 'Government'}
-    </span>
-
-    <span class="search-separator">|</span>
-
-    <span class="search-posts" style="font-size: 11px;">
-        👥 ${job.total_vacancies ?? 'N/A'} Posts
-    </span>
-
-    <span class="search-separator">|</span>
-
-    <span class="search-date" style="font-size: 11px;">
-        📅 ${job.end_date ?? 'Open'}
-    </span>
-
-</div>
-
-                        </div>
-
-                        <div class="search-arrow">
-                            ❯
-                        </div>
-
-                    </a>
-                    `;
-                            });
 
 
+        <!-- ================= ABOUT ================= -->
+        <div class="about-box">
 
-                        } else {
+            <h2>About SarkariHai – Latest Sarkari Naukri, Results, Admit Card & Government Jobs 2026</h2>
 
-                            html = `
-                <div class="p-4 text-center">
-                    No Sarkari Jobs Found
-                </div>
-                `;
-                        }
+            <p>
+                <strong>SarkariHai.com</strong> is a trusted platform for the latest <strong>Sarkari
+                    Naukri</strong>,
+                <strong>Government Jobs</strong>, <strong>Online Forms</strong>, <strong>Admit Cards</strong>,
+                <strong>Results</strong>, <strong>Answer Keys</strong>, <strong>Admissions</strong>,
+                <strong>Syllabus</strong>, and <strong>Exam Updates</strong> across India. We regularly publish
+                verified
+                updates for Central Government Jobs, State Government Jobs, PSU Recruitment, Apprentice Jobs, and
+                other
+                government employment opportunities.
+            </p>
 
-                        $('.search-dropdown')
-                            .html(html)
-                            .show();
+            <p>
+                Whether you are preparing for <strong>SSC</strong>, <strong>UPSC</strong>, <strong>Railway</strong>,
+                <strong>Bank</strong>, <strong>IBPS</strong>, <strong>SBI</strong>, <strong>RBI</strong>,
+                <strong>Police</strong>, <strong>Defence</strong>, <strong>Teaching</strong>,
+                <strong>Engineering</strong>, <strong>Medical</strong>, <strong>ISRO</strong>,
+                <strong>DRDO</strong>, <strong>NTA</strong>, or State Government recruitment exams, SarkariHai helps
+                you
+                stay updated with the latest notifications, eligibility, important dates, vacancies, exam patterns,
+                admit
+                cards, results, and official application links.
+            </p>
 
-                    }
-                );
-            });
+            <p>
+                Our goal is to make searching for <strong>Sarkari Naukri</strong> and
+                <strong>Government Jobs</strong> simple, fast, and reliable. Thousands of aspirants visit
+                <strong>SarkariHai</strong> every day to check the latest job notifications, online forms,
+                exam results, answer keys, admissions, and recruitment updates from official sources in one place.
+            </p>
 
+        </div>
 
-            // outside click hide
-            $(document).click(function(e) {
-
-                if (!$(e.target).closest('.position-relative').length) {
-                    $('.search-dropdown').hide();
-                }
-
-            });
-
-
-
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-
-                btn.addEventListener('click', function() {
-
-                    document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
-
-                    this.classList.add('active');
-
-                    document.getElementById(this.dataset.tab).classList.add('active');
-
-                });
-
-            });
-        </script>
-</body>
-
-</html>
+@endsection
+        
