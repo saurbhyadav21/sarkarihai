@@ -1525,6 +1525,11 @@ FAQ
 </div>
     </div>
 
+
+    
+@endsection
+
+
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -1539,5 +1544,3 @@ FAQ
   }
 }
 </script>
-    
-@endsection
