@@ -1092,4 +1092,186 @@ EXTERNAL LINKS
 
 </div>
     </div>
+
+
+    <!-- =======================================================
+WE DO NOT SELL YOUR PERSONAL INFORMATION
+======================================================= -->
+
+<div class="page-card">
+
+    <h2>🚫 We Do Not Sell Your Personal Information</h2>
+
+    <p>
+
+        At <strong>SarkariHai.com</strong>, we respect your privacy.
+
+        We do <strong>not sell, rent, trade or share</strong> your personal
+        information with third parties for marketing purposes.
+
+    </p>
+
+    <p>
+
+        Any information collected is used only for improving website
+        functionality, enhancing user experience and providing better
+        services to our visitors.
+
+    </p>
+
+    <div class="alert alert-success mt-4">
+
+        <strong>Your Privacy Matters.</strong>
+
+        SarkariHai.com does not sell users' personal information.
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+CHILDREN'S PRIVACY
+======================================================= -->
+
+<div class="page-card">
+
+    <h2>👶 Children's Privacy</h2>
+
+    <p>
+
+        SarkariHai.com is intended for students, job seekers and the general
+        public.
+
+        We do not knowingly collect personally identifiable information
+        from children under the age of 13.
+
+    </p>
+
+    <p>
+
+        If a parent or guardian believes that a child has provided personal
+        information through our website, they may contact us immediately.
+
+        We will review the request and remove the information wherever
+        reasonably possible.
+
+    </p>
+
+</div>
+
+
+
+<!-- =======================================================
+YOUR PRIVACY RIGHTS
+======================================================= -->
+
+<div class="page-card">
+
+    <h2>👤 Your Privacy Rights</h2>
+
+    <p>
+
+        Depending on applicable laws, users may have certain rights
+        regarding their personal information.
+
+    </p>
+
+    <div class="row mt-4">
+
+        <div class="col-md-6">
+
+            <div class="feature-card text-start">
+
+                <h4>Available Rights</h4>
+
+                <ul class="mb-0">
+
+                    <li>Request information about collected data.</li>
+
+                    <li>Request correction of inaccurate information.</li>
+
+                    <li>Request deletion where applicable.</li>
+
+                    <li>Withdraw consent where legally permitted.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="feature-card text-start">
+
+                <h4>How to Contact Us</h4>
+
+                <p>
+
+                    If you wish to exercise any of these rights,
+                    please contact us using the email provided
+                    on this website.
+
+                </p>
+
+                <strong>
+
+                    📧 official.sarkarihai@gmail.com
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+CHANGES TO THIS PRIVACY POLICY
+======================================================= -->
+
+<div class="page-card">
+
+    <h2>🔄 Changes to This Privacy Policy</h2>
+
+    <p>
+
+        SarkariHai.com reserves the right to modify or update this
+        Privacy Policy at any time without prior notice.
+
+    </p>
+
+    <p>
+
+        Any changes will become effective immediately after they are
+        published on this page.
+
+    </p>
+
+    <p>
+
+        Users are encouraged to review this Privacy Policy
+        periodically to stay informed about how their information
+        is protected.
+
+    </p>
+
+    <div class="info-box mt-4">
+
+        <strong>Last Reviewed:</strong>
+
+        {{ now()->format('d F Y') }}
+
+    </div>
+
+</div>
+
+
+
 @endsection
