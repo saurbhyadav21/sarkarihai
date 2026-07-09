@@ -615,7 +615,7 @@
                         <!-- PHOTO -->
                         <div class="col-md-3 text-center mb-3 mb-md-0">
 
-                            <img src="{{ asset('public/images/saurbh-yadav.jpg') }}" class="author-img" alt="Saurbh Yadav">
+                            <img src="https://xkkado.com/image/profile.jpeg" class="author-img" alt="Saurbh Yadav">
 
                         </div>
 
