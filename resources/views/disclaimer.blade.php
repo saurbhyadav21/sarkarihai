@@ -536,4 +536,236 @@
             </div>
 
         </div>
+
+
+        <!-- ================= EXTERNAL LINKS ================= -->
+
+<div class="page-card">
+
+    <h2>🔗 External Links Disclaimer</h2>
+
+    <p>
+
+        SarkariHai.com may contain links to official Government websites,
+        recruitment boards, universities and other third-party websites
+        for the convenience of our users.
+
+    </p>
+
+    <p>
+
+        These external websites are not operated or controlled by
+        <strong>SarkariHai.com</strong>. Therefore, we are not responsible
+        for their content, privacy practices, availability or any changes
+        made by those websites.
+
+    </p>
+
+    <div class="alert alert-primary mt-4">
+
+        <strong>Recommendation:</strong>
+
+        Always verify recruitment details, application dates, eligibility,
+        fees and official notifications directly from the concerned
+        Government department's official website.
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= ADVERTISEMENT DISCLAIMER ================= -->
+
+<div class="page-card">
+
+    <h2>📢 Advertisement Disclaimer</h2>
+
+    <p>
+
+        SarkariHai.com may display advertisements provided by
+        Google AdSense or other trusted advertising partners.
+
+    </p>
+
+    <p>
+
+        These advertisements help support the maintenance,
+        hosting and continuous development of our website.
+
+    </p>
+
+    <p>
+
+        Displaying an advertisement does not imply that
+        SarkariHai.com recommends, guarantees or endorses
+        the advertised products or services.
+
+    </p>
+
+</div>
+
+
+
+<!-- ================= AFFILIATE DISCLAIMER ================= -->
+
+<div class="page-card">
+
+    <h2>🤝 Affiliate Disclosure</h2>
+
+    <p>
+
+        At present, SarkariHai.com primarily provides educational
+        and Government Job related information.
+
+    </p>
+
+    <p>
+
+        In the future, some pages may contain affiliate links.
+
+        If users purchase products or services through those links,
+        we may earn a small commission without any additional cost
+        to the user.
+
+    </p>
+
+    <div class="info-box">
+
+        We only recommend products or services that we believe
+        may provide value to our users.
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= USER RESPONSIBILITY ================= -->
+
+<div class="page-card">
+
+    <h2>👤 User Responsibility</h2>
+
+    <p>
+
+        Every visitor is responsible for verifying the authenticity
+        of recruitment notifications before submitting any application
+        or paying any examination fee.
+
+    </p>
+
+    <ul>
+
+        <li>Read the complete official notification carefully.</li>
+
+        <li>Verify eligibility criteria.</li>
+
+        <li>Confirm important dates.</li>
+
+        <li>Check official application links.</li>
+
+        <li>Verify examination fees.</li>
+
+        <li>Keep copies of submitted applications.</li>
+
+    </ul>
+
+    <div class="alert alert-warning">
+
+        SarkariHai.com shall not be responsible for any loss,
+        inconvenience or misunderstanding resulting from the use
+        of information published on this website.
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= COPYRIGHT ================= -->
+
+<div class="page-card">
+
+    <h2>© Copyright Policy</h2>
+
+    <p>
+
+        Unless otherwise stated, all original content published on
+        SarkariHai.com including articles, website design, graphics,
+        logos and custom materials are protected under applicable
+        copyright laws.
+
+    </p>
+
+    <p>
+
+        Unauthorized copying, reproduction, redistribution or
+        commercial use of our original content without prior
+        written permission is prohibited.
+
+    </p>
+
+</div>
+
+
+
+<!-- ================= FAIR USE ================= -->
+
+<div class="page-card">
+
+    <h2>📚 Fair Use Notice</h2>
+
+    <p>
+
+        Some logos, organization names, recruitment board names,
+        Government department names and official notification
+        references appearing on this website belong to their
+        respective owners.
+
+    </p>
+
+    <p>
+
+        Such materials are used solely for identification,
+        educational reporting and informational purposes under
+        the principles of Fair Use.
+
+    </p>
+
+</div>
+
+
+
+<!-- ================= LIMITATION OF LIABILITY ================= -->
+
+<div class="page-card">
+
+    <h2>⚖️ Limitation of Liability</h2>
+
+    <p>
+
+        While every effort is made to publish accurate and updated
+        information, SarkariHai.com does not guarantee the completeness,
+        reliability or accuracy of every piece of information.
+
+    </p>
+
+    <p>
+
+        We shall not be liable for any direct, indirect, incidental,
+        consequential or financial loss arising from the use of this
+        website or reliance upon the information published herein.
+
+    </p>
+
+    <div class="alert alert-danger">
+
+        Users are strongly advised to rely upon the official
+        notification issued by the concerned Government authority
+        before making any decision.
+
+    </div>
+
+</div>
     @endsection
