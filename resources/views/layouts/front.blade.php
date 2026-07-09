@@ -16,6 +16,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="https://sarkarihai.com/public/images/fevicon.ico">
 
     <link rel="apple-touch-icon" href="https://sarkarihai.com/public/images/fevicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
         body {
             background: #f5f7fb;
