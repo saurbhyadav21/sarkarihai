@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-    <style>
+    {{-- <style>
         .contact-page {
             max-width: 950px;
             margin: auto;
@@ -199,6 +199,487 @@
             <br>
             <strong>Email:</strong> official.sarkarihai@gmail.com
         </p>
+
+    </div> --}}
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+            color: #fff;
+            padding: 60px 40px;
+            border-radius: 18px;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .contact-hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .contact-hero p {
+            font-size: 18px;
+            opacity: .95;
+            max-width: 850px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        .contact-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, .08);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .contact-card h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1b1b1b;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #eaf3ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-right: 18px;
+        }
+
+        .contact-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .contact-value {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .author-box {
+            background: #f8fbff;
+            border: 1px solid #d9e8ff;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .author-box h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .author-box p {
+            color: #555;
+            line-height: 1.9;
+        }
+
+        .author-badge {
+            display: inline-block;
+            background: #0d6efd;
+            color: #fff;
+            padding: 7px 15px;
+            border-radius: 30px;
+            margin: 5px;
+            font-size: 14px;
+        }
+
+        .feature-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+            padding: 25px;
+            text-align: center;
+            height: 100%;
+            transition: .3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        @media(max-width:768px) {
+
+            .contact-hero {
+
+                padding: 35px 20px;
+
+            }
+
+            .contact-hero h1 {
+
+                font-size: 30px;
+
+            }
+
+            .contact-hero p {
+
+                font-size: 16px;
+
+            }
+
+            .contact-card {
+
+                padding: 20px;
+
+            }
+
+            .contact-info {
+
+                align-items: flex-start;
+
+            }
+
+            .contact-icon {
+
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+
+            }
+
+        }
+    </style>
+
+    <div class="container py-5">
+
+        <div class="contact-hero">
+
+            <h1>Contact SarkariHai</h1>
+
+            <p>
+
+                Have a question, found an error, or want to share feedback?
+
+                Our team is always ready to help you. We continuously work to provide accurate Government Job updates, Admit
+                Cards, Results, Answer Keys and Exam Notifications across India.
+
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-5">
+
+                <div class="contact-card">
+
+                    <h2>📞 Contact Information</h2>
+
+                    <div class="contact-info">
+
+                        <div class="contact-icon">
+                            📧
+                        </div>
+
+                        <div>
+
+                            <div class="contact-title">
+
+                                Email Address
+
+                            </div>
+
+                            <div class="contact-value">
+
+                                official.sarkarihai@gmail.com
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="contact-info">
+
+                        <div class="contact-icon">
+                            🌐
+                        </div>
+
+                        <div>
+
+                            <div class="contact-title">
+
+                                Website
+
+                            </div>
+
+                            <div class="contact-value">
+
+                                https://sarkarihai.com
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="contact-info">
+
+                        <div class="contact-icon">
+                            ⏰
+                        </div>
+
+                        <div>
+
+                            <div class="contact-title">
+
+                                Response Time
+
+                            </div>
+
+                            <div class="contact-value">
+
+                                Usually within 24-48 Hours
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="contact-info">
+
+                        <div class="contact-icon">
+                            💬
+                        </div>
+
+                        <div>
+
+                            <div class="contact-title">
+
+                                Support
+
+                            </div>
+
+                            <div class="contact-value">
+
+                                Corrections, Feedback, Suggestions & Business Queries
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-7">
+
+                <div class="author-box">
+
+                    <h3>
+
+                        👨‍💻 About The Author
+
+                    </h3>
+
+                    <p>
+
+                        <strong>Saurbh Yadav</strong> is the founder and content editor of <strong>SarkariHai.com</strong>.
+                        He holds a Bachelor's Degree in Computer Science & Engineering and has more than <strong>10 years of
+                            experience</strong> in web development, education content publishing, and government job
+                        information platforms.
+
+                    </p>
+
+                    <p>
+
+                        His objective is to provide students and job seekers with accurate, fast, and easy-to-understand
+                        information regarding Government Jobs, Recruitment Notifications, Admit Cards, Results, Answer Keys,
+                        Syllabus, and Admission Updates.
+
+                    </p>
+
+                    <div class="mt-4">
+
+                        <span class="author-badge">
+
+                            10+ Years Experience
+
+                        </span>
+
+                        <span class="author-badge">
+
+                            Government Jobs
+
+                        </span>
+
+                        <span class="author-badge">
+
+                            Results
+
+                        </span>
+
+                        <span class="author-badge">
+
+                            Admit Cards
+
+                        </span>
+
+                        <span class="author-badge">
+
+                            Education Content
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="mt-5">
+
+            <h2 class="mb-4 text-center fw-bold">
+
+                Why Trust SarkariHai?
+
+            </h2>
+
+            <div class="row g-4">
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
+                            📜
+
+                        </div>
+
+                        <h4>
+
+                            Official Sources
+
+                        </h4>
+
+                        <p>
+
+                            Information is collected from official government notifications and recruitment authorities.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
+                            ⚡
+
+                        </div>
+
+                        <h4>
+
+                            Fast Updates
+
+                        </h4>
+
+                        <p>
+
+                            Latest Government Job notifications are published quickly after official release.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
+                            ✅
+
+                        </div>
+
+                        <h4>
+
+                            Fact Checked
+
+                        </h4>
+
+                        <p>
+
+                            Every article is reviewed before publishing to reduce errors and improve accuracy.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
+                            🎓
+
+                        </div>
+
+                        <h4>
+
+                            Free For Everyone
+
+                        </h4>
+
+                        <p>
+
+                            All job notifications, admit cards, results and exam updates are available free of cost.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 @endsection
