@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.front')
 
 @section('content')
 
-<div class="container py-5" style="color: #fff;">
+<div class="container py-5" style="">
 
     <h1 class="mb-4">Privacy Policy</h1>
 
