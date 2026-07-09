@@ -1,8 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-
-{{-- <div class="container py-5" style="">
+    {{-- <div class="container py-5" style="">
 
     <h1 class="mb-4">Privacy Policy</h1>
 
@@ -145,64 +144,363 @@
     </p>
 
 </div> --}}
+    <style>
+        /* =========================================================
+           SARKARIHAI STATIC PAGES
+           About | Contact | Privacy | Disclaimer | Terms
+        ========================================================= */
 
-<div class="container py-5">
+        body {
+            background: #f5f7fb;
+        }
 
-    <!-- ================= HERO ================= -->
+        /* HERO */
 
-    <div class="contact-hero">
+        .page-hero {
+            background: linear-gradient(135deg, #0d6efd, #004aad);
+            color: #fff;
+            padding: 70px 50px;
+            border-radius: 18px;
+            text-align: center;
+            margin-bottom: 35px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .12);
+        }
 
-        <h1>Privacy Policy</h1>
+        .page-hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
 
-        <p>
+        .page-hero p {
+            font-size: 18px;
+            max-width: 850px;
+            margin: auto;
+            line-height: 1.9;
+            opacity: .95;
+        }
 
-            At <strong>SarkariHai.com</strong>, we respect your privacy and are committed
-            to protecting your personal information. This Privacy Policy explains
-            what information we collect, how we use it, and the choices you have
-            regarding your data while using our website.
+        /* MAIN CARD */
 
-        </p>
+        .page-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .07);
+        }
 
-        <div class="mt-4">
+        .page-card h2 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1d3557;
+        }
 
-            <span class="author-badge">
-                🔒 Privacy First
-            </span>
+        .page-card h3 {
+            font-size: 24px;
+            margin-bottom: 18px;
+            color: #222;
+        }
 
-            <span class="author-badge">
-                📅 Last Updated: {{ now()->format('d F Y') }}
-            </span>
+        .page-card p {
+            color: #555;
+            line-height: 1.9;
+            font-size: 16px;
+        }
 
-            <span class="author-badge">
-                🌐 Effective Worldwide
-            </span>
+        /* FEATURE CARD */
+
+        .feature-card {
+
+            background: #fff;
+
+            border-radius: 14px;
+
+            padding: 28px;
+
+            text-align: center;
+
+            height: 100%;
+
+            border: 1px solid #eef2f7;
+
+            transition: .3s;
+
+        }
+
+        .feature-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+
+        }
+
+        .feature-icon {
+
+            font-size: 42px;
+
+            margin-bottom: 15px;
+
+        }
+
+        .feature-card h4 {
+
+            font-size: 21px;
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+
+        }
+
+        .feature-card p {
+
+            font-size: 15px;
+
+            color: #666;
+
+        }
+
+        /* INFO BOX */
+
+        .info-box {
+
+            background: #f8fbff;
+
+            border-left: 5px solid #0d6efd;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+        }
+
+        /* ALERT */
+
+        .alert {
+
+            border-radius: 12px;
+
+        }
+
+        /* AUTHOR BADGES */
+
+        .author-badge {
+
+            display: inline-block;
+
+            padding: 8px 18px;
+
+            background: #e9f2ff;
+
+            color: #0d6efd;
+
+            border-radius: 30px;
+
+            margin: 6px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+        /* LIST */
+
+        .page-card ul {
+
+            padding-left: 22px;
+
+        }
+
+        .page-card li {
+
+            margin-bottom: 12px;
+
+            color: #444;
+
+            line-height: 1.8;
+
+        }
+
+        /* TABLE */
+
+        .table {
+
+            background: #fff;
+
+        }
+
+        /* ACCORDION */
+
+        .accordion-item {
+
+            border-radius: 10px !important;
+
+            overflow: hidden;
+
+            margin-bottom: 10px;
+
+            border: 1px solid #e8edf5;
+
+        }
+
+        .accordion-button {
+
+            font-weight: 600;
+
+        }
+
+        .accordion-button:not(.collapsed) {
+
+            background: #eef5ff;
+
+            color: #0d6efd;
+
+        }
+
+        /* CTA */
+
+        .page-cta {
+
+            background: linear-gradient(135deg, #0d6efd, #0056d6);
+
+            color: #fff;
+
+            padding: 45px;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+        }
+
+        .page-cta h2 {
+
+            color: #fff;
+
+            margin-bottom: 15px;
+
+        }
+
+        .page-cta p {
+
+            color: #fff;
+
+            opacity: .95;
+
+        }
+
+        /* BUTTON */
+
+        .btn-primary {
+
+            border-radius: 10px;
+
+            padding: 12px 30px;
+
+            font-weight: 600;
+
+        }
+
+        /* MOBILE */
+
+        @media(max-width:768px) {
+
+            .page-hero {
+
+                padding: 40px 20px;
+
+            }
+
+            .page-hero h1 {
+
+                font-size: 30px;
+
+            }
+
+            .page-hero p {
+
+                font-size: 16px;
+
+            }
+
+            .page-card {
+
+                padding: 22px;
+
+            }
+
+            .page-card h2 {
+
+                font-size: 24px;
+
+            }
+
+            .page-card h3 {
+
+                font-size: 20px;
+
+            }
+
+            .feature-card {
+
+                margin-bottom: 20px;
+
+            }
+
+        }
+    </style>
+
+    <div class="container py-5">
+
+        <!-- ================= HERO ================= -->
+
+        <div class="page-hero">
+
+            <h1>Privacy Policy</h1>
+
+            <p>
+
+                At <strong>SarkariHai.com</strong>, we respect your privacy and are committed
+                to protecting your personal information. This Privacy Policy explains
+                what information we collect, how we use it, and the choices you have
+                regarding your data while using our website.
+
+            </p>
+
+            <div class="mt-4">
+
+                <span class="author-badge">
+                    🔒 Privacy First
+                </span>
+
+                <span class="author-badge">
+                    📅 Last Updated: {{ now()->format('d F Y') }}
+                </span>
+
+                <span class="author-badge">
+                    🌐 Effective Worldwide
+                </span>
+
+            </div>
 
         </div>
 
-    </div>
-
-
-
-    <!-- ================= QUICK SUMMARY ================= -->
-
-    <div class="contact-card">
-
-        <h2>📌 Privacy at a Glance</h2>
-
-        <div class="row mt-4">
+        <div class="row g-3 mb-5">
 
             <div class="col-md-3">
 
                 <div class="feature-card">
 
-                    <div class="feature-icon">🔐</div>
+                    <div class="feature-icon">🔒</div>
 
-                    <h4>Secure</h4>
+                    <h5>Privacy First</h5>
 
-                    <p>
-
-                        We take reasonable measures to protect user information.
-
+                    <p class="mb-0">
+                        We never sell your personal information.
                     </p>
 
                 </div>
@@ -213,14 +511,12 @@
 
                 <div class="feature-card">
 
-                    <div class="feature-icon">🍪</div>
+                    <div class="feature-icon">🛡️</div>
 
-                    <h4>Cookies</h4>
+                    <h5>Secure Browsing</h5>
 
-                    <p>
-
-                        Cookies help improve website functionality and user experience.
-
+                    <p class="mb-0">
+                        Your information is protected with industry-standard practices.
                     </p>
 
                 </div>
@@ -231,14 +527,12 @@
 
                 <div class="feature-card">
 
-                    <div class="feature-icon">📊</div>
+                    <div class="feature-icon">📋</div>
 
-                    <h4>Analytics</h4>
+                    <h5>Transparent Policy</h5>
 
-                    <p>
-
-                        Anonymous usage data helps us improve our services.
-
+                    <p class="mb-0">
+                        We clearly explain how your information is collected and used.
                     </p>
 
                 </div>
@@ -251,12 +545,10 @@
 
                     <div class="feature-icon">✅</div>
 
-                    <h4>Transparency</h4>
+                    <h5>AdSense Friendly</h5>
 
-                    <p>
-
-                        We clearly explain how and why your information is used.
-
+                    <p class="mb-0">
+                        Our privacy practices follow modern web and advertising standards.
                     </p>
 
                 </div>
@@ -265,41 +557,204 @@
 
         </div>
 
-    </div>
+        <!-- ================= QUICK SUMMARY ================= -->
+
+        <div class="page-card">
+
+            <h2>📌 Privacy at a Glance</h2>
+
+            <div class="row mt-4">
+
+                <div class="col-md-3">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">🔐</div>
+
+                        <h4>Secure</h4>
+
+                        <p>
+
+                            We take reasonable measures to protect user information.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">🍪</div>
+
+                        <h4>Cookies</h4>
+
+                        <p>
+
+                            Cookies help improve website functionality and user experience.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">📊</div>
+
+                        <h4>Analytics</h4>
+
+                        <p>
+
+                            Anonymous usage data helps us improve our services.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">✅</div>
+
+                        <h4>Transparency</h4>
+
+                        <p>
+
+                            We clearly explain how and why your information is used.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
 
 
-    <!-- ================= INFORMATION WE COLLECT ================= -->
+        <!-- ================= INFORMATION WE COLLECT ================= -->
 
-    <div class="contact-card">
+        <div class="contact-card">
 
-        <h2>📂 Information We Collect</h2>
+            <h2>📂 Information We Collect</h2>
 
-        <p>
+            <p>
 
-            Depending on how you interact with SarkariHai.com, we may collect
-            certain information to improve your browsing experience and provide
-            relevant services.
+                Depending on how you interact with SarkariHai.com, we may collect
+                certain information to improve your browsing experience and provide
+                relevant services.
 
-        </p>
+            </p>
 
-        <div class="row mt-4">
+            <div class="row mt-4">
 
-            <div class="col-md-6">
+                <div class="col-md-6">
 
-                <div class="feature-card text-start">
+                    <div class="feature-card text-start">
 
-                    <h4>👤 Personal Information</h4>
+                        <h4>👤 Personal Information</h4>
 
-                    <ul class="mb-0">
+                        <ul class="mb-0">
 
-                        <li>Name (if voluntarily provided)</li>
+                            <li>Name (if voluntarily provided)</li>
 
-                        <li>Email Address</li>
+                            <li>Email Address</li>
 
-                        <li>Contact Information</li>
+                            <li>Contact Information</li>
 
-                        <li>Information submitted through forms</li>
+                            <li>Information submitted through forms</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="feature-card text-start">
+
+                        <h4>💻 Technical Information</h4>
+
+                        <ul class="mb-0">
+
+                            <li>IP Address</li>
+
+                            <li>Browser Type</li>
+
+                            <li>Operating System</li>
+
+                            <li>Device Information</li>
+
+                            <li>Pages Visited</li>
+
+                            <li>Time Spent on Website</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= HOW WE USE INFORMATION ================= -->
+
+        <div class="contact-card">
+
+            <h2>⚙️ How We Use Your Information</h2>
+
+            <p>
+
+                The information collected helps us maintain and improve SarkariHai.com
+                while providing users with a better experience.
+
+            </p>
+
+            <div class="row mt-4">
+
+                <div class="col-md-6">
+
+                    <ul>
+
+                        <li>Improve website performance and usability.</li>
+
+                        <li>Respond to user queries and feedback.</li>
+
+                        <li>Provide requested services and support.</li>
+
+                        <li>Maintain website security.</li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <ul>
+
+                        <li>Analyze website traffic.</li>
+
+                        <li>Display relevant advertisements.</li>
+
+                        <li>Improve content quality.</li>
+
+                        <li>Detect technical issues and spam.</li>
 
                     </ul>
 
@@ -307,124 +762,42 @@
 
             </div>
 
-            <div class="col-md-6">
+        </div>
 
-                <div class="feature-card text-start">
 
-                    <h4>💻 Technical Information</h4>
 
-                    <ul class="mb-0">
+        <!-- ================= COOKIES ================= -->
 
-                        <li>IP Address</li>
+        <div class="contact-card">
 
-                        <li>Browser Type</li>
+            <h2>🍪 Cookies Policy</h2>
 
-                        <li>Operating System</li>
+            <p>
 
-                        <li>Device Information</li>
+                SarkariHai.com uses cookies to improve website functionality,
+                remember user preferences and analyze visitor behavior.
 
-                        <li>Pages Visited</li>
+            </p>
 
-                        <li>Time Spent on Website</li>
+            <p>
 
-                    </ul>
+                Cookies are small text files stored on your device by your browser.
+                They help us understand how visitors use our website and enable
+                certain features to work properly.
 
-                </div>
+            </p>
+
+            <div class="alert alert-info mt-4">
+
+                <strong>Note:</strong>
+
+                You can disable cookies anytime through your browser settings.
+                However, some features of the website may not function properly
+                after disabling cookies.
 
             </div>
 
         </div>
 
     </div>
-
-
-
-    <!-- ================= HOW WE USE INFORMATION ================= -->
-
-    <div class="contact-card">
-
-        <h2>⚙️ How We Use Your Information</h2>
-
-        <p>
-
-            The information collected helps us maintain and improve SarkariHai.com
-            while providing users with a better experience.
-
-        </p>
-
-        <div class="row mt-4">
-
-            <div class="col-md-6">
-
-                <ul>
-
-                    <li>Improve website performance and usability.</li>
-
-                    <li>Respond to user queries and feedback.</li>
-
-                    <li>Provide requested services and support.</li>
-
-                    <li>Maintain website security.</li>
-
-                </ul>
-
-            </div>
-
-            <div class="col-md-6">
-
-                <ul>
-
-                    <li>Analyze website traffic.</li>
-
-                    <li>Display relevant advertisements.</li>
-
-                    <li>Improve content quality.</li>
-
-                    <li>Detect technical issues and spam.</li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- ================= COOKIES ================= -->
-
-    <div class="contact-card">
-
-        <h2>🍪 Cookies Policy</h2>
-
-        <p>
-
-            SarkariHai.com uses cookies to improve website functionality,
-            remember user preferences and analyze visitor behavior.
-
-        </p>
-
-        <p>
-
-            Cookies are small text files stored on your device by your browser.
-            They help us understand how visitors use our website and enable
-            certain features to work properly.
-
-        </p>
-
-        <div class="alert alert-info mt-4">
-
-            <strong>Note:</strong>
-
-            You can disable cookies anytime through your browser settings.
-            However, some features of the website may not function properly
-            after disabling cookies.
-
-        </div>
-
-    </div>
-
-</div>
-
 @endsection
