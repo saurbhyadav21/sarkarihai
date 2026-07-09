@@ -1,78 +1,221 @@
 @extends('layouts.front')
 
 @section('content')
+    <div class="container py-5">
 
-{{-- <div class="container py-5" style="color: #fff;">
+        <!-- ================= HERO ================= -->
 
-    <h1 class="mb-4">Disclaimer</h1>
+        <div class="page-hero">
 
-    <p>
-        <strong>Sarkarihai.com</strong> is a private website and is not associated,
-        endorsed, or affiliated with any government institution, agency, or department.
-        The information provided on this website is only for general informational
-        purposes related to government jobs, results, admit cards, answer keys,
-        and other examination updates.
-    </p>
+            <h1>Disclaimer</h1>
 
-    <p>
-        The content available on this website is collected from various trusted
-        sources such as official government websites, official notifications,
-        press releases, and reputed news portals. While we try our best to keep
-        the information accurate, updated, and reliable, we do not make any
-        warranties or guarantees regarding the completeness, accuracy,
-        reliability, or suitability of the information published on this website.
-    </p>
+            <p>
 
-    <p>
-        Users are strongly advised to always verify important information from
-        the official website or official notification before making any
-        decisions or taking any action based on the information provided on
-        this website.
-    </p>
+                Welcome to <strong>SarkariHai.com</strong>. This Disclaimer explains
+                the limitations of liability, the purpose of the information published
+                on our website, and your responsibilities as a user.
 
-    <p>
-        <strong>Sarkarihai.com</strong> will not be responsible for any errors,
-        omissions, or for any loss or damage that may arise from the use of
-        the information available on this website. Any action you take based
-        on the information provided here is strictly at your own risk.
-    </p>
+            </p>
 
-    <hr>
+            <div class="mt-4">
 
-    <h2 class="mt-5">अस्वीकरण (Disclaimer)</h2>
+                <span class="author-badge">
+                    ⚖️ Legal Notice
+                </span>
 
-    <p>
-        <strong>Sarkarihai.com</strong> एक निजी वेबसाइट है और इसका किसी भी
-        सरकारी संस्थान, एजेंसी या विभाग से कोई संबंध, समर्थन या संबद्धता
-        नहीं है। इस वेबसाइट पर उपलब्ध जानकारी केवल सरकारी नौकरियों,
-        रिजल्ट, एडमिट कार्ड, आंसर की और अन्य परीक्षा से संबंधित
-        सूचनात्मक उद्देश्यों के लिए प्रदान की जाती है।
-    </p>
+                <span class="author-badge">
+                    📅 Last Updated: {{ now()->format('d F Y') }}
+                </span>
 
-    <p>
-        इस वेबसाइट पर प्रकाशित जानकारी विभिन्न विश्वसनीय स्रोतों जैसे
-        आधिकारिक सरकारी वेबसाइट, आधिकारिक नोटिफिकेशन, प्रेस रिलीज
-        और प्रतिष्ठित समाचार वेबसाइटों से संकलित की जाती है।
-        हालांकि हम जानकारी को सटीक और अद्यतित रखने का पूरा प्रयास करते हैं,
-        लेकिन हम इसकी पूर्णता, सटीकता, विश्वसनीयता या उपयुक्तता की
-        कोई गारंटी नहीं देते।
-    </p>
+                <span class="author-badge">
+                    🔒 Transparency First
+                </span>
 
-    <p>
-        उपयोगकर्ताओं को सलाह दी जाती है कि किसी भी निर्णय लेने से पहले
-        संबंधित जानकारी को आधिकारिक वेबसाइट या आधिकारिक नोटिफिकेशन
-        से अवश्य सत्यापित करें।
-    </p>
+            </div>
 
-    <p>
-        <strong>Sarkarihai.com</strong> इस वेबसाइट पर उपलब्ध जानकारी के
-        उपयोग से होने वाले किसी भी नुकसान, त्रुटि या चूक के लिए
-        जिम्मेदार नहीं होगा। इस वेबसाइट की जानकारी पर आपकी किसी भी
-        प्रकार की निर्भरता पूरी तरह से आपके अपने जोखिम पर होगी।
-    </p>
+        </div>
 
-    <p class="mt-4"><strong>Team Sarkarihai</strong></p>
 
-</div> --}}
 
-@endsection
+        <!-- ================= HIGHLIGHTS ================= -->
+
+        <div class="row g-3 mb-5">
+
+            <div class="col-md-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🏛️</div>
+
+                    <h5>Not Government Website</h5>
+
+                    <p class="mb-0">
+
+                        SarkariHai.com is an independent informational website.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">📑</div>
+
+                    <h5>Official Notification</h5>
+
+                    <p class="mb-0">
+
+                        Always verify information from official notifications.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">✔️</div>
+
+                    <h5>Information Only</h5>
+
+                    <p class="mb-0">
+
+                        Content is published only for educational purposes.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🔄</div>
+
+                    <h5>Regular Updates</h5>
+
+                    <p class="mb-0">
+
+                        Information may change without prior notice.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= GENERAL DISCLAIMER ================= -->
+
+        <div class="page-card">
+
+            <h2>📌 General Disclaimer</h2>
+
+            <p>
+
+                SarkariHai.com is an independent educational and informational
+                platform created to help students, job seekers and aspirants
+                access Government Job Notifications, Admit Cards, Results,
+                Answer Keys, Admissions and other educational updates.
+
+            </p>
+
+            <p>
+
+                We are <strong>not associated with any Government department,
+                    ministry, commission, recruitment board, university or official
+                    authority.</strong>
+
+            </p>
+
+            <div class="alert alert-warning mt-4">
+
+                <strong>Important:</strong>
+
+                Users should always verify recruitment details, eligibility,
+                important dates, application fees and other information from
+                the official notification before submitting any application.
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= ACCURACY ================= -->
+
+        <div class="page-card">
+
+            <h2>📖 Accuracy of Information</h2>
+
+            <p>
+
+                Our editorial team makes every reasonable effort to publish
+                accurate, updated and reliable information.
+
+            </p>
+
+            <p>
+
+                However, recruitment notifications, examination schedules,
+                eligibility criteria and official announcements may change
+                without prior notice.
+
+            </p>
+
+            <ul>
+
+                <li>Official notifications always take priority.</li>
+
+                <li>Users must verify information independently.</li>
+
+                <li>Website content should not be treated as legal advice.</li>
+
+                <li>Minor errors may occur due to human or technical reasons.</li>
+
+            </ul>
+
+        </div>
+
+
+
+        <!-- ================= OFFICIAL WEBSITE ================= -->
+
+        <div class="page-card">
+
+            <h2>🏛️ Official Website Disclaimer</h2>
+
+            <p>
+
+                SarkariHai.com is <strong>not an official Government website.</strong>
+
+            </p>
+
+            <p>
+
+                Names, logos, recruitment boards and examination authorities
+                mentioned on this website belong to their respective owners.
+
+            </p>
+
+            <div class="info-box mt-4">
+
+                Every recruitment article includes or refers to the
+                official notification issued by the concerned authority.
+
+            </div>
+
+        </div>
+    @endsection
