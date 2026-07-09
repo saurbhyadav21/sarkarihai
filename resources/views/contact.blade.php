@@ -369,51 +369,88 @@
             }
 
         }
-        .social-links{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:15px;
-}
 
-.social-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:10px 16px;
-    border-radius:8px;
-    color:#fff;
-    text-decoration:none;
-    font-size:14px;
-    font-weight:600;
-    transition:.3s;
-}
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
 
-.social-btn:hover{
-    color:#fff;
-    transform:translateY(-2px);
-    text-decoration:none;
-}
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+        }
 
-.whatsapp{
-    background:#25D366;
-}
+        .social-btn:hover {
+            color: #fff;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
 
-.facebook{
-    background:#1877F2;
-}
+        .whatsapp {
+            background: #25D366;
+        }
 
-.instagram{
-    background:#E4405F;
-}
+        .facebook {
+            background: #1877F2;
+        }
 
-.twitter{
-    background:#000;
-}
+        .instagram {
+            background: #E4405F;
+        }
 
-.youtube{
-    background:#FF0000;
-}
+        .twitter {
+            background: #000;
+        }
+
+        .youtube {
+            background: #FF0000;
+        }
+
+        .author-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            font-size: 15px;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        .meta-item strong {
+            color: #0d6efd;
+        }
+
+        @media(max-width:768px) {
+
+            .author-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .meta-item {
+                width: 100%;
+            }
+
+        }
     </style>
 
     <div class="container py-5">
@@ -614,19 +651,16 @@
 
                             <div class="author-meta">
 
-                                <div>
-                                    <strong>Experience</strong><br>
-                                    10+ Years
+                                <div class="meta-item">
+                                    <strong>Experience:</strong> 10+ Years
                                 </div>
 
-                                <div>
-                                    <strong>Specialization</strong><br>
-                                    Government Jobs
+                                <div class="meta-item">
+                                    <strong>Specialization:</strong> Government Jobs
                                 </div>
 
-                                <div>
-                                    <strong>Education</strong><br>
-                                    B.Tech CSE
+                                <div class="meta-item">
+                                    <strong>Education:</strong> B.Tech (Computer Science & Engineering)
                                 </div>
 
                             </div>
