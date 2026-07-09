@@ -384,7 +384,7 @@
 
             <!-- Mobile Menu Button -->
             <button class="menu-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
-                <i class="bi bi-list"></i>
+                ☰
             </button>
 
         </div>
