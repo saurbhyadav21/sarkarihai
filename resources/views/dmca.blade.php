@@ -636,6 +636,381 @@ background:#0d6efd;
 color:#fff;
 
 }
+
+/*==========================================================
+    DMCA.CSS
+    PART-2
+==========================================================*/
+
+/*==========================
+      TIMELINE
+==========================*/
+
+.timeline{
+
+    position:relative;
+
+    margin-top:30px;
+
+    padding-left:45px;
+
+}
+
+.timeline:before{
+
+    content:"";
+
+    position:absolute;
+
+    left:15px;
+
+    top:0;
+
+    bottom:0;
+
+    width:4px;
+
+    background:linear-gradient(180deg,#0d6efd,#00c6ff);
+
+    border-radius:20px;
+
+}
+
+.timeline-item{
+
+    position:relative;
+
+    padding-bottom:35px;
+
+}
+
+.timeline-item:last-child{
+
+    padding-bottom:0;
+
+}
+
+.timeline-item:before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-37px;
+
+    top:5px;
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:50%;
+
+    background:#0d6efd;
+
+    border:4px solid #fff;
+
+    box-shadow:0 0 0 5px rgba(13,110,253,.15);
+
+}
+
+.timeline-title{
+
+    font-size:21px;
+
+    font-weight:700;
+
+    color:#0d47a1;
+
+    margin-bottom:12px;
+
+}
+
+.timeline p{
+
+    color:#555;
+
+    line-height:1.9;
+
+}
+
+
+/*==========================
+        INFO BOX
+==========================*/
+
+.info-box{
+
+    margin-top:25px;
+
+    background:#eef6ff;
+
+    border-left:5px solid #0d6efd;
+
+    padding:20px 25px;
+
+    border-radius:12px;
+
+    color:#084298;
+
+    line-height:1.8;
+
+}
+
+
+/*==========================
+        ALERTS
+==========================*/
+
+.alert{
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:18px 22px;
+
+    margin-top:25px;
+
+    line-height:1.8;
+
+}
+
+.alert-success{
+
+    background:#e9f8ef;
+
+    color:#146c43;
+
+}
+
+.alert-warning{
+
+    background:#fff4db;
+
+    color:#8a6d3b;
+
+}
+
+.alert-danger{
+
+    background:#fdecec;
+
+    color:#842029;
+
+}
+
+.alert-primary{
+
+    background:#eef5ff;
+
+    color:#084298;
+
+}
+
+
+/*==========================
+        CONTACT CARD
+==========================*/
+
+.contact-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    border:1px solid #edf2f7;
+
+    padding:25px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+
+}
+
+.contact-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:18px 0;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.contact-info:last-child{
+
+    border-bottom:none;
+
+}
+
+.contact-icon{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:50%;
+
+    background:#0d6efd;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:24px;
+
+    flex-shrink:0;
+
+}
+
+
+/*==========================
+            FAQ
+==========================*/
+
+.accordion-item{
+
+    border:1px solid #e9edf5;
+
+    border-radius:12px !important;
+
+    overflow:hidden;
+
+    margin-bottom:15px;
+
+}
+
+.accordion-button{
+
+    padding:18px 20px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    background:#fff;
+
+}
+
+.accordion-button:not(.collapsed){
+
+    background:#eef6ff;
+
+    color:#0d47a1;
+
+    box-shadow:none;
+
+}
+
+.accordion-button:focus{
+
+    box-shadow:none;
+
+}
+
+.accordion-body{
+
+    padding:20px;
+
+    line-height:1.9;
+
+    color:#555;
+
+}
+
+
+/*==========================
+            CTA
+==========================*/
+
+.page-cta{
+
+    margin-top:50px;
+
+    background:linear-gradient(135deg,#0d6efd,#0dcaf0);
+
+    border-radius:18px;
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:55px 35px;
+
+}
+
+.page-cta h2{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.page-cta p{
+
+    max-width:760px;
+
+    margin:auto;
+
+    margin-bottom:30px;
+
+    line-height:1.9;
+
+    font-size:18px;
+
+}
+
+.page-cta .btn{
+
+    border-radius:35px;
+
+    padding:14px 35px;
+
+    font-weight:700;
+
+}
+
+
+/*==========================
+      HOVER EFFECTS
+==========================*/
+
+.page-card{
+
+    transition:.35s;
+
+}
+
+.page-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+}
+
+.contact-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-6px);
+
+}
 </style>
 <div class="container py-5">
 
