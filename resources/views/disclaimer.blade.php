@@ -1,6 +1,324 @@
 @extends('layouts.front')
 
 @section('content')
+    <style>
+        /* ===========================================================
+       SARKARIHAI DISCLAIMER PAGE
+       Version : 1.0
+    =========================================================== */
+
+        body {
+            background: #f4f7fb;
+            font-family: 'Segoe UI', sans-serif;
+            color: #333;
+        }
+
+        /* ================= HERO ================= */
+
+        .page-hero {
+
+            background: linear-gradient(135deg, #0d6efd, #0056d6);
+
+            color: #fff;
+
+            padding: 70px 50px;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .12);
+
+        }
+
+        .page-hero:before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+
+            height: 220px;
+
+            background: rgba(255, 255, 255, .08);
+
+            border-radius: 50%;
+
+            top: -90px;
+
+            right: -70px;
+
+        }
+
+        .page-hero:after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 180px;
+
+            background: rgba(255, 255, 255, .05);
+
+            border-radius: 50%;
+
+            left: -70px;
+
+            bottom: -70px;
+
+        }
+
+        .page-hero h1 {
+
+            font-size: 44px;
+
+            font-weight: 800;
+
+            margin-bottom: 18px;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+        .page-hero p {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            font-size: 18px;
+
+            line-height: 1.9;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+        /* ================= BADGES ================= */
+
+        .author-badge {
+
+            display: inline-block;
+
+            margin: 6px;
+
+            padding: 10px 18px;
+
+            border-radius: 30px;
+
+            background: rgba(255, 255, 255, .15);
+
+            color: #fff;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            backdrop-filter: blur(8px);
+
+        }
+
+        /* ================= PAGE CARD ================= */
+
+        .page-card {
+
+            background: #fff;
+
+            padding: 35px;
+
+            border-radius: 15px;
+
+            margin-bottom: 30px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+
+            border: 1px solid #edf2f7;
+
+        }
+
+        .page-card h2 {
+
+            font-size: 30px;
+
+            font-weight: 700;
+
+            color: #0d47a1;
+
+            margin-bottom: 20px;
+
+        }
+
+        .page-card h3 {
+
+            font-size: 24px;
+
+            font-weight: 700;
+
+            margin-bottom: 18px;
+
+        }
+
+        .page-card p {
+
+            color: #555;
+
+            font-size: 16px;
+
+            line-height: 1.9;
+
+        }
+
+        .page-card ul {
+
+            padding-left: 22px;
+
+        }
+
+        .page-card li {
+
+            margin-bottom: 12px;
+
+            line-height: 1.8;
+
+        }
+
+        /* ================= FEATURE CARD ================= */
+
+        .feature-card {
+
+            background: #fff;
+
+            border-radius: 14px;
+
+            padding: 30px;
+
+            height: 100%;
+
+            text-align: center;
+
+            border: 1px solid #edf2f7;
+
+            transition: .35s;
+
+        }
+
+        .feature-card:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
+
+        }
+
+        .feature-icon {
+
+            font-size: 42px;
+
+            margin-bottom: 18px;
+
+        }
+
+        .feature-card h5 {
+
+            font-size: 21px;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+
+        }
+
+        .feature-card p {
+
+            font-size: 15px;
+
+            color: #666;
+
+            margin: 0;
+
+        }
+
+        /* ================= INFO BOX ================= */
+
+        .info-box {
+
+            background: #eef6ff;
+
+            border-left: 5px solid #0d6efd;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-top: 25px;
+
+        }
+
+        .info-box strong {
+
+            color: #0d47a1;
+
+        }
+
+        /* ================= ALERT ================= */
+
+        .alert {
+
+            border: none;
+
+            border-radius: 12px;
+
+            padding: 18px 22px;
+
+            line-height: 1.8;
+
+        }
+
+        .alert-warning {
+
+            background: #fff7df;
+
+            color: #856404;
+
+        }
+
+        .alert-success {
+
+            background: #eaf8ef;
+
+            color: #146c43;
+
+        }
+
+        .alert-primary {
+
+            background: #edf5ff;
+
+            color: #084298;
+
+        }
+
+        .alert-danger {
+
+            background: #fdecec;
+
+            color: #842029;
+
+        }
+    </style>
     <div class="container py-5">
 
         <!-- ================= HERO ================= -->
