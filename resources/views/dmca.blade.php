@@ -110,11 +110,8 @@ a:hover{
 
     overflow:hidden;
 
-    background:
-    linear-gradient(
-    135deg,
-    #0f4cdd,
-    #1f7fff);
+    background: linear-gradient(135deg, #062a3a, #0a5467);
+
 
     color:#fff;
 
