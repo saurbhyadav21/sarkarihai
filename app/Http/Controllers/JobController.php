@@ -1917,7 +1917,7 @@ class JobController extends Controller
                 // 6-13
                 'start_date'      => $start[1] ?? null,
                 'end_date'        => $last[1] ?? null,
-                'last_fee_date'   => $fee[1] ?? null,
+                'last_fee_date'   => isset($fee[1]) ? trim(preg_replace('/\x{00A0}/u', ' ', $fee[1])) : null,
                 'correction_date' => null,
                 'exam_date'       => $exam[1] ?? 'To Be Announced',
                 'admit_card'      => $admit[1] ?? 'To Be Announced',
