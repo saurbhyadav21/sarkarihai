@@ -491,134 +491,160 @@
                         </div>
 
                     </div>
+                    <hr>
 
+                    <h5 class="mb-3 fw-bold">
+                        🌍 Follow SarkariHai
+                    </h5>
+
+                    <div class="social-links">
+
+                        <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="social-btn whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+
+                        <a href="https://facebook.com/sarkarihai" target="_blank" class="social-btn facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+
+                        <a href="https://instagram.com/sarkarihai" target="_blank" class="social-btn instagram">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+
+                        <a href="https://x.com/sarkarihai" target="_blank" class="social-btn twitter">
+                            <i class="fab fa-x-twitter"></i> X (Twitter)
+                        </a>
+
+                        <a href="https://youtube.com/@sarkarihaiofficial" target="_blank" class="social-btn youtube">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+
+                    </div>
                 </div>
 
             </div>
 
             <div class="col-lg-7">
 
-    <div class="author-box">
+                <div class="author-box">
 
-        <div class="row align-items-center">
+                    <div class="row align-items-center">
 
-            <!-- PHOTO -->
-            <div class="col-md-3 text-center mb-3 mb-md-0">
+                        <!-- PHOTO -->
+                        <div class="col-md-3 text-center mb-3 mb-md-0">
 
-                <img src="{{ asset('public/images/saurbh-yadav.jpg') }}"
-                    class="author-img"
-                    alt="Saurbh Yadav">
+                            <img src="{{ asset('public/images/saurbh-yadav.jpg') }}" class="author-img" alt="Saurbh Yadav">
 
-            </div>
+                        </div>
 
-            <!-- DETAILS -->
-            <div class="col-md-9">
+                        <!-- DETAILS -->
+                        <div class="col-md-9">
 
-                <h3 class="mb-1">
-                    👨‍💻 Saurbh Yadav
-                </h3>
+                            <h3 class="mb-1">
+                                👨‍💻 Saurbh Yadav
+                            </h3>
 
-                <div class="author-role mb-3">
-                    Founder • Editor • Full Stack Developer
+                            <div class="author-role mb-3">
+                                Founder • Editor • Full Stack Developer
+                            </div>
+
+                            <p>
+
+                                <strong>Saurbh Yadav</strong> is the Founder and Editor of
+                                <strong>SarkariHai.com</strong>.
+
+                                He holds a Bachelor's Degree in Computer Science & Engineering and has
+                                <strong>10+ years of experience</strong> in software development,
+                                education publishing and Government Job information platforms.
+
+                            </p>
+
+                            <p>
+
+                                His mission is to provide accurate, verified and easy-to-understand
+                                information related to Government Jobs, Admit Cards, Results,
+                                Answer Keys, Admissions and Recruitment Notifications.
+
+                            </p>
+
+                            <div class="author-meta">
+
+                                <div>
+                                    <strong>Experience</strong><br>
+                                    10+ Years
+                                </div>
+
+                                <div>
+                                    <strong>Specialization</strong><br>
+                                    Government Jobs
+                                </div>
+
+                                <div>
+                                    <strong>Education</strong><br>
+                                    B.Tech CSE
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <p class="mb-2">
+                                📅 <strong>Last Updated :</strong>
+                                {{ now()->format('d F Y') }}
+                            </p>
+
+                            <p class="mb-2">
+                                ⏱ <strong>Reading Time :</strong>
+                                3 Minutes
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-6 text-md-end">
+
+                            <p class="mb-2">
+                                📧 official.sarkarihai@gmail.com
+                            </p>
+
+                            <p class="mb-0">
+                                🌐 www.sarkarihai.com
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="mt-3">
+
+                        <span class="author-badge">✔ Verified Information</span>
+
+                        <span class="author-badge">10+ Years Experience</span>
+
+                        <span class="author-badge">Government Jobs</span>
+
+                        <span class="author-badge">Results</span>
+
+                        <span class="author-badge">Admit Cards</span>
+
+                        <span class="author-badge">Fact Checked</span>
+
+                        <span class="author-badge">Education Content</span>
+
+                    </div>
+
                 </div>
 
-                <p>
-
-                    <strong>Saurbh Yadav</strong> is the Founder and Editor of
-                    <strong>SarkariHai.com</strong>.
-
-                    He holds a Bachelor's Degree in Computer Science & Engineering and has
-                    <strong>10+ years of experience</strong> in software development,
-                    education publishing and Government Job information platforms.
-
-                </p>
-
-                <p>
-
-                    His mission is to provide accurate, verified and easy-to-understand
-                    information related to Government Jobs, Admit Cards, Results,
-                    Answer Keys, Admissions and Recruitment Notifications.
-
-                </p>
-
-                <div class="author-meta">
-
-                    <div>
-                        <strong>Experience</strong><br>
-                        10+ Years
-                    </div>
-
-                    <div>
-                        <strong>Specialization</strong><br>
-                        Government Jobs
-                    </div>
-
-                    <div>
-                        <strong>Education</strong><br>
-                        B.Tech CSE
-                    </div>
-
-                </div>
-
             </div>
-
-        </div>
-
-        <hr>
-
-        <div class="row">
-
-            <div class="col-md-6">
-
-                <p class="mb-2">
-                    📅 <strong>Last Updated :</strong>
-                    {{ now()->format('d F Y') }}
-                </p>
-
-                <p class="mb-2">
-                    ⏱ <strong>Reading Time :</strong>
-                    3 Minutes
-                </p>
-
-            </div>
-
-            <div class="col-md-6 text-md-end">
-
-                <p class="mb-2">
-                    📧 official.sarkarihai@gmail.com
-                </p>
-
-                <p class="mb-0">
-                    🌐 www.sarkarihai.com
-                </p>
-
-            </div>
-
-        </div>
-
-        <hr>
-
-        <div class="mt-3">
-
-            <span class="author-badge">✔ Verified Information</span>
-
-            <span class="author-badge">10+ Years Experience</span>
-
-            <span class="author-badge">Government Jobs</span>
-
-            <span class="author-badge">Results</span>
-
-            <span class="author-badge">Admit Cards</span>
-
-            <span class="author-badge">Fact Checked</span>
-
-            <span class="author-badge">Education Content</span>
-
-        </div>
-
-    </div>
-
-</div>
 
         </div>
 
