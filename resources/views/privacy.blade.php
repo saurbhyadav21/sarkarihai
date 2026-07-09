@@ -1269,6 +1269,260 @@ CHANGES TO THIS PRIVACY POLICY
     </div>
 
 </div>
+
+
+<!-- =======================================================
+CONTACT US
+======================================================= -->
+
+<div class="page-card">
+
+    <h2>📧 Contact Us</h2>
+
+    <p>
+
+        If you have any questions, concerns or suggestions regarding this
+        Privacy Policy or the way your information is handled, please feel
+        free to contact us.
+
+    </p>
+
+    <div class="row mt-4">
+
+        <div class="col-md-6">
+
+            <div class="feature-card text-start">
+
+                <h4>General Enquiries</h4>
+
+                <p class="mb-2">
+
+                    📧 <strong>official.sarkarihai@gmail.com</strong>
+
+                </p>
+
+                <p class="mb-0">
+
+                    🌐 https://sarkarihai.com
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="feature-card text-start">
+
+                <h4>Response Time</h4>
+
+                <p>
+
+                    We generally respond within
+                    <strong>24–48 business hours.</strong>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+HINDI VERSION
+======================================================= -->
+
+<div class="page-card">
+
+    <h2>🇮🇳 गोपनीयता नीति (Privacy Policy)</h2>
+
+    <p>
+
+        <strong>SarkariHai.com</strong> आपकी गोपनीयता का सम्मान करता है।
+        हमारी वेबसाइट का उपयोग करते समय यदि आप कोई जानकारी साझा करते हैं,
+        तो हम उसे सुरक्षित रखने का पूरा प्रयास करते हैं।
+
+    </p>
+
+    <p>
+
+        हम आपकी व्यक्तिगत जानकारी को बेचते, किराए पर नहीं देते और
+        बिना आपकी अनुमति के किसी तीसरे पक्ष के साथ साझा नहीं करते,
+        जब तक कि कानून द्वारा इसकी आवश्यकता न हो।
+
+    </p>
+
+    <p>
+
+        हमारी वेबसाइट पर Cookies, Analytics और अन्य तकनीकों का उपयोग
+        केवल वेबसाइट की गुणवत्ता सुधारने, उपयोगकर्ता अनुभव बेहतर बनाने
+        और आवश्यक सेवाएँ प्रदान करने के लिए किया जाता है।
+
+    </p>
+
+    <p>
+
+        यदि आपको हमारी Privacy Policy से संबंधित कोई प्रश्न या सुझाव हो,
+        तो आप हमें ईमेल के माध्यम से संपर्क कर सकते हैं।
+
+    </p>
+
+    <div class="alert alert-success mt-4">
+
+        📧 <strong>official.sarkarihai@gmail.com</strong>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+FAQ
+======================================================= -->
+
+<div class="page-card">
+
+    <h2>❓ Frequently Asked Questions</h2>
+
+    <div class="accordion" id="privacyFaq">
+
+        <div class="accordion-item">
+
+            <h2 class="accordion-header">
+
+                <button class="accordion-button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#privacy1">
+
+                    Does SarkariHai collect personal information?
+
+                </button>
+
+            </h2>
+
+            <div id="privacy1"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#privacyFaq">
+
+                <div class="accordion-body">
+
+                    Yes, only when users voluntarily provide information
+                    through forms, email or other communication methods.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="accordion-item">
+
+            <h2 class="accordion-header">
+
+                <button class="accordion-button collapsed"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#privacy2">
+
+                    Does SarkariHai sell my personal information?
+
+                </button>
+
+            </h2>
+
+            <div id="privacy2"
+                class="accordion-collapse collapse"
+                data-bs-parent="#privacyFaq">
+
+                <div class="accordion-body">
+
+                    No. SarkariHai.com never sells or rents users'
+                    personal information.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="accordion-item">
+
+            <h2 class="accordion-header">
+
+                <button class="accordion-button collapsed"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#privacy3">
+
+                    Does this website use Cookies?
+
+                </button>
+
+            </h2>
+
+            <div id="privacy3"
+                class="accordion-collapse collapse"
+                data-bs-parent="#privacyFaq">
+
+                <div class="accordion-body">
+
+                    Yes. Cookies help improve website performance,
+                    remember preferences and understand visitor behaviour.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="accordion-item">
+
+            <h2 class="accordion-header">
+
+                <button class="accordion-button collapsed"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#privacy4">
+
+                    How can I contact SarkariHai?
+
+                </button>
+
+            </h2>
+
+            <div id="privacy4"
+                class="accordion-collapse collapse"
+                data-bs-parent="#privacyFaq">
+
+                <div class="accordion-body">
+
+                    You can contact us anytime at
+
+                    <strong>
+
+                        official.sarkarihai@gmail.com
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
     </div>
 
 
