@@ -1,9 +1,8 @@
 @extends('layouts.front')
 
 @section('content')
-@extends('layouts.front')
 
-@section('content')
+
 <style>
     /*==========================================================
     DMCA PAGE EXTRA CSS
