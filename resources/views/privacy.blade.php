@@ -799,5 +799,297 @@
 
         </div>
 
+        <!-- ================= THIRD PARTY SERVICES ================= -->
+        <!-- =======================================================
+GOOGLE ADSENSE
+======================================================= -->
+
+<div class="page-card">
+
+    <h2>💰 Google AdSense & Advertising</h2>
+
+    <p>
+
+        SarkariHai.com may display advertisements provided by
+        <strong>Google AdSense</strong> or other trusted advertising partners.
+
+        These advertising providers may use cookies, web beacons and similar
+        technologies to display ads based on your previous visits to this
+        website or other websites across the internet.
+
+    </p>
+
+    <div class="info-box mt-4">
+
+        <strong>Advertising Cookies</strong>
+
+        <p class="mb-0 mt-2">
+
+            Google may use the <strong>DART Cookie</strong> to serve personalized
+            advertisements based on your interests and browsing history.
+
+            Users may opt out of personalized advertising through Google's Ads
+            Settings.
+
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+GOOGLE ANALYTICS
+======================================================= -->
+
+<div class="page-card">
+
+    <h2>📊 Google Analytics</h2>
+
+    <p>
+
+        We use <strong>Google Analytics</strong> to understand how visitors use
+        SarkariHai.com.
+
+    </p>
+
+    <p>
+
+        Google Analytics helps us understand:
+
+    </p>
+
+    <ul>
+
+        <li>Most visited pages</li>
+
+        <li>Traffic sources</li>
+
+        <li>User behavior</li>
+
+        <li>Device and browser usage</li>
+
+        <li>Website performance</li>
+
+    </ul>
+
+    <div class="alert alert-primary mt-4">
+
+        Google Analytics collects anonymous usage information and does
+        <strong>not personally identify individual users.</strong>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+THIRD PARTY SERVICES
+======================================================= -->
+
+<div class="page-card">
+
+    <h2>🌐 Third-Party Services</h2>
+
+    <p>
+
+        SarkariHai.com may use trusted third-party services to improve
+        website functionality, analyze traffic and provide relevant content.
+
+    </p>
+
+    <div class="row mt-4">
+
+        <div class="col-md-6">
+
+            <div class="feature-card text-start">
+
+                <h4>Services We May Use</h4>
+
+                <ul class="mb-0">
+
+                    <li>Google Analytics</li>
+
+                    <li>Google AdSense</li>
+
+                    <li>Google Search Console</li>
+
+                    <li>Cloudflare CDN</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="feature-card text-start">
+
+                <h4>Purpose</h4>
+
+                <ul class="mb-0">
+
+                    <li>Website Security</li>
+
+                    <li>Traffic Analysis</li>
+
+                    <li>Performance Monitoring</li>
+
+                    <li>Advertising</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+DATA SECURITY
+======================================================= -->
+
+<div class="page-card">
+
+    <h2>🔐 Data Security</h2>
+
+    <p>
+
+        Protecting user information is important to us.
+
+        We implement reasonable technical and organizational measures to
+        safeguard information against unauthorized access, alteration,
+        disclosure or destruction.
+
+    </p>
+
+    <div class="row mt-4">
+
+        <div class="col-md-4">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    🔒
+
+                </div>
+
+                <h4>
+
+                    Secure Hosting
+
+                </h4>
+
+                <p>
+
+                    Our website is hosted on secure infrastructure.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    🔑
+
+                </div>
+
+                <h4>
+
+                    Limited Access
+
+                </h4>
+
+                <p>
+
+                    Sensitive information is accessible only to authorized persons.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    🛡️
+
+                </div>
+
+                <h4>
+
+                    Security Practices
+
+                </h4>
+
+                <p>
+
+                    We regularly review our security practices to improve protection.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+EXTERNAL LINKS
+======================================================= -->
+
+<div class="page-card">
+
+    <h2>🔗 External Links</h2>
+
+    <p>
+
+        SarkariHai.com may contain links to official government websites,
+        recruitment boards and other third-party websites.
+
+    </p>
+
+    <p>
+
+        Once you leave our website, we have no control over the privacy
+        practices or content of those external websites.
+
+        We encourage users to review the privacy policy of every website
+        they visit.
+
+    </p>
+
+    <div class="alert alert-warning">
+
+        <strong>Important:</strong>
+
+        Official recruitment details should always be verified from the
+        respective official website before submitting any application.
+
+    </div>
+
+</div>
     </div>
 @endsection
