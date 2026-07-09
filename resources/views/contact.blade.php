@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-    {{-- <style>
+    <style>
         .contact-page {
             max-width: 950px;
             margin: auto;
@@ -200,5 +200,5 @@
             <strong>Email:</strong> official.sarkarihai@gmail.com
         </p>
 
-    </div> --}}
+    </div>
 @endsection
