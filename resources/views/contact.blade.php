@@ -682,4 +682,275 @@
         </div>
 
     </div>
+    <!-- ================= CONTENT TRANSPARENCY ================= -->
+
+    <div class="row mt-5">
+
+        <div class="col-lg-12">
+
+            <div class="contact-card">
+
+                <h2>📑 Content Transparency</h2>
+
+                <p>
+
+                    At <strong>SarkariHai.com</strong>, our mission is to provide accurate, easy-to-understand and
+                    up-to-date information related to Government Jobs, Admit Cards, Results, Answer Keys,
+                    Admissions, Syllabus and other education-related updates.
+
+                </p>
+
+                <p>
+
+                    Before publishing any article, our editorial team carefully reviews information collected
+                    from trusted and official sources. Every effort is made to ensure that the published content
+                    is correct and useful for students and job seekers across India.
+
+                </p>
+
+                <p>
+
+                    Although we try our best to maintain complete accuracy, users are always advised to verify
+                    important information such as eligibility, application dates, fees, age limits and official
+                    announcements from the respective department's official website before taking any action.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- ================= EDITORIAL PROCESS ================= -->
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="contact-card">
+
+                <h2>✍️ Our Editorial Process</h2>
+
+                <div class="row">
+
+                    <div class="col-md-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">🔎</div>
+
+                            <h4>Research</h4>
+
+                            <p>
+
+                                Official notifications and government announcements are carefully reviewed.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">📝</div>
+
+                            <h4>Writing</h4>
+
+                            <p>
+
+                                Information is written in simple language for students and job seekers.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">✔️</div>
+
+                            <h4>Verification</h4>
+
+                            <p>
+
+                                Important details are verified before publication whenever possible.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">🚀</div>
+
+                            <h4>Update</h4>
+
+                            <p>
+
+                                Articles are updated whenever official changes are announced.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- ================= INFORMATION SOURCES ================= -->
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="contact-card">
+
+                <h2>🏛️ Information Sources</h2>
+
+                <p>
+
+                    Information published on SarkariHai.com is generally collected from reliable public sources such as:
+
+                </p>
+
+                <ul class="mt-3">
+
+                    <li>Official Government Websites</li>
+
+                    <li>Official Recruitment Notifications (PDF)</li>
+
+                    <li>Employment News</li>
+
+                    <li>Official Press Releases</li>
+
+                    <li>Public Service Commission Websites</li>
+
+                    <li>Government Departments & Recruitment Boards</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- ================= CORRECTION POLICY ================= -->
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="contact-card">
+
+                <h2>🛠 Correction Policy</h2>
+
+                <p>
+
+                    Despite careful review, mistakes may occasionally occur.
+
+                </p>
+
+                <p>
+
+                    If you notice any incorrect information, outdated details or broken links,
+                    please inform us by email.
+
+                </p>
+
+                <div class="alert alert-primary mt-3">
+
+                    <strong>Email :</strong>
+
+                    official.sarkarihai@gmail.com
+
+                </div>
+
+                <p>
+
+                    Our editorial team reviews every genuine correction request and updates the article
+                    as quickly as possible.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- ================= DISCLAIMER ================= -->
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="contact-card border border-warning">
+
+                <h2>⚠️ Disclaimer</h2>
+
+                <p>
+
+                    SarkariHai.com is an independent educational information website.
+
+                </p>
+
+                <p>
+
+                    We are <strong>not associated with any Government Department, Ministry,
+                        Recruitment Board or Official Authority.</strong>
+
+                </p>
+
+                <p>
+
+                    All trademarks, logos and organization names belong to their respective owners.
+
+                </p>
+
+                <p>
+
+                    Users should always verify important details from the official notification before applying
+                    for any recruitment, examination or admission process.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
 @endsection
