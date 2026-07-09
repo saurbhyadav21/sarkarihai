@@ -369,6 +369,51 @@
             }
 
         }
+        .social-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+}
+
+.social-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 16px;
+    border-radius:8px;
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.social-btn:hover{
+    color:#fff;
+    transform:translateY(-2px);
+    text-decoration:none;
+}
+
+.whatsapp{
+    background:#25D366;
+}
+
+.facebook{
+    background:#1877F2;
+}
+
+.instagram{
+    background:#E4405F;
+}
+
+.twitter{
+    background:#000;
+}
+
+.youtube{
+    background:#FF0000;
+}
     </style>
 
     <div class="container py-5">
