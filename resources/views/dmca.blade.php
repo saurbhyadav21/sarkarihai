@@ -437,8 +437,8 @@ a:hover{
 
     font-size:34px;
 
-    background:
-    linear-gradient(135deg,#0f4cdd,#3fa2ff);
+    background: linear-gradient(135deg, #062a3a, #0a5467);
+
 
     color:#fff;
 
