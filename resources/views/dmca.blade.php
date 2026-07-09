@@ -950,9 +950,8 @@ a:hover{
 
     text-align:center;
 
-    background:
+    background: linear-gradient(135deg, #062a3a, #0a5467);
 
-    linear-gradient(135deg,#0f4cdd,#2563eb,#38bdf8);
 
     color:#fff;
 
