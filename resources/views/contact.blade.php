@@ -1,6 +1,87 @@
 @extends('layouts.front')
 
 @section('content')
+    <style>
+        .contact-page {
+            max-width: 950px;
+            margin: auto;
+        }
+
+        .contact-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+            margin-bottom: 25px;
+        }
+
+        .contact-card h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            font-size: 22px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            border-left: 5px solid #0d6efd;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .author-box {
+            background: #f8fbff;
+            border: 1px solid #dbe8ff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .feature-item {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        @media(max-width:768px) {
+
+            .feature-list {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .contact-card {
+
+                padding: 18px;
+
+            }
+
+            .contact-card h2 {
+
+                font-size: 24px;
+
+            }
+
+        }
+    </style>
     <div class="container py-5" style="    color: #fff;">
 
         <h1 class="mb-4">Contact Us</h1>
@@ -118,8 +199,6 @@
             <br>
             <strong>Email:</strong> official.sarkarihai@gmail.com
         </p>
-      
+
     </div>
 @endsection
- 
-
