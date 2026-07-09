@@ -157,7 +157,7 @@
         /* HERO */
 
         .page-hero {
-            background: linear-gradient(135deg, #0d6efd, #004aad);
+            background: linear-gradient(135deg, #062a3a, #0a5467);
             color: #fff;
             padding: 70px 50px;
             border-radius: 18px;
