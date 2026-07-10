@@ -80,7 +80,7 @@ class DetectJobCategory extends Command
         }
 
         arsort($scores);
-
+        print_r($scores);
         return array_key_first($scores);
     }
 
