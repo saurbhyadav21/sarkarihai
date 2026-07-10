@@ -15,7 +15,7 @@ class DetectJobCategory extends Command
     public function handle()
     {
         $jobs = DB::table('job_details')
-            ->where('classification_cron_status', 0)
+            // ->where('classification_cron_status', 0)
             ->limit(3000)
             ->get();
 
