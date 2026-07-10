@@ -65,7 +65,7 @@ class DetectJobCategory extends Command
                 continue;
             }
 
-            if (str_contains($title, $keyword)) {
+            if (preg_match('/\b' . preg_quote($keyword, '/') . '\b/i', $title)) {
 
                 if (!isset($scores[$row->$slugField])) {
                     $scores[$row->$slugField] = 0;
