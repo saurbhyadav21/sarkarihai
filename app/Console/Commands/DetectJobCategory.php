@@ -25,13 +25,13 @@ class DetectJobCategory extends Command
 
             $category = $this->detectCategory($title);
 
-            $subCategory = $this->detectSubCategory($title);
+            // $subCategory = $this->detectSubCategory($title);
 
-            $topic = $this->detectTopic($title);
+            // $topic = $this->detectTopic($title);
 
-            $state = $this->detectState($title);
+            // $state = $this->detectState($title);
 
-            $organization = $this->detectOrganization($title);
+            // $organization = $this->detectOrganization($title);
 
             DB::table('job_details')
                 ->where('id', $job->id)
