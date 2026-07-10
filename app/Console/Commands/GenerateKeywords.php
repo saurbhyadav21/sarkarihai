@@ -21,7 +21,7 @@ class GenerateKeywords extends Command
 
         $this->generateStateKeywords();
 
-        $this->generateOrganizationKeywords();
+        // $this->generateOrganizationKeywords();
 
         $this->info('All Keyword Tables Generated Successfully.');
     }
