@@ -48,7 +48,7 @@ class DetectJobCategory extends Command
 
     private function detectByKeywords($title, $table, $slugField)
     {
-        $title = strtolower($title);
+        echo $title = strtolower($title);
 
         $keywords = DB::table($table)
             ->where('status', 1)
