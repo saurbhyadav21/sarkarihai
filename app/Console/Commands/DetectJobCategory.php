@@ -1,6 +1,6 @@
-<!--  -->
-
 <?php
+namespace App\Console\Commands;
+
 use Illuminate\Console\Command;
 use App\Models\JobDetail;
 use Illuminate\Support\Facades\DB;
