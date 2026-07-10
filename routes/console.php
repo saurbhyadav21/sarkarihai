@@ -18,6 +18,10 @@ Schedule::command('jobs:process-one')
 Schedule::command('jobs:generate-slug')
             ->everyMinute();
 
+
+Schedule::command('jobs:detect-category')
+        ->everyMinute();
+
 Schedule::call(function () {
 
     File::append(
