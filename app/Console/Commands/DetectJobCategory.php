@@ -16,7 +16,7 @@ class DetectJobCategory extends Command
     {
         $jobs = DB::table('job_details')
             ->where('classification_cron_status', 0)
-            ->limit(500)
+            ->limit(3000)
             ->get();
 
         foreach ($jobs as $job) {
