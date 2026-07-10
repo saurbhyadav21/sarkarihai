@@ -37,10 +37,10 @@ class DetectJobCategory extends Command
                 ->where('id', $job->id)
                 ->update([
                     'category'                     => $category,
-                    'job_sub_categories'          => $subCategory,
-                    'job_topics'                  => $topic,
-                    'organization'                => $organization,
-                    'state'                       => $state,
+                    // 'job_sub_categories'          => $subCategory,
+                    // 'job_topics'                  => $topic,
+                    // 'organization'                => $organization,
+                    // 'state'                       => $state,
                     'classification_cron_status'  => 1,
                 ]);
         }
