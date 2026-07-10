@@ -48,7 +48,7 @@ class DetectJobCategory extends Command
 
     private function detectByKeywords($title, $table, $slugField)
     {
-        echo $title = strtolower($title);
+        $title = strtolower($title);
 
         $keywords = DB::table($table)
             ->where('status', 1)
@@ -80,7 +80,7 @@ class DetectJobCategory extends Command
         }
 
         arsort($scores);
-        print_r($scores);
+        
         return array_key_first($scores);
     }
 
