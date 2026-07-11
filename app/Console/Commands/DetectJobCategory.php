@@ -29,7 +29,7 @@ class DetectJobCategory extends Command
 
             // $topic = $this->detectTopic($title);
 
-            // $state = $this->detectState($title);
+            $state = $this->detectState($title);
 
             // $organization = $this->detectOrganization($title);
 
@@ -40,7 +40,7 @@ class DetectJobCategory extends Command
                     'job_sub_categories'          => $subCategory,
                     // 'job_topics'                  => $topic,
                     // 'organization'                => $organization,
-                    // 'state'                       => $state,
+                    'state'                       => $state,
                     'classification_cron_status'  => 1,
                 ]);
         }
