@@ -1017,55 +1017,47 @@ text-align:center;
 
                 <div>
 
-
-
-                    @php
-                        $state = request()->segment(2);
-                        $category = request()->segment(3);
-                    @endphp
-
                     <nav aria-label="breadcrumb" class="breadcrumb">
 
-                        <a href="{{ url('/') }}">
+                        <a href="https://sarkarihai.com">
                             Home
                         </a>
 
                         <span class="sep">/</span>
 
-                        <a href="{{ route('sarkari.naukri') }}">
+                        <a href="https://sarkarihai.com/sarkari-naukri">
                             Sarkari Naukri
                         </a>
 
-                        @if ($state)
-                            <span class="sep">/</span>
+                        <span class="sep">/</span>
+                        <a href="https://sarkarihai.com/sarkari-naukri/delhi">
+                            Delhi
+                        </a>
 
-                            <a href="{{ route('sarkari.naukri.state', $state) }}">
-                                {{ ucwords(str_replace('-', ' ', $state)) }}
-                            </a>
-                        @endif
 
-                        @if ($category)
-                            <span class="sep">/</span>
+                        <span class="sep">/</span>
+                        <a href="https://sarkarihai.com/sarkari-naukri/delhi/railway">
+                            Railway
+                        </a>
 
-                            <a
-                                href="{{ route('sarkari.naukri.category', [
-                                    'state' => $state,
-                                    'category' => $category,
-                                ]) }}">
-                                {{ ucwords(str_replace('-', ' ', $category)) }}
-                            </a>
-                        @endif
+                        <span class="sep">/</span>
+
+                        <span class="current">
+                            SSC Combined Graduate Level CGL Recruitment 2025
+                        </span>
 
                     </nav>
 
-
-
                     <h1>
-
+                        SSC Combined Graduate Level CGL Recruitment 2025
                     </h1>
 
                     <p>
-                        Show all job here
+                        Check complete notification, eligibility,
+                        vacancy details, age limit, salary,
+                        selection process, important dates,
+                        exam pattern, required documents,
+                        and apply online process.
                     </p>
 
                 </div>
@@ -1090,4 +1082,35 @@ text-align:center;
         </div>
 
     </section>
+    <div class="container">
+
+        <div class="summary">
+
+            <div class="summary-card">
+
+                <div class="summary-item">
+                    <small>Organization</small>
+                    <strong>SSC</strong>
+                </div>
+
+                <div class="summary-item">
+                    <small>Total Vacancy</small>
+                    <strong>14582</strong>
+                </div>
+
+                <div class="summary-item">
+                    <small>Application Mode</small>
+                    <strong>Online</strong>
+                </div>
+
+                <div class="summary-item">
+                    <small>Last Date</small>
+                    <strong>30 July 2026</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 @endsection
