@@ -1090,43 +1090,142 @@ class JobController extends Controller
     //     ]);
     // }
 
-    public function latestJobs(
-        Request $request,
-        $state = null,
-        $category = null
-    ) {
-        $jobs = Job::query();
+    // public function latestJobs(
+    //     Request $request,
+    //     $state = null,
+    //     $category = null
+    // ) {
+    //     $jobs = Job::query();
+
+    //     if ($request->filled('search')) {
+
+    //         $search = $request->search;
+
+    //         $jobs->where(function ($q) use ($search) {
+
+    //             $q->where('title', 'LIKE', "%{$search}%")
+    //                 ->orWhere('category', 'LIKE', "%{$search}%")
+    //                 ->orWhere('organization', 'LIKE', "%{$search}%")
+    //                 ->orWhere('state', 'LIKE', "%{$search}%");
+    //         });
+    //     }
+
+    //     if ($state && $state != 'all-india') {
+    //         $jobs->where('state', $state);
+    //     }
+
+    //     if ($category) {
+    //         $jobs->where('category', $category);
+    //     }
+
+    //     $jobs = $jobs
+    //         ->latest('id')
+    //         ->paginate(20);
+
+
+    //     return view('jobs.show', compact(
+    //         'jobs',
+    //         'state',
+    //         'category'
+    //     ));
+    // }
+
+
+    public function latestJobs(Request $request, $state = null, $category = null)
+    {
+        $jobs = DB::table('job_details')
+            ->where('status', 1);
 
         if ($request->filled('search')) {
 
-            $search = $request->search;
+            $search = trim($request->search);
 
             $jobs->where(function ($q) use ($search) {
 
-                $q->where('title', 'LIKE', "%{$search}%")
-                    ->orWhere('category', 'LIKE', "%{$search}%")
-                    ->orWhere('organization', 'LIKE', "%{$search}%")
-                    ->orWhere('state', 'LIKE', "%{$search}%");
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('organization', 'like', "%{$search}%")
+                    ->orWhere('category', 'like', "%{$search}%")
+                    ->orWhere('sub_category', 'like', "%{$search}%")
+                    ->orWhere('qualification', 'like', "%{$search}%")
+                    ->orWhere('state', 'like', "%{$search}%");
             });
         }
 
-        if ($state && $state != 'all-india') {
+        if (!empty($state) && $state != 'all-india') {
             $jobs->where('state', $state);
         }
 
-        if ($category) {
+        if (!empty($category)) {
             $jobs->where('category', $category);
         }
 
         $jobs = $jobs
-            ->latest('id')
+            ->orderByDesc('id')
             ->paginate(20);
 
-            
+        // ======================
+        // Statistics
+        // ======================
+
+        $totalJobs = DB::table('job_details')
+            ->where('status', 1)
+            ->count();
+
+        $todayJobs = DB::table('job_details')
+            ->where('status', 1)
+            ->whereDate('created_at', today())
+            ->count();
+
+        $closingSoonJobs = DB::table('job_details')
+            ->where('status', 1)
+            ->whereDate('end_date', '>=', today())
+            ->whereDate('end_date', '<=', today()->copy()->addDays(7))
+            ->count();
+
+        $activeJobs = DB::table('job_details')
+            ->where('status', 1)
+            ->whereDate('end_date', '>=', today())
+            ->count();
+
+        // ======================
+        // Filters
+        // ======================
+
+        $states = DB::table('job_details')
+            ->select('state')
+            ->whereNotNull('state')
+            ->where('state', '!=', '')
+            ->distinct()
+            ->orderBy('state')
+            ->get();
+
+        $categories = DB::table('job_details')
+            ->select('category')
+            ->whereNotNull('category')
+            ->where('category', '!=', '')
+            ->distinct()
+            ->orderBy('category')
+            ->get();
+
+        $qualifications = DB::table('job_details')
+            ->select('qualification')
+            ->whereNotNull('qualification')
+            ->where('qualification', '!=', '')
+            ->distinct()
+            ->orderBy('qualification')
+            ->get();
+
         return view('jobs.show', compact(
             'jobs',
             'state',
-            'category'
+            'category',
+            'totalJobs',
+            'todayJobs',
+            'closingSoonJobs',
+            'activeJobs',
+            'states',
+            'categories',
+            'qualifications'
         ));
     }
 
@@ -2263,7 +2362,7 @@ class JobController extends Controller
             today()->addDays(2),
             today()->addDays(7)
         ])
-        ->limit(10)
+            ->limit(10)
             ->orderBy('end_date')
             ->get();
         $weekCount = Job::whereBetween('end_date', [today()->addDays(2), today()->addDays(7)])->count();

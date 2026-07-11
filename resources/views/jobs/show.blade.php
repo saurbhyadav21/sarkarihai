@@ -1667,15 +1667,13 @@
 
                                 </option>
 
-                                {{-- @foreach($states as $state)
+                                @foreach($states as $state)
 
-                                    <option value="{{ $state->slug }}">
+<option value="{{ $state->state }}">
+    {{ $state->state }}
+</option>
 
-                                        {{ $state->name }}
-
-                                    </option>
-
-                                @endforeach --}}
+@endforeach
 
                             </select>
 
@@ -1703,15 +1701,13 @@
 
                                 </option>
 
-                                {{-- @foreach($categories as $category)
+                               @foreach($categories as $category)
 
-                                    <option value="{{ $category->slug }}">
+<option value="{{ $category->category }}">
+    {{ $category->category }}
+</option>
 
-                                        {{ $category->name }}
-
-                                    </option>
-
-                                @endforeach --}}
+@endforeach
 
                             </select>
 
@@ -1765,15 +1761,13 @@
 
                                 </option>
 
-                                {{-- @foreach($qualifications as $qualification)
+                                @foreach($qualifications as $qualification)
 
-                                    <option value="{{ $qualification->slug }}">
+<option value="{{ $qualification->qualification }}">
+    {{ $qualification->qualification }}
+</option>
 
-                                        {{ $qualification->name }}
-
-                                    </option>
-
-                                @endforeach --}}
+@endforeach
 
                             </select>
 
