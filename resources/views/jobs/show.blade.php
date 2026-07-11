@@ -9,6 +9,441 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="container">
+
+            <div class="nav">
+
+                <div class="logo">
+                    <a href="/">Sarkari Hai</a>
+                </div>
+
+                <div class="menu">
+                    <a href="#">Home</a>
+                    <a href="#">Jobs</a>
+                    <a href="#">Results</a>
+                    <a href="#">Admit Card</a>
+                    <a href="#">State Wise</a>
+                    <a href="#">News</a>
+                </div>
+
+                <a href="#" class="search-btn">
+                    Search Jobs
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <section class="hero">
+
+        <div class="container">
+
+            <div class="hero-flex">
+
+                <div>
+
+                    
+
+                        @php
+                            $state = request()->segment(2);
+                            $category = request()->segment(3);
+                        @endphp
+
+                        <nav aria-label="breadcrumb" class="breadcrumb">
+
+                            <a href="{{ url('/') }}">
+                                Home
+                            </a>
+
+                            <span class="sep">/</span>
+
+                            <a href="{{ route('sarkari.naukri') }}">
+                                Sarkari Naukri
+                            </a>
+
+                            @if ($state)
+                                <span class="sep">/</span>
+
+                                <a href="{{ route('sarkari.naukri.state', $state) }}">
+                                    {{ ucwords(str_replace('-', ' ', $state)) }}
+                                </a>
+                            @endif
+
+                            @if ($category)
+                                <span class="sep">/</span>
+
+                                <a
+                                    href="{{ route('sarkari.naukri.category', [
+                                        'state' => $state,
+                                        'category' => $category,
+                                    ]) }}">
+                                    {{ ucwords(str_replace('-', ' ', $category)) }}
+                                </a>
+                            @endif
+
+                        </nav>
+
+                       
+
+                    <h1>
+
+                    </h1>
+
+                    <p>
+                        Show all job here
+                    </p>
+
+                </div>
+
+
+                <div class="search-card">
+
+                    <h3>
+                        Search Job
+                    </h3>
+
+                    <input type="text" placeholder="SSC, Railway, Bank">
+
+                    <button>
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <div class="container">
+
+        <div class="summary">
+
+            <div class="summary-card">
+
+                <div class="summary-item">
+                    <small>Organization</small>
+                    <strong>SSC</strong>
+                </div>
+
+                <div class="summary-item">
+                    <small>Total Vacancy</small>
+                    <strong>14582</strong>
+                </div>
+
+                <div class="summary-item">
+                    <small>Application Mode</small>
+                    <strong>Online</strong>
+                </div>
+
+                <div class="summary-item">
+                    <small>Last Date</small>
+                    <strong>30 July 2026</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <style>
+        /* MAIN LAYOUT */
+
+        .main-wrapper {
+            width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* LEFT SIDEBAR */
+
+        .sidebar {
+            position: sticky;
+            position: -webkit-sticky;
+            top: 0px;
+            align-self: start;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            background: #0B4F6C;
+            color: #fff;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .sidebar ul li:last-child {
+            border: none;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 14px 20px;
+            color: #444;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        .sidebar ul li a:hover {
+            background: #F8FAFC;
+            padding-left: 28px;
+            color: #0B4F6C;
+        }
+
+        /* CONTENT AREA */
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* CONTENT CARD */
+
+        .content-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
+        }
+
+        .content-card h2 {
+            font-size: 32px;
+            color: #0B4F6C;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .content-card p {
+            line-height: 30px;
+            font-size: 15px;
+            color: #444;
+        }
+
+        /* INFO TABLE */
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .info-table tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-table td {
+            padding: 16px;
+        }
+
+        .info-table td:first-child {
+            width: 280px;
+            font-weight: 600;
+            background: #f8fafc;
+        }
+
+        /* ALERT BOX */
+
+        .notice-box {
+            background: #FEF3C7;
+            border-left: 5px solid #F59E0B;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* HIGHLIGHT BOXES */
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .highlight-box {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            font-size: 30px;
+            color: #0F766E;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box p {
+            font-size: 14px;
+        }
+
+        .sidebar-inner {
+            position: sticky;
+            top: 90px;
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>
+                    SarkariHai
+                </h3>
+
+                <p>
+                    Latest Government Jobs, Admit Card,
+                    Result, Answer Key and Sarkari Yojana updates.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <ul>
+
+                    <li>
+                        <a href="#">
+                            Latest Jobs
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Admit Card
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Results
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Answer Key
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Important
+                </h3>
+
+                <ul>
+
+                    <li>
+                        <a href="#">
+                            About Us
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Contact
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Disclaimer
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Privacy Policy
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+
+            © 2026 SarkariHai. All Rights Reserved.
+
+        </div>
+
+    </footer> --}}
+@extends('layouts.front')
+
+@section('content')
     <style>
         * {
             margin: 0;
@@ -513,500 +948,6 @@ text-align:center;
         .breadcrumb .sep {
             margin: 0 8px;
             color: #fff;
-        }
-    </style>
-</head>
-
-<body>
-
-    <header class="header">
-
-        <div class="container">
-
-            <div class="nav">
-
-                <div class="logo">
-                    <a href="/">Sarkari Hai</a>
-                </div>
-
-                <div class="menu">
-                    <a href="#">Home</a>
-                    <a href="#">Jobs</a>
-                    <a href="#">Results</a>
-                    <a href="#">Admit Card</a>
-                    <a href="#">State Wise</a>
-                    <a href="#">News</a>
-                </div>
-
-                <a href="#" class="search-btn">
-                    Search Jobs
-                </a>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-
-    <section class="hero">
-
-        <div class="container">
-
-            <div class="hero-flex">
-
-                <div>
-
-                    
-
-                        @php
-                            $state = request()->segment(2);
-                            $category = request()->segment(3);
-                        @endphp
-
-                        <nav aria-label="breadcrumb" class="breadcrumb">
-
-                            <a href="{{ url('/') }}">
-                                Home
-                            </a>
-
-                            <span class="sep">/</span>
-
-                            <a href="{{ route('sarkari.naukri') }}">
-                                Sarkari Naukri
-                            </a>
-
-                            @if ($state)
-                                <span class="sep">/</span>
-
-                                <a href="{{ route('sarkari.naukri.state', $state) }}">
-                                    {{ ucwords(str_replace('-', ' ', $state)) }}
-                                </a>
-                            @endif
-
-                            @if ($category)
-                                <span class="sep">/</span>
-
-                                <a
-                                    href="{{ route('sarkari.naukri.category', [
-                                        'state' => $state,
-                                        'category' => $category,
-                                    ]) }}">
-                                    {{ ucwords(str_replace('-', ' ', $category)) }}
-                                </a>
-                            @endif
-
-                        </nav>
-
-                       
-
-                    <h1>
-
-                    </h1>
-
-                    <p>
-                        Show all job here
-                    </p>
-
-                </div>
-
-
-                <div class="search-card">
-
-                    <h3>
-                        Search Job
-                    </h3>
-
-                    <input type="text" placeholder="SSC, Railway, Bank">
-
-                    <button>
-                        Search
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <div class="container">
-
-        <div class="summary">
-
-            <div class="summary-card">
-
-                <div class="summary-item">
-                    <small>Organization</small>
-                    <strong>SSC</strong>
-                </div>
-
-                <div class="summary-item">
-                    <small>Total Vacancy</small>
-                    <strong>14582</strong>
-                </div>
-
-                <div class="summary-item">
-                    <small>Application Mode</small>
-                    <strong>Online</strong>
-                </div>
-
-                <div class="summary-item">
-                    <small>Last Date</small>
-                    <strong>30 July 2026</strong>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <style>
-        /* MAIN LAYOUT */
-
-        .main-wrapper {
-            width: 1200px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 25px;
-            align-items: start;
-        }
-
-        /* LEFT SIDEBAR */
-
-        .sidebar {
-            position: sticky;
-            position: -webkit-sticky;
-            top: 0px;
-            align-self: start;
-            height: fit-content;
-        }
-
-        .sidebar-card {
-            background: #fff;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
-            margin-bottom: 20px;
-        }
-
-        .sidebar-title {
-            background: #0B4F6C;
-            color: #fff;
-            padding: 16px 20px;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar ul li {
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .sidebar ul li:last-child {
-            border: none;
-        }
-
-        .sidebar ul li a {
-            display: block;
-            padding: 14px 20px;
-            color: #444;
-            font-size: 14px;
-            transition: .3s;
-        }
-
-        .sidebar ul li a:hover {
-            background: #F8FAFC;
-            padding-left: 28px;
-            color: #0B4F6C;
-        }
-
-        /* CONTENT AREA */
-
-        .content {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        /* CONTENT CARD */
-
-        .content-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
-        }
-
-        .content-card h2 {
-            font-size: 32px;
-            color: #0B4F6C;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .content-card p {
-            line-height: 30px;
-            font-size: 15px;
-            color: #444;
-        }
-
-        /* INFO TABLE */
-
-        .info-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .info-table tr {
-            border-bottom: 1px solid #eee;
-        }
-
-        .info-table td {
-            padding: 16px;
-        }
-
-        .info-table td:first-child {
-            width: 280px;
-            font-weight: 600;
-            background: #f8fafc;
-        }
-
-        /* ALERT BOX */
-
-        .notice-box {
-            background: #FEF3C7;
-            border-left: 5px solid #F59E0B;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        /* HIGHLIGHT BOXES */
-
-        .highlight-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .highlight-box {
-            background: #fff;
-            border: 1px solid #eee;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .highlight-box h3 {
-            font-size: 30px;
-            color: #0F766E;
-            margin-bottom: 10px;
-        }
-
-        .highlight-box p {
-            font-size: 14px;
-        }
-
-        .sidebar-inner {
-            position: sticky;
-            top: 90px;
-        }
-    </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- FOOTER -->
-
-    <footer class="site-footer">
-
-        <div class="footer-grid">
-
-            <div>
-
-                <h3>
-                    SarkariHai
-                </h3>
-
-                <p>
-                    Latest Government Jobs, Admit Card,
-                    Result, Answer Key and Sarkari Yojana updates.
-                </p>
-
-            </div>
-
-            <div>
-
-                <h3>
-                    Quick Links
-                </h3>
-
-                <ul>
-
-                    <li>
-                        <a href="#">
-                            Latest Jobs
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Admit Card
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Results
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Answer Key
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-            <div>
-
-                <h3>
-                    Important
-                </h3>
-
-                <ul>
-
-                    <li>
-                        <a href="#">
-                            About Us
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Contact
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Disclaimer
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Privacy Policy
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-        <div class="copyright">
-
-            © 2026 SarkariHai. All Rights Reserved.
-
-        </div>
-
-    </footer> --}}
-@extends('layouts.front')
-
-@section('content')
-    <style>
-        /* HERO */
-
-        .hero {
-            background: linear-gradient(135deg,
-                    #0B4F6C,
-                    #0F766E);
-            padding: 55px 0;
-            color: #fff;
-        }
-
-        .breadcrumb {
-            font-size: 13px;
-            opacity: .8;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 16px;
-            line-height: 28px;
-            opacity: .9;
-            max-width: 900px;
-        }
-
-        /* SEARCH BOX */
-
-        .hero-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 30px;
-        }
-
-        .search-card {
-            background: #ffffff;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow:
-                0 10px 30px rgba(0, 0, 0, .08);
-        }
-
-        .search-card h3 {
-            color: #222;
-            margin-bottom: 15px;
-        }
-
-        .search-card input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 10px;
         }
     </style>
     <section class="hero">
