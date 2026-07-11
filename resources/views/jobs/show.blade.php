@@ -1259,35 +1259,16 @@
                             Sarkari Naukri
                         </a>
 
-                        <span class="sep">/</span>
-                        <a href="https://sarkarihai.com/sarkari-naukri/delhi">
-                            Delhi
-                        </a>
-
-
-                        <span class="sep">/</span>
-                        <a href="https://sarkarihai.com/sarkari-naukri/delhi/railway">
-                            Railway
-                        </a>
-
-                        <span class="sep">/</span>
-
-                        <span class="current">
-                            SSC Combined Graduate Level CGL Recruitment 2025
-                        </span>
+                       
 
                     </nav>
 
                     <h1>
-                        SSC Combined Graduate Level CGL Recruitment 2025
+                        xxxx
                     </h1>
 
                     <p>
-                        Check complete notification, eligibility,
-                        vacancy details, age limit, salary,
-                        selection process, important dates,
-                        exam pattern, required documents,
-                        and apply online process.
+                        xxxx
                     </p>
 
                 </div>
