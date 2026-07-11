@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -945,4 +945,9 @@ text-align:center;
 
         </div>
 
-    </footer>
+    </footer> --}}
+@extends('layouts.front')
+
+@section('content')
+xxx
+@endsection
