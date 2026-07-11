@@ -1332,4 +1332,1134 @@
         </div>
 
     </div>
+
+    {{-- ========================================= --}}
+{{-- Sarkari Naukri Listing Page --}}
+{{-- Part 1A --}}
+{{-- ========================================= --}}
+
+@extends('layouts.app')
+
+@section('title', 'Sarkari Naukri 2026 - Latest Government Jobs')
+
+@section('content')
+
+<div class="container-fluid py-4">
+
+    <div class="container-xxl">
+
+        <!-- ===================== -->
+        <!-- Page Heading -->
+        <!-- ===================== -->
+
+        <div class="row align-items-center mb-4">
+
+            <div class="col-lg-8">
+
+                <nav aria-label="breadcrumb">
+
+                    <ol class="breadcrumb mb-2">
+
+                        <li class="breadcrumb-item">
+                            <a href="{{ url('/') }}">
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="breadcrumb-item active">
+                            Sarkari Naukri
+                        </li>
+
+                    </ol>
+
+                </nav>
+
+                <h1 class="fw-bold mb-2">
+
+                    Sarkari Naukri 2026
+
+                </h1>
+
+                <p class="text-muted mb-0">
+
+                    Latest Government Jobs, Online Forms, Recruitment,
+                    Admit Card, Result & Government Vacancy Updates.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="text-lg-end mt-3 mt-lg-0">
+
+                    <a href="#jobs"
+                       class="btn btn-primary px-4">
+
+                        Browse Jobs
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- Search Section -->
+        <!-- ===================== -->
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-body">
+
+                <div class="row g-3">
+
+                    <div class="col-lg-8">
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+
+                                <i class="fa fa-search"></i>
+
+                            </span>
+
+                            <input
+                                type="text"
+                                id="keyword"
+                                class="form-control"
+                                placeholder="Search job title, department, organization...">
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-2">
+
+                        <button
+                            class="btn btn-primary w-100"
+                            id="searchBtn">
+
+                            Search
+
+                        </button>
+
+                    </div>
+
+                    <div class="col-lg-2">
+
+                        <button
+                            class="btn btn-outline-secondary w-100"
+                            id="resetBtn">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- Statistics -->
+        <!-- ===================== -->
+
+        <div class="row g-3 mb-4">
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="card stat-card h-100">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <small class="text-muted">
+
+                                    Total Jobs
+
+                                </small>
+
+                                <h3 class="fw-bold mt-2 mb-0">
+
+                                    {{ number_format($totalJobs) }}
+
+                                </h3>
+
+                            </div>
+
+                            <div class="icon-box bg-primary">
+
+                                <i class="fa fa-briefcase"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="card stat-card h-100">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <small class="text-muted">
+
+                                    New Today
+
+                                </small>
+
+                                <h3 class="fw-bold mt-2 mb-0">
+
+                                    {{ number_format($todayJobs) }}
+
+                                </h3>
+
+                            </div>
+
+                            <div class="icon-box bg-success">
+
+                                <i class="fa fa-bolt"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="card stat-card h-100">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <small class="text-muted">
+
+                                    Closing Soon
+
+                                </small>
+
+                                <h3 class="fw-bold mt-2 mb-0">
+
+                                    {{ number_format($closingSoonJobs) }}
+
+                                </h3>
+
+                            </div>
+
+                            <div class="icon-box bg-danger">
+
+                                <i class="fa fa-clock"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+
+                <div class="card stat-card h-100">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <small class="text-muted">
+
+                                    Active Recruitments
+
+                                </small>
+
+                                <h3 class="fw-bold mt-2 mb-0">
+
+                                    {{ number_format($activeJobs) }}
+
+                                </h3>
+
+                            </div>
+
+                            <div class="icon-box bg-warning">
+
+                                <i class="fa fa-building"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- Main Content -->
+        <!-- ===================== -->
+
+        <div class="row g-4">
+
+            <!-- Left Sidebar -->
+
+            <div class="col-lg-3">
+
+                <div class="card border-0 shadow-sm sticky-top">
+
+                    <div class="card-header">
+
+                        <strong>
+
+                            Filters
+
+                        </strong>
+
+                    </div>
+
+                    <div class="card-body">
+                                                <!-- ===================== -->
+                        <!-- State -->
+                        <!-- ===================== -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+
+                                State
+
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="state">
+
+                                <option value="">
+
+                                    All States
+
+                                </option>
+
+                                @foreach($states as $state)
+
+                                    <option value="{{ $state->slug }}">
+
+                                        {{ $state->name }}
+
+                                    </option>
+
+                                @endforeach
+
+                            </select>
+
+                        </div>
+
+                        <!-- ===================== -->
+                        <!-- Category -->
+                        <!-- ===================== -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+
+                                Category
+
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="category">
+
+                                <option value="">
+
+                                    All Categories
+
+                                </option>
+
+                                @foreach($categories as $category)
+
+                                    <option value="{{ $category->slug }}">
+
+                                        {{ $category->name }}
+
+                                    </option>
+
+                                @endforeach
+
+                            </select>
+
+                        </div>
+
+                        <!-- ===================== -->
+                        <!-- Sub Category -->
+                        <!-- ===================== -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+
+                                Sub Category
+
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="sub_category">
+
+                                <option value="">
+
+                                    All Sub Categories
+
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- ===================== -->
+                        <!-- Qualification -->
+                        <!-- ===================== -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+
+                                Qualification
+
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="qualification">
+
+                                <option value="">
+
+                                    All Qualifications
+
+                                </option>
+
+                                @foreach($qualifications as $qualification)
+
+                                    <option value="{{ $qualification->slug }}">
+
+                                        {{ $qualification->name }}
+
+                                    </option>
+
+                                @endforeach
+
+                            </select>
+
+                        </div>
+
+                        <!-- ===================== -->
+                        <!-- Job Type -->
+                        <!-- ===================== -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+
+                                Job Type
+
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="job_type">
+
+                                <option value="">
+
+                                    All Job Types
+
+                                </option>
+
+                                <option value="regular">
+
+                                    Regular
+
+                                </option>
+
+                                <option value="contract">
+
+                                    Contract
+
+                                </option>
+
+                                <option value="deputation">
+
+                                    Deputation
+
+                                </option>
+
+                                <option value="walk-in">
+
+                                    Walk-In
+
+                                </option>
+
+                                <option value="internship">
+
+                                    Internship
+
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- ===================== -->
+                        <!-- Last Date -->
+                        <!-- ===================== -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+
+                                Last Date
+
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="last_date">
+
+                                <option value="">
+
+                                    Any Time
+
+                                </option>
+
+                                <option value="today">
+
+                                    Today
+
+                                </option>
+
+                                <option value="7">
+
+                                    Next 7 Days
+
+                                </option>
+
+                                <option value="15">
+
+                                    Next 15 Days
+
+                                </option>
+
+                                <option value="30">
+
+                                    Next 30 Days
+
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="d-grid gap-2">
+
+                            <button
+                                class="btn btn-primary"
+                                id="applyFilter">
+
+                                <i class="fa fa-filter me-2"></i>
+
+                                Apply Filters
+
+                            </button>
+
+                            <button
+                                class="btn btn-light border"
+                                id="clearFilter">
+
+                                <i class="fa fa-rotate-left me-2"></i>
+
+                                Clear Filters
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ===================== -->
+            <!-- Right Content -->
+            <!-- ===================== -->
+
+            <div class="col-lg-9">
+
+                <div class="card border-0 shadow-sm mb-3">
+
+                    <div class="card-body">
+
+                        <div class="row align-items-center">
+
+                            <div class="col-lg-6">
+
+                                <h5 class="mb-0">
+
+                                    Latest Government Jobs
+
+                                </h5>
+
+                            </div>
+
+                            <div class="col-lg-6">
+
+                                <div class="d-flex justify-content-lg-end align-items-center gap-2">
+
+                                    <span class="badge bg-primary px-3 py-2">
+
+                                        <span id="jobCount">
+
+                                            {{ number_format($totalJobs) }}
+
+                                        </span>
+
+                                        Jobs
+
+                                    </span>
+
+                                    <select
+                                        class="form-select w-auto"
+                                        id="sortBy">
+
+                                        <option value="latest">
+
+                                            Latest First
+
+                                        </option>
+
+                                        <option value="last_date">
+
+                                            Last Date
+
+                                        </option>
+
+                                        <option value="title">
+
+                                            Job Title
+
+                                        </option>
+
+                                        <option value="organization">
+
+                                            Organization
+
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div id="jobs">
+
+                    <!-- Job Cards Start -->
+                                        <!-- ================================= -->
+                    <!-- Job Card -->
+                    <!-- ================================= -->
+
+                    @forelse($jobs as $job)
+
+                    <div class="card border-0 shadow-sm mb-3 job-card">
+
+                        <div class="card-body">
+
+                            <div class="row">
+
+                                <div class="col-lg-9">
+
+                                    <div class="d-flex align-items-start">
+
+                                        <div class="job-icon me-3">
+
+                                            <i class="fa-solid fa-briefcase"></i>
+
+                                        </div>
+
+                                        <div class="flex-grow-1">
+
+                                            <h5 class="mb-2">
+
+                                                <a href="{{ url($job->slug) }}"
+                                                   class="text-dark text-decoration-none fw-bold">
+
+                                                    {{ $job->title }}
+
+                                                </a>
+
+                                            </h5>
+
+                                            <div class="d-flex flex-wrap gap-2 mb-3">
+
+                                                <span class="badge bg-primary">
+
+                                                    {{ $job->organization->name ?? 'Government Department' }}
+
+                                                </span>
+
+                                                <span class="badge bg-success">
+
+                                                    {{ $job->state->name ?? 'All India' }}
+
+                                                </span>
+
+                                                <span class="badge bg-warning text-dark">
+
+                                                    {{ $job->category->name ?? 'Government Job' }}
+
+                                                </span>
+
+                                                @if($job->subCategory)
+
+                                                <span class="badge bg-info text-dark">
+
+                                                    {{ $job->subCategory->name }}
+
+                                                </span>
+
+                                                @endif
+
+                                            </div>
+
+                                            <div class="row g-3">
+
+                                                <div class="col-md-6">
+
+                                                    <small class="text-muted">
+
+                                                        <i class="fa-solid fa-graduation-cap me-2"></i>
+
+                                                        Qualification
+
+                                                    </small>
+
+                                                    <div class="fw-semibold">
+
+                                                        {{ $job->qualification->name ?? 'As Per Notification' }}
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-6">
+
+                                                    <small class="text-muted">
+
+                                                        <i class="fa-solid fa-calendar-days me-2"></i>
+
+                                                        Last Date
+
+                                                    </small>
+
+                                                    <div class="fw-semibold text-danger">
+
+                                                        {{ $job->last_date }}
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-6">
+
+                                                    <small class="text-muted">
+
+                                                        <i class="fa-solid fa-indian-rupee-sign me-2"></i>
+
+                                                        Salary
+
+                                                    </small>
+
+                                                    <div class="fw-semibold">
+
+                                                        {{ $job->salary ?? 'As Per Rules' }}
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-6">
+
+                                                    <small class="text-muted">
+
+                                                        <i class="fa-solid fa-users me-2"></i>
+
+                                                        Total Posts
+
+                                                    </small>
+
+                                                    <div class="fw-semibold">
+
+                                                        {{ $job->vacancy ?? '-' }}
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-3">
+
+                                    <div class="h-100 d-flex flex-column justify-content-between">
+
+                                        <div class="text-lg-end mb-3">
+
+                                            @php
+
+                                                $days = now()->diffInDays(\Carbon\Carbon::parse($job->last_date), false);
+
+                                            @endphp
+
+                                            @if($days <= 3)
+
+                                                <span class="badge bg-danger">
+
+                                                    Closing Soon
+
+                                                </span>
+
+                                            @elseif($days <= 10)
+
+                                                <span class="badge bg-warning text-dark">
+
+                                                    Apply Fast
+
+                                                </span>
+
+                                            @else
+
+                                                <span class="badge bg-success">
+
+                                                    Active
+
+                                                </span>
+
+                                            @endif
+
+                                        </div>
+
+                                        <div class="d-grid gap-2">
+
+                                            <a href="{{ url($job->slug) }}"
+                                               class="btn btn-primary">
+
+                                                <i class="fa-solid fa-eye me-2"></i>
+
+                                                View Details
+
+                                            </a>
+
+                                            <a href="{{ url($job->slug) }}#apply"
+                                               class="btn btn-outline-success">
+
+                                                <i class="fa-solid fa-paper-plane me-2"></i>
+
+                                                Apply Now
+
+                                            </a>
+
+                                            <a href="{{ url($job->slug) }}#notification"
+                                               class="btn btn-light border">
+
+                                                <i class="fa-solid fa-file-pdf me-2"></i>
+
+                                                Notification
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    @empty
+
+                    <div class="card border-0 shadow-sm">
+
+                        <div class="card-body text-center py-5">
+
+                            <i class="fa-solid fa-folder-open fa-3x text-muted mb-3"></i>
+
+                            <h4>
+
+                                No Jobs Found
+
+                            </h4>
+
+                            <p class="text-muted mb-0">
+
+                                Try changing your search or filters.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    @endforelse
+                                        <!-- ================================= -->
+                    <!-- Pagination -->
+                    <!-- ================================= -->
+
+                    @if($jobs->hasPages())
+
+                    <div class="card border-0 shadow-sm mt-4">
+
+                        <div class="card-body">
+
+                            <div class="row align-items-center">
+
+                                <div class="col-lg-4">
+
+                                    <small class="text-muted">
+
+                                        Showing
+
+                                        <strong>
+
+                                            {{ $jobs->firstItem() }}
+
+                                        </strong>
+
+                                        -
+
+                                        <strong>
+
+                                            {{ $jobs->lastItem() }}
+
+                                        </strong>
+
+                                        of
+
+                                        <strong>
+
+                                            {{ number_format($jobs->total()) }}
+
+                                        </strong>
+
+                                        Jobs
+
+                                    </small>
+
+                                </div>
+
+                                <div class="col-lg-8">
+
+                                    <div class="d-flex justify-content-lg-end justify-content-center mt-3 mt-lg-0">
+
+                                        {{ $jobs->links() }}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    @endif
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================================= -->
+        <!-- Popular Searches -->
+        <!-- ================================= -->
+
+        <div class="row mt-5">
+
+            <div class="col-12">
+
+                <div class="card border-0 shadow-sm">
+
+                    <div class="card-header bg-white">
+
+                        <h5 class="mb-0">
+
+                            Popular Searches
+
+                        </h5>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="d-flex flex-wrap gap-2">
+
+                            <a href="#" class="btn btn-light border">
+                                SSC Jobs
+                            </a>
+
+                            <a href="#" class="btn btn-light border">
+                                Railway Jobs
+                            </a>
+
+                            <a href="#" class="btn btn-light border">
+                                Banking Jobs
+                            </a>
+
+                            <a href="#" class="btn btn-light border">
+                                UPSC Jobs
+                            </a>
+
+                            <a href="#" class="btn btn-light border">
+                                Defence Jobs
+                            </a>
+
+                            <a href="#" class="btn btn-light border">
+                                Police Jobs
+                            </a>
+
+                            <a href="#" class="btn btn-light border">
+                                Teaching Jobs
+                            </a>
+
+                            <a href="#" class="btn btn-light border">
+                                Engineering Jobs
+                            </a>
+
+                            <a href="#" class="btn btn-light border">
+                                Medical Jobs
+                            </a>
+
+                            <a href="#" class="btn btn-light border">
+                                ITI Jobs
+                            </a>
+
+                            <a href="#" class="btn btn-light border">
+                                10th Pass Jobs
+                            </a>
+
+                            <a href="#" class="btn btn-light border">
+                                12th Pass Jobs
+                            </a>
+
+                            <a href="#" class="btn btn-light border">
+                                Graduate Jobs
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================================= -->
+        <!-- SEO Content -->
+        <!-- ================================= -->
+
+        <div class="row mt-4">
+
+            <div class="col-12">
+
+                <div class="card border-0 shadow-sm">
+
+                    <div class="card-body">
+
+                        <h2 class="h4 mb-3">
+
+                            Latest Sarkari Naukri 2026
+
+                        </h2>
+
+                        <p class="text-muted mb-3">
+
+                            Find the latest Government Job Notifications,
+                            Online Forms, Recruitment Updates, Admit Cards,
+                            Results and Answer Keys in one place. Browse jobs
+                            by State, Category, Qualification and Organization
+                            using the filters above to quickly find suitable
+                            government vacancies.
+
+                        </p>
+
+                        <p class="text-muted mb-0">
+
+                            All recruitment information is updated regularly,
+                            including important dates, eligibility criteria,
+                            age limit, application fee, selection process,
+                            salary details and official notification links.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 @endsection
+
