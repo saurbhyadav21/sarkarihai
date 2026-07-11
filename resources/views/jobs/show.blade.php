@@ -750,18 +750,18 @@
         }
 
         /* .summary-card{
-background:#fff;
-border-radius:15px;
-box-shadow:
-0 10px 30px rgba(0,0,0,.08);
-padding:30px;
-border-top:4px solid #F59E0B;
-display:grid;
-}
+    background:#fff;
+    border-radius:15px;
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+    padding:30px;
+    border-top:4px solid #F59E0B;
+    display:grid;
+    }
 
-.summary-item{
-text-align:center;
-} */
+    .summary-item{
+    text-align:center;
+    } */
         .summary-card {
             background: #fff;
             border-radius: 15px;
@@ -1004,17 +1004,25 @@ text-align:center;
                 </div>
 
 
-                <div class="search-card">
+                <div class="col-lg-4 mt-4 mt-lg-0">
 
-                    <h3>
-                        Search Job
-                    </h3>
+                    <div class="search-card">
 
-                    <input type="text" placeholder="SSC, Railway, Bank">
+                        <h5 class="mb-3 fw-bold">
+                            🔍 Search Sarkari Jobs
+                        </h5>
 
-                    <button>
-                        Search
-                    </button>
+                        <div class="position-relative">
+
+                            <input type="text" id="jobSearch" class="form-control form-control-lg rounded-4 shadow-sm"
+                                placeholder="Search SSC, Railway, UPSC..." autocomplete="off">
+
+                            <div class="search-dropdown" style="display:none">
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
