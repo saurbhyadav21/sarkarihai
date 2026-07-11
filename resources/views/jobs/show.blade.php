@@ -949,5 +949,85 @@ text-align:center;
 @extends('layouts.front')
 
 @section('content')
-xxx
+    <section class="hero">
+
+        <div class="container">
+
+            <div class="hero-flex">
+
+                <div>
+
+
+
+                    @php
+                        $state = request()->segment(2);
+                        $category = request()->segment(3);
+                    @endphp
+
+                    <nav aria-label="breadcrumb" class="breadcrumb">
+
+                        <a href="{{ url('/') }}">
+                            Home
+                        </a>
+
+                        <span class="sep">/</span>
+
+                        <a href="{{ route('sarkari.naukri') }}">
+                            Sarkari Naukri
+                        </a>
+
+                        @if ($state)
+                            <span class="sep">/</span>
+
+                            <a href="{{ route('sarkari.naukri.state', $state) }}">
+                                {{ ucwords(str_replace('-', ' ', $state)) }}
+                            </a>
+                        @endif
+
+                        @if ($category)
+                            <span class="sep">/</span>
+
+                            <a
+                                href="{{ route('sarkari.naukri.category', [
+                                    'state' => $state,
+                                    'category' => $category,
+                                ]) }}">
+                                {{ ucwords(str_replace('-', ' ', $category)) }}
+                            </a>
+                        @endif
+
+                    </nav>
+
+
+
+                    <h1>
+
+                    </h1>
+
+                    <p>
+                        Show all job here
+                    </p>
+
+                </div>
+
+
+                <div class="search-card">
+
+                    <h3>
+                        Search Job
+                    </h3>
+
+                    <input type="text" placeholder="SSC, Railway, Bank">
+
+                    <button>
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 @endsection
