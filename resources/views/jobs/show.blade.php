@@ -1490,7 +1490,7 @@
 
                                 <h3 class="fw-bold mt-2 mb-0">
 
-                                    {{ number_format($totalJobs) }}
+                                    {{-- {{ number_format($totalJobs) }} --}}
 
                                 </h3>
 
@@ -1528,7 +1528,7 @@
 
                                 <h3 class="fw-bold mt-2 mb-0">
 
-                                    {{ number_format($todayJobs) }}
+                                    {{-- {{ number_format($todayJobs) }} --}}
 
                                 </h3>
 
@@ -1566,7 +1566,7 @@
 
                                 <h3 class="fw-bold mt-2 mb-0">
 
-                                    {{ number_format($closingSoonJobs) }}
+                                    {{-- {{ number_format($closingSoonJobs) }} --}}
 
                                 </h3>
 
@@ -1604,7 +1604,7 @@
 
                                 <h3 class="fw-bold mt-2 mb-0">
 
-                                    {{ number_format($activeJobs) }}
+                                    {{-- {{ number_format($activeJobs) }} --}}
 
                                 </h3>
 
@@ -1671,7 +1671,7 @@
 
                                 </option>
 
-                                @foreach($states as $state)
+                                {{-- @foreach($states as $state)
 
                                     <option value="{{ $state->slug }}">
 
@@ -1679,7 +1679,7 @@
 
                                     </option>
 
-                                @endforeach
+                                @endforeach --}}
 
                             </select>
 
@@ -1707,7 +1707,7 @@
 
                                 </option>
 
-                                @foreach($categories as $category)
+                                {{-- @foreach($categories as $category)
 
                                     <option value="{{ $category->slug }}">
 
@@ -1715,7 +1715,7 @@
 
                                     </option>
 
-                                @endforeach
+                                @endforeach --}}
 
                             </select>
 
@@ -1769,7 +1769,7 @@
 
                                 </option>
 
-                                @foreach($qualifications as $qualification)
+                                {{-- @foreach($qualifications as $qualification)
 
                                     <option value="{{ $qualification->slug }}">
 
@@ -1777,7 +1777,7 @@
 
                                     </option>
 
-                                @endforeach
+                                @endforeach --}}
 
                             </select>
 

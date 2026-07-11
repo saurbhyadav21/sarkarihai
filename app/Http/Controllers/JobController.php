@@ -1122,6 +1122,7 @@ class JobController extends Controller
             ->latest('id')
             ->paginate(20);
 
+            
         return view('jobs.show', compact(
             'jobs',
             'state',
