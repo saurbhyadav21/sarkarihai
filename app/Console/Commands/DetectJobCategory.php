@@ -80,7 +80,7 @@ class DetectJobCategory extends Command
         }
 
         arsort($scores);
-        
+
         return array_key_first($scores);
     }
 
@@ -115,11 +115,14 @@ class DetectJobCategory extends Command
 
     private function detectState($title)
     {
-        return $this->detectByKeywords(
+        $state = $this->detectByKeywords(
             $title,
             'job_state_keywords',
             'state_slug'
         );
+
+        // Agar koi state detect nahi hui to default All India
+        return $state ?? 'all-india';
     }
 
 
