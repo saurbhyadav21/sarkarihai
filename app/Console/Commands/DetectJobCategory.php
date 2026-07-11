@@ -27,7 +27,7 @@ class DetectJobCategory extends Command
 
             $subCategory = $this->detectSubCategory($title);
 
-            // $topic = $this->detectTopic($title);
+            $topic = $this->detectTopic($title);
 
             $state = $this->detectState($title);
 
@@ -38,7 +38,7 @@ class DetectJobCategory extends Command
                 ->update([
                     'category'                     => $category,
                     'job_sub_categories'          => $subCategory,
-                    // 'job_topics'                  => $topic,
+                    'job_topics'                  => $topic,
                     // 'organization'                => $organization,
                     'state'                       => $state,
                     'classification_cron_status'  => 1,
