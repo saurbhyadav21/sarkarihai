@@ -949,6 +949,66 @@ text-align:center;
 @extends('layouts.front')
 
 @section('content')
+    <style>
+        /* HERO */
+
+        .hero {
+            background: linear-gradient(135deg,
+                    #0B4F6C,
+                    #0F766E);
+            padding: 55px 0;
+            color: #fff;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            opacity: .8;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 28px;
+            opacity: .9;
+            max-width: 900px;
+        }
+
+        /* SEARCH BOX */
+
+        .hero-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+        }
+
+        .search-card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, .08);
+        }
+
+        .search-card h3 {
+            color: #222;
+            margin-bottom: 15px;
+        }
+
+        .search-card input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
     <section class="hero">
 
         <div class="container">
