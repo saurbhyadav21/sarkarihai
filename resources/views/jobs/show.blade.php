@@ -1338,11 +1338,7 @@
 {{-- Part 1A --}}
 {{-- ========================================= --}}
 
-@extends('layouts.app')
 
-@section('title', 'Sarkari Naukri 2026 - Latest Government Jobs')
-
-@section('content')
 
 <div class="container-fluid py-4">
 
