@@ -1207,12 +1207,13 @@ $categories = DB::table('job_details')
 
 $qualifications = DB::table('job_details')
     ->select('min_qulification as qualification')
-    ->whereNotNull('qualification')
-    ->where('qualification','!=','')
+    ->whereNotNull('min_qulification')
+    ->where('min_qulification','!=','')
     ->distinct()
-    ->orderBy('qualification')
+    ->orderBy('min_qulification')
     ->pluck('qualification');
 dd($qualifications);
+
         return view('jobs.show', compact(
             'jobs',
             'state',
