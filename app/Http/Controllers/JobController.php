@@ -1206,13 +1206,33 @@ $categories = DB::table('job_details')
     ->pluck('category');
 
 $qualifications = DB::table('job_details')
-    ->select('min_qulification as qualification')
     ->whereNotNull('min_qulification')
-    ->where('min_qulification','!=','')
-    ->distinct()
-    ->orderBy('min_qulification')
-    ->pluck('qualification');
-dd($qualifications);
+    ->where('min_qulification', '!=', '')
+    ->pluck('min_qulification');
+
+$uniqueQualifications = [];
+
+foreach ($qualifications as $item) {
+
+    $parts = explode('#', $item);
+
+    foreach ($parts as $qualification) {
+
+        $qualification = trim($qualification);
+
+        if ($qualification != '') {
+
+            $uniqueQualifications[$qualification] = $qualification;
+
+        }
+
+    }
+
+}
+
+ksort($uniqueQualifications);
+
+$qualifications = array_values($uniqueQualifications);
 
         return view('jobs.show', compact(
             'jobs',
