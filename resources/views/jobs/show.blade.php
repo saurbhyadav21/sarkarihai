@@ -2787,13 +2787,11 @@
 
                                                         </span>
 
-                                                        @if ($job->job_sub_categories)
-                                                            <span class="badge bg-info text-dark">
-
-                                                                {{ $job->subCategory }}
-
-                                                            </span>
-                                                        @endif
+                                                        @if (!empty($job->job_sub_categories))
+    <span class="badge bg-info text-dark">
+        {{ $job->job_sub_categories }}
+    </span>
+@endif
 
                                                     </div>
 
