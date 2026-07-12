@@ -3433,53 +3433,7 @@
         });
 
     }
-    /* ==========================================
-       Browser URL Update
-    ========================================== */
-
-    function updateUrl() {
-
-        let params = new URLSearchParams();
-
-        if ($('#keyword').val() != '')
-            params.set('search', $('#keyword').val());
-
-        if ($('#state').val() != '')
-            params.set('state', $('#state').val());
-
-        if ($('#category').val() != '')
-            params.set('category', $('#category').val());
-
-        if ($('#sub_category').val() != '')
-            params.set('sub_category', $('#sub_category').val());
-
-        if ($('#qualification').val() != '')
-            params.set('qualification', $('#qualification').val());
-
-        if ($('#job_type').val() != '')
-            params.set('job_type', $('#job_type').val());
-
-        if ($('#last_date').val() != '')
-            params.set('last_date', $('#last_date').val());
-
-        if ($('#sortBy').val() != 'latest')
-            params.set('sort', $('#sortBy').val());
-
-        if (page > 1)
-            params.set('page', page);
-
-        let url = window.location.pathname;
-
-        if (params.toString() != '') {
-
-            url += '?' + params.toString();
-
-        }
-
-        window.history.replaceState({}, '', url);
-
-    }
-
+    
     /* ==========================================
        Update URL After Every Load
     ========================================== */
@@ -3668,6 +3622,52 @@
 
     updateUrl();
 
+/* ==========================================
+       Browser URL Update
+    ========================================== */
+
+    function updateUrl() {
+
+        let params = new URLSearchParams();
+
+        if ($('#keyword').val() != '')
+            params.set('search', $('#keyword').val());
+
+        if ($('#state').val() != '')
+            params.set('state', $('#state').val());
+
+        if ($('#category').val() != '')
+            params.set('category', $('#category').val());
+
+        if ($('#sub_category').val() != '')
+            params.set('sub_category', $('#sub_category').val());
+
+        if ($('#qualification').val() != '')
+            params.set('qualification', $('#qualification').val());
+
+        if ($('#job_type').val() != '')
+            params.set('job_type', $('#job_type').val());
+
+        if ($('#last_date').val() != '')
+            params.set('last_date', $('#last_date').val());
+
+        if ($('#sortBy').val() != 'latest')
+            params.set('sort', $('#sortBy').val());
+
+        if (page > 1)
+            params.set('page', page);
+
+        let url = window.location.pathname;
+
+        if (params.toString() != '') {
+
+            url += '?' + params.toString();
+
+        }
+
+        window.history.replaceState({}, '', url);
+
+    }
 
 /* ==========================================
    End Script
