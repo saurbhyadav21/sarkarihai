@@ -3348,5 +3348,216 @@
                         }, 300);
 
                     });
-    </script>
+
+
+                        /* ==========================================
+       AJAX Load Jobs
+    ========================================== */
+
+    function loadJobs() {
+
+        let data = {
+
+            search: $('#keyword').val(),
+
+            state: $('#state').val(),
+
+            category: $('#category').val(),
+
+            sub_category: $('#sub_category').val(),
+
+            qualification: $('#qualification').val(),
+
+            job_type: $('#job_type').val(),
+
+            last_date: $('#last_date').val(),
+
+            sort: $('#sortBy').val(),
+
+            page: page
+
+        };
+
+        $("#jobs").addClass("position-relative");
+
+        if ($("#jobs .loading-overlay").length == 0) {
+
+            $("#jobs").append(
+
+                '<div class="loading-overlay show">' +
+                    '<div class="loading-spinner"></div>' +
+                '</div>'
+
+            );
+
+        } else {
+
+            $("#jobs .loading-overlay").addClass("show");
+
+        }
+
+        $.ajax({
+
+            url: window.location.pathname,
+
+            type: "GET",
+
+            data: data,
+
+            success: function (response) {
+
+                $("#jobs").html(response.html);
+
+                $("#jobCount").text(response.total);
+
+            },
+
+            error: function () {
+
+                $("#jobs").html(
+
+                    '<div class="alert alert-danger">' +
+                    'Something went wrong. Please try again.' +
+                    '</div>'
+
+                );
+
+            },
+
+            complete: function () {
+
+                $(".loading-overlay").removeClass("show");
+
+            }
+
+        });
+
+    }
+    /* ==========================================
+       Browser URL Update
+    ========================================== */
+
+    function updateUrl() {
+
+        let params = new URLSearchParams();
+
+        if ($('#keyword').val() != '')
+            params.set('search', $('#keyword').val());
+
+        if ($('#state').val() != '')
+            params.set('state', $('#state').val());
+
+        if ($('#category').val() != '')
+            params.set('category', $('#category').val());
+
+        if ($('#sub_category').val() != '')
+            params.set('sub_category', $('#sub_category').val());
+
+        if ($('#qualification').val() != '')
+            params.set('qualification', $('#qualification').val());
+
+        if ($('#job_type').val() != '')
+            params.set('job_type', $('#job_type').val());
+
+        if ($('#last_date').val() != '')
+            params.set('last_date', $('#last_date').val());
+
+        if ($('#sortBy').val() != 'latest')
+            params.set('sort', $('#sortBy').val());
+
+        if (page > 1)
+            params.set('page', page);
+
+        let url = window.location.pathname;
+
+        if (params.toString() != '') {
+
+            url += '?' + params.toString();
+
+        }
+
+        window.history.replaceState({}, '', url);
+
+    }
+
+    /* ==========================================
+       Update URL After Every Load
+    ========================================== */
+
+    $(document).ajaxSuccess(function () {
+
+        updateUrl();
+
+    });
+
+    /* ==========================================
+       Browser Back / Forward
+    ========================================== */
+
+    window.onpopstate = function () {
+
+        location.reload();
+
+    };
+
+    /* ==========================================
+       Dynamic Sub Category
+       (AJAX endpoint later)
+    ========================================== */
+
+    $('#category').change(function () {
+
+        let category = $(this).val();
+
+        $('#sub_category').html(
+            '<option value="">Loading...</option>'
+        );
+
+        $.ajax({
+
+            url: "/ajax/sub-categories",
+
+            type: "GET",
+
+            data: {
+
+                category: category
+
+            },
+
+            success: function (response) {
+
+                let html = '';
+
+                html += '<option value="">All Sub Categories</option>';
+
+                $.each(response, function (index, item) {
+
+                    html += '<option value="' + item.slug + '">';
+
+                    html += item.name;
+
+                    html += '</option>';
+
+                });
+
+                $('#sub_category').html(html);
+
+            },
+
+            error: function () {
+
+                $('#sub_category').html(
+                    '<option value="">All Sub Categories</option>'
+                );
+
+            }
+
+        });
+
+    });
+
+});
+</script>
+
 @endsection
