@@ -1167,9 +1167,7 @@ class JobController extends Controller
         // Statistics
         // ======================
 
-        $totalJobs = DB::table('job_details')
-            ->where('status', 1)
-            ->count();
+        $totalJobs = DB::table('job_details')->count();
 
         $todayJobs = DB::table('job_details')
             ->where('status', 1)
@@ -1192,28 +1190,28 @@ class JobController extends Controller
         // ======================
 
         $states = DB::table('job_details')
-            ->select('state')
-            ->whereNotNull('state')
-            ->where('state', '!=', '')
-            ->distinct()
-            ->orderBy('state')
-            ->get();
+    ->select('state')
+    ->whereNotNull('state')
+    ->where('state','!=','')
+    ->distinct()
+    ->orderBy('state')
+    ->pluck('state');
 
-        $categories = DB::table('job_details')
-            ->select('category')
-            ->whereNotNull('category')
-            ->where('category', '!=', '')
-            ->distinct()
-            ->orderBy('category')
-            ->get();
+$categories = DB::table('job_details')
+    ->select('category')
+    ->whereNotNull('category')
+    ->where('category','!=','')
+    ->distinct()
+    ->orderBy('category')
+    ->pluck('category');
 
-        $qualifications = DB::table('job_details')
-            ->select('qualification')
-            ->whereNotNull('qualification')
-            ->where('qualification', '!=', '')
-            ->distinct()
-            ->orderBy('qualification')
-            ->get();
+$qualifications = DB::table('job_details')
+    ->select('qualification')
+    ->whereNotNull('qualification')
+    ->where('qualification','!=','')
+    ->distinct()
+    ->orderBy('qualification')
+    ->pluck('qualification');
 
         return view('jobs.show', compact(
             'jobs',
