@@ -155,3 +155,46 @@ Route::get('/search', [JobController::class, 'search'])->name('search');
 
 Route::get('/last-date-soon/{type}', [JobController::class, 'lastDateSoon'])
     ->name('last-date-soon');
+
+
+/*
+|--------------------------------------------------------------------------
+| Latest Jobs
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/latest-jobs', [JobController::class, 'latestJobs'])
+    ->name('jobs.latest');
+
+Route::get('/latest-jobs/{state}', [JobController::class, 'latestJobs'])
+    ->name('jobs.state');
+
+Route::get('/latest-jobs/{state}/{category}', [JobController::class, 'latestJobs'])
+    ->name('jobs.state.category');
+
+
+/* |---- ---------------------------------------------------------------------- | Sarkari Naukri |-------------------------------------------------------------------------- */
+Route::get('/sarkari-naukri', [JobController::class, 'latestJobs'])->name('jobs.index');
+Route::get('/sarkari-naukri/{state}', [JobController::class, 'latestJobs'])->name('jobs.state');
+Route::get('/sarkari-naukri/{state}/{category}', [JobController::class, 'latestJobs'])->name('jobs.category');
+Route::get('/sarkari-naukri/{state}/{category}/{slug}', [JobController::class, 'jobDetails'])->name('jobs.details');
+
+
+/*
+|--------------------------------------------------------------------------
+| AJAX (Future Ready)
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/ajax/jobs', [JobController::class, 'latestJobs'])
+    ->name('ajax.jobs');
+
+
+/*
+|--------------------------------------------------------------------------
+| Job Details
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/job/{slug}', [JobController::class, 'jobDetails'])
+    ->name('jobs.details');
