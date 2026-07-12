@@ -2790,7 +2790,7 @@
                                                         @if ($job->job_sub_categories)
                                                             <span class="badge bg-info text-dark">
 
-                                                                {{ $job->subCategory->name }}
+                                                                {{ $job->subCategory }}
 
                                                             </span>
                                                         @endif
