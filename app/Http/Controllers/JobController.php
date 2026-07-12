@@ -1206,7 +1206,7 @@ $categories = DB::table('job_details')
     ->pluck('category');
 
 $qualifications = DB::table('job_details')
-    ->select('qualification')
+    ->select('min_qulification as qualification')
     ->whereNotNull('qualification')
     ->where('qualification','!=','')
     ->distinct()
