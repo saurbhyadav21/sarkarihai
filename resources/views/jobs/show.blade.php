@@ -3625,7 +3625,7 @@
 /* ==========================================
        Browser URL Update
     ========================================== */
-
+ let page = 1;
     function updateUrl() {
 
         let params = new URLSearchParams();
