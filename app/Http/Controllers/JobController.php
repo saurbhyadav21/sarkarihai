@@ -1190,49 +1190,46 @@ class JobController extends Controller
         // ======================
 
         $states = DB::table('job_details')
-    ->select('state')
-    ->whereNotNull('state')
-    ->where('state','!=','')
-    ->distinct()
-    ->orderBy('state')
-    ->pluck('state');
+            ->select('state')
+            ->whereNotNull('state')
+            ->where('state', '!=', '')
+            ->distinct()
+            ->orderBy('state')
+            ->pluck('state');
 
-$categories = DB::table('job_details')
-    ->select('category')
-    ->whereNotNull('category')
-    ->where('category','!=','')
-    ->distinct()
-    ->orderBy('category')
-    ->pluck('category');
+        $categories = DB::table('job_details')
+            ->select('category')
+            ->whereNotNull('category')
+            ->where('category', '!=', '')
+            ->distinct()
+            ->orderBy('category')
+            ->pluck('category');
 
-$qualifications = DB::table('job_details')
-    ->whereNotNull('min_qulification')
-    ->where('min_qulification', '!=', '')
-    ->pluck('min_qulification');
+        $qualifications = DB::table('job_details')
+            ->whereNotNull('min_qulification')
+            ->where('min_qulification', '!=', '')
+            ->pluck('min_qulification');
 
-$uniqueQualifications = [];
+        $uniqueQualifications = [];
 
-foreach ($qualifications as $item) {
+        foreach ($qualifications as $item) {
 
-    $parts = explode('#', $item);
+            $parts = explode('#', $item);
 
-    foreach ($parts as $qualification) {
+            foreach ($parts as $qualification) {
 
-        $qualification = trim($qualification);
+                $qualification = trim($qualification);
 
-        if ($qualification != '') {
+                if ($qualification != '') {
 
-            $uniqueQualifications[$qualification] = $qualification;
-
+                    $uniqueQualifications[$qualification] = $qualification;
+                }
+            }
         }
 
-    }
+        ksort($uniqueQualifications);
 
-}
-
-ksort($uniqueQualifications);
-
-$qualifications = array_values($uniqueQualifications);
+        $qualifications = array_values($uniqueQualifications);
 
         return view('jobs.show', compact(
             'jobs',
