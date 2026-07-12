@@ -307,18 +307,18 @@
         }
 
         /* .summary-card{
-            background:#fff;
-            border-radius:15px;
-            box-shadow:
-            0 10px 30px rgba(0,0,0,.08);
-            padding:30px;
-            border-top:4px solid #F59E0B;
-            display:grid;
-            }
+                background:#fff;
+                border-radius:15px;
+                box-shadow:
+                0 10px 30px rgba(0,0,0,.08);
+                padding:30px;
+                border-top:4px solid #F59E0B;
+                display:grid;
+                }
 
-            .summary-item{
-            text-align:center;
-            } */
+                .summary-item{
+                text-align:center;
+                } */
         .summary-card {
             background: #fff;
             border-radius: 15px;
@@ -797,8 +797,6 @@
         }
     </style>
     <style>
-        
-
         body {
             background: #f4f7fb;
             color: #212529;
@@ -1097,923 +1095,923 @@
 
         /* Continue in Part 2B */
         /* ========================================= */
-/* Sidebar */
-/* ========================================= */
+        /* Sidebar */
+        /* ========================================= */
 
-.sticky-top{
+        .sticky-top {
 
-    top:20px;
+            top: 20px;
 
-    z-index:100;
+            z-index: 100;
 
-}
+        }
 
-/* ========================================= */
+        /* ========================================= */
 
-.card-header strong{
+        .card-header strong {
 
-    font-size:17px;
+            font-size: 17px;
 
-    font-weight:700;
+            font-weight: 700;
 
-}
+        }
 
-/* ========================================= */
+        /* ========================================= */
 
-.form-label{
+        .form-label {
 
-    font-size:14px;
+            font-size: 14px;
 
-    margin-bottom:8px;
+            margin-bottom: 8px;
 
-    color:#444;
+            color: #444;
 
-}
+        }
 
-/* ========================================= */
+        /* ========================================= */
 
-#applyFilter{
+        #applyFilter {
 
-    height:48px;
+            height: 48px;
 
-}
+        }
 
-#clearFilter{
+        #clearFilter {
 
-    height:48px;
+            height: 48px;
 
-}
+        }
 
-/* ========================================= */
-/* Search Box */
-/* ========================================= */
+        /* ========================================= */
+        /* Search Box */
+        /* ========================================= */
 
-#keyword{
+        #keyword {
 
-    font-size:15px;
+            font-size: 15px;
 
-}
+        }
 
-#keyword::placeholder{
+        #keyword::placeholder {
 
-    color:#999;
+            color: #999;
 
-}
+        }
 
-/* ========================================= */
-/* Toolbar */
-/* ========================================= */
+        /* ========================================= */
+        /* Toolbar */
+        /* ========================================= */
 
-#sortBy{
+        #sortBy {
 
-    min-width:190px;
+            min-width: 190px;
 
-}
+        }
 
-#jobCount{
+        #jobCount {
 
-    font-weight:700;
+            font-weight: 700;
 
-}
+        }
 
-/* ========================================= */
+        /* ========================================= */
 
-.badge.bg-primary{
+        .badge.bg-primary {
 
-    background:#0d6efd !important;
+            background: #0d6efd !important;
 
-}
+        }
 
-.badge.bg-success{
+        .badge.bg-success {
 
-    background:#198754 !important;
+            background: #198754 !important;
 
-}
+        }
 
-.badge.bg-danger{
+        .badge.bg-danger {
 
-    background:#dc3545 !important;
+            background: #dc3545 !important;
 
-}
+        }
 
-.badge.bg-warning{
+        .badge.bg-warning {
 
-    background:#ffc107 !important;
+            background: #ffc107 !important;
 
-    color:#222 !important;
+            color: #222 !important;
 
-}
+        }
 
-.badge.bg-info{
+        .badge.bg-info {
 
-    background:#0dcaf0 !important;
+            background: #0dcaf0 !important;
 
-    color:#222 !important;
+            color: #222 !important;
 
-}
+        }
 
-/* ========================================= */
-/* Job Card */
-/* ========================================= */
+        /* ========================================= */
+        /* Job Card */
+        /* ========================================= */
 
-.job-card{
+        .job-card {
 
-    position:relative;
+            position: relative;
 
-    background:#fff;
+            background: #fff;
 
-}
+        }
 
-.job-card::before{
+        .job-card::before {
 
-    content:"";
+            content: "";
 
-    position:absolute;
+            position: absolute;
 
-    left:0;
+            left: 0;
 
-    top:0;
+            top: 0;
 
-    width:5px;
+            width: 5px;
 
-    height:100%;
+            height: 100%;
 
-    background:#0d6efd;
+            background: #0d6efd;
 
-    opacity:0;
+            opacity: 0;
 
-    transition:.3s;
+            transition: .3s;
 
-}
+        }
 
-.job-card:hover::before{
+        .job-card:hover::before {
 
-    opacity:1;
+            opacity: 1;
 
-}
+        }
 
-.job-card h5{
+        .job-card h5 {
 
-    font-size:21px;
+            font-size: 21px;
 
-    line-height:30px;
+            line-height: 30px;
 
-}
+        }
 
-.job-card small{
+        .job-card small {
 
-    font-size:13px;
+            font-size: 13px;
 
-}
+        }
 
-.job-card .fw-semibold{
+        .job-card .fw-semibold {
 
-    font-size:15px;
+            font-size: 15px;
 
-}
+        }
 
-/* ========================================= */
+        /* ========================================= */
 
-.job-icon{
+        .job-icon {
 
-    transition:.25s;
+            transition: .25s;
 
-}
+        }
 
-.job-card:hover .job-icon{
+        .job-card:hover .job-icon {
 
-    background:#0d6efd;
+            background: #0d6efd;
 
-    color:#fff;
+            color: #fff;
 
-}
+        }
 
-/* ========================================= */
+        /* ========================================= */
 
-.job-card .btn{
+        .job-card .btn {
 
-    margin-bottom:8px;
+            margin-bottom: 8px;
 
-}
+        }
 
-.job-card .btn:last-child{
+        .job-card .btn:last-child {
 
-    margin-bottom:0;
+            margin-bottom: 0;
 
-}
+        }
 
-/* ========================================= */
-/* Empty Result */
-/* ========================================= */
+        /* ========================================= */
+        /* Empty Result */
+        /* ========================================= */
 
-.fa-folder-open{
+        .fa-folder-open {
 
-    opacity:.30;
+            opacity: .30;
 
-}
+        }
 
-/* ========================================= */
-/* Popular Search Buttons */
-/* ========================================= */
+        /* ========================================= */
+        /* Popular Search Buttons */
+        /* ========================================= */
 
-.card .btn-light.border{
+        .card .btn-light.border {
 
-    border-color:#dfe7ef !important;
+            border-color: #dfe7ef !important;
 
-}
+        }
 
-.card .btn-light.border:hover{
+        .card .btn-light.border:hover {
 
-    background:#0d6efd;
+            background: #0d6efd;
 
-    color:#fff;
+            color: #fff;
 
-    border-color:#0d6efd !important;
+            border-color: #0d6efd !important;
 
-}
+        }
 
-/* ========================================= */
-/* Pagination */
-/* ========================================= */
+        /* ========================================= */
+        /* Pagination */
+        /* ========================================= */
 
-.pagination{
+        .pagination {
 
-    margin:0;
+            margin: 0;
 
-}
+        }
 
-.pagination .page-link{
+        .pagination .page-link {
 
-    border:none;
+            border: none;
 
-    margin:0 4px;
+            margin: 0 4px;
 
-    border-radius:8px;
+            border-radius: 8px;
 
-    color:#0d6efd;
+            color: #0d6efd;
 
-    padding:10px 16px;
+            padding: 10px 16px;
 
-    font-weight:600;
+            font-weight: 600;
 
-}
+        }
 
-.pagination .page-item.active .page-link{
+        .pagination .page-item.active .page-link {
 
-    background:#0d6efd;
+            background: #0d6efd;
 
-    color:#fff;
+            color: #fff;
 
-}
+        }
 
-.pagination .page-link:hover{
+        .pagination .page-link:hover {
 
-    background:#eef5ff;
+            background: #eef5ff;
 
-}
+        }
 
-/* Continue in Part 2C */
-/* ===========================================================
-   PART 2C
-   Premium UI Enhancements
-=========================================================== */
+        /* Continue in Part 2C */
+        /* ===========================================================
+       PART 2C
+       Premium UI Enhancements
+    =========================================================== */
 
-/* ========================================= */
-/* Breadcrumb */
-/* ========================================= */
+        /* ========================================= */
+        /* Breadcrumb */
+        /* ========================================= */
 
-.breadcrumb{
+        .breadcrumb {
 
-    margin:0;
+            margin: 0;
 
-    background:transparent;
+            background: transparent;
 
-    padding:0;
+            padding: 0;
 
-}
+        }
 
-.breadcrumb-item{
+        .breadcrumb-item {
 
-    font-size:14px;
+            font-size: 14px;
 
-}
+        }
 
-.breadcrumb-item a{
+        .breadcrumb-item a {
 
-    color:#0d6efd;
+            color: #0d6efd;
 
-    text-decoration:none;
+            text-decoration: none;
 
-}
+        }
 
-.breadcrumb-item.active{
+        .breadcrumb-item.active {
 
-    color:#6c757d;
+            color: #6c757d;
 
-}
+        }
 
-/* ========================================= */
-/* Stat Cards */
-/* ========================================= */
+        /* ========================================= */
+        /* Stat Cards */
+        /* ========================================= */
 
-.stat-card{
+        .stat-card {
 
-    overflow:hidden;
+            overflow: hidden;
 
-    position:relative;
+            position: relative;
 
-}
+        }
 
-.stat-card::after{
+        .stat-card::after {
 
-    content:"";
+            content: "";
 
-    position:absolute;
+            position: absolute;
 
-    right:-30px;
+            right: -30px;
 
-    top:-30px;
+            top: -30px;
 
-    width:110px;
+            width: 110px;
 
-    height:110px;
+            height: 110px;
 
-    border-radius:50%;
+            border-radius: 50%;
 
-    background:rgba(13,110,253,.05);
+            background: rgba(13, 110, 253, .05);
 
-}
+        }
 
-.stat-card h3{
+        .stat-card h3 {
 
-    font-size:30px;
+            font-size: 30px;
 
-}
+        }
 
-.icon-box{
+        .icon-box {
 
-    box-shadow:0 10px 25px rgba(0,0,0,.10);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .10);
 
-}
+        }
 
-/* ========================================= */
-/* Filter Card */
-/* ========================================= */
+        /* ========================================= */
+        /* Filter Card */
+        /* ========================================= */
 
-.sticky-top{
+        .sticky-top {
 
-    max-height:calc(100vh - 30px);
+            max-height: calc(100vh - 30px);
 
-    overflow-y:auto;
+            overflow-y: auto;
 
-}
+        }
 
-.sticky-top::-webkit-scrollbar{
+        .sticky-top::-webkit-scrollbar {
 
-    width:6px;
+            width: 6px;
 
-}
+        }
 
-.sticky-top::-webkit-scrollbar-thumb{
+        .sticky-top::-webkit-scrollbar-thumb {
 
-    background:#d8d8d8;
+            background: #d8d8d8;
 
-    border-radius:20px;
+            border-radius: 20px;
 
-}
+        }
 
-/* ========================================= */
-/* Card Animation */
-/* ========================================= */
+        /* ========================================= */
+        /* Card Animation */
+        /* ========================================= */
 
-.job-card{
+        .job-card {
 
-    transition:
-        transform .25s,
-        box-shadow .25s,
-        border-color .25s;
+            transition:
+                transform .25s,
+                box-shadow .25s,
+                border-color .25s;
 
-}
+        }
 
-.job-card:hover{
+        .job-card:hover {
 
-    box-shadow:0 15px 35px rgba(0,0,0,.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
 
-}
+        }
 
-/* ========================================= */
-/* Job Meta */
-/* ========================================= */
+        /* ========================================= */
+        /* Job Meta */
+        /* ========================================= */
 
-.job-card small{
+        .job-card small {
 
-    display:block;
+            display: block;
 
-    margin-bottom:3px;
+            margin-bottom: 3px;
 
-}
+        }
 
-.job-card .fw-semibold{
+        .job-card .fw-semibold {
 
-    color:#222;
+            color: #222;
 
-}
+        }
 
-/* ========================================= */
-/* Salary Highlight */
-/* ========================================= */
+        /* ========================================= */
+        /* Salary Highlight */
+        /* ========================================= */
 
-.job-card .salary{
+        .job-card .salary {
 
-    color:#198754;
+            color: #198754;
 
-    font-weight:700;
+            font-weight: 700;
 
-}
+        }
 
-/* ========================================= */
-/* Last Date */
-/* ========================================= */
+        /* ========================================= */
+        /* Last Date */
+        /* ========================================= */
 
-.job-card .last-date{
+        .job-card .last-date {
 
-    color:#dc3545;
+            color: #dc3545;
 
-    font-weight:700;
+            font-weight: 700;
 
-}
+        }
 
-/* ========================================= */
-/* Buttons */
-/* ========================================= */
+        /* ========================================= */
+        /* Buttons */
+        /* ========================================= */
 
-.job-card .btn{
+        .job-card .btn {
 
-    font-size:14px;
+            font-size: 14px;
 
-    font-weight:600;
+            font-weight: 600;
 
-}
+        }
 
-.job-card .btn i{
+        .job-card .btn i {
 
-    width:18px;
+            width: 18px;
 
-    text-align:center;
+            text-align: center;
 
-}
+        }
 
-/* ========================================= */
-/* Search Card */
-/* ========================================= */
+        /* ========================================= */
+        /* Search Card */
+        /* ========================================= */
 
-.input-group{
+        .input-group {
 
-    overflow:hidden;
+            overflow: hidden;
 
-    border-radius:12px;
+            border-radius: 12px;
 
-}
+        }
 
-.input-group-text{
+        .input-group-text {
 
-    border-right:none;
+            border-right: none;
 
-}
+        }
 
-.input-group .form-control{
+        .input-group .form-control {
 
-    border-left:none;
+            border-left: none;
 
-}
+        }
 
-/* ========================================= */
-/* Card Header */
-/* ========================================= */
+        /* ========================================= */
+        /* Card Header */
+        /* ========================================= */
 
-.card-header{
+        .card-header {
 
-    border-top-left-radius:14px !important;
+            border-top-left-radius: 14px !important;
 
-    border-top-right-radius:14px !important;
+            border-top-right-radius: 14px !important;
 
-}
+        }
 
-/* ========================================= */
-/* SEO Content */
-/* ========================================= */
+        /* ========================================= */
+        /* SEO Content */
+        /* ========================================= */
 
-.card-body p{
+        .card-body p {
 
-    line-height:1.8;
+            line-height: 1.8;
 
-}
+        }
 
-/* ========================================= */
-/* Popular Searches */
-/* ========================================= */
+        /* ========================================= */
+        /* Popular Searches */
+        /* ========================================= */
 
-.card-body .btn{
+        .card-body .btn {
 
-    transition:.20s;
+            transition: .20s;
 
-}
+        }
 
-.card-body .btn:hover{
+        .card-body .btn:hover {
 
-    transform:translateY(-2px);
+            transform: translateY(-2px);
 
-}
+        }
 
-/* ========================================= */
-/* Loading Overlay (Future AJAX) */
-/* ========================================= */
+        /* ========================================= */
+        /* Loading Overlay (Future AJAX) */
+        /* ========================================= */
 
-.loading-overlay{
+        .loading-overlay {
 
-    position:absolute;
+            position: absolute;
 
-    inset:0;
+            inset: 0;
 
-    background:rgba(255,255,255,.75);
+            background: rgba(255, 255, 255, .75);
 
-    display:none;
+            display: none;
 
-    align-items:center;
+            align-items: center;
 
-    justify-content:center;
+            justify-content: center;
 
-    z-index:20;
+            z-index: 20;
 
-}
+        }
 
-.loading-overlay.show{
+        .loading-overlay.show {
 
-    display:flex;
+            display: flex;
 
-}
+        }
 
-.loading-spinner{
+        .loading-spinner {
 
-    width:45px;
+            width: 45px;
 
-    height:45px;
+            height: 45px;
 
-    border:4px solid #e9ecef;
+            border: 4px solid #e9ecef;
 
-    border-top:4px solid #0d6efd;
+            border-top: 4px solid #0d6efd;
 
-    border-radius:50%;
+            border-radius: 50%;
 
-    animation:spin .8s linear infinite;
+            animation: spin .8s linear infinite;
 
-}
+        }
 
-@keyframes spin{
+        @keyframes spin {
 
-    from{
+            from {
 
-        transform:rotate(0deg);
+                transform: rotate(0deg);
 
-    }
+            }
 
-    to{
+            to {
 
-        transform:rotate(360deg);
+                transform: rotate(360deg);
 
-    }
+            }
 
-}
+        }
 
-/* Continue in Part 2D */
-/* ===========================================================
-   PART 2D
-   Responsive Design + Final CSS
-=========================================================== */
+        /* Continue in Part 2D */
+        /* ===========================================================
+       PART 2D
+       Responsive Design + Final CSS
+    =========================================================== */
 
-/* ========================================= */
-/* Desktop (1400px+) */
-/* ========================================= */
+        /* ========================================= */
+        /* Desktop (1400px+) */
+        /* ========================================= */
 
-@media (min-width:1400px){
+        @media (min-width:1400px) {
 
-    .container-xxl{
+            .container-xxl {
 
-        max-width:1480px;
+                max-width: 1480px;
 
-    }
+            }
 
-}
+        }
 
-/* ========================================= */
-/* Laptop */
-/* ========================================= */
+        /* ========================================= */
+        /* Laptop */
+        /* ========================================= */
 
-@media (max-width:1200px){
+        @media (max-width:1200px) {
 
-    h1{
+            h1 {
 
-        font-size:30px;
+                font-size: 30px;
 
-    }
+            }
 
-    .job-card h5{
+            .job-card h5 {
 
-        font-size:19px;
+                font-size: 19px;
 
-        line-height:28px;
+                line-height: 28px;
 
-    }
+            }
 
-    #sortBy{
+            #sortBy {
 
-        min-width:160px;
+                min-width: 160px;
 
-    }
+            }
 
-}
+        }
 
-/* ========================================= */
-/* Tablet */
-/* ========================================= */
+        /* ========================================= */
+        /* Tablet */
+        /* ========================================= */
 
-@media (max-width:991px){
+        @media (max-width:991px) {
 
-    .sticky-top{
+            .sticky-top {
 
-        position:relative !important;
+                position: relative !important;
 
-        top:0 !important;
+                top: 0 !important;
 
-        max-height:unset;
+                max-height: unset;
 
-        overflow:visible;
+                overflow: visible;
 
-    }
+            }
 
-    .job-card .btn{
+            .job-card .btn {
 
-        width:100%;
+                width: 100%;
 
-    }
+            }
 
-    .job-card .col-lg-3{
+            .job-card .col-lg-3 {
 
-        margin-top:20px;
+                margin-top: 20px;
 
-    }
+            }
 
-    .card-body{
+            .card-body {
 
-        padding:18px;
+                padding: 18px;
 
-    }
+            }
 
-    .icon-box{
+            .icon-box {
 
-        width:48px;
+                width: 48px;
 
-        height:48px;
+                height: 48px;
 
-        font-size:20px;
+                font-size: 20px;
 
-    }
+            }
 
-    .job-icon{
+            .job-icon {
 
-        width:55px;
+                width: 55px;
 
-        height:55px;
+                height: 55px;
 
-        font-size:20px;
+                font-size: 20px;
 
-    }
+            }
 
-}
+        }
 
-/* ========================================= */
-/* Mobile */
-/* ========================================= */
+        /* ========================================= */
+        /* Mobile */
+        /* ========================================= */
 
-@media (max-width:768px){
+        @media (max-width:768px) {
 
-    body{
+            body {
 
-        font-size:14px;
+                font-size: 14px;
 
-    }
+            }
 
-    h1{
+            h1 {
 
-        font-size:26px;
+                font-size: 26px;
 
-    }
+            }
 
-    h5{
+            h5 {
 
-        font-size:17px;
+                font-size: 17px;
 
-    }
+            }
 
-    .job-card h5{
+            .job-card h5 {
 
-        font-size:17px;
+                font-size: 17px;
 
-        line-height:26px;
+                line-height: 26px;
 
-    }
+            }
 
-    .badge{
+            .badge {
 
-        margin-bottom:5px;
+                margin-bottom: 5px;
 
-    }
+            }
 
-    .pagination{
+            .pagination {
 
-        justify-content:center;
+                justify-content: center;
 
-        flex-wrap:wrap;
+                flex-wrap: wrap;
 
-    }
+            }
 
-    .pagination .page-link{
+            .pagination .page-link {
 
-        margin:3px;
+                margin: 3px;
 
-        padding:8px 12px;
+                padding: 8px 12px;
 
-    }
+            }
 
-    .card-header{
+            .card-header {
 
-        padding:14px 16px;
+                padding: 14px 16px;
 
-    }
+            }
 
-    .card-body{
+            .card-body {
 
-        padding:16px;
+                padding: 16px;
 
-    }
+            }
 
-}
+        }
 
-/* ========================================= */
-/* Small Mobile */
-/* ========================================= */
+        /* ========================================= */
+        /* Small Mobile */
+        /* ========================================= */
 
-@media (max-width:576px){
+        @media (max-width:576px) {
 
-    .input-group{
+            .input-group {
 
-        flex-wrap:nowrap;
+                flex-wrap: nowrap;
 
-    }
+            }
 
-    #sortBy{
+            #sortBy {
 
-        width:100% !important;
+                width: 100% !important;
 
-        margin-top:10px;
+                margin-top: 10px;
 
-    }
+            }
 
-    .job-icon{
+            .job-icon {
 
-        display:none;
+                display: none;
 
-    }
+            }
 
-    .d-flex.justify-content-between{
+            .d-flex.justify-content-between {
 
-        flex-direction:column;
+                flex-direction: column;
 
-        align-items:flex-start !important;
+                align-items: flex-start !important;
 
-    }
+            }
 
-    .stat-card h3{
+            .stat-card h3 {
 
-        font-size:24px;
+                font-size: 24px;
 
-    }
+            }
 
-    .icon-box{
+            .icon-box {
 
-        margin-top:12px;
+                margin-top: 12px;
 
-    }
+            }
 
-}
+        }
 
-/* ========================================= */
-/* Utilities */
-/* ========================================= */
+        /* ========================================= */
+        /* Utilities */
+        /* ========================================= */
 
-.shadow-hover{
+        .shadow-hover {
 
-    transition:.25s;
+            transition: .25s;
 
-}
+        }
 
-.shadow-hover:hover{
+        .shadow-hover:hover {
 
-    box-shadow:0 12px 30px rgba(0,0,0,.08);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
 
-}
+        }
 
-.rounded-12{
+        .rounded-12 {
 
-    border-radius:12px;
+            border-radius: 12px;
 
-}
+        }
 
-.rounded-14{
+        .rounded-14 {
 
-    border-radius:14px;
+            border-radius: 14px;
 
-}
+        }
 
-.rounded-16{
+        .rounded-16 {
 
-    border-radius:16px;
+            border-radius: 16px;
 
-}
+        }
 
-.cursor-pointer{
+        .cursor-pointer {
 
-    cursor:pointer;
+            cursor: pointer;
 
-}
+        }
 
-.text-small{
+        .text-small {
 
-    font-size:13px;
+            font-size: 13px;
 
-}
+        }
 
-.fw-600{
+        .fw-600 {
 
-    font-weight:600;
+            font-weight: 600;
 
-}
+        }
 
-.fw-700{
+        .fw-700 {
 
-    font-weight:700;
+            font-weight: 700;
 
-}
+        }
 
-.bg-soft-primary{
+        .bg-soft-primary {
 
-    background:#eef5ff;
+            background: #eef5ff;
 
-}
+        }
 
-.bg-soft-success{
+        .bg-soft-success {
 
-    background:#edf8f1;
+            background: #edf8f1;
 
-}
+        }
 
-.bg-soft-warning{
+        .bg-soft-warning {
 
-    background:#fff8e5;
+            background: #fff8e5;
 
-}
+        }
 
-.bg-soft-danger{
+        .bg-soft-danger {
 
-    background:#fff0f1;
+            background: #fff0f1;
 
-}
+        }
 
-/* ========================================= */
-/* Smooth Scroll */
-/* ========================================= */
+        /* ========================================= */
+        /* Smooth Scroll */
+        /* ========================================= */
 
-html{
+        html {
 
-    scroll-behavior:smooth;
+            scroll-behavior: smooth;
 
-}
+        }
 
-/* ========================================= */
-/* Selection */
-/* ========================================= */
+        /* ========================================= */
+        /* Selection */
+        /* ========================================= */
 
-::selection{
+        ::selection {
 
-    background:#0d6efd;
+            background: #0d6efd;
 
-    color:#fff;
+            color: #fff;
 
-}
+        }
 
-/* ========================================= */
-/* End of CSS */
-/* ========================================= */
+        /* ========================================= */
+        /* End of CSS */
+        /* ========================================= */
     </style>
     <section class="hero">
 
@@ -3185,4 +3183,170 @@ html{
         </div>
 
     </div>
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <script>
+        
+
+            $(document).ready(function() {
+
+                    /* ==========================================
+                       CSRF
+                    ========================================== */
+
+                    $.ajaxSetup({
+
+                        headers: {
+
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+                        }
+
+                    });
+
+                    /* ==========================================
+                       Variables
+                    ========================================== */
+
+                    let typingTimer;
+
+                    let page = 1;
+
+                    /* ==========================================
+                       Auto Search
+                    ========================================== */
+
+                    $('#keyword').on('keyup', function() {
+
+                        clearTimeout(typingTimer);
+
+                        typingTimer = setTimeout(function() {
+
+                            page = 1;
+
+                            loadJobs();
+
+                        }, 500);
+
+                    });
+
+                    /* ==========================================
+                       Dropdown Filters
+                    ========================================== */
+
+                    $('#state').change(function() {
+
+                        page = 1;
+
+                        loadJobs();
+
+                    });
+
+                    $('#category').change(function() {
+
+                        page = 1;
+
+                        loadJobs();
+
+                    });
+
+                    $('#sub_category').change(function() {
+
+                        page = 1;
+
+                        loadJobs();
+
+                    });
+
+                    $('#qualification').change(function() {
+
+                        page = 1;
+
+                        loadJobs();
+
+                    });
+
+                    $('#job_type').change(function() {
+
+                        page = 1;
+
+                        loadJobs();
+
+                    });
+
+                    $('#last_date').change(function() {
+
+                        page = 1;
+
+                        loadJobs();
+
+                    });
+
+                    $('#sortBy').change(function() {
+
+                        page = 1;
+
+                        loadJobs();
+
+                    });
+
+                    /* ==========================================
+                       Apply Button
+                    ========================================== */
+
+                    $('#applyFilter').click(function() {
+
+                        page = 1;
+
+                        loadJobs();
+
+                    });
+
+                    /* ==========================================
+                       Clear Filter
+                    ========================================== */
+
+                    $('#clearFilter').click(function() {
+
+                        $('#keyword').val('');
+
+                        $('#state').val('');
+
+                        $('#category').val('');
+
+                        $('#sub_category').val('');
+
+                        $('#qualification').val('');
+
+                        $('#job_type').val('');
+
+                        $('#last_date').val('');
+
+                        $('#sortBy').val('latest');
+
+                        page = 1;
+
+                        loadJobs();
+
+                    });
+
+                    /* ==========================================
+                       Pagination
+                    ========================================== */
+
+                    $(document).on('click', '.pagination a', function(e) {
+
+                        e.preventDefault();
+
+                        page = $(this).attr('href').split('page=')[1];
+
+                        loadJobs();
+
+                        $('html,body').animate({
+
+                            scrollTop: $("#jobs").offset().top - 20
+
+                        }, 300);
+
+                    });
+    </script>
 @endsection
