@@ -2886,7 +2886,7 @@
                                                     @php
 
                                                         $days = now()->diffInDays(
-                                                            \Carbon\Carbon::parse($job->last_date),
+                                                            \Carbon\Carbon::parse($job->end_date),
                                                             false,
                                                         );
 
