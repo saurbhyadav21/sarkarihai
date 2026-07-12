@@ -3558,6 +3558,122 @@
     });
 
 });
+    /* ==========================================
+       Filter From URL On Page Load
+    ========================================== */
+
+    (function () {
+
+        let params = new URLSearchParams(window.location.search);
+
+        if (params.has('search'))
+            $('#keyword').val(params.get('search'));
+
+        if (params.has('state'))
+            $('#state').val(params.get('state'));
+
+        if (params.has('category'))
+            $('#category').val(params.get('category'));
+
+        if (params.has('sub_category'))
+            $('#sub_category').val(params.get('sub_category'));
+
+        if (params.has('qualification'))
+            $('#qualification').val(params.get('qualification'));
+
+        if (params.has('job_type'))
+            $('#job_type').val(params.get('job_type'));
+
+        if (params.has('last_date'))
+            $('#last_date').val(params.get('last_date'));
+
+        if (params.has('sort'))
+            $('#sortBy').val(params.get('sort'));
+
+        if (params.has('page'))
+            page = parseInt(params.get('page'));
+
+    })();
+
+    /* ==========================================
+       Enter Key Search
+    ========================================== */
+
+    $('#keyword').keypress(function (e) {
+
+        if (e.which == 13) {
+
+            page = 1;
+
+            loadJobs();
+
+        }
+
+    });
+
+    /* ==========================================
+       Scroll To Top Button
+    ========================================== */
+
+    $('body').append(
+
+        '<button id="scrollTopBtn" class="btn btn-primary">' +
+
+            '<i class="fa-solid fa-arrow-up"></i>' +
+
+        '</button>'
+
+    );
+
+    $('#scrollTopBtn').css({
+
+        position: 'fixed',
+        right: '20px',
+        bottom: '20px',
+        width: '45px',
+        height: '45px',
+        borderRadius: '50%',
+        display: 'none',
+        zIndex: '9999'
+
+    });
+
+    $(window).scroll(function () {
+
+        if ($(this).scrollTop() > 300) {
+
+            $('#scrollTopBtn').fadeIn();
+
+        } else {
+
+            $('#scrollTopBtn').fadeOut();
+
+        }
+
+    });
+
+    $(document).on('click', '#scrollTopBtn', function () {
+
+        $('html, body').animate({
+
+            scrollTop: 0
+
+        }, 400);
+
+    });
+
+    /* ==========================================
+       Initialize
+    ========================================== */
+
+    updateUrl();
+
+});
+
+/* ==========================================
+   End Script
+========================================== */
+
 </script>
 
 @endsection
