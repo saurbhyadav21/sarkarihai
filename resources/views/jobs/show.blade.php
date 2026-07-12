@@ -3188,7 +3188,9 @@
         
 
             $(document).ready(function() {
+   let typingTimer;
 
+                    let page = 1;
                     /* ==========================================
                        CSRF
                     ========================================== */
@@ -3207,9 +3209,7 @@
                        Variables
                     ========================================== */
 
-                    let typingTimer;
-
-                    let page = 1;
+                 
 
                     /* ==========================================
                        Auto Search
@@ -3625,7 +3625,7 @@
 /* ==========================================
        Browser URL Update
     ========================================== */
- let page = 1;
+
     function updateUrl() {
 
         let params = new URLSearchParams();
