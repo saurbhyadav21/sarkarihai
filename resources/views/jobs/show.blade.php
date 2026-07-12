@@ -2787,7 +2787,7 @@
 
                                                         </span>
 
-                                                        @if ($job->subCategory)
+                                                        @if ($job->job_sub_categories)
                                                             <span class="badge bg-info text-dark">
 
                                                                 {{ $job->subCategory->name }}
