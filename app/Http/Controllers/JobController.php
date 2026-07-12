@@ -1245,8 +1245,12 @@ class JobController extends Controller
     //     ));
     // }
 
-    public function latestJobs(Request $request, $state = null, $category = null)
-{
+    public function latestJobs(
+    Request $request,
+    $state = null,
+    $category = null
+) {
+
     $jobs = DB::table('job_details');
 
     /*
@@ -1262,13 +1266,13 @@ class JobController extends Controller
         $jobs->where(function ($q) use ($search) {
 
             $q->where('title', 'LIKE', "%{$search}%")
-              ->orWhere('organization', 'LIKE', "%{$search}%")
-              ->orWhere('department', 'LIKE', "%{$search}%")
-              ->orWhere('category', 'LIKE', "%{$search}%")
-              ->orWhere('job_sub_categories', 'LIKE', "%{$search}%")
-              ->orWhere('qualification', 'LIKE', "%{$search}%")
-              ->orWhere('min_qulification', 'LIKE', "%{$search}%")
-              ->orWhere('state', 'LIKE', "%{$search}%");
+                ->orWhere('organization', 'LIKE', "%{$search}%")
+                ->orWhere('department', 'LIKE', "%{$search}%")
+                ->orWhere('category', 'LIKE', "%{$search}%")
+                ->orWhere('job_sub_categories', 'LIKE', "%{$search}%")
+                ->orWhere('qualification', 'LIKE', "%{$search}%")
+                ->orWhere('min_qulification', 'LIKE', "%{$search}%")
+                ->orWhere('state', 'LIKE', "%{$search}%");
 
         });
 
@@ -1276,13 +1280,17 @@ class JobController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | State
+    | State Filter
     |--------------------------------------------------------------------------
     */
 
     if ($request->filled('state')) {
 
-        $jobs->where('state', $request->state);
+        if ($request->state != 'all-india') {
+
+            $jobs->where('state', $request->state);
+
+        }
 
     } elseif (!empty($state) && $state != 'all-india') {
 
@@ -1292,7 +1300,7 @@ class JobController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | Category
+    | Category Filter
     |--------------------------------------------------------------------------
     */
 
@@ -1308,19 +1316,23 @@ class JobController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | Sub Category
+    | Sub Category Filter
     |--------------------------------------------------------------------------
     */
 
     if ($request->filled('sub_category')) {
 
-        $jobs->where('job_sub_categories', 'LIKE', '%' . $request->sub_category . '%');
+        $jobs->where(function ($q) use ($request) {
+
+            $q->where('job_sub_categories', 'LIKE', '%' . $request->sub_category . '%');
+
+        });
 
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Qualification
+    | Qualification Filter
     |--------------------------------------------------------------------------
     */
 
@@ -1329,7 +1341,7 @@ class JobController extends Controller
         $jobs->where(function ($q) use ($request) {
 
             $q->where('qualification', 'LIKE', '%' . $request->qualification . '%')
-              ->orWhere('min_qulification', 'LIKE', '%' . $request->qualification . '%');
+                ->orWhere('min_qulification', 'LIKE', '%' . $request->qualification . '%');
 
         });
 
@@ -1337,7 +1349,7 @@ class JobController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | Job Type
+    | Job Type Filter
     |--------------------------------------------------------------------------
     */
 
@@ -1347,91 +1359,78 @@ class JobController extends Controller
 
     }
 
-        /*
+    /*
     |--------------------------------------------------------------------------
-    | Last Date Filter
+    | Employment Type
     |--------------------------------------------------------------------------
     */
 
-    if ($request->filled('last_date')) {
+    if ($request->filled('employment_type')) {
 
-        switch ($request->last_date) {
-
-            case 'today':
-
-                $jobs->whereDate('end_date', now());
-
-                break;
-
-            case '7':
-
-                $jobs->whereBetween('end_date', [
-
-                    now(),
-
-                    now()->copy()->addDays(7)
-
-                ]);
-
-                break;
-
-            case '15':
-
-                $jobs->whereBetween('end_date', [
-
-                    now(),
-
-                    now()->copy()->addDays(15)
-
-                ]);
-
-                break;
-
-            case '30':
-
-                $jobs->whereBetween('end_date', [
-
-                    now(),
-
-                    now()->copy()->addDays(30)
-
-                ]);
-
-                break;
-
-        }
+        $jobs->where('employment_type', $request->employment_type);
 
     }
 
     /*
     |--------------------------------------------------------------------------
+    | Organization
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('organization')) {
+
+        $jobs->where('organization', $request->organization);
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Apply Mode
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('apply_mode')) {
+
+        $jobs->where('apply_mode', $request->apply_mode);
+
+    }
+
+
+        /*
+    |--------------------------------------------------------------------------
     | Sorting
     |--------------------------------------------------------------------------
     */
 
-    switch ($request->sort) {
+    switch ($request->get('sort')) {
+
+        case 'oldest':
+
+            $jobs->orderBy('id', 'ASC');
+
+            break;
 
         case 'title':
 
-            $jobs->orderBy('title');
+            $jobs->orderBy('title', 'ASC');
 
             break;
 
         case 'organization':
 
-            $jobs->orderBy('organization');
+            $jobs->orderBy('organization', 'ASC');
 
             break;
 
         case 'last_date':
 
-            $jobs->orderBy('end_date');
+            $jobs->orderBy('end_date', 'ASC');
 
             break;
 
         default:
 
-            $jobs->orderByDesc('id');
+            $jobs->orderBy('id', 'DESC');
 
             break;
 
@@ -1443,23 +1442,34 @@ class JobController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    $jobs = $jobs->paginate(20);
+    $jobs = $jobs->paginate(20)->withQueryString();
 
     /*
     |--------------------------------------------------------------------------
-    | Total Jobs After Filter
-    |--------------------------------------------------------------------------
-    */
-
-    $total = $jobs->total();
-
-        /*
-    |--------------------------------------------------------------------------
-    | Filter Data
+    | Dashboard Counts
     |--------------------------------------------------------------------------
     */
 
     $totalJobs = DB::table('job_details')->count();
+
+    $todayJobs = DB::table('job_details')
+        ->whereDate('created_at', today())
+        ->count();
+
+    $activeJobs = DB::table('job_details')
+        ->where('status', 'Active')
+        ->count();
+
+    $closingSoonJobs = DB::table('job_details')
+        ->whereNotNull('end_date')
+        ->where('end_date', '!=', '')
+        ->count();
+
+    /*
+    |--------------------------------------------------------------------------
+    | Sidebar Filters
+    |--------------------------------------------------------------------------
+    */
 
     $states = DB::table('job_details')
         ->whereNotNull('state')
@@ -1477,18 +1487,18 @@ class JobController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | Qualification
+    | Qualifications
     |--------------------------------------------------------------------------
     */
 
-    $qualificationRows = DB::table('job_details')
+    $rows = DB::table('job_details')
         ->whereNotNull('min_qulification')
         ->where('min_qulification', '!=', '')
         ->pluck('min_qulification');
 
-    $qualifications = [];
+    $qualificationArray = [];
 
-    foreach ($qualificationRows as $row) {
+    foreach ($rows as $row) {
 
         foreach (explode('#', $row) as $item) {
 
@@ -1496,7 +1506,7 @@ class JobController extends Controller
 
             if ($item != '') {
 
-                $qualifications[$item] = $item;
+                $qualificationArray[$item] = $item;
 
             }
 
@@ -1504,9 +1514,9 @@ class JobController extends Controller
 
     }
 
-    ksort($qualifications);
+    ksort($qualificationArray);
 
-    $qualifications = array_values($qualifications);
+    $qualifications = array_values($qualificationArray);
 
     /*
     |--------------------------------------------------------------------------
@@ -1514,14 +1524,14 @@ class JobController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    $subCategoryRows = DB::table('job_details')
+    $rows = DB::table('job_details')
         ->whereNotNull('job_sub_categories')
         ->where('job_sub_categories', '!=', '')
         ->pluck('job_sub_categories');
 
-    $subCategories = [];
+    $subCategoryArray = [];
 
-    foreach ($subCategoryRows as $row) {
+    foreach ($rows as $row) {
 
         foreach (explode('#', $row) as $item) {
 
@@ -1529,7 +1539,7 @@ class JobController extends Controller
 
             if ($item != '') {
 
-                $subCategories[$item] = $item;
+                $subCategoryArray[$item] = $item;
 
             }
 
@@ -1537,13 +1547,13 @@ class JobController extends Controller
 
     }
 
-    ksort($subCategories);
+    ksort($subCategoryArray);
 
-    $subCategories = array_values($subCategories);
+    $subCategories = array_values($subCategoryArray);
 
     /*
     |--------------------------------------------------------------------------
-    | AJAX Request
+    | AJAX Response
     |--------------------------------------------------------------------------
     */
 
@@ -1556,35 +1566,45 @@ class JobController extends Controller
 
         return response()->json([
 
-            'html'  => $html,
+            'html' => $html,
 
-            'total' => $total
+            'total' => $jobs->total()
 
         ]);
 
     }
 
-
-        /*
+    /*
     |--------------------------------------------------------------------------
-    | Normal Page Request
+    | View
     |--------------------------------------------------------------------------
     */
 
-    return view(
-        'jobs.show',
-        compact(
-            'jobs',
-            'state',
-            'category',
-            'total',
-            'totalJobs',
-            'states',
-            'categories',
-            'qualifications',
-            'subCategories'
-        )
-    );
+    return view('jobs.show', compact(
+
+        'jobs',
+
+        'state',
+
+        'category',
+
+        'totalJobs',
+
+        'todayJobs',
+
+        'activeJobs',
+
+        'closingSoonJobs',
+
+        'states',
+
+        'categories',
+
+        'qualifications',
+
+        'subCategories'
+
+    ));
 }
 
     public function jobDetail($state, $category, $slug)
