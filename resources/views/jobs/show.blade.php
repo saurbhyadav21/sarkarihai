@@ -2827,7 +2827,7 @@
 
                                                             <div class="fw-semibold text-danger">
 
-                                                                {{ $job->last_date }}
+                                                                {{ $job->end_date }}
 
                                                             </div>
 
