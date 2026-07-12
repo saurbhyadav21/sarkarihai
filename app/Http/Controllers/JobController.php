@@ -1212,7 +1212,7 @@ $qualifications = DB::table('job_details')
     ->distinct()
     ->orderBy('qualification')
     ->pluck('qualification');
-
+dd($qualifications);
         return view('jobs.show', compact(
             'jobs',
             'state',
