@@ -1669,8 +1669,8 @@
 
                                 @foreach($states as $state)
 
-<option value="{{ $state->state }}">
-    {{ $state->state }}
+<option value="{{ $state }}">
+    {{ $state }}
 </option>
 
 @endforeach
@@ -1703,8 +1703,8 @@
 
                                @foreach($categories as $category)
 
-<option value="{{ $category->category }}">
-    {{ $category->category }}
+<option value="{{ $category }}">
+    {{ $category }}
 </option>
 
 @endforeach
@@ -1761,10 +1761,10 @@
 
                                 </option>
 
-                                @foreach($qualifications as $qualification)
+                               @foreach($qualifications as $qualification)
 
-<option value="{{ $qualification->qualification }}">
-    {{ $qualification->qualification }}
+<option value="{{ $qualification }}">
+    {{ $qualification }}
 </option>
 
 @endforeach
