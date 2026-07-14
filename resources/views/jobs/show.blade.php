@@ -2219,7 +2219,7 @@
             <!-- Statistics -->
             <!-- ===================== -->
 
-            <div class="row g-3 mb-4">
+            {{-- <div class="row g-3 mb-4">
 
                 <div class="col-xl-3 col-md-6">
 
@@ -2239,7 +2239,7 @@
 
                                     <h3 class="fw-bold mt-2 mb-0">
 
-                                        {{-- {{ number_format($totalJobs) }} --}}
+                                     
 
                                     </h3>
 
@@ -2277,7 +2277,7 @@
 
                                     <h3 class="fw-bold mt-2 mb-0">
 
-                                        {{-- {{ number_format($todayJobs) }} --}}
+                                        
 
                                     </h3>
 
@@ -2315,7 +2315,7 @@
 
                                     <h3 class="fw-bold mt-2 mb-0">
 
-                                        {{-- {{ number_format($closingSoonJobs) }} --}}
+                                      
 
                                     </h3>
 
@@ -2353,7 +2353,7 @@
 
                                     <h3 class="fw-bold mt-2 mb-0">
 
-                                        {{-- {{ number_format($activeJobs) }} --}}
+                                       
 
                                     </h3>
 
@@ -2373,7 +2373,7 @@
 
                 </div>
 
-            </div>
+            </div> --}}
 
             <!-- ===================== -->
             <!-- Main Content -->
