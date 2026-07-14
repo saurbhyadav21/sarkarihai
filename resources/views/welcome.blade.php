@@ -766,7 +766,7 @@
     <div class="container mt-4">
 
         <!-- ================= STATE WISE ================= -->
-        <div class="sec-title">State Wise Government Jobs</div>
+        {{-- <div class="sec-title">State Wise Government Jobs</div>
 
         <div class="link-grid mb-4">
 
@@ -789,11 +789,11 @@
                 </a>
             @endforeach
 
-        </div>
+        </div> --}}
 
 
         <!-- ================= CATEGORY WISE ================= -->
-        <div class="sec-title">
+        {{-- <div class="sec-title">
             Category Wise Jobs
         </div>
 
@@ -825,13 +825,13 @@
                 </div>
             @endforeach
 
-        </div>
+        </div> --}}
 
 
         <!-- ================= ORGANIZATION WISE ================= -->
         <div class="sec-title">Organization Wise Jobs</div>
 
-        <div class="link-grid mb-4">
+        {{-- <div class="link-grid mb-4">
 
             @foreach ($organizations as $org)
                 <a href="#">
@@ -840,7 +840,7 @@
                 </a>
             @endforeach
 
-        </div>
+        </div> --}}
 
 
         <!-- ================= POPULAR SEARCHES ================= -->
