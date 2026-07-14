@@ -65,9 +65,7 @@
         /* HERO */
 
         .hero {
-            background: linear-gradient(135deg,
-                    #0B4F6C,
-                    #0F766E);
+            background: linear-gradient(135deg, #062a3a, #0a5467)
             padding: 55px 0;
             color: #fff;
         }
