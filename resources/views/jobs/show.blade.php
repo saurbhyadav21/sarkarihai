@@ -2382,5 +2382,679 @@ section a:hover{
     </div>
 
 </section>
+<script>
+
+"use strict";
+
+/* ===========================================
+   SarkariHai - Job Listing
+=========================================== */
+
+let currentPage = Number(new URLSearchParams(window.location.search).get('page')) || 1;
+
+const baseUrl = window.location.pathname;
+
+const resultContainer = $("#jobs");
+
+const filterForm = $("#filterForm");
+
+/* ===========================================
+   Loading
+=========================================== */
+
+function showLoading() {
+
+    resultContainer.html(`
+        <div class="text-center py-5">
+
+            <div class="spinner-border text-primary"></div>
+
+            <div class="mt-3">
+
+                Loading Jobs...
+
+            </div>
+
+        </div>
+    `);
+
+}
+
+/* ===========================================
+   URL Builder
+=========================================== */
+
+function buildUrl(page = 1) {
+
+    let params = new URLSearchParams();
+
+    if ($("#keyword").val().trim() !== "") {
+
+        params.set("search", $("#keyword").val().trim());
+
+    }
+
+    if ($("#state").val() !== "") {
+
+        params.set("state", $("#state").val());
+
+    }
+
+    if ($("#category").val() !== "") {
+
+        params.set("category", $("#category").val());
+
+    }
+
+    if ($("#sub_category").val() !== "") {
+
+        params.set("sub_category", $("#sub_category").val());
+
+    }
+
+    if ($("#qualification").val() !== "") {
+
+        params.set("qualification", $("#qualification").val());
+
+    }
+
+    if ($("#job_type").val() !== "") {
+
+        params.set("job_type", $("#job_type").val());
+
+    }
+
+    if ($("#sortBy").val() !== "latest") {
+
+        params.set("sort", $("#sortBy").val());
+
+    }
+
+    if (page > 1) {
+
+        params.set("page", page);
+
+    }
+
+    if (params.toString() !== "") {
+
+        return baseUrl + "?" + params.toString();
+
+    }
+
+    return baseUrl;
+
+}
+
+/* Continue JS Part 1B */
+/* ===========================================
+   AJAX Loader
+=========================================== */
+
+function loadJobs(page = 1, pushState = true) {
+
+    currentPage = page;
+
+    const url = buildUrl(page);
+
+    showLoading();
+
+    $.ajax({
+
+        url: url,
+
+        type: "GET",
+
+        dataType: "html",
+
+        headers: {
+
+            "X-Requested-With": "XMLHttpRequest"
+
+        },
+
+        success: function (response) {
+
+            const html = $(response).find("#jobs").html();
+
+            if (html !== undefined) {
+
+                resultContainer.html(html);
+
+            } else {
+
+                resultContainer.html(response);
+
+            }
+
+            if (pushState) {
+
+                window.history.pushState({}, "", url);
+
+            }
+
+            $("html, body").animate({
+
+                scrollTop: $("#jobs").offset().top - 20
+
+            }, 300);
+
+        },
+
+        error: function () {
+
+            resultContainer.html(`
+
+                <div class="alert alert-danger">
+
+                    Unable to load jobs.
+
+                    Please try again.
+
+                </div>
+
+            `);
+
+        }
+
+    });
+
+}
+
+/* ===========================================
+   Apply Filters
+=========================================== */
+
+function applyFilters() {
+
+    currentPage = 1;
+
+    loadJobs(1);
+
+}
+
+/* Continue JS Part 1C */
+/* ===========================================
+   Events
+=========================================== */
+
+$("#btnSearch").on("click", function () {
+
+    applyFilters();
+
+});
+
+/* Auto Apply on Select Change */
+
+$("#state").on("change", function () {
+
+    applyFilters();
+
+});
+
+$("#category").on("change", function () {
+
+    applyFilters();
+
+});
+
+$("#sub_category").on("change", function () {
+
+    applyFilters();
+
+});
+
+$("#qualification").on("change", function () {
+
+    applyFilters();
+
+});
+
+$("#job_type").on("change", function () {
+
+    applyFilters();
+
+});
+
+$("#sortBy").on("change", function () {
+
+    applyFilters();
+
+});
+
+/* ===========================================
+   Search Debounce
+=========================================== */
+
+let searchTimer = null;
+
+$("#keyword").on("keyup", function () {
+
+    clearTimeout(searchTimer);
+
+    searchTimer = setTimeout(function () {
+
+        applyFilters();
+
+    }, 500);
+
+});
+
+/* Search on Enter */
+
+$("#keyword").on("keypress", function (e) {
+
+    if (e.which === 13) {
+
+        e.preventDefault();
+
+        applyFilters();
+
+    }
+
+});
+
+/* Continue JS Part 1D */
+/* ===========================================
+   AJAX Pagination
+=========================================== */
+
+$(document).on("click", ".pagination a", function (e) {
+
+    e.preventDefault();
+
+    const href = $(this).attr("href");
+
+    if (!href) return;
+
+    const url = new URL(href);
+
+    const page = Number(url.searchParams.get("page")) || 1;
+
+    loadJobs(page);
+
+});
+
+/* ===========================================
+   Browser Back / Forward Support
+=========================================== */
+
+window.addEventListener("popstate", function () {
+
+    location.reload();
+
+});
+
+/* ===========================================
+   Reset Filters
+=========================================== */
+
+$(document).on("click", "#btnReset", function (e) {
+
+    e.preventDefault();
+
+    $("#keyword").val("");
+
+    $("#state").val("");
+
+    $("#category").val("");
+
+    $("#sub_category").val("");
+
+    $("#qualification").val("");
+
+    $("#job_type").val("");
+
+    $("#sortBy").val("latest");
+
+    currentPage = 1;
+
+    loadJobs(1);
+
+});
+
+/* ===========================================
+   Initial Page Load
+=========================================== */
+
+$(function () {
+
+    $("#keyword").focus();
+
+});
+
+/* ===========================================
+   End JS Part 1
+=========================================== */
+
+/* Continue JS Part 2A */
+/* ===========================================
+   Helper Functions
+=========================================== */
+
+function getFilters() {
+
+    return {
+
+        search: $("#keyword").val().trim(),
+
+        state: $("#state").val(),
+
+        category: $("#category").val(),
+
+        sub_category: $("#sub_category").val(),
+
+        qualification: $("#qualification").val(),
+
+        job_type: $("#job_type").val(),
+
+        sort: $("#sortBy").val()
+
+    };
+
+}
+
+function hasFilters() {
+
+    let f = getFilters();
+
+    return (
+        f.search !== "" ||
+        f.state !== "" ||
+        f.category !== "" ||
+        f.sub_category !== "" ||
+        f.qualification !== "" ||
+        f.job_type !== "" ||
+        f.sort !== "latest"
+    );
+
+}
+
+/* ===========================================
+   Result Counter
+=========================================== */
+
+function updateCounter() {
+
+    let total = $(".job-card").length;
+
+    $("#jobCount").text(total);
+
+}
+
+/* ===========================================
+   Active Filter Badges
+=========================================== */
+
+function updateBadges() {
+
+    $("#activeFilters").remove();
+
+    let filters = getFilters();
+
+    let html = '';
+
+    $.each(filters, function (key, value) {
+
+        if (value !== '' && value !== 'latest') {
+
+            html += `
+                <span class="badge bg-primary me-2 mb-2">
+
+                    ${value}
+
+                </span>
+            `;
+
+        }
+
+    });
+
+    if (html !== '') {
+
+        resultContainer.before(`
+
+            <div id="activeFilters" class="mb-3">
+
+                ${html}
+
+            </div>
+
+        `);
+
+    }
+
+}
+
+/* ===========================================
+   After AJAX Load
+=========================================== */
+
+function afterLoad() {
+
+    updateCounter();
+
+    updateBadges();
+
+}
+
+/* Continue JS Part 2B */
+/* ===========================================
+   Refresh UI After AJAX
+=========================================== */
+
+function refreshPageUI() {
+
+    afterLoad();
+
+    // Bootstrap Tooltips
+    if (typeof bootstrap !== "undefined") {
+
+        document
+            .querySelectorAll('[data-bs-toggle="tooltip"]')
+            .forEach(function (el) {
+
+                new bootstrap.Tooltip(el);
+
+            });
+
+    }
+
+}
+
+/* ===========================================
+   AJAX Success Override
+=========================================== */
+
+/*
+Call this after replacing #jobs HTML.
+Replace:
+
+resultContainer.html(html);
+
+with:
+
+resultContainer.html(html);
+refreshPageUI();
+*/
+
+$(document).ajaxSuccess(function () {
+
+    refreshPageUI();
+
+});
+
+/* ===========================================
+   Filter Count
+=========================================== */
+
+function filterCount() {
+
+    let count = 0;
+
+    $("#filterForm")
+        .find("input,select")
+        .each(function () {
+
+            let value = $(this).val();
+
+            if (
+                value !== "" &&
+                value !== null &&
+                value !== "latest"
+            ) {
+
+                count++;
+
+            }
+
+        });
+
+    $("#filterCount").text(count);
+
+}
+
+/* ===========================================
+   Filter Events
+=========================================== */
+
+$("#filterForm").on(
+    "change keyup",
+    "input,select",
+    function () {
+
+        filterCount();
+
+    }
+);
+
+filterCount();
+
+/* ===========================================
+   Scroll To Top
+=========================================== */
+
+$("#scrollTop").on("click", function () {
+
+    $("html,body").animate({
+
+        scrollTop: 0
+
+    }, 400);
+
+});
+
+/* Continue JS Part 2C */
+/* ===========================================
+   JS Part 2C
+   Final Utilities
+=========================================== */
+
+/* Hide Active Filters if Empty */
+
+function toggleActiveFilters() {
+
+    if ($("#activeFilters .badge").length === 0) {
+
+        $("#activeFilters").hide();
+
+    } else {
+
+        $("#activeFilters").show();
+
+    }
+
+}
+
+/* Highlight Current Filter */
+
+$("#filterForm select").each(function () {
+
+    if ($(this).val() !== "") {
+
+        $(this).addClass("border-primary");
+
+    }
+
+});
+
+$("#filterForm").on("change", "select", function () {
+
+    $(this).toggleClass(
+
+        "border-primary",
+
+        $(this).val() !== ""
+
+    );
+
+});
+
+/* Auto Close Mobile Filter */
+
+if ($(window).width() < 992) {
+
+    $("#btnSearch").on("click", function () {
+
+        $(".filter-sidebar").removeClass("show");
+
+    });
+
+}
+
+/* Lazy Loading Images */
+
+$("img[data-src]").each(function () {
+
+    $(this).attr("src", $(this).data("src"));
+
+});
+
+/* Smooth Anchor */
+
+$('a[href^="#"]').on("click", function (e) {
+
+    const target = $(this.getAttribute("href"));
+
+    if (target.length) {
+
+        e.preventDefault();
+
+        $("html,body").animate({
+
+            scrollTop: target.offset().top - 20
+
+        }, 400);
+
+    }
+
+});
+
+/* ===========================================
+   Initialize
+=========================================== */
+
+$(function () {
+
+    updateCounter();
+
+    updateBadges();
+
+    filterCount();
+
+    toggleActiveFilters();
+
+});
+
+/* ===========================================
+   Console
+=========================================== */
+
+console.log(
+    "SarkariHai Job Listing Loaded Successfully"
+);
+
+</script>
+
 
 @endsection
