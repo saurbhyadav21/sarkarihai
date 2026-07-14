@@ -1,839 +1,2067 @@
 @extends('layouts.front')
 
 @section('content')
-<style>
-    /* ===========================================================
-   SARKARIHAI - JOB LISTING PAGE
-   =========================================================== */
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Poppins, sans-serif;
+        }
+
+        body {
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: #ffffff;
+            height: 70px;
+            box-shadow: 0 2px 12px rgba(11, 79, 108, .08);
+        }
+
+        .container {
+            width: 1200px;
+            margin: auto;
+        }
+
+        .nav {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0B4F6C;
+        }
+
+        .menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .menu a {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            background: #F59E0B;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: linear-gradient(135deg,
+                    #0B4F6C,
+                    #0F766E);
+            padding: 55px 0;
+            color: #fff;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            opacity: .8;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 28px;
+            opacity: .9;
+            max-width: 900px;
+        }
+
+        /* SEARCH BOX */
+
+        .hero-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+        }
+
+        .search-card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, .08);
+        }
+
+        .search-card h3 {
+            color: #222;
+            margin-bottom: 15px;
+        }
+
+        .search-card input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* STICKY APPLY */
+
+        .sticky-apply {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 999;
+        }
+
+        .sticky-apply a {
+            background: #F59E0B;
+            color: #fff;
+            padding: 16px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+            display: inline-block;
+        }
+
+
+        /* SHARE */
+
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            background: #0B4F6C;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+
+        /* AUTHOR */
+
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .author-image {
+            width: 70px;
+            height: 70px;
+            background: #F59E0B;
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .author-content h3 {
+            margin-bottom: 10px;
+            color: #0B4F6C;
+        }
+
+
+        /* FOOTER */
+
+        .site-footer {
+            background: #0B4F6C;
+            color: #fff;
+            margin-top: 60px;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+        }
+
+        .site-footer h3 {
+            margin-bottom: 20px;
+            color: #F59E0B;
+        }
+
+        .site-footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .site-footer li {
+            margin-bottom: 12px;
+        }
+
+        .site-footer a {
+            color: #fff;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width:992px) {
+
+            .main-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .footer-grid {
+                width: 95%;
+                grid-template-columns: 1fr;
+            }
+
+            .related-jobs {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .author-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+        }
+
+        @media(max-width:576px) {
+
+            .highlight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+            }
+
+            .sticky-apply {
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+            }
+
+            .sticky-apply a {
+                display: block;
+                text-align: center;
+            }
+
+        }
+
+        .search-card button {
+            width: 100%;
+            padding: 14px;
+            background: #f59e0b;
+            border: none;
+            color: #fff;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* SUMMARY */
+
+        .summary {
+            margin-top: -40px;
+            margin-bottom: 30px;
+        }
+
+        /* .summary-card{
+                background:#fff;
+                border-radius:15px;
+                box-shadow:
+                0 10px 30px rgba(0,0,0,.08);
+                padding:30px;
+                border-top:4px solid #F59E0B;
+                display:grid;
+                }
+
+                .summary-item{
+                text-align:center;
+                } */
+        .summary-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .summary-item {
+            text-align: center;
+        }
+
+        .summary-item small {
+            display: block;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .summary-item strong {
+            font-size: 20px;
+            color: #0B4F6C;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #0F766E;
+            margin-bottom: 20px;
+        }
+
+        .apply-btn {
+            background: #F59E0B;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #0F766E;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #F59E0B;
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: #0B4F6C;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .faq-box {
+            border: 1px solid #eee;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        .faq-box summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: #0B4F6C;
+        }
+
+        .faq-box p {
+            margin-top: 15px;
+            line-height: 28px;
+        }
+
+        .related-jobs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .job-box {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border-top: 4px solid #F59E0B;
+        }
+
+        .job-box h3 {
+            color: #0B4F6C;
+            margin-bottom: 10px;
+        }
+
+        .job-box a {
+            display: inline-block;
+            margin-top: 15px;
+            background: #0B4F6C;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .breadcrumb {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #fff;
+            line-height: 1.7;
+        }
+
+        .breadcrumb a {
+            color: #fff;
+            text-decoration: none;
+            transition: all .2s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #F59E0B;
+            text-decoration: underline;
+        }
+
+        .breadcrumb span[aria-current="page"] {
+            color: #F59E0B;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .breadcrumb {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .breadcrumb a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .breadcrumb .current {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .breadcrumb .sep {
+            margin: 0 8px;
+            color: #fff;
+        }
+    </style>
+    <style>
+        .ticker-heading {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 8px 15px;
+            background: #f4b400;
+            color: #000;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 6px;
+        }
+
+        @media(max-width:991px) {
+
+            .hero {
+                padding: 35px 0;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+                text-align: center;
+            }
+
+            .hero p {
+                text-align: center;
+                font-size: 16px;
+            }
+
+            .stats {
+                margin-bottom: 15px;
+            }
+
+            .search-card {
+                margin-top: 25px;
+            }
+
+        }
+
+        @media(max-width:767px) {
+
+            .hero {
+                padding: 25px 0;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+                line-height: 1.3;
+            }
+
+            .hero p {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+
+            .stats h3 {
+                font-size: 22px;
+            }
+
+            .stats small {
+                font-size: 13px;
+            }
+
+            .search-card {
+                padding: 18px;
+            }
+
+            .search-card h5 {
+                font-size: 18px;
+            }
+
+            #jobSearch {
+                font-size: 15px;
+            }
+
+        }
+
+        @media(max-width:767px) {
+
+            .search-dropdown {
+
+                left: 0;
+
+                right: 0;
+
+                border-radius: 15px;
+
+                max-height: 350px;
+
+            }
+
+            .search-item {
+
+                padding: 15px;
+
+            }
+
+            .search-title {
+
+                font-size: 14px;
+
+            }
+
+            .search-meta {
+
+                font-size: 12px;
+
+            }
+
+        }
+
+        .latest-ticker marquee {
+
+            font-size: 13px;
+
+        }
+
+        .search-card {
+
+            border-radius: 18px;
+
+        }
+
+        @media(max-width:767px) {
+
+            .search-card {
+
+                margin-top: 20px;
+
+            }
+
+        }
+    </style>
+    <style>
+        /* DROPDOWN BOX */
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 12px;
+            z-index: 99999;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, .10),
+                0 1px 3px rgba(0, 0, 0, .08);
+            border: 1px solid #e8edf5;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        /* ITEM */
+        .search-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 24px;
+            text-decoration: none;
+            color: #111827;
+            border-bottom: 1px solid #edf2f7;
+            transition: all .2s ease;
+        }
+
+        .search-item:hover {
+            background: #f8fbff;
+            text-decoration: none;
+            color: #111827;
+        }
+
+        /* LEFT ICON */
+        .search-icon {
+
+            border-radius: 50%;
+            background: #eef4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-top: 0px;
+        }
+
+        /* CONTENT */
+        .search-body {
+            flex: 1;
+        }
+
+        .search-title {
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .search-meta {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .search-category {
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .search-separator {
+            color: #9ca3af;
+        }
+
+        .search-type {
+            color: #4b5563;
+            font-size: 13px;
+        }
+
+        /* RIGHT ARROW */
+        .search-arrow {
+            font-size: 13px;
+            color: #94a3b8;
+            transition: .2s;
+        }
+
+        .search-item:hover .search-arrow {
+            color: #2563eb;
+            transform: translateX(5px);
+        }
+
+        /* FOOTER */
+        .search-footer {
+            background: #f3f7fd;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 22px 28px;
+        }
+
+        .search-footer-icon {
+            width: 60px;
+            height: 60px;
+            background: #2563eb;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .search-footer-text {
+            flex: 1;
+            font-size: 22px;
+            color: #0f172a;
+        }
+
+        .search-footer-text strong {
+            color: #2563eb;
+        }
+
+        .search-footer-btn {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 15px 28px;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .search-footer-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* SCROLLBAR */
+        .search-dropdown::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .search-dropdown::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        .search-dropdown::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+    </style>
+    <style>
+        body {
+            background: #f4f7fb;
+            color: #212529;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ========================================= */
+
+        .container-xxl {
+            max-width: 1450px;
+        }
+
+        /* ========================================= */
+
+        .card {
+            border: none;
+            border-radius: 14px;
+            transition: .25s;
+        }
+
+        .card:hover {
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+
+        }
+
+        /* ========================================= */
+
+        .card-header {
+
+            background: #ffffff;
+            border-bottom: 1px solid #edf1f7;
+            padding: 18px 22px;
+            font-weight: 700;
+
+        }
+
+        /* ========================================= */
+
+        .card-body {
+
+            padding: 22px;
+
+        }
+
+        /* ========================================= */
+
+        .job-card {
+
+            overflow: hidden;
+            border: 1px solid #edf1f7;
+            transition: .25s;
+
+        }
+
+        .job-card:hover {
+
+            transform: translateY(-3px);
+
+            border-color: #0d6efd;
+
+        }
+
+        /* ========================================= */
+
+        .job-icon {
+
+            width: 65px;
+
+            height: 65px;
+
+            border-radius: 14px;
+
+            background: #eef5ff;
 
-body{
-    background:#f5f7fb;
-}
+            display: flex;
 
-/* ==========================
-   Cards
-========================== */
+            align-items: center;
 
-.card{
-    border:none;
-    border-radius:16px;
-    box-shadow:0 8px 25px rgba(0,0,0,.05);
-}
+            justify-content: center;
 
-.card-header{
-    background:#fff;
-    border-bottom:1px solid #eee;
-    font-weight:600;
-}
+            font-size: 24px;
 
-/* ==========================
-   Hero
-========================== */
+            color: #0d6efd;
 
-.hero-section{
-    background:#fff;
-    border-radius:18px;
-    padding:40px;
-}
+            flex-shrink: 0;
 
-.hero-section h1{
-    font-size:34px;
-    font-weight:700;
-}
+        }
 
-.hero-section p{
-    color:#666;
-    line-height:1.7;
-}
+        /* ========================================= */
 
-/* ==========================
-   Statistics
-========================== */
+        .stat-card {
 
-.stat-card{
-    transition:.25s;
-    overflow:hidden;
-}
+            border-left: 5px solid #0d6efd;
 
-.stat-card:hover{
+        }
 
-    transform:translateY(-5px);
+        /* ========================================= */
 
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
+        .icon-box {
 
-}
+            width: 55px;
 
-.icon-box{
+            height: 55px;
 
-    width:60px;
+            border-radius: 12px;
 
-    height:60px;
+            display: flex;
 
-    border-radius:12px;
+            justify-content: center;
 
-    display:flex;
+            align-items: center;
 
-    align-items:center;
+            color: #fff;
 
-    justify-content:center;
+            font-size: 22px;
 
-    color:#fff;
+        }
 
-    font-size:22px;
+        /* ========================================= */
 
-}
+        h1 {
 
-.bg-primary{
+            font-size: 34px;
 
-    background:#0d6efd!important;
+            font-weight: 800;
 
-}
+        }
 
-.bg-success{
+        h2 {
 
-    background:#198754!important;
+            font-weight: 700;
 
-}
+        }
 
-.bg-danger{
+        h3 {
 
-    background:#dc3545!important;
+            font-weight: 700;
 
-}
+        }
 
-.bg-warning{
+        h4 {
 
-    background:#ffc107!important;
+            font-weight: 700;
 
-}
+        }
 
-/* ==========================
-   Filters
-========================== */
+        h5 {
 
-label{
+            font-weight: 700;
 
-    font-weight:600;
+        }
 
-    margin-bottom:8px;
+        /* ========================================= */
 
-}
+        .text-muted {
 
-.form-control,
-.form-select{
+            color: #6c757d !important;
 
-    border-radius:10px;
+        }
 
-    min-height:46px;
+        /* ========================================= */
 
-    box-shadow:none!important;
+        a {
 
-}
+            transition: .2s;
 
-.form-control:focus,
-.form-select:focus{
+        }
 
-    border-color:#0d6efd;
+        a:hover {
 
-    box-shadow:0 0 0 .15rem rgba(13,110,253,.15)!important;
+            text-decoration: none;
 
-}
+        }
 
-/* ==========================
-   Sidebar
-========================== */
+        /* ========================================= */
 
-.sticky-top{
+        .job-card h5 a {
 
-    top:20px;
+            color: #222;
 
-}
+        }
 
-.badge{
+        .job-card h5 a:hover {
 
-    font-weight:500;
+            color: #0d6efd;
 
-    padding:7px 12px;
+        }
 
-    border-radius:30px;
+        /* ========================================= */
 
-}
+        .badge {
 
-/* Continue CSS Part 2 */
-/* ==========================
-   Job Card
-========================== */
+            font-size: 12px;
 
-.job-card{
+            font-weight: 600;
 
-    transition:.25s;
+            padding: 8px 12px;
 
-    border-left:4px solid transparent;
+            border-radius: 40px;
 
-}
+        }
 
-.job-card:hover{
+        /* ========================================= */
 
-    transform:translateY(-4px);
+        .form-control {
 
-    border-left-color:#0d6efd;
+            min-height: 48px;
 
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
+            border-radius: 10px;
 
-}
+            border: 1px solid #dbe4f0;
 
-.job-card h3{
+        }
 
-    font-size:20px;
+        .form-control:focus {
 
-    font-weight:700;
+            box-shadow: none;
 
-    line-height:1.5;
+            border-color: #0d6efd;
 
-}
+        }
 
-.job-card h3 a{
+        /* ========================================= */
 
-    color:#222;
+        .form-select {
 
-    transition:.2s;
+            min-height: 48px;
 
-}
+            border-radius: 10px;
 
-.job-card h3 a:hover{
+            border: 1px solid #dbe4f0;
 
-    color:#0d6efd;
+        }
 
-}
+        .form-select:focus {
 
-.job-card table td{
+            box-shadow: none;
 
-    padding:4px 0;
+            border-color: #0d6efd;
 
-    font-size:14px;
+        }
 
-    border:none;
+        /* ========================================= */
 
-    vertical-align:top;
+        .input-group-text {
 
-}
+            background: #fff;
 
-.job-card strong{
+            border: 1px solid #dbe4f0;
 
-    color:#555;
+        }
 
-    font-weight:600;
+        /* ========================================= */
 
-}
+        .btn {
 
-.job-card .btn{
+            border-radius: 10px;
 
-    border-radius:10px;
+            min-height: 46px;
 
-    padding:10px 15px;
+            font-weight: 600;
 
-    font-weight:600;
+            transition: .25s;
 
-}
+        }
 
-/* ==========================
-   Buttons
-========================== */
+        .btn-primary {
 
-.btn{
+            background: #0d6efd;
 
-    border-radius:10px;
+            border-color: #0d6efd;
 
-    font-weight:600;
+        }
 
-    transition:.25s;
+        .btn-primary:hover {
 
-}
+            background: #0b5ed7;
 
-.btn-primary:hover{
+            border-color: #0b5ed7;
 
-    transform:translateY(-2px);
+        }
 
-}
+        .btn-outline-success:hover {
 
-.btn-success:hover{
+            color: #fff;
 
-    transform:translateY(-2px);
+        }
 
-}
+        .btn-light {
 
-.btn-outline-primary:hover{
+            background: #fff;
 
-    transform:translateY(-2px);
+        }
 
-}
+        /* Continue in Part 2B */
+        /* ========================================= */
+        /* Sidebar */
+        /* ========================================= */
 
-/* ==========================
-   Pagination
-========================== */
+        .sticky-top {
 
-.pagination{
+            top: 20px;
 
-    margin-bottom:0;
+            z-index: 100;
 
-}
+        }
 
-.pagination .page-link{
+        /* ========================================= */
 
-    border-radius:8px;
+        .card-header strong {
 
-    margin:0 3px;
+            font-size: 17px;
 
-    border:1px solid #dee2e6;
+            font-weight: 700;
 
-    color:#0d6efd;
+        }
 
-    min-width:42px;
+        /* ========================================= */
 
-    text-align:center;
+        .form-label {
 
-}
+            font-size: 14px;
 
-.pagination .page-item.active .page-link{
+            margin-bottom: 8px;
 
-    background:#0d6efd;
+            color: #444;
 
-    border-color:#0d6efd;
+        }
 
-    color:#fff;
+        /* ========================================= */
 
-}
+        #applyFilter {
 
-.pagination .page-link:hover{
+            height: 48px;
 
-    background:#0d6efd;
+        }
 
-    color:#fff;
+        #clearFilter {
 
-}
+            height: 48px;
 
-/* ==========================
-   Empty State
-========================== */
+        }
 
-.empty-state{
+        /* ========================================= */
+        /* Search Box */
+        /* ========================================= */
 
-    padding:80px 20px;
+        #keyword {
 
-    text-align:center;
+            font-size: 15px;
 
-}
+        }
 
-.empty-state i{
+        #keyword::placeholder {
 
-    font-size:70px;
+            color: #999;
 
-    color:#adb5bd;
+        }
 
-}
+        /* ========================================= */
+        /* Toolbar */
+        /* ========================================= */
 
-.empty-state h2{
+        #sortBy {
 
-    margin-top:20px;
+            min-width: 190px;
 
-    font-weight:700;
+        }
 
-}
+        #jobCount {
 
-.empty-state p{
+            font-weight: 700;
 
-    color:#6c757d;
+        }
 
-    max-width:650px;
+        /* ========================================= */
 
-    margin:15px auto;
+        .badge.bg-primary {
 
-}
+            background: #0d6efd !important;
 
-/* Continue CSS Part 3 */
-/* ==========================
-   SEO Section
-========================== */
+        }
 
-section{
+        .badge.bg-success {
 
-    margin-bottom:30px;
+            background: #198754 !important;
 
-}
+        }
 
-section h2,
-section h3{
+        .badge.bg-danger {
 
-    font-weight:700;
+            background: #dc3545 !important;
 
-    color:#212529;
+        }
 
-}
+        .badge.bg-warning {
 
-section p{
+            background: #ffc107 !important;
 
-    color:#555;
+            color: #222 !important;
 
-    line-height:1.9;
+        }
 
-    font-size:15px;
+        .badge.bg-info {
 
-}
+            background: #0dcaf0 !important;
 
-section a{
+            color: #222 !important;
 
-    color:#0d6efd;
+        }
 
-    transition:.2s;
+        /* ========================================= */
+        /* Job Card */
+        /* ========================================= */
 
-}
+        .job-card {
 
-section a:hover{
+            position: relative;
 
-    color:#084298;
+            background: #fff;
 
-    text-decoration:underline;
+        }
 
-}
+        .job-card::before {
 
-/* ==========================
-   FAQ
-========================== */
+            content: "";
 
-.accordion-item{
+            position: absolute;
 
-    border:1px solid #ececec;
+            left: 0;
 
-    border-radius:10px!important;
+            top: 0;
 
-    overflow:hidden;
+            width: 5px;
 
-    margin-bottom:12px;
+            height: 100%;
 
-}
+            background: #0d6efd;
 
-.accordion-button{
+            opacity: 0;
 
-    font-weight:600;
+            transition: .3s;
 
-    background:#fff;
+        }
 
-    box-shadow:none!important;
+        .job-card:hover::before {
 
-}
+            opacity: 1;
 
-.accordion-button:not(.collapsed){
+        }
 
-    background:#eef5ff;
+        .job-card h5 {
 
-    color:#0d6efd;
+            font-size: 21px;
 
-}
+            line-height: 30px;
 
-.accordion-body{
+        }
 
-    color:#555;
+        .job-card small {
 
-    line-height:1.8;
+            font-size: 13px;
 
-}
+        }
 
-/* ==========================
-   Breadcrumb
-========================== */
+        .job-card .fw-semibold {
 
-.breadcrumb{
+            font-size: 15px;
 
-    margin-bottom:20px;
+        }
 
-}
+        /* ========================================= */
 
-.breadcrumb-item a{
+        .job-icon {
 
-    color:#0d6efd;
+            transition: .25s;
 
-    text-decoration:none;
+        }
 
-}
+        .job-card:hover .job-icon {
 
-.breadcrumb-item.active{
+            background: #0d6efd;
 
-    color:#6c757d;
+            color: #fff;
 
-}
+        }
 
-/* ==========================
-   Table
-========================== */
+        /* ========================================= */
 
-.table td{
+        .job-card .btn {
 
-    border:none;
+            margin-bottom: 8px;
 
-    padding:6px 0;
+        }
 
-    vertical-align:top;
+        .job-card .btn:last-child {
 
-}
+            margin-bottom: 0;
 
-.table tr{
+        }
 
-    border-bottom:1px dashed #eee;
+        /* ========================================= */
+        /* Empty Result */
+        /* ========================================= */
 
-}
+        .fa-folder-open {
 
-.table tr:last-child{
+            opacity: .30;
 
-    border-bottom:none;
+        }
 
-}
+        /* ========================================= */
+        /* Popular Search Buttons */
+        /* ========================================= */
 
-/* ==========================
-   Scrollbar
-========================== */
+        .card .btn-light.border {
 
-::-webkit-scrollbar{
+            border-color: #dfe7ef !important;
 
-    width:8px;
+        }
 
-}
+        .card .btn-light.border:hover {
 
-::-webkit-scrollbar-thumb{
+            background: #0d6efd;
 
-    background:#c5c5c5;
+            color: #fff;
 
-    border-radius:20px;
+            border-color: #0d6efd !important;
 
-}
+        }
 
-::-webkit-scrollbar-thumb:hover{
+        /* ========================================= */
+        /* Pagination */
+        /* ========================================= */
 
-    background:#999;
+        .pagination {
 
-}
+            margin: 0;
 
-/* ==========================
-   Utilities
-========================== */
+        }
 
-.shadow-hover:hover{
+        .pagination .page-link {
 
-    box-shadow:0 15px 35px rgba(0,0,0,.12)!important;
+            border: none;
 
-}
+            margin: 0 4px;
 
-.rounded-4{
+            border-radius: 8px;
 
-    border-radius:16px!important;
+            color: #0d6efd;
 
-}
+            padding: 10px 16px;
 
-.text-small{
+            font-weight: 600;
 
-    font-size:14px;
+        }
 
-}
+        .pagination .page-item.active .page-link {
 
-.fw-600{
+            background: #0d6efd;
 
-    font-weight:600;
+            color: #fff;
 
-}
+        }
 
-/* ==========================
-   Responsive
-========================== */
+        .pagination .page-link:hover {
 
-@media(max-width:991px){
+            background: #eef5ff;
 
-    .hero-section{
+        }
 
-        padding:25px;
+        /* Continue in Part 2C */
+        /* ===========================================================
+       PART 2C
+       Premium UI Enhancements
+    =========================================================== */
 
-    }
+        /* ========================================= */
+        /* Breadcrumb */
+        /* ========================================= */
 
-    .hero-section h1{
+        .breadcrumb {
 
-        font-size:28px;
+            margin: 0;
 
-    }
+            background: transparent;
 
-    .sticky-top{
+            padding: 0;
 
-        position:relative!important;
+        }
 
-        top:auto;
+        .breadcrumb-item {
 
-    }
+            font-size: 14px;
 
-    .job-card .btn{
+        }
 
-        margin-top:10px;
+        .breadcrumb-item a {
 
-    }
+            color: #0d6efd;
 
-}
+            text-decoration: none;
 
-@media(max-width:767px){
+        }
 
-    .hero-section{
+        .breadcrumb-item.active {
 
-        text-align:center;
+            color: #6c757d;
 
-    }
+        }
 
-    .hero-section h1{
+        /* ========================================= */
+        /* Stat Cards */
+        /* ========================================= */
 
-        font-size:24px;
+        .stat-card {
 
-    }
+            overflow: hidden;
 
-    .stat-card{
+            position: relative;
 
-        margin-bottom:15px;
+        }
 
-    }
+        .stat-card::after {
 
-    .pagination{
+            content: "";
 
-        justify-content:center;
+            position: absolute;
 
-    }
+            right: -30px;
 
-    .table td{
+            top: -30px;
 
-        display:block;
+            width: 110px;
 
-        width:100%;
+            height: 110px;
 
-    }
+            border-radius: 50%;
 
-    .job-card h3{
+            background: rgba(13, 110, 253, .05);
 
-        font-size:18px;
+        }
 
-    }
+        .stat-card h3 {
 
-}
-</style>
-    <div class="container-xxl py-4">
+            font-size: 30px;
 
-        {{-- ================= Breadcrumb ================= --}}
+        }
 
-        <nav aria-label="breadcrumb" class="mb-3">
+        .icon-box {
 
-            <ol class="breadcrumb">
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .10);
 
-                <li class="breadcrumb-item">
-                    <a href="{{ url('/') }}">
-                        Home
-                    </a>
-                </li>
+        }
 
-                <li class="breadcrumb-item active">
-                    Sarkari Naukri
-                </li>
+        /* ========================================= */
+        /* Filter Card */
+        /* ========================================= */
 
-            </ol>
+        .sticky-top {
 
-        </nav>
+            max-height: calc(100vh - 30px);
 
-        {{-- ================= Hero ================= --}}
+            overflow-y: auto;
 
-        <div class="card shadow-sm border-0 rounded-4 mb-4">
+        }
 
-            <div class="card-body p-4 p-lg-5">
+        .sticky-top::-webkit-scrollbar {
 
-                <div class="row align-items-center">
+            width: 6px;
 
-                    <div class="col-lg-8">
+        }
 
-                        <span class="badge bg-primary mb-3">
+        .sticky-top::-webkit-scrollbar-thumb {
 
-                            <i class="fa-solid fa-briefcase me-1"></i>
+            background: #d8d8d8;
 
-                            Government Jobs 2026
+            border-radius: 20px;
 
-                        </span>
+        }
 
-                        <h1 class="fw-bold mb-3">
+        /* ========================================= */
+        /* Card Animation */
+        /* ========================================= */
 
-                            Latest Sarkari Naukri 2026
+        .job-card {
 
-                        </h1>
+            transition:
+                transform .25s,
+                box-shadow .25s,
+                border-color .25s;
 
-                        <p class="text-muted mb-0">
+        }
 
-                            Browse the latest Government Jobs, Railway, SSC,
-                            Banking, UPSC, Defence, Police, Teaching,
-                            PSU and State Government Recruitment.
+        .job-card:hover {
 
-                        </p>
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
 
-                    </div>
+        }
 
-                    <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+        /* ========================================= */
+        /* Job Meta */
+        /* ========================================= */
 
-                        <a href="#jobs" class="btn btn-primary btn-lg px-4">
+        .job-card small {
 
-                            Browse Jobs
+            display: block;
 
+            margin-bottom: 3px;
+
+        }
+
+        .job-card .fw-semibold {
+
+            color: #222;
+
+        }
+
+        /* ========================================= */
+        /* Salary Highlight */
+        /* ========================================= */
+
+        .job-card .salary {
+
+            color: #198754;
+
+            font-weight: 700;
+
+        }
+
+        /* ========================================= */
+        /* Last Date */
+        /* ========================================= */
+
+        .job-card .last-date {
+
+            color: #dc3545;
+
+            font-weight: 700;
+
+        }
+
+        /* ========================================= */
+        /* Buttons */
+        /* ========================================= */
+
+        .job-card .btn {
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+        .job-card .btn i {
+
+            width: 18px;
+
+            text-align: center;
+
+        }
+
+        /* ========================================= */
+        /* Search Card */
+        /* ========================================= */
+
+        .input-group {
+
+            overflow: hidden;
+
+            border-radius: 12px;
+
+        }
+
+        .input-group-text {
+
+            border-right: none;
+
+        }
+
+        .input-group .form-control {
+
+            border-left: none;
+
+        }
+
+        /* ========================================= */
+        /* Card Header */
+        /* ========================================= */
+
+        .card-header {
+
+            border-top-left-radius: 14px !important;
+
+            border-top-right-radius: 14px !important;
+
+        }
+
+        /* ========================================= */
+        /* SEO Content */
+        /* ========================================= */
+
+        .card-body p {
+
+            line-height: 1.8;
+
+        }
+
+        /* ========================================= */
+        /* Popular Searches */
+        /* ========================================= */
+
+        .card-body .btn {
+
+            transition: .20s;
+
+        }
+
+        .card-body .btn:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+        /* ========================================= */
+        /* Loading Overlay (Future AJAX) */
+        /* ========================================= */
+
+        .loading-overlay {
+
+            position: absolute;
+
+            inset: 0;
+
+            background: rgba(255, 255, 255, .75);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 20;
+
+        }
+
+        .loading-overlay.show {
+
+            display: flex;
+
+        }
+
+        .loading-spinner {
+
+            width: 45px;
+
+            height: 45px;
+
+            border: 4px solid #e9ecef;
+
+            border-top: 4px solid #0d6efd;
+
+            border-radius: 50%;
+
+            animation: spin .8s linear infinite;
+
+        }
+
+        @keyframes spin {
+
+            from {
+
+                transform: rotate(0deg);
+
+            }
+
+            to {
+
+                transform: rotate(360deg);
+
+            }
+
+        }
+
+        /* Continue in Part 2D */
+        /* ===========================================================
+       PART 2D
+       Responsive Design + Final CSS
+    =========================================================== */
+
+        /* ========================================= */
+        /* Desktop (1400px+) */
+        /* ========================================= */
+
+        @media (min-width:1400px) {
+
+            .container-xxl {
+
+                max-width: 1480px;
+
+            }
+
+        }
+
+        /* ========================================= */
+        /* Laptop */
+        /* ========================================= */
+
+        @media (max-width:1200px) {
+
+            h1 {
+
+                font-size: 30px;
+
+            }
+
+            .job-card h5 {
+
+                font-size: 19px;
+
+                line-height: 28px;
+
+            }
+
+            #sortBy {
+
+                min-width: 160px;
+
+            }
+
+        }
+
+        /* ========================================= */
+        /* Tablet */
+        /* ========================================= */
+
+        @media (max-width:991px) {
+
+            .sticky-top {
+
+                position: relative !important;
+
+                top: 0 !important;
+
+                max-height: unset;
+
+                overflow: visible;
+
+            }
+
+            .job-card .btn {
+
+                width: 100%;
+
+            }
+
+            .job-card .col-lg-3 {
+
+                margin-top: 20px;
+
+            }
+
+            .card-body {
+
+                padding: 18px;
+
+            }
+
+            .icon-box {
+
+                width: 48px;
+
+                height: 48px;
+
+                font-size: 20px;
+
+            }
+
+            .job-icon {
+
+                width: 55px;
+
+                height: 55px;
+
+                font-size: 20px;
+
+            }
+
+        }
+
+        /* ========================================= */
+        /* Mobile */
+        /* ========================================= */
+
+        @media (max-width:768px) {
+
+            body {
+
+                font-size: 14px;
+
+            }
+
+            h1 {
+
+                font-size: 26px;
+
+            }
+
+            h5 {
+
+                font-size: 17px;
+
+            }
+
+            .job-card h5 {
+
+                font-size: 17px;
+
+                line-height: 26px;
+
+            }
+
+            .badge {
+
+                margin-bottom: 5px;
+
+            }
+
+            .pagination {
+
+                justify-content: center;
+
+                flex-wrap: wrap;
+
+            }
+
+            .pagination .page-link {
+
+                margin: 3px;
+
+                padding: 8px 12px;
+
+            }
+
+            .card-header {
+
+                padding: 14px 16px;
+
+            }
+
+            .card-body {
+
+                padding: 16px;
+
+            }
+
+        }
+
+        /* ========================================= */
+        /* Small Mobile */
+        /* ========================================= */
+
+        @media (max-width:576px) {
+
+            .input-group {
+
+                flex-wrap: nowrap;
+
+            }
+
+            #sortBy {
+
+                width: 100% !important;
+
+                margin-top: 10px;
+
+            }
+
+            .job-icon {
+
+                display: none;
+
+            }
+
+            .d-flex.justify-content-between {
+
+                flex-direction: column;
+
+                align-items: flex-start !important;
+
+            }
+
+            .stat-card h3 {
+
+                font-size: 24px;
+
+            }
+
+            .icon-box {
+
+                margin-top: 12px;
+
+            }
+
+        }
+
+        /* ========================================= */
+        /* Utilities */
+        /* ========================================= */
+
+        .shadow-hover {
+
+            transition: .25s;
+
+        }
+
+        .shadow-hover:hover {
+
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+
+        }
+
+        .rounded-12 {
+
+            border-radius: 12px;
+
+        }
+
+        .rounded-14 {
+
+            border-radius: 14px;
+
+        }
+
+        .rounded-16 {
+
+            border-radius: 16px;
+
+        }
+
+        .cursor-pointer {
+
+            cursor: pointer;
+
+        }
+
+        .text-small {
+
+            font-size: 13px;
+
+        }
+
+        .fw-600 {
+
+            font-weight: 600;
+
+        }
+
+        .fw-700 {
+
+            font-weight: 700;
+
+        }
+
+        .bg-soft-primary {
+
+            background: #eef5ff;
+
+        }
+
+        .bg-soft-success {
+
+            background: #edf8f1;
+
+        }
+
+        .bg-soft-warning {
+
+            background: #fff8e5;
+
+        }
+
+        .bg-soft-danger {
+
+            background: #fff0f1;
+
+        }
+
+        /* ========================================= */
+        /* Smooth Scroll */
+        /* ========================================= */
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+        /* ========================================= */
+        /* Selection */
+        /* ========================================= */
+
+        ::selection {
+
+            background: #0d6efd;
+
+            color: #fff;
+
+        }
+
+        /* ========================================= */
+        /* End of CSS */
+        /* ========================================= */
+    </style>
+    <section class="hero">
+
+        <div class="container">
+
+            <div class="hero-flex">
+
+                <div>
+
+                    <nav aria-label="breadcrumb" class="breadcrumb">
+
+                        <a href="https://sarkarihai.com">
+                            Home
                         </a>
 
-                    </div>
+                        <span class="sep">/</span>
+
+                        <a href="https://sarkarihai.com/sarkari-naukri">
+                            Sarkari Naukri
+                        </a>
+
+
+
+                    </nav>
+
+                    <h1>
+                        xxxx
+                    </h1>
+
+                    <p>
+                        xxxx
+                    </p>
 
                 </div>
 
-            </div>
 
-        </div>
+                <div class="col-lg-4 mt-4 mt-lg-0">
 
-        {{-- ================= Statistics ================= --}}
+                    <div class="search-card">
 
-        <div class="row g-4 mb-4">
+                        <h5 class="mb-3 fw-bold">
+                            🔍 Search Sarkari Jobs
+                        </h5>
 
-            <div class="col-lg-3 col-md-6">
+                        <div class="position-relative">
 
-                <div class="card stat-card">
+                            <input type="text" id="jobSearch" class="form-control form-control-lg rounded-4 shadow-sm"
+                                placeholder="Search SSC, Railway, UPSC..." autocomplete="off">
 
-                    <div class="card-body">
-
-                        <div class="d-flex justify-content-between align-items-center">
-
-                            <div>
-
-                                <small class="text-muted">
-
-                                    Total Jobs
-
-                                </small>
-
-                                <h3 class="mt-2">
-
-                                    {{ number_format($totalJobs) }}
-
-                                </h3>
-
-                            </div>
-
-                            <div class="icon-box bg-primary">
-
-                                <i class="fa-solid fa-briefcase"></i>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-
-                <div class="card stat-card">
-
-                    <div class="card-body">
-
-                        <div class="d-flex justify-content-between align-items-center">
-
-                            <div>
-
-                                <small class="text-muted">
-
-                                    Today Added
-
-                                </small>
-
-                                <h3 class="mt-2">
-
-                                    {{ number_format($todayJobs) }}
-
-                                </h3>
-
-                            </div>
-
-                            <div class="icon-box bg-success">
-
-                                <i class="fa-solid fa-plus"></i>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-
-                <div class="card stat-card">
-
-                    <div class="card-body">
-
-                        <div class="d-flex justify-content-between align-items-center">
-
-                            <div>
-
-                                <small class="text-muted">
-
-                                    Active Jobs
-
-                                </small>
-
-                                <h3 class="mt-2">
-
-                                    {{ number_format($activeJobs) }}
-
-                                </h3>
-
-                            </div>
-
-                            <div class="icon-box bg-warning">
-
-                                <i class="fa-solid fa-fire"></i>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-
-                <div class="card stat-card">
-
-                    <div class="card-body">
-
-                        <div class="d-flex justify-content-between align-items-center">
-
-                            <div>
-
-                                <small class="text-muted">
-
-                                    Closing Soon
-
-                                </small>
-
-                                <h3 class="mt-2">
-
-                                    {{ number_format($closingSoonJobs) }}
-
-                                </h3>
-
-                            </div>
-
-                            <div class="icon-box bg-danger">
-
-                                <i class="fa-solid fa-clock"></i>
-
+                            <div class="search-dropdown" style="display:none">
                             </div>
 
                         </div>
@@ -846,324 +2074,31 @@ section a:hover{
 
         </div>
 
-        {{-- Continue Blade Part 1B --}}
-        {{-- ================= Search Section ================= --}}
+    </section>
+    <div class="container">
 
-        <div class="card shadow-sm border-0 rounded-4 mb-4">
+        <div class="summary">
 
-            <div class="card-body">
+            <div class="summary-card">
 
-                <div class="row g-3 align-items-center">
-
-                    <div class="col-lg-8">
-
-                        <div class="input-group">
-
-                            <span class="input-group-text bg-white">
-
-                                <i class="fa-solid fa-magnifying-glass"></i>
-
-                            </span>
-
-                            <input type="text" id="keyword" class="form-control"
-                                placeholder="Search jobs, organization, category..." value="{{ request('search') }}">
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-2">
-
-                        <button type="button" id="applyFilter" class="btn btn-primary w-100">
-
-                            <i class="fa-solid fa-filter me-1"></i>
-
-                            Search
-
-                        </button>
-
-                    </div>
-
-                    <div class="col-lg-2">
-
-                        <button type="button" id="clearFilter" class="btn btn-outline-secondary w-100">
-
-                            Reset
-
-                        </button>
-
-                    </div>
-
+                <div class="summary-item">
+                    <small>Organization</small>
+                    <strong>SSC</strong>
                 </div>
 
-            </div>
-
-        </div>
-
-        {{-- ================= Quick Categories ================= --}}
-
-        <div class="card shadow-sm border-0 rounded-4 mb-4">
-
-            <div class="card-header">
-
-                <strong>
-
-                    Popular Categories
-
-                </strong>
-
-            </div>
-
-            <div class="card-body">
-
-                <div class="d-flex flex-wrap gap-2">
-
-                    <a href="?category=Railway" class="btn btn-light border">
-
-                        Railway Jobs
-
-                    </a>
-
-                    <a href="?category=SSC" class="btn btn-light border">
-
-                        SSC Jobs
-
-                    </a>
-
-                    <a href="?category=Banking" class="btn btn-light border">
-
-                        Banking Jobs
-
-                    </a>
-
-                    <a href="?category=UPSC" class="btn btn-light border">
-
-                        UPSC Jobs
-
-                    </a>
-
-                    <a href="?category=Defence" class="btn btn-light border">
-
-                        Defence Jobs
-
-                    </a>
-
-                    <a href="?category=Police" class="btn btn-light border">
-
-                        Police Jobs
-
-                    </a>
-
-                    <a href="?category=Teaching" class="btn btn-light border">
-
-                        Teaching Jobs
-
-                    </a>
-
-                    <a href="?category=Medical" class="btn btn-light border">
-
-                        Medical Jobs
-
-                    </a>
-
-                    <a href="?category=Engineering" class="btn btn-light border">
-
-                        Engineering Jobs
-
-                    </a>
-
-                    <a href="?category=Apprentice" class="btn btn-light border">
-
-                        Apprentice Jobs
-
-                    </a>
-
+                <div class="summary-item">
+                    <small>Total Vacancy</small>
+                    <strong>14582</strong>
                 </div>
 
-            </div>
-
-        </div>
-
-        {{-- ================= Jobs Wrapper Start ================= --}}
-
-        <div class="row" id="jobs">
-
-            {{-- Continue Blade Part 1C --}}
-            <option value="">All States</option>
-
-            @foreach ($states as $stateItem)
-                <option value="{{ $stateItem }}" {{ request('state') == $stateItem ? 'selected' : '' }}>
-
-                    {{ $stateItem }}
-
-                </option>
-            @endforeach
-
-            </select>
-
-        </div>
-
-        {{-- Category --}}
-
-        <div class="col-lg-3 col-md-6">
-
-            <label class="form-label fw-semibold">
-
-                Category
-
-            </label>
-
-            <select id="category" class="form-select">
-
-                <option value="">All Categories</option>
-
-                @foreach ($categories as $categoryItem)
-                    <option value="{{ $categoryItem }}" {{ request('category') == $categoryItem ? 'selected' : '' }}>
-
-                        {{ $categoryItem }}
-
-                    </option>
-                @endforeach
-
-            </select>
-
-        </div>
-
-        {{-- Sub Category --}}
-
-        <div class="col-lg-3 col-md-6">
-
-            <label class="form-label fw-semibold">
-
-                Sub Category
-
-            </label>
-
-            <select id="sub_category" class="form-select">
-
-                <option value="">
-
-                    All Sub Categories
-
-                </option>
-
-                @foreach ($subCategories as $subCategory)
-                    <option value="{{ $subCategory }}" {{ request('sub_category') == $subCategory ? 'selected' : '' }}>
-
-                        {{ $subCategory }}
-
-                    </option>
-                @endforeach
-
-            </select>
-
-        </div>
-
-        {{-- Qualification --}}
-
-        <div class="col-lg-3 col-md-6">
-
-            <label class="form-label fw-semibold">
-
-                Qualification
-
-            </label>
-
-            <select id="qualification" class="form-select">
-
-                <option value="">
-
-                    All Qualification
-
-                </option>
-
-                @foreach ($qualifications as $qualification)
-                    <option value="{{ $qualification }}"
-                        {{ request('qualification') == $qualification ? 'selected' : '' }}>
-
-                        {{ $qualification }}
-
-                    </option>
-                @endforeach
-
-            </select>
-
-        </div>
-
-    </div>
-
-    </div>
-
-    </div>
-
-    {{-- Continue Blade Part 1D --}}
-    {{-- ================= Sort + Result Bar ================= --}}
-
-    <div class="card border-0 shadow-sm rounded-4 mb-4">
-
-        <div class="card-body">
-
-            <div class="row align-items-center g-3">
-
-                <div class="col-lg-6">
-
-                    <h5 class="mb-1 fw-bold">
-
-                        <span id="jobCount">
-
-                            {{ number_format($jobs->total()) }}
-
-                        </span>
-
-                        Government Jobs Found
-
-                    </h5>
-
-                    <small class="text-muted">
-
-                        Latest Sarkari Naukri, Online Forms &
-                        Government Recruitment.
-
-                    </small>
-
+                <div class="summary-item">
+                    <small>Application Mode</small>
+                    <strong>Online</strong>
                 </div>
 
-                <div class="col-lg-6 text-lg-end">
-
-                    <select id="sortBy" class="form-select w-auto d-inline-block">
-
-                        <option value="latest" {{ request('sort') == 'latest' ? 'selected' : '' }}>
-
-                            Latest First
-
-                        </option>
-
-                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>
-
-                            Oldest First
-
-                        </option>
-
-                        <option value="title" {{ request('sort') == 'title' ? 'selected' : '' }}>
-
-                            Job Title
-
-                        </option>
-
-                        <option value="organization" {{ request('sort') == 'organization' ? 'selected' : '' }}>
-
-                            Organization
-
-                        </option>
-
-                        <option value="last_date" {{ request('sort') == 'last_date' ? 'selected' : '' }}>
-
-                            Last Date
-
-                        </option>
-
-                    </select>
-
+                <div class="summary-item">
+                    <small>Last Date</small>
+                    <strong>30 July 2026</strong>
                 </div>
 
             </div>
@@ -1172,580 +2107,163 @@ section a:hover{
 
     </div>
 
-    {{-- ================= Main Content ================= --}}
+    {{-- ========================================= --}}
+    {{-- Sarkari Naukri Listing Page --}}
+    {{-- Part 1A --}}
+    {{-- ========================================= --}}
 
-    <div class="row">
 
-        {{-- Left Sidebar Start --}}
 
-        <div class="col-lg-3 mb-4">
+    <div class="container-fluid py-4">
 
-            <div class="card border-0 shadow-sm rounded-4 sticky-top">
+        <div class="container-xxl">
 
-                <div class="card-header bg-white">
+            <!-- ===================== -->
+            <!-- Page Heading -->
+            <!-- ===================== -->
+            {{-- 
+        <div class="row align-items-center mb-4">
 
-                    <h5 class="mb-0">
+            <div class="col-lg-8">
 
-                        <i class="fa-solid fa-filter me-2"></i>
+                <nav aria-label="breadcrumb">
 
-                        Filters
+                    <ol class="breadcrumb mb-2">
 
-                    </h5>
+                        <li class="breadcrumb-item">
+                            <a href="{{ url('/') }}">
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="breadcrumb-item active">
+                            Sarkari Naukri
+                        </li>
+
+                    </ol>
+
+                </nav>
+
+                <h1 class="fw-bold mb-2">
+
+                    Sarkari Naukri 2026
+
+                </h1>
+
+                <p class="text-muted mb-0">
+
+                    Latest Government Jobs, Online Forms, Recruitment,
+                    Admit Card, Result & Government Vacancy Updates.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="text-lg-end mt-3 mt-lg-0">
+
+                    <a href="#jobs"
+                       class="btn btn-primary px-4">
+
+                        Browse Jobs
+
+                    </a>
 
                 </div>
+
+            </div>
+
+        </div> --}}
+
+            <!-- ===================== -->
+            <!-- Search Section -->
+            <!-- ===================== -->
+
+            <div class="card shadow-sm border-0 mb-4">
 
                 <div class="card-body">
 
-                    {{-- Sidebar filters will come in Part 2A --}}
+                    <div class="row g-3">
+
+                        <div class="col-lg-8">
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+
+                                    <i class="fa fa-search"></i>
+
+                                </span>
+
+                                <input type="text" id="keyword" class="form-control"
+                                    placeholder="Search job title, department, organization...">
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-2">
+
+                            <button class="btn btn-primary w-100" id="searchBtn">
+
+                                Search
+
+                            </button>
+
+                        </div>
+
+                        <div class="col-lg-2">
+
+                            <button class="btn btn-outline-secondary w-100" id="resetBtn">
+
+                                Reset
+
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
+            <!-- ===================== -->
+            <!-- Statistics -->
+            <!-- ===================== -->
 
-        {{-- Right Content Start --}}
+            <div class="row g-3 mb-4">
 
-        <div class="col-lg-9">
+                <div class="col-xl-3 col-md-6">
 
-            <div id="jobs">
+                    <div class="card stat-card h-100">
 
-                {{-- Job Listing will come in Part 3A --}}
+                        <div class="card-body">
 
-            </div>
+                            <div class="d-flex justify-content-between align-items-center">
 
-        </div>
+                                <div>
 
-    </div>
+                                    <small class="text-muted">
 
-    </div>
+                                        Total Jobs
 
+                                    </small>
 
+                                    <h3 class="fw-bold mt-2 mb-0">
 
-{{-- Continue Blade Part 2A --}}
-{{-- ================= Sidebar Filters ================= --}}
+                                        {{-- {{ number_format($totalJobs) }} --}}
 
-<form id="filterForm">
+                                    </h3>
 
-    {{-- Search --}}
+                                </div>
 
-    <div class="mb-4">
+                                <div class="icon-box bg-primary">
 
-        <label class="form-label fw-semibold">
+                                    <i class="fa fa-briefcase"></i>
 
-            Search Job
-
-        </label>
-
-        <input type="text" id="keyword" class="form-control" placeholder="Job Title, Organization..."
-            value="{{ request('search') }}">
-
-    </div>
-
-    {{-- State --}}
-
-    <div class="mb-4">
-
-        <label class="form-label fw-semibold">
-
-            State
-
-        </label>
-
-        <select id="state" class="form-select">
-
-            <option value="">
-
-                All States
-
-            </option>
-
-            @foreach ($states as $stateItem)
-                <option value="{{ $stateItem }}" {{ request('state') == $stateItem ? 'selected' : '' }}>
-
-                    {{ $stateItem }}
-
-                </option>
-            @endforeach
-
-        </select>
-
-    </div>
-
-    {{-- Category --}}
-
-    <div class="mb-4">
-
-        <label class="form-label fw-semibold">
-
-            Category
-
-        </label>
-
-        <select id="category" class="form-select">
-
-            <option value="">
-
-                All Categories
-
-            </option>
-
-            @foreach ($categories as $categoryItem)
-                <option value="{{ $categoryItem }}" {{ request('category') == $categoryItem ? 'selected' : '' }}>
-
-                    {{ $categoryItem }}
-
-                </option>
-            @endforeach
-
-        </select>
-
-    </div>
-
-    {{-- Sub Category --}}
-
-    <div class="mb-4">
-
-        <label class="form-label fw-semibold">
-
-            Sub Category
-
-        </label>
-
-        <select id="sub_category" class="form-select">
-
-            <option value="">
-
-                All Sub Categories
-
-            </option>
-
-            @foreach ($subCategories as $subCategory)
-                <option value="{{ $subCategory }}" {{ request('sub_category') == $subCategory ? 'selected' : '' }}>
-
-                    {{ $subCategory }}
-
-                </option>
-            @endforeach
-
-        </select>
-
-    </div>
-
-    {{-- Qualification --}}
-
-    <div class="mb-4">
-
-        <label class="form-label fw-semibold">
-
-            Qualification
-
-        </label>
-
-        <select id="qualification" class="form-select">
-
-            <option value="">
-
-                All Qualifications
-
-            </option>
-
-            @foreach ($qualifications as $qualification)
-                <option value="{{ $qualification }}"
-                    {{ request('qualification') == $qualification ? 'selected' : '' }}>
-
-                    {{ $qualification }}
-
-                </option>
-            @endforeach
-
-        </select>
-
-    </div>
-
-    {{-- Continue Blade Part 2B --}}
-    {{-- Job Type --}}
-
-    <div class="mb-4">
-
-        <label class="form-label fw-semibold">
-
-            Job Type
-
-        </label>
-
-        <select id="job_type" class="form-select">
-
-            <option value="">
-
-                All Job Types
-
-            </option>
-
-            <option value="Permanent" {{ request('job_type') == 'Permanent' ? 'selected' : '' }}>
-
-                Permanent
-
-            </option>
-
-            <option value="Contract" {{ request('job_type') == 'Contract' ? 'selected' : '' }}>
-
-                Contract
-
-            </option>
-
-            <option value="Apprentice" {{ request('job_type') == 'Apprentice' ? 'selected' : '' }}>
-
-                Apprentice
-
-            </option>
-
-            <option value="Internship" {{ request('job_type') == 'Internship' ? 'selected' : '' }}>
-
-                Internship
-
-            </option>
-
-            <option value="Walk-In" {{ request('job_type') == 'Walk-In' ? 'selected' : '' }}>
-
-                Walk-In
-
-            </option>
-
-        </select>
-
-    </div>
-
-    {{-- Sort --}}
-
-    <div class="mb-4">
-
-        <label class="form-label fw-semibold">
-
-            Sort By
-
-        </label>
-
-        <select id="sortBy" class="form-select">
-
-            <option value="latest" {{ request('sort') == 'latest' ? 'selected' : '' }}>
-
-                Latest First
-
-            </option>
-
-            <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>
-
-                Oldest First
-
-            </option>
-
-            <option value="title" {{ request('sort') == 'title' ? 'selected' : '' }}>
-
-                Job Title
-
-            </option>
-
-            <option value="organization" {{ request('sort') == 'organization' ? 'selected' : '' }}>
-
-                Organization
-
-            </option>
-
-            <option value="last_date" {{ request('sort') == 'last_date' ? 'selected' : '' }}>
-
-                Last Date
-
-            </option>
-
-        </select>
-
-    </div>
-
-    {{-- Buttons --}}
-
-    <div class="d-grid gap-2">
-
-        <button type="button" id="btnSearch" class="btn btn-primary">
-
-            <i class="fa-solid fa-magnifying-glass me-2"></i>
-
-            Apply Filters
-
-        </button>
-
-        <a href="{{ url('/sarkari-naukri') }}" class="btn btn-outline-secondary">
-
-            <i class="fa-solid fa-rotate-right me-2"></i>
-
-            Reset Filters
-
-        </a>
-
-    </div>
-
-</form>
-
-{{-- Popular Categories --}}
-
-<hr class="my-4">
-
-<h6 class="fw-bold mb-3">
-
-    Popular Categories
-
-</h6>
-
-<div class="d-flex flex-wrap gap-2">
-
-    @foreach ($categories->take(10) as $category)
-        <a href="{{ url('/sarkari-naukri?category=' . $category) }}"
-            class="badge bg-light text-dark text-decoration-none border">
-
-            {{ $category }}
-
-        </a>
-    @endforeach
-
-</div>
-
-{{-- Sidebar Complete --}}
-
-{{-- Continue Blade Part 3A --}}
-{{-- ================= Job Cards ================= --}}
-
-@if ($jobs->count())
-
-    @foreach ($jobs as $job)
-        <div class="card shadow-sm border-0 rounded-4 mb-4 job-card">
-
-            <div class="card-body">
-
-                <div class="row align-items-center">
-
-                    {{-- Left --}}
-
-                    <div class="col-lg-9">
-
-                        <div class="d-flex flex-wrap gap-2 mb-3">
-
-                            @if (!empty($job->category))
-                                <span class="badge bg-primary">
-
-                                    {{ $job->category }}
-
-                                </span>
-                            @endif
-
-                            @if (!empty($job->job_sub_categories))
-                                @foreach (explode('#', $job->job_sub_categories) as $sub)
-                                    @if (trim($sub) != '')
-                                        <span class="badge bg-info text-dark">
-
-                                            {{ trim($sub) }}
-
-                                        </span>
-                                    @endif
-                                @endforeach
-                            @endif
-
-                        </div>
-
-                        <h3 class="h5 mb-3">
-
-                            <a href="{{ url('/sarkari-naukri/' . $job->state . '/' . $job->category . '/' . $job->slug) }}"
-                                class="text-decoration-none text-dark">
-
-                                {{ $job->title }}
-
-                            </a>
-
-                        </h3>
-
-                        <div class="row">
-
-                            <div class="col-md-6">
-
-                                <table class="table table-sm table-borderless mb-0">
-
-                                    <tr>
-
-                                        <td width="130">
-
-                                            <strong>
-
-                                                Organization
-
-                                            </strong>
-
-                                        </td>
-
-                                        <td>
-
-                                            {{ $job->organization ?: 'N/A' }}
-
-                                        </td>
-
-                                    </tr>
-
-                                    <tr>
-
-                                        <td>
-
-                                            <strong>
-
-                                                State
-
-                                            </strong>
-
-                                        </td>
-
-                                        <td>
-
-                                            {{ $job->state ?: 'All India' }}
-
-                                        </td>
-
-                                    </tr>
-
-                                    <tr>
-
-                                        <td>
-
-                                            <strong>
-
-                                                Qualification
-
-                                            </strong>
-
-                                        </td>
-
-                                        <td>
-
-                                            {{ $job->min_qulification ?: 'As Per Notification' }}
-
-                                        </td>
-
-                                    </tr>
-
-                                    <tr>
-
-                                        <td>
-
-                                            <strong>
-
-                                                Vacancy
-
-                                            </strong>
-
-                                        </td>
-
-                                        <td>
-
-                                            {{ $job->total_vacancies ?: 'Various' }}
-
-                                        </td>
-
-                                    </tr>
-
-                                </table>
-
-                            </div>
-
-                            <div class="col-md-6">
-
-                                <table class="table table-sm table-borderless mb-0">
-
-                                    <tr>
-
-                                        <td width="130">
-
-                                            <strong>
-
-                                                Last Date
-
-                                            </strong>
-
-                                        </td>
-
-                                        <td>
-
-                                            {{ $job->end_date ?: 'Update Soon' }}
-
-                                        </td>
-
-                                    </tr>
-
-                                    <tr>
-
-                                        <td>
-
-                                            <strong>
-
-                                                Job Type
-
-                                            </strong>
-
-                                        </td>
-
-                                        <td>
-
-                                            {{ $job->job_type ?: 'Government Job' }}
-
-                                        </td>
-
-                                    </tr>
-
-                                    <tr>
-
-                                        <td>
-
-                                            <strong>
-
-                                                Salary
-
-                                            </strong>
-
-                                        </td>
-
-                                        <td>
-
-                                            @if (is_numeric($job->min_salary) && is_numeric($job->max_salary))
-                                                ₹{{ number_format((float) $job->min_salary) }} -
-                                                ₹{{ number_format((float) $job->max_salary) }}
-                                            @elseif(is_numeric($job->min_salary))
-                                                ₹{{ number_format((float) $job->min_salary) }}
-                                            @elseif(!empty($job->salary_text))
-                                                {{ $job->salary_text }}
-                                            @else
-                                                As Per Rules
-                                            @endif
-
-                                        </td>
-
-                                    </tr>
-
-                                    <tr>
-
-                                        <td>
-
-                                            <strong>
-
-                                                Apply Mode
-
-                                            </strong>
-
-                                        </td>
-
-                                        <td>
-
-                                            {{ $job->apply_mode ?: 'Online' }}
-
-                                        </td>
-
-                                    </tr>
-
-                                </table>
+                                </div>
 
                             </div>
 
@@ -1753,24 +2271,773 @@ section a:hover{
 
                     </div>
 
-                    {{-- Right --}}
+                </div>
 
-                    <div class="col-lg-3 text-center">
+                <div class="col-xl-3 col-md-6">
 
-                        <a href="{{ url('/sarkari-naukri/' . $job->state . '/' . $job->category . '/' . $job->slug) }}"
-                            class="btn btn-primary w-100 mb-2">
+                    <div class="card stat-card h-100">
 
-                            View Details
+                        <div class="card-body">
 
-                        </a>
+                            <div class="d-flex justify-content-between align-items-center">
 
-                        @if (!empty($job->apply_online_link))
-                            <a href="{{ $job->apply_online_link }}" target="_blank" rel="nofollow noopener"
-                                class="btn btn-success w-100">
+                                <div>
 
-                                Apply Online
+                                    <small class="text-muted">
 
-                            </a>
+                                        New Today
+
+                                    </small>
+
+                                    <h3 class="fw-bold mt-2 mb-0">
+
+                                        {{-- {{ number_format($todayJobs) }} --}}
+
+                                    </h3>
+
+                                </div>
+
+                                <div class="icon-box bg-success">
+
+                                    <i class="fa fa-bolt"></i>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="card stat-card h-100">
+
+                        <div class="card-body">
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <div>
+
+                                    <small class="text-muted">
+
+                                        Closing Soon
+
+                                    </small>
+
+                                    <h3 class="fw-bold mt-2 mb-0">
+
+                                        {{-- {{ number_format($closingSoonJobs) }} --}}
+
+                                    </h3>
+
+                                </div>
+
+                                <div class="icon-box bg-danger">
+
+                                    <i class="fa fa-clock"></i>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="card stat-card h-100">
+
+                        <div class="card-body">
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <div>
+
+                                    <small class="text-muted">
+
+                                        Active Recruitments
+
+                                    </small>
+
+                                    <h3 class="fw-bold mt-2 mb-0">
+
+                                        {{-- {{ number_format($activeJobs) }} --}}
+
+                                    </h3>
+
+                                </div>
+
+                                <div class="icon-box bg-warning">
+
+                                    <i class="fa fa-building"></i>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ===================== -->
+            <!-- Main Content -->
+            <!-- ===================== -->
+
+            <div class="row g-4">
+
+                <!-- Left Sidebar -->
+
+                <div class="col-lg-3">
+
+                    <div class="card border-0 shadow-sm sticky-top">
+
+                        <div class="card-header">
+
+                            <strong>
+
+                                Filters
+
+                            </strong>
+
+                        </div>
+
+                        <div class="card-body">
+                            <!-- ===================== -->
+                            <!-- State -->
+                            <!-- ===================== -->
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+
+                                    State
+
+                                </label>
+
+                                <select class="form-select" id="state">
+
+                                    <option value="">
+
+                                        All States
+
+                                    </option>
+
+                                    @foreach ($states as $state)
+                                        <option value="{{ $state }}">
+                                            {{ $state }}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+
+                            </div>
+
+                            <!-- ===================== -->
+                            <!-- Category -->
+                            <!-- ===================== -->
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+
+                                    Category
+
+                                </label>
+
+                                <select class="form-select" id="category">
+
+                                    <option value="">
+
+                                        All Categories
+
+                                    </option>
+
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category }}">
+                                            {{ $category }}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+
+                            </div>
+
+                            <!-- ===================== -->
+                            <!-- Sub Category -->
+                            <!-- ===================== -->
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+
+                                    Sub Category
+
+                                </label>
+
+                                <select class="form-select" id="sub_category">
+
+                                    <option value="">
+
+                                        All Sub Categories
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <!-- ===================== -->
+                            <!-- Qualification -->
+                            <!-- ===================== -->
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+
+                                    Qualification
+
+                                </label>
+
+                                <select class="form-select" id="qualification">
+
+                                    <option value="">
+
+                                        All Qualifications
+
+                                    </option>
+
+                                    @foreach ($qualifications as $qualification)
+                                        <option value="{{ $qualification }}">
+                                            {{ $qualification }}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+
+                            </div>
+
+                            <!-- ===================== -->
+                            <!-- Job Type -->
+                            <!-- ===================== -->
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+
+                                    Job Type
+
+                                </label>
+
+                                <select class="form-select" id="job_type">
+
+                                    <option value="">
+
+                                        All Job Types
+
+                                    </option>
+
+                                    <option value="regular">
+
+                                        Regular
+
+                                    </option>
+
+                                    <option value="contract">
+
+                                        Contract
+
+                                    </option>
+
+                                    <option value="deputation">
+
+                                        Deputation
+
+                                    </option>
+
+                                    <option value="walk-in">
+
+                                        Walk-In
+
+                                    </option>
+
+                                    <option value="internship">
+
+                                        Internship
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <!-- ===================== -->
+                            <!-- Last Date -->
+                            <!-- ===================== -->
+
+                            <div class="mb-4">
+
+                                <label class="form-label fw-semibold">
+
+                                    Last Date
+
+                                </label>
+
+                                <select class="form-select" id="last_date">
+
+                                    <option value="">
+
+                                        Any Time
+
+                                    </option>
+
+                                    <option value="today">
+
+                                        Today
+
+                                    </option>
+
+                                    <option value="7">
+
+                                        Next 7 Days
+
+                                    </option>
+
+                                    <option value="15">
+
+                                        Next 15 Days
+
+                                    </option>
+
+                                    <option value="30">
+
+                                        Next 30 Days
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="d-grid gap-2">
+
+                                <button class="btn btn-primary" id="applyFilter">
+
+                                    <i class="fa fa-filter me-2"></i>
+
+                                    Apply Filters
+
+                                </button>
+
+                                <button class="btn btn-light border" id="clearFilter">
+
+                                    <i class="fa fa-rotate-left me-2"></i>
+
+                                    Clear Filters
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ===================== -->
+                <!-- Right Content -->
+                <!-- ===================== -->
+
+                <div class="col-lg-9">
+
+                    <div class="card border-0 shadow-sm mb-3">
+
+                        <div class="card-body">
+
+                            <div class="row align-items-center">
+
+                                <div class="col-lg-6">
+
+                                    <h5 class="mb-0">
+
+                                        Latest Government Jobs
+
+                                    </h5>
+
+                                </div>
+
+                                <div class="col-lg-6">
+
+                                    <div class="d-flex justify-content-lg-end align-items-center gap-2">
+
+                                        <span class="badge bg-primary px-3 py-2">
+
+                                            <span id="jobCount">
+
+                                                {{-- {{ number_format($totalJobs) }} --}}
+
+                                            </span>
+
+                                            Jobs
+
+                                        </span>
+
+                                        <select class="form-select w-auto" id="sortBy">
+
+                                            <option value="latest">
+
+                                                Latest First
+
+                                            </option>
+
+                                            <option value="last_date">
+
+                                                Last Date
+
+                                            </option>
+
+                                            <option value="title">
+
+                                                Job Title
+
+                                            </option>
+
+                                            <option value="organization">
+
+                                                Organization
+
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div id="jobs">
+
+                        <!-- Job Cards Start -->
+                        <!-- ================================= -->
+                        <!-- Job Card -->
+                        <!-- ================================= -->
+
+                        @forelse($jobs as $job)
+                            <div class="card border-0 shadow-sm mb-3 job-card">
+
+                                <div class="card-body">
+
+                                    <div class="row">
+
+                                        <div class="col-lg-9">
+
+                                            <div class="d-flex align-items-start">
+
+                                                <div class="job-icon me-3">
+
+                                                    <i class="fa-solid fa-briefcase"></i>
+
+                                                </div>
+
+                                                <div class="flex-grow-1">
+
+                                                    <h5 class="mb-2">
+
+                                                        <a href="{{ url($job->slug) }}"
+                                                            class="text-dark text-decoration-none fw-bold">
+
+                                                            {{ $job->title }}
+
+                                                        </a>
+
+                                                    </h5>
+
+                                                    <div class="d-flex flex-wrap gap-2 mb-3">
+
+                                                        <span class="badge bg-primary">
+
+                                                            {{ $job->organization->name ?? 'Government Department' }}
+
+                                                        </span>
+
+                                                        <span class="badge bg-success">
+
+                                                            {{ $job->state->name ?? 'All India' }}
+
+                                                        </span>
+
+                                                        <span class="badge bg-warning text-dark">
+
+                                                            {{ $job->category->name ?? 'Government Job' }}
+
+                                                        </span>
+
+                                                        @if (!empty($job->job_sub_categories))
+    <span class="badge bg-info text-dark">
+        {{ $job->job_sub_categories }}
+    </span>
+@endif
+
+                                                    </div>
+
+                                                    <div class="row g-3">
+
+                                                        <div class="col-md-6">
+
+                                                            <small class="text-muted">
+
+                                                                <i class="fa-solid fa-graduation-cap me-2"></i>
+
+                                                                Qualification
+
+                                                            </small>
+
+                                                            <div class="fw-semibold">
+
+                                                                {{ $job->qualification->name ?? 'As Per Notification' }}
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-md-6">
+
+                                                            <small class="text-muted">
+
+                                                                <i class="fa-solid fa-calendar-days me-2"></i>
+
+                                                                Last Date
+
+                                                            </small>
+
+                                                            <div class="fw-semibold text-danger">
+
+                                                                {{ $job->end_date }}
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-md-6">
+
+                                                            <small class="text-muted">
+
+                                                                <i class="fa-solid fa-indian-rupee-sign me-2"></i>
+
+                                                                Salary
+
+                                                            </small>
+
+                                                            <div class="fw-semibold">
+
+                                                                {{ $job->salary ?? 'As Per Rules' }}
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-md-6">
+
+                                                            <small class="text-muted">
+
+                                                                <i class="fa-solid fa-users me-2"></i>
+
+                                                                Total Posts
+
+                                                            </small>
+
+                                                            <div class="fw-semibold">
+
+                                                                {{ $job->vacancy ?? '-' }}
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-3">
+
+                                            <div class="h-100 d-flex flex-column justify-content-between">
+
+                                                <div class="text-lg-end mb-3">
+
+                                                    @php
+
+                                                        $days = now()->diffInDays(
+                                                            \Carbon\Carbon::parse($job->end_date),
+                                                            false,
+                                                        );
+
+                                                    @endphp
+
+                                                    @if ($days <= 3)
+                                                        <span class="badge bg-danger">
+
+                                                            Closing Soon
+
+                                                        </span>
+                                                    @elseif($days <= 10)
+                                                        <span class="badge bg-warning text-dark">
+
+                                                            Apply Fast
+
+                                                        </span>
+                                                    @else
+                                                        <span class="badge bg-success">
+
+                                                            Active
+
+                                                        </span>
+                                                    @endif
+
+                                                </div>
+
+                                                <div class="d-grid gap-2">
+
+                                                    <a href="{{ url($job->slug) }}" class="btn btn-primary">
+
+                                                        <i class="fa-solid fa-eye me-2"></i>
+
+                                                        View Details
+
+                                                    </a>
+
+                                                    <a href="{{ url($job->slug) }}#apply"
+                                                        class="btn btn-outline-success">
+
+                                                        <i class="fa-solid fa-paper-plane me-2"></i>
+
+                                                        Apply Now
+
+                                                    </a>
+
+                                                    <a href="{{ url($job->slug) }}#notification"
+                                                        class="btn btn-light border">
+
+                                                        <i class="fa-solid fa-file-pdf me-2"></i>
+
+                                                        Notification
+
+                                                    </a>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        @empty
+
+                            <div class="card border-0 shadow-sm">
+
+                                <div class="card-body text-center py-5">
+
+                                    <i class="fa-solid fa-folder-open fa-3x text-muted mb-3"></i>
+
+                                    <h4>
+
+                                        No Jobs Found
+
+                                    </h4>
+
+                                    <p class="text-muted mb-0">
+
+                                        Try changing your search or filters.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        @endforelse
+                        <!-- ================================= -->
+                        <!-- Pagination -->
+                        <!-- ================================= -->
+
+                        @if ($jobs->hasPages())
+                            <div class="card border-0 shadow-sm mt-4">
+
+                                <div class="card-body">
+
+                                    <div class="row align-items-center">
+
+                                        <div class="col-lg-4">
+
+                                            <small class="text-muted">
+
+                                                Showing
+
+                                                <strong>
+
+                                                    {{ $jobs->firstItem() }}
+
+                                                </strong>
+
+                                                -
+
+                                                <strong>
+
+                                                    {{ $jobs->lastItem() }}
+
+                                                </strong>
+
+                                                of
+
+                                                <strong>
+
+                                                    {{ number_format($jobs->total()) }}
+
+                                                </strong>
+
+                                                Jobs
+
+                                            </small>
+
+                                        </div>
+
+                                        <div class="col-lg-8">
+
+                                            <div class="d-flex justify-content-lg-end justify-content-center mt-3 mt-lg-0">
+
+                                                {{ $jobs->links() }}
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
                         @endif
 
                     </div>
@@ -1779,508 +3046,83 @@ section a:hover{
 
             </div>
 
-        </div>
-    @endforeach
+            <!-- ================================= -->
+            <!-- Popular Searches -->
+            <!-- ================================= -->
 
-@endif
+            <div class="row mt-5">
 
-{{-- Continue Blade Part 3B --}}
-{{-- ================= Pagination ================= --}}
+                <div class="col-12">
 
-@if ($jobs->hasPages())
-    <div class="card border-0 shadow-sm rounded-4 mt-4">
+                    <div class="card border-0 shadow-sm">
 
-        <div class="card-body">
+                        <div class="card-header bg-white">
 
-            <div class="row align-items-center">
+                            <h5 class="mb-0">
 
-                <div class="col-md-6">
+                                Popular Searches
 
-                    <small class="text-muted">
+                            </h5>
 
-                        Showing
+                        </div>
 
-                        <strong>{{ $jobs->firstItem() }}</strong>
+                        <div class="card-body">
 
-                        to
+                            <div class="d-flex flex-wrap gap-2">
 
-                        <strong>{{ $jobs->lastItem() }}</strong>
+                                <a href="#" class="btn btn-light border">
+                                    SSC Jobs
+                                </a>
 
-                        of
+                                <a href="#" class="btn btn-light border">
+                                    Railway Jobs
+                                </a>
 
-                        <strong>{{ number_format($jobs->total()) }}</strong>
+                                <a href="#" class="btn btn-light border">
+                                    Banking Jobs
+                                </a>
 
-                        Government Jobs
+                                <a href="#" class="btn btn-light border">
+                                    UPSC Jobs
+                                </a>
 
-                    </small>
+                                <a href="#" class="btn btn-light border">
+                                    Defence Jobs
+                                </a>
 
-                </div>
+                                <a href="#" class="btn btn-light border">
+                                    Police Jobs
+                                </a>
 
-                <div class="col-md-6">
+                                <a href="#" class="btn btn-light border">
+                                    Teaching Jobs
+                                </a>
 
-                    <div class="float-md-end">
+                                <a href="#" class="btn btn-light border">
+                                    Engineering Jobs
+                                </a>
 
-                        {{ $jobs->withQueryString()->links() }}
+                                <a href="#" class="btn btn-light border">
+                                    Medical Jobs
+                                </a>
 
-                    </div>
+                                <a href="#" class="btn btn-light border">
+                                    ITI Jobs
+                                </a>
 
-                </div>
+                                <a href="#" class="btn btn-light border">
+                                    10th Pass Jobs
+                                </a>
 
-            </div>
+                                <a href="#" class="btn btn-light border">
+                                    12th Pass Jobs
+                                </a>
 
-        </div>
+                                <a href="#" class="btn btn-light border">
+                                    Graduate Jobs
+                                </a>
 
-    </div>
-@endif
-
-{{-- ================= Quick Navigation ================= --}}
-
-<div class="card border-0 shadow-sm rounded-4 mt-4">
-
-    <div class="card-body">
-
-        <div class="row">
-
-            <div class="col-lg-4 mb-3 mb-lg-0">
-
-                <a href="{{ url('/latest-jobs') }}" class="btn btn-outline-primary w-100">
-
-                    <i class="fa-solid fa-clock me-2"></i>
-
-                    Latest Jobs
-
-                </a>
-
-            </div>
-
-            <div class="col-lg-4 mb-3 mb-lg-0">
-
-                <a href="{{ url('/admit-card') }}" class="btn btn-outline-success w-100">
-
-                    <i class="fa-solid fa-id-card me-2"></i>
-
-                    Admit Card
-
-                </a>
-
-            </div>
-
-            <div class="col-lg-4">
-
-                <a href="{{ url('/results') }}" class="btn btn-outline-danger w-100">
-
-                    <i class="fa-solid fa-square-poll-vertical me-2"></i>
-
-                    Results
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-{{-- Continue Blade Part 3C --}}
-{{-- ================= Empty State ================= --}}
-
-@if ($jobs->isEmpty())
-    <div class="card border-0 shadow rounded-4">
-
-        <div class="card-body text-center py-5">
-
-            <div class="mb-4">
-
-                <i class="fa-solid fa-folder-open fa-5x text-secondary opacity-50"></i>
-
-            </div>
-
-            <h2 class="h3 fw-bold mb-3">
-
-                No Government Jobs Found
-
-            </h2>
-
-            <p class="text-muted mb-4">
-
-                Sorry! We couldn't find any jobs matching your search or
-                selected filters.
-
-                <br>
-
-                Try changing the State, Category, Qualification,
-                or Search Keyword.
-
-            </p>
-
-            <div class="d-flex justify-content-center flex-wrap gap-2">
-
-                <a href="{{ url('/sarkari-naukri') }}" class="btn btn-primary">
-
-                    <i class="fa-solid fa-rotate-right me-2"></i>
-
-                    Reset Filters
-
-                </a>
-
-                <a href="{{ url('/latest-jobs') }}" class="btn btn-outline-primary">
-
-                    <i class="fa-solid fa-clock me-2"></i>
-
-                    Latest Jobs
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-@endif
-
-{{-- ================= Bottom CTA ================= --}}
-
-<div class="card border-0 bg-primary text-white rounded-4 mt-5">
-
-    <div class="card-body p-5 text-center">
-
-        <h3 class="fw-bold mb-3">
-
-            Never Miss a Government Job Update
-
-        </h3>
-
-        <p class="mb-4">
-
-            Get the latest Sarkari Naukri, Admit Card,
-            Results, Answer Key, Admissions and Government
-            Recruitment updates in one place.
-
-        </p>
-
-        <a href="{{ url('/') }}" class="btn btn-light btn-lg">
-
-            Explore More
-
-        </a>
-
-    </div>
-
-</div>
-
-</div>{{-- #jobs --}}
-
-{{-- ================= End Main Content ================= --}}
-
-{{-- Continue Blade Part 4A (SEO Content + FAQ + Internal Links) --}}
-{{-- ================= SEO Content ================= --}}
-
-<section class="mt-5">
-
-    <div class="card border-0 shadow-sm rounded-4">
-
-        <div class="card-body p-4 p-lg-5">
-
-            <h2 class="fw-bold mb-4">
-
-                Latest Sarkari Naukri 2026
-
-            </h2>
-
-            <p>
-
-                SarkariHai.com provides the latest Government Job
-                Notifications across India. Candidates can find
-                Central Government Jobs, State Government Jobs,
-                Railway Recruitment, Banking Jobs, SSC, UPSC,
-                Defence, Police, Teaching, PSU, High Court,
-                Universities and many more recruitment updates.
-
-            </p>
-
-            <p>
-
-                Every recruitment page includes important dates,
-                eligibility, age limit, application fee,
-                selection process, salary details,
-                vacancy information, official notification,
-                online application link and important instructions.
-
-            </p>
-
-            <p>
-
-                We regularly update new Government Jobs from
-                organizations like SSC, UPSC, Railway,
-                IBPS, SBI, RBI, AIIMS, ESIC, DRDO,
-                ISRO, BHEL, ONGC, BEL, High Courts,
-                State PSCs, Universities,
-                Indian Army, Navy, Air Force and many
-                other departments.
-
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-{{-- ================= Popular Categories ================= --}}
-
-<section class="mt-4">
-
-    <div class="card border-0 shadow-sm rounded-4">
-
-        <div class="card-body">
-
-            <h3 class="fw-bold mb-4">
-
-                Popular Government Job Categories
-
-            </h3>
-
-            <div class="d-flex flex-wrap gap-2">
-
-                @foreach ($categories as $category)
-                    <a href="{{ url('/sarkari-naukri?category=' . $category) }}"
-                        class="badge rounded-pill bg-light text-dark border text-decoration-none px-3 py-2">
-
-                        {{ $category }}
-
-                    </a>
-                @endforeach
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-{{-- ================= Popular States ================= --}}
-
-<section class="mt-4">
-
-    <div class="card border-0 shadow-sm rounded-4">
-
-        <div class="card-body">
-
-            <h3 class="fw-bold mb-4">
-
-                Government Jobs by State
-
-            </h3>
-
-            <div class="row">
-
-                @foreach ($states as $state)
-                    <div class="col-lg-3 col-md-4 col-6 mb-2">
-
-                        <a href="{{ url('/sarkari-naukri/' . Str::slug($state)) }}" class="text-decoration-none">
-
-                            {{ $state }}
-
-                        </a>
-
-                    </div>
-                @endforeach
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-{{-- Continue Blade Part 4B --}}
-{{-- ================= Popular Qualifications ================= --}}
-
-<section class="mt-4">
-
-    <div class="card border-0 shadow-sm rounded-4">
-
-        <div class="card-body">
-
-            <h3 class="fw-bold mb-4">
-
-                Jobs by Qualification
-
-            </h3>
-
-            <div class="d-flex flex-wrap gap-2">
-
-                @foreach ($qualifications as $qualification)
-                    <a href="{{ url('/sarkari-naukri?qualification=' . urlencode($qualification)) }}"
-                        class="badge bg-light border text-dark text-decoration-none px-3 py-2">
-
-                        {{ $qualification }}
-
-                    </a>
-                @endforeach
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-{{-- ================= Popular Recruiters ================= --}}
-
-<section class="mt-4">
-
-    <div class="card border-0 shadow-sm rounded-4">
-
-        <div class="card-body">
-
-            <h3 class="fw-bold mb-4">
-
-                Top Recruiting Organizations
-
-            </h3>
-
-            <div class="row">
-
-                @php
-
-                    $organizations = DB::table('job_details')
-                        ->whereNotNull('organization')
-                        ->where('organization', '!=', '')
-                        ->select('organization')
-                        ->distinct()
-                        ->orderBy('organization')
-                        ->limit(40)
-                        ->pluck('organization');
-
-                @endphp
-
-                @foreach ($organizations as $organization)
-                    <div class="col-lg-3 col-md-4 col-6 mb-2">
-
-                        <a href="{{ url('/sarkari-naukri?search=' . urlencode($organization)) }}"
-                            class="text-decoration-none">
-
-                            {{ $organization }}
-
-                        </a>
-
-                    </div>
-                @endforeach
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-{{-- ================= Latest Government Job Categories ================= --}}
-
-<section class="mt-4">
-
-    <div class="card border-0 shadow-sm rounded-4">
-
-        <div class="card-body">
-
-            <h3 class="fw-bold mb-4">
-
-                Explore Government Jobs
-
-            </h3>
-
-            <div class="row">
-
-                <div class="col-lg-3 col-md-4 col-6 mb-2">
-                    <a href="{{ url('/sarkari-naukri/all-india/railway') }}">Railway Jobs</a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-6 mb-2">
-                    <a href="{{ url('/sarkari-naukri/all-india/ssc') }}">SSC Jobs</a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-6 mb-2">
-                    <a href="{{ url('/sarkari-naukri/all-india/banking') }}">Bank Jobs</a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-6 mb-2">
-                    <a href="{{ url('/sarkari-naukri/all-india/upsc') }}">UPSC Jobs</a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-6 mb-2">
-                    <a href="{{ url('/sarkari-naukri/all-india/police') }}">Police Jobs</a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-6 mb-2">
-                    <a href="{{ url('/sarkari-naukri/all-india/teaching') }}">Teaching Jobs</a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-6 mb-2">
-                    <a href="{{ url('/sarkari-naukri/all-india/defence') }}">Defence Jobs</a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-6 mb-2">
-                    <a href="{{ url('/sarkari-naukri/all-india/psu') }}">PSU Jobs</a>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-{{-- Continue Blade Part 4C --}}
-{{-- ================= Frequently Asked Questions ================= --}}
-
-<section class="mt-4">
-
-    <div class="card border-0 shadow-sm rounded-4">
-
-        <div class="card-body">
-
-            <h2 class="fw-bold mb-4">
-
-                Frequently Asked Questions (FAQs)
-
-            </h2>
-
-            <div class="accordion" id="faqAccordion">
-
-                <div class="accordion-item">
-
-                    <h2 class="accordion-header">
-
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#faq1">
-
-                            What is Sarkari Naukri?
-
-                        </button>
-
-                    </h2>
-
-                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-
-                        <div class="accordion-body">
-
-                            Sarkari Naukri means Government Jobs offered by
-                            Central Government, State Government,
-                            Public Sector Undertakings (PSUs),
-                            Universities, Railways,
-                            Defence, Banking and other Government Departments.
+                            </div>
 
                         </div>
 
@@ -2288,59 +3130,45 @@ section a:hover{
 
                 </div>
 
-                <div class="accordion-item">
+            </div>
 
-                    <h2 class="accordion-header">
+            <!-- ================================= -->
+            <!-- SEO Content -->
+            <!-- ================================= -->
 
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#faq2">
+            <div class="row mt-4">
 
-                            How often are jobs updated?
+                <div class="col-12">
 
-                        </button>
+                    <div class="card border-0 shadow-sm">
 
-                    </h2>
+                        <div class="card-body">
 
-                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <h2 class="h4 mb-3">
 
-                        <div class="accordion-body">
+                                Latest Sarkari Naukri 2026
 
-                            New Government Job Notifications are updated
-                            regularly whenever official recruitment
-                            notifications are released.
+                            </h2>
 
-                        </div>
+                            <p class="text-muted mb-3">
 
-                    </div>
+                                Find the latest Government Job Notifications,
+                                Online Forms, Recruitment Updates, Admit Cards,
+                                Results and Answer Keys in one place. Browse jobs
+                                by State, Category, Qualification and Organization
+                                using the filters above to quickly find suitable
+                                government vacancies.
 
-                </div>
+                            </p>
 
-                <div class="accordion-item">
+                            <p class="text-muted mb-0">
 
-                    <h2 class="accordion-header">
+                                All recruitment information is updated regularly,
+                                including important dates, eligibility criteria,
+                                age limit, application fee, selection process,
+                                salary details and official notification links.
 
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#faq3">
-
-                            Are official notification links available?
-
-                        </button>
-
-                    </h2>
-
-                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-
-                        <div class="accordion-body">
-
-                            Yes. Every recruitment page contains
-                            Official Notification PDF,
-                            Apply Online Link,
-                            Official Website,
-                            Eligibility,
-                            Selection Process,
-                            Salary,
-                            Vacancy Details
-                            and Important Dates.
+                            </p>
 
                         </div>
 
@@ -2353,708 +3181,496 @@ section a:hover{
         </div>
 
     </div>
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <script>
+        
 
-</section>
+            $(document).ready(function() {
+   let typingTimer;
 
+                    let page = 1;
+                    /* ==========================================
+                       CSRF
+                    ========================================== */
 
-{{-- ================= Disclaimer ================= --}}
+                    $.ajaxSetup({
 
-<section class="mt-4">
+                        headers: {
 
-    <div class="alert alert-light border rounded-4">
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 
-        <h5 class="fw-bold">
+                        }
 
-            Disclaimer
+                    });
 
-        </h5>
+                    /* ==========================================
+                       Variables
+                    ========================================== */
 
-        <p class="mb-0">
+                 
 
-            SarkariHai.com is an informational website.
+                    /* ==========================================
+                       Auto Search
+                    ========================================== */
 
-            Candidates are advised to verify every recruitment
-            notification from the official website before
-            submitting their application form.
+                    $('#keyword').on('keyup', function() {
 
-        </p>
+                        clearTimeout(typingTimer);
 
-    </div>
+                        typingTimer = setTimeout(function() {
 
-</section>
-<script>
+                            page = 1;
 
-"use strict";
+                            loadJobs();
 
-/* ===========================================
-   SarkariHai - Job Listing
-=========================================== */
+                        }, 500);
 
-let currentPage = Number(new URLSearchParams(window.location.search).get('page')) || 1;
+                    });
 
-const baseUrl = window.location.pathname;
+                    /* ==========================================
+                       Dropdown Filters
+                    ========================================== */
 
-const resultContainer = $("#jobs");
+                    $('#state').change(function() {
 
-const filterForm = $("#filterForm");
+                        page = 1;
 
-/* ===========================================
-   Loading
-=========================================== */
+                        loadJobs();
 
-function showLoading() {
+                    });
 
-    resultContainer.html(`
-        <div class="text-center py-5">
+                    $('#category').change(function() {
 
-            <div class="spinner-border text-primary"></div>
+                        page = 1;
 
-            <div class="mt-3">
+                        loadJobs();
 
-                Loading Jobs...
+                    });
 
-            </div>
+                    $('#sub_category').change(function() {
 
-        </div>
-    `);
+                        page = 1;
 
-}
+                        loadJobs();
 
-/* ===========================================
-   URL Builder
-=========================================== */
+                    });
 
-function buildUrl(page = 1) {
+                    $('#qualification').change(function() {
 
-    let params = new URLSearchParams();
+                        page = 1;
 
-    if ($("#keyword").val().trim() !== "") {
+                        loadJobs();
 
-        params.set("search", $("#keyword").val().trim());
+                    });
 
-    }
+                    $('#job_type').change(function() {
 
-    if ($("#state").val() !== "") {
+                        page = 1;
 
-        params.set("state", $("#state").val());
+                        loadJobs();
 
-    }
+                    });
 
-    if ($("#category").val() !== "") {
+                    $('#last_date').change(function() {
 
-        params.set("category", $("#category").val());
+                        page = 1;
 
-    }
+                        loadJobs();
 
-    if ($("#sub_category").val() !== "") {
+                    });
 
-        params.set("sub_category", $("#sub_category").val());
+                    $('#sortBy').change(function() {
 
-    }
+                        page = 1;
 
-    if ($("#qualification").val() !== "") {
+                        loadJobs();
 
-        params.set("qualification", $("#qualification").val());
+                    });
 
-    }
+                    /* ==========================================
+                       Apply Button
+                    ========================================== */
 
-    if ($("#job_type").val() !== "") {
+                    $('#applyFilter').click(function() {
 
-        params.set("job_type", $("#job_type").val());
+                        page = 1;
 
-    }
+                        loadJobs();
 
-    if ($("#sortBy").val() !== "latest") {
+                    });
 
-        params.set("sort", $("#sortBy").val());
+                    /* ==========================================
+                       Clear Filter
+                    ========================================== */
 
-    }
+                    $('#clearFilter').click(function() {
 
-    if (page > 1) {
+                        $('#keyword').val('');
 
-        params.set("page", page);
+                        $('#state').val('');
 
-    }
+                        $('#category').val('');
 
-    if (params.toString() !== "") {
+                        $('#sub_category').val('');
 
-        return baseUrl + "?" + params.toString();
+                        $('#qualification').val('');
 
-    }
+                        $('#job_type').val('');
 
-    return baseUrl;
+                        $('#last_date').val('');
 
-}
+                        $('#sortBy').val('latest');
 
-/* Continue JS Part 1B */
-/* ===========================================
-   AJAX Loader
-=========================================== */
+                        page = 1;
 
-function loadJobs(page = 1, pushState = true) {
+                        loadJobs();
 
-    currentPage = page;
+                    });
 
-    const url = buildUrl(page);
+                    /* ==========================================
+                       Pagination
+                    ========================================== */
 
-    showLoading();
+                    $(document).on('click', '.pagination a', function(e) {
 
-    $.ajax({
+                        e.preventDefault();
 
-        url: url,
+                        page = $(this).attr('href').split('page=')[1];
 
-        type: "GET",
+                        loadJobs();
 
-        dataType: "html",
+                        $('html,body').animate({
 
-        headers: {
+                            scrollTop: $("#jobs").offset().top - 20
 
-            "X-Requested-With": "XMLHttpRequest"
+                        }, 300);
 
-        },
+                    });
 
-        success: function (response) {
 
-            const html = $(response).find("#jobs").html();
+                        /* ==========================================
+       AJAX Load Jobs
+    ========================================== */
 
-            if (html !== undefined) {
+    function loadJobs() {
 
-                resultContainer.html(html);
+        let data = {
 
-            } else {
+            search: $('#keyword').val(),
 
-                resultContainer.html(response);
+            state: $('#state').val(),
 
-            }
+            category: $('#category').val(),
 
-            if (pushState) {
+            sub_category: $('#sub_category').val(),
 
-                window.history.pushState({}, "", url);
+            qualification: $('#qualification').val(),
 
-            }
+            job_type: $('#job_type').val(),
 
-            $("html, body").animate({
+            last_date: $('#last_date').val(),
 
-                scrollTop: $("#jobs").offset().top - 20
+            sort: $('#sortBy').val(),
 
-            }, 300);
+            page: page
 
-        },
+        };
 
-        error: function () {
+        $("#jobs").addClass("position-relative");
 
-            resultContainer.html(`
+        if ($("#jobs .loading-overlay").length == 0) {
 
-                <div class="alert alert-danger">
+            $("#jobs").append(
 
-                    Unable to load jobs.
+                '<div class="loading-overlay show">' +
+                    '<div class="loading-spinner"></div>' +
+                '</div>'
 
-                    Please try again.
+            );
 
-                </div>
+        } else {
 
-            `);
+            $("#jobs .loading-overlay").addClass("show");
 
         }
 
-    });
+        $.ajax({
 
-}
+            url: window.location.pathname,
 
-/* ===========================================
-   Apply Filters
-=========================================== */
+            type: "GET",
 
-function applyFilters() {
+            data: data,
 
-    currentPage = 1;
+            success: function (response) {
 
-    loadJobs(1);
+                $("#jobs").html(response.html);
 
-}
+                $("#jobCount").text(response.total);
 
-/* Continue JS Part 1C */
-/* ===========================================
-   Events
-=========================================== */
+            },
 
-$("#btnSearch").on("click", function () {
+            error: function () {
 
-    applyFilters();
+                $("#jobs").html(
 
-});
+                    '<div class="alert alert-danger">' +
+                    'Something went wrong. Please try again.' +
+                    '</div>'
 
-/* Auto Apply on Select Change */
+                );
 
-$("#state").on("change", function () {
+            },
 
-    applyFilters();
+            complete: function () {
 
-});
-
-$("#category").on("change", function () {
-
-    applyFilters();
-
-});
-
-$("#sub_category").on("change", function () {
-
-    applyFilters();
-
-});
-
-$("#qualification").on("change", function () {
-
-    applyFilters();
-
-});
-
-$("#job_type").on("change", function () {
-
-    applyFilters();
-
-});
-
-$("#sortBy").on("change", function () {
-
-    applyFilters();
-
-});
-
-/* ===========================================
-   Search Debounce
-=========================================== */
-
-let searchTimer = null;
-
-$("#keyword").on("keyup", function () {
-
-    clearTimeout(searchTimer);
-
-    searchTimer = setTimeout(function () {
-
-        applyFilters();
-
-    }, 500);
-
-});
-
-/* Search on Enter */
-
-$("#keyword").on("keypress", function (e) {
-
-    if (e.which === 13) {
-
-        e.preventDefault();
-
-        applyFilters();
-
-    }
-
-});
-
-/* Continue JS Part 1D */
-/* ===========================================
-   AJAX Pagination
-=========================================== */
-
-$(document).on("click", ".pagination a", function (e) {
-
-    e.preventDefault();
-
-    const href = $(this).attr("href");
-
-    if (!href) return;
-
-    const url = new URL(href);
-
-    const page = Number(url.searchParams.get("page")) || 1;
-
-    loadJobs(page);
-
-});
-
-/* ===========================================
-   Browser Back / Forward Support
-=========================================== */
-
-window.addEventListener("popstate", function () {
-
-    location.reload();
-
-});
-
-/* ===========================================
-   Reset Filters
-=========================================== */
-
-$(document).on("click", "#btnReset", function (e) {
-
-    e.preventDefault();
-
-    $("#keyword").val("");
-
-    $("#state").val("");
-
-    $("#category").val("");
-
-    $("#sub_category").val("");
-
-    $("#qualification").val("");
-
-    $("#job_type").val("");
-
-    $("#sortBy").val("latest");
-
-    currentPage = 1;
-
-    loadJobs(1);
-
-});
-
-/* ===========================================
-   Initial Page Load
-=========================================== */
-
-$(function () {
-
-    $("#keyword").focus();
-
-});
-
-/* ===========================================
-   End JS Part 1
-=========================================== */
-
-/* Continue JS Part 2A */
-/* ===========================================
-   Helper Functions
-=========================================== */
-
-function getFilters() {
-
-    return {
-
-        search: $("#keyword").val().trim(),
-
-        state: $("#state").val(),
-
-        category: $("#category").val(),
-
-        sub_category: $("#sub_category").val(),
-
-        qualification: $("#qualification").val(),
-
-        job_type: $("#job_type").val(),
-
-        sort: $("#sortBy").val()
-
-    };
-
-}
-
-function hasFilters() {
-
-    let f = getFilters();
-
-    return (
-        f.search !== "" ||
-        f.state !== "" ||
-        f.category !== "" ||
-        f.sub_category !== "" ||
-        f.qualification !== "" ||
-        f.job_type !== "" ||
-        f.sort !== "latest"
-    );
-
-}
-
-/* ===========================================
-   Result Counter
-=========================================== */
-
-function updateCounter() {
-
-    let total = $(".job-card").length;
-
-    $("#jobCount").text(total);
-
-}
-
-/* ===========================================
-   Active Filter Badges
-=========================================== */
-
-function updateBadges() {
-
-    $("#activeFilters").remove();
-
-    let filters = getFilters();
-
-    let html = '';
-
-    $.each(filters, function (key, value) {
-
-        if (value !== '' && value !== 'latest') {
-
-            html += `
-                <span class="badge bg-primary me-2 mb-2">
-
-                    ${value}
-
-                </span>
-            `;
-
-        }
-
-    });
-
-    if (html !== '') {
-
-        resultContainer.before(`
-
-            <div id="activeFilters" class="mb-3">
-
-                ${html}
-
-            </div>
-
-        `);
-
-    }
-
-}
-
-/* ===========================================
-   After AJAX Load
-=========================================== */
-
-function afterLoad() {
-
-    updateCounter();
-
-    updateBadges();
-
-}
-
-/* Continue JS Part 2B */
-/* ===========================================
-   Refresh UI After AJAX
-=========================================== */
-
-function refreshPageUI() {
-
-    afterLoad();
-
-    // Bootstrap Tooltips
-    if (typeof bootstrap !== "undefined") {
-
-        document
-            .querySelectorAll('[data-bs-toggle="tooltip"]')
-            .forEach(function (el) {
-
-                new bootstrap.Tooltip(el);
-
-            });
-
-    }
-
-}
-
-/* ===========================================
-   AJAX Success Override
-=========================================== */
-
-/*
-Call this after replacing #jobs HTML.
-Replace:
-
-resultContainer.html(html);
-
-with:
-
-resultContainer.html(html);
-refreshPageUI();
-*/
-
-$(document).ajaxSuccess(function () {
-
-    refreshPageUI();
-
-});
-
-/* ===========================================
-   Filter Count
-=========================================== */
-
-function filterCount() {
-
-    let count = 0;
-
-    $("#filterForm")
-        .find("input,select")
-        .each(function () {
-
-            let value = $(this).val();
-
-            if (
-                value !== "" &&
-                value !== null &&
-                value !== "latest"
-            ) {
-
-                count++;
+                $(".loading-overlay").removeClass("show");
 
             }
 
         });
 
-    $("#filterCount").text(count);
-
-}
-
-/* ===========================================
-   Filter Events
-=========================================== */
-
-$("#filterForm").on(
-    "change keyup",
-    "input,select",
-    function () {
-
-        filterCount();
-
     }
-);
+    
+    /* ==========================================
+       Update URL After Every Load
+    ========================================== */
 
-filterCount();
+    $(document).ajaxSuccess(function () {
 
-/* ===========================================
-   Scroll To Top
-=========================================== */
-
-$("#scrollTop").on("click", function () {
-
-    $("html,body").animate({
-
-        scrollTop: 0
-
-    }, 400);
-
-});
-
-/* Continue JS Part 2C */
-/* ===========================================
-   JS Part 2C
-   Final Utilities
-=========================================== */
-
-/* Hide Active Filters if Empty */
-
-function toggleActiveFilters() {
-
-    if ($("#activeFilters .badge").length === 0) {
-
-        $("#activeFilters").hide();
-
-    } else {
-
-        $("#activeFilters").show();
-
-    }
-
-}
-
-/* Highlight Current Filter */
-
-$("#filterForm select").each(function () {
-
-    if ($(this).val() !== "") {
-
-        $(this).addClass("border-primary");
-
-    }
-
-});
-
-$("#filterForm").on("change", "select", function () {
-
-    $(this).toggleClass(
-
-        "border-primary",
-
-        $(this).val() !== ""
-
-    );
-
-});
-
-/* Auto Close Mobile Filter */
-
-if ($(window).width() < 992) {
-
-    $("#btnSearch").on("click", function () {
-
-        $(".filter-sidebar").removeClass("show");
+        updateUrl();
 
     });
 
-}
+    /* ==========================================
+       Browser Back / Forward
+    ========================================== */
 
-/* Lazy Loading Images */
+    window.onpopstate = function () {
 
-$("img[data-src]").each(function () {
+        location.reload();
 
-    $(this).attr("src", $(this).data("src"));
+    };
 
-});
+    /* ==========================================
+       Dynamic Sub Category
+       (AJAX endpoint later)
+    ========================================== */
 
-/* Smooth Anchor */
+    $('#category').change(function () {
 
-$('a[href^="#"]').on("click", function (e) {
+        let category = $(this).val();
 
-    const target = $(this.getAttribute("href"));
+        $('#sub_category').html(
+            '<option value="">Loading...</option>'
+        );
 
-    if (target.length) {
+        $.ajax({
 
-        e.preventDefault();
+            url: "/ajax/sub-categories",
 
-        $("html,body").animate({
+            type: "GET",
 
-            scrollTop: target.offset().top - 20
+            data: {
+
+                category: category
+
+            },
+
+            success: function (response) {
+
+                let html = '';
+
+                html += '<option value="">All Sub Categories</option>';
+
+                $.each(response, function (index, item) {
+
+                    html += '<option value="' + item.slug + '">';
+
+                    html += item.name;
+
+                    html += '</option>';
+
+                });
+
+                $('#sub_category').html(html);
+
+            },
+
+            error: function () {
+
+                $('#sub_category').html(
+                    '<option value="">All Sub Categories</option>'
+                );
+
+            }
+
+        });
+
+    });
+
+
+    /* ==========================================
+       Filter From URL On Page Load
+    ========================================== */
+
+    (function () {
+
+        let params = new URLSearchParams(window.location.search);
+
+        if (params.has('search'))
+            $('#keyword').val(params.get('search'));
+
+        if (params.has('state'))
+            $('#state').val(params.get('state'));
+
+        if (params.has('category'))
+            $('#category').val(params.get('category'));
+
+        if (params.has('sub_category'))
+            $('#sub_category').val(params.get('sub_category'));
+
+        if (params.has('qualification'))
+            $('#qualification').val(params.get('qualification'));
+
+        if (params.has('job_type'))
+            $('#job_type').val(params.get('job_type'));
+
+        if (params.has('last_date'))
+            $('#last_date').val(params.get('last_date'));
+
+        if (params.has('sort'))
+            $('#sortBy').val(params.get('sort'));
+
+        if (params.has('page'))
+            page = parseInt(params.get('page'));
+
+    })();
+
+    /* ==========================================
+       Enter Key Search
+    ========================================== */
+
+    $('#keyword').keypress(function (e) {
+
+        if (e.which == 13) {
+
+            page = 1;
+
+            loadJobs();
+
+        }
+
+    });
+
+    /* ==========================================
+       Scroll To Top Button
+    ========================================== */
+
+    $('body').append(
+
+        '<button id="scrollTopBtn" class="btn btn-primary">' +
+
+            '<i class="fa-solid fa-arrow-up"></i>' +
+
+        '</button>'
+
+    );
+
+    $('#scrollTopBtn').css({
+
+        position: 'fixed',
+        right: '20px',
+        bottom: '20px',
+        width: '45px',
+        height: '45px',
+        borderRadius: '50%',
+        display: 'none',
+        zIndex: '9999'
+
+    });
+
+    $(window).scroll(function () {
+
+        if ($(this).scrollTop() > 300) {
+
+            $('#scrollTopBtn').fadeIn();
+
+        } else {
+
+            $('#scrollTopBtn').fadeOut();
+
+        }
+
+    });
+
+    $(document).on('click', '#scrollTopBtn', function () {
+
+        $('html, body').animate({
+
+            scrollTop: 0
 
         }, 400);
 
+    });
+
+    /* ==========================================
+       Initialize
+    ========================================== */
+
+    updateUrl();
+
+/* ==========================================
+       Browser URL Update
+    ========================================== */
+
+    function updateUrl() {
+
+        let params = new URLSearchParams();
+
+        if ($('#keyword').val() != '')
+            params.set('search', $('#keyword').val());
+
+        if ($('#state').val() != '')
+            params.set('state', $('#state').val());
+
+        if ($('#category').val() != '')
+            params.set('category', $('#category').val());
+
+        if ($('#sub_category').val() != '')
+            params.set('sub_category', $('#sub_category').val());
+
+        if ($('#qualification').val() != '')
+            params.set('qualification', $('#qualification').val());
+
+        if ($('#job_type').val() != '')
+            params.set('job_type', $('#job_type').val());
+
+        if ($('#last_date').val() != '')
+            params.set('last_date', $('#last_date').val());
+
+        if ($('#sortBy').val() != 'latest')
+            params.set('sort', $('#sortBy').val());
+
+        if (page > 1)
+            params.set('page', page);
+
+        let url = window.location.pathname;
+
+        if (params.toString() != '') {
+
+            url += '?' + params.toString();
+
+        }
+
+        window.history.replaceState({}, '', url);
+
     }
 
+/* ==========================================
+   End Script
+========================================== */
 });
-
-/* ===========================================
-   Initialize
-=========================================== */
-
-$(function () {
-
-    updateCounter();
-
-    updateBadges();
-
-    filterCount();
-
-    toggleActiveFilters();
-
-});
-
-/* ===========================================
-   Console
-=========================================== */
-
-console.log(
-    "SarkariHai Job Listing Loaded Successfully"
-);
-
 </script>
-
 
 @endsection
