@@ -1,12 +1,4 @@
-@extends('layouts.app')
-
-@section('title')
-Sarkari Naukri 2026 - Latest Government Jobs
-@endsection
-
-@section('meta_description')
-Find the latest Sarkari Naukri, Government Jobs, Railway Jobs, SSC, UPSC, Banking, Police, Defence, Teaching, PSU, State Wise Govt Jobs, Online Forms and Recruitment Notifications.
-@endsection
+@extends('layouts.front')
 
 @section('content')
 
