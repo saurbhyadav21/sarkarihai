@@ -770,7 +770,7 @@
 
         <div class="link-grid mb-4">
 
-            {{-- <a href="{{ route('sarkari.naukri.state', 'all-india') }}">
+            <a href="{{ route('sarkari.naukri.state', 'all-india') }}">
                 All India
                 <span>
                     ({{ $totalJobs }})
@@ -787,7 +787,7 @@
                     </span>
 
                 </a>
-            @endforeach --}}
+            @endforeach
 
         </div>
 
