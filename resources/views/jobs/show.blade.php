@@ -65,8 +65,7 @@
         /* HERO */
 
         .hero {
-            background: linear-gradient(135deg, #062a3a, #0a5467)
-            padding: 55px 0;
+            background: linear-gradient(135deg, #062a3a, #0a5467) padding: 55px 0;
             color: #fff;
         }
 
@@ -305,18 +304,18 @@
         }
 
         /* .summary-card{
-                    background:#fff;
-                    border-radius:15px;
-                    box-shadow:
-                    0 10px 30px rgba(0,0,0,.08);
-                    padding:30px;
-                    border-top:4px solid #F59E0B;
-                    display:grid;
-                    }
+                        background:#fff;
+                        border-radius:15px;
+                        box-shadow:
+                        0 10px 30px rgba(0,0,0,.08);
+                        padding:30px;
+                        border-top:4px solid #F59E0B;
+                        display:grid;
+                        }
 
-                    .summary-item{
-                    text-align:center;
-                    } */
+                        .summary-item{
+                        text-align:center;
+                        } */
         .summary-card {
             background: #fff;
             border-radius: 15px;
@@ -1370,9 +1369,9 @@
 
         /* Continue in Part 2C */
         /* ===========================================================
-           PART 2C
-           Premium UI Enhancements
-        =========================================================== */
+               PART 2C
+               Premium UI Enhancements
+            =========================================================== */
 
         /* ========================================= */
         /* Breadcrumb */
@@ -1683,9 +1682,9 @@
 
         /* Continue in Part 2D */
         /* ===========================================================
-           PART 2D
-           Responsive Design + Final CSS
-        =========================================================== */
+               PART 2D
+               Responsive Design + Final CSS
+            =========================================================== */
 
         /* ========================================= */
         /* Desktop (1400px+) */
@@ -2019,18 +2018,20 @@
 
                 <div>
 
-    <nav aria-label="breadcrumb" class="breadcrumb">
-        <a href="https://sarkarihai.com">Home</a>
-        <span class="sep">/</span>
-        <a href="https://sarkarihai.com/sarkari-naukri">Sarkari Naukri</a>
-    </nav>
+                    <nav aria-label="breadcrumb" class="breadcrumb">
+                        <a href="https://sarkarihai.com">Home</a>
+                        <span class="sep">/</span>
+                        <a href="https://sarkarihai.com/sarkari-naukri">Sarkari Naukri</a>
+                    </nav>
 
-    <h1>Latest Sarkari Naukri 2026 – Government Job Updates</h1>
+                    <h1>Latest Sarkari Naukri 2026 – Government Job Updates</h1>
 
-<p>
-Stay updated with the latest Sarkari Naukri 2026 notifications. Browse Central and State Government jobs, check eligibility, important dates, and apply online through official recruitment notifications.
-</p>
-</div>
+                    <p>
+                        Stay updated with the latest Sarkari Naukri 2026 notifications. Browse Central and State Government
+                        jobs, check eligibility, important dates, and apply online through official recruitment
+                        notifications.
+                    </p>
+                </div>
 
 
                 <div class="col-lg-4 mt-4 mt-lg-0">
@@ -2165,7 +2166,7 @@ Stay updated with the latest Sarkari Naukri 2026 notifications. Browse Central a
             <!-- Search Section -->
             <!-- ===================== -->
 
-            <div class="card shadow-sm border-0 mb-4">
+            {{-- <div class="card shadow-sm border-0 mb-4">
 
                 <div class="card-body">
 
@@ -2212,7 +2213,7 @@ Stay updated with the latest Sarkari Naukri 2026 notifications. Browse Central a
 
                 </div>
 
-            </div>
+            </div> --}}
 
             <!-- ===================== -->
             <!-- Statistics -->
@@ -3333,8 +3334,8 @@ Stay updated with the latest Sarkari Naukri 2026 notifications. Browse Central a
 
 
             /* ==========================================
-           AJAX Load Jobs
-        ========================================== */
+               AJAX Load Jobs
+            ========================================== */
 
             function loadJobs() {
 
