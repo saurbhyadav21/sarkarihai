@@ -1064,186 +1064,186 @@ class JobController extends Controller
     }
 
 
-    // public function latestJobs($state = null, $category = null)
-    // {
-
-    //     $query = DB::table('job_details');
-
-    //     // State filter
-    //     if (!empty($state)) {
-    //         $query->where('state', $state);
-    //     }
-
-    //     // Category filter
-    //     if (!empty($category)) {
-    //         $query->where('category', $category);
-    //     }
-
-    //     $jobs = $query
-    //         ->orderBy('id', 'DESC')
-    //         ->paginate(20);
-
-    //     return view('jobs.show', [
-    //         'jobs' => $jobs,
-    //         'state' => $state,
-    //         'category' => $category,
-    //     ]);
-    // }
-
-    // public function latestJobs(
-    //     Request $request,
-    //     $state = null,
-    //     $category = null
-    // ) {
-    //     $jobs = Job::query();
-
-    //     if ($request->filled('search')) {
-
-    //         $search = $request->search;
-
-    //         $jobs->where(function ($q) use ($search) {
-
-    //             $q->where('title', 'LIKE', "%{$search}%")
-    //                 ->orWhere('category', 'LIKE', "%{$search}%")
-    //                 ->orWhere('organization', 'LIKE', "%{$search}%")
-    //                 ->orWhere('state', 'LIKE', "%{$search}%");
-    //         });
-    //     }
-
-    //     if ($state && $state != 'all-india') {
-    //         $jobs->where('state', $state);
-    //     }
-
-    //     if ($category) {
-    //         $jobs->where('category', $category);
-    //     }
-
-    //     $jobs = $jobs
-    //         ->latest('id')
-    //         ->paginate(20);
-
-
-    //     return view('jobs.show', compact(
-    //         'jobs',
-    //         'state',
-    //         'category'
-    //     ));
-    // }
-
-
-    public function latestJobs(Request $request, $state = null, $category = null)
+    public function latestJobs($state = null, $category = null)
     {
-        $jobs = DB::table('job_details')
-            ->where('status', 1);
+
+        $query = DB::table('job_details');
+
+        // State filter
+        if (!empty($state)) {
+            $query->where('state', $state);
+        }
+
+        // Category filter
+        if (!empty($category)) {
+            $query->where('category', $category);
+        }
+
+        $jobs = $query
+            ->orderBy('id', 'DESC')
+            ->paginate(20);
+
+        return view('jobs.show', [
+            'jobs' => $jobs,
+            'state' => $state,
+            'category' => $category,
+        ]);
+    }
+
+    public function latestJobs(
+        Request $request,
+        $state = null,
+        $category = null
+    ) {
+        $jobs = Job::query();
 
         if ($request->filled('search')) {
 
-            $search = trim($request->search);
+            $search = $request->search;
 
             $jobs->where(function ($q) use ($search) {
 
-                $q->where('title', 'like', "%{$search}%")
-                    ->orWhere('organization', 'like', "%{$search}%")
-                    ->orWhere('category', 'like', "%{$search}%")
-                    ->orWhere('sub_category', 'like', "%{$search}%")
-                    ->orWhere('qualification', 'like', "%{$search}%")
-                    ->orWhere('state', 'like', "%{$search}%");
+                $q->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('category', 'LIKE', "%{$search}%")
+                    ->orWhere('organization', 'LIKE', "%{$search}%")
+                    ->orWhere('state', 'LIKE', "%{$search}%");
             });
         }
 
-        if (!empty($state) && $state != 'all-india') {
+        if ($state && $state != 'all-india') {
             $jobs->where('state', $state);
         }
 
-        if (!empty($category)) {
+        if ($category) {
             $jobs->where('category', $category);
         }
 
         $jobs = $jobs
-            ->orderByDesc('id')
+            ->latest('id')
             ->paginate(20);
 
-        // ======================
-        // Statistics
-        // ======================
-
-        $totalJobs = DB::table('job_details')->count();
-
-        $todayJobs = DB::table('job_details')
-            ->where('status', 1)
-            ->whereDate('created_at', today())
-            ->count();
-
-        $closingSoonJobs = DB::table('job_details')
-            ->where('status', 1)
-            ->whereDate('end_date', '>=', today())
-            ->whereDate('end_date', '<=', today()->copy()->addDays(7))
-            ->count();
-
-        $activeJobs = DB::table('job_details')
-            ->where('status', 1)
-            ->whereDate('end_date', '>=', today())
-            ->count();
-
-        // ======================
-        // Filters
-        // ======================
-
-        $states = DB::table('job_details')
-            ->select('state')
-            ->whereNotNull('state')
-            ->where('state', '!=', '')
-            ->distinct()
-            ->orderBy('state')
-            ->pluck('state');
-
-        $categories = DB::table('job_details')
-            ->select('category')
-            ->whereNotNull('category')
-            ->where('category', '!=', '')
-            ->distinct()
-            ->orderBy('category')
-            ->pluck('category');
-
-        $qualifications = DB::table('job_details')
-            ->whereNotNull('min_qulification')
-            ->where('min_qulification', '!=', '')
-            ->pluck('min_qulification');
-
-        $uniqueQualifications = [];
-
-        foreach ($qualifications as $item) {
-
-            $parts = explode('#', $item);
-
-            foreach ($parts as $qualification) {
-
-                $qualification = trim($qualification);
-
-                if ($qualification != '') {
-
-                    $uniqueQualifications[$qualification] = $qualification;
-                }
-            }
-        }
-
-        ksort($uniqueQualifications);
-
-        $qualifications = array_values($uniqueQualifications);
 
         return view('jobs.show', compact(
             'jobs',
             'state',
-            'category',
-            'totalJobs',
-            'todayJobs',
-            'closingSoonJobs',
-            'activeJobs',
-            'states',
-            'categories',
-            'qualifications'
+            'category'
         ));
     }
+
+
+    // public function latestJobs(Request $request, $state = null, $category = null)
+    // {
+    //     $jobs = DB::table('job_details')
+    //         ->where('status', 1);
+
+    //     if ($request->filled('search')) {
+
+    //         $search = trim($request->search);
+
+    //         $jobs->where(function ($q) use ($search) {
+
+    //             $q->where('title', 'like', "%{$search}%")
+    //                 ->orWhere('organization', 'like', "%{$search}%")
+    //                 ->orWhere('category', 'like', "%{$search}%")
+    //                 ->orWhere('sub_category', 'like', "%{$search}%")
+    //                 ->orWhere('qualification', 'like', "%{$search}%")
+    //                 ->orWhere('state', 'like', "%{$search}%");
+    //         });
+    //     }
+
+    //     if (!empty($state) && $state != 'all-india') {
+    //         $jobs->where('state', $state);
+    //     }
+
+    //     if (!empty($category)) {
+    //         $jobs->where('category', $category);
+    //     }
+
+    //     $jobs = $jobs
+    //         ->orderByDesc('id')
+    //         ->paginate(20);
+
+    //     // ======================
+    //     // Statistics
+    //     // ======================
+
+    //     $totalJobs = DB::table('job_details')->count();
+
+    //     $todayJobs = DB::table('job_details')
+    //         ->where('status', 1)
+    //         ->whereDate('created_at', today())
+    //         ->count();
+
+    //     $closingSoonJobs = DB::table('job_details')
+    //         ->where('status', 1)
+    //         ->whereDate('end_date', '>=', today())
+    //         ->whereDate('end_date', '<=', today()->copy()->addDays(7))
+    //         ->count();
+
+    //     $activeJobs = DB::table('job_details')
+    //         ->where('status', 1)
+    //         ->whereDate('end_date', '>=', today())
+    //         ->count();
+
+    //     // ======================
+    //     // Filters
+    //     // ======================
+
+    //     $states = DB::table('job_details')
+    //         ->select('state')
+    //         ->whereNotNull('state')
+    //         ->where('state', '!=', '')
+    //         ->distinct()
+    //         ->orderBy('state')
+    //         ->pluck('state');
+
+    //     $categories = DB::table('job_details')
+    //         ->select('category')
+    //         ->whereNotNull('category')
+    //         ->where('category', '!=', '')
+    //         ->distinct()
+    //         ->orderBy('category')
+    //         ->pluck('category');
+
+    //     $qualifications = DB::table('job_details')
+    //         ->whereNotNull('min_qulification')
+    //         ->where('min_qulification', '!=', '')
+    //         ->pluck('min_qulification');
+
+    //     $uniqueQualifications = [];
+
+    //     foreach ($qualifications as $item) {
+
+    //         $parts = explode('#', $item);
+
+    //         foreach ($parts as $qualification) {
+
+    //             $qualification = trim($qualification);
+
+    //             if ($qualification != '') {
+
+    //                 $uniqueQualifications[$qualification] = $qualification;
+    //             }
+    //         }
+    //     }
+
+    //     ksort($uniqueQualifications);
+
+    //     $qualifications = array_values($uniqueQualifications);
+
+    //     return view('jobs.show', compact(
+    //         'jobs',
+    //         'state',
+    //         'category',
+    //         'totalJobs',
+    //         'todayJobs',
+    //         'closingSoonJobs',
+    //         'activeJobs',
+    //         'states',
+    //         'categories',
+    //         'qualifications'
+    //     ));
+    // }
 
 //     public function latestJobs(
 //     Request $request,
