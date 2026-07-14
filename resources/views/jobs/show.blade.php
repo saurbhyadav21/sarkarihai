@@ -2906,7 +2906,7 @@
 
                                                 <div class="d-grid gap-2">
 
-                                                    <a href="{{ url($job->slug) }}" class="btn btn-primary">
+                                                    {{-- <a href="{{ url($job->slug) }}" class="btn btn-primary">
 
                                                         <i class="fa-solid fa-eye me-2"></i>
 
@@ -2930,7 +2930,7 @@
 
                                                         Notification
 
-                                                    </a>
+                                                    </a> --}}
 
                                                 </div>
 
