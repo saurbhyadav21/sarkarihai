@@ -2758,12 +2758,12 @@
 
                                                     <h5 class="mb-2">
 
-                                                        <a href="{{ url($job->slug) }}"
+                                                        {{-- <a href="{{ url($job->slug) }}"
                                                             class="text-dark text-decoration-none fw-bold">
 
                                                             {{ $job->title }}
 
-                                                        </a>
+                                                        </a> --}}
 
                                                     </h5>
 
