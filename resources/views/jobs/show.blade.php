@@ -1097,9 +1097,10 @@
                                         <td>
 
                                             @if (is_numeric($job->min_salary) && is_numeric($job->max_salary))
-                                                ₹{{ number_format((float) $job->min_salary) }}
-                                                -
+                                                ₹{{ number_format((float) $job->min_salary) }} -
                                                 ₹{{ number_format((float) $job->max_salary) }}
+                                            @elseif(is_numeric($job->min_salary))
+                                                ₹{{ number_format((float) $job->min_salary) }}
                                             @elseif(!empty($job->salary_text))
                                                 {{ $job->salary_text }}
                                             @else
