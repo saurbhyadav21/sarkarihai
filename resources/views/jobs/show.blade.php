@@ -2,68 +2,365 @@
 
 @section('content')
 
-<div class="container-xxl py-4">
+    <div class="container-xxl py-4">
 
-    {{-- ================= Breadcrumb ================= --}}
+        {{-- ================= Breadcrumb ================= --}}
 
-    <nav aria-label="breadcrumb" class="mb-3">
+        <nav aria-label="breadcrumb" class="mb-3">
 
-        <ol class="breadcrumb">
+            <ol class="breadcrumb">
 
-            <li class="breadcrumb-item">
-                <a href="{{ url('/') }}">
-                    Home
-                </a>
-            </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url('/') }}">
+                        Home
+                    </a>
+                </li>
 
-            <li class="breadcrumb-item active">
-                Sarkari Naukri
-            </li>
+                <li class="breadcrumb-item active">
+                    Sarkari Naukri
+                </li>
 
-        </ol>
+            </ol>
 
-    </nav>
+        </nav>
 
-    {{-- ================= Hero ================= --}}
+        {{-- ================= Hero ================= --}}
 
-    <div class="card shadow-sm border-0 rounded-4 mb-4">
+        <div class="card shadow-sm border-0 rounded-4 mb-4">
 
-        <div class="card-body p-4 p-lg-5">
+            <div class="card-body p-4 p-lg-5">
 
-            <div class="row align-items-center">
+                <div class="row align-items-center">
 
-                <div class="col-lg-8">
+                    <div class="col-lg-8">
 
-                    <span class="badge bg-primary mb-3">
+                        <span class="badge bg-primary mb-3">
 
-                        <i class="fa-solid fa-briefcase me-1"></i>
+                            <i class="fa-solid fa-briefcase me-1"></i>
 
-                        Government Jobs 2026
+                            Government Jobs 2026
 
-                    </span>
+                        </span>
 
-                    <h1 class="fw-bold mb-3">
+                        <h1 class="fw-bold mb-3">
 
-                        Latest Sarkari Naukri 2026
+                            Latest Sarkari Naukri 2026
 
-                    </h1>
+                        </h1>
 
-                    <p class="text-muted mb-0">
+                        <p class="text-muted mb-0">
 
-                        Browse the latest Government Jobs, Railway, SSC,
-                        Banking, UPSC, Defence, Police, Teaching,
-                        PSU and State Government Recruitment.
+                            Browse the latest Government Jobs, Railway, SSC,
+                            Banking, UPSC, Defence, Police, Teaching,
+                            PSU and State Government Recruitment.
 
-                    </p>
+                        </p>
+
+                    </div>
+
+                    <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+
+                        <a href="#jobs" class="btn btn-primary btn-lg px-4">
+
+                            Browse Jobs
+
+                        </a>
+
+                    </div>
 
                 </div>
 
-                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+            </div>
 
-                    <a href="#jobs"
-                       class="btn btn-primary btn-lg px-4">
+        </div>
 
-                        Browse Jobs
+        {{-- ================= Statistics ================= --}}
+
+        <div class="row g-4 mb-4">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card stat-card">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <small class="text-muted">
+
+                                    Total Jobs
+
+                                </small>
+
+                                <h3 class="mt-2">
+
+                                    {{ number_format($totalJobs) }}
+
+                                </h3>
+
+                            </div>
+
+                            <div class="icon-box bg-primary">
+
+                                <i class="fa-solid fa-briefcase"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card stat-card">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <small class="text-muted">
+
+                                    Today Added
+
+                                </small>
+
+                                <h3 class="mt-2">
+
+                                    {{ number_format($todayJobs) }}
+
+                                </h3>
+
+                            </div>
+
+                            <div class="icon-box bg-success">
+
+                                <i class="fa-solid fa-plus"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card stat-card">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <small class="text-muted">
+
+                                    Active Jobs
+
+                                </small>
+
+                                <h3 class="mt-2">
+
+                                    {{ number_format($activeJobs) }}
+
+                                </h3>
+
+                            </div>
+
+                            <div class="icon-box bg-warning">
+
+                                <i class="fa-solid fa-fire"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card stat-card">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <small class="text-muted">
+
+                                    Closing Soon
+
+                                </small>
+
+                                <h3 class="mt-2">
+
+                                    {{ number_format($closingSoonJobs) }}
+
+                                </h3>
+
+                            </div>
+
+                            <div class="icon-box bg-danger">
+
+                                <i class="fa-solid fa-clock"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {{-- Continue Blade Part 1B --}}
+        {{-- ================= Search Section ================= --}}
+
+        <div class="card shadow-sm border-0 rounded-4 mb-4">
+
+            <div class="card-body">
+
+                <div class="row g-3 align-items-center">
+
+                    <div class="col-lg-8">
+
+                        <div class="input-group">
+
+                            <span class="input-group-text bg-white">
+
+                                <i class="fa-solid fa-magnifying-glass"></i>
+
+                            </span>
+
+                            <input type="text" id="keyword" class="form-control"
+                                placeholder="Search jobs, organization, category..." value="{{ request('search') }}">
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-2">
+
+                        <button type="button" id="applyFilter" class="btn btn-primary w-100">
+
+                            <i class="fa-solid fa-filter me-1"></i>
+
+                            Search
+
+                        </button>
+
+                    </div>
+
+                    <div class="col-lg-2">
+
+                        <button type="button" id="clearFilter" class="btn btn-outline-secondary w-100">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {{-- ================= Quick Categories ================= --}}
+
+        <div class="card shadow-sm border-0 rounded-4 mb-4">
+
+            <div class="card-header">
+
+                <strong>
+
+                    Popular Categories
+
+                </strong>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="d-flex flex-wrap gap-2">
+
+                    <a href="?category=Railway" class="btn btn-light border">
+
+                        Railway Jobs
+
+                    </a>
+
+                    <a href="?category=SSC" class="btn btn-light border">
+
+                        SSC Jobs
+
+                    </a>
+
+                    <a href="?category=Banking" class="btn btn-light border">
+
+                        Banking Jobs
+
+                    </a>
+
+                    <a href="?category=UPSC" class="btn btn-light border">
+
+                        UPSC Jobs
+
+                    </a>
+
+                    <a href="?category=Defence" class="btn btn-light border">
+
+                        Defence Jobs
+
+                    </a>
+
+                    <a href="?category=Police" class="btn btn-light border">
+
+                        Police Jobs
+
+                    </a>
+
+                    <a href="?category=Teaching" class="btn btn-light border">
+
+                        Teaching Jobs
+
+                    </a>
+
+                    <a href="?category=Medical" class="btn btn-light border">
+
+                        Medical Jobs
+
+                    </a>
+
+                    <a href="?category=Engineering" class="btn btn-light border">
+
+                        Engineering Jobs
+
+                    </a>
+
+                    <a href="?category=Apprentice" class="btn btn-light border">
+
+                        Apprentice Jobs
 
                     </a>
 
@@ -73,456 +370,120 @@
 
         </div>
 
-    </div>
+        {{-- ================= Jobs Wrapper Start ================= --}}
 
-    {{-- ================= Statistics ================= --}}
+        <div class="row" id="jobs">
 
-    <div class="row g-4 mb-4">
+            {{-- Continue Blade Part 1C --}}
+            <option value="">All States</option>
 
-        <div class="col-lg-3 col-md-6">
+            @foreach ($states as $stateItem)
+                <option value="{{ $stateItem }}" {{ request('state') == $stateItem ? 'selected' : '' }}>
 
-            <div class="card stat-card">
+                    {{ $stateItem }}
 
-                <div class="card-body">
+                </option>
+            @endforeach
 
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <div>
-
-                            <small class="text-muted">
-
-                                Total Jobs
-
-                            </small>
-
-                            <h3 class="mt-2">
-
-                                {{ number_format($totalJobs) }}
-
-                            </h3>
-
-                        </div>
-
-                        <div class="icon-box bg-primary">
-
-                            <i class="fa-solid fa-briefcase"></i>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
+            </select>
 
         </div>
 
+        {{-- Category --}}
+
         <div class="col-lg-3 col-md-6">
 
-            <div class="card stat-card">
+            <label class="form-label fw-semibold">
 
-                <div class="card-body">
+                Category
 
-                    <div class="d-flex justify-content-between align-items-center">
+            </label>
 
-                        <div>
+            <select id="category" class="form-select">
 
-                            <small class="text-muted">
+                <option value="">All Categories</option>
 
-                                Today Added
+                @foreach ($categories as $categoryItem)
+                    <option value="{{ $categoryItem }}" {{ request('category') == $categoryItem ? 'selected' : '' }}>
 
-                            </small>
+                        {{ $categoryItem }}
 
-                            <h3 class="mt-2">
+                    </option>
+                @endforeach
 
-                                {{ number_format($todayJobs) }}
-
-                            </h3>
-
-                        </div>
-
-                        <div class="icon-box bg-success">
-
-                            <i class="fa-solid fa-plus"></i>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
+            </select>
 
         </div>
 
+        {{-- Sub Category --}}
+
         <div class="col-lg-3 col-md-6">
 
-            <div class="card stat-card">
+            <label class="form-label fw-semibold">
 
-                <div class="card-body">
+                Sub Category
 
-                    <div class="d-flex justify-content-between align-items-center">
+            </label>
 
-                        <div>
+            <select id="sub_category" class="form-select">
 
-                            <small class="text-muted">
+                <option value="">
 
-                                Active Jobs
+                    All Sub Categories
 
-                            </small>
+                </option>
 
-                            <h3 class="mt-2">
+                @foreach ($subCategories as $subCategory)
+                    <option value="{{ $subCategory }}" {{ request('sub_category') == $subCategory ? 'selected' : '' }}>
 
-                                {{ number_format($activeJobs) }}
+                        {{ $subCategory }}
 
-                            </h3>
+                    </option>
+                @endforeach
 
-                        </div>
-
-                        <div class="icon-box bg-warning">
-
-                            <i class="fa-solid fa-fire"></i>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
+            </select>
 
         </div>
 
+        {{-- Qualification --}}
+
         <div class="col-lg-3 col-md-6">
 
-            <div class="card stat-card">
+            <label class="form-label fw-semibold">
 
-                <div class="card-body">
+                Qualification
 
-                    <div class="d-flex justify-content-between align-items-center">
+            </label>
 
-                        <div>
+            <select id="qualification" class="form-select">
 
-                            <small class="text-muted">
+                <option value="">
 
-                                Closing Soon
+                    All Qualification
 
-                            </small>
+                </option>
 
-                            <h3 class="mt-2">
+                @foreach ($qualifications as $qualification)
+                    <option value="{{ $qualification }}"
+                        {{ request('qualification') == $qualification ? 'selected' : '' }}>
 
-                                {{ number_format($closingSoonJobs) }}
+                        {{ $qualification }}
 
-                            </h3>
+                    </option>
+                @endforeach
 
-                        </div>
-
-                        <div class="icon-box bg-danger">
-
-                            <i class="fa-solid fa-clock"></i>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
+            </select>
 
         </div>
 
     </div>
 
-    {{-- Continue Blade Part 1B --}}
-        {{-- ================= Search Section ================= --}}
-
-    <div class="card shadow-sm border-0 rounded-4 mb-4">
-
-        <div class="card-body">
-
-            <div class="row g-3 align-items-center">
-
-                <div class="col-lg-8">
-
-                    <div class="input-group">
-
-                        <span class="input-group-text bg-white">
-
-                            <i class="fa-solid fa-magnifying-glass"></i>
-
-                        </span>
-
-                        <input
-                            type="text"
-                            id="keyword"
-                            class="form-control"
-                            placeholder="Search jobs, organization, category..."
-                            value="{{ request('search') }}"
-                        >
-
-                    </div>
-
-                </div>
-
-                <div class="col-lg-2">
-
-                    <button
-                        type="button"
-                        id="applyFilter"
-                        class="btn btn-primary w-100">
-
-                        <i class="fa-solid fa-filter me-1"></i>
-
-                        Search
-
-                    </button>
-
-                </div>
-
-                <div class="col-lg-2">
-
-                    <button
-                        type="button"
-                        id="clearFilter"
-                        class="btn btn-outline-secondary w-100">
-
-                        Reset
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
-
-    {{-- ================= Quick Categories ================= --}}
-
-    <div class="card shadow-sm border-0 rounded-4 mb-4">
-
-        <div class="card-header">
-
-            <strong>
-
-                Popular Categories
-
-            </strong>
-
-        </div>
-
-        <div class="card-body">
-
-            <div class="d-flex flex-wrap gap-2">
-
-                <a href="?category=Railway"
-                   class="btn btn-light border">
-
-                    Railway Jobs
-
-                </a>
-
-                <a href="?category=SSC"
-                   class="btn btn-light border">
-
-                    SSC Jobs
-
-                </a>
-
-                <a href="?category=Banking"
-                   class="btn btn-light border">
-
-                    Banking Jobs
-
-                </a>
-
-                <a href="?category=UPSC"
-                   class="btn btn-light border">
-
-                    UPSC Jobs
-
-                </a>
-
-                <a href="?category=Defence"
-                   class="btn btn-light border">
-
-                    Defence Jobs
-
-                </a>
-
-                <a href="?category=Police"
-                   class="btn btn-light border">
-
-                    Police Jobs
-
-                </a>
-
-                <a href="?category=Teaching"
-                   class="btn btn-light border">
-
-                    Teaching Jobs
-
-                </a>
-
-                <a href="?category=Medical"
-                   class="btn btn-light border">
-
-                    Medical Jobs
-
-                </a>
-
-                <a href="?category=Engineering"
-                   class="btn btn-light border">
-
-                    Engineering Jobs
-
-                </a>
-
-                <a href="?category=Apprentice"
-                   class="btn btn-light border">
-
-                    Apprentice Jobs
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    {{-- ================= Jobs Wrapper Start ================= --}}
-
-    <div class="row" id="jobs">
-
-        {{-- Continue Blade Part 1C --}}
-                                <option value="">All States</option>
-
-                        @foreach($states as $stateItem)
-
-                            <option value="{{ $stateItem }}"
-                                {{ request('state') == $stateItem ? 'selected' : '' }}>
-
-                                {{ $stateItem }}
-
-                            </option>
-
-                        @endforeach
-
-                    </select>
-
-                </div>
-
-                {{-- Category --}}
-
-                <div class="col-lg-3 col-md-6">
-
-                    <label class="form-label fw-semibold">
-
-                        Category
-
-                    </label>
-
-                    <select
-                        id="category"
-                        class="form-select">
-
-                        <option value="">All Categories</option>
-
-                        @foreach($categories as $categoryItem)
-
-                            <option value="{{ $categoryItem }}"
-                                {{ request('category') == $categoryItem ? 'selected' : '' }}>
-
-                                {{ $categoryItem }}
-
-                            </option>
-
-                        @endforeach
-
-                    </select>
-
-                </div>
-
-                {{-- Sub Category --}}
-
-                <div class="col-lg-3 col-md-6">
-
-                    <label class="form-label fw-semibold">
-
-                        Sub Category
-
-                    </label>
-
-                    <select
-                        id="sub_category"
-                        class="form-select">
-
-                        <option value="">
-
-                            All Sub Categories
-
-                        </option>
-
-                        @foreach($subCategories as $subCategory)
-
-                            <option value="{{ $subCategory }}"
-                                {{ request('sub_category') == $subCategory ? 'selected' : '' }}>
-
-                                {{ $subCategory }}
-
-                            </option>
-
-                        @endforeach
-
-                    </select>
-
-                </div>
-
-                {{-- Qualification --}}
-
-                <div class="col-lg-3 col-md-6">
-
-                    <label class="form-label fw-semibold">
-
-                        Qualification
-
-                    </label>
-
-                    <select
-                        id="qualification"
-                        class="form-select">
-
-                        <option value="">
-
-                            All Qualification
-
-                        </option>
-
-                        @foreach($qualifications as $qualification)
-
-                            <option value="{{ $qualification }}"
-                                {{ request('qualification') == $qualification ? 'selected' : '' }}>
-
-                                {{ $qualification }}
-
-                            </option>
-
-                        @endforeach
-
-                    </select>
-
-                </div>
-
-            </div>
-
-        </div>
 
     </div>
 
     {{-- Continue Blade Part 1D --}}
-        {{-- ================= Sort + Result Bar ================= --}}
+    {{-- ================= Sort + Result Bar ================= --}}
 
     <div class="card border-0 shadow-sm rounded-4 mb-4">
 
@@ -555,40 +516,33 @@
 
                 <div class="col-lg-6 text-lg-end">
 
-                    <select
-                        id="sortBy"
-                        class="form-select w-auto d-inline-block">
+                    <select id="sortBy" class="form-select w-auto d-inline-block">
 
-                        <option value="latest"
-                            {{ request('sort')=='latest' ? 'selected' : '' }}>
+                        <option value="latest" {{ request('sort') == 'latest' ? 'selected' : '' }}>
 
                             Latest First
 
                         </option>
 
-                        <option value="oldest"
-                            {{ request('sort')=='oldest' ? 'selected' : '' }}>
+                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>
 
                             Oldest First
 
                         </option>
 
-                        <option value="title"
-                            {{ request('sort')=='title' ? 'selected' : '' }}>
+                        <option value="title" {{ request('sort') == 'title' ? 'selected' : '' }}>
 
                             Job Title
 
                         </option>
 
-                        <option value="organization"
-                            {{ request('sort')=='organization' ? 'selected' : '' }}>
+                        <option value="organization" {{ request('sort') == 'organization' ? 'selected' : '' }}>
 
                             Organization
 
                         </option>
 
-                        <option value="last_date"
-                            {{ request('sort')=='last_date' ? 'selected' : '' }}>
+                        <option value="last_date" {{ request('sort') == 'last_date' ? 'selected' : '' }}>
 
                             Last Date
 
@@ -650,7 +604,7 @@
 
     </div>
 
-</div>
+    </div>
 
 @endsection
 
@@ -669,11 +623,7 @@
 
         </label>
 
-        <input
-            type="text"
-            id="keyword"
-            class="form-control"
-            placeholder="Job Title, Organization..."
+        <input type="text" id="keyword" class="form-control" placeholder="Job Title, Organization..."
             value="{{ request('search') }}">
 
     </div>
@@ -688,9 +638,7 @@
 
         </label>
 
-        <select
-            id="state"
-            class="form-select">
+        <select id="state" class="form-select">
 
             <option value="">
 
@@ -698,16 +646,12 @@
 
             </option>
 
-            @foreach($states as $stateItem)
-
-                <option
-                    value="{{ $stateItem }}"
-                    {{ request('state')==$stateItem ? 'selected' : '' }}>
+            @foreach ($states as $stateItem)
+                <option value="{{ $stateItem }}" {{ request('state') == $stateItem ? 'selected' : '' }}>
 
                     {{ $stateItem }}
 
                 </option>
-
             @endforeach
 
         </select>
@@ -724,9 +668,7 @@
 
         </label>
 
-        <select
-            id="category"
-            class="form-select">
+        <select id="category" class="form-select">
 
             <option value="">
 
@@ -734,16 +676,12 @@
 
             </option>
 
-            @foreach($categories as $categoryItem)
-
-                <option
-                    value="{{ $categoryItem }}"
-                    {{ request('category')==$categoryItem ? 'selected' : '' }}>
+            @foreach ($categories as $categoryItem)
+                <option value="{{ $categoryItem }}" {{ request('category') == $categoryItem ? 'selected' : '' }}>
 
                     {{ $categoryItem }}
 
                 </option>
-
             @endforeach
 
         </select>
@@ -760,9 +698,7 @@
 
         </label>
 
-        <select
-            id="sub_category"
-            class="form-select">
+        <select id="sub_category" class="form-select">
 
             <option value="">
 
@@ -770,16 +706,12 @@
 
             </option>
 
-            @foreach($subCategories as $subCategory)
-
-                <option
-                    value="{{ $subCategory }}"
-                    {{ request('sub_category')==$subCategory ? 'selected' : '' }}>
+            @foreach ($subCategories as $subCategory)
+                <option value="{{ $subCategory }}" {{ request('sub_category') == $subCategory ? 'selected' : '' }}>
 
                     {{ $subCategory }}
 
                 </option>
-
             @endforeach
 
         </select>
@@ -796,9 +728,7 @@
 
         </label>
 
-        <select
-            id="qualification"
-            class="form-select">
+        <select id="qualification" class="form-select">
 
             <option value="">
 
@@ -806,16 +736,13 @@
 
             </option>
 
-            @foreach($qualifications as $qualification)
-
-                <option
-                    value="{{ $qualification }}"
-                    {{ request('qualification')==$qualification ? 'selected' : '' }}>
+            @foreach ($qualifications as $qualification)
+                <option value="{{ $qualification }}"
+                    {{ request('qualification') == $qualification ? 'selected' : '' }}>
 
                     {{ $qualification }}
 
                 </option>
-
             @endforeach
 
         </select>
@@ -823,7 +750,7 @@
     </div>
 
     {{-- Continue Blade Part 2B --}}
-        {{-- Job Type --}}
+    {{-- Job Type --}}
 
     <div class="mb-4">
 
@@ -833,9 +760,7 @@
 
         </label>
 
-        <select
-            id="job_type"
-            class="form-select">
+        <select id="job_type" class="form-select">
 
             <option value="">
 
@@ -843,36 +768,31 @@
 
             </option>
 
-            <option value="Permanent"
-                {{ request('job_type')=='Permanent' ? 'selected' : '' }}>
+            <option value="Permanent" {{ request('job_type') == 'Permanent' ? 'selected' : '' }}>
 
                 Permanent
 
             </option>
 
-            <option value="Contract"
-                {{ request('job_type')=='Contract' ? 'selected' : '' }}>
+            <option value="Contract" {{ request('job_type') == 'Contract' ? 'selected' : '' }}>
 
                 Contract
 
             </option>
 
-            <option value="Apprentice"
-                {{ request('job_type')=='Apprentice' ? 'selected' : '' }}>
+            <option value="Apprentice" {{ request('job_type') == 'Apprentice' ? 'selected' : '' }}>
 
                 Apprentice
 
             </option>
 
-            <option value="Internship"
-                {{ request('job_type')=='Internship' ? 'selected' : '' }}>
+            <option value="Internship" {{ request('job_type') == 'Internship' ? 'selected' : '' }}>
 
                 Internship
 
             </option>
 
-            <option value="Walk-In"
-                {{ request('job_type')=='Walk-In' ? 'selected' : '' }}>
+            <option value="Walk-In" {{ request('job_type') == 'Walk-In' ? 'selected' : '' }}>
 
                 Walk-In
 
@@ -892,40 +812,33 @@
 
         </label>
 
-        <select
-            id="sortBy"
-            class="form-select">
+        <select id="sortBy" class="form-select">
 
-            <option value="latest"
-                {{ request('sort')=='latest' ? 'selected' : '' }}>
+            <option value="latest" {{ request('sort') == 'latest' ? 'selected' : '' }}>
 
                 Latest First
 
             </option>
 
-            <option value="oldest"
-                {{ request('sort')=='oldest' ? 'selected' : '' }}>
+            <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>
 
                 Oldest First
 
             </option>
 
-            <option value="title"
-                {{ request('sort')=='title' ? 'selected' : '' }}>
+            <option value="title" {{ request('sort') == 'title' ? 'selected' : '' }}>
 
                 Job Title
 
             </option>
 
-            <option value="organization"
-                {{ request('sort')=='organization' ? 'selected' : '' }}>
+            <option value="organization" {{ request('sort') == 'organization' ? 'selected' : '' }}>
 
                 Organization
 
             </option>
 
-            <option value="last_date"
-                {{ request('sort')=='last_date' ? 'selected' : '' }}>
+            <option value="last_date" {{ request('sort') == 'last_date' ? 'selected' : '' }}>
 
                 Last Date
 
@@ -939,10 +852,7 @@
 
     <div class="d-grid gap-2">
 
-        <button
-            type="button"
-            id="btnSearch"
-            class="btn btn-primary">
+        <button type="button" id="btnSearch" class="btn btn-primary">
 
             <i class="fa-solid fa-magnifying-glass me-2"></i>
 
@@ -950,9 +860,7 @@
 
         </button>
 
-        <a
-            href="{{ url('/sarkari-naukri') }}"
-            class="btn btn-outline-secondary">
+        <a href="{{ url('/sarkari-naukri') }}" class="btn btn-outline-secondary">
 
             <i class="fa-solid fa-rotate-right me-2"></i>
 
@@ -976,16 +884,13 @@
 
 <div class="d-flex flex-wrap gap-2">
 
-    @foreach($categories->take(10) as $category)
-
-        <a
-            href="{{ url('/sarkari-naukri?category='.$category) }}"
+    @foreach ($categories->take(10) as $category)
+        <a href="{{ url('/sarkari-naukri?category=' . $category) }}"
             class="badge bg-light text-dark text-decoration-none border">
 
             {{ $category }}
 
         </a>
-
     @endforeach
 
 </div>
@@ -995,10 +900,9 @@
 {{-- Continue Blade Part 3A --}}
 {{-- ================= Job Cards ================= --}}
 
-@if($jobs->count())
+@if ($jobs->count())
 
-    @foreach($jobs as $job)
-
+    @foreach ($jobs as $job)
         <div class="card shadow-sm border-0 rounded-4 mb-4 job-card">
 
             <div class="card-body">
@@ -1011,40 +915,31 @@
 
                         <div class="d-flex flex-wrap gap-2 mb-3">
 
-                            @if(!empty($job->category))
-
+                            @if (!empty($job->category))
                                 <span class="badge bg-primary">
 
                                     {{ $job->category }}
 
                                 </span>
-
                             @endif
 
-                            @if(!empty($job->job_sub_categories))
-
-                                @foreach(explode('#',$job->job_sub_categories) as $sub)
-
-                                    @if(trim($sub)!='')
-
+                            @if (!empty($job->job_sub_categories))
+                                @foreach (explode('#', $job->job_sub_categories) as $sub)
+                                    @if (trim($sub) != '')
                                         <span class="badge bg-info text-dark">
 
                                             {{ trim($sub) }}
 
                                         </span>
-
                                     @endif
-
                                 @endforeach
-
                             @endif
 
                         </div>
 
                         <h3 class="h5 mb-3">
 
-                            <a
-                                href="{{ url('/sarkari-naukri/'.$job->state.'/'.$job->category.'/'.$job->slug) }}"
+                            <a href="{{ url('/sarkari-naukri/' . $job->state . '/' . $job->category . '/' . $job->slug) }}"
                                 class="text-decoration-none text-dark">
 
                                 {{ $job->title }}
@@ -1201,19 +1096,14 @@
 
                                         <td>
 
-                                            @if($job->salary_text)
-
-                                                {{ $job->salary_text }}
-
-                                            @elseif($job->min_salary || $job->max_salary)
-
-                                                ₹{{ number_format($job->min_salary) }}
+                                            @if (is_numeric($job->min_salary) && is_numeric($job->max_salary))
+                                                ₹{{ number_format((float) $job->min_salary) }}
                                                 -
-                                                ₹{{ number_format($job->max_salary) }}
+                                                ₹{{ number_format((float) $job->max_salary) }}
+                                            @elseif(!empty($job->salary_text))
+                                                {{ $job->salary_text }}
                                             @else
-
                                                 As Per Rules
-
                                             @endif
 
                                         </td>
@@ -1252,26 +1142,20 @@
 
                     <div class="col-lg-3 text-center">
 
-                        <a
-                            href="{{ url('/sarkari-naukri/'.$job->state.'/'.$job->category.'/'.$job->slug) }}"
+                        <a href="{{ url('/sarkari-naukri/' . $job->state . '/' . $job->category . '/' . $job->slug) }}"
                             class="btn btn-primary w-100 mb-2">
 
                             View Details
 
                         </a>
 
-                        @if(!empty($job->apply_online_link))
-
-                            <a
-                                href="{{ $job->apply_online_link }}"
-                                target="_blank"
-                                rel="nofollow noopener"
+                        @if (!empty($job->apply_online_link))
+                            <a href="{{ $job->apply_online_link }}" target="_blank" rel="nofollow noopener"
                                 class="btn btn-success w-100">
 
                                 Apply Online
 
                             </a>
-
                         @endif
 
                     </div>
@@ -1281,7 +1165,6 @@
             </div>
 
         </div>
-
     @endforeach
 
 @endif
@@ -1289,8 +1172,7 @@
 {{-- Continue Blade Part 3B --}}
 {{-- ================= Pagination ================= --}}
 
-@if($jobs->hasPages())
-
+@if ($jobs->hasPages())
     <div class="card border-0 shadow-sm rounded-4 mt-4">
 
         <div class="card-body">
@@ -1334,7 +1216,6 @@
         </div>
 
     </div>
-
 @endif
 
 {{-- ================= Quick Navigation ================= --}}
@@ -1347,8 +1228,7 @@
 
             <div class="col-lg-4 mb-3 mb-lg-0">
 
-                <a href="{{ url('/latest-jobs') }}"
-                   class="btn btn-outline-primary w-100">
+                <a href="{{ url('/latest-jobs') }}" class="btn btn-outline-primary w-100">
 
                     <i class="fa-solid fa-clock me-2"></i>
 
@@ -1360,8 +1240,7 @@
 
             <div class="col-lg-4 mb-3 mb-lg-0">
 
-                <a href="{{ url('/admit-card') }}"
-                   class="btn btn-outline-success w-100">
+                <a href="{{ url('/admit-card') }}" class="btn btn-outline-success w-100">
 
                     <i class="fa-solid fa-id-card me-2"></i>
 
@@ -1373,8 +1252,7 @@
 
             <div class="col-lg-4">
 
-                <a href="{{ url('/results') }}"
-                   class="btn btn-outline-danger w-100">
+                <a href="{{ url('/results') }}" class="btn btn-outline-danger w-100">
 
                     <i class="fa-solid fa-square-poll-vertical me-2"></i>
 
@@ -1393,8 +1271,7 @@
 {{-- Continue Blade Part 3C --}}
 {{-- ================= Empty State ================= --}}
 
-@if($jobs->isEmpty())
-
+@if ($jobs->isEmpty())
     <div class="card border-0 shadow rounded-4">
 
         <div class="card-body text-center py-5">
@@ -1425,9 +1302,7 @@
 
             <div class="d-flex justify-content-center flex-wrap gap-2">
 
-                <a
-                    href="{{ url('/sarkari-naukri') }}"
-                    class="btn btn-primary">
+                <a href="{{ url('/sarkari-naukri') }}" class="btn btn-primary">
 
                     <i class="fa-solid fa-rotate-right me-2"></i>
 
@@ -1435,9 +1310,7 @@
 
                 </a>
 
-                <a
-                    href="{{ url('/latest-jobs') }}"
-                    class="btn btn-outline-primary">
+                <a href="{{ url('/latest-jobs') }}" class="btn btn-outline-primary">
 
                     <i class="fa-solid fa-clock me-2"></i>
 
@@ -1450,7 +1323,6 @@
         </div>
 
     </div>
-
 @endif
 
 {{-- ================= Bottom CTA ================= --}}
@@ -1473,9 +1345,7 @@
 
         </p>
 
-        <a
-            href="{{ url('/') }}"
-            class="btn btn-light btn-lg">
+        <a href="{{ url('/') }}" class="btn btn-light btn-lg">
 
             Explore More
 
@@ -1560,16 +1430,13 @@
 
             <div class="d-flex flex-wrap gap-2">
 
-                @foreach($categories as $category)
-
-                    <a
-                        href="{{ url('/sarkari-naukri?category='.$category) }}"
+                @foreach ($categories as $category)
+                    <a href="{{ url('/sarkari-naukri?category=' . $category) }}"
                         class="badge rounded-pill bg-light text-dark border text-decoration-none px-3 py-2">
 
                         {{ $category }}
 
                     </a>
-
                 @endforeach
 
             </div>
@@ -1597,20 +1464,16 @@
 
             <div class="row">
 
-                @foreach($states as $state)
-
+                @foreach ($states as $state)
                     <div class="col-lg-3 col-md-4 col-6 mb-2">
 
-                        <a
-                            href="{{ url('/sarkari-naukri/'.Str::slug($state)) }}"
-                            class="text-decoration-none">
+                        <a href="{{ url('/sarkari-naukri/' . Str::slug($state)) }}" class="text-decoration-none">
 
                             {{ $state }}
 
                         </a>
 
                     </div>
-
                 @endforeach
 
             </div>
@@ -1639,16 +1502,13 @@
 
             <div class="d-flex flex-wrap gap-2">
 
-                @foreach($qualifications as $qualification)
-
-                    <a
-                        href="{{ url('/sarkari-naukri?qualification='.urlencode($qualification)) }}"
+                @foreach ($qualifications as $qualification)
+                    <a href="{{ url('/sarkari-naukri?qualification=' . urlencode($qualification)) }}"
                         class="badge bg-light border text-dark text-decoration-none px-3 py-2">
 
                         {{ $qualification }}
 
                     </a>
-
                 @endforeach
 
             </div>
@@ -1680,7 +1540,7 @@
 
                     $organizations = DB::table('job_details')
                         ->whereNotNull('organization')
-                        ->where('organization','!=','')
+                        ->where('organization', '!=', '')
                         ->select('organization')
                         ->distinct()
                         ->orderBy('organization')
@@ -1689,12 +1549,10 @@
 
                 @endphp
 
-                @foreach($organizations as $organization)
-
+                @foreach ($organizations as $organization)
                     <div class="col-lg-3 col-md-4 col-6 mb-2">
 
-                        <a
-                            href="{{ url('/sarkari-naukri?search='.urlencode($organization)) }}"
+                        <a href="{{ url('/sarkari-naukri?search=' . urlencode($organization)) }}"
                             class="text-decoration-none">
 
                             {{ $organization }}
@@ -1702,7 +1560,6 @@
                         </a>
 
                     </div>
-
                 @endforeach
 
             </div>
@@ -1791,10 +1648,7 @@
 
                     <h2 class="accordion-header">
 
-                        <button
-                            class="accordion-button"
-                            type="button"
-                            data-bs-toggle="collapse"
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq1">
 
                             What is Sarkari Naukri?
@@ -1803,10 +1657,7 @@
 
                     </h2>
 
-                    <div
-                        id="faq1"
-                        class="accordion-collapse collapse show"
-                        data-bs-parent="#faqAccordion">
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
 
                         <div class="accordion-body">
 
@@ -1826,10 +1677,7 @@
 
                     <h2 class="accordion-header">
 
-                        <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq2">
 
                             How often are jobs updated?
@@ -1838,10 +1686,7 @@
 
                     </h2>
 
-                    <div
-                        id="faq2"
-                        class="accordion-collapse collapse"
-                        data-bs-parent="#faqAccordion">
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 
                         <div class="accordion-body">
 
@@ -1859,10 +1704,7 @@
 
                     <h2 class="accordion-header">
 
-                        <button
-                            class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq3">
 
                             Are official notification links available?
@@ -1871,10 +1713,7 @@
 
                     </h2>
 
-                    <div
-                        id="faq3"
-                        class="accordion-collapse collapse"
-                        data-bs-parent="#faqAccordion">
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 
                         <div class="accordion-body">
 
