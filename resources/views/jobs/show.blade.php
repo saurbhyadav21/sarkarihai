@@ -606,7 +606,7 @@
 
     </div>
 
-@endsection
+
 
 {{-- Continue Blade Part 2A --}}
 {{-- ================= Sidebar Filters ================= --}}
