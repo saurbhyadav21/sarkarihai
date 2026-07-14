@@ -1,7 +1,621 @@
 @extends('layouts.front')
 
 @section('content')
+<style>
+    /* ===========================================================
+   SARKARIHAI - JOB LISTING PAGE
+   =========================================================== */
 
+body{
+    background:#f5f7fb;
+}
+
+/* ==========================
+   Cards
+========================== */
+
+.card{
+    border:none;
+    border-radius:16px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.card-header{
+    background:#fff;
+    border-bottom:1px solid #eee;
+    font-weight:600;
+}
+
+/* ==========================
+   Hero
+========================== */
+
+.hero-section{
+    background:#fff;
+    border-radius:18px;
+    padding:40px;
+}
+
+.hero-section h1{
+    font-size:34px;
+    font-weight:700;
+}
+
+.hero-section p{
+    color:#666;
+    line-height:1.7;
+}
+
+/* ==========================
+   Statistics
+========================== */
+
+.stat-card{
+    transition:.25s;
+    overflow:hidden;
+}
+
+.stat-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+.icon-box{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:22px;
+
+}
+
+.bg-primary{
+
+    background:#0d6efd!important;
+
+}
+
+.bg-success{
+
+    background:#198754!important;
+
+}
+
+.bg-danger{
+
+    background:#dc3545!important;
+
+}
+
+.bg-warning{
+
+    background:#ffc107!important;
+
+}
+
+/* ==========================
+   Filters
+========================== */
+
+label{
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+.form-control,
+.form-select{
+
+    border-radius:10px;
+
+    min-height:46px;
+
+    box-shadow:none!important;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#0d6efd;
+
+    box-shadow:0 0 0 .15rem rgba(13,110,253,.15)!important;
+
+}
+
+/* ==========================
+   Sidebar
+========================== */
+
+.sticky-top{
+
+    top:20px;
+
+}
+
+.badge{
+
+    font-weight:500;
+
+    padding:7px 12px;
+
+    border-radius:30px;
+
+}
+
+/* Continue CSS Part 2 */
+/* ==========================
+   Job Card
+========================== */
+
+.job-card{
+
+    transition:.25s;
+
+    border-left:4px solid transparent;
+
+}
+
+.job-card:hover{
+
+    transform:translateY(-4px);
+
+    border-left-color:#0d6efd;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+.job-card h3{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    line-height:1.5;
+
+}
+
+.job-card h3 a{
+
+    color:#222;
+
+    transition:.2s;
+
+}
+
+.job-card h3 a:hover{
+
+    color:#0d6efd;
+
+}
+
+.job-card table td{
+
+    padding:4px 0;
+
+    font-size:14px;
+
+    border:none;
+
+    vertical-align:top;
+
+}
+
+.job-card strong{
+
+    color:#555;
+
+    font-weight:600;
+
+}
+
+.job-card .btn{
+
+    border-radius:10px;
+
+    padding:10px 15px;
+
+    font-weight:600;
+
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+.btn{
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.btn-success:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.btn-outline-primary:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================
+   Pagination
+========================== */
+
+.pagination{
+
+    margin-bottom:0;
+
+}
+
+.pagination .page-link{
+
+    border-radius:8px;
+
+    margin:0 3px;
+
+    border:1px solid #dee2e6;
+
+    color:#0d6efd;
+
+    min-width:42px;
+
+    text-align:center;
+
+}
+
+.pagination .page-item.active .page-link{
+
+    background:#0d6efd;
+
+    border-color:#0d6efd;
+
+    color:#fff;
+
+}
+
+.pagination .page-link:hover{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+}
+
+/* ==========================
+   Empty State
+========================== */
+
+.empty-state{
+
+    padding:80px 20px;
+
+    text-align:center;
+
+}
+
+.empty-state i{
+
+    font-size:70px;
+
+    color:#adb5bd;
+
+}
+
+.empty-state h2{
+
+    margin-top:20px;
+
+    font-weight:700;
+
+}
+
+.empty-state p{
+
+    color:#6c757d;
+
+    max-width:650px;
+
+    margin:15px auto;
+
+}
+
+/* Continue CSS Part 3 */
+/* ==========================
+   SEO Section
+========================== */
+
+section{
+
+    margin-bottom:30px;
+
+}
+
+section h2,
+section h3{
+
+    font-weight:700;
+
+    color:#212529;
+
+}
+
+section p{
+
+    color:#555;
+
+    line-height:1.9;
+
+    font-size:15px;
+
+}
+
+section a{
+
+    color:#0d6efd;
+
+    transition:.2s;
+
+}
+
+section a:hover{
+
+    color:#084298;
+
+    text-decoration:underline;
+
+}
+
+/* ==========================
+   FAQ
+========================== */
+
+.accordion-item{
+
+    border:1px solid #ececec;
+
+    border-radius:10px!important;
+
+    overflow:hidden;
+
+    margin-bottom:12px;
+
+}
+
+.accordion-button{
+
+    font-weight:600;
+
+    background:#fff;
+
+    box-shadow:none!important;
+
+}
+
+.accordion-button:not(.collapsed){
+
+    background:#eef5ff;
+
+    color:#0d6efd;
+
+}
+
+.accordion-body{
+
+    color:#555;
+
+    line-height:1.8;
+
+}
+
+/* ==========================
+   Breadcrumb
+========================== */
+
+.breadcrumb{
+
+    margin-bottom:20px;
+
+}
+
+.breadcrumb-item a{
+
+    color:#0d6efd;
+
+    text-decoration:none;
+
+}
+
+.breadcrumb-item.active{
+
+    color:#6c757d;
+
+}
+
+/* ==========================
+   Table
+========================== */
+
+.table td{
+
+    border:none;
+
+    padding:6px 0;
+
+    vertical-align:top;
+
+}
+
+.table tr{
+
+    border-bottom:1px dashed #eee;
+
+}
+
+.table tr:last-child{
+
+    border-bottom:none;
+
+}
+
+/* ==========================
+   Scrollbar
+========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#c5c5c5;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#999;
+
+}
+
+/* ==========================
+   Utilities
+========================== */
+
+.shadow-hover:hover{
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12)!important;
+
+}
+
+.rounded-4{
+
+    border-radius:16px!important;
+
+}
+
+.text-small{
+
+    font-size:14px;
+
+}
+
+.fw-600{
+
+    font-weight:600;
+
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:991px){
+
+    .hero-section{
+
+        padding:25px;
+
+    }
+
+    .hero-section h1{
+
+        font-size:28px;
+
+    }
+
+    .sticky-top{
+
+        position:relative!important;
+
+        top:auto;
+
+    }
+
+    .job-card .btn{
+
+        margin-top:10px;
+
+    }
+
+}
+
+@media(max-width:767px){
+
+    .hero-section{
+
+        text-align:center;
+
+    }
+
+    .hero-section h1{
+
+        font-size:24px;
+
+    }
+
+    .stat-card{
+
+        margin-bottom:15px;
+
+    }
+
+    .pagination{
+
+        justify-content:center;
+
+    }
+
+    .table td{
+
+        display:block;
+
+        width:100%;
+
+    }
+
+    .job-card h3{
+
+        font-size:18px;
+
+    }
+
+}
+</style>
     <div class="container-xxl py-4">
 
         {{-- ================= Breadcrumb ================= --}}
