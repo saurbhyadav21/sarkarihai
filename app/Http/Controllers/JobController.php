@@ -2564,6 +2564,7 @@ class JobController extends Controller
     public function home()
     {
         // BASE QUERY
+        dd('still working on this');
         $baseQuery = DB::table('job_details');
 
         // ======================
