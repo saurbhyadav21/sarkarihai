@@ -2745,7 +2745,7 @@ class JobController extends Controller
             ->orderBy('end_date')
             ->get();
         $weekCount = Job::whereBetween('end_date', [today()->addDays(2), today()->addDays(7)])->count();
-        dd($states);
+        
         return view('welcome', compact(
             'latestJobs',
             'lastDateJobs',
