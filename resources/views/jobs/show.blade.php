@@ -307,18 +307,18 @@
         }
 
         /* .summary-card{
-                background:#fff;
-                border-radius:15px;
-                box-shadow:
-                0 10px 30px rgba(0,0,0,.08);
-                padding:30px;
-                border-top:4px solid #F59E0B;
-                display:grid;
-                }
+                    background:#fff;
+                    border-radius:15px;
+                    box-shadow:
+                    0 10px 30px rgba(0,0,0,.08);
+                    padding:30px;
+                    border-top:4px solid #F59E0B;
+                    display:grid;
+                    }
 
-                .summary-item{
-                text-align:center;
-                } */
+                    .summary-item{
+                    text-align:center;
+                    } */
         .summary-card {
             background: #fff;
             border-radius: 15px;
@@ -1372,9 +1372,9 @@
 
         /* Continue in Part 2C */
         /* ===========================================================
-       PART 2C
-       Premium UI Enhancements
-    =========================================================== */
+           PART 2C
+           Premium UI Enhancements
+        =========================================================== */
 
         /* ========================================= */
         /* Breadcrumb */
@@ -1685,9 +1685,9 @@
 
         /* Continue in Part 2D */
         /* ===========================================================
-       PART 2D
-       Responsive Design + Final CSS
-    =========================================================== */
+           PART 2D
+           Responsive Design + Final CSS
+        =========================================================== */
 
         /* ========================================= */
         /* Desktop (1400px+) */
@@ -2021,31 +2021,21 @@
 
                 <div>
 
-                    <nav aria-label="breadcrumb" class="breadcrumb">
+    <nav aria-label="breadcrumb" class="breadcrumb">
+        <a href="https://sarkarihai.com">Home</a>
+        <span class="sep">/</span>
+        <a href="https://sarkarihai.com/sarkari-naukri">Sarkari Naukri</a>
+    </nav>
 
-                        <a href="https://sarkarihai.com">
-                            Home
-                        </a>
+    <h1>
+        Latest Sarkari Naukri 2026 – All Government Jobs Notifications
+    </h1>
 
-                        <span class="sep">/</span>
+    <p>
+        Find the latest Sarkari Naukri 2026 notifications from Central Government, State Government, Railway, SSC, UPSC, Banking, Defence, Police, Teaching, PSU, and other government departments. Browse all active government job vacancies, check eligibility, important dates, application fees, selection process, exam pattern, salary details, and apply online through official notifications. SarkariHai keeps every recruitment updated in one place so you never miss a government job opportunity.
+    </p>
 
-                        <a href="https://sarkarihai.com/sarkari-naukri">
-                            Sarkari Naukri
-                        </a>
-
-
-
-                    </nav>
-
-                    <h1>
-                        xxxx
-                    </h1>
-
-                    <p>
-                        xxxx
-                    </p>
-
-                </div>
+</div>
 
 
                 <div class="col-lg-4 mt-4 mt-lg-0">
@@ -2788,10 +2778,10 @@
                                                         </span>
 
                                                         @if (!empty($job->job_sub_categories))
-    <span class="badge bg-info text-dark">
-        {{ $job->job_sub_categories }}
-    </span>
-@endif
+                                                            <span class="badge bg-info text-dark">
+                                                                {{ $job->job_sub_categories }}
+                                                            </span>
+                                                        @endif
 
                                                     </div>
 
@@ -3181,496 +3171,494 @@
         </div>
 
     </div>
-    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
+        crossorigin="anonymous"></script>
     <script>
-        
+        $(document).ready(function() {
+            let typingTimer;
 
-            $(document).ready(function() {
-   let typingTimer;
+            let page = 1;
+            /* ==========================================
+               CSRF
+            ========================================== */
 
-                    let page = 1;
-                    /* ==========================================
-                       CSRF
-                    ========================================== */
+            $.ajaxSetup({
 
-                    $.ajaxSetup({
+                headers: {
 
-                        headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
 
-                        }
+            });
 
-                    });
+            /* ==========================================
+               Variables
+            ========================================== */
 
-                    /* ==========================================
-                       Variables
-                    ========================================== */
 
-                 
 
-                    /* ==========================================
-                       Auto Search
-                    ========================================== */
+            /* ==========================================
+               Auto Search
+            ========================================== */
 
-                    $('#keyword').on('keyup', function() {
+            $('#keyword').on('keyup', function() {
 
-                        clearTimeout(typingTimer);
+                clearTimeout(typingTimer);
 
-                        typingTimer = setTimeout(function() {
+                typingTimer = setTimeout(function() {
 
-                            page = 1;
+                    page = 1;
 
-                            loadJobs();
+                    loadJobs();
 
-                        }, 500);
+                }, 500);
 
-                    });
+            });
 
-                    /* ==========================================
-                       Dropdown Filters
-                    ========================================== */
+            /* ==========================================
+               Dropdown Filters
+            ========================================== */
 
-                    $('#state').change(function() {
+            $('#state').change(function() {
 
-                        page = 1;
+                page = 1;
 
-                        loadJobs();
+                loadJobs();
 
-                    });
+            });
 
-                    $('#category').change(function() {
+            $('#category').change(function() {
 
-                        page = 1;
+                page = 1;
 
-                        loadJobs();
+                loadJobs();
 
-                    });
+            });
 
-                    $('#sub_category').change(function() {
+            $('#sub_category').change(function() {
 
-                        page = 1;
+                page = 1;
 
-                        loadJobs();
+                loadJobs();
 
-                    });
+            });
 
-                    $('#qualification').change(function() {
+            $('#qualification').change(function() {
 
-                        page = 1;
+                page = 1;
 
-                        loadJobs();
+                loadJobs();
 
-                    });
+            });
 
-                    $('#job_type').change(function() {
+            $('#job_type').change(function() {
 
-                        page = 1;
+                page = 1;
 
-                        loadJobs();
+                loadJobs();
 
-                    });
+            });
 
-                    $('#last_date').change(function() {
+            $('#last_date').change(function() {
 
-                        page = 1;
+                page = 1;
 
-                        loadJobs();
+                loadJobs();
 
-                    });
+            });
 
-                    $('#sortBy').change(function() {
+            $('#sortBy').change(function() {
 
-                        page = 1;
+                page = 1;
 
-                        loadJobs();
+                loadJobs();
 
-                    });
+            });
 
-                    /* ==========================================
-                       Apply Button
-                    ========================================== */
+            /* ==========================================
+               Apply Button
+            ========================================== */
 
-                    $('#applyFilter').click(function() {
+            $('#applyFilter').click(function() {
 
-                        page = 1;
+                page = 1;
 
-                        loadJobs();
+                loadJobs();
 
-                    });
+            });
 
-                    /* ==========================================
-                       Clear Filter
-                    ========================================== */
+            /* ==========================================
+               Clear Filter
+            ========================================== */
 
-                    $('#clearFilter').click(function() {
+            $('#clearFilter').click(function() {
 
-                        $('#keyword').val('');
+                $('#keyword').val('');
 
-                        $('#state').val('');
+                $('#state').val('');
 
-                        $('#category').val('');
+                $('#category').val('');
 
-                        $('#sub_category').val('');
+                $('#sub_category').val('');
 
-                        $('#qualification').val('');
+                $('#qualification').val('');
 
-                        $('#job_type').val('');
+                $('#job_type').val('');
 
-                        $('#last_date').val('');
+                $('#last_date').val('');
 
-                        $('#sortBy').val('latest');
+                $('#sortBy').val('latest');
 
-                        page = 1;
+                page = 1;
 
-                        loadJobs();
+                loadJobs();
 
-                    });
+            });
 
-                    /* ==========================================
-                       Pagination
-                    ========================================== */
+            /* ==========================================
+               Pagination
+            ========================================== */
 
-                    $(document).on('click', '.pagination a', function(e) {
+            $(document).on('click', '.pagination a', function(e) {
 
-                        e.preventDefault();
+                e.preventDefault();
 
-                        page = $(this).attr('href').split('page=')[1];
+                page = $(this).attr('href').split('page=')[1];
 
-                        loadJobs();
+                loadJobs();
 
-                        $('html,body').animate({
+                $('html,body').animate({
 
-                            scrollTop: $("#jobs").offset().top - 20
+                    scrollTop: $("#jobs").offset().top - 20
 
-                        }, 300);
+                }, 300);
 
-                    });
+            });
 
 
-                        /* ==========================================
-       AJAX Load Jobs
-    ========================================== */
+            /* ==========================================
+           AJAX Load Jobs
+        ========================================== */
 
-    function loadJobs() {
+            function loadJobs() {
 
-        let data = {
+                let data = {
 
-            search: $('#keyword').val(),
+                    search: $('#keyword').val(),
 
-            state: $('#state').val(),
+                    state: $('#state').val(),
 
-            category: $('#category').val(),
+                    category: $('#category').val(),
 
-            sub_category: $('#sub_category').val(),
+                    sub_category: $('#sub_category').val(),
 
-            qualification: $('#qualification').val(),
+                    qualification: $('#qualification').val(),
 
-            job_type: $('#job_type').val(),
+                    job_type: $('#job_type').val(),
 
-            last_date: $('#last_date').val(),
+                    last_date: $('#last_date').val(),
 
-            sort: $('#sortBy').val(),
+                    sort: $('#sortBy').val(),
 
-            page: page
+                    page: page
 
-        };
+                };
 
-        $("#jobs").addClass("position-relative");
+                $("#jobs").addClass("position-relative");
 
-        if ($("#jobs .loading-overlay").length == 0) {
+                if ($("#jobs .loading-overlay").length == 0) {
 
-            $("#jobs").append(
+                    $("#jobs").append(
 
-                '<div class="loading-overlay show">' +
-                    '<div class="loading-spinner"></div>' +
-                '</div>'
+                        '<div class="loading-overlay show">' +
+                        '<div class="loading-spinner"></div>' +
+                        '</div>'
 
-            );
+                    );
 
-        } else {
+                } else {
 
-            $("#jobs .loading-overlay").addClass("show");
+                    $("#jobs .loading-overlay").addClass("show");
 
-        }
+                }
 
-        $.ajax({
+                $.ajax({
 
-            url: window.location.pathname,
+                    url: window.location.pathname,
 
-            type: "GET",
+                    type: "GET",
 
-            data: data,
+                    data: data,
 
-            success: function (response) {
+                    success: function(response) {
 
-                $("#jobs").html(response.html);
+                        $("#jobs").html(response.html);
 
-                $("#jobCount").text(response.total);
+                        $("#jobCount").text(response.total);
 
-            },
+                    },
 
-            error: function () {
+                    error: function() {
 
-                $("#jobs").html(
+                        $("#jobs").html(
 
-                    '<div class="alert alert-danger">' +
-                    'Something went wrong. Please try again.' +
-                    '</div>'
+                            '<div class="alert alert-danger">' +
+                            'Something went wrong. Please try again.' +
+                            '</div>'
 
-                );
+                        );
 
-            },
+                    },
 
-            complete: function () {
+                    complete: function() {
 
-                $(".loading-overlay").removeClass("show");
+                        $(".loading-overlay").removeClass("show");
 
-            }
-
-        });
-
-    }
-    
-    /* ==========================================
-       Update URL After Every Load
-    ========================================== */
-
-    $(document).ajaxSuccess(function () {
-
-        updateUrl();
-
-    });
-
-    /* ==========================================
-       Browser Back / Forward
-    ========================================== */
-
-    window.onpopstate = function () {
-
-        location.reload();
-
-    };
-
-    /* ==========================================
-       Dynamic Sub Category
-       (AJAX endpoint later)
-    ========================================== */
-
-    $('#category').change(function () {
-
-        let category = $(this).val();
-
-        $('#sub_category').html(
-            '<option value="">Loading...</option>'
-        );
-
-        $.ajax({
-
-            url: "/ajax/sub-categories",
-
-            type: "GET",
-
-            data: {
-
-                category: category
-
-            },
-
-            success: function (response) {
-
-                let html = '';
-
-                html += '<option value="">All Sub Categories</option>';
-
-                $.each(response, function (index, item) {
-
-                    html += '<option value="' + item.slug + '">';
-
-                    html += item.name;
-
-                    html += '</option>';
+                    }
 
                 });
 
-                $('#sub_category').html(html);
+            }
 
-            },
+            /* ==========================================
+               Update URL After Every Load
+            ========================================== */
 
-            error: function () {
+            $(document).ajaxSuccess(function() {
+
+                updateUrl();
+
+            });
+
+            /* ==========================================
+               Browser Back / Forward
+            ========================================== */
+
+            window.onpopstate = function() {
+
+                location.reload();
+
+            };
+
+            /* ==========================================
+               Dynamic Sub Category
+               (AJAX endpoint later)
+            ========================================== */
+
+            $('#category').change(function() {
+
+                let category = $(this).val();
 
                 $('#sub_category').html(
-                    '<option value="">All Sub Categories</option>'
+                    '<option value="">Loading...</option>'
                 );
+
+                $.ajax({
+
+                    url: "/ajax/sub-categories",
+
+                    type: "GET",
+
+                    data: {
+
+                        category: category
+
+                    },
+
+                    success: function(response) {
+
+                        let html = '';
+
+                        html += '<option value="">All Sub Categories</option>';
+
+                        $.each(response, function(index, item) {
+
+                            html += '<option value="' + item.slug + '">';
+
+                            html += item.name;
+
+                            html += '</option>';
+
+                        });
+
+                        $('#sub_category').html(html);
+
+                    },
+
+                    error: function() {
+
+                        $('#sub_category').html(
+                            '<option value="">All Sub Categories</option>'
+                        );
+
+                    }
+
+                });
+
+            });
+
+
+            /* ==========================================
+               Filter From URL On Page Load
+            ========================================== */
+
+            (function() {
+
+                let params = new URLSearchParams(window.location.search);
+
+                if (params.has('search'))
+                    $('#keyword').val(params.get('search'));
+
+                if (params.has('state'))
+                    $('#state').val(params.get('state'));
+
+                if (params.has('category'))
+                    $('#category').val(params.get('category'));
+
+                if (params.has('sub_category'))
+                    $('#sub_category').val(params.get('sub_category'));
+
+                if (params.has('qualification'))
+                    $('#qualification').val(params.get('qualification'));
+
+                if (params.has('job_type'))
+                    $('#job_type').val(params.get('job_type'));
+
+                if (params.has('last_date'))
+                    $('#last_date').val(params.get('last_date'));
+
+                if (params.has('sort'))
+                    $('#sortBy').val(params.get('sort'));
+
+                if (params.has('page'))
+                    page = parseInt(params.get('page'));
+
+            })();
+
+            /* ==========================================
+               Enter Key Search
+            ========================================== */
+
+            $('#keyword').keypress(function(e) {
+
+                if (e.which == 13) {
+
+                    page = 1;
+
+                    loadJobs();
+
+                }
+
+            });
+
+            /* ==========================================
+               Scroll To Top Button
+            ========================================== */
+
+            $('body').append(
+
+                '<button id="scrollTopBtn" class="btn btn-primary">' +
+
+                '<i class="fa-solid fa-arrow-up"></i>' +
+
+                '</button>'
+
+            );
+
+            $('#scrollTopBtn').css({
+
+                position: 'fixed',
+                right: '20px',
+                bottom: '20px',
+                width: '45px',
+                height: '45px',
+                borderRadius: '50%',
+                display: 'none',
+                zIndex: '9999'
+
+            });
+
+            $(window).scroll(function() {
+
+                if ($(this).scrollTop() > 300) {
+
+                    $('#scrollTopBtn').fadeIn();
+
+                } else {
+
+                    $('#scrollTopBtn').fadeOut();
+
+                }
+
+            });
+
+            $(document).on('click', '#scrollTopBtn', function() {
+
+                $('html, body').animate({
+
+                    scrollTop: 0
+
+                }, 400);
+
+            });
+
+            /* ==========================================
+               Initialize
+            ========================================== */
+
+            updateUrl();
+
+            /* ==========================================
+                   Browser URL Update
+                ========================================== */
+
+            function updateUrl() {
+
+                let params = new URLSearchParams();
+
+                if ($('#keyword').val() != '')
+                    params.set('search', $('#keyword').val());
+
+                if ($('#state').val() != '')
+                    params.set('state', $('#state').val());
+
+                if ($('#category').val() != '')
+                    params.set('category', $('#category').val());
+
+                if ($('#sub_category').val() != '')
+                    params.set('sub_category', $('#sub_category').val());
+
+                if ($('#qualification').val() != '')
+                    params.set('qualification', $('#qualification').val());
+
+                if ($('#job_type').val() != '')
+                    params.set('job_type', $('#job_type').val());
+
+                if ($('#last_date').val() != '')
+                    params.set('last_date', $('#last_date').val());
+
+                if ($('#sortBy').val() != 'latest')
+                    params.set('sort', $('#sortBy').val());
+
+                if (page > 1)
+                    params.set('page', page);
+
+                let url = window.location.pathname;
+
+                if (params.toString() != '') {
+
+                    url += '?' + params.toString();
+
+                }
+
+                window.history.replaceState({}, '', url);
 
             }
 
+            /* ==========================================
+               End Script
+            ========================================== */
         });
-
-    });
-
-
-    /* ==========================================
-       Filter From URL On Page Load
-    ========================================== */
-
-    (function () {
-
-        let params = new URLSearchParams(window.location.search);
-
-        if (params.has('search'))
-            $('#keyword').val(params.get('search'));
-
-        if (params.has('state'))
-            $('#state').val(params.get('state'));
-
-        if (params.has('category'))
-            $('#category').val(params.get('category'));
-
-        if (params.has('sub_category'))
-            $('#sub_category').val(params.get('sub_category'));
-
-        if (params.has('qualification'))
-            $('#qualification').val(params.get('qualification'));
-
-        if (params.has('job_type'))
-            $('#job_type').val(params.get('job_type'));
-
-        if (params.has('last_date'))
-            $('#last_date').val(params.get('last_date'));
-
-        if (params.has('sort'))
-            $('#sortBy').val(params.get('sort'));
-
-        if (params.has('page'))
-            page = parseInt(params.get('page'));
-
-    })();
-
-    /* ==========================================
-       Enter Key Search
-    ========================================== */
-
-    $('#keyword').keypress(function (e) {
-
-        if (e.which == 13) {
-
-            page = 1;
-
-            loadJobs();
-
-        }
-
-    });
-
-    /* ==========================================
-       Scroll To Top Button
-    ========================================== */
-
-    $('body').append(
-
-        '<button id="scrollTopBtn" class="btn btn-primary">' +
-
-            '<i class="fa-solid fa-arrow-up"></i>' +
-
-        '</button>'
-
-    );
-
-    $('#scrollTopBtn').css({
-
-        position: 'fixed',
-        right: '20px',
-        bottom: '20px',
-        width: '45px',
-        height: '45px',
-        borderRadius: '50%',
-        display: 'none',
-        zIndex: '9999'
-
-    });
-
-    $(window).scroll(function () {
-
-        if ($(this).scrollTop() > 300) {
-
-            $('#scrollTopBtn').fadeIn();
-
-        } else {
-
-            $('#scrollTopBtn').fadeOut();
-
-        }
-
-    });
-
-    $(document).on('click', '#scrollTopBtn', function () {
-
-        $('html, body').animate({
-
-            scrollTop: 0
-
-        }, 400);
-
-    });
-
-    /* ==========================================
-       Initialize
-    ========================================== */
-
-    updateUrl();
-
-/* ==========================================
-       Browser URL Update
-    ========================================== */
-
-    function updateUrl() {
-
-        let params = new URLSearchParams();
-
-        if ($('#keyword').val() != '')
-            params.set('search', $('#keyword').val());
-
-        if ($('#state').val() != '')
-            params.set('state', $('#state').val());
-
-        if ($('#category').val() != '')
-            params.set('category', $('#category').val());
-
-        if ($('#sub_category').val() != '')
-            params.set('sub_category', $('#sub_category').val());
-
-        if ($('#qualification').val() != '')
-            params.set('qualification', $('#qualification').val());
-
-        if ($('#job_type').val() != '')
-            params.set('job_type', $('#job_type').val());
-
-        if ($('#last_date').val() != '')
-            params.set('last_date', $('#last_date').val());
-
-        if ($('#sortBy').val() != 'latest')
-            params.set('sort', $('#sortBy').val());
-
-        if (page > 1)
-            params.set('page', page);
-
-        let url = window.location.pathname;
-
-        if (params.toString() != '') {
-
-            url += '?' + params.toString();
-
-        }
-
-        window.history.replaceState({}, '', url);
-
-    }
-
-/* ==========================================
-   End Script
-========================================== */
-});
-</script>
-
+    </script>
 @endsection
