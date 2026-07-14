@@ -1064,31 +1064,31 @@ class JobController extends Controller
     }
 
 
-    public function latestJobs($state = null, $category = null)
-    {
+    // public function latestJobs($state = null, $category = null)
+    // {
 
-        $query = DB::table('job_details');
+    //     $query = DB::table('job_details');
 
-        // State filter
-        if (!empty($state)) {
-            $query->where('state', $state);
-        }
+    //     // State filter
+    //     if (!empty($state)) {
+    //         $query->where('state', $state);
+    //     }
 
-        // Category filter
-        if (!empty($category)) {
-            $query->where('category', $category);
-        }
+    //     // Category filter
+    //     if (!empty($category)) {
+    //         $query->where('category', $category);
+    //     }
 
-        $jobs = $query
-            ->orderBy('id', 'DESC')
-            ->paginate(20);
+    //     $jobs = $query
+    //         ->orderBy('id', 'DESC')
+    //         ->paginate(20);
 
-        return view('jobs.show', [
-            'jobs' => $jobs,
-            'state' => $state,
-            'category' => $category,
-        ]);
-    }
+    //     return view('jobs.show', [
+    //         'jobs' => $jobs,
+    //         'state' => $state,
+    //         'category' => $category,
+    //     ]);
+    // }
 
     // public function latestJobs(
     //     Request $request,
@@ -1131,481 +1131,481 @@ class JobController extends Controller
     // }
 
 
-    // public function latestJobs(Request $request, $state = null, $category = null)
-    // {
-    //     $jobs = DB::table('job_details')
-    //         ->where('status', 1);
+    public function latestJobs(Request $request, $state = null, $category = null)
+    {
+        $jobs = DB::table('job_details')
+            ->where('status', 1);
 
-    //     if ($request->filled('search')) {
-
-    //         $search = trim($request->search);
-
-    //         $jobs->where(function ($q) use ($search) {
-
-    //             $q->where('title', 'like', "%{$search}%")
-    //                 ->orWhere('organization', 'like', "%{$search}%")
-    //                 ->orWhere('category', 'like', "%{$search}%")
-    //                 ->orWhere('sub_category', 'like', "%{$search}%")
-    //                 ->orWhere('qualification', 'like', "%{$search}%")
-    //                 ->orWhere('state', 'like', "%{$search}%");
-    //         });
-    //     }
-
-    //     if (!empty($state) && $state != 'all-india') {
-    //         $jobs->where('state', $state);
-    //     }
-
-    //     if (!empty($category)) {
-    //         $jobs->where('category', $category);
-    //     }
-
-    //     $jobs = $jobs
-    //         ->orderByDesc('id')
-    //         ->paginate(20);
-
-    //     // ======================
-    //     // Statistics
-    //     // ======================
-
-    //     $totalJobs = DB::table('job_details')->count();
-
-    //     $todayJobs = DB::table('job_details')
-    //         ->where('status', 1)
-    //         ->whereDate('created_at', today())
-    //         ->count();
-
-    //     $closingSoonJobs = DB::table('job_details')
-    //         ->where('status', 1)
-    //         ->whereDate('end_date', '>=', today())
-    //         ->whereDate('end_date', '<=', today()->copy()->addDays(7))
-    //         ->count();
-
-    //     $activeJobs = DB::table('job_details')
-    //         ->where('status', 1)
-    //         ->whereDate('end_date', '>=', today())
-    //         ->count();
-
-    //     // ======================
-    //     // Filters
-    //     // ======================
-
-    //     $states = DB::table('job_details')
-    //         ->select('state')
-    //         ->whereNotNull('state')
-    //         ->where('state', '!=', '')
-    //         ->distinct()
-    //         ->orderBy('state')
-    //         ->pluck('state');
+        if ($request->filled('search')) {
+
+            $search = trim($request->search);
+
+            $jobs->where(function ($q) use ($search) {
+
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('organization', 'like', "%{$search}%")
+                    ->orWhere('category', 'like', "%{$search}%")
+                    ->orWhere('sub_category', 'like', "%{$search}%")
+                    ->orWhere('qualification', 'like', "%{$search}%")
+                    ->orWhere('state', 'like', "%{$search}%");
+            });
+        }
+
+        if (!empty($state) && $state != 'all-india') {
+            $jobs->where('state', $state);
+        }
+
+        if (!empty($category)) {
+            $jobs->where('category', $category);
+        }
+
+        $jobs = $jobs
+            ->orderByDesc('id')
+            ->paginate(20);
+
+        // ======================
+        // Statistics
+        // ======================
+
+        $totalJobs = DB::table('job_details')->count();
+
+        $todayJobs = DB::table('job_details')
+            ->where('status', 1)
+            ->whereDate('created_at', today())
+            ->count();
+
+        $closingSoonJobs = DB::table('job_details')
+            ->where('status', 1)
+            ->whereDate('end_date', '>=', today())
+            ->whereDate('end_date', '<=', today()->copy()->addDays(7))
+            ->count();
+
+        $activeJobs = DB::table('job_details')
+            ->where('status', 1)
+            ->whereDate('end_date', '>=', today())
+            ->count();
+
+        // ======================
+        // Filters
+        // ======================
+
+        $states = DB::table('job_details')
+            ->select('state')
+            ->whereNotNull('state')
+            ->where('state', '!=', '')
+            ->distinct()
+            ->orderBy('state')
+            ->pluck('state');
 
-    //     $categories = DB::table('job_details')
-    //         ->select('category')
-    //         ->whereNotNull('category')
-    //         ->where('category', '!=', '')
-    //         ->distinct()
-    //         ->orderBy('category')
-    //         ->pluck('category');
+        $categories = DB::table('job_details')
+            ->select('category')
+            ->whereNotNull('category')
+            ->where('category', '!=', '')
+            ->distinct()
+            ->orderBy('category')
+            ->pluck('category');
 
-    //     $qualifications = DB::table('job_details')
-    //         ->whereNotNull('min_qulification')
-    //         ->where('min_qulification', '!=', '')
-    //         ->pluck('min_qulification');
+        $qualifications = DB::table('job_details')
+            ->whereNotNull('min_qulification')
+            ->where('min_qulification', '!=', '')
+            ->pluck('min_qulification');
 
-    //     $uniqueQualifications = [];
+        $uniqueQualifications = [];
 
-    //     foreach ($qualifications as $item) {
+        foreach ($qualifications as $item) {
 
-    //         $parts = explode('#', $item);
+            $parts = explode('#', $item);
 
-    //         foreach ($parts as $qualification) {
+            foreach ($parts as $qualification) {
 
-    //             $qualification = trim($qualification);
+                $qualification = trim($qualification);
 
-    //             if ($qualification != '') {
+                if ($qualification != '') {
 
-    //                 $uniqueQualifications[$qualification] = $qualification;
-    //             }
-    //         }
-    //     }
+                    $uniqueQualifications[$qualification] = $qualification;
+                }
+            }
+        }
 
-    //     ksort($uniqueQualifications);
+        ksort($uniqueQualifications);
 
-    //     $qualifications = array_values($uniqueQualifications);
+        $qualifications = array_values($uniqueQualifications);
 
-    //     return view('jobs.show', compact(
-    //         'jobs',
-    //         'state',
-    //         'category',
-    //         'totalJobs',
-    //         'todayJobs',
-    //         'closingSoonJobs',
-    //         'activeJobs',
-    //         'states',
-    //         'categories',
-    //         'qualifications'
-    //     ));
-    // }
+        return view('jobs.show', compact(
+            'jobs',
+            'state',
+            'category',
+            'totalJobs',
+            'todayJobs',
+            'closingSoonJobs',
+            'activeJobs',
+            'states',
+            'categories',
+            'qualifications'
+        ));
+    }
 
-//     public function latestJobs(
-//     Request $request,
-//     $state = null,
-//     $category = null
-// ) {
+    public function latestJobs(
+    Request $request,
+    $state = null,
+    $category = null
+) {
 
-//     $jobs = DB::table('job_details');
+    $jobs = DB::table('job_details');
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Search
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Search
+    |--------------------------------------------------------------------------
+    */
 
-//     if ($request->filled('search')) {
+    if ($request->filled('search')) {
 
-//         $search = trim($request->search);
+        $search = trim($request->search);
 
-//         $jobs->where(function ($q) use ($search) {
+        $jobs->where(function ($q) use ($search) {
 
-//             $q->where('title', 'LIKE', "%{$search}%")
-//                 ->orWhere('organization', 'LIKE', "%{$search}%")
-//                 ->orWhere('department', 'LIKE', "%{$search}%")
-//                 ->orWhere('category', 'LIKE', "%{$search}%")
-//                 ->orWhere('job_sub_categories', 'LIKE', "%{$search}%")
-//                 ->orWhere('qualification', 'LIKE', "%{$search}%")
-//                 ->orWhere('min_qulification', 'LIKE', "%{$search}%")
-//                 ->orWhere('state', 'LIKE', "%{$search}%");
+            $q->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('organization', 'LIKE', "%{$search}%")
+                ->orWhere('department', 'LIKE', "%{$search}%")
+                ->orWhere('category', 'LIKE', "%{$search}%")
+                ->orWhere('job_sub_categories', 'LIKE', "%{$search}%")
+                ->orWhere('qualification', 'LIKE', "%{$search}%")
+                ->orWhere('min_qulification', 'LIKE', "%{$search}%")
+                ->orWhere('state', 'LIKE', "%{$search}%");
 
-//         });
+        });
 
-//     }
+    }
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | State Filter
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | State Filter
+    |--------------------------------------------------------------------------
+    */
 
-//     if ($request->filled('state')) {
+    if ($request->filled('state')) {
 
-//         if ($request->state != 'all-india') {
+        if ($request->state != 'all-india') {
 
-//             $jobs->where('state', $request->state);
+            $jobs->where('state', $request->state);
 
-//         }
+        }
 
-//     } elseif (!empty($state) && $state != 'all-india') {
+    } elseif (!empty($state) && $state != 'all-india') {
 
-//         $jobs->where('state', $state);
+        $jobs->where('state', $state);
 
-//     }
+    }
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Category Filter
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Category Filter
+    |--------------------------------------------------------------------------
+    */
 
-//     if ($request->filled('category')) {
+    if ($request->filled('category')) {
 
-//         $jobs->where('category', $request->category);
+        $jobs->where('category', $request->category);
 
-//     } elseif (!empty($category)) {
+    } elseif (!empty($category)) {
 
-//         $jobs->where('category', $category);
+        $jobs->where('category', $category);
 
-//     }
+    }
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Sub Category Filter
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Sub Category Filter
+    |--------------------------------------------------------------------------
+    */
 
-//     if ($request->filled('sub_category')) {
+    if ($request->filled('sub_category')) {
 
-//         $jobs->where(function ($q) use ($request) {
+        $jobs->where(function ($q) use ($request) {
 
-//             $q->where('job_sub_categories', 'LIKE', '%' . $request->sub_category . '%');
+            $q->where('job_sub_categories', 'LIKE', '%' . $request->sub_category . '%');
 
-//         });
+        });
 
-//     }
+    }
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Qualification Filter
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Qualification Filter
+    |--------------------------------------------------------------------------
+    */
 
-//     if ($request->filled('qualification')) {
+    if ($request->filled('qualification')) {
 
-//         $jobs->where(function ($q) use ($request) {
+        $jobs->where(function ($q) use ($request) {
 
-//             $q->where('qualification', 'LIKE', '%' . $request->qualification . '%')
-//                 ->orWhere('min_qulification', 'LIKE', '%' . $request->qualification . '%');
+            $q->where('qualification', 'LIKE', '%' . $request->qualification . '%')
+                ->orWhere('min_qulification', 'LIKE', '%' . $request->qualification . '%');
 
-//         });
+        });
 
-//     }
+    }
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Job Type Filter
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Job Type Filter
+    |--------------------------------------------------------------------------
+    */
 
-//     if ($request->filled('job_type')) {
+    if ($request->filled('job_type')) {
 
-//         $jobs->where('job_type', $request->job_type);
+        $jobs->where('job_type', $request->job_type);
 
-//     }
+    }
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Employment Type
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Employment Type
+    |--------------------------------------------------------------------------
+    */
 
-//     if ($request->filled('employment_type')) {
+    if ($request->filled('employment_type')) {
 
-//         $jobs->where('employment_type', $request->employment_type);
+        $jobs->where('employment_type', $request->employment_type);
 
-//     }
+    }
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Organization
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Organization
+    |--------------------------------------------------------------------------
+    */
 
-//     if ($request->filled('organization')) {
+    if ($request->filled('organization')) {
 
-//         $jobs->where('organization', $request->organization);
+        $jobs->where('organization', $request->organization);
 
-//     }
+    }
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Apply Mode
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Apply Mode
+    |--------------------------------------------------------------------------
+    */
 
-//     if ($request->filled('apply_mode')) {
+    if ($request->filled('apply_mode')) {
 
-//         $jobs->where('apply_mode', $request->apply_mode);
+        $jobs->where('apply_mode', $request->apply_mode);
 
-//     }
+    }
 
 
-//         /*
-//     |--------------------------------------------------------------------------
-//     | Sorting
-//     |--------------------------------------------------------------------------
-//     */
+        /*
+    |--------------------------------------------------------------------------
+    | Sorting
+    |--------------------------------------------------------------------------
+    */
 
-//     switch ($request->get('sort')) {
+    switch ($request->get('sort')) {
 
-//         case 'oldest':
+        case 'oldest':
 
-//             $jobs->orderBy('id', 'ASC');
+            $jobs->orderBy('id', 'ASC');
 
-//             break;
+            break;
 
-//         case 'title':
+        case 'title':
 
-//             $jobs->orderBy('title', 'ASC');
+            $jobs->orderBy('title', 'ASC');
 
-//             break;
+            break;
 
-//         case 'organization':
+        case 'organization':
 
-//             $jobs->orderBy('organization', 'ASC');
+            $jobs->orderBy('organization', 'ASC');
 
-//             break;
+            break;
 
-//         case 'last_date':
+        case 'last_date':
 
-//             $jobs->orderBy('end_date', 'ASC');
+            $jobs->orderBy('end_date', 'ASC');
 
-//             break;
+            break;
 
-//         default:
+        default:
 
-//             $jobs->orderBy('id', 'DESC');
+            $jobs->orderBy('id', 'DESC');
 
-//             break;
+            break;
 
-//     }
+    }
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Pagination
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Pagination
+    |--------------------------------------------------------------------------
+    */
 
-//     $jobs = $jobs->paginate(20)->withQueryString();
+    $jobs = $jobs->paginate(20)->withQueryString();
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Dashboard Counts
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard Counts
+    |--------------------------------------------------------------------------
+    */
 
-//     $totalJobs = DB::table('job_details')->count();
+    $totalJobs = DB::table('job_details')->count();
 
-//     $todayJobs = DB::table('job_details')
-//         ->whereDate('created_at', today())
-//         ->count();
+    $todayJobs = DB::table('job_details')
+        ->whereDate('created_at', today())
+        ->count();
 
-//     $activeJobs = DB::table('job_details')
-//         ->where('status', 'Active')
-//         ->count();
+    $activeJobs = DB::table('job_details')
+        ->where('status', 'Active')
+        ->count();
 
-//     $closingSoonJobs = DB::table('job_details')
-//         ->whereNotNull('end_date')
-//         ->where('end_date', '!=', '')
-//         ->count();
+    $closingSoonJobs = DB::table('job_details')
+        ->whereNotNull('end_date')
+        ->where('end_date', '!=', '')
+        ->count();
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Sidebar Filters
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Sidebar Filters
+    |--------------------------------------------------------------------------
+    */
 
-//     $states = DB::table('job_details')
-//         ->whereNotNull('state')
-//         ->where('state', '!=', '')
-//         ->distinct()
-//         ->orderBy('state')
-//         ->pluck('state');
+    $states = DB::table('job_details')
+        ->whereNotNull('state')
+        ->where('state', '!=', '')
+        ->distinct()
+        ->orderBy('state')
+        ->pluck('state');
 
-//     $categories = DB::table('job_details')
-//         ->whereNotNull('category')
-//         ->where('category', '!=', '')
-//         ->distinct()
-//         ->orderBy('category')
-//         ->pluck('category');
+    $categories = DB::table('job_details')
+        ->whereNotNull('category')
+        ->where('category', '!=', '')
+        ->distinct()
+        ->orderBy('category')
+        ->pluck('category');
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Qualifications
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Qualifications
+    |--------------------------------------------------------------------------
+    */
 
-//     $rows = DB::table('job_details')
-//         ->whereNotNull('min_qulification')
-//         ->where('min_qulification', '!=', '')
-//         ->pluck('min_qulification');
+    $rows = DB::table('job_details')
+        ->whereNotNull('min_qulification')
+        ->where('min_qulification', '!=', '')
+        ->pluck('min_qulification');
 
-//     $qualificationArray = [];
+    $qualificationArray = [];
 
-//     foreach ($rows as $row) {
+    foreach ($rows as $row) {
 
-//         foreach (explode('#', $row) as $item) {
+        foreach (explode('#', $row) as $item) {
 
-//             $item = trim($item);
+            $item = trim($item);
 
-//             if ($item != '') {
+            if ($item != '') {
 
-//                 $qualificationArray[$item] = $item;
+                $qualificationArray[$item] = $item;
 
-//             }
+            }
 
-//         }
+        }
 
-//     }
+    }
 
-//     ksort($qualificationArray);
+    ksort($qualificationArray);
 
-//     $qualifications = array_values($qualificationArray);
+    $qualifications = array_values($qualificationArray);
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | Sub Categories
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | Sub Categories
+    |--------------------------------------------------------------------------
+    */
 
-//     $rows = DB::table('job_details')
-//         ->whereNotNull('job_sub_categories')
-//         ->where('job_sub_categories', '!=', '')
-//         ->pluck('job_sub_categories');
+    $rows = DB::table('job_details')
+        ->whereNotNull('job_sub_categories')
+        ->where('job_sub_categories', '!=', '')
+        ->pluck('job_sub_categories');
 
-//     $subCategoryArray = [];
+    $subCategoryArray = [];
 
-//     foreach ($rows as $row) {
+    foreach ($rows as $row) {
 
-//         foreach (explode('#', $row) as $item) {
+        foreach (explode('#', $row) as $item) {
 
-//             $item = trim($item);
+            $item = trim($item);
 
-//             if ($item != '') {
+            if ($item != '') {
 
-//                 $subCategoryArray[$item] = $item;
+                $subCategoryArray[$item] = $item;
 
-//             }
+            }
 
-//         }
+        }
 
-//     }
+    }
 
-//     ksort($subCategoryArray);
+    ksort($subCategoryArray);
 
-//     $subCategories = array_values($subCategoryArray);
+    $subCategories = array_values($subCategoryArray);
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | AJAX Response
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | AJAX Response
+    |--------------------------------------------------------------------------
+    */
 
-//     if ($request->ajax()) {
+    if ($request->ajax()) {
 
-//         $html = view(
-//             'jobs.partials.job-list',
-//             compact('jobs')
-//         )->render();
+        $html = view(
+            'jobs.partials.job-list',
+            compact('jobs')
+        )->render();
 
-//         return response()->json([
+        return response()->json([
 
-//             'html' => $html,
+            'html' => $html,
 
-//             'total' => $jobs->total()
+            'total' => $jobs->total()
 
-//         ]);
+        ]);
 
-//     }
+    }
 
-//     /*
-//     |--------------------------------------------------------------------------
-//     | View
-//     |--------------------------------------------------------------------------
-//     */
+    /*
+    |--------------------------------------------------------------------------
+    | View
+    |--------------------------------------------------------------------------
+    */
 
-//     return view('jobs.show', compact(
+    return view('jobs.show', compact(
 
-//         'jobs',
+        'jobs',
 
-//         'state',
+        'state',
 
-//         'category',
+        'category',
 
-//         'totalJobs',
+        'totalJobs',
 
-//         'todayJobs',
+        'todayJobs',
 
-//         'activeJobs',
+        'activeJobs',
 
-//         'closingSoonJobs',
+        'closingSoonJobs',
 
-//         'states',
+        'states',
 
-//         'categories',
+        'categories',
 
-//         'qualifications',
+        'qualifications',
 
-//         'subCategories'
+        'subCategories'
 
-//     ));
-// }
+    ));
+}
 
     public function jobDetail($state, $category, $slug)
     {
