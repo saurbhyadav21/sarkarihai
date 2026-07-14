@@ -1244,7 +1244,7 @@ class JobController extends Controller
     //         'qualifications'
     //     ));
     // }
-
+ 
     public function latestJobs(
     Request $request,
     $state = null,
