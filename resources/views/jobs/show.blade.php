@@ -2072,23 +2072,23 @@
             <div class="summary-card">
 
                 <div class="summary-item">
-                    <small>Organization</small>
-                    <strong>SSC</strong>
+                    <small>Total Jobs</small>
+                    <strong>0</strong>
                 </div>
 
                 <div class="summary-item">
-                    <small>Total Vacancy</small>
-                    <strong>14582</strong>
+                    <small>New Today</small>
+                    <strong>0</strong>
                 </div>
 
                 <div class="summary-item">
-                    <small>Application Mode</small>
-                    <strong>Online</strong>
+                    <small>Closing Soon</small>
+                    <strong>o</strong>
                 </div>
 
                 <div class="summary-item">
-                    <small>Last Date</small>
-                    <strong>30 July 2026</strong>
+                    <small>Active Recruitments</small>
+                    <strong>0</strong>
                 </div>
 
             </div>
