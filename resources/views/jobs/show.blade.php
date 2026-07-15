@@ -3651,6 +3651,21 @@
 
 });
 
+$('#clearFilter').on('click', function () {
 
+    // Reset all selects
+    $('.form-select').val('');
+
+    // Reset search box (if exists)
+    $('#search').val('');
+
+    // Remove active highlight
+    $('.form-select').removeClass('active-filter');
+    $('label').removeClass('filter-active');
+
+    // Reload default jobs
+    loadJobs();
+
+});
     </script>
 @endsection
