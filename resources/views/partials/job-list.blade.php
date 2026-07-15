@@ -218,11 +218,11 @@ class="text-dark text-decoration-none fw-bold">
 
                                 </small>
 
-                                <div class="fw-semibold">
+                                {{-- <div class="fw-semibold">
 
                                     {{ $job->total_post ?: ($job->vacancy ?: '-') }}
 
-                                </div>
+                                </div> --}}
 
                             </div>
 
