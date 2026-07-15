@@ -1248,7 +1248,7 @@ class JobController extends Controller
     public function latestJobs(
         Request $request,
         $state = null,
-        $category = nulls
+        $category = null
     ) {
 
        if ($request->search === 'undefined') {
