@@ -75,17 +75,17 @@ class SitemapController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    foreach($states as $state){
+    // foreach($states as $state){
 
-        $xml .= '
-        <url>
-            <loc>'.url('state/'.$state->slug.'/jobs').'</loc>
-            <lastmod>'.optional($state->updated_at)->toAtomString().'</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>';
+    //     $xml .= '
+    //     <url>
+    //         <loc>'.url('state/'.$state->slug.'/jobs').'</loc>
+    //         <lastmod>'.optional($state->updated_at)->toAtomString().'</lastmod>
+    //         <changefreq>daily</changefreq>
+    //         <priority>0.8</priority>
+    //     </url>';
 
-    }
+    // }
 
     /*
     |--------------------------------------------------------------------------
