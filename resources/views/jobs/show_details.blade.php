@@ -1044,9 +1044,9 @@
                 </div>
 
                 <div class="summary-item">
-                    <small>Last Date</small>
-                    <strong>{{ $job->end_date }}</strong>
-                </div>
+    <small>Last Date</small>
+    <strong>{{ \Carbon\Carbon::parse($job->end_date)->format('d F Y') }}</strong>
+</div>
 
             </div>
 
