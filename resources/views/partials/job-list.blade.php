@@ -145,7 +145,7 @@
 
         </div>
 
-        <div class="job-card-right">
+        {{-- <div class="job-card-right">
 
             @php
 
@@ -187,7 +187,7 @@
 
             </a>
 
-        </div>
+        </div> --}}
 
     </div>
 
