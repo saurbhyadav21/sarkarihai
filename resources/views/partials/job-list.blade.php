@@ -105,21 +105,14 @@
 
                             <h5 class="mb-2">
 
-                                @if($job->state && $job->category && $job->slug)
-
-<a href="{{ route('sarkari.naukri.detail', [
-    $job->state,
-    $job->category,
-    $job->slug
-]) }}">
-    {{ $job->title }}
-</a>
-
-@else
-
-<span>{{ $job->title }}</span>
-
-@endif
+                                @if ($job->state && $job->category && $job->slug)
+                                    <a
+                                        href="{{ route('sarkari.naukri.detail', [$job->state, $job->category, $job->slug]) }}">
+                                        {{ $job->title }}
+                                    </a>
+                                @else
+                                    <span>{{ $job->title }}</span>
+                                @endif
 
                             </h5>
 
@@ -275,13 +268,14 @@
 
                         <div class="d-grid gap-2">
 
-                            <a href="{{ route('sarkari.naukri.detail', [$job->state, $job->category, $job->slug]) }}"
-                                class="btn btn-primary btn-sm">
+                            @if (!empty($job->state) && !empty($job->category) && !empty($job->slug))
+                                <a href="{{ route('sarkari.naukri.detail', [$job->state, $job->category, $job->slug]) }}"
+                                    class="btn btn-primary btn-sm">
 
-                                <i class="fa-solid fa-eye me-1"></i>
-                                View Details
+                                    View Details
 
-                            </a>
+                                </a>
+                            @endif
 
                         </div>
 
