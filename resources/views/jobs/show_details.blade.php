@@ -1441,7 +1441,7 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">🏢</div>
                         <div>
-                            <h3>{{ $job->organization ?? 'N/A' }}</h3>
+                            <h3>{{ $job->organization_full_form ?? 'N/A' }}</h3>
                             <p>Organization</p>
                         </div>
                     </div>
