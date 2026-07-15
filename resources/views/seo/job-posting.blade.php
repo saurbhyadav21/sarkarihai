@@ -29,7 +29,7 @@
         "@type":"Place",
         "address":{
             "@type":"PostalAddress",
-            "addressRegion":"{{ ucfirst($job->state) }}",
+           "addressRegion":"{{ $stateName }}",
             "addressCountry":"IN"
         }
     }
