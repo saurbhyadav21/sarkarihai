@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                    background:#fff;
-                                                    border-radius:15px;
-                                                    box-shadow:
-                                                    0 10px 30px rgba(0,0,0,.08);
-                                                    padding:30px;
-                                                    border-top:4px solid #F59E0B;
-                                                    display:grid;
-                                                    }
+                                                        background:#fff;
+                                                        border-radius:15px;
+                                                        box-shadow:
+                                                        0 10px 30px rgba(0,0,0,.08);
+                                                        padding:30px;
+                                                        border-top:4px solid #F59E0B;
+                                                        display:grid;
+                                                        }
 
-                                                    .summary-item{
-                                                    text-align:center;
-                                                    } */
+                                                        .summary-item{
+                                                        text-align:center;
+                                                        } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
-                    gap: 20px;
-                    margin-top: 20px;
-                } */
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 20px;
+                        margin-top: 20px;
+                    } */
 
         .highlight-box {
             background: #fff;
@@ -1564,49 +1564,55 @@
                         @if (!empty($job->general_fees))
                             <tr>
                                 <td>General / UR</td>
-                                {{ is_numeric($job->general_fees) ? '₹'.number_format($job->general_fees) : $job->general_fees }}
+                                {{ is_numeric($job->general_fees) ? '₹' . number_format($job->general_fees) : $job->general_fees }}
                             </tr>
                         @endif
 
                         @if (!empty($job->obc_fees))
                             <tr>
                                 <td>OBC</td>
-                                <td>{{ $job->obc_fees }}</td>
+                                <td>{{ is_numeric($job->obc_fees) ? '₹' . number_format($job->obc_fees) : $job->obc_fees }}
+                                </td>
                             </tr>
                         @endif
 
                         @if (!empty($job->ews_fees))
                             <tr>
                                 <td>EWS</td>
-                                <td>{{ $job->ews_fees }}</td>
+                                <td>{{ is_numeric($job->ews_fees) ? '₹' . number_format($job->ews_fees) : $job->ews_fees }}
+                                </td>
                             </tr>
                         @endif
 
                         @if (!empty($job->sc_fees))
                             <tr>
                                 <td>SC</td>
-                                <td>{{ $job->sc_fees }}</td>
+                                <td>{{ is_numeric($job->sc_fees) ? '₹' . number_format($job->sc_fees) : $job->sc_fees }}
+                                </td>
                             </tr>
                         @endif
 
                         @if (!empty($job->st_fees))
                             <tr>
                                 <td>ST</td>
-                                <td>{{ $job->st_fees }}</td>
+                                <td>{{ is_numeric($job->st_fees) ? '₹' . number_format($job->st_fees) : $job->st_fees }}
+                                </td>
                             </tr>
                         @endif
 
                         @if (!empty($job->ph_fees))
                             <tr>
                                 <td>PwBD / PH</td>
-                                <td>{{ $job->ph_fees }}</td>
+                                <td>{{ is_numeric($job->ph_fees) ? '₹' . number_format($job->ph_fees) : $job->ph_fees }}
+                                </td>
                             </tr>
                         @endif
 
                         @if (!empty($job->female_fees))
                             <tr>
                                 <td>Female Candidates</td>
-                                <td>{{ $job->female_fees }}</td>
+                                <td>{{ is_numeric($job->female_fees) ? '₹' . number_format($job->female_fees) : $job->female_fees }}
+                                </td>
                             </tr>
                         @endif
 
