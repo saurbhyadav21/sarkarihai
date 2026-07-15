@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                            background:#fff;
-                                            border-radius:15px;
-                                            box-shadow:
-                                            0 10px 30px rgba(0,0,0,.08);
-                                            padding:30px;
-                                            border-top:4px solid #F59E0B;
-                                            display:grid;
-                                            }
+                                                background:#fff;
+                                                border-radius:15px;
+                                                box-shadow:
+                                                0 10px 30px rgba(0,0,0,.08);
+                                                padding:30px;
+                                                border-top:4px solid #F59E0B;
+                                                display:grid;
+                                                }
 
-                                            .summary-item{
-                                            text-align:center;
-                                            } */
+                                                .summary-item{
+                                                text-align:center;
+                                                } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -928,11 +928,9 @@
         }
 
         .highlight-grid {
-                display: flex;
-    gap: 10px;
+            display: flex;
+            gap: 10px;
         }
-
-        
     </style>
     <section class="hero">
 
@@ -1189,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        } */
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                margin-top: 20px;
+            } */
 
         .highlight-box {
             background: #fff;
@@ -1206,7 +1204,8 @@
         .highlight-box h3 {
             font-size: 20px;
             color: #0F766E;
-            margin-bottom: 10px;    font-weight: bold;
+            margin-bottom: 10px;
+            font-weight: bold;
         }
 
         .highlight-box p {
@@ -1217,7 +1216,8 @@
             position: sticky;
             top: 90px;
         }
-        .highlight-icon{
+
+        .highlight-icon {
             font-size: 50px;
         }
     </style>
@@ -1392,7 +1392,7 @@
 
             </div>
 
-  <div class="content-card job-highlights-card">
+            <div class="content-card job-highlights-card">
 
                 <h2>
                     Job Highlights
@@ -1421,7 +1421,7 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">📍</div>
                         <div>
-                           <h3>{{ isset($job->state) ? ucfirst($job->state) : 'N/A' }}</h3>
+                            <h3>{{ isset($job->state) ? ucfirst($job->state) : 'N/A' }}</h3>
                             <p>Job Location</p>
                         </div>
                     </div>
@@ -1431,8 +1431,8 @@
                         <div class="highlight-icon">📅</div>
                         <div>
                             <h3>
-    {{ $job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d F Y') : 'N/A' }}
-</h3>
+                                {{ $job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d F Y') : 'N/A' }}
+                            </h3>
                             <p>Last Date</p>
                         </div>
                     </div>
@@ -1501,7 +1501,7 @@
 
 
 
-          
+
 
 
 
@@ -1513,7 +1513,9 @@
 
                 <div class="notice-box">
 
-                    Candidates are advised to carefully read the official notification before applying online. Applicants should verify eligibility criteria, important dates, application process, and other details before submitting the application form.
+                    Candidates are advised to carefully read the official notification before applying online. Applicants
+                    should verify eligibility criteria, important dates, application process, and other details before
+                    submitting the application form.
 
                 </div>
 
