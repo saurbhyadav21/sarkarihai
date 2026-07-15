@@ -1602,7 +1602,10 @@
             <td>{{ $job->extra_charge }}</td>
         </tr>
         @endif
-
+         <tr>
+            <td>Payment Mode</td>
+            <td>Online</td>
+        </tr>
     </tbody>
 </table>
 
