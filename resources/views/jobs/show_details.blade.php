@@ -1370,11 +1370,11 @@
 
                 <p>
 
-                    SSC Combined Graduate Level Examination
+                    {{-- SSC Combined Graduate Level Examination
                     is conducted by Staff Selection Commission
                     for recruitment in various Group B and
                     Group C posts in ministries,
-                    departments and government offices.
+                    departments and government offices. --}}
 
                      {!! nl2br($overview) !!}
 
