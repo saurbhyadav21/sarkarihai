@@ -1560,7 +1560,7 @@ class JobController extends Controller
     if ($request->ajax()) {
 
         $html = view(
-            'jobs.partials.job-list',
+            'partials.job-list',
             compact('jobs')
         )->render();
 
