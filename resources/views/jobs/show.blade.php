@@ -2010,6 +2010,14 @@
         /* ========================================= */
         /* End of CSS */
         /* ========================================= */
+        .card-body .form-label{
+    margin-bottom:0;
+    font-size:14px;
+}
+
+.card-body .form-select{
+    font-size:14px;
+}
     </style>
     <section class="hero">
 
@@ -2392,7 +2400,7 @@
 
                             <strong>
 
-                                Filters
+                                🔥 Find Government Jobs
 
                             </strong>
 
@@ -2403,67 +2411,63 @@
                             <!-- State -->
                             <!-- ===================== -->
 
-                            <div class="mb-3">
+                            <div class="mb-3 row align-items-center">
 
-                                <label class="form-label fw-semibold">
+    <label class="col-4 col-form-label fw-semibold">
 
-                                    State
+        State
 
-                                </label>
+    </label>
 
-                                <select class="form-select" id="state">
+    <div class="col-8">
 
-                                    <option value="">
+        <select class="form-select" id="state">
 
-                                        All States
+            <option value="">All States</option>
 
-                                    </option>
+            @foreach($states as $state)
+                <option value="{{ $state }}">{{ $state }}</option>
+            @endforeach
 
-                                    @foreach ($states as $state)
-                                        <option value="{{ $state }}">
-                                            {{ $state }}
-                                        </option>
-                                    @endforeach
+        </select>
 
-                                </select>
+    </div>
 
-                            </div>
+</div>
 
                             <!-- ===================== -->
                             <!-- Category -->
                             <!-- ===================== -->
 
-                            <div class="mb-3">
+                            <div class="mb-3 row align-items-center">
 
-                                <label class="form-label fw-semibold">
+    <label class="col-4 col-form-label fw-semibold">
 
-                                    Category
+        Category
 
-                                </label>
+    </label>
 
-                                <select class="form-select" id="category">
+    <div class="col-8">
 
-                                    <option value="">
+        <select class="form-select" id="category">
 
-                                        All Categories
+            <option value="">All Categories</option>
 
-                                    </option>
+            @foreach($categories as $category)
+                <option value="{{ $category }}">{{ $category }}</option>
+            @endforeach
 
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category }}">
-                                            {{ $category }}
-                                        </option>
-                                    @endforeach
+        </select>
 
-                                </select>
+    </div>
 
-                            </div>
+</div>
 
                             <!-- ===================== -->
                             <!-- Sub Category -->
                             <!-- ===================== -->
 
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
 
                                 <label class="form-label fw-semibold">
 
@@ -2481,139 +2485,92 @@
 
                                 </select>
 
-                            </div>
+                            </div> --}}
 
                             <!-- ===================== -->
                             <!-- Qualification -->
                             <!-- ===================== -->
 
-                            <div class="mb-3">
+                            <div class="mb-3 row align-items-center">
 
-                                <label class="form-label fw-semibold">
+    <label class="col-4 col-form-label fw-semibold">
 
-                                    Qualification
+        Qualification
 
-                                </label>
+    </label>
 
-                                <select class="form-select" id="qualification">
+    <div class="col-8">
 
-                                    <option value="">
+        <select class="form-select" id="qualification">
 
-                                        All Qualifications
+            <option value="">All Qualifications</option>
 
-                                    </option>
+            @foreach($qualifications as $qualification)
+                <option value="{{ $qualification }}">{{ $qualification }}</option>
+            @endforeach
 
-                                    @foreach ($qualifications as $qualification)
-                                        <option value="{{ $qualification }}">
-                                            {{ $qualification }}
-                                        </option>
-                                    @endforeach
+        </select>
 
-                                </select>
+    </div>
 
-                            </div>
+</div>
 
                             <!-- ===================== -->
                             <!-- Job Type -->
                             <!-- ===================== -->
 
-                            <div class="mb-3">
+                            <div class="mb-3 row align-items-center">
 
-                                <label class="form-label fw-semibold">
+    <label class="col-4 col-form-label fw-semibold">
 
-                                    Job Type
+        Job Type
 
-                                </label>
+    </label>
 
-                                <select class="form-select" id="job_type">
+    <div class="col-8">
 
-                                    <option value="">
+        <select class="form-select" id="job_type">
 
-                                        All Job Types
+            <option value="">All Job Types</option>
+            <option value="regular">Regular</option>
+            <option value="contract">Contract</option>
+            <option value="deputation">Deputation</option>
+            <option value="walk-in">Walk-In</option>
+            <option value="internship">Internship</option>
 
-                                    </option>
+        </select>
 
-                                    <option value="regular">
+    </div>
 
-                                        Regular
-
-                                    </option>
-
-                                    <option value="contract">
-
-                                        Contract
-
-                                    </option>
-
-                                    <option value="deputation">
-
-                                        Deputation
-
-                                    </option>
-
-                                    <option value="walk-in">
-
-                                        Walk-In
-
-                                    </option>
-
-                                    <option value="internship">
-
-                                        Internship
-
-                                    </option>
-
-                                </select>
-
-                            </div>
+</div>
 
                             <!-- ===================== -->
                             <!-- Last Date -->
                             <!-- ===================== -->
 
-                            <div class="mb-4">
+                            <div class="mb-4 row align-items-center">
 
-                                <label class="form-label fw-semibold">
+    <label class="col-4 col-form-label fw-semibold">
 
-                                    Last Date
+        Last Date
 
-                                </label>
+    </label>
 
-                                <select class="form-select" id="last_date">
+    <div class="col-8">
 
-                                    <option value="">
+        <select class="form-select" id="last_date">
 
-                                        Any Time
+            <option value="">Any Time</option>
+            <option value="today">Today</option>
+            <option value="7">Next 7 Days</option>
+            <option value="15">Next 15 Days</option>
+            <option value="30">Next 30 Days</option>
 
-                                    </option>
+        </select>
 
-                                    <option value="today">
+    </div>
 
-                                        Today
-
-                                    </option>
-
-                                    <option value="7">
-
-                                        Next 7 Days
-
-                                    </option>
-
-                                    <option value="15">
-
-                                        Next 15 Days
-
-                                    </option>
-
-                                    <option value="30">
-
-                                        Next 30 Days
-
-                                    </option>
-
-                                </select>
-
-                            </div>
+</div>
 
                             <div class="d-grid gap-2">
 
