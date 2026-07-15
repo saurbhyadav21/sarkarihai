@@ -200,11 +200,11 @@ class="text-dark text-decoration-none fw-bold">
 
                                 </small>
 
-                                <div class="fw-semibold">
+                                {{-- <div class="fw-semibold">
 
                                     {{ $job->salary ?: 'As Per Rules' }}
 
-                                </div>
+                                </div> --}}
 
                             </div>
 
