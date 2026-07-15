@@ -105,7 +105,11 @@
 
                         <h5 class="mb-2">
 
-                            <a href="{{ route('jobs.details', $job->slug) }}"
+                            <a href="{{ route('sarkari.naukri.detail', [
+    $job->state,
+    $job->category,
+    $job->slug
+]) }}"
                                 class="text-dark text-decoration-none fw-bold">
 
                                 {{ $job->title }}
@@ -274,7 +278,11 @@
 
                     <div class="d-grid gap-2">
 
-                        <a href="{{ route('jobs.details', $job->slug) }}"
+                        <a href="{{ route('sarkari.naukri.detail', [
+    $job->state,
+    $job->category,
+    $job->slug
+]) }}"
                             class="btn btn-primary btn-sm">
 
                             <i class="fa-solid fa-eye me-1"></i>
