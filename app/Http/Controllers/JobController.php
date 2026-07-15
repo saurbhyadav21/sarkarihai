@@ -1251,7 +1251,12 @@ class JobController extends Controller
         $category = nulls
     ) {
 
-       
+       if ($request->search === 'undefined') {
+
+    $query = $request->except('search');
+
+    return redirect()->route('sarkari.naukri', $query);
+}
 
         $jobs = DB::table('job_details');
 
