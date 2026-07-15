@@ -1283,7 +1283,7 @@ class JobController extends Controller
     | State Filter
     |--------------------------------------------------------------------------
     */
-    dd($request->state);
+    dd($state);
     if ($request->filled('state')) {
 
         if ($request->state != 'all-india') {
