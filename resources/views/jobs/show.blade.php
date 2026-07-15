@@ -2438,15 +2438,18 @@
 
                                 <div class="col-8">
 
-                                    <select class="form-select" id="state">
+                                    <select class="form-select" id="state" name="state">
 
-                                        <option value="">All States</option>
+    <option value="">All States</option>
 
-                                        @foreach ($states as $state)
-                                            <option value="{{ $state }}">{{ $state }}</option>
-                                        @endforeach
+    @foreach ($states as $stateItem)
+        <option value="{{ $stateItem }}"
+            {{ \Illuminate\Support\Str::slug($stateItem) == $state ? 'selected' : '' }}>
+            {{ $stateItem }}
+        </option>
+    @endforeach
 
-                                    </select>
+</select>
 
                                 </div>
 
@@ -2466,15 +2469,18 @@
 
                                 <div class="col-8">
 
-                                    <select class="form-select" id="category">
+                                    <select class="form-select" id="category" name="category">
 
-                                        <option value="">All Categories</option>
+    <option value="">All Categories</option>
 
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category }}">{{ $category }}</option>
-                                        @endforeach
+    @foreach ($categories as $categoryItem)
+        <option value="{{ $categoryItem }}"
+            {{ \Illuminate\Support\Str::slug($categoryItem) == $category ? 'selected' : '' }}>
+            {{ $categoryItem }}
+        </option>
+    @endforeach
 
-                                    </select>
+</select>
 
                                 </div>
 
