@@ -1668,13 +1668,13 @@ class JobController extends Controller
 
 
                 [
-                    $job->organization_full_form ?? '',
-                    $job->organization ?? '',
-                    $job->title ?? '',
-                    $job->job_topic ?? '',
-                    $job->category ?? '',
-                    $job->job_sub_categories ?? '',
-                    $job->state ?? '',
+                    '<strong>' . ($job->organization_full_form ?? '') . '</strong>',
+                    '<strong>' . ($job->organization ?? '') . '</strong>',
+                    '<strong>' . ($job->title ?? '') . '</strong>',
+                    '<strong>' . ($job->job_topic ?? '') . '</strong>',
+                    '<strong>' . ($job->category ?? '') . '</strong>',
+                    '<strong>' . ($job->job_sub_categories ?? '') . '</strong>',
+                    '<strong>' . ($job->state ?? '') . '</strong>',
                 ],
 
 
