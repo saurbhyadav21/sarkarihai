@@ -1695,7 +1695,7 @@ $ogType = 'article';
 $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
 
 $stateName = ucfirst($job->state ?? '');
-
+dd($stateName);
         return view('jobs.show_details', [
 
             'job' => $job,
