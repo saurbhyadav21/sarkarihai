@@ -1108,7 +1108,7 @@
 
         .card-header strong {
 
-            font-size: 17px;
+            font-size: 22px;
 
             font-weight: 700;
 
