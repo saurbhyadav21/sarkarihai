@@ -1251,9 +1251,9 @@ class JobController extends Controller
         $category = null
     ) {
 
-       if ($request->search === 'undefined') {
-    return redirect()->route('sarkari.naukri');
-}
+        if ($request->search === 'undefined') {
+            return redirect()->route('sarkari.naukri');
+        }
 
         $jobs = DB::table('job_details');
 
@@ -1596,14 +1596,57 @@ class JobController extends Controller
 
     public function jobDetail($state, $category, $slug)
     {
-
-
         $job = Job::where('slug', $slug)->firstOrFail();
+
+
+        // Template ID निकालो
+        $template = explode(',', $job->template_combination_id);
+
+        $p1 = $template[0] ?? 1;
+        $p2 = $template[1] ?? 1;
+        $p3 = $template[2] ?? 1;
+
+
+        // P1 Template
+        $overviewTemplate = DB::table('job_p1_templates')
+            ->where('id', $p1)
+            ->value('content');
+
+
+        // Replace Dynamic Variables
+
+        $overview = str_replace(
+
+            [
+                '{{Organization Full Form}}',
+                '{{Organization}}',
+                '{{Job Title}}',
+                '{{Job Topic}}',
+                '{{Category}}',
+                '{{Sub Category}}',
+                '{{State}}',
+            ],
+
+            [
+                $job->organization_full_form ?? null,
+                $job->organization ?? null,
+                $job->title ?? null,
+                $job->job_topic ?? null,
+                $job->category ?? null,
+                $job->job_sub_categories ?? null,
+                $job->state ?? null,
+            ],
+
+            $overviewTemplate
+
+        );
+
 
         return view('jobs.show_details', [
             'job' => $job,
             'state' => $state,
             'category' => $category,
+            'overview' => $overview,
         ]);
     }
 
