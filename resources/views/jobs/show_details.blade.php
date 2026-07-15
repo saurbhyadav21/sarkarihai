@@ -1421,7 +1421,7 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">📍</div>
                         <div>
-                            <h3>{{ $job->state ?? 'N/A' }}</h3>
+                           <h3>{{ isset($job->state) ? ucfirst($job->state) : 'N/A' }}</h3>
                             <p>Job Location</p>
                         </div>
                     </div>
