@@ -1693,6 +1693,7 @@ $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview
 $ogType = 'article';
 
 $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
+
         return view('jobs.show_details', [
 
             'job' => $job,
