@@ -926,6 +926,11 @@
         .search-dropdown::-webkit-scrollbar-track {
             background: #f8fafc;
         }
+        .highlight-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:15px;
+}
     </style>
     <section class="hero">
 
