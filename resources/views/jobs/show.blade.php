@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                        background:#fff;
-                        border-radius:15px;
-                        box-shadow:
-                        0 10px 30px rgba(0,0,0,.08);
-                        padding:30px;
-                        border-top:4px solid #F59E0B;
-                        display:grid;
-                        }
+                            background:#fff;
+                            border-radius:15px;
+                            box-shadow:
+                            0 10px 30px rgba(0,0,0,.08);
+                            padding:30px;
+                            border-top:4px solid #F59E0B;
+                            display:grid;
+                            }
 
-                        .summary-item{
-                        text-align:center;
-                        } */
+                            .summary-item{
+                            text-align:center;
+                            } */
         .summary-card {
             background: #fff;
             border-radius: 15px;
@@ -1369,9 +1369,9 @@
 
         /* Continue in Part 2C */
         /* ===========================================================
-               PART 2C
-               Premium UI Enhancements
-            =========================================================== */
+                   PART 2C
+                   Premium UI Enhancements
+                =========================================================== */
 
         /* ========================================= */
         /* Breadcrumb */
@@ -1682,9 +1682,9 @@
 
         /* Continue in Part 2D */
         /* ===========================================================
-               PART 2D
-               Responsive Design + Final CSS
-            =========================================================== */
+                   PART 2D
+                   Responsive Design + Final CSS
+                =========================================================== */
 
         /* ========================================= */
         /* Desktop (1400px+) */
@@ -2744,12 +2744,12 @@
 
                                                     <h5 class="mb-2">
 
-                                                        {{-- <a href="{{ url($job->slug) }}"
+                                                        <a href="{{ url($job->slug) }}"
                                                             class="text-dark text-decoration-none fw-bold">
 
                                                             {{ $job->title }}
 
-                                                        </a> --}}
+                                                        </a>
 
                                                     </h5>
 
