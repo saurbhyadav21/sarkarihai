@@ -118,12 +118,12 @@
                     </span>
                 @endif
 
-                @if ($job->vacancy)
+                {{-- @if ($job->vacancy)
                     <span>
                         <i class="fas fa-users"></i>
                         {{ number_format($job->vacancy) }} Posts
                     </span>
-                @endif
+                @endif --}}
 
             </div>
 
