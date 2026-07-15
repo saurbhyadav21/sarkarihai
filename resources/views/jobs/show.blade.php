@@ -3650,24 +3650,37 @@
             ========================================== */
         });
 
-        $('.form-select').on('change', function() {
+        function updateFilterState() {
 
-            var label = $(this).closest('.row').find('label');
+    $('.form-select').each(function () {
 
-            if ($(this).val() != '') {
+        var label = $(this).closest('.row').find('label');
 
-                $(this).addClass('active-filter');
-                label.addClass('filter-active');
+        if ($(this).val() !== '') {
 
-            } else {
+            $(this).addClass('active-filter');
+            label.addClass('filter-active');
 
-                $(this).removeClass('active-filter');
-                label.removeClass('filter-active');
+        } else {
 
-            }
+            $(this).removeClass('active-filter');
+            label.removeClass('filter-active');
 
-        });
+        }
 
+    });
+
+}
+
+// Page Load
+updateFilterState();
+
+// Change Event
+$('.form-select').on('change', function () {
+    updateFilterState();
+});
+
+$('.form-select').trigger('change');
         $('#clearFilter').on('click', function() {
 
             // Reset all selects
