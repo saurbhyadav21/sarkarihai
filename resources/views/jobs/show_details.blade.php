@@ -1434,7 +1434,7 @@
 
 
 
-            <div class="content-card">
+            <div class="content-card job-highlights-card">
 
     <h2>
         Job Highlights
@@ -1443,68 +1443,49 @@
     <div class="highlight-grid">
 
         <div class="highlight-box">
-
-            <h3>
-                14582
-            </h3>
-
-            <p>
-                Total Vacancies
-            </p>
-
+            <div class="highlight-icon">📌</div>
+            <div>
+                <h3>14,582</h3>
+                <p>Total Vacancies</p>
+            </div>
         </div>
 
 
         <div class="highlight-box">
-
-            <h3>
-                ₹44900
-            </h3>
-
-            <p>
-                Starting Salary
-            </p>
-
+            <div class="highlight-icon">💰</div>
+            <div>
+                <h3>₹44,900</h3>
+                <p>Starting Salary</p>
+            </div>
         </div>
 
 
         <div class="highlight-box">
-
-            <h3>
-                India
-            </h3>
-
-            <p>
-                Job Location
-            </p>
-
+            <div class="highlight-icon">📍</div>
+            <div>
+                <h3>India</h3>
+                <p>Job Location</p>
+            </div>
         </div>
 
 
         <div class="highlight-box">
-
-            <h3>
-                05 August 2026
-            </h3>
-
-            <p>
-                Last Date
-            </p>
-
+            <div class="highlight-icon">📅</div>
+            <div>
+                <h3>05 Aug 2026</h3>
+                <p>Last Date</p>
+            </div>
         </div>
 
 
         <div class="highlight-box">
-
-            <h3>
-                IIT Gandhinagar
-            </h3>
-
-            <p>
-                Organization
-            </p>
-
+            <div class="highlight-icon">🏢</div>
+            <div>
+                <h3>IIT Gandhinagar</h3>
+                <p>Organization</p>
+            </div>
         </div>
+
 
     </div>
 
