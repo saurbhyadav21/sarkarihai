@@ -1250,7 +1250,7 @@ class JobController extends Controller
     $state = null,
     $category = null
 ) {
-    // dd($state);
+    dd($state);
     $jobs = DB::table('job_details');
 
     /*
