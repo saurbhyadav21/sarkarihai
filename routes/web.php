@@ -18,8 +18,8 @@ Route::post('/job/store', [JobController::class, 'store'])->name('job.store');
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
-Route::get('/sarkari-naukri', [JobController::class, 'index'])->name('jobs.index'); // List all jobs
-Route::get('/sarkari-naukri/{slug}', [JobController::class, 'show'])->name('job.show'); // Show single job
+// Route::get('/sarkari-naukri', [JobController::class, 'index'])->name('jobs.index'); // List all jobs
+// Route::get('/sarkari-naukri/{slug}', [JobController::class, 'show'])->name('job.show'); // Show single job
 
 Route::get('/job/{id}/edit', [JobController::class, 'edit'])->name('job.edit');
 Route::get('/result/{id}/edit', [JobController::class, 'resultEdit'])->name('result.edit');
