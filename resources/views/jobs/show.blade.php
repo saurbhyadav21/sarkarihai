@@ -331,9 +331,9 @@
         }
 
         .summary-item small {
-            display: block;
-            color: #888;
-            margin-bottom: 10px;
+                display: block;
+    color: #fff;
+    font-size: 12px;
         }
 
         .summary-item strong {
