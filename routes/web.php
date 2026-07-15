@@ -104,7 +104,7 @@ Route::get(
 
 Route::get(
     '/sarkari-naukri/{state}/{category}/{slug}',
-    [JobController::class, 'jobDetails']
+    [JobController::class, 'jobDetail']
 )->name('sarkari.naukri.detail');
 
 Route::post(
