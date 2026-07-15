@@ -2018,6 +2018,13 @@
 .card-body .form-select{
     font-size:14px;
 }
+
+.form-select.active-filter{
+    border:2px solid #0d6efd;
+    background:#eef5ff;
+    box-shadow:0 0 0 .15rem rgba(13,110,253,.15);
+}
+
     </style>
     <section class="hero">
 
@@ -3617,5 +3624,21 @@
                End Script
             ========================================== */
         });
+
+        $('.form-select').on('change', function () {
+
+    if ($(this).val() != '') {
+
+        $(this).addClass('active-filter');
+
+    } else {
+
+        $(this).removeClass('active-filter');
+
+    }
+
+});
+
+
     </script>
 @endsection
