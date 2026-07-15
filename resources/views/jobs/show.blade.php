@@ -2646,7 +2646,7 @@
 
                                             <span id="jobCount">
 
-                                                {{-- {{ number_format($totalJobs) }} --}}
+                                                {{ number_format($totalJobs) }}
 
                                             </span>
 
