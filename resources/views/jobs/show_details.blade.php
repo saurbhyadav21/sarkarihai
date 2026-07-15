@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                background:#fff;
-                                                border-radius:15px;
-                                                box-shadow:
-                                                0 10px 30px rgba(0,0,0,.08);
-                                                padding:30px;
-                                                border-top:4px solid #F59E0B;
-                                                display:grid;
-                                                }
+                                                    background:#fff;
+                                                    border-radius:15px;
+                                                    box-shadow:
+                                                    0 10px 30px rgba(0,0,0,.08);
+                                                    padding:30px;
+                                                    border-top:4px solid #F59E0B;
+                                                    display:grid;
+                                                    }
 
-                                                .summary-item{
-                                                text-align:center;
-                                                } */
+                                                    .summary-item{
+                                                    text-align:center;
+                                                    } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-                margin-top: 20px;
-            } */
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 20px;
+                    margin-top: 20px;
+                } */
 
         .highlight-box {
             background: #fff;
@@ -1553,61 +1553,79 @@
 
                 </table> --}}
                 <table class="table table-bordered table-striped info-table">
-    <thead>
-        <tr>
-            <th>Category</th>
-            <th>Application Fee</th>
-        </tr>
-    </thead>
-    <tbody>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Application Fee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-        <tr>
-            <td>General / UR</td>
-            <td>{{ $job->general_fees ?? 'N/A' }}</td>
-        </tr>
+                        @if (!empty($job->general_fees))
+                            <tr>
+                                <td>General / UR</td>
+                                <td>{{ $job->general_fees }}</td>
+                            </tr>
+                        @endif
 
-        <tr>
-            <td>OBC</td>
-            <td>{{ $job->obc_fees ?? 'N/A' }}</td>
-        </tr>
+                        @if (!empty($job->obc_fees))
+                            <tr>
+                                <td>OBC</td>
+                                <td>{{ $job->obc_fees }}</td>
+                            </tr>
+                        @endif
 
-        <tr>
-            <td>EWS</td>
-            <td>{{ $job->ews_fees ?? 'N/A' }}</td>
-        </tr>
+                        @if (!empty($job->ews_fees))
+                            <tr>
+                                <td>EWS</td>
+                                <td>{{ $job->ews_fees }}</td>
+                            </tr>
+                        @endif
 
-        <tr>
-            <td>SC</td>
-            <td>{{ $job->sc_fees ?? 'N/A' }}</td>
-        </tr>
+                        @if (!empty($job->sc_fees))
+                            <tr>
+                                <td>SC</td>
+                                <td>{{ $job->sc_fees }}</td>
+                            </tr>
+                        @endif
 
-        <tr>
-            <td>ST</td>
-            <td>{{ $job->st_fees ?? 'N/A' }}</td>
-        </tr>
+                        @if (!empty($job->st_fees))
+                            <tr>
+                                <td>ST</td>
+                                <td>{{ $job->st_fees }}</td>
+                            </tr>
+                        @endif
 
-        <tr>
-            <td>PwBD / PH</td>
-            <td>{{ $job->ph_fees ?? 'N/A' }}</td>
-        </tr>
+                        @if (!empty($job->ph_fees))
+                            <tr>
+                                <td>PwBD / PH</td>
+                                <td>{{ $job->ph_fees }}</td>
+                            </tr>
+                        @endif
 
-        <tr>
-            <td>Female Candidates</td>
-            <td>{{ $job->female_fees ?? 'N/A' }}</td>
-        </tr>
+                        @if (!empty($job->female_fees))
+                            <tr>
+                                <td>Female Candidates</td>
+                                <td>{{ $job->female_fees }}</td>
+                            </tr>
+                        @endif
 
-        @if(!empty($job->extra_charge))
-        <tr>
-            <td>Extra Charges</td>
-            <td>{{ $job->extra_charge }}</td>
-        </tr>
-        @endif
-         <tr>
-            <td>Payment Mode</td>
-            <td>Online</td>
-        </tr>
-    </tbody>
-</table>
+                        @if (!empty($job->extra_charge))
+                            <tr>
+                                <td>Extra Charges</td>
+                                <td>{{ $job->extra_charge }}</td>
+                            </tr>
+                        @endif
+
+                        @if (!empty($job->payment_mode))
+                            <tr>
+                                <td>Payment Mode</td>
+                                <td>{{ $job->payment_mode }}</td>
+                            </tr>
+                        @endif
+
+                    </tbody>
+                </table>
 
             </div>
 
