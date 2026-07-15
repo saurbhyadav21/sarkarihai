@@ -1206,7 +1206,7 @@
         .highlight-box h3 {
             font-size: 20px;
             color: #0F766E;
-            margin-bottom: 10px;
+            margin-bottom: 10px;    font-weight: bold;
         }
 
         .highlight-box p {
@@ -1218,7 +1218,7 @@
             top: 90px;
         }
         .highlight-icon{
-            font-size: 30px;
+            font-size: 50px;
         }
     </style>
 
