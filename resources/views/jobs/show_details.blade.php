@@ -1030,7 +1030,7 @@
 
                 <div class="summary-item">
                     <small>Organization</small>
-                    <strong>SSC</strong>
+                    <strong>{{ $job->organization }}</strong>
                 </div>
 
                 <div class="summary-item">
