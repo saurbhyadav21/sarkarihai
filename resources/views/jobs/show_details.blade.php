@@ -639,6 +639,138 @@
 
         }
     </style>
+    <style>
+        .ticker-heading {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 8px 15px;
+            background: #f4b400;
+            color: #000;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 6px;
+        }
+
+        @media(max-width:991px) {
+
+            .hero {
+                padding: 35px 0;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+                text-align: center;
+            }
+
+            .hero p {
+                text-align: center;
+                font-size: 16px;
+            }
+
+            .stats {
+                margin-bottom: 15px;
+            }
+
+            .search-card {
+                margin-top: 25px;
+            }
+
+        }
+
+        @media(max-width:767px) {
+
+            .hero {
+                padding: 25px 0;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+                line-height: 1.3;
+            }
+
+            .hero p {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+
+            .stats h3 {
+                font-size: 22px;
+            }
+
+            .stats small {
+                font-size: 13px;
+            }
+
+            .search-card {
+                padding: 18px;
+            }
+
+            .search-card h5 {
+                font-size: 18px;
+            }
+
+            #jobSearch {
+                font-size: 15px;
+            }
+
+        }
+
+        @media(max-width:767px) {
+
+            .search-dropdown {
+
+                left: 0;
+
+                right: 0;
+
+                border-radius: 15px;
+
+                max-height: 350px;
+
+            }
+
+            .search-item {
+
+                padding: 15px;
+
+            }
+
+            .search-title {
+
+                font-size: 14px;
+
+            }
+
+            .search-meta {
+
+                font-size: 12px;
+
+            }
+
+        }
+
+        .latest-ticker marquee {
+
+            font-size: 13px;
+
+        }
+
+        .search-card {
+
+            border-radius: 18px;
+
+        }
+
+        @media(max-width:767px) {
+
+            .search-card {
+
+                margin-top: 20px;
+
+            }
+
+        }
+    </style>
     <section class="hero">
 
         <div class="container">
