@@ -1204,7 +1204,7 @@
         }
 
         .highlight-box h3 {
-            font-size: 30px;
+            font-size: 20px;
             color: #0F766E;
             margin-bottom: 10px;
         }
