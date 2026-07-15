@@ -93,17 +93,17 @@ class SitemapController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    foreach($categories as $category){
+    // foreach($categories as $category){
 
-        $xml .= '
-        <url>
-            <loc>'.url('jobs/'.$category->slug).'</loc>
-            <lastmod>'.optional($category->updated_at)->toAtomString().'</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>';
+    //     $xml .= '
+    //     <url>
+    //         <loc>'.url('jobs/'.$category->slug).'</loc>
+    //         <lastmod>'.optional($category->updated_at)->toAtomString().'</lastmod>
+    //         <changefreq>daily</changefreq>
+    //         <priority>0.8</priority>
+    //     </url>';
 
-    }
+    // }
 
     /*
     |--------------------------------------------------------------------------
@@ -111,17 +111,17 @@ class SitemapController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    foreach($topics as $topic){
+    // foreach($topics as $topic){
 
-        $xml .= '
-        <url>
-            <loc>'.url('topic/'.$topic->slug).'</loc>
-            <lastmod>'.optional($topic->updated_at)->toAtomString().'</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>';
+    //     $xml .= '
+    //     <url>
+    //         <loc>'.url('topic/'.$topic->slug).'</loc>
+    //         <lastmod>'.optional($topic->updated_at)->toAtomString().'</lastmod>
+    //         <changefreq>daily</changefreq>
+    //         <priority>0.8</priority>
+    //     </url>';
 
-    }
+    // }
 
     /*
     |--------------------------------------------------------------------------
