@@ -1217,6 +1217,9 @@
             position: sticky;
             top: 90px;
         }
+        .highlight-icon{
+            font-size: 30px;
+        }
     </style>
 
 
