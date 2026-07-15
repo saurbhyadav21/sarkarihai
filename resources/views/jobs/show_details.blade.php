@@ -1430,7 +1430,9 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">📅</div>
                         <div>
-                            <h3>{{ $job->end_date ?? 'N/A' }}</h3>
+                            <h3>
+    {{ $job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d F Y') : 'N/A' }}
+</h3>
                             <p>Last Date</p>
                         </div>
                     </div>
