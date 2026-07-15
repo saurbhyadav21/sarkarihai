@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                        background:#fff;
-                                        border-radius:15px;
-                                        box-shadow:
-                                        0 10px 30px rgba(0,0,0,.08);
-                                        padding:30px;
-                                        border-top:4px solid #F59E0B;
-                                        display:grid;
-                                        }
+                                            background:#fff;
+                                            border-radius:15px;
+                                            box-shadow:
+                                            0 10px 30px rgba(0,0,0,.08);
+                                            padding:30px;
+                                            border-top:4px solid #F59E0B;
+                                            display:grid;
+                                            }
 
-                                        .summary-item{
-                                        text-align:center;
-                                        } */
+                                            .summary-item{
+                                            text-align:center;
+                                            } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -926,27 +926,29 @@
         .search-dropdown::-webkit-scrollbar-track {
             background: #f8fafc;
         }
-        .highlight-grid{
-    display:grid;
-    grid-template-columns:repeat(5, 1fr);
-    gap:15px;
-}
-@media(max-width:992px){
 
-    .highlight-grid{
-        grid-template-columns:repeat(2, 1fr);
-    }
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
 
-}
+        @media(max-width:992px) {
+
+            .highlight-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
 
 
-@media(max-width:576px){
+        @media(max-width:576px) {
 
-    .highlight-grid{
-        grid-template-columns:1fr;
-    }
+            .highlight-grid {
+                grid-template-columns: 1fr;
+            }
 
-}
+        }
     </style>
     <section class="hero">
 
@@ -1397,13 +1399,68 @@
                     Group C posts in ministries,
                     departments and government offices. --}}
 
-                     {!! nl2br($overview) !!}
+                    {!! nl2br($overview) !!}
 
                 </p>
 
             </div>
 
+  <div class="content-card job-highlights-card">
 
+                <h2>
+                    Job Highlights
+                </h2>
+
+                <div class="highlight-grid">
+
+                    <div class="highlight-box">
+                        <div class="highlight-icon">📌</div>
+                        <div>
+                            <h3>14,582</h3>
+                            <p>Total Vacancies</p>
+                        </div>
+                    </div>
+
+
+                    <div class="highlight-box">
+                        <div class="highlight-icon">💰</div>
+                        <div>
+                            <h3>₹44,900</h3>
+                            <p>Starting Salary</p>
+                        </div>
+                    </div>
+
+
+                    <div class="highlight-box">
+                        <div class="highlight-icon">📍</div>
+                        <div>
+                            <h3>India</h3>
+                            <p>Job Location</p>
+                        </div>
+                    </div>
+
+
+                    <div class="highlight-box">
+                        <div class="highlight-icon">📅</div>
+                        <div>
+                            <h3>05 Aug 2026</h3>
+                            <p>Last Date</p>
+                        </div>
+                    </div>
+
+
+                    <div class="highlight-box">
+                        <div class="highlight-icon">🏢</div>
+                        <div>
+                            <h3>IIT Gandhinagar</h3>
+                            <p>Organization</p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
 
             <div class="content-card" id="dates">
 
@@ -1455,62 +1512,7 @@
 
 
 
-            <div class="content-card job-highlights-card">
-
-    <h2>
-        Job Highlights
-    </h2>
-
-    <div class="highlight-grid">
-
-        <div class="highlight-box">
-            <div class="highlight-icon">📌</div>
-            <div>
-                <h3>14,582</h3>
-                <p>Total Vacancies</p>
-            </div>
-        </div>
-
-
-        <div class="highlight-box">
-            <div class="highlight-icon">💰</div>
-            <div>
-                <h3>₹44,900</h3>
-                <p>Starting Salary</p>
-            </div>
-        </div>
-
-
-        <div class="highlight-box">
-            <div class="highlight-icon">📍</div>
-            <div>
-                <h3>India</h3>
-                <p>Job Location</p>
-            </div>
-        </div>
-
-
-        <div class="highlight-box">
-            <div class="highlight-icon">📅</div>
-            <div>
-                <h3>05 Aug 2026</h3>
-                <p>Last Date</p>
-            </div>
-        </div>
-
-
-        <div class="highlight-box">
-            <div class="highlight-icon">🏢</div>
-            <div>
-                <h3>IIT Gandhinagar</h3>
-                <p>Organization</p>
-            </div>
-        </div>
-
-
-    </div>
-
-</div>
+          
 
 
 
