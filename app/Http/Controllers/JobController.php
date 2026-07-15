@@ -1595,25 +1595,64 @@ class JobController extends Controller
     }
 
     public function jobDetail($state, $category, $slug)
-    {
-        $job = Job::where('slug', $slug)->firstOrFail();
+{
+    $job = Job::where('slug', $slug)->firstOrFail();
 
 
-        // Template ID निकालो
+    /*
+    |--------------------------------------------------------------------------
+    | Dynamic Overview Content
+    |--------------------------------------------------------------------------
+    */
+
+    $content = DB::table('dyanamic_content')
+        ->first();
+
+
+    $overview = null;
+
+
+    if ($content) {
+
+
         $template = explode(',', $job->template_combination_id);
+
 
         $p1 = $template[0] ?? 1;
         $p2 = $template[1] ?? 1;
         $p3 = $template[2] ?? 1;
 
 
-        // P1 Template
-        $overviewTemplate = DB::table('job_p1_templates')
+        $overview_p1 = DB::table('dyanamic_content')
             ->where('id', $p1)
-            ->value('content');
+            ->value('overview_p1');
 
 
-        // Replace Dynamic Variables
+        $overview_p2 = DB::table('dyanamic_content')
+            ->where('id', $p2)
+            ->value('overview_p2');
+
+
+        $overview_p3 = DB::table('dyanamic_content')
+            ->where('id', $p3)
+            ->value('overview_p3');
+
+
+        $overview = implode("\n\n", array_filter([
+
+            $overview_p1,
+            $overview_p2,
+            $overview_p3
+
+        ]));
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Replace Dynamic Variables
+        |--------------------------------------------------------------------------
+        */
+
 
         $overview = str_replace(
 
@@ -1627,28 +1666,38 @@ class JobController extends Controller
                 '{{State}}',
             ],
 
+
             [
-                $job->organization_full_form ?? null,
-                $job->organization ?? null,
-                $job->title ?? null,
-                $job->job_topic ?? null,
-                $job->category ?? null,
-                $job->job_sub_categories ?? null,
-                $job->state ?? null,
+                $job->organization_full_form ?? '',
+                $job->organization ?? '',
+                $job->title ?? '',
+                $job->job_topic ?? '',
+                $job->category ?? '',
+                $job->job_sub_categories ?? '',
+                $job->state ?? '',
             ],
 
-            $overviewTemplate
+
+            $overview
 
         );
 
 
-        return view('jobs.show_details', [
-            'job' => $job,
-            'state' => $state,
-            'category' => $category,
-            'overview' => $overview,
-        ]);
     }
+
+
+    return view('jobs.show_details', [
+
+        'job' => $job,
+
+        'state' => $state,
+
+        'category' => $category,
+
+        'overview' => $overview,
+
+    ]);
+}
 
     public function updateCategory($id)
     {

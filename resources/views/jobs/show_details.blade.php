@@ -1376,7 +1376,7 @@
                     Group C posts in ministries,
                     departments and government offices.
 
-                    {!! $overview !!}
+                     {!! nl2br($overview) !!}
 
                 </p>
 
