@@ -1250,7 +1250,7 @@ class JobController extends Controller
     $state = null,
     $category = null
 ) {
-    dd('latestJobs function called');
+   
     $jobs = DB::table('job_details');
 
     /*
@@ -1584,7 +1584,7 @@ class JobController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    return view('sarkari.naukri.detail', compact(
+    return view('jobs.show', compact(
 
         'jobs',
 

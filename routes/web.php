@@ -174,10 +174,10 @@ Route::get('/latest-jobs/{state}/{category}', [JobController::class, 'latestJobs
 
 
 /* |---- ---------------------------------------------------------------------- | Sarkari Naukri |-------------------------------------------------------------------------- */
-Route::get('/sarkari-naukri', [JobController::class, 'latestJobs'])->name('jobs.index');
-Route::get('/sarkari-naukri/{state}', [JobController::class, 'latestJobs'])->name('jobs.state');
-Route::get('/sarkari-naukri/{state}/{category}', [JobController::class, 'latestJobs'])->name('jobs.category');
-Route::get('/sarkari-naukri/{state}/{category}/{slug}', [JobController::class, 'jobDetails'])->name('jobs.details');
+// Route::get('/sarkari-naukri', [JobController::class, 'latestJobs'])->name('jobs.index');
+// Route::get('/sarkari-naukri/{state}', [JobController::class, 'latestJobs'])->name('jobs.state');
+// Route::get('/sarkari-naukri/{state}/{category}', [JobController::class, 'latestJobs'])->name('jobs.category');
+// Route::get('/sarkari-naukri/{state}/{category}/{slug}', [JobController::class, 'jobDetails'])->name('jobs.details');
 
 
 /*
@@ -196,5 +196,5 @@ Route::get('/ajax/jobs', [JobController::class, 'latestJobs'])
 |--------------------------------------------------------------------------
 */
 
-// Route::get('/job/{slug}', [JobController::class, 'jobDetails'])
-//     ->name('jobs.details');
+Route::get('/job/{slug}', [JobController::class, 'jobDetails'])
+    ->name('jobs.show');
