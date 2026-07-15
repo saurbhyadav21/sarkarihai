@@ -1250,7 +1250,7 @@ class JobController extends Controller
     $state = null,
     $category = null
 ) {
-
+    dd('latestJobs function called');
     $jobs = DB::table('job_details');
 
     /*
