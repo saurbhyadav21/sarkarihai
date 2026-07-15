@@ -2467,26 +2467,29 @@
                             <!-- Sub Category -->
                             <!-- ===================== -->
 
-                            {{-- <div class="mb-3">
+                           <div class="mb-3 row align-items-center">
 
-                                <label class="form-label fw-semibold">
+    <label class="col-4 col-form-label fw-semibold">
 
-                                    Sub Category
+        Sub Category
 
-                                </label>
+    </label>
 
-                                <select class="form-select" id="sub_category">
+    <div class="col-8">
 
-                                    <option value="">
+        <select class="form-select" id="sub_category">
 
-                                        All Sub Categories
+            <option value="">
 
-                                    </option>
+                All Sub Categories
 
-                                </select>
+            </option>
 
-                            </div> --}}
+        </select>
 
+    </div>
+
+</div>
                             <!-- ===================== -->
                             <!-- Qualification -->
                             <!-- ===================== -->
