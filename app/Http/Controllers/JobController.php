@@ -1683,6 +1683,10 @@ class JobController extends Controller
             );
         }
 
+        $metaTitle = $job->title . ' | Apply Online | SarkariHai';
+
+        $metaDescription = $job->title .
+            ' Recruitment. Check eligibility, vacancy, important dates, application fee, salary, selection process, and apply online before the last date.';
 
         return view('jobs.show_details', [
 
@@ -1693,6 +1697,9 @@ class JobController extends Controller
             'category' => $category,
 
             'overview' => $overview,
+
+            'metaTitle' => $metaTitle,
+            'metaDescription' => $metaDescription
 
         ]);
     }
