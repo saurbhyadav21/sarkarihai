@@ -1,201 +1,209 @@
-<style>
-    .job-card {
+<div class="card border-0 shadow-sm mb-3 job-card">
 
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 20px;
-        background: #fff;
-        border: 1px solid #eee;
-        border-radius: 10px;
-        margin-bottom: 15px;
+    <div class="card-body">
 
-    }
+        <div class="row">
 
-    .job-card h3 {
+            <div class="col-lg-9">
 
-        font-size: 20px;
-        margin-bottom: 10px;
+                <div class="d-flex align-items-start">
 
-    }
+                    <div class="job-icon me-3">
 
-    .job-card h3 a {
+                        <i class="fa-solid fa-briefcase"></i>
 
-        color: #222;
-        text-decoration: none;
+                    </div>
 
-    }
+                    <div class="flex-grow-1">
 
-    .job-meta {
+                        <h5 class="mb-2">
 
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-        font-size: 14px;
-        margin-bottom: 12px;
-        color: #666;
+                            <a href="{{ route('jobs.details', $job->slug) }}"
+                                class="text-dark text-decoration-none fw-bold">
 
-    }
+                                {{ $job->title }}
 
-    .job-tags {
+                            </a>
 
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
+                        </h5>
 
-    }
+                        <div class="d-flex flex-wrap gap-2 mb-3">
 
-    .tag {
+                            <span class="badge bg-primary">
 
-        background: #eef5ff;
-        padding: 4px 10px;
-        border-radius: 30px;
-        font-size: 13px;
+                                {{ $job->organization ?: 'Government Department' }}
 
-    }
+                            </span>
 
-    .job-card-right {
+                            <span class="badge bg-success">
 
-        text-align: right;
-        min-width: 180px;
+                                {{ $job->state ?: 'All India' }}
 
-    }
+                            </span>
 
-    .last-date {
+                            <span class="badge bg-warning text-dark">
 
-        margin-top: 15px;
-        font-size: 14px;
+                                {{ $job->category ?: 'Government Job' }}
 
-    }
+                            </span>
 
-    @media(max-width:768px) {
+                            @if (!empty($job->job_sub_categories))
+                                @php
+                                    $sub = explode('#', $job->job_sub_categories);
+                                @endphp
 
-        .job-card {
+                                <span class="badge bg-info text-dark">
 
-            flex-direction: column;
+                                    {{ trim($sub[0]) }}
 
-        }
+                                </span>
+                            @endif
 
-        .job-card-right {
+                        </div>
 
-            text-align: left;
+                        <div class="row g-3">
 
-        }
+                            <div class="col-md-6">
 
-    }
-</style>
-@forelse($jobs as $job)
-    <div class="job-card">
+                                <small class="text-muted">
 
-        <div class="job-card-left">
+                                    <i class="fa-solid fa-graduation-cap me-2"></i>
 
-            <h3>
-                <a href="{{ route('jobs.show', $job->slug) }}">
-                    {{ $job->title }}
-                </a>
-            </h3>
+                                    Qualification
 
-            <div class="job-meta">
+                                </small>
 
-                @if ($job->organization)
-                    <span>
-                        <i class="fas fa-building"></i>
-                        {{ $job->organization }}
-                    </span>
-                @endif
+                                <div class="fw-semibold">
 
-                @if ($job->state)
-                    <span>
-                        <i class="fas fa-map-marker-alt"></i>
-                        {{ $job->state }}
-                    </span>
-                @endif
+                                    {{ $job->min_qulification ?: ($job->qualification ?: 'As Per Notification') }}
 
-                @if ($job->qualification)
-                    <span>
-                        <i class="fas fa-graduation-cap"></i>
-                        {{ $job->qualification }}
-                    </span>
-                @endif
+                                </div>
 
-                {{-- @if ($job->vacancy)
-                    <span>
-                        <i class="fas fa-users"></i>
-                        {{ number_format($job->vacancy) }} Posts
-                    </span>
-                @endif --}}
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <small class="text-muted">
+
+                                    <i class="fa-solid fa-calendar-days me-2"></i>
+
+                                    Last Date
+
+                                </small>
+
+                                <div class="fw-semibold text-danger">
+
+                                    {{ !empty($job->end_date) ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : '-' }}
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <small class="text-muted">
+
+                                    <i class="fa-solid fa-indian-rupee-sign me-2"></i>
+
+                                    Salary
+
+                                </small>
+
+                                <div class="fw-semibold">
+
+                                    {{ $job->salary ?: 'As Per Rules' }}
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <small class="text-muted">
+
+                                    <i class="fa-solid fa-users me-2"></i>
+
+                                    Total Posts
+
+                                </small>
+
+                                <div class="fw-semibold">
+
+                                    {{ $job->total_post ?: ($job->vacancy ?: '-') }}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <div class="job-tags">
+            <div class="col-lg-3">
 
-                @if ($job->category)
-                    <span class="tag">
-                        {{ ucfirst(str_replace('-', ' ', $job->category)) }}
-                    </span>
-                @endif
+                <div class="h-100 d-flex flex-column justify-content-between">
 
-                {{-- @if ($job->sub_category)
-                    <span class="tag">
-                        {{ $job->subCategory->name ?? ucfirst(str_replace('-', ' ', $job->sub_category)) }}
-                    </span>
-                @endif --}}
+                    <div class="text-lg-end mb-3">
+
+                        @if (!empty($job->end_date))
+
+                            @php
+                                $days = now()->diffInDays(\Carbon\Carbon::parse($job->end_date), false);
+                            @endphp
+
+                            @if ($days < 0)
+
+                                <span class="badge bg-danger">
+
+                                    Closed
+
+                                </span>
+
+                            @elseif($days <= 7)
+
+                                <span class="badge bg-warning text-dark">
+
+                                    Closing Soon
+
+                                </span>
+
+                            @else
+
+                                <span class="badge bg-success">
+
+                                    Active
+
+                                </span>
+
+                            @endif
+
+                        @endif
+
+                    </div>
+
+                    <div class="d-grid gap-2">
+
+                        <a href="{{ route('jobs.details', $job->slug) }}"
+                            class="btn btn-primary btn-sm">
+
+                            <i class="fa-solid fa-eye me-1"></i>
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
 
         </div>
 
-        {{-- <div class="job-card-right">
-
-            @php
-
-                $days = now()->diffInDays($job->last_date, false);
-
-            @endphp
-
-            @if ($days < 0)
-                <span class="badge bg-danger">
-                    Closed
-                </span>
-            @elseif($days <= 7)
-                <span class="badge bg-danger">
-                    Last {{ $days }} Days
-                </span>
-            @elseif($days <= 15)
-                <span class="badge bg-warning text-dark">
-                    {{ $days }} Days Left
-                </span>
-            @else
-                <span class="badge bg-success">
-                    Active
-                </span>
-            @endif
-
-            <div class="last-date">
-
-                <strong>Last Date</strong>
-
-                <br>
-
-                {{ \Carbon\Carbon::parse($job->last_date)->format('d M Y') }}
-
-            </div>
-
-            <a href="{{ route('jobs.show', $job->slug) }}" class="btn btn-primary btn-sm mt-3">
-
-                View Details
-
-            </a>
-
-        </div> --}}
-
     </div>
 
-@empty
-
-    <div class="alert alert-warning">
-
-        No Jobs Found.
-
-    </div>
-@endforelse
+</div>
