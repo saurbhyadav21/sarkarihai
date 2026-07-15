@@ -1250,7 +1250,7 @@ class JobController extends Controller
     $state = null,
     $category = null
 ) {
-    dd($state);
+    
     $jobs = DB::table('job_details');
 
     /*
@@ -1283,7 +1283,7 @@ class JobController extends Controller
     | State Filter
     |--------------------------------------------------------------------------
     */
-    
+    dd($request->filled('state'));
     if ($request->filled('state')) {
 
         if ($request->state != 'all-india') {
