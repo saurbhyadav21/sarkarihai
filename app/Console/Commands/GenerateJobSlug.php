@@ -77,15 +77,15 @@ class GenerateJobSlug extends Command
         $originalSlug = $slug;
         $counter = 1;
 
-        while (
-            DB::table('job_details')
-                ->where('slug', $slug)
-                ->where('id', '!=', $job->id)
-                ->exists()
-        ) {
-            $slug = $originalSlug . '-' . $counter;
-            $counter++;
-        }
+        // while (
+        //     DB::table('job_details')
+        //         ->where('slug', $slug)
+        //         ->where('id', '!=', $job->id)
+        //         ->exists()
+        // ) {
+        //     $slug = $originalSlug . '-' . $counter;
+        //     $counter++;
+        // }
 
         DB::table('job_details')
             ->where('id', $job->id)
