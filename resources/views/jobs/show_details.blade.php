@@ -1436,53 +1436,79 @@
 
             <div class="content-card">
 
-                <h2>
-                    Job Highlights
-                </h2>
+    <h2>
+        Job Highlights
+    </h2>
 
-                <div class="highlight-grid">
+    <div class="highlight-grid">
 
-                    <div class="highlight-box">
+        <div class="highlight-box">
 
-                        <h3>
-                            14582
-                        </h3>
+            <h3>
+                14582
+            </h3>
 
-                        <p>
-                            Vacancies
-                        </p>
+            <p>
+                Total Vacancies
+            </p>
 
-                    </div>
-
-
-                    <div class="highlight-box">
-
-                        <h3>
-                            ₹44900
-                        </h3>
-
-                        <p>
-                            Starting Salary
-                        </p>
-
-                    </div>
+        </div>
 
 
-                    <div class="highlight-box">
+        <div class="highlight-box">
 
-                        <h3>
-                            India
-                        </h3>
+            <h3>
+                ₹44900
+            </h3>
 
-                        <p>
-                            Job Location
-                        </p>
+            <p>
+                Starting Salary
+            </p>
 
-                    </div>
+        </div>
 
-                </div>
 
-            </div>
+        <div class="highlight-box">
+
+            <h3>
+                India
+            </h3>
+
+            <p>
+                Job Location
+            </p>
+
+        </div>
+
+
+        <div class="highlight-box">
+
+            <h3>
+                05 August 2026
+            </h3>
+
+            <p>
+                Last Date
+            </p>
+
+        </div>
+
+
+        <div class="highlight-box">
+
+            <h3>
+                IIT Gandhinagar
+            </h3>
+
+            <p>
+                Organization
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
 
 
 
