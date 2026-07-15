@@ -1451,7 +1451,7 @@ class JobController extends Controller
     */
 
     $totalJobs = DB::table('job_details')->count();
-
+dd($totalJobs);
     $todayJobs = DB::table('job_details')
         ->whereDate('created_at', today())
         ->count();
