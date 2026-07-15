@@ -1457,13 +1457,17 @@ class JobController extends Controller
         ->count();
 
     $activeJobs = DB::table('job_details')
-        ->where('status', 'Active')
-        ->count();
+    // ->where('status', 'Active')
+    ->whereDate('end_date', '>=', now()->toDateString())
+    ->count();
 
     $closingSoonJobs = DB::table('job_details')
-        ->whereNotNull('end_date')
-        ->where('end_date', '!=', '')
-        ->count();
+    // ->where('status', 'Active')
+    ->whereBetween('end_date', [
+        now()->toDateString(),
+        now()->addDays(7)->toDateString()
+    ])
+    ->count();
 
     /*
     |--------------------------------------------------------------------------
