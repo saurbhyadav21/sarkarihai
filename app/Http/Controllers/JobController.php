@@ -1580,7 +1580,7 @@ class JobController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    return view('sarkari.naukri', compact(
+    return view('jobs.show', compact(
 
         'jobs',
 
