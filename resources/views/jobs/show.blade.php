@@ -2070,7 +2070,7 @@
 
                 <div class="summary-item">
                     <small>Total Jobs</small>
-                    <strong>0</strong>
+                    <strong>{{ $totalJobs }}</strong>
                 </div>
 
                 <div class="summary-item">
