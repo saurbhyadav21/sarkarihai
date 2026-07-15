@@ -110,11 +110,11 @@
     $job->category,
     $job->slug
 ]) }}"
-                                class="text-dark text-decoration-none fw-bold">
+class="text-dark text-decoration-none fw-bold">
 
-                                {{ $job->title }}
+    {{ $job->title }}
 
-                            </a>
+</a>
 
                         </h5>
 
@@ -283,13 +283,12 @@
     $job->category,
     $job->slug
 ]) }}"
-                            class="btn btn-primary btn-sm">
+class="btn btn-primary btn-sm">
 
-                            <i class="fa-solid fa-eye me-1"></i>
+    <i class="fa-solid fa-eye me-1"></i>
+    View Details
 
-                            View Details
-
-                        </a>
+</a>
 
                     </div>
 
