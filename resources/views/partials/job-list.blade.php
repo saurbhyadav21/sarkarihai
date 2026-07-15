@@ -1,4 +1,91 @@
-<div class="card border-0 shadow-sm mb-3 job-card">
+<style>
+    .job-card {
+
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 20px;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        margin-bottom: 15px;
+
+    }
+
+    .job-card h3 {
+
+        font-size: 20px;
+        margin-bottom: 10px;
+
+    }
+
+    .job-card h3 a {
+
+        color: #222;
+        text-decoration: none;
+
+    }
+
+    .job-meta {
+
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        font-size: 14px;
+        margin-bottom: 12px;
+        color: #666;
+
+    }
+
+    .job-tags {
+
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+
+    }
+
+    .tag {
+
+        background: #eef5ff;
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 13px;
+
+    }
+
+    .job-card-right {
+
+        text-align: right;
+        min-width: 180px;
+
+    }
+
+    .last-date {
+
+        margin-top: 15px;
+        font-size: 14px;
+
+    }
+
+    @media(max-width:768px) {
+
+        .job-card {
+
+            flex-direction: column;
+
+        }
+
+        .job-card-right {
+
+            text-align: left;
+
+        }
+
+    }
+</style>
+@forelse($jobs as $job)
+   <div class="card border-0 shadow-sm mb-3 job-card">
 
     <div class="card-body">
 
@@ -207,3 +294,11 @@
     </div>
 
 </div>
+@empty
+
+    <div class="alert alert-warning">
+
+        No Jobs Found.
+
+    </div>
+@endforelse
