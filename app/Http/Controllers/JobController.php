@@ -1259,24 +1259,24 @@ class JobController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    if ($request->filled('search')) {
+    // if ($request->filled('search')) {
 
-        $search = trim($request->search);
+    //     $search = trim($request->search);
 
-        $jobs->where(function ($q) use ($search) {
+    //     $jobs->where(function ($q) use ($search) {
 
-            $q->where('title', 'LIKE', "%{$search}%")
-                ->orWhere('organization', 'LIKE', "%{$search}%")
-                ->orWhere('department', 'LIKE', "%{$search}%")
-                ->orWhere('category', 'LIKE', "%{$search}%")
-                ->orWhere('job_sub_categories', 'LIKE', "%{$search}%")
-                ->orWhere('qualification', 'LIKE', "%{$search}%")
-                ->orWhere('min_qulification', 'LIKE', "%{$search}%")
-                ->orWhere('state', 'LIKE', "%{$search}%");
+    //         $q->where('title', 'LIKE', "%{$search}%")
+    //             ->orWhere('organization', 'LIKE', "%{$search}%")
+    //             ->orWhere('department', 'LIKE', "%{$search}%")
+    //             ->orWhere('category', 'LIKE', "%{$search}%")
+    //             ->orWhere('job_sub_categories', 'LIKE', "%{$search}%")
+    //             ->orWhere('qualification', 'LIKE', "%{$search}%")
+    //             ->orWhere('min_qulification', 'LIKE', "%{$search}%")
+    //             ->orWhere('state', 'LIKE', "%{$search}%");
 
-        });
+    //     });
 
-    }
+    // }
 
     /*
     |--------------------------------------------------------------------------
