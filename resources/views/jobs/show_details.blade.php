@@ -1403,7 +1403,7 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">📌</div>
                         <div>
-                            <h3>{{ $job->total_vacancies ?? 'N/A' }}</h3>
+                            <h3>{{ isset($job->total_vacancies) ? number_format($job->total_vacancies) : 'N/A' }}</h3>
                             <p>Total Vacancies</p>
                         </div>
                     </div>
@@ -1412,8 +1412,8 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">💰</div>
                         <div>
-                            <h3>{{ $job->max_salary ?? 'N/A' }}</h3>
-                            <p>Starting Salary</p>
+                            <h3>{{ isset($job->max_salary) ? '₹' . number_format($job->max_salary) : 'N/A' }}</h3>
+                            <p>Maximum Salary</p>
                         </div>
                     </div>
 
