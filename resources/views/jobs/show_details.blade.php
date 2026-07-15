@@ -1511,9 +1511,7 @@
 
                 <div class="notice-box">
 
-                    Candidates are advised to read
-                    the official notification carefully
-                    before applying online.
+                    Candidates are advised to carefully read the official notification before applying online. Applicants should verify eligibility criteria, important dates, application process, and other details before submitting the application form.
 
                 </div>
 
