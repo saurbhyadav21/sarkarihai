@@ -1,8 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-
-<style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -305,18 +304,18 @@
         }
 
         /* .summary-card{
-                                    background:#fff;
-                                    border-radius:15px;
-                                    box-shadow:
-                                    0 10px 30px rgba(0,0,0,.08);
-                                    padding:30px;
-                                    border-top:4px solid #F59E0B;
-                                    display:grid;
-                                    }
+                                        background:#fff;
+                                        border-radius:15px;
+                                        box-shadow:
+                                        0 10px 30px rgba(0,0,0,.08);
+                                        padding:30px;
+                                        border-top:4px solid #F59E0B;
+                                        display:grid;
+                                        }
 
-                                    .summary-item{
-                                    text-align:center;
-                                    } */
+                                        .summary-item{
+                                        text-align:center;
+                                        } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -507,138 +506,6 @@
             color: #fff;
         }
     </style>
-<style>
-        .ticker-heading {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 8px 15px;
-            background: #f4b400;
-            color: #000;
-            font-size: 15px;
-            font-weight: 700;
-            border-radius: 6px;
-        }
-
-        @media(max-width:991px) {
-
-            .hero {
-                padding: 35px 0;
-            }
-
-            .hero h1 {
-                font-size: 34px;
-                text-align: center;
-            }
-
-            .hero p {
-                text-align: center;
-                font-size: 16px;
-            }
-
-            .stats {
-                margin-bottom: 15px;
-            }
-
-            .search-card {
-                margin-top: 25px;
-            }
-
-        }
-
-        @media(max-width:767px) {
-
-            .hero {
-                padding: 25px 0;
-            }
-
-            .hero h1 {
-                font-size: 28px;
-                line-height: 1.3;
-            }
-
-            .hero p {
-                font-size: 15px;
-                line-height: 1.7;
-            }
-
-            .stats h3 {
-                font-size: 22px;
-            }
-
-            .stats small {
-                font-size: 13px;
-            }
-
-            .search-card {
-                padding: 18px;
-            }
-
-            .search-card h5 {
-                font-size: 18px;
-            }
-
-            #jobSearch {
-                font-size: 15px;
-            }
-
-        }
-
-        @media(max-width:767px) {
-
-            .search-dropdown {
-
-                left: 0;
-
-                right: 0;
-
-                border-radius: 15px;
-
-                max-height: 350px;
-
-            }
-
-            .search-item {
-
-                padding: 15px;
-
-            }
-
-            .search-title {
-
-                font-size: 14px;
-
-            }
-
-            .search-meta {
-
-                font-size: 12px;
-
-            }
-
-        }
-
-        .latest-ticker marquee {
-
-            font-size: 13px;
-
-        }
-
-        .search-card {
-
-            border-radius: 18px;
-
-        }
-
-        @media(max-width:767px) {
-
-            .search-card {
-
-                margin-top: 20px;
-
-            }
-
-        }
-    </style>
     <style>
         .ticker-heading {
             display: inline-block;
@@ -772,162 +639,294 @@
         }
     </style>
     <style>
-                    /* DROPDOWN BOX */
-                    .search-dropdown {
-                        position: absolute;
-                        top: 100%;
-                        left: 0;
-                        right: 0;
-                        background: #fff;
-                        border-radius: 20px;
-                        overflow: hidden;
-                        margin-top: 12px;
-                        z-index: 99999;
-                        box-shadow:
-                            0 10px 30px rgba(0, 0, 0, .10),
-                            0 1px 3px rgba(0, 0, 0, .08);
-                        border: 1px solid #e8edf5;
-                        max-height: 600px;
-                        overflow-y: auto;
-                    }
+        .ticker-heading {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 8px 15px;
+            background: #f4b400;
+            color: #000;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 6px;
+        }
 
-                    /* ITEM */
-                    .search-item {
-                        display: flex;
-                        align-items: center;
-                        gap: 5px;
-                        padding: 24px;
-                        text-decoration: none;
-                        color: #111827;
-                        border-bottom: 1px solid #edf2f7;
-                        transition: all .2s ease;
-                    }
+        @media(max-width:991px) {
 
-                    .search-item:hover {
-                        background: #f8fbff;
-                        text-decoration: none;
-                        color: #111827;
-                    }
+            .hero {
+                padding: 35px 0;
+            }
 
-                    /* LEFT ICON */
-                    .search-icon {
+            .hero h1 {
+                font-size: 34px;
+                text-align: center;
+            }
 
-                        border-radius: 50%;
-                        background: #eef4ff;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 28px;
-                        margin-top: 0px;
-                    }
+            .hero p {
+                text-align: center;
+                font-size: 16px;
+            }
 
-                    /* CONTENT */
-                    .search-body {
-                        flex: 1;
-                    }
+            .stats {
+                margin-bottom: 15px;
+            }
 
-                    .search-title {
-                        font-size: 11px;
-                        font-weight: 700;
-                        line-height: 1.4;
-                        color: #0f172a;
-                        margin-bottom: 10px;
-                    }
+            .search-card {
+                margin-top: 25px;
+            }
 
-                    .search-meta {
-                        display: flex;
-                        align-items: center;
-                        gap: 5px;
-                        flex-wrap: wrap;
-                    }
+        }
 
-                    .search-category {
-                        color: #2563eb;
-                        font-size: 13px;
-                        font-weight: 500;
-                    }
+        @media(max-width:767px) {
 
-                    .search-separator {
-                        color: #9ca3af;
-                    }
+            .hero {
+                padding: 25px 0;
+            }
 
-                    .search-type {
-                        color: #4b5563;
-                        font-size: 13px;
-                    }
+            .hero h1 {
+                font-size: 28px;
+                line-height: 1.3;
+            }
 
-                    /* RIGHT ARROW */
-                    .search-arrow {
-                        font-size: 13px;
-                        color: #94a3b8;
-                        transition: .2s;
-                    }
+            .hero p {
+                font-size: 15px;
+                line-height: 1.7;
+            }
 
-                    .search-item:hover .search-arrow {
-                        color: #2563eb;
-                        transform: translateX(5px);
-                    }
+            .stats h3 {
+                font-size: 22px;
+            }
 
-                    /* FOOTER */
-                    .search-footer {
-                        background: #f3f7fd;
-                        display: flex;
-                        align-items: center;
-                        gap: 20px;
-                        padding: 22px 28px;
-                    }
+            .stats small {
+                font-size: 13px;
+            }
 
-                    .search-footer-icon {
-                        width: 60px;
-                        height: 60px;
-                        background: #2563eb;
-                        color: #fff;
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 24px;
-                    }
+            .search-card {
+                padding: 18px;
+            }
 
-                    .search-footer-text {
-                        flex: 1;
-                        font-size: 22px;
-                        color: #0f172a;
-                    }
+            .search-card h5 {
+                font-size: 18px;
+            }
 
-                    .search-footer-text strong {
-                        color: #2563eb;
-                    }
+            #jobSearch {
+                font-size: 15px;
+            }
 
-                    .search-footer-btn {
-                        background: #2563eb;
-                        color: #fff;
-                        border: none;
-                        padding: 15px 28px;
-                        border-radius: 14px;
-                        font-size: 18px;
-                        font-weight: 600;
-                        transition: .2s;
-                    }
+        }
 
-                    .search-footer-btn:hover {
-                        background: #1d4ed8;
-                    }
+        @media(max-width:767px) {
 
-                    /* SCROLLBAR */
-                    .search-dropdown::-webkit-scrollbar {
-                        width: 8px;
-                    }
+            .search-dropdown {
 
-                    .search-dropdown::-webkit-scrollbar-thumb {
-                        background: #cbd5e1;
-                        border-radius: 10px;
-                    }
+                left: 0;
 
-                    .search-dropdown::-webkit-scrollbar-track {
-                        background: #f8fafc;
-                    }
-                </style>
+                right: 0;
+
+                border-radius: 15px;
+
+                max-height: 350px;
+
+            }
+
+            .search-item {
+
+                padding: 15px;
+
+            }
+
+            .search-title {
+
+                font-size: 14px;
+
+            }
+
+            .search-meta {
+
+                font-size: 12px;
+
+            }
+
+        }
+
+        .latest-ticker marquee {
+
+            font-size: 13px;
+
+        }
+
+        .search-card {
+
+            border-radius: 18px;
+
+        }
+
+        @media(max-width:767px) {
+
+            .search-card {
+
+                margin-top: 20px;
+
+            }
+
+        }
+    </style>
+    <style>
+        /* DROPDOWN BOX */
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 12px;
+            z-index: 99999;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, .10),
+                0 1px 3px rgba(0, 0, 0, .08);
+            border: 1px solid #e8edf5;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        /* ITEM */
+        .search-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 24px;
+            text-decoration: none;
+            color: #111827;
+            border-bottom: 1px solid #edf2f7;
+            transition: all .2s ease;
+        }
+
+        .search-item:hover {
+            background: #f8fbff;
+            text-decoration: none;
+            color: #111827;
+        }
+
+        /* LEFT ICON */
+        .search-icon {
+
+            border-radius: 50%;
+            background: #eef4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-top: 0px;
+        }
+
+        /* CONTENT */
+        .search-body {
+            flex: 1;
+        }
+
+        .search-title {
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .search-meta {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .search-category {
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .search-separator {
+            color: #9ca3af;
+        }
+
+        .search-type {
+            color: #4b5563;
+            font-size: 13px;
+        }
+
+        /* RIGHT ARROW */
+        .search-arrow {
+            font-size: 13px;
+            color: #94a3b8;
+            transition: .2s;
+        }
+
+        .search-item:hover .search-arrow {
+            color: #2563eb;
+            transform: translateX(5px);
+        }
+
+        /* FOOTER */
+        .search-footer {
+            background: #f3f7fd;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 22px 28px;
+        }
+
+        .search-footer-icon {
+            width: 60px;
+            height: 60px;
+            background: #2563eb;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .search-footer-text {
+            flex: 1;
+            font-size: 22px;
+            color: #0f172a;
+        }
+
+        .search-footer-text strong {
+            color: #2563eb;
+        }
+
+        .search-footer-btn {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 15px 28px;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .search-footer-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* SCROLLBAR */
+        .search-dropdown::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .search-dropdown::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        .search-dropdown::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+    </style>
     <section class="hero">
 
         <div class="container">
@@ -1044,9 +1043,9 @@
                 </div>
 
                 <div class="summary-item">
-    <small>Last Date</small>
-    <strong>{{ \Carbon\Carbon::parse($job->end_date)->format('d F Y') }}</strong>
-</div>
+                    <small>Last Date</small>
+                    <strong>{{ \Carbon\Carbon::parse($job->end_date)->format('d F Y') }}</strong>
+                </div>
 
             </div>
 
@@ -1907,8 +1906,7 @@
 
                 <div style="padding:20px">
 
-                    <div
-                        style="
+                    <div style="
 background:#0B4F6C;
 color:#fff;
 padding:15px;
@@ -1917,8 +1915,7 @@ margin-bottom:15px;">
                         STEP 1 : Read Official Notification
                     </div>
 
-                    <div
-                        style="
+                    <div style="
 background:#0F766E;
 color:#fff;
 padding:15px;
@@ -1927,8 +1924,7 @@ margin-bottom:15px;">
                         STEP 2 : Register Online
                     </div>
 
-                    <div
-                        style="
+                    <div style="
 background:#F59E0B;
 color:#fff;
 padding:15px;
@@ -1937,8 +1933,7 @@ margin-bottom:15px;">
                         STEP 3 : Upload Documents
                     </div>
 
-                    <div
-                        style="
+                    <div style="
 background:#0B4F6C;
 color:#fff;
 padding:15px;
@@ -2454,5 +2449,4 @@ border-radius:10px;">
         </div>
 
     </footer> --}}
-
-    @endsection
+@endsection
