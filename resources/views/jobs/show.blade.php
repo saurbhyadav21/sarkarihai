@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                            background:#fff;
-                            border-radius:15px;
-                            box-shadow:
-                            0 10px 30px rgba(0,0,0,.08);
-                            padding:30px;
-                            border-top:4px solid #F59E0B;
-                            display:grid;
-                            }
+                                background:#fff;
+                                border-radius:15px;
+                                box-shadow:
+                                0 10px 30px rgba(0,0,0,.08);
+                                padding:30px;
+                                border-top:4px solid #F59E0B;
+                                display:grid;
+                                }
 
-                            .summary-item{
-                            text-align:center;
-                            } */
+                                .summary-item{
+                                text-align:center;
+                                } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -323,7 +323,8 @@
             padding: 30px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;    border: 1px solid #ffffff21;
+            gap: 20px;
+            border: 1px solid #ffffff21;
         }
 
         .summary-item {
@@ -331,15 +332,15 @@
         }
 
         .summary-item small {
-                display: block;
-    color: #fff;
-    font-size: 12px;
+            display: block;
+            color: #fff;
+            font-size: 12px;
         }
 
         .summary-item strong {
-                color: #f4b400;
-    font-weight: 800;
-        font-size: 1.75rem;
+            color: #f4b400;
+            font-weight: 800;
+            font-size: 1.75rem;
         }
 
         .section-title {
@@ -1370,9 +1371,9 @@
 
         /* Continue in Part 2C */
         /* ===========================================================
-                   PART 2C
-                   Premium UI Enhancements
-                =========================================================== */
+                       PART 2C
+                       Premium UI Enhancements
+                    =========================================================== */
 
         /* ========================================= */
         /* Breadcrumb */
@@ -1683,9 +1684,9 @@
 
         /* Continue in Part 2D */
         /* ===========================================================
-                   PART 2D
-                   Responsive Design + Final CSS
-                =========================================================== */
+                       PART 2D
+                       Responsive Design + Final CSS
+                    =========================================================== */
 
         /* ========================================= */
         /* Desktop (1400px+) */
@@ -2010,29 +2011,30 @@
         /* ========================================= */
         /* End of CSS */
         /* ========================================= */
-        .card-body .form-label{
-    margin-bottom:0;
-    font-size:14px;
-}
+        .card-body .form-label {
+            margin-bottom: 0;
+            font-size: 14px;
+        }
 
-.card-body .form-select{
-    font-size:14px;
-}
+        .card-body .form-select {
+            font-size: 14px;
+        }
 
-.form-select.active-filter{
-    border:2px solid #0d6efd;
-    background:#eef5ff;
-    box-shadow:0 0 0 .15rem rgba(13,110,253,.15);
-}
-.form-select.active-filter{
-    border:2px solid #198754;
-    background:#eafaf1;
-}
-.filter-active{
-    color:#0d6efd;
-    font-weight:700;
-}
+        .form-select.active-filter {
+            border: 2px solid #0d6efd;
+            background: #eef5ff;
+            box-shadow: 0 0 0 .15rem rgba(13, 110, 253, .15);
+        }
 
+        .form-select.active-filter {
+            border: 2px solid #198754;
+            background: #eafaf1;
+        }
+
+        .filter-active {
+            color: #0d6efd;
+            font-weight: 700;
+        }
     </style>
     <section class="hero">
 
@@ -2428,27 +2430,27 @@
 
                             <div class="mb-3 row align-items-center">
 
-    <label class="col-4 col-form-label fw-semibold">
+                                <label class="col-4 col-form-label fw-semibold">
 
-        State
+                                    State
 
-    </label>
+                                </label>
 
-    <div class="col-8">
+                                <div class="col-8">
 
-        <select class="form-select" id="state">
+                                    <select class="form-select" id="state">
 
-            <option value="">All States</option>
+                                        <option value="">All States</option>
 
-            @foreach($states as $state)
-                <option value="{{ $state }}">{{ $state }}</option>
-            @endforeach
+                                        @foreach ($states as $state)
+                                            <option value="{{ $state }}">{{ $state }}</option>
+                                        @endforeach
 
-        </select>
+                                    </select>
 
-    </div>
+                                </div>
 
-</div>
+                            </div>
 
                             <!-- ===================== -->
                             <!-- Category -->
@@ -2456,82 +2458,82 @@
 
                             <div class="mb-3 row align-items-center">
 
-    <label class="col-4 col-form-label fw-semibold">
+                                <label class="col-4 col-form-label fw-semibold">
 
-        Category
+                                    Category
 
-    </label>
+                                </label>
 
-    <div class="col-8">
+                                <div class="col-8">
 
-        <select class="form-select" id="category">
+                                    <select class="form-select" id="category">
 
-            <option value="">All Categories</option>
+                                        <option value="">All Categories</option>
 
-            @foreach($categories as $category)
-                <option value="{{ $category }}">{{ $category }}</option>
-            @endforeach
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category }}">{{ $category }}</option>
+                                        @endforeach
 
-        </select>
+                                    </select>
 
-    </div>
+                                </div>
 
-</div>
+                            </div>
 
                             <!-- ===================== -->
                             <!-- Sub Category -->
                             <!-- ===================== -->
 
-                           <div class="mb-3 row align-items-center">
+                            <div class="mb-3 row align-items-center">
 
-    <label class="col-4 col-form-label fw-semibold">
+                                <label class="col-4 col-form-label fw-semibold">
 
-        Sub Category
+                                    Sub Category
 
-    </label>
+                                </label>
 
-    <div class="col-8">
+                                <div class="col-8">
 
-        <select class="form-select" id="sub_category">
+                                    <select class="form-select" id="sub_category">
 
-            <option value="">
+                                        <option value="">
 
-                All Sub Categories
+                                            All Sub Categories
 
-            </option>
+                                        </option>
 
-        </select>
+                                    </select>
 
-    </div>
+                                </div>
 
-</div>
+                            </div>
                             <!-- ===================== -->
                             <!-- Qualification -->
                             <!-- ===================== -->
 
                             <div class="mb-3 row align-items-center">
 
-    <label class="col-4 col-form-label fw-semibold">
+                                <label class="col-4 col-form-label fw-semibold">
 
-        Qualification
+                                    Qualification
 
-    </label>
+                                </label>
 
-    <div class="col-8">
+                                <div class="col-8">
 
-        <select class="form-select" id="qualification">
+                                    <select class="form-select" id="qualification">
 
-            <option value="">All Qualifications</option>
+                                        <option value="">All Qualifications</option>
 
-            @foreach($qualifications as $qualification)
-                <option value="{{ $qualification }}">{{ $qualification }}</option>
-            @endforeach
+                                        @foreach ($qualifications as $qualification)
+                                            <option value="{{ $qualification }}">{{ $qualification }}</option>
+                                        @endforeach
 
-        </select>
+                                    </select>
 
-    </div>
+                                </div>
 
-</div>
+                            </div>
 
                             <!-- ===================== -->
                             <!-- Job Type -->
@@ -2539,28 +2541,28 @@
 
                             <div class="mb-3 row align-items-center">
 
-    <label class="col-4 col-form-label fw-semibold">
+                                <label class="col-4 col-form-label fw-semibold">
 
-        Job Type
+                                    Job Type
 
-    </label>
+                                </label>
 
-    <div class="col-8">
+                                <div class="col-8">
 
-        <select class="form-select" id="job_type">
+                                    <select class="form-select" id="job_type">
 
-            <option value="">All Job Types</option>
-            <option value="regular">Regular</option>
-            <option value="contract">Contract</option>
-            <option value="deputation">Deputation</option>
-            <option value="walk-in">Walk-In</option>
-            <option value="internship">Internship</option>
+                                        <option value="">All Job Types</option>
+                                        <option value="regular">Regular</option>
+                                        <option value="contract">Contract</option>
+                                        <option value="deputation">Deputation</option>
+                                        <option value="walk-in">Walk-In</option>
+                                        <option value="internship">Internship</option>
 
-        </select>
+                                    </select>
 
-    </div>
+                                </div>
 
-</div>
+                            </div>
 
                             <!-- ===================== -->
                             <!-- Last Date -->
@@ -2568,27 +2570,27 @@
 
                             <div class="mb-4 row align-items-center">
 
-    <label class="col-4 col-form-label fw-semibold">
+                                <label class="col-4 col-form-label fw-semibold">
 
-        Last Date
+                                    Last Date
 
-    </label>
+                                </label>
 
-    <div class="col-8">
+                                <div class="col-8">
 
-        <select class="form-select" id="last_date">
+                                    <select class="form-select" id="last_date">
 
-            <option value="">Any Time</option>
-            <option value="today">Today</option>
-            <option value="7">Next 7 Days</option>
-            <option value="15">Next 15 Days</option>
-            <option value="30">Next 30 Days</option>
+                                        <option value="">Any Time</option>
+                                        <option value="today">Today</option>
+                                        <option value="7">Next 7 Days</option>
+                                        <option value="15">Next 15 Days</option>
+                                        <option value="30">Next 30 Days</option>
 
-        </select>
+                                    </select>
 
-    </div>
+                                </div>
 
-</div>
+                            </div>
 
                             <div class="d-grid gap-2">
 
@@ -2720,13 +2722,20 @@
 
                                                     <h5 class="mb-2">
 
-                                                        <a href="{{ url($job->slug) }}"
+                                                        {{-- <a href="{{ url($job->slug) }}"
                                                             class="text-dark text-decoration-none fw-bold">
 
                                                             {{ $job->title }}
 
-                                                        </a>
-
+                                                        </a> --}}
+                                                        @if ($job->state && $job->category && $job->slug)
+                                                            <a
+                                                                href="{{ route('sarkari.naukri.detail', [$job->state, $job->category, $job->slug]) }}" class="text-dark text-decoration-none fw-bold">
+                                                                {{ $job->title }}
+                                                            </a>
+                                                        @else
+                                                            <span>{{ $job->title }}</span>
+                                                        @endif
                                                     </h5>
 
                                                     <div class="d-flex flex-wrap gap-2 mb-3">
@@ -3633,39 +3642,39 @@
             ========================================== */
         });
 
-      $('.form-select').on('change', function () {
+        $('.form-select').on('change', function() {
 
-    var label = $(this).closest('.row').find('label');
+            var label = $(this).closest('.row').find('label');
 
-    if ($(this).val() != '') {
+            if ($(this).val() != '') {
 
-        $(this).addClass('active-filter');
-        label.addClass('filter-active');
+                $(this).addClass('active-filter');
+                label.addClass('filter-active');
 
-    } else {
+            } else {
 
-        $(this).removeClass('active-filter');
-        label.removeClass('filter-active');
+                $(this).removeClass('active-filter');
+                label.removeClass('filter-active');
 
-    }
+            }
 
-});
+        });
 
-$('#clearFilter').on('click', function () {
+        $('#clearFilter').on('click', function() {
 
-    // Reset all selects
-    $('.form-select').val('');
+            // Reset all selects
+            $('.form-select').val('');
 
-    // Reset search box (if exists)
-    $('#search').val('');
+            // Reset search box (if exists)
+            $('#search').val('');
 
-    // Remove active highlight
-    $('.form-select').removeClass('active-filter');
-    $('label').removeClass('filter-active');
+            // Remove active highlight
+            $('.form-select').removeClass('active-filter');
+            $('label').removeClass('filter-active');
 
-    // Reload default jobs
-    loadJobs();
+            // Reload default jobs
+            loadJobs();
 
-});
+        });
     </script>
 @endsection
