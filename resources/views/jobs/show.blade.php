@@ -323,7 +323,7 @@
             padding: 30px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 20px;    border: 1px solid #ffffff21;
         }
 
         .summary-item {
