@@ -413,7 +413,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
             <!-- Desktop Menu -->
             <div class="header-menu d-none d-lg-flex">
-                <a href="#" class="nav-link">Latest Jobs</a>
+                <a href="/" class="nav-link">Latest Jobs</a>
                 <a href="#" class="nav-link">Admit Card</a>
                 <a href="#" class="nav-link">Result</a>
                 <a href="#" class="nav-link">Syllabus</a>
