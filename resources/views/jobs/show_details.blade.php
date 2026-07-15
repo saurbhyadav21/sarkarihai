@@ -1035,17 +1035,17 @@
 
                 <div class="summary-item">
                     <small>Total Vacancy</small>
-                    <strong>14582</strong>
+                    <strong>{{ $job->vacancy }}</strong>
                 </div>
 
                 <div class="summary-item">
                     <small>Application Mode</small>
-                    <strong>Online</strong>
+                    <strong>{{ $job->application_mode }}</strong>
                 </div>
 
                 <div class="summary-item">
                     <small>Last Date</small>
-                    <strong>30 July 2026</strong>
+                    <strong>{{ $job->last_date }}</strong>
                 </div>
 
             </div>
