@@ -1690,7 +1690,9 @@ class JobController extends Controller
         $canonicalUrl = request()->url();
 
 $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+$ogType = 'article';
 
+$ogImage = asset('images/job-default.jpg');
         return view('jobs.show_details', [
 
             'job' => $job,
@@ -1703,8 +1705,10 @@ $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview
 
             'metaTitle' => $metaTitle,
             'metaDescription' => $metaDescription,
-            'conicalUrl' => $canonicalUrl,
-            'robots' => $robots
+            'canonicalUrl' => $canonicalUrl,
+            'robots' => $robots,
+            'ogType' => $ogType,
+            'ogImage' => $ogImage
 
         ]);
     }
