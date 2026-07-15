@@ -2075,17 +2075,17 @@
 
                 <div class="summary-item">
                     <small>New Today</small>
-                    <strong>0</strong>
+                    <strong>{{ $todayJobs }}</strong>
                 </div>
 
                 <div class="summary-item">
                     <small>Closing Soon</small>
-                    <strong>o</strong>
+                    <strong>{{ $closingSoonJobs }}</strong>
                 </div>
 
                 <div class="summary-item">
                     <small>Active Recruitments</small>
-                    <strong>0</strong>
+                    <strong>{{ $activeJobs }}</strong>
                 </div>
 
             </div>
