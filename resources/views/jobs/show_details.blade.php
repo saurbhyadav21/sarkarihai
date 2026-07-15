@@ -1412,7 +1412,7 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">💰</div>
                         <div>
-                            <h3>{{ $job->starting_salary ?? 'N/A' }}</h3>
+                            <h3>{{ $job->max_salary ?? 'N/A' }}</h3>
                             <p>Starting Salary</p>
                         </div>
                     </div>
