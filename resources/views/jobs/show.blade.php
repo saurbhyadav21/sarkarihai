@@ -2024,6 +2024,14 @@
     background:#eef5ff;
     box-shadow:0 0 0 .15rem rgba(13,110,253,.15);
 }
+.form-select.active-filter{
+    border:2px solid #198754;
+    background:#eafaf1;
+}
+.filter-active{
+    color:#0d6efd;
+    font-weight:700;
+}
 
     </style>
     <section class="hero">
@@ -3625,15 +3633,19 @@
             ========================================== */
         });
 
-        $('.form-select').on('change', function () {
+      $('.form-select').on('change', function () {
+
+    var label = $(this).closest('.row').find('label');
 
     if ($(this).val() != '') {
 
         $(this).addClass('active-filter');
+        label.addClass('filter-active');
 
     } else {
 
         $(this).removeClass('active-filter');
+        label.removeClass('filter-active');
 
     }
 
