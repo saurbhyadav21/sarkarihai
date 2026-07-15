@@ -317,7 +317,7 @@
                             text-align:center;
                             } */
         .summary-card {
-            background: #fff;
+            background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
             padding: 30px;
