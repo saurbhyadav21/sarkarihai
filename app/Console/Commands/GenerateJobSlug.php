@@ -86,11 +86,29 @@ class GenerateJobSlug extends Command
         //     $slug = $originalSlug . '-' . $counter;
         //     $counter++;
         // }
+        //TEmplted ID
+        // Template Combination Generate (20 x 20 x 20)
+
+        $number = $job->id % 8000;
+
+        // P1 (1-20)
+        $p1 = ($number % 20) + 1;
+
+        // P2 (1-20)
+        $p2 = (intdiv($number, 20) % 20) + 1;
+
+        // P3 (1-20)
+        $p3 = (intdiv($number, 400) % 20) + 1;
+
+
+        // Store comma separated
+        $templateCombination = $p1 . ',' . $p2 . ',' . $p3;
 
         DB::table('job_details')
             ->where('id', $job->id)
             ->update([
                 'slug' => $slug,
+                'template_combination_id' => $templateCombination,
                 'updated_at' => now(),
             ]);
 
