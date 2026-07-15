@@ -38,6 +38,8 @@
 
 @includeWhen(isset($schemaBreadcrumb),'seo.schema.breadcrumb')
 
-@includeWhen(isset($schemaJobPosting),'seo.schema.job-posting')
+@if(isset($job))
+    @include('seo.job-posting')
+@endif
 
 @includeWhen(isset($schemaFaq),'seo.schema.faq')
