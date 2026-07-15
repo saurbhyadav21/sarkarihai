@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                background:#fff;
-                                border-radius:15px;
-                                box-shadow:
-                                0 10px 30px rgba(0,0,0,.08);
-                                padding:30px;
-                                border-top:4px solid #F59E0B;
-                                display:grid;
-                                }
+                                    background:#fff;
+                                    border-radius:15px;
+                                    box-shadow:
+                                    0 10px 30px rgba(0,0,0,.08);
+                                    padding:30px;
+                                    border-top:4px solid #F59E0B;
+                                    display:grid;
+                                    }
 
-                                .summary-item{
-                                text-align:center;
-                                } */
+                                    .summary-item{
+                                    text-align:center;
+                                    } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1371,9 +1371,9 @@
 
         /* Continue in Part 2C */
         /* ===========================================================
-                       PART 2C
-                       Premium UI Enhancements
-                    =========================================================== */
+                           PART 2C
+                           Premium UI Enhancements
+                        =========================================================== */
 
         /* ========================================= */
         /* Breadcrumb */
@@ -1684,9 +1684,9 @@
 
         /* Continue in Part 2D */
         /* ===========================================================
-                       PART 2D
-                       Responsive Design + Final CSS
-                    =========================================================== */
+                           PART 2D
+                           Responsive Design + Final CSS
+                        =========================================================== */
 
         /* ========================================= */
         /* Desktop (1400px+) */
@@ -2729,8 +2729,8 @@
 
                                                         </a> --}}
                                                         @if ($job->state && $job->category && $job->slug)
-                                                            <a
-                                                                href="{{ route('sarkari.naukri.detail', [$job->state, $job->category, $job->slug]) }}" class="text-dark text-decoration-none fw-bold">
+                                                            <a href="{{ route('sarkari.naukri.detail', [$job->state, $job->category, $job->slug]) }}"
+                                                                class="text-dark text-decoration-none fw-bold">
                                                                 {{ $job->title }}
                                                             </a>
                                                         @else
@@ -3597,9 +3597,11 @@
             function updateUrl() {
 
                 let params = new URLSearchParams();
+                const keyword = $('#keyword').val();
 
-                if ($('#keyword').val() != '')
-                    params.set('search', $('#keyword').val());
+                if (keyword && keyword.trim() !== '') {
+                    params.set('search', keyword.trim());
+                }
 
                 if ($('#state').val() != '')
                     params.set('state', $('#state').val());
