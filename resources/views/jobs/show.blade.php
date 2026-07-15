@@ -337,8 +337,9 @@
         }
 
         .summary-item strong {
-            font-size: 20px;
-            color: #0B4F6C;
+                color: #f4b400;
+    font-weight: 800;
+        font-size: 1.75rem;
         }
 
         .section-title {
