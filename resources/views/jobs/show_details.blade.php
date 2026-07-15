@@ -678,11 +678,11 @@
                             </a>
                         @endif
 
-                        <span class="sep">/</span>
+                        {{-- <span class="sep">/</span>
 
                         <span class="current">
                             {{ $job->title }}
-                        </span>
+                        </span> --}}
 
                     </nav>
 
