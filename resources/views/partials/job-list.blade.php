@@ -135,11 +135,11 @@
                     </span>
                 @endif
 
-                @if ($job->sub_category)
+                {{-- @if ($job->sub_category)
                     <span class="tag">
                         {{ $job->subCategory->name ?? ucfirst(str_replace('-', ' ', $job->sub_category)) }}
                     </span>
-                @endif
+                @endif --}}
 
             </div>
 
