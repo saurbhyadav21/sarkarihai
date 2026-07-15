@@ -1687,6 +1687,9 @@ class JobController extends Controller
 
         $metaDescription = $job->title .
             ' Recruitment. Check eligibility, vacancy, important dates, application fee, salary, selection process, and apply online before the last date.';
+        $canonicalUrl = request()->url();
+
+$robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
 
         return view('jobs.show_details', [
 
@@ -1699,7 +1702,9 @@ class JobController extends Controller
             'overview' => $overview,
 
             'metaTitle' => $metaTitle,
-            'metaDescription' => $metaDescription
+            'metaDescription' => $metaDescription,
+            'conicalUrl' => $canonicalUrl,
+            'robots' => $robots
 
         ]);
     }
