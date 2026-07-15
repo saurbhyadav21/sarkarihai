@@ -1403,7 +1403,7 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">📌</div>
                         <div>
-                            <h3>14,582</h3>
+                            <h3>{{ $job->total_vacancies ?? 'N/A' }}</h3>
                             <p>Total Vacancies</p>
                         </div>
                     </div>
@@ -1412,7 +1412,7 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">💰</div>
                         <div>
-                            <h3>₹44,900</h3>
+                            <h3>{{ $job->starting_salary ?? 'N/A' }}</h3>
                             <p>Starting Salary</p>
                         </div>
                     </div>
@@ -1421,7 +1421,7 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">📍</div>
                         <div>
-                            <h3>India</h3>
+                            <h3>{{ $job->job_location ?? 'N/A' }}</h3>
                             <p>Job Location</p>
                         </div>
                     </div>
@@ -1430,7 +1430,7 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">📅</div>
                         <div>
-                            <h3>05 Aug 2026</h3>
+                            <h3>{{ $job->end_date ?? 'N/A' }}</h3>
                             <p>Last Date</p>
                         </div>
                     </div>
@@ -1439,7 +1439,7 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">🏢</div>
                         <div>
-                            <h3>IIT Gandhinagar</h3>
+                            <h3>{{ $job->organization ?? 'N/A' }}</h3>
                             <p>Organization</p>
                         </div>
                     </div>
