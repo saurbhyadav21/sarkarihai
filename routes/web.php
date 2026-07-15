@@ -196,5 +196,5 @@ Route::get('/ajax/jobs', [JobController::class, 'latestJobs'])
 |--------------------------------------------------------------------------
 */
 
-Route::get('/job/{slug}', [JobController::class, 'jobDetails'])
-    ->name('jobs.details');
+// Route::get('/job/{slug}', [JobController::class, 'jobDetails'])
+//     ->name('jobs.details');
