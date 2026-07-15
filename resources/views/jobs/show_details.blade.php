@@ -1564,7 +1564,7 @@
                         @if (!empty($job->general_fees))
                             <tr>
                                 <td>General / UR</td>
-                                <td>{{ $job->general_fees }}</td>
+                                {{ is_numeric($job->general_fees) ? '₹'.number_format($job->general_fees) : $job->general_fees }}
                             </tr>
                         @endif
 
