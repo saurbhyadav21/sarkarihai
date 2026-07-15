@@ -845,14 +845,14 @@
 
         <!-- ================= POPULAR SEARCHES ================= -->
         <div class="sec-title">Popular Searches</div>
-
+{{-- 
         <div>
             @foreach ($popularSearches as $search)
                 <a class="tag" href="{{ url('/search?q=' . urlencode($search->keyword)) }}">
                     {{ strtoupper($search->keyword) }}
                 </a>
             @endforeach
-        </div>
+        </div> --}}
 
 
 
