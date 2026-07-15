@@ -1529,7 +1529,7 @@
                     Application Fee
                 </h2>
 
-                <table class="info-table">
+                {{-- <table class="info-table">
 
                     <tr>
                         <td>General / OBC / EWS</td>
@@ -1551,7 +1551,60 @@
                         <td>Online / Offline</td>
                     </tr>
 
-                </table>
+                </table> --}}
+                <table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Application Fee</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>General / UR</td>
+            <td>{{ $job->general_fees ?? 'N/A' }}</td>
+        </tr>
+
+        <tr>
+            <td>OBC</td>
+            <td>{{ $job->obc_fees ?? 'N/A' }}</td>
+        </tr>
+
+        <tr>
+            <td>EWS</td>
+            <td>{{ $job->ews_fees ?? 'N/A' }}</td>
+        </tr>
+
+        <tr>
+            <td>SC</td>
+            <td>{{ $job->sc_fees ?? 'N/A' }}</td>
+        </tr>
+
+        <tr>
+            <td>ST</td>
+            <td>{{ $job->st_fees ?? 'N/A' }}</td>
+        </tr>
+
+        <tr>
+            <td>PwBD / PH</td>
+            <td>{{ $job->ph_fees ?? 'N/A' }}</td>
+        </tr>
+
+        <tr>
+            <td>Female Candidates</td>
+            <td>{{ $job->female_fees ?? 'N/A' }}</td>
+        </tr>
+
+        @if(!empty($job->extra_charge))
+        <tr>
+            <td>Extra Charges</td>
+            <td>{{ $job->extra_charge }}</td>
+        </tr>
+        @endif
+
+    </tbody>
+</table>
 
             </div>
 
