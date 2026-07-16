@@ -2,14 +2,14 @@
 <script type="application/ld+json">
 {
     "@context":"https://schema.org",
-    "@type":"JobPosting",
+    
 
     "title":"{{ $job->title }}",
 
     "description":"{!! strip_tags($overview) !!}",
 
     "identifier":{
-        "@type":"PropertyValue",
+        
         "name":"{{ $job->organization }}",
         "value":"{{ $job->id }}"
     },
@@ -21,13 +21,13 @@
     "employmentType":"{{ $job->employment_type ?? 'FULL_TIME' }}",
 
     "hiringOrganization":{
-        "@type":"Organization",
+       
         "name":"{{ $job->organization }}",
         "sameAs":"https://sarkarihai.com"
     },
 
     "jobLocation":{
-        "@type":"Place",
+      
         "address":{
          
          
