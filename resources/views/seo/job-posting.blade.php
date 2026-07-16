@@ -29,7 +29,7 @@
     "jobLocation":{
         "@type":"Place",
         "address":{
-            "@type":"PostalAddress",
+         
          
             "addressCountry":"IN"
         }
