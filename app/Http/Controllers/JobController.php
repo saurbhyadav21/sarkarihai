@@ -1689,12 +1689,12 @@ class JobController extends Controller
             ' Recruitment. Check eligibility, vacancy, important dates, application fee, salary, selection process, and apply online before the last date.';
         $canonicalUrl = request()->url();
 
-$robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
-$ogType = 'article';
+        $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+        $ogType = 'article';
 
-$ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
+        $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
 
-$stateName = ucfirst($job->state ?? '');
+        $stateName = ucfirst($job->state ?? '');
 
         return view('jobs.show_details', [
 
@@ -2841,7 +2841,20 @@ $stateName = ucfirst($job->state ?? '');
             ->limit(10)
             ->orderBy('end_date')
             ->get();
+
         $weekCount = Job::whereBetween('end_date', [today()->addDays(2), today()->addDays(7)])->count();
+
+        $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+
+        $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
+
+        $canonicalUrl = request()->url();
+
+        $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+
+        $ogType = 'website';
+
+        $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
 
         return view('welcome', compact(
             'latestJobs',
@@ -2863,7 +2876,13 @@ $stateName = ucfirst($job->state ?? '');
             'weekJobs',
             'todayCount',
             'tomorrowCount',
-            'weekCount'
+            'weekCount',
+            'metaTitle',
+            'metaDescription',
+            'canonicalUrl',
+            'robots',
+            'ogType',
+            'ogImage'   
         ));
     }
 
