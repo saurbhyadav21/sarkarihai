@@ -30,7 +30,7 @@
         "@type":"Place",
         "address":{
             "@type":"PostalAddress",
-           "addressRegion":"{{ $stateName }}",
+         
             "addressCountry":"IN"
         }
     }
