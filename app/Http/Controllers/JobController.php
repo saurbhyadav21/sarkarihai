@@ -2855,7 +2855,8 @@ class JobController extends Controller
         $ogType = 'website';
 
         $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
-
+        
+        $stateName = 'xxx';
         return view('welcome', compact(
             'latestJobs',
             'lastDateJobs',
@@ -2882,7 +2883,8 @@ class JobController extends Controller
             'canonicalUrl',
             'robots',
             'ogType',
-            'ogImage'   
+            'ogImage',
+            'stateName'
         ));
     }
 
