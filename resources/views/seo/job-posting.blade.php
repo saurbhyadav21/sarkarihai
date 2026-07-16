@@ -1,38 +1,34 @@
-{{ $stateName }}
 <script type="application/ld+json">
 {
     "@context":"https://schema.org",
-    
+    "@graph":[
 
-    "title":"{{ $job->title }}",
+        {
+            "@type":"Organization",
+            "@id":"https://sarkarihai.com/#organization",
+            "name":"SarkariHai",
+            "url":"https://sarkarihai.com",
+            "logo":{
+                "@type":"ImageObject",
+                "url":"https://sarkarihai.com/public/images/logo.png?v=2"
+            }
+        },
 
-    "description":"{!! strip_tags($overview) !!}",
-
-    "identifier":{
-        
-        "name":"{{ $job->organization }}",
-        "value":"{{ $job->id }}"
-    },
-
-    "datePosted":"{{ optional($job->created_at)->format('Y-m-d') }}",
-
-    "validThrough":"{{ optional($job->end_date)->format('Y-m-d') }}",
-
-    "employmentType":"{{ $job->employment_type ?? 'FULL_TIME' }}",
-
-    "hiringOrganization":{
-       
-        "name":"{{ $job->organization }}",
-        "sameAs":"https://sarkarihai.com"
-    },
-
-    "jobLocation":{
-      
-        "address":{
-         
-         
-            "addressCountry":"IN"
+        {
+            "@type":"WebSite",
+            "@id":"https://sarkarihai.com/#website",
+            "url":"https://sarkarihai.com",
+            "name":"SarkariHai",
+            "publisher":{
+                "@id":"https://sarkarihai.com/#organization"
+            },
+            "potentialAction":{
+                "@type":"SearchAction",
+                "target":"https://sarkarihai.com/search?search={search_term_string}",
+                "query-input":"required name=search_term_string"
+            }
         }
-    }
+
+    ]
 }
 </script>
