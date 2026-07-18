@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                                                    background:#fff;
-                                                                                                                    border-radius:15px;
-                                                                                                                    box-shadow:
-                                                                                                                    0 10px 30px rgba(0,0,0,.08);
-                                                                                                                    padding:30px;
-                                                                                                                    border-top:4px solid #F59E0B;
-                                                                                                                    display:grid;
-                                                                                                                    }
+                                                                                                                        background:#fff;
+                                                                                                                        border-radius:15px;
+                                                                                                                        box-shadow:
+                                                                                                                        0 10px 30px rgba(0,0,0,.08);
+                                                                                                                        padding:30px;
+                                                                                                                        border-top:4px solid #F59E0B;
+                                                                                                                        display:grid;
+                                                                                                                        }
 
-                                                                                                                    .summary-item{
-                                                                                                                    text-align:center;
-                                                                                                                    } */
+                                                                                                                        .summary-item{
+                                                                                                                        text-align:center;
+                                                                                                                        } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                                                    display: grid;
-                                                                                    grid-template-columns: repeat(3, 1fr);
-                                                                                    gap: 20px;
-                                                                                    margin-top: 20px;
-                                                                                } */
+                                                                                        display: grid;
+                                                                                        grid-template-columns: repeat(3, 1fr);
+                                                                                        gap: 20px;
+                                                                                        margin-top: 20px;
+                                                                                    } */
 
         .highlight-box {
             background: #fff;
@@ -1893,11 +1893,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                        display: grid;
-                                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                        gap: 16px;
-                                        margin-top: 20px;
-                                    } */
+                                            display: grid;
+                                            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                            gap: 16px;
+                                            margin-top: 20px;
+                                        } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2144,42 +2144,95 @@
 
                 </div>
             @endif
-           
+
 
 
             <!-- SELECTION PROCESS -->
+            <style>
+                .selection-flow {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    gap: 10px;
+                    margin-top: 15px;
+                }
 
-            <div class="content-card" id="selection">
+                .selection-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    background: #f8fafc;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 30px;
+                    padding: 8px 14px;
+                    font-weight: 600;
+                }
 
-                <h2>
-                    Selection Process
-                </h2>
+                .selection-number {
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 50%;
+                    background: #0f766e;
+                    color: #fff;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 13px;
+                    flex-shrink: 0;
+                }
 
-                <div class="highlight-grid">
+                .selection-arrow {
+                    color: #0f766e;
+                    font-size: 22px;
+                    font-weight: bold;
+                }
 
-                    <div class="highlight-box">
-                        <h3>01</h3>
-                        <p>Written Exam</p>
-                    </div>
+                @media(max-width:768px) {
 
-                    <div class="highlight-box">
-                        <h3>02</h3>
-                        <p>Skill Test</p>
-                    </div>
+                    .selection-flow {
+                        flex-direction: column;
+                        align-items: stretch;
+                    }
 
-                    <div class="highlight-box">
-                        <h3>03</h3>
-                        <p>Document Verification</p>
-                    </div>
+                    .selection-arrow {
+                        display: none;
+                    }
 
-                    <div class="highlight-box">
-                        <h3>04</h3>
-                        <p>Medical Test</p>
+                }
+            </style>
+            @php
+                $steps = array_filter(array_map('trim', explode(',', $job->mode_selection ?? '')));
+            @endphp
+
+            @if (count($steps))
+                <div class="content-card">
+
+                    <h2>Selection Process</h2>
+
+                    <div class="selection-flow">
+
+                        @foreach ($steps as $step)
+                            <div class="selection-item">
+
+                                <div class="selection-number">
+                                    {{ $loop->iteration }}
+                                </div>
+
+                                <div>
+                                    {{ $step }}
+                                </div>
+
+                            </div>
+
+                            @if (!$loop->last)
+                                <div class="selection-arrow">➜</div>
+                            @endif
+                        @endforeach
+
                     </div>
 
                 </div>
-
-            </div>
+            @endif
 
 
 
@@ -2867,4 +2920,4 @@ border-radius:10px;">
         </div>
 
     </footer> --}}
-        @endsection
+@endsection
