@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                        background:#fff;
-                                                        border-radius:15px;
-                                                        box-shadow:
-                                                        0 10px 30px rgba(0,0,0,.08);
-                                                        padding:30px;
-                                                        border-top:4px solid #F59E0B;
-                                                        display:grid;
-                                                        }
+                                                            background:#fff;
+                                                            border-radius:15px;
+                                                            box-shadow:
+                                                            0 10px 30px rgba(0,0,0,.08);
+                                                            padding:30px;
+                                                            border-top:4px solid #F59E0B;
+                                                            display:grid;
+                                                            }
 
-                                                        .summary-item{
-                                                        text-align:center;
-                                                        } */
+                                                            .summary-item{
+                                                            text-align:center;
+                                                            } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                        display: grid;
-                        grid-template-columns: repeat(3, 1fr);
-                        gap: 20px;
-                        margin-top: 20px;
-                    } */
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            gap: 20px;
+                            margin-top: 20px;
+                        } */
 
         .highlight-box {
             background: #fff;
@@ -1412,7 +1412,13 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">💰</div>
                         <div>
-                            <h3>{{ isset($job->max_salary) ? '₹' . number_format($job->max_salary) : 'N/A' }}</h3>
+                            <h3>
+                                @if (is_numeric(str_replace(',', '', $job->max_salary)))
+                                    ₹{{ number_format((float) str_replace(',', '', $job->max_salary)) }}
+                                @else
+                                    {{ $job->max_salary ?: 'N/A' }}
+                                @endif
+                            </h3>
                             <p>Maximum Salary</p>
                         </div>
                     </div>
