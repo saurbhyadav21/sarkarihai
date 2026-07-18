@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                            background:#fff;
-                                                                            border-radius:15px;
-                                                                            box-shadow:
-                                                                            0 10px 30px rgba(0,0,0,.08);
-                                                                            padding:30px;
-                                                                            border-top:4px solid #F59E0B;
-                                                                            display:grid;
-                                                                            }
+                                                                                background:#fff;
+                                                                                border-radius:15px;
+                                                                                box-shadow:
+                                                                                0 10px 30px rgba(0,0,0,.08);
+                                                                                padding:30px;
+                                                                                border-top:4px solid #F59E0B;
+                                                                                display:grid;
+                                                                                }
 
-                                                                            .summary-item{
-                                                                            text-align:center;
-                                                                            } */
+                                                                                .summary-item{
+                                                                                text-align:center;
+                                                                                } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                            display: grid;
-                                            grid-template-columns: repeat(3, 1fr);
-                                            gap: 20px;
-                                            margin-top: 20px;
-                                        } */
+                                                display: grid;
+                                                grid-template-columns: repeat(3, 1fr);
+                                                gap: 20px;
+                                                margin-top: 20px;
+                                            } */
 
         .highlight-box {
             background: #fff;
@@ -1708,11 +1708,11 @@
             <!-- VACANCY DETAILS -->
             <style>
                 /* .content-card {
-                    background: #fff;
-                    border-radius: 12px;
-                    padding: 20px;
-                    margin-bottom: 25px;
-                } */
+                        background: #fff;
+                        border-radius: 12px;
+                        padding: 20px;
+                        margin-bottom: 25px;
+                    } */
 
                 .vacancy-table {
                     width: 100%;
@@ -1884,92 +1884,93 @@
             <!-- CATEGORY WISE -->
             @php
 
-function parsePosts($data)
-{
-    $result = [];
+                function parsePosts($data)
+                {
+                    $result = [];
 
-    if(empty($data)) return $result;
+                    if (empty($data)) {
+                        return $result;
+                    }
 
-    foreach(explode('#', trim($data, '#')) as $item){
+                    foreach (explode('#', trim($data, '#')) as $item) {
+                        if (empty($item)) {
+                            continue;
+                        }
 
-        if(empty($item)) continue;
+                        [$post, $count] = array_pad(explode('$', $item), 2, 0);
 
-        [$post, $count] = array_pad(explode('$', $item), 2, 0);
+                        $result[trim($post)] = (int) $count;
+                    }
 
-        $result[trim($post)] = (int)$count;
-    }
+                    return $result;
+                }
 
-    return $result;
-}
+                $general = parsePosts($job->general_post);
+                $ews = parsePosts($job->ews_post);
+                $obc = parsePosts($job->obc_post);
+                $sc = parsePosts($job->sc_post);
+                $st = parsePosts($job->st_post);
 
-$general = parsePosts($job->general_post);
-$ews     = parsePosts($job->ews_post);
-$obc     = parsePosts($job->obc_post);
-$sc      = parsePosts($job->sc_post);
-$st      = parsePosts($job->st_post);
+                $genTotal = array_sum($general);
+                $ewsTotal = array_sum($ews);
+                $obcTotal = array_sum($obc);
+                $scTotal = array_sum($sc);
+                $stTotal = array_sum($st);
 
-$genTotal = array_sum($general);
-$ewsTotal = array_sum($ews);
-$obcTotal = array_sum($obc);
-$scTotal  = array_sum($sc);
-$stTotal  = array_sum($st);
+                $totalVacancy = $genTotal + $ewsTotal + $obcTotal + $scTotal + $stTotal;
 
-$totalVacancy = $genTotal + $ewsTotal + $obcTotal + $scTotal + $stTotal;
+            @endphp
+            @if ($totalVacancy)
+                <div class="content-card">
 
-@endphp
-           @if($totalVacancy)
+                    <h2>Category Wise Vacancy</h2>
 
-<div class="content-card">
+                    <div class="highlight-grid">
 
-    <h2>Category Wise Vacancy</h2>
+                        @if ($genTotal)
+                            <div class="highlight-box">
+                                <h3>{{ number_format($genTotal) }}</h3>
+                                <p>General</p>
+                            </div>
+                        @endif
 
-    <div class="highlight-grid">
+                        @if ($ewsTotal)
+                            <div class="highlight-box">
+                                <h3>{{ number_format($ewsTotal) }}</h3>
+                                <p>EWS</p>
+                            </div>
+                        @endif
 
-        @if($genTotal)
-        <div class="highlight-box">
-            <h3>{{ number_format($genTotal) }}</h3>
-            <p>General</p>
-        </div>
-        @endif
+                        @if ($obcTotal)
+                            <div class="highlight-box">
+                                <h3>{{ number_format($obcTotal) }}</h3>
+                                <p>OBC</p>
+                            </div>
+                        @endif
 
-        @if($ewsTotal)
-        <div class="highlight-box">
-            <h3>{{ number_format($ewsTotal) }}</h3>
-            <p>EWS</p>
-        </div>
-        @endif
+                        @if ($scTotal)
+                            <div class="highlight-box">
+                                <h3>{{ number_format($scTotal) }}</h3>
+                                <p>SC</p>
+                            </div>
+                        @endif
 
-        @if($obcTotal)
-        <div class="highlight-box">
-            <h3>{{ number_format($obcTotal) }}</h3>
-            <p>OBC</p>
-        </div>
-        @endif
+                        @if ($stTotal)
+                            <div class="highlight-box">
+                                <h3>{{ number_format($stTotal) }}</h3>
+                                <p>ST</p>
+                            </div>
+                        @endif
 
-        @if($scTotal)
-        <div class="highlight-box">
-            <h3>{{ number_format($scTotal) }}</h3>
-            <p>SC</p>
-        </div>
-        @endif
+                        <div class="highlight-box total-box">
+                            <h3>{{ number_format($totalVacancy) }}</h3>
+                            <p>Total Vacancy</p>
+                        </div>
 
-        @if($stTotal)
-        <div class="highlight-box">
-            <h3>{{ number_format($stTotal) }}</h3>
-            <p>ST</p>
-        </div>
-        @endif
+                    </div>
 
-        <div class="highlight-box total-box">
-            <h3>{{ number_format($totalVacancy) }}</h3>
-            <p>Total Vacancy</p>
-        </div>
-
-    </div>
-
-</div>
-
-@endif
+                </div>
+            @endif
 
 
 
