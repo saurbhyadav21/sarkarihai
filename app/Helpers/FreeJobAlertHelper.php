@@ -1148,12 +1148,12 @@ class FreeJobAlertHelper
 
     public static function sendTelegramJob($job)
     {
-        $link = url(
-            'sarkari-naukri/' .
-                ($job['state'] ?? 'all-india') . '/' .
-                ($job['category'] ?? 'government') . '/' .
-                $job['slug']
-        );
+        $link = "https://sarkarihai.com/sarkari-naukri/" .
+        ($job['state'] ?? 'all-india') . "/" .
+        ($job['category'] ?? 'government') . "/" .
+        $job['slug'];
+
+        
         $message = "🚨 <b>New Government Job</b>\n\n";
 
         $message .= "📌 <b>" . $job['title'] . "</b>\n";
