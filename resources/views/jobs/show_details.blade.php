@@ -1921,7 +1921,7 @@
 
             @endphp
           
-            @if ($totalVacancy)
+            @if ($totalVacancy1)
                 <div class="content-card">
 
                     <h2>Category Wise Vacancy</h2>
