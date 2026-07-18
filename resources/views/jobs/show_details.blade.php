@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                                                        background:#fff;
-                                                                                                                        border-radius:15px;
-                                                                                                                        box-shadow:
-                                                                                                                        0 10px 30px rgba(0,0,0,.08);
-                                                                                                                        padding:30px;
-                                                                                                                        border-top:4px solid #F59E0B;
-                                                                                                                        display:grid;
-                                                                                                                        }
+                                                                                                                                    background:#fff;
+                                                                                                                                    border-radius:15px;
+                                                                                                                                    box-shadow:
+                                                                                                                                    0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                    padding:30px;
+                                                                                                                                    border-top:4px solid #F59E0B;
+                                                                                                                                    display:grid;
+                                                                                                                                    }
 
-                                                                                                                        .summary-item{
-                                                                                                                        text-align:center;
-                                                                                                                        } */
+                                                                                                                                    .summary-item{
+                                                                                                                                    text-align:center;
+                                                                                                                                    } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                                                        display: grid;
-                                                                                        grid-template-columns: repeat(3, 1fr);
-                                                                                        gap: 20px;
-                                                                                        margin-top: 20px;
-                                                                                    } */
+                                                                                                    display: grid;
+                                                                                                    grid-template-columns: repeat(3, 1fr);
+                                                                                                    gap: 20px;
+                                                                                                    margin-top: 20px;
+                                                                                                } */
 
         .highlight-box {
             background: #fff;
@@ -1893,11 +1893,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                            display: grid;
-                                            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                            gap: 16px;
-                                            margin-top: 20px;
-                                        } */
+                                                        display: grid;
+                                                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                        gap: 16px;
+                                                        margin-top: 20px;
+                                                    } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2149,122 +2149,129 @@
 
             <!-- SELECTION PROCESS -->
             <style>
-                .selection-grid{
+                /* .selection-grid {
 
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:18px;
-margin-top:20px;
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                            gap: 18px;
+                            margin-top: 20px;
 
-}
+                        } */
 
-.selection-card{
+                .selection-card {
 
-padding:22px;
-border-radius:14px;
-text-align:center;
-color:#fff;
-transition:.3s;
+                    padding: 22px;
+                    border-radius: 14px;
+                    text-align: center;
+                    color: #fff;
+                    transition: .3s;
+                    width: 203px;
+                    float: left;
+                    margin-right: 10px;
 
-}
+                }
 
-.selection-card:hover{
+                .selection-card:hover {
 
-transform:translateY(-5px);
+                    transform: translateY(-5px);
 
-}
+                }
 
-.selection-icon{
+                .selection-icon {
 
-font-size:34px;
-margin-bottom:12px;
+                    font-size: 50px;
+                    margin-bottom: 12px;
 
-}
+                }
 
-.selection-title{
+                .selection-title {
 
-font-size:16px;
-font-weight:600;
-line-height:1.5;
+                    font-size: 16px;
+                    font-weight: 600;
+                    line-height: 1.5;
+                    color: #000;
 
-}
+                }
 
-.selection-step{
+                .selection-step {
 
-margin-top:12px;
-font-size:13px;
-opacity:.9;
+                    margin-top: 12px;
+                    font-size: 13px;
+                    opacity: .9;
+                    color: #000;
 
-}
+                }
 
-.blue{background:#2563eb;}
-.green{background:#16a34a;}
-.orange{background:#ea580c;}
-.purple{background:#7c3aed;}
-.red{background:#dc2626;}
-.teal{background:#0f766e;}
-.brown{background:#92400e;}
-.dark{background:#374151;}
+                .blue {
+                    background: #2563eb69;
+                    ;
+                }
+
+                .green {
+                    background: #16a34a73
+                }
+
+                .orange {
+                    background: #ea580c61
+                }
+
+                .purple {
+                    background: #7c3aed8c;
+                }
+
+                .red {
+                    background: #dc2626;
+                }
+
+                .teal {
+                    background: #0f766e;
+                }
+
+                .brown {
+                    background: #92400e;
+                }
+
+                .dark {
+                    background: #374151;
+                }
             </style>
             @php
-$steps = array_filter(array_map('trim', explode(',', $job->mode_selection ?? '')));
+                $steps = array_filter(array_map('trim', explode(',', $job->mode_selection ?? '')));
 
-$icons = [
-'📝',
-'💻',
-'⌨️',
-'📄',
-'🩺',
-'🏆',
-'✅',
-'🎯'
-];
+                $icons = ['📝', '💻', '⌨️', '📄', '🩺', '🏆', '✅', '🎯'];
 
-$classes = [
-'blue',
-'green',
-'orange',
-'purple',
-'red',
-'teal',
-'brown',
-'dark'
-];
-@endphp
+                $classes = ['blue', 'green', 'orange', 'purple', 'red', 'teal', 'brown', 'dark'];
+            @endphp
 
-@if(count($steps))
+            @if (count($steps))
+                <div class="content-card">
 
-<div class="content-card">
+                    <h2>Selection Process</h2>
 
-<h2>Selection Process</h2>
+                    <div class="selection-grid">
 
-<div class="selection-grid">
+                        @foreach ($steps as $step)
+                            <div class="selection-card {{ $classes[$loop->index % count($classes)] }}">
+                                <div class="selection-step">
+                                    Step {{ $loop->iteration }}
+                                </div>
+                                <div class="selection-icon">
+                                    {{ $icons[$loop->index % count($icons)] }}
+                                </div>
 
-@foreach($steps as $step)
+                                <div class="selection-title">
+                                    {{ $step }}
+                                </div>
 
-<div class="selection-card {{ $classes[$loop->index % count($classes)] }}">
 
-<div class="selection-icon">
-{{ $icons[$loop->index % count($icons)] }}
-</div>
 
-<div class="selection-title">
-{{ $step }}
-</div>
+                            </div>
+                        @endforeach
 
-<div class="selection-step">
-Step {{ $loop->iteration }}
-</div>
+                    </div>
 
-</div>
-
-@endforeach
-
-</div>
-
-</div>
-
-@endif
+                </div>
+            @endif
 
 
 
