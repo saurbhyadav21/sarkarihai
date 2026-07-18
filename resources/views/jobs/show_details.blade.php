@@ -1188,9 +1188,9 @@
         /* HIGHLIGHT BOXES */
 .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active
 {
-        color: #000;
-    background-color: #F59E0B;
-    border-color: #000;
+        color: #000 !important;
+    background-color: #F59E0B !important;
+    border-color: #000 !important;
 }
         /* .highlight-grid {
                                                                                                                                                                         display: grid;
