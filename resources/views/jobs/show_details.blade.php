@@ -1142,7 +1142,7 @@
 
         .content-card h2 {
             font-size: 32px;
-            color: #0B4F6C;
+            color: #fff;
             margin-bottom: 20px;
             font-weight: 700;
         }
