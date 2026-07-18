@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                            background:#fff;
-                                                            border-radius:15px;
-                                                            box-shadow:
-                                                            0 10px 30px rgba(0,0,0,.08);
-                                                            padding:30px;
-                                                            border-top:4px solid #F59E0B;
-                                                            display:grid;
-                                                            }
+                                                                    background:#fff;
+                                                                    border-radius:15px;
+                                                                    box-shadow:
+                                                                    0 10px 30px rgba(0,0,0,.08);
+                                                                    padding:30px;
+                                                                    border-top:4px solid #F59E0B;
+                                                                    display:grid;
+                                                                    }
 
-                                                            .summary-item{
-                                                            text-align:center;
-                                                            } */
+                                                                    .summary-item{
+                                                                    text-align:center;
+                                                                    } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                            display: grid;
-                            grid-template-columns: repeat(3, 1fr);
-                            gap: 20px;
-                            margin-top: 20px;
-                        } */
+                                    display: grid;
+                                    grid-template-columns: repeat(3, 1fr);
+                                    gap: 20px;
+                                    margin-top: 20px;
+                                } */
 
         .highlight-box {
             background: #fff;
@@ -1644,44 +1644,64 @@
 
             <!-- AGE LIMIT -->
 
-            <div class="content-card" id="age">
+            @if (
+                $job->min_age ||
+                    $job->max_age_genral ||
+                    $job->max_age_obc ||
+                    $job->max_age_sc_st ||
+                    $job->max_age_female ||
+                    $job->relaxation)
+                <div class="content-card" id="age">
 
-                <h2>
-                    Age Limit
-                </h2>
+                    <h2>Age Limit</h2>
 
-                <table class="info-table">
+                    <table class="info-table">
 
-                    <tr>
-                        <td>Minimum Age</td>
-                        <td>18 Years</td>
-                    </tr>
+                        @if (filled($job->min_age))
+                            <tr>
+                                <td>Minimum Age</td>
+                                <td>{{ $job->min_age }} Years</td>
+                            </tr>
+                        @endif
 
-                    <tr>
-                        <td>Maximum Age</td>
-                        <td>27 Years</td>
-                    </tr>
+                        @if (filled($job->max_age_genral))
+                            <tr>
+                                <td>Maximum Age (General)</td>
+                                <td>{{ $job->max_age_genral }} Years</td>
+                            </tr>
+                        @endif
 
-                    <tr>
-                        <td>OBC Relaxation</td>
-                        <td>3 Years</td>
-                    </tr>
+                        @if (filled($job->max_age_obc))
+                            <tr>
+                                <td>Maximum Age (OBC)</td>
+                                <td>{{ $job->max_age_obc }} Years</td>
+                            </tr>
+                        @endif
 
-                    <tr>
-                        <td>SC/ST Relaxation</td>
-                        <td>5 Years</td>
-                    </tr>
+                        @if (filled($job->max_age_sc_st))
+                            <tr>
+                                <td>Maximum Age (SC/ST)</td>
+                                <td>{{ $job->max_age_sc_st }} Years</td>
+                            </tr>
+                        @endif
 
-                </table>
+                        @if (filled($job->max_age_female))
+                            <tr>
+                                <td>Maximum Age (Female)</td>
+                                <td>{{ $job->max_age_female }} Years</td>
+                            </tr>
+                        @endif
 
-                <div class="notice-box">
+                    </table>
 
-                    Age relaxation will be provided
-                    as per government rules.
+                    @if ($job->relaxation)
+                        <div class="notice-box">
+                            {!! nl2br(e($job->relaxation)) !!}
+                        </div>
+                    @endif
 
                 </div>
-
-            </div>
+            @endif
 
 
 
