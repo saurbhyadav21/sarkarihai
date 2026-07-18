@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use DOMDocument;
 use DOMXPath;
+use Illuminate\Support\Facades\Http;
 
 class FreeJobAlertHelper
 {
