@@ -2410,11 +2410,11 @@
                             </div>
 
                             <div class="selection-title">
-                                🏆 Congratulations!
+                                Congratulations!
                             </div>
 
                             <div class="selection-step">
-                                Selected for the Job
+                                🏆 Selected for the Job
                             </div>
 
                         </div>
