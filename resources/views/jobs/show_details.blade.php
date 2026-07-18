@@ -1707,12 +1707,12 @@
 
             <!-- VACANCY DETAILS -->
             <style>
-                .content-card {
+                /* .content-card {
                     background: #fff;
                     border-radius: 12px;
                     padding: 20px;
                     margin-bottom: 25px;
-                }
+                } */
 
                 .vacancy-table {
                     width: 100%;
