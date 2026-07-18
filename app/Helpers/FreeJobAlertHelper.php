@@ -1165,5 +1165,5 @@ class FreeJobAlertHelper
             ]
         );
     }
-    }
+    
 }
