@@ -3032,32 +3032,68 @@ class JobController extends Controller
 
     public function checkEligibility(Request $request)
     {
-
         $job = DB::table('job_details')
             ->where('id', $request->job_id)
             ->first();
+
+        if (!$job) {
+
+            return response()->json([
+                'html' => '<div class="alert alert-danger">Job not found.</div>'
+            ]);
+        }
 
         $eligible = true;
 
         $reasons = [];
 
-        // Qualification
+        /*
+    |--------------------------------------------------------------------------
+    | Qualification Check
+    |--------------------------------------------------------------------------
+    */
 
-        if (
-            !empty($job->min_qulification)
-            &&
-            stripos(
-                $job->min_qulification,
-                $request->qualification
-            ) === false
-        ) {
+        if (!empty($job->min_qulification)) {
 
-            $eligible = false;
+            $requiredQualifications = array_filter(
+                array_map('trim', explode('#', $job->min_qulification))
+            );
 
-            $reasons[] = "Required Qualification : " . $job->min_qulification;
+            $matched = false;
+
+            foreach ($requiredQualifications as $qualification) {
+
+                if (
+                    stripos(
+                        $qualification,
+                        $request->qualification
+                    ) !== false
+                    ||
+                    stripos(
+                        $request->qualification,
+                        $qualification
+                    ) !== false
+                ) {
+
+                    $matched = true;
+
+                    break;
+                }
+            }
+
+            if (!$matched) {
+
+                $eligible = false;
+
+                $reasons[] = 'Required Qualification : ' . $job->min_qulification;
+            }
         }
 
-        // Age
+        /*
+    |--------------------------------------------------------------------------
+    | Age Check
+    |--------------------------------------------------------------------------
+    */
 
         if (
             !empty($job->minimum_age)
@@ -3067,7 +3103,7 @@ class JobController extends Controller
 
             $eligible = false;
 
-            $reasons[] = "Minimum Age : " . $job->minimum_age;
+            $reasons[] = 'Minimum Age : ' . $job->minimum_age;
         }
 
         if (
@@ -3078,54 +3114,175 @@ class JobController extends Controller
 
             $eligible = false;
 
-            $reasons[] = "Maximum Age : " . $job->maximum_age;
+            $reasons[] = 'Maximum Age : ' . $job->maximum_age;
         }
+
+        /*
+    |--------------------------------------------------------------------------
+    | Similar Jobs
+    |--------------------------------------------------------------------------
+    */
+
+        $similarJobs = collect();
+
+        if (!empty($job->min_qulification)) {
+
+            $quals = array_filter(
+                array_map('trim', explode('#', $job->min_qulification))
+            );
+
+            $query = DB::table('job_details')
+                ->where('id', '!=', $job->id)
+                ->whereDate('end_date', '>=', now()->toDateString());
+
+            $query->where(function ($q) use ($quals) {
+
+                foreach ($quals as $qual) {
+
+                    $q->orWhere(
+                        'min_qulification',
+                        'LIKE',
+                        '%' . $qual . '%'
+                    );
+                }
+            });
+
+            $similarJobs = $query
+                ->orderByDesc('id')
+                ->limit(5)
+                ->get();
+        }
+
+        /*
+    |--------------------------------------------------------------------------
+    | HTML
+    |--------------------------------------------------------------------------
+    */
 
         $html = '';
 
         if ($eligible) {
 
-            $html = '
+            $html .= '
 
         <div class="alert alert-success">
 
-        <h4>🎉 Congratulations!</h4>
+            <h4 class="mb-3">
 
-        <p>You appear to be eligible for this recruitment.</p>
+                🎉 Congratulations!
 
-        <ul>
+            </h4>
 
-        <li>Qualification Matched</li>
+            <p>
 
-        <li>Age Eligible</li>
+                You appear to be eligible for this recruitment.
 
-        <li>Category Checked</li>
+            </p>
 
-        </ul>
+            <ul>
 
-        <a href="#apply" class="btn btn-success">
+                <li>✅ Qualification Matched</li>
 
-        Apply Now
+                <li>✅ Age Eligible</li>
 
-        </a>
+                <li>✅ Category Checked</li>
+
+            </ul>
 
         </div>';
         } else {
 
-            $html = '
+            $html .= '
 
         <div class="alert alert-danger">
 
-        <h4>Not Eligible</h4>
+            <h4 class="mb-3">
 
-        <ul>';
+                ❌ Not Eligible
 
-            foreach ($reasons as $r) {
+            </h4>
 
-                $html .= "<li>" . $r . "</li>";
+            <ul>';
+
+            foreach ($reasons as $reason) {
+
+                $html .= '<li>' . $reason . '</li>';
             }
 
-            $html .= '</ul>
+            $html .= '
+
+            </ul>
+
+        </div>';
+        }
+
+        /*
+    |--------------------------------------------------------------------------
+    | Recommended Jobs
+    |--------------------------------------------------------------------------
+    */
+
+        if ($similarJobs->count()) {
+
+            $html .= '
+
+        <div class="card mt-4">
+
+            <div class="card-header bg-primary text-white">
+
+                🔥 Also Eligible For
+
+            </div>
+
+            <div class="list-group list-group-flush">';
+
+            foreach ($similarJobs as $similarJob) {
+
+                $state = !empty($similarJob->state)
+                    ? $similarJob->state
+                    : 'all-india';
+
+                $category = !empty($similarJob->category)
+                    ? $similarJob->category
+                    : 'other';
+
+                $html .= '
+
+            <a
+
+                href="' .
+                    route(
+                        'sarkari.naukri.detail',
+                        [
+                            'state' => $state,
+                            'category' => $category,
+                            'slug' => $similarJob->slug
+                        ]
+                    ) .
+                    '"
+
+                class="list-group-item list-group-item-action">
+
+                <strong>
+
+                    ' . e($similarJob->title) . '
+
+                </strong>
+
+                <br>
+
+                <small>
+
+                    ' . e($similarJob->organization) . '
+
+                </small>
+
+            </a>';
+            }
+
+            $html .= '
+
+            </div>
 
         </div>';
         }
