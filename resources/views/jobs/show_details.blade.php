@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                background:#fff;
-                                                                                                                                                                border-radius:15px;
-                                                                                                                                                                box-shadow:
-                                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                padding:30px;
-                                                                                                                                                                border-top:4px solid #F59E0B;
-                                                                                                                                                                display:grid;
-                                                                                                                                                                }
+                                                                                                                                                                                background:#fff;
+                                                                                                                                                                                border-radius:15px;
+                                                                                                                                                                                box-shadow:
+                                                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                padding:30px;
+                                                                                                                                                                                border-top:4px solid #F59E0B;
+                                                                                                                                                                                display:grid;
+                                                                                                                                                                                }
 
-                                                                                                                                                                .summary-item{
-                                                                                                                                                                text-align:center;
-                                                                                                                                                                } */
+                                                                                                                                                                                .summary-item{
+                                                                                                                                                                                text-align:center;
+                                                                                                                                                                                } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                                                                                                display: grid;
-                                                                                                                                grid-template-columns: repeat(3, 1fr);
-                                                                                                                                gap: 20px;
-                                                                                                                                margin-top: 20px;
-                                                                                                                            } */
+                                                                                                                                                display: grid;
+                                                                                                                                                grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                gap: 20px;
+                                                                                                                                                margin-top: 20px;
+                                                                                                                                            } */
 
         .highlight-box {
             background: #fff;
@@ -1893,11 +1893,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                    display: grid;
-                                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                    gap: 16px;
-                                                                                    margin-top: 20px;
-                                                                                } */
+                                                                                                    display: grid;
+                                                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                    gap: 16px;
+                                                                                                    margin-top: 20px;
+                                                                                                } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2150,8 +2150,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                      Selection Process
-                    =========================*/
+                                      Selection Process
+                                    =========================*/
 
                 .selection-grid {
 
@@ -2764,7 +2764,8 @@
 
                     line-height: 1.7;
 
-                    font-size: 15px;    color: #fff;
+                    font-size: 15px;
+                    color: #fff;
 
                 }
 
@@ -2878,118 +2879,185 @@
 
                 <div class="card border-0 shadow-sm mb-4">
 
-    <div class="card-header bg-success text-white">
+                    <div class="card-header bg-primary text-white">
 
-        <h2 class="h5 mb-0">
+                        <h2 class="h5 mb-0">
+                            🎯 Check Your Eligibility
+                        </h2>
 
-            ✅ Can You Apply?
+                        <small>
+                            Enter your details to check whether you are eligible for this recruitment.
+                        </small>
 
-        </h2>
+                    </div>
 
-    </div>
+                    <div class="card-body">
 
-    <div class="card-body">
+                        <div class="row g-3">
 
-        <div class="row">
+                            <div class="col-md-6">
 
-            <!-- Eligible -->
+                                <label class="form-label fw-semibold">
 
-            <div class="col-md-6">
+                                    Qualification
 
-                <div class="border rounded p-3 h-100 bg-light">
+                                </label>
 
-                    <h3 class="h6 text-success mb-3">
+                                <select class="form-select" id="checkQualification">
 
-                        <i class="fa-solid fa-circle-check"></i>
+                                    <option value="">Select Qualification</option>
 
-                        Eligible If You
+                                    <option>5th Pass</option>
+                                    <option>8th Pass</option>
+                                    <option>10th Pass</option>
+                                    <option>12th Pass</option>
+                                    <option>ITI</option>
+                                    <option>Diploma</option>
+                                    <option>Graduate</option>
+                                    <option>Post Graduate</option>
+                                    <option>B.Tech</option>
+                                    <option>M.Tech</option>
+                                    <option>MBA</option>
+                                    <option>B.Ed</option>
+                                    <option>Nursing</option>
+                                    <option>MBBS</option>
 
-                    </h3>
+                                </select>
 
-                    <ul class="list-unstyled mb-0">
+                            </div>
 
-                        <li class="mb-2">
-                            ✅ Have
-                            <strong>{{ $job->min_qulification ?: ($job->qualification ?: 'Required Qualification') }}</strong>
-                        </li>
+                            <div class="col-md-6">
 
-                        <li class="mb-2">
-                            ✅ Age
-                            <strong>{{ $job->age_limit ?: 'As Per Notification' }}</strong>
-                        </li>
+                                <label class="form-label fw-semibold">
 
-                        <li class="mb-2">
-                            ✅ Are an
-                            <strong>Indian Citizen</strong>
-                        </li>
+                                    Age
 
-                        <li class="mb-2">
-                            ✅ Submit application before
-                            <strong>
-                                {{ !empty($job->end_date) ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : 'Last Date' }}
-                            </strong>
-                        </li>
+                                </label>
 
-                        <li>
-                            ✅ Read official notification carefully
-                        </li>
+                                <input type="number" class="form-control" id="checkAge" placeholder="Enter Your Age">
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+
+                                    Category
+
+                                </label>
+
+                                <select class="form-select" id="checkCategory">
+
+                                    <option>General</option>
+                                    <option>OBC</option>
+                                    <option>SC</option>
+                                    <option>ST</option>
+                                    <option>EWS</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+
+                                    State
+
+                                </label>
+
+                                <select class="form-select" id="checkState">
+
+                                    <option value="">Select State</option>
+
+                                    @foreach ($states as $state)
+                                        <option value="{{ $state }}">
+
+                                            {{ $state }}
+
+                                        </option>
+                                    @endforeach
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="d-grid mt-4">
+
+                            <button class="btn btn-success btn-lg" id="checkEligibility">
+
+                                <i class="fa-solid fa-circle-check me-2"></i>
+
+                                Check Eligibility
+
+                            </button>
+
+                        </div>
+
+                        <div id="eligibilityResult" class="mt-4" style="display:none;">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="alert alert-success">
+
+                    <h5>
+
+                        ✅ Congratulations!
+
+                    </h5>
+
+                    <p class="mb-2">
+
+                        You appear to be eligible for this recruitment.
+
+                    </p>
+
+                    <ul class="mb-0">
+
+                        <li>✔ Qualification Matched</li>
+
+                        <li>✔ Age Eligible</li>
+
+                        <li>✔ Indian Citizen</li>
+
+                        <li>✔ Apply Before Last Date</li>
 
                     </ul>
 
                 </div>
 
             </div>
+            <div class="alert alert-danger">
 
-            <!-- Not Eligible -->
+                <h5>
 
-            <div class="col-md-6 mt-3 mt-md-0">
+                    ❌ Not Eligible
 
-                <div class="border rounded p-3 h-100 bg-light">
+                </h5>
 
-                    <h3 class="h6 text-danger mb-3">
+                <p>
 
-                        <i class="fa-solid fa-circle-xmark"></i>
+                    Based on your information you may not be eligible.
 
-                        You May Not Be Eligible If
+                </p>
 
-                    </h3>
+                <ul class="mb-0">
 
-                    <ul class="list-unstyled mb-0">
+                    <li>Required Qualification : Graduate</li>
 
-                        <li class="mb-2">
-                            ❌ Required qualification is not completed
-                        </li>
+                    <li>Your Qualification : 12th Pass</li>
 
-                        <li class="mb-2">
-                            ❌ Your age exceeds the prescribed limit
-                        </li>
+                    <li>Required Age : 21-30 Years</li>
 
-                        <li class="mb-2">
-                            ❌ Required documents are unavailable
-                        </li>
-
-                        <li class="mb-2">
-                            ❌ You miss the application deadline
-                        </li>
-
-                        <li>
-                            ❌ Eligibility conditions in the official notification are not fulfilled
-                        </li>
-
-                    </ul>
-
-                </div>
+                </ul>
 
             </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-            </div>
-
 
             <!-- IMPORTANT DATES TIMELINE -->
 
