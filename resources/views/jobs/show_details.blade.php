@@ -3443,7 +3443,7 @@
 
             <div class="content-card" id="links">
 
-                <h2>
+                      <h2 style="color: #000">
                     Important Links
                 </h2>
 
