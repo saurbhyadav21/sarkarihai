@@ -2129,7 +2129,7 @@
                                             </td>
 
                                             <td>
-                                                {{ $salaries[$index] ?? '-' }}
+                                                ₹{{ $salaries[$index] ?? '-' }}
                                             </td>
 
                                         </tr>
