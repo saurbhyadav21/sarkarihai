@@ -1905,7 +1905,7 @@
                     return $result;
                 }
 
-                $general = parsePosts1($job->general_post);
+                $general = parsePosts1($job->genral_post);
                 $ews = parsePosts1($job->ews_post);
                 $obc = parsePosts1($job->obc_post);
                 $sc = parsePosts1($job->sc_post);
@@ -1920,9 +1920,7 @@
                 $totalVacancy = $genTotal + $ewsTotal + $obcTotal + $scTotal + $stTotal;
 
             @endphp
-            <pre>
-{{ $job->general_post }}
-</pre>
+          
             @if ($totalVacancy)
                 <div class="content-card">
 
