@@ -3333,7 +3333,7 @@
                     ],
                     [
                         'title' => 'Last Date To Apply',
-                        'date' => $job->last_date ?? null,
+                        'date' => $job->end_date ?? null,
                         'icon' => '🔴',
                     ],
                     [
