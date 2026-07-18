@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                            background:#fff;
-                                                                                                                                                            border-radius:15px;
-                                                                                                                                                            box-shadow:
-                                                                                                                                                            0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                            padding:30px;
-                                                                                                                                                            border-top:4px solid #F59E0B;
-                                                                                                                                                            display:grid;
-                                                                                                                                                            }
+                                                                                                                                                                background:#fff;
+                                                                                                                                                                border-radius:15px;
+                                                                                                                                                                box-shadow:
+                                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                padding:30px;
+                                                                                                                                                                border-top:4px solid #F59E0B;
+                                                                                                                                                                display:grid;
+                                                                                                                                                                }
 
-                                                                                                                                                            .summary-item{
-                                                                                                                                                            text-align:center;
-                                                                                                                                                            } */
+                                                                                                                                                                .summary-item{
+                                                                                                                                                                text-align:center;
+                                                                                                                                                                } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                                                                                            display: grid;
-                                                                                                                            grid-template-columns: repeat(3, 1fr);
-                                                                                                                            gap: 20px;
-                                                                                                                            margin-top: 20px;
-                                                                                                                        } */
+                                                                                                                                display: grid;
+                                                                                                                                grid-template-columns: repeat(3, 1fr);
+                                                                                                                                gap: 20px;
+                                                                                                                                margin-top: 20px;
+                                                                                                                            } */
 
         .highlight-box {
             background: #fff;
@@ -1893,11 +1893,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                display: grid;
-                                                                                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                gap: 16px;
-                                                                                margin-top: 20px;
-                                                                            } */
+                                                                                    display: grid;
+                                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                    gap: 16px;
+                                                                                    margin-top: 20px;
+                                                                                } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2150,8 +2150,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                  Selection Process
-                =========================*/
+                      Selection Process
+                    =========================*/
 
                 .selection-grid {
 
@@ -2693,62 +2693,178 @@
 
 
             <!-- APPLICATION PROCESS -->
+            <style>
+                .apply-steps {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    margin-top: 20px;
+                }
 
-            <div class="content-card" id="apply">
+                .apply-step {
 
-                <h2>
-                    How To Apply
-                </h2>
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 16px;
 
-                <div style="padding:20px">
+                    padding: 18px;
 
-                    <div style="
-background:#0B4F6C;
-color:#fff;
-padding:15px;
-border-radius:10px;
-margin-bottom:15px;">
-                        STEP 1 : Read Official Notification
-                    </div>
+                    border-radius: 12px;
 
-                    <div style="
-background:#0F766E;
-color:#fff;
-padding:15px;
-border-radius:10px;
-margin-bottom:15px;">
-                        STEP 2 : Register Online
-                    </div>
+                    color: #fff;
 
-                    <div style="
-background:#F59E0B;
-color:#fff;
-padding:15px;
-border-radius:10px;
-margin-bottom:15px;">
-                        STEP 3 : Upload Documents
-                    </div>
+                    transition: .25s;
 
-                    <div style="
-background:#0B4F6C;
-color:#fff;
-padding:15px;
-border-radius:10px;
-margin-bottom:15px;">
-                        STEP 4 : Pay Application Fee
-                    </div>
+                }
 
-                    <div style="
-background:#0F766E;
-color:#fff;
-padding:15px;
-border-radius:10px;">
-                        STEP 5 : Final Submit & Print
+                .apply-step:hover {
+
+                    transform: translateX(5px);
+
+                }
+
+                .apply-icon {
+
+                    width: 48px;
+                    height: 48px;
+
+                    border-radius: 50%;
+
+                    background: rgba(255, 255, 255, .18);
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    font-size: 20px;
+
+                    flex-shrink: 0;
+
+                }
+
+                .apply-number {
+
+                    display: inline-block;
+
+                    margin-bottom: 6px;
+
+                    font-size: 13px;
+
+                    font-weight: 700;
+
+                    text-transform: uppercase;
+
+                    letter-spacing: .5px;
+
+                }
+
+                .apply-content p {
+
+                    margin: 0;
+
+                    line-height: 1.7;
+
+                    font-size: 15px;
+
+                }
+
+                /* Colors */
+
+                .step-blue {
+                    background: #2563eb;
+                }
+
+                .step-green {
+                    background: #16a34a;
+                }
+
+                .step-orange {
+                    background: #ea580c;
+                }
+
+                .step-purple {
+                    background: #7c3aed;
+                }
+
+                .step-red {
+                    background: #dc2626;
+                }
+
+                .step-teal {
+                    background: #0f766e;
+                }
+
+                .step-dark {
+                    background: #374151;
+                }
+
+                @media(max-width:768px) {
+
+                    .apply-step {
+
+                        padding: 15px;
+
+                    }
+
+                }
+            </style>
+            @php
+
+                $instructions = array_filter(array_map('trim', explode('#', $job->instruction ?? '')));
+
+                $colors = [
+                    'step-blue',
+                    'step-green',
+                    'step-orange',
+                    'step-purple',
+                    'step-red',
+                    'step-teal',
+                    'step-dark',
+                ];
+
+                $icons = [
+                    'fa-solid fa-book-open',
+                    'fa-solid fa-user-plus',
+                    'fa-solid fa-cloud-arrow-up',
+                    'fa-solid fa-file-signature',
+                    'fa-solid fa-list-check',
+                    'fa-solid fa-credit-card',
+                    'fa-solid fa-print',
+                ];
+
+            @endphp
+
+            @if (count($instructions))
+                <div class="content-card" id="apply">
+
+                    <h2>How to Apply</h2>
+
+                    <div class="apply-steps">
+
+                        @foreach ($instructions as $instruction)
+                            <div class="apply-step {{ $colors[$loop->index % count($colors)] }}">
+
+                                <div class="apply-icon">
+                                    <i class="{{ $icons[$loop->index % count($icons)] }}"></i>
+                                </div>
+
+                                <div class="apply-content">
+
+                                    <span class="apply-number">
+                                        Step {{ $loop->iteration }}
+                                    </span>
+
+                                    <p>{{ $instruction }}</p>
+
+                                </div>
+
+                            </div>
+                        @endforeach
+
                     </div>
 
                 </div>
-
-            </div>
+            @endif
 
 
 
