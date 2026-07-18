@@ -1882,8 +1882,42 @@
 
 
             <!-- CATEGORY WISE -->
+            @php
 
-           @if($genTotal || $ewsTotal || $obcTotal || $scTotal || $stTotal)
+function parsePosts($data)
+{
+    $result = [];
+
+    if(empty($data)) return $result;
+
+    foreach(explode('#', trim($data, '#')) as $item){
+
+        if(empty($item)) continue;
+
+        [$post, $count] = array_pad(explode('$', $item), 2, 0);
+
+        $result[trim($post)] = (int)$count;
+    }
+
+    return $result;
+}
+
+$general = parsePosts($job->general_post);
+$ews     = parsePosts($job->ews_post);
+$obc     = parsePosts($job->obc_post);
+$sc      = parsePosts($job->sc_post);
+$st      = parsePosts($job->st_post);
+
+$genTotal = array_sum($general);
+$ewsTotal = array_sum($ews);
+$obcTotal = array_sum($obc);
+$scTotal  = array_sum($sc);
+$stTotal  = array_sum($st);
+
+$totalVacancy = $genTotal + $ewsTotal + $obcTotal + $scTotal + $stTotal;
+
+@endphp
+           @if($totalVacancy)
 
 <div class="content-card">
 
@@ -1925,6 +1959,11 @@
             <p>ST</p>
         </div>
         @endif
+
+        <div class="highlight-box total-box">
+            <h3>{{ number_format($totalVacancy) }}</h3>
+            <p>Total Vacancy</p>
+        </div>
 
     </div>
 
