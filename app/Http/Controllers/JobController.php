@@ -3026,6 +3026,7 @@ $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
             ];
 
         }
+        die;
     }
 
     return view('jobs.sitemap-errors', compact('results'));
