@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                        background:#fff;
-                                                                                                                                                        border-radius:15px;
-                                                                                                                                                        box-shadow:
-                                                                                                                                                        0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                        padding:30px;
-                                                                                                                                                        border-top:4px solid #F59E0B;
-                                                                                                                                                        display:grid;
-                                                                                                                                                        }
+                                                                                                                                                            background:#fff;
+                                                                                                                                                            border-radius:15px;
+                                                                                                                                                            box-shadow:
+                                                                                                                                                            0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                            padding:30px;
+                                                                                                                                                            border-top:4px solid #F59E0B;
+                                                                                                                                                            display:grid;
+                                                                                                                                                            }
 
-                                                                                                                                                        .summary-item{
-                                                                                                                                                        text-align:center;
-                                                                                                                                                        } */
+                                                                                                                                                            .summary-item{
+                                                                                                                                                            text-align:center;
+                                                                                                                                                            } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                                                                                        display: grid;
-                                                                                                                        grid-template-columns: repeat(3, 1fr);
-                                                                                                                        gap: 20px;
-                                                                                                                        margin-top: 20px;
-                                                                                                                    } */
+                                                                                                                            display: grid;
+                                                                                                                            grid-template-columns: repeat(3, 1fr);
+                                                                                                                            gap: 20px;
+                                                                                                                            margin-top: 20px;
+                                                                                                                        } */
 
         .highlight-box {
             background: #fff;
@@ -1893,11 +1893,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                            display: grid;
-                                                                            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                            gap: 16px;
-                                                                            margin-top: 20px;
-                                                                        } */
+                                                                                display: grid;
+                                                                                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                gap: 16px;
+                                                                                margin-top: 20px;
+                                                                            } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2150,8 +2150,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-              Selection Process
-            =========================*/
+                  Selection Process
+                =========================*/
 
                 .selection-grid {
 
@@ -2583,8 +2583,68 @@
                 }
             </style>
             @php
-                $documents = array_filter(array_map('trim', explode('#', $job->doc ?? '')));
+
+                $documents = array_filter(array_map('trim', explode('#', $job->documents ?? '')));
+
+                function getDocumentIcon($title)
+                {
+                    $title = strtolower($title);
+
+                    if (
+                        str_contains($title, 'aadhaar') ||
+                        str_contains($title, 'aadhar') ||
+                        str_contains($title, 'pan') ||
+                        str_contains($title, 'voter') ||
+                        str_contains($title, 'id')
+                    ) {
+                        return '🪪';
+                    }
+
+                    if (str_contains($title, 'photo') || str_contains($title, 'photograph')) {
+                        return '📷';
+                    }
+
+                    if (str_contains($title, 'signature')) {
+                        return '✍️';
+                    }
+
+                    if (
+                        str_contains($title, 'certificate') ||
+                        str_contains($title, 'marksheet') ||
+                        str_contains($title, 'education')
+                    ) {
+                        return '🎓';
+                    }
+
+                    if (str_contains($title, 'caste')) {
+                        return '📑';
+                    }
+
+                    if (str_contains($title, 'experience')) {
+                        return '💼';
+                    }
+
+                    if (str_contains($title, 'medical')) {
+                        return '🩺';
+                    }
+
+                    if (str_contains($title, 'domicile')) {
+                        return '🏠';
+                    }
+
+                    if (str_contains($title, 'income')) {
+                        return '💵';
+                    }
+
+                    if (str_contains($title, 'passport')) {
+                        return '🌍';
+                    }
+
+                    return '📄';
+                }
+
             @endphp
+
 
             @if (count($documents))
                 <div class="content-card" id="documents">
@@ -2595,15 +2655,21 @@
 
                         @foreach ($documents as $doc)
                             @php
+
                                 $parts = explode(' - ', $doc, 2);
+
                                 $title = trim($parts[0] ?? '');
+
                                 $description = trim($parts[1] ?? '');
+
                             @endphp
 
                             <div class="document-item">
 
                                 <div class="document-icon">
-                                    📄
+
+                                    {{ getDocumentIcon($title) }}
+
                                 </div>
 
                                 <div class="document-content">
