@@ -2584,7 +2584,7 @@
             </style>
             @php
 
-                $documents = array_filter(array_map('trim', explode('#', $job->documents ?? '')));
+                $documents = array_filter(array_map('trim', explode('#', $job->doc ?? '')));
 
                 function getDocumentIcon($title)
                 {
