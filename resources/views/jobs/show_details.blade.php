@@ -2873,66 +2873,120 @@
             <div class="content-card">
 
                 <h2>
-                    Important Highlights
+                    Quick Eligibility Check
                 </h2>
 
-                <div class="highlight-grid">
+                <div class="card border-0 shadow-sm mb-4">
 
-                    <div class="highlight-box">
-                        <h3>
-                            ₹44900
-                        </h3>
-                        <p>
-                            Starting Salary
-                        </p>
-                    </div>
+    <div class="card-header bg-success text-white">
 
-                    <div class="highlight-box">
-                        <h3>
-                            500
-                        </h3>
-                        <p>
-                            Vacancies
-                        </p>
-                    </div>
+        <h2 class="h5 mb-0">
 
-                    <div class="highlight-box">
-                        <h3>
-                            18-27
-                        </h3>
-                        <p>
-                            Age Limit
-                        </p>
-                    </div>
+            ✅ Can You Apply?
 
-                    <div class="highlight-box">
-                        <h3>
-                            Graduate
-                        </h3>
-                        <p>
-                            Qualification
-                        </p>
-                    </div>
+        </h2>
 
-                    <div class="highlight-box">
-                        <h3>
-                            Online
-                        </h3>
-                        <p>
-                            Apply Mode
-                        </p>
-                    </div>
+    </div>
 
-                    <div class="highlight-box">
-                        <h3>
-                            India
-                        </h3>
-                        <p>
-                            Posting
-                        </p>
-                    </div>
+    <div class="card-body">
+
+        <div class="row">
+
+            <!-- Eligible -->
+
+            <div class="col-md-6">
+
+                <div class="border rounded p-3 h-100 bg-light">
+
+                    <h3 class="h6 text-success mb-3">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        Eligible If You
+
+                    </h3>
+
+                    <ul class="list-unstyled mb-0">
+
+                        <li class="mb-2">
+                            ✅ Have
+                            <strong>{{ $job->min_qulification ?: ($job->qualification ?: 'Required Qualification') }}</strong>
+                        </li>
+
+                        <li class="mb-2">
+                            ✅ Age
+                            <strong>{{ $job->age_limit ?: 'As Per Notification' }}</strong>
+                        </li>
+
+                        <li class="mb-2">
+                            ✅ Are an
+                            <strong>Indian Citizen</strong>
+                        </li>
+
+                        <li class="mb-2">
+                            ✅ Submit application before
+                            <strong>
+                                {{ !empty($job->end_date) ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : 'Last Date' }}
+                            </strong>
+                        </li>
+
+                        <li>
+                            ✅ Read official notification carefully
+                        </li>
+
+                    </ul>
 
                 </div>
+
+            </div>
+
+            <!-- Not Eligible -->
+
+            <div class="col-md-6 mt-3 mt-md-0">
+
+                <div class="border rounded p-3 h-100 bg-light">
+
+                    <h3 class="h6 text-danger mb-3">
+
+                        <i class="fa-solid fa-circle-xmark"></i>
+
+                        You May Not Be Eligible If
+
+                    </h3>
+
+                    <ul class="list-unstyled mb-0">
+
+                        <li class="mb-2">
+                            ❌ Required qualification is not completed
+                        </li>
+
+                        <li class="mb-2">
+                            ❌ Your age exceeds the prescribed limit
+                        </li>
+
+                        <li class="mb-2">
+                            ❌ Required documents are unavailable
+                        </li>
+
+                        <li class="mb-2">
+                            ❌ You miss the application deadline
+                        </li>
+
+                        <li>
+                            ❌ Eligibility conditions in the official notification are not fulfilled
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
             </div>
 
