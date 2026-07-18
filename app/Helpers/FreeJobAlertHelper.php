@@ -1143,4 +1143,31 @@ class FreeJobAlertHelper
 
         return 'other';
     }
+
+
+   public static function sendTelegramJob($job)
+    {
+
+        $message = "🚨 New Government Job Alert\n\n";
+
+        $message .= "📌 " . $job->title . "\n";
+
+        $message .= "🏢 " . $job->organization . "\n";
+
+        $message .= "📅 Last Date: " . $job->last_date . "\n\n";
+
+        $message .= "Apply Now:\n";
+
+        $message .= "https://sarkarihai.com/job/" . $job->slug;
+
+
+        Http::post(
+            "https://api.telegram.org/bot" . env('TELEGRAM_BOT_TOKEN') . "/sendMessage",
+            [
+                'chat_id' => env('TELEGRAM_CHANNEL'),
+                'text' => $message,
+                'parse_mode' => 'HTML'
+            ]
+        );
+    }
 }

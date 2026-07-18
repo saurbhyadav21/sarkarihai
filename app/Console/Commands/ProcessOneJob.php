@@ -224,6 +224,10 @@ DEBUG
                             now()
                         ]
                     );
+
+
+                FreeJobAlertHelper::sendTelegramJob($json);
+
                 echo "\n";
                 echo "SCRAPED JSON\n";
                 echo "====================\n";
