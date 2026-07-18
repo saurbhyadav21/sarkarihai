@@ -2970,13 +2970,13 @@
 
                                     <option value="">Select State</option>
 
-                                    @foreach ($states as $state)
+                                    {{-- @foreach ($states as $state)
                                         <option value="{{ $state }}">
 
                                             {{ $state }}
 
                                         </option>
-                                    @endforeach
+                                    @endforeach --}}
 
                                 </select>
 
