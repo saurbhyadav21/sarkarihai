@@ -1884,32 +1884,32 @@
             <!-- CATEGORY WISE -->
             @php
 
-                // function parsePosts($data)
-                // {
-                //     $result = [];
+                function parsePosts1($data)
+                {
+                    $result = [];
 
-                //     if (empty($data)) {
-                //         return $result;
-                //     }
+                    if (empty($data)) {
+                        return $result;
+                    }
 
-                //     foreach (explode('#', trim($data, '#')) as $item) {
-                //         if (empty($item)) {
-                //             continue;
-                //         }
+                    foreach (explode('#', trim($data, '#')) as $item) {
+                        if (empty($item)) {
+                            continue;
+                        }
 
-                //         [$post, $count] = array_pad(explode('$', $item), 2, 0);
+                        [$post, $count] = array_pad(explode('$', $item), 2, 0);
 
-                //         $result[trim($post)] = (int) $count;
-                //     }
+                        $result[trim($post)] = (int) $count;
+                    }
 
-                //     return $result;
-                // }
+                    return $result;
+                }
 
-                $general = parsePosts($job->general_post);
-                $ews = parsePosts($job->ews_post);
-                $obc = parsePosts($job->obc_post);
-                $sc = parsePosts($job->sc_post);
-                $st = parsePosts($job->st_post);
+                $general = parsePosts1($job->general_post);
+                $ews = parsePosts1($job->ews_post);
+                $obc = parsePosts1($job->obc_post);
+                $sc = parsePosts1($job->sc_post);
+                $st = parsePosts1($job->st_post);
 
                 $genTotal = array_sum($general);
                 $ewsTotal = array_sum($ews);
