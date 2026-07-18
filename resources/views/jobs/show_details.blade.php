@@ -1892,12 +1892,12 @@
 
             <!-- CATEGORY WISE -->
             <style>
-                .category-grid {
+                /* .category-grid {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
                     gap: 16px;
                     margin-top: 20px;
-                }
+                } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
