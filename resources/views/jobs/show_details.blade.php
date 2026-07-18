@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                            background:#fff;
-                                                                                            border-radius:15px;
-                                                                                            box-shadow:
-                                                                                            0 10px 30px rgba(0,0,0,.08);
-                                                                                            padding:30px;
-                                                                                            border-top:4px solid #F59E0B;
-                                                                                            display:grid;
-                                                                                            }
+                                                                                                background:#fff;
+                                                                                                border-radius:15px;
+                                                                                                box-shadow:
+                                                                                                0 10px 30px rgba(0,0,0,.08);
+                                                                                                padding:30px;
+                                                                                                border-top:4px solid #F59E0B;
+                                                                                                display:grid;
+                                                                                                }
 
-                                                                                            .summary-item{
-                                                                                            text-align:center;
-                                                                                            } */
+                                                                                                .summary-item{
+                                                                                                text-align:center;
+                                                                                                } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                            display: grid;
-                                                            grid-template-columns: repeat(3, 1fr);
-                                                            gap: 20px;
-                                                            margin-top: 20px;
-                                                        } */
+                                                                display: grid;
+                                                                grid-template-columns: repeat(3, 1fr);
+                                                                gap: 20px;
+                                                                margin-top: 20px;
+                                                            } */
 
         .highlight-box {
             background: #fff;
@@ -1900,11 +1900,15 @@
                 }
 
                 .category-card {
-                    background: #fff;
+                    background: linear-gradient(135deg, #062a3a, #0a5467);
                     border: 1px solid #e5e7eb;
                     border-radius: 14px;
                     padding: 18px;
                     text-align: center;
+                    color: #fff;
+                    width: 132px;
+                    margin-right: 10px;
+                    float: left;
                     transition: .25s;
                     box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
                 }
@@ -1928,14 +1932,14 @@
 
                 .category-title {
                     font-size: 14px;
-                    color: #6b7280;
+                    color: #fff;
                     margin-bottom: 6px;
                 }
 
                 .category-value {
                     font-size: 30px;
                     font-weight: 700;
-                    color: #111827;
+                    color: #fff;
                 }
 
                 .general .category-icon {
