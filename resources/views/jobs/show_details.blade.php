@@ -1706,7 +1706,7 @@
 
 
             <!-- VACANCY DETAILS -->
-            {{-- <style>
+            <style>
                 .content-card {
                         background: #fff;
                         border-radius: 12px;
@@ -1762,7 +1762,7 @@
                     overflow-x: auto;
 
                 }
-            </style> --}}
+            </style>
             @if (filled($job->general_post) ||
                     filled($job->ews_post) ||
                     filled($job->obc_post) ||
@@ -1884,26 +1884,26 @@
             <!-- CATEGORY WISE -->
             @php
 
-                function parsePosts($data)
-                {
-                    $result = [];
+                // function parsePosts($data)
+                // {
+                //     $result = [];
 
-                    if (empty($data)) {
-                        return $result;
-                    }
+                //     if (empty($data)) {
+                //         return $result;
+                //     }
 
-                    foreach (explode('#', trim($data, '#')) as $item) {
-                        if (empty($item)) {
-                            continue;
-                        }
+                //     foreach (explode('#', trim($data, '#')) as $item) {
+                //         if (empty($item)) {
+                //             continue;
+                //         }
 
-                        [$post, $count] = array_pad(explode('$', $item), 2, 0);
+                //         [$post, $count] = array_pad(explode('$', $item), 2, 0);
 
-                        $result[trim($post)] = (int) $count;
-                    }
+                //         $result[trim($post)] = (int) $count;
+                //     }
 
-                    return $result;
-                }
+                //     return $result;
+                // }
 
                 $general = parsePosts($job->general_post);
                 $ews = parsePosts($job->ews_post);
