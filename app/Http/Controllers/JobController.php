@@ -18,6 +18,7 @@ use DOMXPath;
 use Carbon\Carbon;
 
 
+
 class JobController extends Controller
 {
     public function index()
@@ -2990,4 +2991,44 @@ $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
 
         return view('jobs.last-date-soon', compact('jobs', 'title'));
     }
+
+     public function checkSitemapErrors()
+{
+    $xml = simplexml_load_file(url('/sitemap.xml'));
+
+    $results = [];
+
+    foreach ($xml->url as $item) {
+
+        $url = (string) $item->loc;
+
+        try {
+
+            $response = Http::timeout(20)
+                ->withoutVerifying()
+                ->get($url);
+
+            $results[] = [
+
+                'url' => $url,
+                'status' => $response->status()
+
+            ];
+
+        } catch (\Exception $e) {
+
+            $results[] = [
+
+                'url' => $url,
+                'status' => 'ERROR',
+                'message' => $e->getMessage()
+
+            ];
+
+        }
+    }
+
+    return view('jobs.sitemap-errors', compact('results'));
+}           
+
 }

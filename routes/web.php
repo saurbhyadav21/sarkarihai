@@ -198,3 +198,5 @@ Route::get('/ajax/jobs', [JobController::class, 'latestJobs'])
 
 Route::get('/job/{slug}', [JobController::class, 'jobDetails'])
     ->name('jobs.show');
+
+Route::get('/admin/check-sitemap-errors', [JobController::class, 'checkSitemapErrors']);
