@@ -1146,19 +1146,26 @@ class FreeJobAlertHelper
     }
 
 
-   public static function sendTelegramJob($job)
+    public static function sendTelegramJob($job)
     {
+        $link = url(
+            'sarkari-naukri/' .
+                ($job['state'] ?? 'all-india') . '/' .
+                ($job['category'] ?? 'government') . '/' .
+                $job['slug']
+        );
+        $message = "🚨 <b>New Government Job</b>\n\n";
 
-         $message = "🚨 <b>New Government Job</b>\n\n";
+        $message .= "📌 <b>" . $job['title'] . "</b>\n";
 
-        $message .= "📌 <b>".$job['title']."</b>\n";
-
-        $message .= "📅 Last Date: ".$job['last_date']."\n\n";
+        $message .= "📅 Last Date: " . $job['last_date'] . "\n\n";
 
         $message .= "🔗 https://sarkarihai.com\n";
 
+        $message .= "🔗 <a href=\"$link\">View Full Notification & Apply Online</a>";
+
         Http::post(
-            "https://api.telegram.org/bot".env('TELEGRAM_BOT_TOKEN')."/sendMessage",
+            "https://api.telegram.org/bot" . env('TELEGRAM_BOT_TOKEN') . "/sendMessage",
             [
                 'chat_id' => env('TELEGRAM_CHANNEL'),
                 'text' => $message,
@@ -1166,5 +1173,4 @@ class FreeJobAlertHelper
             ]
         );
     }
-    
 }
