@@ -1186,7 +1186,7 @@
         }
 
         /* HIGHLIGHT BOXES */
-.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active
+.btn-check:hover+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active
 {
         color: #000 !important;
     background-color: #F59E0B !important;
