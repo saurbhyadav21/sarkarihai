@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                                    background:#fff;
-                                                                                                    border-radius:15px;
-                                                                                                    box-shadow:
-                                                                                                    0 10px 30px rgba(0,0,0,.08);
-                                                                                                    padding:30px;
-                                                                                                    border-top:4px solid #F59E0B;
-                                                                                                    display:grid;
-                                                                                                    }
+                                                                                                        background:#fff;
+                                                                                                        border-radius:15px;
+                                                                                                        box-shadow:
+                                                                                                        0 10px 30px rgba(0,0,0,.08);
+                                                                                                        padding:30px;
+                                                                                                        border-top:4px solid #F59E0B;
+                                                                                                        display:grid;
+                                                                                                        }
 
-                                                                                                    .summary-item{
-                                                                                                    text-align:center;
-                                                                                                    } */
+                                                                                                        .summary-item{
+                                                                                                        text-align:center;
+                                                                                                        } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                                    display: grid;
-                                                                    grid-template-columns: repeat(3, 1fr);
-                                                                    gap: 20px;
-                                                                    margin-top: 20px;
-                                                                } */
+                                                                        display: grid;
+                                                                        grid-template-columns: repeat(3, 1fr);
+                                                                        gap: 20px;
+                                                                        margin-top: 20px;
+                                                                    } */
 
         .highlight-box {
             background: #fff;
@@ -1893,11 +1893,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                        display: grid;
-                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                        gap: 16px;
-                        margin-top: 20px;
-                    } */
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                            gap: 16px;
+                            margin-top: 20px;
+                        } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2034,103 +2034,57 @@
             <!-- QUALIFICATION -->
             <style>
                 .qualification-list {
+                    margin-top: 15px;
+                }
 
+                .qualification-item {
                     display: flex;
-                    flex-direction: column;
-                    gap: 18px;
-                    margin-top: 20px;
-
+                    gap: 15px;
+                    padding: 14px 0;
+                    border-bottom: 1px solid #ececec;
                 }
 
-                .qualification-card {
-
-                    border: 1px solid #e5e7eb;
-                    border-left: 5px solid #0f766e;
-                    border-radius: 10px;
-                    overflow: hidden;
-                    background: #fff;
-                    transition: .2s;
-
+                .qualification-item:last-child {
+                    border-bottom: none;
                 }
 
-                .qualification-card:hover {
-
-                    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
-
+                .qualification-post {
+                    width: 280px;
+                    min-width: 280px;
+                    font-weight: 600;
+                    color: #0f766e;
                 }
 
-                .qualification-header {
-
-                    display: flex;
-                    align-items: center;
-                    gap: 12px;
-                    padding: 14px 18px;
-                    background: #f8fafc;
-
-                }
-
-                .qualification-number {
-
-                    width: 34px;
-                    height: 34px;
-                    border-radius: 50%;
-                    background: #0f766e;
-                    color: #fff;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: 700;
-                    flex-shrink: 0;
-
-                }
-
-                .qualification-header h3 {
-
-                    margin: 0;
-                    font-size: 18px;
-                    color: #111827;
-
-                }
-
-                .qualification-body {
-
-                    padding: 18px;
-                    line-height: 1.8;
+                .qualification-text {
+                    flex: 1;
                     color: #374151;
-                    font-size: 15px;
-
+                    line-height: 1.6;
                 }
 
                 .text-muted {
-
                     color: #9ca3af;
-
                 }
 
                 @media(max-width:768px) {
 
-                    .qualification-header h3 {
-
-                        font-size: 16px;
-
+                    .qualification-item {
+                        display: block;
                     }
 
-                    .qualification-body {
-
-                        font-size: 14px;
-
+                    .qualification-post {
+                        width: 100%;
+                        min-width: 100%;
+                        margin-bottom: 6px;
                     }
 
                 }
             </style>
             @php
-
-                $postNames = array_filter(array_map('trim', explode('#', $job->post_name ?? '')));
-                $qualifications = array_filter(array_map('trim', explode('#', $job->post_eligibility ?? '')));
-
+                $postNames = array_map('trim', explode('#', $job->post_name ?? ''));
+                $qualifications = array_map('trim', explode('#', $job->post_eligibility ?? ''));
             @endphp
 
-            @if (count($postNames))
+            @if (!empty(array_filter($postNames)))
                 <div class="content-card" id="qualification">
 
                     <h2>Educational Qualification</h2>
@@ -2142,31 +2096,25 @@
                                 $qualification = $qualifications[$index] ?? '';
                             @endphp
 
-                            <div class="qualification-card">
+                            @if ($post)
+                                <div class="qualification-item">
 
-                                <div class="qualification-header">
+                                    <div class="qualification-post">
+                                        {{ $post }}
+                                    </div>
 
-                                    <span class="qualification-number">
-                                        {{ $loop->iteration }}
-                                    </span>
+                                    <div class="qualification-text">
 
-                                    <h3>{{ $post }}</h3>
+                                        @if ($qualification)
+                                            {{ $qualification }}
+                                        @else
+                                            <span class="text-muted">Qualification Not Available</span>
+                                        @endif
 
-                                </div>
-
-                                <div class="qualification-body">
-
-                                    @if ($qualification)
-                                        {{ $qualification }}
-                                    @else
-                                        <span class="text-muted">
-                                            Qualification Not Available
-                                        </span>
-                                    @endif
+                                    </div>
 
                                 </div>
-
-                            </div>
+                            @endif
                         @endforeach
 
                     </div>
