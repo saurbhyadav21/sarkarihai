@@ -1905,19 +1905,19 @@
                     return $result;
                 }
 
-                $general = parsePosts1($job->genral_post);
-                $ews = parsePosts1($job->ews_post);
-                $obc = parsePosts1($job->obc_post);
-                $sc = parsePosts1($job->sc_post);
-                $st = parsePosts1($job->st_post);
+                $general1 = parsePosts1($job->genral_post);
+                $ews1 = parsePosts1($job->ews_post);
+                $obc1 = parsePosts1($job->obc_post);
+                $sc1 = parsePosts1($job->sc_post);
+                $st1 = parsePosts1($job->st_post);
 
-                $genTotal = array_sum($general);
-                $ewsTotal = array_sum($ews);
-                $obcTotal = array_sum($obc);
-                $scTotal = array_sum($sc);
-                $stTotal = array_sum($st);
+                $genTotal1 = array_sum($general1);
+                $ewsTotal1 = array_sum($ews1);
+                $obcTotal1 = array_sum($obc1);
+                $scTotal1 = array_sum($sc1);
+                $stTotal1 = array_sum($st1);
 
-                $totalVacancy = $genTotal + $ewsTotal + $obcTotal + $scTotal + $stTotal;
+                $totalVacancy1 = $genTotal1 + $ewsTotal1 + $obcTotal1 + $scTotal1 + $stTotal1;
 
             @endphp
           
@@ -1928,43 +1928,43 @@
 
                     <div class="highlight-grid">
 
-                        @if ($genTotal)
+                        @if ($genTotal1)
                             <div class="highlight-box">
-                                <h3>{{ number_format($genTotal) }}</h3>
+                                <h3>{{ number_format($genTotal1) }}</h3>
                                 <p>General</p>
                             </div>
                         @endif
 
-                        @if ($ewsTotal)
+                        @if ($ewsTotal1)
                             <div class="highlight-box">
-                                <h3>{{ number_format($ewsTotal) }}</h3>
+                                <h3>{{ number_format($ewsTotal1) }}</h3>
                                 <p>EWS</p>
                             </div>
                         @endif
 
-                        @if ($obcTotal)
+                        @if ($obcTotal1)
                             <div class="highlight-box">
-                                <h3>{{ number_format($obcTotal) }}</h3>
+                                <h3>{{ number_format($obcTotal1) }}</h3>
                                 <p>OBC</p>
                             </div>
                         @endif
 
-                        @if ($scTotal)
+                        @if ($scTotal1)
                             <div class="highlight-box">
-                                <h3>{{ number_format($scTotal) }}</h3>
+                                <h3>{{ number_format($scTotal1) }}</h3>
                                 <p>SC</p>
                             </div>
                         @endif
 
-                        @if ($stTotal)
+                        @if ($stTotal1)
                             <div class="highlight-box">
-                                <h3>{{ number_format($stTotal) }}</h3>
+                                <h3>{{ number_format($stTotal1) }}</h3>
                                 <p>ST</p>
                             </div>
                         @endif
 
                         <div class="highlight-box total-box">
-                            <h3>{{ number_format($totalVacancy) }}</h3>
+                            <h3>{{ number_format($totalVacancy1) }}</h3>
                             <p>Total Vacancy</p>
                         </div>
 
