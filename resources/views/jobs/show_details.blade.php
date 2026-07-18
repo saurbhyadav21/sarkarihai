@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                    background:#fff;
-                                                                                                                                    border-radius:15px;
-                                                                                                                                    box-shadow:
-                                                                                                                                    0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                    padding:30px;
-                                                                                                                                    border-top:4px solid #F59E0B;
-                                                                                                                                    display:grid;
-                                                                                                                                    }
+                                                                                                                                            background:#fff;
+                                                                                                                                            border-radius:15px;
+                                                                                                                                            box-shadow:
+                                                                                                                                            0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                            padding:30px;
+                                                                                                                                            border-top:4px solid #F59E0B;
+                                                                                                                                            display:grid;
+                                                                                                                                            }
 
-                                                                                                                                    .summary-item{
-                                                                                                                                    text-align:center;
-                                                                                                                                    } */
+                                                                                                                                            .summary-item{
+                                                                                                                                            text-align:center;
+                                                                                                                                            } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                                                                    display: grid;
-                                                                                                    grid-template-columns: repeat(3, 1fr);
-                                                                                                    gap: 20px;
-                                                                                                    margin-top: 20px;
-                                                                                                } */
+                                                                                                            display: grid;
+                                                                                                            grid-template-columns: repeat(3, 1fr);
+                                                                                                            gap: 20px;
+                                                                                                            margin-top: 20px;
+                                                                                                        } */
 
         .highlight-box {
             background: #fff;
@@ -1893,11 +1893,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                        display: grid;
-                                                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                        gap: 16px;
-                                                        margin-top: 20px;
-                                                    } */
+                                                                display: grid;
+                                                                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                gap: 16px;
+                                                                margin-top: 20px;
+                                                            } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2151,12 +2151,12 @@
             <style>
                 /* .selection-grid {
 
-                            display: grid;
-                            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                            gap: 18px;
-                            margin-top: 20px;
+                                    display: grid;
+                                    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                                    gap: 18px;
+                                    margin-top: 20px;
 
-                        } */
+                                } */
 
                 .selection-card {
 
@@ -2234,6 +2234,26 @@
                 .dark {
                     background: #374151;
                 }
+
+                .success-card {
+
+                    background: linear-gradient(135deg, #16a34a, #15803d);
+
+                }
+
+                .success-card .selection-title {
+
+                    font-size: 20px;
+                    font-weight: 700;
+
+                }
+
+                .success-card .selection-step {
+
+                    font-size: 14px;
+                    opacity: 1;
+
+                }
             </style>
             @php
                 $steps = array_filter(array_map('trim', explode(',', $job->mode_selection ?? '')));
@@ -2262,12 +2282,23 @@
                                 <div class="selection-title">
                                     {{ $step }}
                                 </div>
-
-
-
                             </div>
                         @endforeach
+                        <div class="selection-card success-card">
 
+                            <div class="selection-icon">
+                                🎉
+                            </div>
+
+                            <div class="selection-title">
+                                Congratulations!
+                            </div>
+
+                            <div class="selection-step">
+                                🏆 Selected for the Job
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
