@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                                background:#fff;
-                                                                                                border-radius:15px;
-                                                                                                box-shadow:
-                                                                                                0 10px 30px rgba(0,0,0,.08);
-                                                                                                padding:30px;
-                                                                                                border-top:4px solid #F59E0B;
-                                                                                                display:grid;
-                                                                                                }
+                                                                                                    background:#fff;
+                                                                                                    border-radius:15px;
+                                                                                                    box-shadow:
+                                                                                                    0 10px 30px rgba(0,0,0,.08);
+                                                                                                    padding:30px;
+                                                                                                    border-top:4px solid #F59E0B;
+                                                                                                    display:grid;
+                                                                                                    }
 
-                                                                                                .summary-item{
-                                                                                                text-align:center;
-                                                                                                } */
+                                                                                                    .summary-item{
+                                                                                                    text-align:center;
+                                                                                                    } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                                display: grid;
-                                                                grid-template-columns: repeat(3, 1fr);
-                                                                gap: 20px;
-                                                                margin-top: 20px;
-                                                            } */
+                                                                    display: grid;
+                                                                    grid-template-columns: repeat(3, 1fr);
+                                                                    gap: 20px;
+                                                                    margin-top: 20px;
+                                                                } */
 
         .highlight-box {
             background: #fff;
@@ -1893,11 +1893,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                    gap: 16px;
-                    margin-top: 20px;
-                } */
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                        gap: 16px;
+                        margin-top: 20px;
+                    } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2032,41 +2032,147 @@
 
 
             <!-- QUALIFICATION -->
+            <style>
+                .qualification-list {
 
-            <div class="content-card" id="qualification">
+                    display: flex;
+                    flex-direction: column;
+                    gap: 18px;
+                    margin-top: 20px;
 
-                <h2>
-                    Educational Qualification
-                </h2>
+                }
 
-                <p>
+                .qualification-card {
 
-                    Candidates must possess
-                    Bachelor Degree from
-                    any recognized university.
+                    border: 1px solid #e5e7eb;
+                    border-left: 5px solid #0f766e;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    background: #fff;
+                    transition: .2s;
 
-                </p>
+                }
 
-                <table class="info-table">
+                .qualification-card:hover {
 
-                    <tr>
-                        <td>Minimum Qualification</td>
-                        <td>Graduate</td>
-                    </tr>
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
 
-                    <tr>
-                        <td>Experience</td>
-                        <td>Not Required</td>
-                    </tr>
+                }
 
-                    <tr>
-                        <td>Eligible Stream</td>
-                        <td>Any Stream</td>
-                    </tr>
+                .qualification-header {
 
-                </table>
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    padding: 14px 18px;
+                    background: #f8fafc;
 
-            </div>
+                }
+
+                .qualification-number {
+
+                    width: 34px;
+                    height: 34px;
+                    border-radius: 50%;
+                    background: #0f766e;
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 700;
+                    flex-shrink: 0;
+
+                }
+
+                .qualification-header h3 {
+
+                    margin: 0;
+                    font-size: 18px;
+                    color: #111827;
+
+                }
+
+                .qualification-body {
+
+                    padding: 18px;
+                    line-height: 1.8;
+                    color: #374151;
+                    font-size: 15px;
+
+                }
+
+                .text-muted {
+
+                    color: #9ca3af;
+
+                }
+
+                @media(max-width:768px) {
+
+                    .qualification-header h3 {
+
+                        font-size: 16px;
+
+                    }
+
+                    .qualification-body {
+
+                        font-size: 14px;
+
+                    }
+
+                }
+            </style>
+            @php
+
+                $postNames = array_filter(array_map('trim', explode('#', $job->post_name ?? '')));
+                $qualifications = array_filter(array_map('trim', explode('#', $job->post_eligibility ?? '')));
+
+            @endphp
+
+            @if (count($postNames))
+                <div class="content-card" id="qualification">
+
+                    <h2>Educational Qualification</h2>
+
+                    <div class="qualification-list">
+
+                        @foreach ($postNames as $index => $post)
+                            @php
+                                $qualification = $qualifications[$index] ?? '';
+                            @endphp
+
+                            <div class="qualification-card">
+
+                                <div class="qualification-header">
+
+                                    <span class="qualification-number">
+                                        {{ $loop->iteration }}
+                                    </span>
+
+                                    <h3>{{ $post }}</h3>
+
+                                </div>
+
+                                <div class="qualification-body">
+
+                                    @if ($qualification)
+                                        {{ $qualification }}
+                                    @else
+                                        <span class="text-muted">
+                                            Qualification Not Available
+                                        </span>
+                                    @endif
+
+                                </div>
+
+                            </div>
+                        @endforeach
+
+                    </div>
+
+                </div>
+            @endif
 
 
 
