@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                    background:#fff;
-                                                                    border-radius:15px;
-                                                                    box-shadow:
-                                                                    0 10px 30px rgba(0,0,0,.08);
-                                                                    padding:30px;
-                                                                    border-top:4px solid #F59E0B;
-                                                                    display:grid;
-                                                                    }
+                                                                            background:#fff;
+                                                                            border-radius:15px;
+                                                                            box-shadow:
+                                                                            0 10px 30px rgba(0,0,0,.08);
+                                                                            padding:30px;
+                                                                            border-top:4px solid #F59E0B;
+                                                                            display:grid;
+                                                                            }
 
-                                                                    .summary-item{
-                                                                    text-align:center;
-                                                                    } */
+                                                                            .summary-item{
+                                                                            text-align:center;
+                                                                            } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                    display: grid;
-                                    grid-template-columns: repeat(3, 1fr);
-                                    gap: 20px;
-                                    margin-top: 20px;
-                                } */
+                                            display: grid;
+                                            grid-template-columns: repeat(3, 1fr);
+                                            gap: 20px;
+                                            margin-top: 20px;
+                                        } */
 
         .highlight-box {
             background: #fff;
@@ -1706,38 +1706,178 @@
 
 
             <!-- VACANCY DETAILS -->
+            <style>
+                .content-card {
+                    background: #fff;
+                    border-radius: 12px;
+                    padding: 20px;
+                    margin-bottom: 25px;
+                }
 
-            <div class="content-card" id="vacancy">
+                .vacancy-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
 
-                <h2>
-                    Vacancy Details
-                </h2>
+                .vacancy-table th {
 
-                <table class="info-table">
+                    background: #0f766e;
+                    color: #fff;
+                    padding: 12px;
+                    text-align: center;
+                    font-weight: 600;
+                    white-space: nowrap;
 
-                    <tr>
-                        <td>Post Name</td>
-                        <td>Junior Assistant</td>
-                    </tr>
+                }
 
-                    <tr>
-                        <td>Total Vacancy</td>
-                        <td>500</td>
-                    </tr>
+                .vacancy-table td {
 
-                    <tr>
-                        <td>Job Location</td>
-                        <td>All India</td>
-                    </tr>
+                    padding: 12px;
+                    text-align: center;
+                    border-bottom: 1px solid #ececec;
 
-                    <tr>
-                        <td>Job Type</td>
-                        <td>Permanent</td>
-                    </tr>
+                }
 
-                </table>
+                .vacancy-table td:first-child {
 
-            </div>
+                    text-align: left;
+                    font-weight: 600;
+
+                }
+
+                .vacancy-table tbody tr:nth-child(even) {
+
+                    background: #fafafa;
+
+                }
+
+                .vacancy-table tbody tr:hover {
+
+                    background: #f2f8ff;
+
+                }
+
+                .table-responsive {
+
+                    overflow-x: auto;
+
+                }
+            </style>
+            @if (filled($job->general_post) ||
+                    filled($job->ews_post) ||
+                    filled($job->obc_post) ||
+                    filled($job->sc_post) ||
+                    filled($job->st_post))
+                @php
+
+                    function parsePosts($data)
+                    {
+                        $result = [];
+
+                        if (empty($data)) {
+                            return $result;
+                        }
+
+                        $items = explode('#', trim($data, '#'));
+
+                        foreach ($items as $item) {
+                            if (empty($item)) {
+                                continue;
+                            }
+
+                            $parts = explode('$', $item);
+
+                            if (count($parts) >= 2) {
+                                $result[trim($parts[0])] = trim($parts[1]);
+                            }
+                        }
+
+                        return $result;
+                    }
+
+                    $general = parsePosts($job->general_post);
+                    $ews = parsePosts($job->ews_post);
+                    $obc = parsePosts($job->obc_post);
+                    $sc = parsePosts($job->sc_post);
+                    $st = parsePosts($job->st_post);
+
+                    $posts = array_unique(
+                        array_merge(
+                            array_keys($general),
+                            array_keys($ews),
+                            array_keys($obc),
+                            array_keys($sc),
+                            array_keys($st),
+                        ),
+                    );
+
+                @endphp
+
+
+                <div class="content-card" id="vacancy">
+
+                    <h2>Vacancy Details</h2>
+
+                    <div class="table-responsive">
+
+                        <table class="info-table vacancy-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Post Name</th>
+                                    <th>GEN</th>
+                                    <th>EWS</th>
+                                    <th>OBC</th>
+                                    <th>SC</th>
+                                    <th>ST</th>
+                                    <th>Total</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                @foreach ($posts as $post)
+                                    @php
+
+                                        $gen = (int) ($general[$post] ?? 0);
+                                        $e = (int) ($ews[$post] ?? 0);
+                                        $o = (int) ($obc[$post] ?? 0);
+                                        $s = (int) ($sc[$post] ?? 0);
+                                        $stt = (int) ($st[$post] ?? 0);
+
+                                        $total = $gen + $e + $o + $s + $stt;
+
+                                    @endphp
+
+                                    <tr>
+
+                                        <td>{{ $post }}</td>
+
+                                        <td>{{ $gen ?: '-' }}</td>
+
+                                        <td>{{ $e ?: '-' }}</td>
+
+                                        <td>{{ $o ?: '-' }}</td>
+
+                                        <td>{{ $s ?: '-' }}</td>
+
+                                        <td>{{ $stt ?: '-' }}</td>
+
+                                        <td><strong>{{ $total }}</strong></td>
+
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+            @endif
 
 
 
