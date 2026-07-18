@@ -2149,111 +2149,230 @@
 
             <!-- SELECTION PROCESS -->
             <style>
-                /* .selection-grid {
+              
 
-                                    display: grid;
-                                    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                                    gap: 18px;
-                                    margin-top: 20px;
+                /*=========================
+  Selection Process
+=========================*/
 
-                                } */
+.selection-grid{
 
-                .selection-card {
+    display:flex;
+    align-items:stretch;
+    gap:15px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:5px 0 10px;
 
-                    padding: 22px;
-                    border-radius: 14px;
-                    text-align: center;
-                    color: #fff;
-                    transition: .3s;
-                    width: 203px;
-                    float: left;
-                    margin-right: 10px;
+}
 
-                }
+.selection-grid::-webkit-scrollbar{
 
-                .selection-card:hover {
+    height:8px;
 
-                    transform: translateY(-5px);
+}
 
-                }
+.selection-grid::-webkit-scrollbar-thumb{
 
-                .selection-icon {
+    background:#cbd5e1;
+    border-radius:20px;
 
-                    font-size: 50px;
-                    margin-bottom: 12px;
+}
 
-                }
+.selection-grid::-webkit-scrollbar-track{
 
-                .selection-title {
+    background:#f3f4f6;
 
-                    font-size: 16px;
-                    font-weight: 600;
-                    line-height: 1.5;
-                    color: #000;
+}
 
-                }
+.selection-card{
 
-                .selection-step {
+    flex:0 0 210px;
+    min-height:220px;
 
-                    margin-top: 12px;
-                    font-size: 13px;
-                    opacity: .9;
-                    color: #000;
+    padding:20px;
 
-                }
+    border-radius:14px;
 
-                .blue {
-                    background: #2563eb69;
-                    ;
-                }
+    text-align:center;
 
-                .green {
-                    background: #16a34a73
-                }
+    transition:.3s;
 
-                .orange {
-                    background: #ea580c61
-                }
+    border:1px solid rgba(0,0,0,.05);
 
-                .purple {
-                    background: #7c3aed8c;
-                }
+    box-shadow:0 3px 10px rgba(0,0,0,.06);
 
-                .red {
-                    background: #dc2626;
-                }
+}
 
-                .teal {
-                    background: #0f766e;
-                }
+.selection-card:hover{
 
-                .brown {
-                    background: #92400e;
-                }
+    transform:translateY(-6px);
 
-                .dark {
-                    background: #374151;
-                }
+    box-shadow:0 12px 25px rgba(0,0,0,.12);
 
-                .success-card {
+}
 
-                    background: linear-gradient(135deg, #16a34a, #15803d);
+.selection-icon{
 
-                }
+    font-size:48px;
 
-                .success-card .selection-title {
+    margin:12px 0;
 
-                    font-size: 20px;
-                    font-weight: 700;
+    line-height:1;
 
-                }
+}
 
-                .success-card .selection-step {
+.selection-title{
 
-                    font-size: 14px;
-                    opacity: 1;
+    font-size:16px;
 
-                }
+    font-weight:700;
+
+    color:#111827;
+
+    line-height:1.5;
+
+    min-height:48px;
+
+}
+
+.selection-step{
+
+    display:inline-block;
+
+    margin-top:8px;
+
+    padding:4px 12px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.7);
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#374151;
+
+}
+
+/* Colors */
+
+.blue{
+
+    background:#dbeafe;
+
+}
+
+.green{
+
+    background:#dcfce7;
+
+}
+
+.orange{
+
+    background:#ffedd5;
+
+}
+
+.purple{
+
+    background:#ede9fe;
+
+}
+
+.red{
+
+    background:#fee2e2;
+
+}
+
+.teal{
+
+    background:#ccfbf1;
+
+}
+
+.brown{
+
+    background:#fef3c7;
+
+}
+
+.dark{
+
+    background:#e5e7eb;
+
+}
+
+/* Success */
+
+.success-card{
+
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+
+    color:#fff;
+
+}
+
+.success-card .selection-title{
+
+    color:#fff;
+
+}
+
+.success-card .selection-step{
+
+    background:rgba(255,255,255,.18);
+
+    color:#fff;
+
+}
+
+.success-card .selection-icon{
+
+    font-size:55px;
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .selection-grid{
+
+        display:grid;
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:12px;
+
+        overflow:visible;
+
+    }
+
+    .selection-card{
+
+        flex:none;
+
+        min-height:190px;
+
+        padding:18px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .selection-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
             </style>
             @php
                 $steps = array_filter(array_map('trim', explode(',', $job->mode_selection ?? '')));
