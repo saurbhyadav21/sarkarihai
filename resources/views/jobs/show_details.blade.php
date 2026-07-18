@@ -305,18 +305,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                        background:#fff;
-                                                                                                                                                                                                        border-radius:15px;
-                                                                                                                                                                                                        box-shadow:
-                                                                                                                                                                                                        0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                        padding:30px;
-                                                                                                                                                                                                        border-top:4px solid #F59E0B;
-                                                                                                                                                                                                        display:grid;
-                                                                                                                                                                                                        }
+                                                                                                                                                                                                            background:#fff;
+                                                                                                                                                                                                            border-radius:15px;
+                                                                                                                                                                                                            box-shadow:
+                                                                                                                                                                                                            0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                            padding:30px;
+                                                                                                                                                                                                            border-top:4px solid #F59E0B;
+                                                                                                                                                                                                            display:grid;
+                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                        .summary-item{
-                                                                                                                                                                                                        text-align:center;
-                                                                                                                                                                                                        } */
+                                                                                                                                                                                                            .summary-item{
+                                                                                                                                                                                                            text-align:center;
+                                                                                                                                                                                                            } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1186,18 +1186,18 @@
         }
 
         /* HIGHLIGHT BOXES */
-.btn:hover
-{
-        color: #000 !important;
-    background-color: #F59E0B !important;
-    border-color: #000 !important;
-}
+        .btn:hover {
+            color: #000 !important;
+            background-color: #F59E0B !important;
+            border-color: #000 !important;
+        }
+
         /* .highlight-grid {
-                                                                                                                                                                        display: grid;
-                                                                                                                                                               grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                        gap: 20px;
-                                                                                                                                                                        margin-top: 20px;
-                                                                                                                                                                    } */
+                                                                                                                                                                            display: grid;
+                                                                                                                                                                   grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                            gap: 20px;
+                                                                                                                                                                            margin-top: 20px;
+                                                                                                                                                                        } */
 
         .highlight-box {
             background: #fff;
@@ -1899,11 +1899,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                            display: grid;
-                                                                                                                            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                            gap: 16px;
-                                                                                                                            margin-top: 20px;
-                                                                                                                        } */
+                                                                                                                                display: grid;
+                                                                                                                                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                gap: 16px;
+                                                                                                                                margin-top: 20px;
+                                                                                                                            } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2156,8 +2156,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                              Selection Process
-                                                            =========================*/
+                                                                  Selection Process
+                                                                =========================*/
 
                 .selection-grid {
 
@@ -2911,7 +2911,8 @@
 
                 <div class="card border-0 shadow-sm mb-4">
 
-                    <div class="card-header bg-primary text-white py-3" style="background: linear-gradient(135deg, #062a3a, #0a5467);
+                    <div class="card-header bg-primary text-white py-3"
+                        style="background: linear-gradient(135deg, #062a3a, #0a5467);
     color: #fff !important;">
 
                         <h2 class="h5 mb-1">
@@ -3129,42 +3130,284 @@
 
 
             <!-- IMPORTANT DATES TIMELINE -->
+            <style>
+                .timeline {
+
+                    position: relative;
+                    margin-top: 25px;
+                    padding-left: 25px;
+
+                }
+
+
+                .timeline:before {
+
+                    content: "";
+
+                    position: absolute;
+
+                    left: 17px;
+                    top: 0;
+                    bottom: 0;
+
+                    width: 3px;
+
+                    background: #e5e7eb;
+
+                }
+
+
+
+                .timeline-item {
+
+                    display: flex;
+
+                    gap: 15px;
+
+                    margin-bottom: 22px;
+
+                    position: relative;
+
+                }
+
+
+
+                .timeline-icon {
+
+                    width: 36px;
+                    height: 36px;
+
+                    border-radius: 50%;
+
+                    display: flex;
+
+                    align-items: center;
+
+                    justify-content: center;
+
+                    background: #fff;
+
+                    border: 3px solid #0f766e;
+
+                    z-index: 2;
+
+                }
+
+
+
+                .timeline-box {
+
+                    flex: 1;
+
+                    padding: 14px 18px;
+
+                    border-radius: 12px;
+
+                    background: #f8fafc;
+
+                    border: 1px solid #e5e7eb;
+
+                }
+
+
+
+                .timeline-date {
+
+                    font-size: 18px;
+
+                    font-weight: 700;
+
+                }
+
+
+
+                .timeline-content {
+
+                    margin-top: 5px;
+
+                    font-size: 14px;
+
+                }
+
+
+
+                /* Past */
+
+                .timeline-item.past .timeline-box {
+
+                    background: #f3f4f6;
+
+                    color: #6b7280;
+
+                }
+
+
+                .timeline-item.past .timeline-icon {
+
+                    border-color: #9ca3af;
+
+                }
+
+
+
+                /* Upcoming */
+
+                .timeline-item.future .timeline-box {
+
+                    background: #ecfdf5;
+
+                    border-color: #16a34a;
+
+                }
+
+
+
+                /* Last Date */
+
+                .timeline-item.urgent .timeline-box {
+
+                    background: #fef2f2;
+
+                    border-color: #dc2626;
+
+                }
+
+
+                .timeline-item.urgent .timeline-icon {
+
+                    border-color: #dc2626;
+
+                }
+
+
+                /* Mobile */
+
+                @media(max-width:600px) {
+
+                    .timeline {
+
+                        padding-left: 10px;
+
+                    }
+
+                    .timeline-box {
+
+                        padding: 12px;
+
+                    }
+
+                    .timeline-date {
+
+                        font-size: 16px;
+
+                    }
+
+                }
+            </style>
+            @php
+
+                $dates = [
+                    [
+                        'title' => 'Notification Released',
+                        'date' => $job->notification_date ?? null,
+                        'icon' => '📢',
+                    ],
+                    [
+                        'title' => 'Application Started',
+                        'date' => $job->start_date ?? null,
+                        'icon' => '🟢',
+                    ],
+                    [
+                        'title' => 'Last Date To Apply',
+                        'date' => $job->last_date ?? null,
+                        'icon' => '🔴',
+                    ],
+                    [
+                        'title' => 'Fee Payment Last Date',
+                        'date' => $job->fee_last_date ?? null,
+                        'icon' => '💳',
+                    ],
+                    [
+                        'title' => 'Exam Date',
+                        'date' => $job->exam_date ?? null,
+                        'icon' => '📝',
+                    ],
+                    [
+                        'title' => 'Admit Card',
+                        'date' => $job->admit_card_date ?? null,
+                        'icon' => '🎫',
+                    ],
+                    [
+                        'title' => 'Result Date',
+                        'date' => $job->result_date ?? null,
+                        'icon' => '🏆',
+                    ],
+                ];
+
+            @endphp
+
 
             <div class="content-card" id="timeline">
 
-                <h2>
-                    Important Dates Timeline
-                </h2>
+                <h2>Important Dates Timeline</h2>
+
 
                 <div class="timeline">
 
-                    <div class="timeline-item">
-                        <div class="timeline-date">01 Jul 2026</div>
-                        <div class="timeline-content">
-                            Notification Released
-                        </div>
-                    </div>
 
-                    <div class="timeline-item">
-                        <div class="timeline-date">02 Jul 2026</div>
-                        <div class="timeline-content">
-                            Application Started
-                        </div>
-                    </div>
+                    @foreach ($dates as $item)
+                        @if ($item['date'])
+                            @php
 
-                    <div class="timeline-item">
-                        <div class="timeline-date">15 Jul 2026</div>
-                        <div class="timeline-content">
-                            Last Date To Apply
-                        </div>
-                    </div>
+                                $dateStatus = 'future';
 
-                    <div class="timeline-item">
-                        <div class="timeline-date">TBA</div>
-                        <div class="timeline-content">
-                            Exam Date
-                        </div>
-                    </div>
+                                $currentDate = now()->format('Y-m-d');
+
+                                if ($item['date'] < $currentDate) {
+                                    $dateStatus = 'past';
+                                }
+
+                                if (str_contains(strtolower($item['title']), 'last date')) {
+                                    $dateStatus = 'urgent';
+                                }
+
+                            @endphp
+
+
+                            <div class="timeline-item {{ $dateStatus }}">
+
+
+                                <div class="timeline-icon">
+
+                                    {{ $item['icon'] }}
+
+                                </div>
+
+
+                                <div class="timeline-box">
+
+
+                                    <div class="timeline-date">
+
+                                        {{ \Carbon\Carbon::parse($item['date'])->format('d M Y') }}
+
+                                    </div>
+
+
+                                    <div class="timeline-content">
+
+                                        {{ $item['title'] }}
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                        @endif
+                    @endforeach
+
 
                 </div>
 
@@ -3563,7 +3806,7 @@
         `);
 
                     },
-                    
+
 
                     success: function(res) {
 
