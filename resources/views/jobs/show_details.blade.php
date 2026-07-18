@@ -2900,13 +2900,14 @@
             </style>
             <div class="content-card">
 
-                <h2>
+                {{-- <h2>
                     Quick Eligibility Check
-                </h2>
+                </h2> --}}
 
                 <div class="card border-0 shadow-sm mb-4">
 
-                    <div class="card-header bg-primary text-white py-3">
+                    <div class="card-header bg-primary text-white py-3" style="background: linear-gradient(135deg, #062a3a, #0a5467);
+    color: #fff !important;">
 
                         <h2 class="h5 mb-1">
                             🎯 Check Your Eligibility
