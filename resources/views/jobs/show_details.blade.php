@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                    background:#fff;
-                                                                                    border-radius:15px;
-                                                                                    box-shadow:
-                                                                                    0 10px 30px rgba(0,0,0,.08);
-                                                                                    padding:30px;
-                                                                                    border-top:4px solid #F59E0B;
-                                                                                    display:grid;
-                                                                                    }
+                                                                                            background:#fff;
+                                                                                            border-radius:15px;
+                                                                                            box-shadow:
+                                                                                            0 10px 30px rgba(0,0,0,.08);
+                                                                                            padding:30px;
+                                                                                            border-top:4px solid #F59E0B;
+                                                                                            display:grid;
+                                                                                            }
 
-                                                                                    .summary-item{
-                                                                                    text-align:center;
-                                                                                    } */
+                                                                                            .summary-item{
+                                                                                            text-align:center;
+                                                                                            } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                    display: grid;
-                                                    grid-template-columns: repeat(3, 1fr);
-                                                    gap: 20px;
-                                                    margin-top: 20px;
-                                                } */
+                                                            display: grid;
+                                                            grid-template-columns: repeat(3, 1fr);
+                                                            gap: 20px;
+                                                            margin-top: 20px;
+                                                        } */
 
         .highlight-box {
             background: #fff;
@@ -1891,59 +1891,140 @@
 
 
             <!-- CATEGORY WISE -->
+            <style>
+                .category-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                    gap: 16px;
+                    margin-top: 20px;
+                }
 
+                .category-card {
+                    background: #fff;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 14px;
+                    padding: 18px;
+                    text-align: center;
+                    transition: .25s;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+                }
+
+                .category-card:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+                }
+
+                .category-icon {
+                    width: 52px;
+                    height: 52px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 auto 12px;
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+
+                .category-title {
+                    font-size: 14px;
+                    color: #6b7280;
+                    margin-bottom: 6px;
+                }
+
+                .category-value {
+                    font-size: 30px;
+                    font-weight: 700;
+                    color: #111827;
+                }
+
+                .general .category-icon {
+                    background: #eef2ff;
+                    color: #4338ca;
+                }
+
+                .ews .category-icon {
+                    background: #ecfdf5;
+                    color: #059669;
+                }
+
+                .obc .category-icon {
+                    background: #fff7ed;
+                    color: #ea580c;
+                }
+
+                .sc .category-icon {
+                    background: #fef2f2;
+                    color: #dc2626;
+                }
+
+                .st .category-icon {
+                    background: #f5f3ff;
+                    color: #7c3aed;
+                }
+
+                .total .category-icon {
+                    background: #ecfeff;
+                    color: #0891b2;
+                }
+            </style>
             @if ($totalVacancy)
                 <div class="content-card">
 
                     <h2>Category Wise Vacancy</h2>
 
-                    <div class="highlight-grid">
+                    <div class="category-grid">
 
                         @if ($genTotal)
-                            <div class="highlight-box">
-                                <h3>{{ number_format($genTotal) }}</h3>
-                                <p>General</p>
+                            <div class="category-card general">
+                                <div class="category-icon">G</div>
+                                <div class="category-title">General</div>
+                                <div class="category-value">{{ number_format($genTotal) }}</div>
                             </div>
                         @endif
 
                         @if ($ewsTotal)
-                            <div class="highlight-box">
-                                <h3>{{ number_format($ewsTotal) }}</h3>
-                                <p>EWS</p>
+                            <div class="category-card ews">
+                                <div class="category-icon">E</div>
+                                <div class="category-title">EWS</div>
+                                <div class="category-value">{{ number_format($ewsTotal) }}</div>
                             </div>
                         @endif
 
                         @if ($obcTotal)
-                            <div class="highlight-box">
-                                <h3>{{ number_format($obcTotal) }}</h3>
-                                <p>OBC</p>
+                            <div class="category-card obc">
+                                <div class="category-icon">O</div>
+                                <div class="category-title">OBC</div>
+                                <div class="category-value">{{ number_format($obcTotal) }}</div>
                             </div>
                         @endif
 
                         @if ($scTotal)
-                            <div class="highlight-box">
-                                <h3>{{ number_format($scTotal) }}</h3>
-                                <p>SC</p>
+                            <div class="category-card sc">
+                                <div class="category-icon">S</div>
+                                <div class="category-title">SC</div>
+                                <div class="category-value">{{ number_format($scTotal) }}</div>
                             </div>
                         @endif
 
                         @if ($stTotal)
-                            <div class="highlight-box">
-                                <h3>{{ number_format($stTotal) }}</h3>
-                                <p>ST</p>
+                            <div class="category-card st">
+                                <div class="category-icon">T</div>
+                                <div class="category-title">ST</div>
+                                <div class="category-value">{{ number_format($stTotal) }}</div>
                             </div>
                         @endif
 
-                        <div class="highlight-box total-box">
-                            <h3>{{ number_format($totalVacancy) }}</h3>
-                            <p>Total Vacancy</p>
+                        <div class="category-card total">
+                            <div class="category-icon">Σ</div>
+                            <div class="category-title">Total Vacancy</div>
+                            <div class="category-value">{{ number_format($totalVacancy) }}</div>
                         </div>
 
                     </div>
 
                 </div>
             @endif
-
 
 
             <!-- QUALIFICATION -->
