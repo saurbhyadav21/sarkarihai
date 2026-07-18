@@ -1920,6 +1920,9 @@
                 $totalVacancy = $genTotal + $ewsTotal + $obcTotal + $scTotal + $stTotal;
 
             @endphp
+            <pre>
+{{ $job->general_post }}
+</pre>
             @if ($totalVacancy)
                 <div class="content-card">
 
