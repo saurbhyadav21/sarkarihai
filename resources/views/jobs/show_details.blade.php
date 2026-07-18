@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                                        background:#fff;
-                                                                                                        border-radius:15px;
-                                                                                                        box-shadow:
-                                                                                                        0 10px 30px rgba(0,0,0,.08);
-                                                                                                        padding:30px;
-                                                                                                        border-top:4px solid #F59E0B;
-                                                                                                        display:grid;
-                                                                                                        }
+                                                                                                            background:#fff;
+                                                                                                            border-radius:15px;
+                                                                                                            box-shadow:
+                                                                                                            0 10px 30px rgba(0,0,0,.08);
+                                                                                                            padding:30px;
+                                                                                                            border-top:4px solid #F59E0B;
+                                                                                                            display:grid;
+                                                                                                            }
 
-                                                                                                        .summary-item{
-                                                                                                        text-align:center;
-                                                                                                        } */
+                                                                                                            .summary-item{
+                                                                                                            text-align:center;
+                                                                                                            } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                                        display: grid;
-                                                                        grid-template-columns: repeat(3, 1fr);
-                                                                        gap: 20px;
-                                                                        margin-top: 20px;
-                                                                    } */
+                                                                            display: grid;
+                                                                            grid-template-columns: repeat(3, 1fr);
+                                                                            gap: 20px;
+                                                                            margin-top: 20px;
+                                                                        } */
 
         .highlight-box {
             background: #fff;
@@ -1893,11 +1893,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                            display: grid;
-                            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                            gap: 16px;
-                            margin-top: 20px;
-                        } */
+                                display: grid;
+                                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                gap: 16px;
+                                margin-top: 20px;
+                            } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2126,37 +2126,48 @@
 
             <!-- SALARY -->
 
-            <div class="content-card" id="salary">
+            @php
+                $postNames = array_map('trim', explode('#', $job->post_name ?? ''));
+                $salaries = array_map('trim', explode('#', $job->post_salary ?? ''));
+            @endphp
 
-                <h2>
-                    Salary Details
-                </h2>
+            @if (!empty(array_filter($postNames)))
+                <div class="content-card" id="salary">
 
-                <table class="info-table">
+                    <h2>Salary Details</h2>
 
-                    <tr>
-                        <td>Minimum Salary</td>
-                        <td>₹44,900</td>
-                    </tr>
+                    <div class="qualification-list">
 
-                    <tr>
-                        <td>Maximum Salary</td>
-                        <td>₹1,42,400</td>
-                    </tr>
+                        @foreach ($postNames as $index => $post)
+                            @php
+                                $salary = $salaries[$index] ?? '';
+                            @endphp
 
-                    <tr>
-                        <td>Pay Level</td>
-                        <td>Level 7</td>
-                    </tr>
+                            @if ($post)
+                                <div class="qualification-item">
 
-                    <tr>
-                        <td>Allowances</td>
-                        <td>As Per Government Rules</td>
-                    </tr>
+                                    <div class="qualification-post">
+                                        {{ $post }}
+                                    </div>
 
-                </table>
+                                    <div class="qualification-text">
 
-            </div>
+                                        @if ($salary)
+                                            {{ $salary }}
+                                        @else
+                                            <span class="text-muted">Salary Not Available</span>
+                                        @endif
+
+                                    </div>
+
+                                </div>
+                            @endif
+                        @endforeach
+
+                    </div>
+
+                </div>
+            @endif
 
 
             <!-- SELECTION PROCESS -->
