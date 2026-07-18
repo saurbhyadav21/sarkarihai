@@ -1763,7 +1763,7 @@
 
                 }
             </style>
-            @if (filled($job->general_post) ||
+            @if (filled($job->genral_post) ||
                     filled($job->ews_post) ||
                     filled($job->obc_post) ||
                     filled($job->sc_post) ||
@@ -1795,7 +1795,7 @@
                         return $result;
                     }
 
-                    $general = parsePosts($job->general_post);
+                    $general = parsePosts($job->genral_post);
                     $ews = parsePosts($job->ews_post);
                     $obc = parsePosts($job->obc_post);
                     $sc = parsePosts($job->sc_post);
