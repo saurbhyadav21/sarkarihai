@@ -2461,7 +2461,7 @@
 
             <!-- POST ELIGIBILITY -->
 
-            <div class="content-card">
+            {{-- <div class="content-card">
 
                 <h2>
                     Post Wise Eligibility
@@ -2492,7 +2492,7 @@
 
                 </table>
 
-            </div>
+            </div> --}}
 
 
 
