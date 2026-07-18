@@ -305,18 +305,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                        background:#fff;
-                                                                                                                                                                                                                        border-radius:15px;
-                                                                                                                                                                                                                        box-shadow:
-                                                                                                                                                                                                                        0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                        padding:30px;
-                                                                                                                                                                                                                        border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                        display:grid;
-                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                background:#fff;
+                                                                                                                                                                                                                                border-radius:15px;
+                                                                                                                                                                                                                                box-shadow:
+                                                                                                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                padding:30px;
+                                                                                                                                                                                                                                border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                display:grid;
+                                                                                                                                                                                                                                }
 
-                                                                                                                                                                                                                        .summary-item{
-                                                                                                                                                                                                                        text-align:center;
-                                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                                .summary-item{
+                                                                                                                                                                                                                                text-align:center;
+                                                                                                                                                                                                                                } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1193,11 +1193,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                        display: grid;
-                                                                                                                                                                               grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                        gap: 20px;
-                                                                                                                                                                                        margin-top: 20px;
-                                                                                                                                                                                    } */
+                                                                                                                                                                                                display: grid;
+                                                                                                                                                                                       grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                gap: 20px;
+                                                                                                                                                                                                margin-top: 20px;
+                                                                                                                                                                                            } */
 
         .highlight-box {
             background: #fff;
@@ -1899,11 +1899,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                            display: grid;
-                                                                                                                                            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                            gap: 16px;
-                                                                                                                                            margin-top: 20px;
-                                                                                                                                        } */
+                                                                                                                                                    display: grid;
+                                                                                                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                    gap: 16px;
+                                                                                                                                                    margin-top: 20px;
+                                                                                                                                                } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2156,8 +2156,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                              Selection Process
-                                                                            =========================*/
+                                                                                      Selection Process
+                                                                                    =========================*/
 
                 .selection-grid {
 
@@ -3440,62 +3440,192 @@
 
 
             <!-- IMPORTANT LINKS -->
+            <style>
+                .important-links {
 
-            <div class="content-card" id="links">
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                    gap: 15px;
+                    margin-top: 20px;
 
-                      <h2 style="color: #000">
-                    Important Links
-                </h2>
+                }
 
-                <table class="info-table">
 
-                    <tr>
-                        <td>
-                            Apply Online
-                        </td>
-                        <td>
-                            <a href="#">
-                                Apply Here
-                            </a>
-                        </td>
-                    </tr>
+                .link-card {
 
-                    <tr>
-                        <td>
-                            Official Notification
-                        </td>
-                        <td>
-                            <a href="#">
-                                Download PDF
-                            </a>
-                        </td>
-                    </tr>
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
 
-                    <tr>
-                        <td>
-                            Official Website
-                        </td>
-                        <td>
-                            <a href="#">
-                                Visit Website
-                            </a>
-                        </td>
-                    </tr>
+                    padding: 15px;
 
-                    <tr>
-                        <td>
-                            Join Telegram
-                        </td>
-                        <td>
-                            <a href="#">
-                                Join Now
-                            </a>
-                        </td>
-                    </tr>
+                    background: #fff;
 
-                </table>
+                    border: 1px solid #e5e7eb;
 
-            </div>
+                    border-radius: 12px;
+
+                    transition: .3s;
+
+                }
+
+
+                .link-card:hover {
+
+                    transform: translateY(-4px);
+
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+
+                }
+
+
+                .link-icon {
+
+                    width: 45px;
+                    height: 45px;
+
+                    border-radius: 50%;
+
+                    background: #ecfdf5;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    font-size: 22px;
+
+                }
+
+
+                .link-info {
+
+                    flex: 1;
+
+                }
+
+
+                .link-info h4 {
+
+                    margin: 0 0 8px;
+
+                    font-size: 15px;
+
+                    color: #111827;
+
+                }
+
+
+                .link-info a {
+
+                    display: inline-block;
+
+                    padding: 6px 14px;
+
+                    border-radius: 20px;
+
+                    background: #0f766e;
+
+                    color: #fff;
+
+                    font-size: 13px;
+
+                    text-decoration: none;
+
+                }
+
+
+                .link-info a:hover {
+
+                    background: #115e59;
+
+                }
+            </style>
+            @php
+
+                $links = array_filter(array_map('trim', explode('#', $job->links ?? '')));
+
+                $linkIcons = [
+                    'website' => '🌐',
+                    'apply' => '🚀',
+                    'notification' => '📄',
+                    'syllabus' => '📚',
+                    'answer' => '🔑',
+                    'preference' => '📝',
+                    'download' => '⬇️',
+                ];
+
+                function getLinkIcon($title, $icons)
+                {
+                    $title = strtolower($title);
+
+                    foreach ($icons as $key => $icon) {
+                        if (str_contains($title, $key)) {
+                            return $icon;
+                        }
+                    }
+
+                    return '🔗';
+                }
+
+            @endphp
+
+
+            @if (count($links))
+                <div class="content-card" id="links">
+
+                    <h2>Important Links</h2>
+
+
+                    <div class="important-links">
+
+
+                        @foreach ($links as $link)
+                            @php
+
+                                $data = explode('$', $link, 2);
+
+                                $title = trim($data[0] ?? '');
+
+                                $url = trim($data[1] ?? '');
+
+                            @endphp
+
+
+                            @if ($url)
+                                <div class="link-card">
+
+
+                                    <div class="link-icon">
+
+                                        {{ getLinkIcon($title, $linkIcons) }}
+
+                                    </div>
+
+
+                                    <div class="link-info">
+
+                                        <h4>
+                                            {{ $title }}
+                                        </h4>
+
+                                        <a href="{{ $url }}" target="_blank" rel="nofollow noopener">
+
+                                            Open Link →
+
+                                        </a>
+
+                                    </div>
+
+
+                                </div>
+                            @endif
+                        @endforeach
+
+
+                    </div>
+
+                </div>
+            @endif
 
 
 
