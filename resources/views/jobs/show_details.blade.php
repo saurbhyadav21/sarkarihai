@@ -3363,7 +3363,7 @@
 
             <div class="content-card" id="timeline">
 
-                <h2>Important Dates Timeline</h2>
+                <h2 style="color: #000">Important Dates Timeline</h2>
 
 
                 <div class="timeline">
