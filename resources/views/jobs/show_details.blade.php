@@ -1706,13 +1706,13 @@
 
 
             <!-- VACANCY DETAILS -->
-            <style>
-                /* .content-card {
+            {{-- <style>
+                .content-card {
                         background: #fff;
                         border-radius: 12px;
                         padding: 20px;
                         margin-bottom: 25px;
-                    } */
+                    }
 
                 .vacancy-table {
                     width: 100%;
@@ -1762,7 +1762,7 @@
                     overflow-x: auto;
 
                 }
-            </style>
+            </style> --}}
             @if (filled($job->general_post) ||
                     filled($job->ews_post) ||
                     filled($job->obc_post) ||
