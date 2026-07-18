@@ -1186,7 +1186,7 @@
         }
 
         /* HIGHLIGHT BOXES */
-.btn-check:hover+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active
+.btn:hover
 {
         color: #000 !important;
     background-color: #F59E0B !important;
