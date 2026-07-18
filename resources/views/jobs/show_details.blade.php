@@ -1186,10 +1186,15 @@
         }
 
         /* HIGHLIGHT BOXES */
-
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active
+{
+        color: #000;
+    background-color: #F59E0B;
+    border-color: #000;
+}
         /* .highlight-grid {
                                                                                                                                                                         display: grid;
-                                                                                                                                                                        grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                               grid-template-columns: repeat(3, 1fr);
                                                                                                                                                                         gap: 20px;
                                                                                                                                                                         margin-top: 20px;
                                                                                                                                                                     } */
