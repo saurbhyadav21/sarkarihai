@@ -2149,90 +2149,122 @@
 
             <!-- SELECTION PROCESS -->
             <style>
-                .selection-flow {
-                    display: flex;
-                    flex-wrap: wrap;
-                    align-items: center;
-                    gap: 10px;
-                    margin-top: 15px;
-                }
+                .selection-grid{
 
-                .selection-item {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    background: #f8fafc;
-                    border: 1px solid #e5e7eb;
-                    border-radius: 30px;
-                    padding: 8px 14px;
-                    font-weight: 600;
-                }
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+margin-top:20px;
 
-                .selection-number {
-                    width: 28px;
-                    height: 28px;
-                    border-radius: 50%;
-                    background: #0f766e;
-                    color: #fff;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 13px;
-                    flex-shrink: 0;
-                }
+}
 
-                .selection-arrow {
-                    color: #0f766e;
-                    font-size: 22px;
-                    font-weight: bold;
-                }
+.selection-card{
 
-                @media(max-width:768px) {
+padding:22px;
+border-radius:14px;
+text-align:center;
+color:#fff;
+transition:.3s;
 
-                    .selection-flow {
-                        flex-direction: column;
-                        align-items: stretch;
-                    }
+}
 
-                    .selection-arrow {
-                        display: none;
-                    }
+.selection-card:hover{
 
-                }
+transform:translateY(-5px);
+
+}
+
+.selection-icon{
+
+font-size:34px;
+margin-bottom:12px;
+
+}
+
+.selection-title{
+
+font-size:16px;
+font-weight:600;
+line-height:1.5;
+
+}
+
+.selection-step{
+
+margin-top:12px;
+font-size:13px;
+opacity:.9;
+
+}
+
+.blue{background:#2563eb;}
+.green{background:#16a34a;}
+.orange{background:#ea580c;}
+.purple{background:#7c3aed;}
+.red{background:#dc2626;}
+.teal{background:#0f766e;}
+.brown{background:#92400e;}
+.dark{background:#374151;}
             </style>
             @php
-                $steps = array_filter(array_map('trim', explode(',', $job->mode_selection ?? '')));
-            @endphp
+$steps = array_filter(array_map('trim', explode(',', $job->mode_selection ?? '')));
 
-            @if (count($steps))
-                <div class="content-card">
+$icons = [
+'📝',
+'💻',
+'⌨️',
+'📄',
+'🩺',
+'🏆',
+'✅',
+'🎯'
+];
 
-                    <h2>Selection Process</h2>
+$classes = [
+'blue',
+'green',
+'orange',
+'purple',
+'red',
+'teal',
+'brown',
+'dark'
+];
+@endphp
 
-                    <div class="selection-flow">
+@if(count($steps))
 
-                        @foreach ($steps as $step)
-                            <div class="selection-item">
+<div class="content-card">
 
-                                <div class="selection-number">
-                                    {{ $loop->iteration }}
-                                </div>
+<h2>Selection Process</h2>
 
-                                <div>
-                                    {{ $step }}
-                                </div>
+<div class="selection-grid">
 
-                            </div>
+@foreach($steps as $step)
 
-                            @if (!$loop->last)
-                                <div class="selection-arrow">➜</div>
-                            @endif
-                        @endforeach
+<div class="selection-card {{ $classes[$loop->index % count($classes)] }}">
 
-                    </div>
+<div class="selection-icon">
+{{ $icons[$loop->index % count($icons)] }}
+</div>
 
-                </div>
-            @endif
+<div class="selection-title">
+{{ $step }}
+</div>
+
+<div class="selection-step">
+Step {{ $loop->iteration }}
+</div>
+
+</div>
+
+@endforeach
+
+</div>
+
+</div>
+
+@endif
 
 
 
