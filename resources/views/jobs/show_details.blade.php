@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                background:#fff;
-                                                                                border-radius:15px;
-                                                                                box-shadow:
-                                                                                0 10px 30px rgba(0,0,0,.08);
-                                                                                padding:30px;
-                                                                                border-top:4px solid #F59E0B;
-                                                                                display:grid;
-                                                                                }
+                                                                                    background:#fff;
+                                                                                    border-radius:15px;
+                                                                                    box-shadow:
+                                                                                    0 10px 30px rgba(0,0,0,.08);
+                                                                                    padding:30px;
+                                                                                    border-top:4px solid #F59E0B;
+                                                                                    display:grid;
+                                                                                    }
 
-                                                                                .summary-item{
-                                                                                text-align:center;
-                                                                                } */
+                                                                                    .summary-item{
+                                                                                    text-align:center;
+                                                                                    } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                display: grid;
-                                                grid-template-columns: repeat(3, 1fr);
-                                                gap: 20px;
-                                                margin-top: 20px;
-                                            } */
+                                                    display: grid;
+                                                    grid-template-columns: repeat(3, 1fr);
+                                                    gap: 20px;
+                                                    margin-top: 20px;
+                                                } */
 
         .highlight-box {
             background: #fff;
@@ -1708,11 +1708,11 @@
             <!-- VACANCY DETAILS -->
             <style>
                 .content-card {
-                        background: #fff;
-                        border-radius: 12px;
-                        padding: 20px;
-                        margin-bottom: 25px;
-                    }
+                    background: #fff;
+                    border-radius: 12px;
+                    padding: 20px;
+                    margin-bottom: 25px;
+                }
 
                 .vacancy-table {
                     width: 100%;
@@ -1801,6 +1801,15 @@
                     $sc = parsePosts($job->sc_post);
                     $st = parsePosts($job->st_post);
 
+                    /* Category Totals */
+                    $genTotal = array_sum($general);
+                    $ewsTotal = array_sum($ews);
+                    $obcTotal = array_sum($obc);
+                    $scTotal = array_sum($sc);
+                    $stTotal = array_sum($st);
+
+                    $totalVacancy = $genTotal + $ewsTotal + $obcTotal + $scTotal + $stTotal;
+
                     $posts = array_unique(
                         array_merge(
                             array_keys($general),
@@ -1882,89 +1891,51 @@
 
 
             <!-- CATEGORY WISE -->
-            @php
 
-                function parsePosts1($data)
-                {
-                    $result = [];
-
-                    if (empty($data)) {
-                        return $result;
-                    }
-
-                    foreach (explode('#', trim($data, '#')) as $item) {
-                        if (empty($item)) {
-                            continue;
-                        }
-
-                        [$post, $count] = array_pad(explode('$', $item), 2, 0);
-
-                        $result[trim($post)] = (int) $count;
-                    }
-
-                    return $result;
-                }
-
-                $general1 = parsePosts1($job->genral_post);
-                $ews1 = parsePosts1($job->ews_post);
-                $obc1 = parsePosts1($job->obc_post);
-                $sc1 = parsePosts1($job->sc_post);
-                $st1 = parsePosts1($job->st_post);
-
-                $genTotal1 = array_sum($general1);
-                $ewsTotal1 = array_sum($ews1);
-                $obcTotal1 = array_sum($obc1);
-                $scTotal1 = array_sum($sc1);
-                $stTotal1 = array_sum($st1);
-
-                $totalVacancy1 = $genTotal1 + $ewsTotal1 + $obcTotal1 + $scTotal1 + $stTotal1;
-
-            @endphp
-          
-            @if ($totalVacancy1)
+            @if ($totalVacancy)
                 <div class="content-card">
 
                     <h2>Category Wise Vacancy</h2>
 
                     <div class="highlight-grid">
 
-                        @if ($genTotal1)
+                        @if ($genTotal)
                             <div class="highlight-box">
-                                <h3>{{ number_format($genTotal1) }}</h3>
+                                <h3>{{ number_format($genTotal) }}</h3>
                                 <p>General</p>
                             </div>
                         @endif
 
-                        @if ($ewsTotal1)
+                        @if ($ewsTotal)
                             <div class="highlight-box">
-                                <h3>{{ number_format($ewsTotal1) }}</h3>
+                                <h3>{{ number_format($ewsTotal) }}</h3>
                                 <p>EWS</p>
                             </div>
                         @endif
 
-                        @if ($obcTotal1)
+                        @if ($obcTotal)
                             <div class="highlight-box">
-                                <h3>{{ number_format($obcTotal1) }}</h3>
+                                <h3>{{ number_format($obcTotal) }}</h3>
                                 <p>OBC</p>
                             </div>
                         @endif
 
-                        @if ($scTotal1)
+                        @if ($scTotal)
                             <div class="highlight-box">
-                                <h3>{{ number_format($scTotal1) }}</h3>
+                                <h3>{{ number_format($scTotal) }}</h3>
                                 <p>SC</p>
                             </div>
                         @endif
 
-                        @if ($stTotal1)
+                        @if ($stTotal)
                             <div class="highlight-box">
-                                <h3>{{ number_format($stTotal1) }}</h3>
+                                <h3>{{ number_format($stTotal) }}</h3>
                                 <p>ST</p>
                             </div>
                         @endif
 
                         <div class="highlight-box total-box">
-                            <h3>{{ number_format($totalVacancy1) }}</h3>
+                            <h3>{{ number_format($totalVacancy) }}</h3>
                             <p>Total Vacancy</p>
                         </div>
 
