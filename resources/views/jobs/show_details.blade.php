@@ -2764,7 +2764,7 @@
 
                     line-height: 1.7;
 
-                    font-size: 15px;
+                    font-size: 15px;    color: #fff;
 
                 }
 
