@@ -2187,10 +2187,10 @@
 
 .selection-card{
 
-    flex:0 0 210px;
-    min-height:220px;
+    flex:0 0 170px;
+    min-height:190px;
 
-    padding:20px;
+    padding:16px;
 
     border-radius:14px;
 
