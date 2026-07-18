@@ -3598,7 +3598,7 @@
             </style>
             @php
 
-                $links = array_filter(array_map('trim', explode('#', $job->links ?? '')));
+                $links = array_filter(array_map('trim', explode('#', $job->link ?? '')));
 
                 function getLinkData($title)
                 {
