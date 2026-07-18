@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                            background:#fff;
-                                                                                                                                            border-radius:15px;
-                                                                                                                                            box-shadow:
-                                                                                                                                            0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                            padding:30px;
-                                                                                                                                            border-top:4px solid #F59E0B;
-                                                                                                                                            display:grid;
-                                                                                                                                            }
+                                                                                                                                                background:#fff;
+                                                                                                                                                border-radius:15px;
+                                                                                                                                                box-shadow:
+                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                padding:30px;
+                                                                                                                                                border-top:4px solid #F59E0B;
+                                                                                                                                                display:grid;
+                                                                                                                                                }
 
-                                                                                                                                            .summary-item{
-                                                                                                                                            text-align:center;
-                                                                                                                                            } */
+                                                                                                                                                .summary-item{
+                                                                                                                                                text-align:center;
+                                                                                                                                                } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                                                                            display: grid;
-                                                                                                            grid-template-columns: repeat(3, 1fr);
-                                                                                                            gap: 20px;
-                                                                                                            margin-top: 20px;
-                                                                                                        } */
+                                                                                                                display: grid;
+                                                                                                                grid-template-columns: repeat(3, 1fr);
+                                                                                                                gap: 20px;
+                                                                                                                margin-top: 20px;
+                                                                                                            } */
 
         .highlight-box {
             background: #fff;
@@ -1825,7 +1825,7 @@
 
                 <div class="content-card" id="vacancy">
 
-                    <h2>Vacancy Details</h2>
+                    <h2>Post Wise Vacancy Details</h2>
 
                     <div class="table-responsive">
 
@@ -1893,11 +1893,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                display: grid;
-                                                                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                gap: 16px;
-                                                                margin-top: 20px;
-                                                            } */
+                                                                    display: grid;
+                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                    gap: 16px;
+                                                                    margin-top: 20px;
+                                                                } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2149,230 +2149,228 @@
 
             <!-- SELECTION PROCESS -->
             <style>
-              
-
                 /*=========================
-  Selection Process
-=========================*/
+      Selection Process
+    =========================*/
 
-.selection-grid{
+                .selection-grid {
 
-    display:flex;
-    align-items:stretch;
-    gap:15px;
-    overflow-x:auto;
-    overflow-y:hidden;
-    padding:5px 0 10px;
+                    display: flex;
+                    align-items: stretch;
+                    gap: 15px;
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                    padding: 5px 0 10px;
 
-}
+                }
 
-.selection-grid::-webkit-scrollbar{
+                .selection-grid::-webkit-scrollbar {
 
-    height:8px;
+                    height: 8px;
 
-}
+                }
 
-.selection-grid::-webkit-scrollbar-thumb{
+                .selection-grid::-webkit-scrollbar-thumb {
 
-    background:#cbd5e1;
-    border-radius:20px;
+                    background: #cbd5e1;
+                    border-radius: 20px;
 
-}
+                }
 
-.selection-grid::-webkit-scrollbar-track{
+                .selection-grid::-webkit-scrollbar-track {
 
-    background:#f3f4f6;
+                    background: #f3f4f6;
 
-}
+                }
 
-.selection-card{
+                .selection-card {
 
-    flex:0 0 170px;
-    min-height:190px;
+                    flex: 0 0 170px;
+                    min-height: 190px;
 
-    padding:16px;
+                    padding: 16px;
 
-    border-radius:14px;
+                    border-radius: 14px;
 
-    text-align:center;
+                    text-align: center;
 
-    transition:.3s;
+                    transition: .3s;
 
-    border:1px solid rgba(0,0,0,.05);
+                    border: 1px solid rgba(0, 0, 0, .05);
 
-    box-shadow:0 3px 10px rgba(0,0,0,.06);
+                    box-shadow: 0 3px 10px rgba(0, 0, 0, .06);
 
-}
+                }
 
-.selection-card:hover{
+                .selection-card:hover {
 
-    transform:translateY(-6px);
+                    transform: translateY(-6px);
 
-    box-shadow:0 12px 25px rgba(0,0,0,.12);
+                    box-shadow: 0 12px 25px rgba(0, 0, 0, .12);
 
-}
+                }
 
-.selection-icon{
+                .selection-icon {
 
-    font-size:48px;
+                    font-size: 48px;
 
-    margin:12px 0;
+                    margin: 12px 0;
 
-    line-height:1;
+                    line-height: 1;
 
-}
+                }
 
-.selection-title{
+                .selection-title {
 
-    font-size:16px;
+                    font-size: 16px;
 
-    font-weight:700;
+                    font-weight: 700;
 
-    color:#111827;
+                    color: #111827;
 
-    line-height:1.5;
+                    line-height: 1.5;
 
-    min-height:48px;
+                    min-height: 48px;
 
-}
+                }
 
-.selection-step{
+                .selection-step {
 
-    display:inline-block;
+                    display: inline-block;
 
-    margin-top:8px;
+                    margin-top: 8px;
 
-    padding:4px 12px;
+                    padding: 4px 12px;
 
-    border-radius:30px;
+                    border-radius: 30px;
 
-    background:rgba(255,255,255,.7);
+                    background: rgba(255, 255, 255, .7);
 
-    font-size:13px;
+                    font-size: 13px;
 
-    font-weight:600;
+                    font-weight: 600;
 
-    color:#374151;
+                    color: #374151;
 
-}
+                }
 
-/* Colors */
+                /* Colors */
 
-.blue{
+                .blue {
 
-    background:#dbeafe;
+                    background: #dbeafe;
 
-}
+                }
 
-.green{
+                .green {
 
-    background:#dcfce7;
+                    background: #dcfce7;
 
-}
+                }
 
-.orange{
+                .orange {
 
-    background:#ffedd5;
+                    background: #ffedd5;
 
-}
+                }
 
-.purple{
+                .purple {
 
-    background:#ede9fe;
+                    background: #ede9fe;
 
-}
+                }
 
-.red{
+                .red {
 
-    background:#fee2e2;
+                    background: #fee2e2;
 
-}
+                }
 
-.teal{
+                .teal {
 
-    background:#ccfbf1;
+                    background: #ccfbf1;
 
-}
+                }
 
-.brown{
+                .brown {
 
-    background:#fef3c7;
+                    background: #fef3c7;
 
-}
+                }
 
-.dark{
+                .dark {
 
-    background:#e5e7eb;
+                    background: #e5e7eb;
 
-}
+                }
 
-/* Success */
+                /* Success */
 
-.success-card{
+                .success-card {
 
-    background:linear-gradient(135deg,#22c55e,#16a34a);
+                    background: linear-gradient(135deg, #22c55e, #16a34a);
 
-    color:#fff;
+                    color: #fff;
 
-}
+                }
 
-.success-card .selection-title{
+                .success-card .selection-title {
 
-    color:#fff;
+                    color: #fff;
 
-}
+                }
 
-.success-card .selection-step{
+                .success-card .selection-step {
 
-    background:rgba(255,255,255,.18);
+                    background: rgba(255, 255, 255, .18);
 
-    color:#fff;
+                    color: #fff;
 
-}
+                }
 
-.success-card .selection-icon{
+                .success-card .selection-icon {
 
-    font-size:55px;
+                    font-size: 55px;
 
-}
+                }
 
-/* Mobile */
+                /* Mobile */
 
-@media(max-width:768px){
+                @media(max-width:768px) {
 
-    .selection-grid{
+                    .selection-grid {
 
-        display:grid;
+                        display: grid;
 
-        grid-template-columns:repeat(2,1fr);
+                        grid-template-columns: repeat(2, 1fr);
 
-        gap:12px;
+                        gap: 12px;
 
-        overflow:visible;
+                        overflow: visible;
 
-    }
+                    }
 
-    .selection-card{
+                    .selection-card {
 
-        flex:none;
+                        flex: none;
 
-        min-height:190px;
+                        min-height: 190px;
 
-        padding:18px;
+                        padding: 18px;
 
-    }
+                    }
 
-}
+                }
 
-@media(max-width:480px){
+                @media(max-width:480px) {
 
-    .selection-grid{
+                    .selection-grid {
 
-        grid-template-columns:1fr;
+                        grid-template-columns: 1fr;
 
-    }
+                    }
 
-}
+                }
             </style>
             @php
                 $steps = array_filter(array_map('trim', explode(',', $job->mode_selection ?? '')));
@@ -2426,7 +2424,7 @@
 
 
             <!-- POST WISE VACANCY -->
-
+{{-- 
             <div class="content-card">
 
                 <h2>
@@ -2457,7 +2455,7 @@
 
                 </table>
 
-            </div>
+            </div> --}}
 
 
 
