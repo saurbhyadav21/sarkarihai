@@ -1148,26 +1148,22 @@ class FreeJobAlertHelper
    public static function sendTelegramJob($job)
     {
 
-        $message = "🚨 New Government Job Alert\n\n";
+         $message = "🚨 <b>New Government Job</b>\n\n";
 
-        $message .= "📌 " . $job->title . "\n";
+        $message .= "📌 <b>".$job['title']."</b>\n";
 
-        $message .= "🏢 " . $job->organization . "\n";
+        $message .= "📅 Last Date: ".$job['last_date']."\n\n";
 
-        $message .= "📅 Last Date: " . $job->last_date . "\n\n";
-
-        $message .= "Apply Now:\n";
-
-        $message .= "https://sarkarihai.com/job/" . $job->slug;
-
+        $message .= "🔗 https://sarkarihai.com\n";
 
         Http::post(
-            "https://api.telegram.org/bot" . env('TELEGRAM_BOT_TOKEN') . "/sendMessage",
+            "https://api.telegram.org/bot".env('TELEGRAM_BOT_TOKEN')."/sendMessage",
             [
                 'chat_id' => env('TELEGRAM_CHANNEL'),
                 'text' => $message,
                 'parse_mode' => 'HTML'
             ]
         );
+    }
     }
 }
