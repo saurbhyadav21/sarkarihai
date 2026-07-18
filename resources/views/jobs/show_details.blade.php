@@ -3727,7 +3727,7 @@
 
             <div class="content-card" id="faq">
 
-                <h2>
+                <h2 style="color: #000">
                     Frequently Asked Questions
                 </h2>
 
@@ -3782,7 +3782,7 @@
 
             <div class="content-card">
 
-                <h2>
+                <h2 style="color: #000">
                     Related Jobs
                 </h2>
 
@@ -3846,7 +3846,7 @@
 
             <div class="content-card">
 
-                <h2>
+                <h2 style="color: #000">
                     Share This Job
                 </h2>
 
@@ -3878,7 +3878,7 @@
 
             <div class="content-card">
 
-                <h2>
+                <h2 style="color: #000" >
                     Important Disclaimer
                 </h2>
 
@@ -3907,7 +3907,7 @@
 
                     <div class="author-content">
 
-                        <h3>
+                        <h3 style="color: #000">
                             Team SarkariHai
                         </h3>
 
