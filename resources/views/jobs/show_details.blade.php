@@ -2107,8 +2107,8 @@
                             <thead>
 
                                 <tr>
-                                    <th style="width:40%">📌 Post Name</th>
-                                    <th style="width:40%">🎓 Qualification</th>
+                                    <th style="width:30%">📌 Post Name</th>
+                                    <th style="width:50%">🎓 Qualification</th>
                                     <th style="width:20%">💰 Salary</th>
                                 </tr>
 
