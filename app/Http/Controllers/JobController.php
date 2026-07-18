@@ -3004,7 +3004,7 @@ $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
 
         try {
 
-            $response = Http::timeout(20)
+            $response = Http::timeout(5000)
                 ->withoutVerifying()
                 ->get($url);
 
