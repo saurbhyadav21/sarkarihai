@@ -305,18 +305,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                                background:#fff;
-                                                                                                                                                                                                                                border-radius:15px;
-                                                                                                                                                                                                                                box-shadow:
-                                                                                                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                                padding:30px;
-                                                                                                                                                                                                                                border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                                display:grid;
-                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                    background:#fff;
+                                                                                                                                                                                                                                    border-radius:15px;
+                                                                                                                                                                                                                                    box-shadow:
+                                                                                                                                                                                                                                    0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                    padding:30px;
+                                                                                                                                                                                                                                    border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                    display:grid;
+                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                .summary-item{
-                                                                                                                                                                                                                                text-align:center;
-                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                    .summary-item{
+                                                                                                                                                                                                                                    text-align:center;
+                                                                                                                                                                                                                                    } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1193,11 +1193,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                                display: grid;
-                                                                                                                                                                                       grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                                gap: 20px;
-                                                                                                                                                                                                margin-top: 20px;
-                                                                                                                                                                                            } */
+                                                                                                                                                                                                    display: grid;
+                                                                                                                                                                                           grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                    gap: 20px;
+                                                                                                                                                                                                    margin-top: 20px;
+                                                                                                                                                                                                } */
 
         .highlight-box {
             background: #fff;
@@ -1899,11 +1899,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                                    display: grid;
-                                                                                                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                                    gap: 16px;
-                                                                                                                                                    margin-top: 20px;
-                                                                                                                                                } */
+                                                                                                                                                        display: grid;
+                                                                                                                                                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                        gap: 16px;
+                                                                                                                                                        margin-top: 20px;
+                                                                                                                                                    } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2156,8 +2156,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                                      Selection Process
-                                                                                    =========================*/
+                                                                                          Selection Process
+                                                                                        =========================*/
 
                 .selection-grid {
 
@@ -3444,8 +3444,9 @@
                 .important-links {
 
                     display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                     gap: 15px;
+
                     margin-top: 20px;
 
                 }
@@ -3457,13 +3458,13 @@
                     align-items: center;
                     gap: 15px;
 
-                    padding: 15px;
-
-                    background: #fff;
+                    padding: 16px;
 
                     border: 1px solid #e5e7eb;
 
-                    border-radius: 12px;
+                    border-radius: 14px;
+
+                    background: #fff;
 
                     transition: .3s;
 
@@ -3474,25 +3475,25 @@
 
                     transform: translateY(-4px);
 
-                    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, .10);
 
                 }
 
 
                 .link-icon {
 
-                    width: 45px;
-                    height: 45px;
+                    width: 48px;
+                    height: 48px;
 
                     border-radius: 50%;
-
-                    background: #ecfdf5;
 
                     display: flex;
                     align-items: center;
                     justify-content: center;
 
-                    font-size: 22px;
+                    font-size: 21px;
+
+                    color: #fff;
 
                 }
 
@@ -3506,65 +3507,149 @@
 
                 .link-info h4 {
 
-                    margin: 0 0 8px;
-
                     font-size: 15px;
 
+                    margin: 0 0 10px;
+
                     color: #111827;
+
+                    font-weight: 700;
 
                 }
 
 
                 .link-info a {
 
-                    display: inline-block;
+                    display: inline-flex;
 
-                    padding: 6px 14px;
+                    align-items: center;
 
-                    border-radius: 20px;
+                    gap: 6px;
 
-                    background: #0f766e;
+                    padding: 7px 15px;
 
-                    color: #fff;
+                    border-radius: 25px;
 
                     font-size: 13px;
+
+                    color: #fff;
 
                     text-decoration: none;
 
                 }
 
 
-                .link-info a:hover {
+                /* Colors */
 
-                    background: #115e59;
+                .link-icon.apply,
+                .link-info a.apply {
+
+                    background: #16a34a;
+
+                }
+
+
+                .link-icon.pdf,
+                .link-info a.pdf {
+
+                    background: #dc2626;
+
+                }
+
+
+                .link-icon.website,
+                .link-info a.website {
+
+                    background: #2563eb;
+
+                }
+
+
+                .link-icon.download,
+                .link-info a.download {
+
+                    background: #ea580c;
+
+                }
+
+
+                .link-icon.answer,
+                .link-info a.answer {
+
+                    background: #7c3aed;
+
+                }
+
+
+                .link-icon.preference,
+                .link-info a.preference {
+
+                    background: #0f766e;
+
+                }
+
+
+                .link-icon.default,
+                .link-info a.default {
+
+                    background: #475569;
 
                 }
             </style>
             @php
 
-                $links = array_filter(array_map('trim', explode('#', $job->link ?? '')));
+                $links = array_filter(array_map('trim', explode('#', $job->links ?? '')));
 
-                $linkIcons = [
-                    'website' => '🌐',
-                    'apply' => '🚀',
-                    'notification' => '📄',
-                    'syllabus' => '📚',
-                    'answer' => '🔑',
-                    'preference' => '📝',
-                    'download' => '⬇️',
-                ];
-
-                function getLinkIcon($title, $icons)
+                function getLinkData($title)
                 {
                     $title = strtolower($title);
 
-                    foreach ($icons as $key => $icon) {
-                        if (str_contains($title, $key)) {
-                            return $icon;
-                        }
+                    if (str_contains($title, 'apply')) {
+                        return [
+                            'icon' => 'fa-solid fa-rocket',
+                            'class' => 'apply',
+                        ];
                     }
 
-                    return '🔗';
+                    if (str_contains($title, 'notification')) {
+                        return [
+                            'icon' => 'fa-solid fa-file-pdf',
+                            'class' => 'pdf',
+                        ];
+                    }
+
+                    if (str_contains($title, 'website')) {
+                        return [
+                            'icon' => 'fa-solid fa-globe',
+                            'class' => 'website',
+                        ];
+                    }
+
+                    if (str_contains($title, 'syllabus')) {
+                        return [
+                            'icon' => 'fa-solid fa-book',
+                            'class' => 'download',
+                        ];
+                    }
+
+                    if (str_contains($title, 'answer')) {
+                        return [
+                            'icon' => 'fa-solid fa-key',
+                            'class' => 'answer',
+                        ];
+                    }
+
+                    if (str_contains($title, 'preference') || str_contains($title, 'option')) {
+                        return [
+                            'icon' => 'fa-solid fa-list-check',
+                            'class' => 'preference',
+                        ];
+                    }
+
+                    return [
+                        'icon' => 'fa-solid fa-link',
+                        'class' => 'default',
+                    ];
                 }
 
             @endphp
@@ -3573,7 +3658,10 @@
             @if (count($links))
                 <div class="content-card" id="links">
 
-                    <h2 style="color: #000">Important Links</h2>
+
+                    <h2>
+                        Important Links
+                    </h2>
 
 
                     <div class="important-links">
@@ -3588,6 +3676,8 @@
 
                                 $url = trim($data[1] ?? '');
 
+                                $linkData = getLinkData($title);
+
                             @endphp
 
 
@@ -3595,9 +3685,9 @@
                                 <div class="link-card">
 
 
-                                    <div class="link-icon">
+                                    <div class="link-icon {{ $linkData['class'] }}">
 
-                                        {{ getLinkIcon($title, $linkIcons) }}
+                                        <i class="{{ $linkData['icon'] }}"></i>
 
                                     </div>
 
@@ -3608,11 +3698,14 @@
                                             {{ $title }}
                                         </h4>
 
-                                        <a href="{{ $url }}" target="_blank" rel="nofollow noopener">
 
-                                            Open Link →
+                                        <a href="{{ $url }}" target="_blank" rel="nofollow noopener"
+                                            class="{{ $linkData['class'] }}">
+
+                                            Open Link <i class="fa-solid fa-arrow-up-right-from-square"></i>
 
                                         </a>
+
 
                                     </div>
 
@@ -3623,6 +3716,7 @@
 
 
                     </div>
+
 
                 </div>
             @endif
