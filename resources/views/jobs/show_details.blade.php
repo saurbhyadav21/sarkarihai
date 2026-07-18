@@ -1883,42 +1883,54 @@
 
             <!-- CATEGORY WISE -->
 
-            <div class="content-card">
+           @if($genTotal || $ewsTotal || $obcTotal || $scTotal || $stTotal)
 
-                <h2>
-                    Category Wise Vacancy
-                </h2>
+<div class="content-card">
 
-                <div class="highlight-grid">
+    <h2>Category Wise Vacancy</h2>
 
-                    <div class="highlight-box">
-                        <h3>220</h3>
-                        <p>General</p>
-                    </div>
+    <div class="highlight-grid">
 
-                    <div class="highlight-box">
-                        <h3>55</h3>
-                        <p>EWS</p>
-                    </div>
+        @if($genTotal)
+        <div class="highlight-box">
+            <h3>{{ number_format($genTotal) }}</h3>
+            <p>General</p>
+        </div>
+        @endif
 
-                    <div class="highlight-box">
-                        <h3>135</h3>
-                        <p>OBC</p>
-                    </div>
+        @if($ewsTotal)
+        <div class="highlight-box">
+            <h3>{{ number_format($ewsTotal) }}</h3>
+            <p>EWS</p>
+        </div>
+        @endif
 
-                    <div class="highlight-box">
-                        <h3>60</h3>
-                        <p>SC</p>
-                    </div>
+        @if($obcTotal)
+        <div class="highlight-box">
+            <h3>{{ number_format($obcTotal) }}</h3>
+            <p>OBC</p>
+        </div>
+        @endif
 
-                    <div class="highlight-box">
-                        <h3>30</h3>
-                        <p>ST</p>
-                    </div>
+        @if($scTotal)
+        <div class="highlight-box">
+            <h3>{{ number_format($scTotal) }}</h3>
+            <p>SC</p>
+        </div>
+        @endif
 
-                </div>
+        @if($stTotal)
+        <div class="highlight-box">
+            <h3>{{ number_format($stTotal) }}</h3>
+            <p>ST</p>
+        </div>
+        @endif
 
-            </div>
+    </div>
+
+</div>
+
+@endif
 
 
 
