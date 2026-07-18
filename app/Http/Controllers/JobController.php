@@ -1567,17 +1567,17 @@ class JobController extends Controller
     | View
     |--------------------------------------------------------------------------
     */
-    $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+        $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
 
-$metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
+        $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
 
-$canonicalUrl = request()->url();
+        $canonicalUrl = request()->url();
 
-$robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+        $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
 
-$ogType = 'website';
+        $ogType = 'website';
 
-$ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
+        $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
 
         return view('jobs.show', compact(
 
@@ -1606,8 +1606,8 @@ $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
             'metaTitle',
             'metaDescription',
             'canonicalUrl',
-                
-'robots',
+
+            'robots',
             'ogType',
             'ogImage'
 
@@ -2875,7 +2875,7 @@ $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
         $ogType = 'website';
 
         $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
-        
+
         $stateName = 'xxx';
         return view('welcome', compact(
             'latestJobs',
@@ -2992,44 +2992,148 @@ $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
         return view('jobs.last-date-soon', compact('jobs', 'title'));
     }
 
-     public function checkSitemapErrors()
-{
-    $xml = simplexml_load_file(url('/sitemap.xml'));
+    public function checkSitemapErrors()
+    {
+        $xml = simplexml_load_file(url('/sitemap.xml'));
 
-    $results = [];
+        $results = [];
 
-    foreach ($xml->url as $item) {
+        foreach ($xml->url as $item) {
 
-        $url = (string) $item->loc;
+            $url = (string) $item->loc;
 
-        try {
+            try {
 
-            $response = Http::timeout(5000)
-                ->withoutVerifying()
-                ->get($url);
+                $response = Http::timeout(5000)
+                    ->withoutVerifying()
+                    ->get($url);
 
-            $results[] = [
+                $results[] = [
 
-                'url' => $url,
-                'status' => $response->status()
+                    'url' => $url,
+                    'status' => $response->status()
 
-            ];
+                ];
+            } catch (\Exception $e) {
 
-        } catch (\Exception $e) {
+                $results[] = [
 
-            $results[] = [
+                    'url' => $url,
+                    'status' => 'ERROR',
+                    'message' => $e->getMessage()
 
-                'url' => $url,
-                'status' => 'ERROR',
-                'message' => $e->getMessage()
-
-            ];
-
+                ];
+            }
+            die;
         }
-        die;
+
+        return view('jobs.sitemap-errors', compact('results'));
     }
 
-    return view('jobs.sitemap-errors', compact('results'));
-}           
+    public function checkEligibility(Request $request)
+    {
 
+        $job = DB::table('job_details')
+            ->where('id', $request->job_id)
+            ->first();
+
+        $eligible = true;
+
+        $reasons = [];
+
+        // Qualification
+
+        if (
+            !empty($job->min_qulification)
+            &&
+            stripos(
+                $job->min_qulification,
+                $request->qualification
+            ) === false
+        ) {
+
+            $eligible = false;
+
+            $reasons[] = "Required Qualification : " . $job->min_qulification;
+        }
+
+        // Age
+
+        if (
+            !empty($job->minimum_age)
+            &&
+            $request->age < $job->minimum_age
+        ) {
+
+            $eligible = false;
+
+            $reasons[] = "Minimum Age : " . $job->minimum_age;
+        }
+
+        if (
+            !empty($job->maximum_age)
+            &&
+            $request->age > $job->maximum_age
+        ) {
+
+            $eligible = false;
+
+            $reasons[] = "Maximum Age : " . $job->maximum_age;
+        }
+
+        $html = '';
+
+        if ($eligible) {
+
+            $html = '
+
+        <div class="alert alert-success">
+
+        <h4>🎉 Congratulations!</h4>
+
+        <p>You appear to be eligible for this recruitment.</p>
+
+        <ul>
+
+        <li>Qualification Matched</li>
+
+        <li>Age Eligible</li>
+
+        <li>Category Checked</li>
+
+        </ul>
+
+        <a href="#apply" class="btn btn-success">
+
+        Apply Now
+
+        </a>
+
+        </div>';
+        } else {
+
+            $html = '
+
+        <div class="alert alert-danger">
+
+        <h4>Not Eligible</h4>
+
+        <ul>';
+
+            foreach ($reasons as $r) {
+
+                $html .= "<li>" . $r . "</li>";
+            }
+
+            $html .= '</ul>
+
+        </div>';
+        }
+
+        return response()->json([
+
+            'html' => $html
+
+        ]);
+    }
 }

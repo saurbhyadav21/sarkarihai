@@ -304,18 +304,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                    background:#fff;
-                                                                                                                                                                                    border-radius:15px;
-                                                                                                                                                                                    box-shadow:
-                                                                                                                                                                                    0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                    padding:30px;
-                                                                                                                                                                                    border-top:4px solid #F59E0B;
-                                                                                                                                                                                    display:grid;
-                                                                                                                                                                                    }
+                                                                                                                                                                                            background:#fff;
+                                                                                                                                                                                            border-radius:15px;
+                                                                                                                                                                                            box-shadow:
+                                                                                                                                                                                            0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                            padding:30px;
+                                                                                                                                                                                            border-top:4px solid #F59E0B;
+                                                                                                                                                                                            display:grid;
+                                                                                                                                                                                            }
 
-                                                                                                                                                                                    .summary-item{
-                                                                                                                                                                                    text-align:center;
-                                                                                                                                                                                    } */
+                                                                                                                                                                                            .summary-item{
+                                                                                                                                                                                            text-align:center;
+                                                                                                                                                                                            } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1187,11 +1187,11 @@
         /* HIGHLIGHT BOXES */
 
         /* .highlight-grid {
-                                                                                                                                                    display: grid;
-                                                                                                                                                    grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                    gap: 20px;
-                                                                                                                                                    margin-top: 20px;
-                                                                                                                                                } */
+                                                                                                                                                            display: grid;
+                                                                                                                                                            grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                            gap: 20px;
+                                                                                                                                                            margin-top: 20px;
+                                                                                                                                                        } */
 
         .highlight-box {
             background: #fff;
@@ -1893,11 +1893,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                        display: grid;
-                                                                                                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                        gap: 16px;
-                                                                                                        margin-top: 20px;
-                                                                                                    } */
+                                                                                                                display: grid;
+                                                                                                                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                gap: 16px;
+                                                                                                                margin-top: 20px;
+                                                                                                            } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2150,8 +2150,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                          Selection Process
-                                        =========================*/
+                                                  Selection Process
+                                                =========================*/
 
                 .selection-grid {
 
@@ -2970,6 +2970,7 @@
                         </div>
                         <input type="hidden" id="checkQualification">
                         <input type="hidden" id="checkCategory">
+                        <input type="hidden" id="jobId" value="{{ $job->id }}">
                         <!-- STEP 2 -->
 
                         <div class="eligibility-step d-none" id="step2">
@@ -3513,40 +3514,36 @@
 
                 $('#checkCategory').val($(this).text());
 
-                setTimeout(function() {
+                $.ajax({
 
-                    showStep(4);
+                    url: '/check-eligibility',
 
-                }, 300);
+                    type: 'POST',
+
+                    data: {
+
+                        qualification: $('#checkQualification').val(),
+
+                        age: $('#userAge').val(),
+
+                        category: $('#checkCategory').val(),
+
+                        job_id: $('#jobId').val(),
+
+                        _token: $('meta[name=csrf-token]').attr('content')
+
+                    },
+
+                    success: function(res) {
+
+                        $('#step4').html(res.html);
+
+                    }
+
+                });
 
             });
 
-        });
-        $.ajax({
-
-            url: '/check-eligibility',
-
-            type: 'POST',
-
-            data: {
-
-                qualification: $('#checkQualification').val(),
-
-                age: $('#userAge').val(),
-
-                category: $('#checkCategory').val(),
-
-                job_id: $('#jobId').val(),
-
-                _token: $('meta[name=csrf-token]').attr('content')
-
-            },
-
-            success: function(res) {
-
-                $('#step4').html(res.html);
-
-            }
 
         });
     </script>

@@ -200,3 +200,8 @@ Route::get('/job/{slug}', [JobController::class, 'jobDetails'])
     ->name('jobs.show');
 
 Route::get('/admin/check-sitemap-errors', [JobController::class, 'checkSitemapErrors']);
+
+Route::post(
+    '/check-eligibility',
+    [JobController::class, 'checkEligibility']
+)->name('check.eligibility');
