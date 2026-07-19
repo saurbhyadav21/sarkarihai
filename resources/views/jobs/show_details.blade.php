@@ -3975,6 +3975,94 @@
                     background: #dbeafe;
                     color: #2563eb;
                 }
+                .related-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.related-item{
+    display:grid;
+    grid-template-columns: 1.8fr 130px 90px 130px 40px;
+    align-items:center;
+    gap:15px;
+    padding:14px 16px;
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    text-decoration:none;
+    transition:.25s;
+}
+
+.related-item:hover{
+    background:#f8fafc;
+    border-color:#2563eb;
+    transform:translateX(3px);
+}
+
+.related-title{
+    font-weight:700;
+    color:#111827;
+    font-size:15px;
+}
+
+.related-state,
+.related-vacancy{
+    font-size:14px;
+    color:#4b5563;
+}
+
+.related-arrow{
+    text-align:right;
+    font-size:22px;
+    color:#2563eb;
+    font-weight:bold;
+}
+
+.job-status{
+    text-align:center;
+    font-size:12px;
+    font-weight:700;
+    padding:5px 10px;
+    border-radius:20px;
+}
+
+.status-active{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.status-soon{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.status-closed{
+    background:#e5e7eb;
+    color:#4b5563;
+}
+
+.status-upcoming{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+@media(max-width:768px){
+
+.related-item{
+    grid-template-columns:1fr;
+    gap:8px;
+}
+
+.related-arrow{
+    display:none;
+}
+
+.job-status{
+    width:fit-content;
+}
+
+}
             </style>
             @php
 
