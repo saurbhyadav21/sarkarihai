@@ -305,18 +305,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                                            background:#fff;
-                                                                                                                                                                                                                                            border-radius:15px;
-                                                                                                                                                                                                                                            box-shadow:
-                                                                                                                                                                                                                                            0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                                            padding:30px;
-                                                                                                                                                                                                                                            border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                                            display:grid;
-                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                background:#fff;
+                                                                                                                                                                                                                                                border-radius:15px;
+                                                                                                                                                                                                                                                box-shadow:
+                                                                                                                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                                padding:30px;
+                                                                                                                                                                                                                                                border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                                display:grid;
+                                                                                                                                                                                                                                                }
 
-                                                                                                                                                                                                                                            .summary-item{
-                                                                                                                                                                                                                                            text-align:center;
-                                                                                                                                                                                                                                            } */
+                                                                                                                                                                                                                                                .summary-item{
+                                                                                                                                                                                                                                                text-align:center;
+                                                                                                                                                                                                                                                } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1193,11 +1193,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                                            display: grid;
-                                                                                                                                                                                                   grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                                            gap: 20px;
-                                                                                                                                                                                                            margin-top: 20px;
-                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                display: grid;
+                                                                                                                                                                                                       grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                                gap: 20px;
+                                                                                                                                                                                                                margin-top: 20px;
+                                                                                                                                                                                                            } */
 
         .highlight-box {
             background: #fff;
@@ -1899,11 +1899,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                                                display: grid;
-                                                                                                                                                                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                                                gap: 16px;
-                                                                                                                                                                margin-top: 20px;
-                                                                                                                                                            } */
+                                                                                                                                                                    display: grid;
+                                                                                                                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                                    gap: 16px;
+                                                                                                                                                                    margin-top: 20px;
+                                                                                                                                                                } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2156,8 +2156,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                                                  Selection Process
-                                                                                                =========================*/
+                                                                                                      Selection Process
+                                                                                                    =========================*/
 
                 .selection-grid {
 
@@ -3771,9 +3771,6 @@
 
             @endphp
             <div class="content-card" id="faq">
-                {{-- <h2 style="color: #000">
-                    Frequently Asked Questions
-                </h2> --}}
                 @if (count($faqList))
                     <div class="content-card" id="faq">
 
@@ -3799,7 +3796,90 @@
 
 
             <!-- RELATED JOBS -->
+            <style>
+                .related-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                    gap: 15px;
+                }
 
+                .related-card {
+                    border: 1px solid #e5e7eb;
+                    border-radius: 12px;
+                    background: #fff;
+                    overflow: hidden;
+                    transition: .25s;
+                    position: relative;
+                }
+
+                .related-card:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+                    border-color: #2563eb;
+                }
+
+                .related-top {
+                    padding: 15px 18px;
+                }
+
+                .related-title {
+                    font-size: 17px;
+                    font-weight: 700;
+                    line-height: 1.5;
+                    margin-bottom: 12px;
+                }
+
+                .related-meta {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                }
+
+                .related-tag {
+                    background: #f3f4f6;
+                    padding: 6px 10px;
+                    border-radius: 30px;
+                    font-size: 13px;
+                    color: #444;
+                }
+
+                .related-footer {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-top: 1px solid #eee;
+                    padding: 12px 18px;
+                    background: #fafafa;
+                }
+
+                .related-btn {
+                    background: #2563eb;
+                    color: #fff;
+                    padding: 8px 15px;
+                    border-radius: 8px;
+                    text-decoration: none;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+
+                .related-btn:hover {
+                    background: #1d4ed8;
+                    color: #fff;
+                }
+
+                .related-date {
+                    font-size: 13px;
+                    color: #666;
+                }
+
+                @media(max-width:768px) {
+
+                    .related-grid {
+                        grid-template-columns: 1fr;
+                    }
+
+                }
+            </style>
             <div class="content-card">
 
                 <h2 style="color: #000">
