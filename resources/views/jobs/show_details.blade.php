@@ -3914,15 +3914,9 @@
 
                         @foreach ($relatedJobs as $item)
                             <div class="related-card">
-
-                                <div class="related-top">
-
-                                    <div class="related-title">
-
-                                        {{ $item->title }}
-                                        @if ($item->end_date && strtotime($item->end_date) >= time())
-                                            <span
-                                                style="
+                                @if ($item->end_date && strtotime($item->end_date) >= time())
+                                    <span
+                                        style="
 position:absolute;
 top:12px;
 right:12px;
@@ -3932,11 +3926,11 @@ padding:4px 10px;
 font-size:11px;
 border-radius:20px;
 font-weight:600;">
-                                                ACTIVE
-                                            </span>
-                                        @else
-                                            <span
-                                                style="
+                                        ACTIVE
+                                    </span>
+                                @else
+                                    <span
+                                        style="
 position:absolute;
 top:12px;
 right:12px;
@@ -3946,9 +3940,15 @@ padding:4px 10px;
 font-size:11px;
 border-radius:20px;
 font-weight:600;">
-                                                CLOSED
-                                            </span>
-                                        @endif
+                                        CLOSED
+                                    </span>
+                                @endif
+                                <div class="related-top">
+
+                                    <div class="related-title">
+
+                                        {{ $item->title }}
+
                                     </div>
 
                                     <div class="related-meta">
