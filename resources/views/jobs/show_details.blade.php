@@ -305,18 +305,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                                                                            background:#fff;
-                                                                                                                                                                                                                                                                            border-radius:15px;
-                                                                                                                                                                                                                                                                            box-shadow:
-                                                                                                                                                                                                                                                                            0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                                                                            padding:30px;
-                                                                                                                                                                                                                                                                            border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                                                                            display:grid;
-                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                background:#fff;
+                                                                                                                                                                                                                                                                                border-radius:15px;
+                                                                                                                                                                                                                                                                                box-shadow:
+                                                                                                                                                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                                                                padding:30px;
+                                                                                                                                                                                                                                                                                border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                                                                display:grid;
+                                                                                                                                                                                                                                                                                }
 
-                                                                                                                                                                                                                                                                            .summary-item{
-                                                                                                                                                                                                                                                                            text-align:center;
-                                                                                                                                                                                                                                                                            } */
+                                                                                                                                                                                                                                                                                .summary-item{
+                                                                                                                                                                                                                                                                                text-align:center;
+                                                                                                                                                                                                                                                                                } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1193,11 +1193,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                                                                            display: grid;
-                                                                                                                                                                                                                                   grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                                                                            gap: 20px;
-                                                                                                                                                                                                                                            margin-top: 20px;
-                                                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                                                display: grid;
+                                                                                                                                                                                                                                       grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                                                                gap: 20px;
+                                                                                                                                                                                                                                                margin-top: 20px;
+                                                                                                                                                                                                                                            } */
 
         .highlight-box {
             background: #fff;
@@ -1899,11 +1899,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                                                                                display: grid;
-                                                                                                                                                                                                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                                                                                gap: 16px;
-                                                                                                                                                                                                margin-top: 20px;
-                                                                                                                                                                                            } */
+                                                                                                                                                                                                    display: grid;
+                                                                                                                                                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                                                                    gap: 16px;
+                                                                                                                                                                                                    margin-top: 20px;
+                                                                                                                                                                                                } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2156,8 +2156,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                                                                                  Selection Process
-                                                                                                                                =========================*/
+                                                                                                                                      Selection Process
+                                                                                                                                    =========================*/
 
                 .selection-grid {
 
@@ -3947,34 +3947,34 @@
                 }
 
 
-                .job-status{
-    display:inline-block;
-    padding:5px 12px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:700;
-    margin-bottom:12px;
-}
+                .job-status {
+                    display: inline-block;
+                    padding: 5px 12px;
+                    border-radius: 20px;
+                    font-size: 12px;
+                    font-weight: 700;
+                    margin-bottom: 12px;
+                }
 
-.status-active{
-    background:#dcfce7;
-    color:#15803d;
-}
+                .status-active {
+                    background: #dcfce7;
+                    color: #15803d;
+                }
 
-.status-soon{
-    background:#fef3c7;
-    color:#b45309;
-}
+                .status-soon {
+                    background: #fef3c7;
+                    color: #b45309;
+                }
 
-.status-closed{
-    background:#fee2e2;
-    color:#dc2626;
-}
+                .status-closed {
+                    background: #fee2e2;
+                    color: #dc2626;
+                }
 
-.status-upcoming{
-    background:#dbeafe;
-    color:#2563eb;
-}
+                .status-upcoming {
+                    background: #dbeafe;
+                    color: #2563eb;
+                }
             </style>
             @php
 
@@ -4102,37 +4102,33 @@
                         @forelse($relatedJobs as $item)
                             <div class="job-box">
                                 @php
+                                    echo $item->end_date;
+                                    $status = '🔵 Upcoming';
+                                    $statusClass = 'status-upcoming';
 
-$status = '🔵 Upcoming';
-$statusClass = 'status-upcoming';
+                                    if (
+                                        !empty($item->end_date) &&
+                                        strtotime($item->end_date) !== false &&
+                                        strtolower(trim($item->end_date)) != 'tba'
+                                    ) {
+                                        $today = strtotime(date('Y-m-d'));
+                                        $lastDate = strtotime($item->end_date);
 
-if (!empty($item->end_date) &&
-    strtotime($item->end_date) !== false &&
-    strtolower(trim($item->end_date)) != 'tba') {
+                                        $daysLeft = ceil(($lastDate - $today) / 86400);
 
-    $today = strtotime(date('Y-m-d'));
-    $lastDate = strtotime($item->end_date);
+                                        if ($daysLeft < 0) {
+                                            $status = '⚫ Closed';
+                                            $statusClass = 'status-closed';
+                                        } elseif ($daysLeft <= 7) {
+                                            $status = '🟠 Closing Soon';
+                                            $statusClass = 'status-soon';
+                                        } else {
+                                            $status = '🟢 Active';
+                                            $statusClass = 'status-active';
+                                        }
+                                    }
 
-    $daysLeft = ceil(($lastDate - $today) / 86400);
-
-    if ($daysLeft < 0) {
-
-        $status = '⚫ Closed';
-        $statusClass = 'status-closed';
-
-    } elseif ($daysLeft <= 7) {
-
-        $status = '🟠 Closing Soon';
-        $statusClass = 'status-soon';
-
-    } else {
-
-        $status = '🟢 Active';
-        $statusClass = 'status-active';
-    }
-}
-
-@endphp
+                                @endphp
 
                                 <span class="job-status {{ $statusClass }}">
                                     {{ $status }}
