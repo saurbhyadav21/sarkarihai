@@ -16,11 +16,14 @@ Schedule::command('jobs:process-one')
     ->everyTenMinutes();
 
 Schedule::command('jobs:generate-slug')
-            ->everyMinute();
+    ->everyMinute();
 
 
 Schedule::command('jobs:detect-category')
-        ->everyMinute();
+    ->everyMinute();
+
+
+Schedule::command('faq:generate-ids')->everyMinute();
 
 Schedule::call(function () {
 
@@ -28,8 +31,4 @@ Schedule::call(function () {
         storage_path('cron_test.txt'),
         now() . " : Cron Working\n"
     );
-
 })->everyMinute();
-
-
-
