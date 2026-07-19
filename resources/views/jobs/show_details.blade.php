@@ -305,18 +305,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                                                                    background:#fff;
-                                                                                                                                                                                                                                                                    border-radius:15px;
-                                                                                                                                                                                                                                                                    box-shadow:
-                                                                                                                                                                                                                                                                    0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                                                                    padding:30px;
-                                                                                                                                                                                                                                                                    border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                                                                    display:grid;
-                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                            background:#fff;
+                                                                                                                                                                                                                                                                            border-radius:15px;
+                                                                                                                                                                                                                                                                            box-shadow:
+                                                                                                                                                                                                                                                                            0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                                                            padding:30px;
+                                                                                                                                                                                                                                                                            border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                                                            display:grid;
+                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                                    .summary-item{
-                                                                                                                                                                                                                                                                    text-align:center;
-                                                                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                                                            .summary-item{
+                                                                                                                                                                                                                                                                            text-align:center;
+                                                                                                                                                                                                                                                                            } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1193,11 +1193,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                                                                    display: grid;
-                                                                                                                                                                                                                           grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                                                                    gap: 20px;
-                                                                                                                                                                                                                                    margin-top: 20px;
-                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                            display: grid;
+                                                                                                                                                                                                                                   grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                                                            gap: 20px;
+                                                                                                                                                                                                                                            margin-top: 20px;
+                                                                                                                                                                                                                                        } */
 
         .highlight-box {
             background: #fff;
@@ -1899,11 +1899,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                                                                        display: grid;
-                                                                                                                                                                                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                                                                        gap: 16px;
-                                                                                                                                                                                        margin-top: 20px;
-                                                                                                                                                                                    } */
+                                                                                                                                                                                                display: grid;
+                                                                                                                                                                                                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                                                                gap: 16px;
+                                                                                                                                                                                                margin-top: 20px;
+                                                                                                                                                                                            } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2156,8 +2156,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                                                                          Selection Process
-                                                                                                                        =========================*/
+                                                                                                                                  Selection Process
+                                                                                                                                =========================*/
 
                 .selection-grid {
 
@@ -3945,6 +3945,36 @@
                     }
 
                 }
+
+
+                .job-status{
+    display:inline-block;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.status-active{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.status-soon{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.status-closed{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.status-upcoming{
+    background:#dbeafe;
+    color:#2563eb;
+}
             </style>
             @php
 
@@ -4045,71 +4075,91 @@
 
             @endphp
 
-@php
+            @php
 
-$relatedJobs = DB::table('job_details')
+                $relatedJobs = DB::table('job_details')
 
-    ->where('id', '!=', $job->id)
+                    ->where('id', '!=', $job->id)
 
-    ->where(function ($q) use ($job) {
+                    ->where(function ($q) use ($job) {
+                        $q->where('category', $job->category)->orWhere('state', $job->state);
+                    })
 
-        $q->where('category', $job->category)
+                    ->orderByDesc('info_date')
 
-          ->orWhere('state', $job->state);
+                    ->limit(6)
 
-    })
+                    ->get();
 
-    ->orderByDesc('info_date')
-
-    ->limit(6)
-
-    ->get();
-
-@endphp
+            @endphp
             @if ($relatedJobs->count())
                 <div class="content-card">
 
-    <h2>Related Jobs</h2>
+                    <h2>Related Jobs</h2>
 
-    <div class="related-jobs">
+                    <div class="related-jobs">
 
-        @forelse($relatedJobs as $item)
+                        @forelse($relatedJobs as $item)
+                            <div class="job-box">
+                                @php
+                                    $status = '';
+                                    $statusClass = '';
 
-            <div class="job-box">
+                                    if (!empty($item->end_date) && strtotime($item->end_date) !== false) {
+                                        $daysLeft = floor((strtotime($item->end_date) - time()) / 86400);
 
-                <h3>
-                    {{ $item->title }}
-                </h3>
+                                        if ($daysLeft < 0) {
+                                            $status = '🔴 Closed';
+                                            $statusClass = 'status-closed';
+                                        } elseif ($daysLeft <= 7) {
+                                            $status = '🟠 Closing Soon';
+                                            $statusClass = 'status-soon';
+                                        } else {
+                                            $status = '🟢 Active';
+                                            $statusClass = 'status-active';
+                                        }
+                                    } else {
+                                        $status = '🔵 Upcoming';
+                                        $statusClass = 'status-upcoming';
+                                    }
+                                @endphp
 
-                <p>
-                    📍 {{ $item->state }}
-                </p>
+                                <span class="job-status {{ $statusClass }}">
+                                    {{ $status }}
+                                </span>
+                                <h3>
+                                    {{ $item->title }}
+                                </h3>
 
-                <p>
-                    @if(is_numeric($item->total_vacancies))
-    👥 {{ number_format((int)$item->total_vacancies) }} Vacancies
-@elseif(!empty($item->total_vacancies))
-    👥 {{ $item->total_vacancies }}
-@else
-    👥 Not Mentioned
-@endif
-                </p>
+                                <p>
+                                    📍 {{ $item->state }}
+                                </p>
 
-                <a href="{{ url('sarkari-naukri/'.$item->state.'/'.$item->category.'/'.$item->slug) }}">
-                    View Details →
-                </a>
+                                <p>
+                                    @if (is_numeric($item->total_vacancies))
+                                        👥 {{ number_format((int) $item->total_vacancies) }} Vacancies
+                                    @elseif(!empty($item->total_vacancies))
+                                        👥 {{ $item->total_vacancies }}
+                                    @else
+                                        👥 Not Mentioned
+                                    @endif
+                                </p>
 
-            </div>
+                                <a
+                                    href="{{ url('sarkari-naukri/' . $item->state . '/' . $item->category . '/' . $item->slug) }}">
+                                    View Details →
+                                </a>
 
-        @empty
+                            </div>
 
-            <p>No related jobs found.</p>
+                        @empty
 
-        @endforelse
+                            <p>No related jobs found.</p>
+                        @endforelse
 
-    </div>
+                    </div>
 
-</div>
+                </div>
             @endif
 
             <!-- STICKY APPLY BUTTON -->
