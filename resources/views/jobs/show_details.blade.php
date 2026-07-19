@@ -3771,25 +3771,13 @@
 
             @endphp
             <div class="content-card" id="faq">
-
-                <h2 style="color: #000">
+                {{-- <h2 style="color: #000">
                     Frequently Asked Questions
-                </h2>
-
-                {{-- <details class="faq-box">
-                    <summary>
-                        What is the last date to apply?
-                    </summary>
-                    <p>
-                        The last date to submit the online application is
-                        15 July 2026.
-                    </p>
-                </details> --}}
-
+                </h2> --}}
                 @if (count($faqList))
                     <div class="content-card" id="faq">
 
-                        <h2>Frequently Asked Questions</h2>
+                        <h2 style="color: #000">Frequently Asked Questions</h2>
 
                         @foreach ($faqList as $faq)
                             <details class="faq-box">
