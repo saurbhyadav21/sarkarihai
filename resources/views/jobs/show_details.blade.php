@@ -4102,27 +4102,37 @@
                         @forelse($relatedJobs as $item)
                             <div class="job-box">
                                 @php
-                                    $status = '';
-                                    $statusClass = '';
 
-                                    if (!empty($item->end_date) && strtotime($item->end_date) !== false) {
-                                        $daysLeft = floor((strtotime($item->end_date) - time()) / 86400);
+$status = '🔵 Upcoming';
+$statusClass = 'status-upcoming';
 
-                                        if ($daysLeft < 0) {
-                                            $status = '🔴 Closed';
-                                            $statusClass = 'status-closed';
-                                        } elseif ($daysLeft <= 7) {
-                                            $status = '🟠 Closing Soon';
-                                            $statusClass = 'status-soon';
-                                        } else {
-                                            $status = '🟢 Active';
-                                            $statusClass = 'status-active';
-                                        }
-                                    } else {
-                                        $status = '🔵 Upcoming';
-                                        $statusClass = 'status-upcoming';
-                                    }
-                                @endphp
+if (!empty($item->end_date) &&
+    strtotime($item->end_date) !== false &&
+    strtolower(trim($item->end_date)) != 'tba') {
+
+    $today = strtotime(date('Y-m-d'));
+    $lastDate = strtotime($item->end_date);
+
+    $daysLeft = ceil(($lastDate - $today) / 86400);
+
+    if ($daysLeft < 0) {
+
+        $status = '⚫ Closed';
+        $statusClass = 'status-closed';
+
+    } elseif ($daysLeft <= 7) {
+
+        $status = '🟠 Closing Soon';
+        $statusClass = 'status-soon';
+
+    } else {
+
+        $status = '🟢 Active';
+        $statusClass = 'status-active';
+    }
+}
+
+@endphp
 
                                 <span class="job-status {{ $statusClass }}">
                                     {{ $status }}
