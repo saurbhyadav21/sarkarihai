@@ -3743,6 +3743,7 @@
                         '{website}' => $job->website,
                         '{salary}' => $job->min_salary ? '₹' . number_format($job->min_salary) : '',
                         '{qualification}' => $job->qualification,
+                        '{mode_selection}' => $job->mode_of_selection,
                     ];
 
                     foreach ($ids as $id) {
