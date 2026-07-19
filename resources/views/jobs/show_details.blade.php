@@ -305,18 +305,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                                                                                    background:#fff;
-                                                                                                                                                                                                                                                                                    border-radius:15px;
-                                                                                                                                                                                                                                                                                    box-shadow:
-                                                                                                                                                                                                                                                                                    0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                                                                                    padding:30px;
-                                                                                                                                                                                                                                                                                    border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                                                                                    display:grid;
-                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                        background:#fff;
+                                                                                                                                                                                                                                                                                        border-radius:15px;
+                                                                                                                                                                                                                                                                                        box-shadow:
+                                                                                                                                                                                                                                                                                        0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                                                                        padding:30px;
+                                                                                                                                                                                                                                                                                        border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                                                                        display:grid;
+                                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                                                    .summary-item{
-                                                                                                                                                                                                                                                                                    text-align:center;
-                                                                                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                                                                        .summary-item{
+                                                                                                                                                                                                                                                                                        text-align:center;
+                                                                                                                                                                                                                                                                                        } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1193,11 +1193,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                                                                                    display: grid;
-                                                                                                                                                                                                                                           grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                                                                                    gap: 20px;
-                                                                                                                                                                                                                                                    margin-top: 20px;
-                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                        display: grid;
+                                                                                                                                                                                                                                               grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                                                                        gap: 20px;
+                                                                                                                                                                                                                                                        margin-top: 20px;
+                                                                                                                                                                                                                                                    } */
 
         .highlight-box {
             background: #fff;
@@ -1899,11 +1899,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                                                                                        display: grid;
-                                                                                                                                                                                                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                                                                                        gap: 16px;
-                                                                                                                                                                                                        margin-top: 20px;
-                                                                                                                                                                                                    } */
+                                                                                                                                                                                                            display: grid;
+                                                                                                                                                                                                            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                                                                            gap: 16px;
+                                                                                                                                                                                                            margin-top: 20px;
+                                                                                                                                                                                                        } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2156,8 +2156,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                                                                                          Selection Process
-                                                                                                                                        =========================*/
+                                                                                                                                              Selection Process
+                                                                                                                                            =========================*/
 
                 .selection-grid {
 
@@ -3898,16 +3898,16 @@
 
                 /* .job-status {
 
-                    position: absolute;
-                    top: 12px;
-                    right: 12px;
-                    padding: 5px 10px;
-                    border-radius: 20px;
-                    color: #fff;
-                    font-size: 11px;
-                    font-weight: 700;
+                        position: absolute;
+                        top: 12px;
+                        right: 12px;
+                        padding: 5px 10px;
+                        border-radius: 20px;
+                        color: #fff;
+                        font-size: 11px;
+                        font-weight: 700;
 
-                } */
+                    } */
 
                 .job-status.active {
 
@@ -4097,69 +4097,66 @@
 
                     <h2>Related Jobs</h2>
 
-                    <div class="related-jobs">
+                    <div class="related-list">
 
-                        @forelse($relatedJobs as $item)
-                            <div class="job-box">
-                                @php
+                        @foreach ($relatedJobs as $item)
+                            @php
 
-                                    $status = '🔵 Upcoming';
-                                    $statusClass = 'status-upcoming';
+                                $status = 'Upcoming';
+                                $statusClass = 'status-upcoming';
 
-                                    if (!empty($item->end_date)) {
-                                        $today = strtotime(date('Y-m-d'));
-                                        $lastDate = strtotime(date('Y-m-d', strtotime($item->end_date)));
+                                if (!empty($item->end_date)) {
+                                    $today = strtotime(date('Y-m-d'));
+                                    $lastDate = strtotime(date('Y-m-d', strtotime($item->end_date)));
 
-                                        if ($lastDate < $today) {
-                                            $status = '⚫ Closed';
-                                            $statusClass = 'status-closed';
+                                    if ($lastDate < $today) {
+                                        $status = 'Closed';
+                                        $statusClass = 'status-closed';
+                                    } else {
+                                        $daysLeft = ceil(($lastDate - $today) / 86400);
+
+                                        if ($daysLeft <= 7) {
+                                            $status = 'Closing Soon';
+                                            $statusClass = 'status-soon';
                                         } else {
-                                            $daysLeft = ceil(($lastDate - $today) / 86400);
-
-                                            if ($daysLeft <= 7) {
-                                                $status = '🟠 Closing Soon';
-                                                $statusClass = 'status-soon';
-                                            } else {
-                                                $status = '🟢 Active';
-                                                $statusClass = 'status-active';
-                                            }
+                                            $status = 'Active';
+                                            $statusClass = 'status-active';
                                         }
                                     }
+                                }
 
-                                @endphp
+                            @endphp
 
-                                <span class="job-status {{ $statusClass }}">
-                                    {{ $status }}
-                                </span>
-                                <h3>
+                            <a class="related-item"
+                                href="{{ url('sarkari-naukri/' . $item->state . '/' . $item->category . '/' . $item->slug) }}">
+
+                                <div class="related-title">
                                     {{ $item->title }}
-                                </h3>
+                                </div>
 
-                                <p>
+                                <div class="related-state">
                                     📍 {{ $item->state }}
-                                </p>
+                                </div>
 
-                                <p>
+                                <div class="related-vacancy">
+                                    👥
                                     @if (is_numeric($item->total_vacancies))
-                                        👥 {{ number_format((int) $item->total_vacancies) }} Vacancies
-                                    @elseif(!empty($item->total_vacancies))
-                                        👥 {{ $item->total_vacancies }}
+                                        {{ number_format((int) $item->total_vacancies) }}
                                     @else
-                                        👥 Not Mentioned
+                                        N/A
                                     @endif
-                                </p>
+                                </div>
 
-                                <a
-                                    href="{{ url('sarkari-naukri/' . $item->state . '/' . $item->category . '/' . $item->slug) }}">
-                                    View Details →
-                                </a>
+                                <div class="job-status {{ $statusClass }}">
+                                    {{ $status }}
+                                </div>
 
-                            </div>
+                                <div class="related-arrow">
+                                    →
+                                </div>
 
-                        @empty
-
-                            <p>No related jobs found.</p>
-                        @endforelse
+                            </a>
+                        @endforeach
 
                     </div>
 
