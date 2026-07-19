@@ -4005,7 +4005,7 @@
             @if ($relatedJobs->count())
                 <div class="content-card">
 
-                    <h2>Related Jobs</h2>
+                    <h2 style="color: #000">Related Jobs</h2>
 
                     <div class="related-list">
 
