@@ -4086,7 +4086,13 @@ $relatedJobs = DB::table('job_details')
                 </p>
 
                 <p>
-                    👥 {{ number_format($item->total_vacancies ?? 0) }} Vacancies
+                    @if(is_numeric($item->total_vacancies))
+    👥 {{ number_format((int)$item->total_vacancies) }} Vacancies
+@elseif(!empty($item->total_vacancies))
+    👥 {{ $item->total_vacancies }}
+@else
+    👥 Not Mentioned
+@endif
                 </p>
 
                 <a href="{{ url('sarkari-naukri/'.$item->state.'/'.$item->category.'/'.$item->slug) }}">
