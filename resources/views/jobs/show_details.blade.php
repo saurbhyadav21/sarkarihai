@@ -305,18 +305,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                                    background:#fff;
-                                                                                                                                                                                                                                    border-radius:15px;
-                                                                                                                                                                                                                                    box-shadow:
-                                                                                                                                                                                                                                    0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                                    padding:30px;
-                                                                                                                                                                                                                                    border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                                    display:grid;
-                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                            background:#fff;
+                                                                                                                                                                                                                                            border-radius:15px;
+                                                                                                                                                                                                                                            box-shadow:
+                                                                                                                                                                                                                                            0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                            padding:30px;
+                                                                                                                                                                                                                                            border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                            display:grid;
+                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                    .summary-item{
-                                                                                                                                                                                                                                    text-align:center;
-                                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                            .summary-item{
+                                                                                                                                                                                                                                            text-align:center;
+                                                                                                                                                                                                                                            } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1193,11 +1193,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                                    display: grid;
-                                                                                                                                                                                           grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                                    gap: 20px;
-                                                                                                                                                                                                    margin-top: 20px;
-                                                                                                                                                                                                } */
+                                                                                                                                                                                                            display: grid;
+                                                                                                                                                                                                   grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                            gap: 20px;
+                                                                                                                                                                                                            margin-top: 20px;
+                                                                                                                                                                                                        } */
 
         .highlight-box {
             background: #fff;
@@ -1899,11 +1899,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                                        display: grid;
-                                                                                                                                                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                                        gap: 16px;
-                                                                                                                                                        margin-top: 20px;
-                                                                                                                                                    } */
+                                                                                                                                                                display: grid;
+                                                                                                                                                                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                                gap: 16px;
+                                                                                                                                                                margin-top: 20px;
+                                                                                                                                                            } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2156,8 +2156,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                                          Selection Process
-                                                                                        =========================*/
+                                                                                                  Selection Process
+                                                                                                =========================*/
 
                 .selection-grid {
 
@@ -3724,14 +3724,58 @@
 
 
             <!-- FAQ -->
+            @php
 
+                $faqList = [];
+
+                if (!empty($job->faq_question_numbering)) {
+                    $ids = array_map('intval', explode(',', $job->faq_question_numbering));
+
+                    $templates = DB::table('faq_templates')->whereIn('id', $ids)->get()->keyBy('id');
+
+                    $replace = [
+                        '{title}' => $job->title,
+                        '{vacancy}' => number_format($job->total_vacancies),
+                        '{last_date}' => $job->end_date,
+                        '{start_date}' => $job->start_date,
+                        '{min_age}' => $job->min_age,
+                        '{max_age}' => $job->max_age_genral,
+                        '{website}' => $job->website,
+                        '{salary}' => $job->min_salary ? '₹' . number_format($job->min_salary) : '',
+                        '{qualification}' => $job->qualification,
+                    ];
+
+                    foreach ($ids as $id) {
+                        if (!isset($templates[$id])) {
+                            continue;
+                        }
+
+                        $faq = $templates[$id];
+
+                        $faqList[] = [
+                            'question' => str_replace(
+                                array_keys($replace),
+                                array_values($replace),
+                                $faq->question_template,
+                            ),
+
+                            'answer' => str_replace(
+                                array_keys($replace),
+                                array_values($replace),
+                                $faq->answer_template,
+                            ),
+                        ];
+                    }
+                }
+
+            @endphp
             <div class="content-card" id="faq">
 
                 <h2 style="color: #000">
                     Frequently Asked Questions
                 </h2>
 
-                <details class="faq-box">
+                {{-- <details class="faq-box">
                     <summary>
                         What is the last date to apply?
                     </summary>
@@ -3739,40 +3783,27 @@
                         The last date to submit the online application is
                         15 July 2026.
                     </p>
-                </details>
+                </details> --}}
+
+                @if (count($faqList))
+                    <div class="content-card" id="faq">
+
+                        <h2>Frequently Asked Questions</h2>
+
+                        @foreach ($faqList as $faq)
+                            <details class="faq-box">
+
+                                <summary>{{ $faq['question'] }}</summary>
+
+                                <p>{{ $faq['answer'] }}</p>
+
+                            </details>
+                        @endforeach
+
+                    </div>
+                @endif
 
 
-                <details class="faq-box">
-                    <summary>
-                        What is the age limit?
-                    </summary>
-                    <p>
-                        Candidates must be between
-                        18 to 27 years.
-                    </p>
-                </details>
-
-
-                <details class="faq-box">
-                    <summary>
-                        What is the qualification?
-                    </summary>
-                    <p>
-                        Candidates should possess
-                        a Graduate Degree.
-                    </p>
-                </details>
-
-
-                <details class="faq-box">
-                    <summary>
-                        How many vacancies are available?
-                    </summary>
-                    <p>
-                        There are total
-                        500 vacancies.
-                    </p>
-                </details>
 
             </div>
 
@@ -3878,7 +3909,7 @@
 
             <div class="content-card">
 
-                <h2 style="color: #000" >
+                <h2 style="color: #000">
                     Important Disclaimer
                 </h2>
 
