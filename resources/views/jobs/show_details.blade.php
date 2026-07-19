@@ -4045,97 +4045,65 @@
 
             @endphp
 
+@php
 
+$relatedJobs = DB::table('job_details')
+
+    ->where('id', '!=', $job->id)
+
+    ->where(function ($q) use ($job) {
+
+        $q->where('category', $job->category)
+
+          ->orWhere('state', $job->state);
+
+    })
+
+    ->orderByDesc('info_date')
+
+    ->limit(6)
+
+    ->get();
+
+@endphp
             @if ($relatedJobs->count())
                 <div class="content-card">
 
-                    <h2>🔥 Related Jobs</h2>
+    <h2>Related Jobs</h2>
 
-                    <div class="related-grid">
+    <div class="related-jobs">
 
-                        @foreach ($relatedJobs as $item)
-                            @php
+        @forelse($relatedJobs as $item)
 
-                                $closingSoon = false;
+            <div class="job-box">
 
-                                if (!empty($item->end_date)) {
-                                    $days = \Carbon\Carbon::today()->diffInDays(
-                                        \Carbon\Carbon::parse($item->end_date),
-                                        false,
-                                    );
+                <h3>
+                    {{ $item->title }}
+                </h3>
 
-                                    $closingSoon = $days <= 3;
-                                }
+                <p>
+                    📍 {{ $item->state }}
+                </p>
 
-                            @endphp
+                <p>
+                    👥 {{ number_format($item->total_vacancies ?? 0) }} Vacancies
+                </p>
 
-                            <div class="related-card">
+                <a href="{{ url('sarkari-naukri/'.$item->state.'/'.$item->category.'/'.$item->slug) }}">
+                    View Details →
+                </a>
 
-                                @if ($closingSoon)
-                                    <span class="job-status closing">
-                                        ⏰ Closing Soon
-                                    </span>
-                                @else
-                                    <span class="job-status active">
-                                        🟢 Active
-                                    </span>
-                                @endif
+            </div>
 
+        @empty
 
-                                <div class="related-top">
+            <p>No related jobs found.</p>
 
-                                    <div class="related-title">
+        @endforelse
 
-                                        {{ $item->title }}
+    </div>
 
-                                    </div>
-
-                                    <div class="related-meta">
-
-                                        <span class="related-tag">
-                                            📍 {{ $item->state }}
-                                        </span>
-
-                                        <span class="related-tag">
-                                            🏢 {{ ucfirst($item->category) }}
-                                        </span>
-
-                                        @if ($item->total_vacancies)
-                                            <span class="related-tag">
-                                                👥 {{ number_format($item->total_vacancies) }} Posts
-                                            </span>
-                                        @endif
-
-                                    </div>
-
-                                </div>
-
-                                <div class="related-footer">
-
-                                    <span class="related-date">
-
-                                        @if ($item->end_date)
-                                            📅 Last Date :
-                                            {{ \Carbon\Carbon::parse($item->end_date)->format('d M Y') }}
-                                        @endif
-
-                                    </span>
-
-                                    <a class="related-btn"
-                                        href="{{ url('sarkari-naukri/' . $item->state . '/' . $item->category . '/' . $item->slug) }}">
-
-                                        View Details →
-
-                                    </a>
-
-                                </div>
-
-                            </div>
-                        @endforeach
-
-                    </div>
-
-                </div>
+</div>
             @endif
 
             <!-- STICKY APPLY BUTTON -->
