@@ -3896,7 +3896,7 @@
 
                 }
 
-                .job-status {
+                /* .job-status {
 
                     position: absolute;
                     top: 12px;
@@ -3907,7 +3907,7 @@
                     font-size: 11px;
                     font-weight: 700;
 
-                }
+                } */
 
                 .job-status.active {
 
