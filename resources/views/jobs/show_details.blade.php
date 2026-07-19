@@ -305,18 +305,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                                                                                background:#fff;
-                                                                                                                                                                                                                                                                                border-radius:15px;
-                                                                                                                                                                                                                                                                                box-shadow:
-                                                                                                                                                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                                                                                padding:30px;
-                                                                                                                                                                                                                                                                                border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                                                                                display:grid;
-                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                    background:#fff;
+                                                                                                                                                                                                                                                                                    border-radius:15px;
+                                                                                                                                                                                                                                                                                    box-shadow:
+                                                                                                                                                                                                                                                                                    0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                                                                    padding:30px;
+                                                                                                                                                                                                                                                                                    border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                                                                    display:grid;
+                                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                                                .summary-item{
-                                                                                                                                                                                                                                                                                text-align:center;
-                                                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                                    .summary-item{
+                                                                                                                                                                                                                                                                                    text-align:center;
+                                                                                                                                                                                                                                                                                    } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1193,11 +1193,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                                                                                display: grid;
-                                                                                                                                                                                                                                       grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                                                                                gap: 20px;
-                                                                                                                                                                                                                                                margin-top: 20px;
-                                                                                                                                                                                                                                            } */
+                                                                                                                                                                                                                                                    display: grid;
+                                                                                                                                                                                                                                           grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                                                                    gap: 20px;
+                                                                                                                                                                                                                                                    margin-top: 20px;
+                                                                                                                                                                                                                                                } */
 
         .highlight-box {
             background: #fff;
@@ -1899,11 +1899,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                                                                                    display: grid;
-                                                                                                                                                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                                                                                    gap: 16px;
-                                                                                                                                                                                                    margin-top: 20px;
-                                                                                                                                                                                                } */
+                                                                                                                                                                                                        display: grid;
+                                                                                                                                                                                                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                                                                        gap: 16px;
+                                                                                                                                                                                                        margin-top: 20px;
+                                                                                                                                                                                                    } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2156,8 +2156,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                                                                                      Selection Process
-                                                                                                                                    =========================*/
+                                                                                                                                          Selection Process
+                                                                                                                                        =========================*/
 
                 .selection-grid {
 
@@ -4102,29 +4102,27 @@
                         @forelse($relatedJobs as $item)
                             <div class="job-box">
                                 @php
-                                    echo $item->end_date;
+
                                     $status = '🔵 Upcoming';
                                     $statusClass = 'status-upcoming';
 
-                                    if (
-                                        !empty($item->end_date) &&
-                                        strtotime($item->end_date) !== false &&
-                                        strtolower(trim($item->end_date)) != 'tba'
-                                    ) {
+                                    if (!empty($item->end_date)) {
                                         $today = strtotime(date('Y-m-d'));
-                                        $lastDate = strtotime($item->end_date);
+                                        $lastDate = strtotime(date('Y-m-d', strtotime($item->end_date)));
 
-                                        $daysLeft = ceil(($lastDate - $today) / 86400);
-
-                                        if ($daysLeft < 0) {
+                                        if ($lastDate < $today) {
                                             $status = '⚫ Closed';
                                             $statusClass = 'status-closed';
-                                        } elseif ($daysLeft <= 7) {
-                                            $status = '🟠 Closing Soon';
-                                            $statusClass = 'status-soon';
                                         } else {
-                                            $status = '🟢 Active';
-                                            $statusClass = 'status-active';
+                                            $daysLeft = ceil(($lastDate - $today) / 86400);
+
+                                            if ($daysLeft <= 7) {
+                                                $status = '🟠 Closing Soon';
+                                                $statusClass = 'status-soon';
+                                            } else {
+                                                $status = '🟢 Active';
+                                                $statusClass = 'status-active';
+                                            }
                                         }
                                     }
 
