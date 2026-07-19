@@ -305,18 +305,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                                                                background:#fff;
-                                                                                                                                                                                                                                                                border-radius:15px;
-                                                                                                                                                                                                                                                                box-shadow:
-                                                                                                                                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                                                                padding:30px;
-                                                                                                                                                                                                                                                                border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                                                                display:grid;
-                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                    background:#fff;
+                                                                                                                                                                                                                                                                    border-radius:15px;
+                                                                                                                                                                                                                                                                    box-shadow:
+                                                                                                                                                                                                                                                                    0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                                                    padding:30px;
+                                                                                                                                                                                                                                                                    border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                                                    display:grid;
+                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                                .summary-item{
-                                                                                                                                                                                                                                                                text-align:center;
-                                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                    .summary-item{
+                                                                                                                                                                                                                                                                    text-align:center;
+                                                                                                                                                                                                                                                                    } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1193,11 +1193,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                                                                display: grid;
-                                                                                                                                                                                                                       grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                                                                gap: 20px;
-                                                                                                                                                                                                                                margin-top: 20px;
-                                                                                                                                                                                                                            } */
+                                                                                                                                                                                                                                    display: grid;
+                                                                                                                                                                                                                           grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                                                    gap: 20px;
+                                                                                                                                                                                                                                    margin-top: 20px;
+                                                                                                                                                                                                                                } */
 
         .highlight-box {
             background: #fff;
@@ -1899,11 +1899,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                                                                    display: grid;
-                                                                                                                                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                                                                    gap: 16px;
-                                                                                                                                                                                    margin-top: 20px;
-                                                                                                                                                                                } */
+                                                                                                                                                                                        display: grid;
+                                                                                                                                                                                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                                                        gap: 16px;
+                                                                                                                                                                                        margin-top: 20px;
+                                                                                                                                                                                    } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2156,8 +2156,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                                                                      Selection Process
-                                                                                                                    =========================*/
+                                                                                                                          Selection Process
+                                                                                                                        =========================*/
 
                 .selection-grid {
 
@@ -3948,23 +3948,21 @@
             </style>
             @php
 
-                $relatedJobs = DB::table('job_details')
+                $related = collect();
 
-                    ->where('id', '!=', $job->id)
+                $usedIds = [$job->id];
 
-                    // Sirf Active Jobs
+                // Same State + Same Category
+
+                $data = DB::table('job_details')
+
+                    ->where('state', $job->state)
+                    ->where('category', $job->category)
+
+                    ->whereNotIn('id', $usedIds)
+
                     ->where(function ($q) {
                         $q->whereNull('end_date')->orWhere('end_date', '>=', date('Y-m-d'));
-                    })
-
-                    ->where(function ($q) use ($job) {
-                        $q->where(function ($x) use ($job) {
-                            $x->where('state', $job->state)->where('category', $job->category);
-                        })
-
-                            ->orWhere('category', $job->category)
-
-                            ->orWhere('state', $job->state);
                     })
 
                     ->orderByDesc('id')
@@ -3972,6 +3970,78 @@
                     ->limit(6)
 
                     ->get();
+
+                $related = $related->merge($data);
+
+                $usedIds = array_merge($usedIds, $data->pluck('id')->toArray());
+
+                $remaining = 6 - $related->count();
+
+                if ($remaining > 0) {
+                    $data = DB::table('job_details')
+
+                        ->where('category', $job->category)
+
+                        ->whereNotIn('id', $usedIds)
+
+                        ->where(function ($q) {
+                            $q->whereNull('end_date')->orWhere('end_date', '>=', date('Y-m-d'));
+                        })
+
+                        ->orderByDesc('id')
+
+                        ->limit($remaining)
+
+                        ->get();
+
+                    $related = $related->merge($data);
+
+                    $usedIds = array_merge($usedIds, $data->pluck('id')->toArray());
+                }
+
+                $remaining = 6 - $related->count();
+
+                if ($remaining > 0) {
+                    $data = DB::table('job_details')
+
+                        ->where('state', $job->state)
+
+                        ->whereNotIn('id', $usedIds)
+
+                        ->where(function ($q) {
+                            $q->whereNull('end_date')->orWhere('end_date', '>=', date('Y-m-d'));
+                        })
+
+                        ->orderByDesc('id')
+
+                        ->limit($remaining)
+
+                        ->get();
+
+                    $related = $related->merge($data);
+
+                    $usedIds = array_merge($usedIds, $data->pluck('id')->toArray());
+                }
+
+                $remaining = 6 - $related->count();
+
+                if ($remaining > 0) {
+                    $data = DB::table('job_details')
+
+                        ->whereNotIn('id', $usedIds)
+
+                        ->where(function ($q) {
+                            $q->whereNull('end_date')->orWhere('end_date', '>=', date('Y-m-d'));
+                        })
+
+                        ->orderByDesc('id')
+
+                        ->limit($remaining)
+
+                        ->get();
+
+                    $related = $related->merge($data);
+                }
 
             @endphp
 
