@@ -4206,20 +4206,36 @@
 
             <div class="content-card">
 
-                <h2 style="color: #000">
-                    Important Disclaimer
-                </h2>
+    <h2 class="mb-3" style="color:#000;">
+        <i class="fa-solid fa-circle-info text-warning"></i>
+        Important Disclaimer
+    </h2>
 
-                <div class="notice-box">
+    <div class="alert alert-warning mb-0">
 
-                    We provide job information for educational purposes only.
-                    Candidates are advised to verify all details from the
-                    official notification before applying. We are not
-                    responsible for any changes made by the recruiting authority.
+        <p class="mb-2">
+            <strong>Disclaimer:</strong> SarkariHai is an independent educational and informational platform. We are <strong>not affiliated with any Government department, commission, ministry, or recruiting agency.</strong>
+        </p>
 
-                </div>
+        <ul class="mb-2 ps-3">
 
-            </div>
+            <li>✔ Job information is collected from official notifications and trusted public sources.</li>
+
+            <li>✔ Candidates should always verify eligibility, important dates, vacancies, fees, and other details from the official notification before applying.</li>
+
+            <li>✔ SarkariHai is not responsible for any changes, corrections, cancellations, or updates made by the recruiting authority.</li>
+
+            <li>✔ We do not charge any fee for job information or recruitment assistance.</li>
+
+        </ul>
+
+        <p class="mb-0">
+            <strong>📌 Always rely on the official notification for the final and most accurate information.</strong>
+        </p>
+
+    </div>
+
+</div>
 
 
 
