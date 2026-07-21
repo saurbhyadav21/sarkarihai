@@ -1716,8 +1716,8 @@ class JobController extends Controller
 
         $stateName = ucfirst($job->state ?? '');
         $author = DB::table('authors')
-    ->where('id',$job->author_id)
-    ->first();
+            ->where('id', $job->author_id)
+            ->first();
 
 
         return view('jobs.show_details', [
@@ -3299,6 +3299,26 @@ class JobController extends Controller
         ]);
     }
 
+    public function author($slug)
+    {
 
-    
+        $author = DB::table('authors')
+            ->where('slug', $slug)
+            ->first();
+
+        abort_if(!$author, 404);
+
+        $jobs = DB::table('job_details')
+            ->where('author_id', $author->id)
+            ->latest()
+            ->paginate(20);
+
+        return view(
+            'author.show',
+            compact(
+                'author',
+                'jobs'
+            )
+        );
+    }
 }
