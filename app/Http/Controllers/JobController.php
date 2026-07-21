@@ -1715,6 +1715,10 @@ class JobController extends Controller
         $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
 
         $stateName = ucfirst($job->state ?? '');
+        $author = DB::table('authors')
+    ->where('id',$job->author_id)
+    ->first();
+
 
         return view('jobs.show_details', [
 
@@ -1732,7 +1736,8 @@ class JobController extends Controller
             'robots' => $robots,
             'ogType' => $ogType,
             'ogImage' => $ogImage,
-            'stateName' => $stateName
+            'stateName' => $stateName,
+            'author' => $author
 
         ]);
     }
