@@ -4241,32 +4241,53 @@
 
             <!-- AUTHOR BOX -->
 
-            <div class="content-card">
+           <div class="content-card">
 
-                <div class="author-box">
+    <div class="author-box">
 
-                    <div class="author-image">
-                        SH
-                    </div>
+        <div class="author-image">
 
-                    <div class="author-content">
+            <i class="fa-solid fa-shield-check"></i>
 
-                        <h3 style="color: #000">
-                            Team SarkariHai
-                        </h3>
+        </div>
 
-                        <p>
-                            Verified Government Job Research Team with
-                            experience in analyzing recruitment notifications,
-                            eligibility criteria, vacancy details and application
-                            processes.
-                        </p>
+        <div class="author-content">
 
-                    </div>
+            <h3 class="mb-2" style="color:#000;">
+                Reviewed by Team SarkariHai
+            </h3>
 
-                </div>
+            <p class="mb-2">
+
+                Every job listing published on <strong>SarkariHai</strong> is carefully reviewed by our editorial team using official recruitment notifications and trusted government sources.
+
+            </p>
+
+            <div class="d-flex flex-wrap gap-2">
+
+                <span class="badge bg-success">
+                    ✔ Official Notification Verified
+                </span>
+
+                <span class="badge bg-primary">
+                    ✔ Eligibility Checked
+                </span>
+
+                <span class="badge bg-warning text-dark">
+                    ✔ Important Dates Verified
+                </span>
+
+                <span class="badge bg-info text-dark">
+                    ✔ Updated Regularly
+                </span>
 
             </div>
+
+        </div>
+
+    </div>
+
+</div>
 
         </div>
 
