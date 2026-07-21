@@ -4089,31 +4089,116 @@
 
             <div class="content-card">
 
-                <h2 style="color: #000">
-                    Share This Job
-                </h2>
+    <h2 class="mb-3" style="color:#000;">
+        <i class="fa-solid fa-share-nodes text-primary"></i>
+        Share This Job
+    </h2>
 
-                <div class="share-buttons">
+    <p class="text-muted mb-3">
+        Help your friends and family by sharing this government job before the last date.
+    </p>
 
-                    <a href="#" class="share-btn">
-                        WhatsApp
-                    </a>
+    @php
+        $shareUrl = urlencode(url()->current());
+        $shareTitle = urlencode($job->title);
+    @endphp
 
-                    <a href="#" class="share-btn">
-                        Telegram
-                    </a>
+    <div class="row g-2">
 
-                    <a href="#" class="share-btn">
-                        Facebook
-                    </a>
+        <div class="col-6">
 
-                    <a href="#" class="share-btn">
-                        Twitter
-                    </a>
+            <a href="https://wa.me/?text={{ $shareTitle }}%20{{ $shareUrl }}"
+                target="_blank"
+                class="btn btn-success w-100">
 
-                </div>
+                <i class="fab fa-whatsapp me-2"></i>
 
-            </div>
+                WhatsApp
+
+            </a>
+
+        </div>
+
+        <div class="col-6">
+
+            <a href="https://t.me/share/url?url={{ $shareUrl }}&text={{ $shareTitle }}"
+                target="_blank"
+                class="btn btn-primary w-100">
+
+                <i class="fab fa-telegram me-2"></i>
+
+                Telegram
+
+            </a>
+
+        </div>
+
+        <div class="col-6">
+
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $shareUrl }}"
+                target="_blank"
+                class="btn btn-primary w-100">
+
+                <i class="fab fa-facebook-f me-2"></i>
+
+                Facebook
+
+            </a>
+
+        </div>
+
+        <div class="col-6">
+
+            <a href="https://twitter.com/intent/tweet?url={{ $shareUrl }}&text={{ $shareTitle }}"
+                target="_blank"
+                class="btn btn-dark w-100">
+
+                <i class="fab fa-x-twitter me-2"></i>
+
+                X
+
+            </a>
+
+        </div>
+
+        <div class="col-6">
+
+            <a href="mailto:?subject={{ $shareTitle }}&body={{ $shareUrl }}"
+                class="btn btn-outline-secondary w-100">
+
+                <i class="fa-solid fa-envelope me-2"></i>
+
+                Email
+
+            </a>
+
+        </div>
+
+        <div class="col-6">
+
+            <button
+                class="btn btn-outline-primary w-100"
+                id="copyJobLink">
+
+                <i class="fa-solid fa-link me-2"></i>
+
+                Copy Link
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div
+        id="copySuccess"
+        class="alert alert-success mt-3 mb-0 d-none">
+
+        ✅ Job link copied successfully.
+
+    </div>
+
+</div>
 
 
 
@@ -4313,6 +4398,28 @@
 
 
         });
+
+
+        $(document).on('click', '#copyJobLink', function () {
+
+    navigator.clipboard.writeText(window.location.href);
+
+    $('#copySuccess')
+        .removeClass('d-none')
+        .hide()
+        .fadeIn();
+
+    setTimeout(function () {
+
+        $('#copySuccess').fadeOut(function () {
+
+            $(this).addClass('d-none');
+
+        });
+
+    }, 2500);
+
+});
     </script>
 
 
