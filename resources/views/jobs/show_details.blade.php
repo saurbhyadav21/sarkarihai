@@ -305,18 +305,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                                                                                        background:#fff;
-                                                                                                                                                                                                                                                                                        border-radius:15px;
-                                                                                                                                                                                                                                                                                        box-shadow:
-                                                                                                                                                                                                                                                                                        0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                                                                                        padding:30px;
-                                                                                                                                                                                                                                                                                        border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                                                                                        display:grid;
-                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                background:#fff;
+                                                                                                                                                                                                                                                                                                border-radius:15px;
+                                                                                                                                                                                                                                                                                                box-shadow:
+                                                                                                                                                                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                                                                                padding:30px;
+                                                                                                                                                                                                                                                                                                border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                                                                                display:grid;
+                                                                                                                                                                                                                                                                                                }
 
-                                                                                                                                                                                                                                                                                        .summary-item{
-                                                                                                                                                                                                                                                                                        text-align:center;
-                                                                                                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                                                                                                .summary-item{
+                                                                                                                                                                                                                                                                                                text-align:center;
+                                                                                                                                                                                                                                                                                                } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1193,11 +1193,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                                                                                        display: grid;
-                                                                                                                                                                                                                                               grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                                                                                        gap: 20px;
-                                                                                                                                                                                                                                                        margin-top: 20px;
-                                                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                                                display: grid;
+                                                                                                                                                                                                                                                       grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                                                                                gap: 20px;
+                                                                                                                                                                                                                                                                margin-top: 20px;
+                                                                                                                                                                                                                                                            } */
 
         .highlight-box {
             background: #fff;
@@ -1899,11 +1899,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                                                                                            display: grid;
-                                                                                                                                                                                                            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                                                                                            gap: 16px;
-                                                                                                                                                                                                            margin-top: 20px;
-                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                    display: grid;
+                                                                                                                                                                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                                                                                    gap: 16px;
+                                                                                                                                                                                                                    margin-top: 20px;
+                                                                                                                                                                                                                } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2156,8 +2156,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                                                                                              Selection Process
-                                                                                                                                            =========================*/
+                                                                                                                                                      Selection Process
+                                                                                                                                                    =========================*/
 
                 .selection-grid {
 
@@ -3797,94 +3797,94 @@
 
             <!-- RELATED JOBS -->
             <style>
-                .related-list{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
+                .related-list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
 
-.related-item{
-    display:grid;
-    grid-template-columns: 1.8fr 130px 90px 130px 40px;
-    align-items:center;
-    gap:15px;
-    padding:14px 16px;
-    background:#fff;
-    border:1px solid #e5e7eb;
-    border-radius:10px;
-    text-decoration:none;
-    transition:.25s;
-}
+                .related-item {
+                    display: grid;
+                    grid-template-columns: 1.8fr 130px 90px 130px 40px;
+                    align-items: center;
+                    gap: 15px;
+                    padding: 14px 16px;
+                    background: #fff;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    text-decoration: none;
+                    transition: .25s;
+                }
 
-.related-item:hover{
-    background:#f8fafc;
-    border-color:#2563eb;
-    transform:translateX(3px);
-}
+                .related-item:hover {
+                    background: #f8fafc;
+                    border-color: #2563eb;
+                    transform: translateX(3px);
+                }
 
-.related-title{
-    font-weight:700;
-    color:#111827;
-    font-size:15px;
-}
+                .related-title {
+                    font-weight: 700;
+                    color: #111827;
+                    font-size: 15px;
+                }
 
-.related-state,
-.related-vacancy{
-    font-size:14px;
-    color:#4b5563;
-}
+                .related-state,
+                .related-vacancy {
+                    font-size: 14px;
+                    color: #4b5563;
+                }
 
-.related-arrow{
-    text-align:right;
-    font-size:22px;
-    color:#2563eb;
-    font-weight:bold;
-}
+                .related-arrow {
+                    text-align: right;
+                    font-size: 22px;
+                    color: #2563eb;
+                    font-weight: bold;
+                }
 
-.job-status{
-    text-align:center;
-    font-size:12px;
-    font-weight:700;
-    padding:5px 10px;
-    border-radius:20px;
-}
+                .job-status {
+                    text-align: center;
+                    font-size: 12px;
+                    font-weight: 700;
+                    padding: 5px 10px;
+                    border-radius: 20px;
+                }
 
-.status-active{
-    background:#dcfce7;
-    color:#15803d;
-}
+                .status-active {
+                    background: #dcfce7;
+                    color: #15803d;
+                }
 
-.status-soon{
-    background:#fef3c7;
-    color:#b45309;
-}
+                .status-soon {
+                    background: #fef3c7;
+                    color: #b45309;
+                }
 
-.status-closed{
-    background:#e5e7eb;
-    color:#4b5563;
-}
+                .status-closed {
+                    background: #e5e7eb;
+                    color: #4b5563;
+                }
 
-.status-upcoming{
-    background:#dbeafe;
-    color:#2563eb;
-}
+                .status-upcoming {
+                    background: #dbeafe;
+                    color: #2563eb;
+                }
 
-@media(max-width:768px){
+                @media(max-width:768px) {
 
-.related-item{
-    grid-template-columns:1fr;
-    gap:8px;
-}
+                    .related-item {
+                        grid-template-columns: 1fr;
+                        gap: 8px;
+                    }
 
-.related-arrow{
-    display:none;
-}
+                    .related-arrow {
+                        display: none;
+                    }
 
-.job-status{
-    width:fit-content;
-}
+                    .job-status {
+                        width: fit-content;
+                    }
 
-}
+                }
             </style>
             @php
 
@@ -4089,116 +4089,108 @@
 
             <div class="content-card">
 
-    <h2 class="mb-3" style="color:#000;">
-        <i class="fa-solid fa-share-nodes text-primary"></i>
-        Share This Job
-    </h2>
+                <h2 class="mb-3" style="color:#000;">
+                    <i class="fa-solid fa-share-nodes text-primary"></i>
+                    Share This Job
+                </h2>
 
-    <p class="text-muted mb-3">
-        Help your friends and family by sharing this government job before the last date.
-    </p>
+                <p class="text-muted mb-3">
+                    Help your friends and family by sharing this government job before the last date.
+                </p>
 
-    @php
-        $shareUrl = urlencode(url()->current());
-        $shareTitle = urlencode($job->title);
-    @endphp
+                @php
+                    $shareUrl = urlencode(url()->current());
+                    $shareTitle = urlencode($job->title);
+                @endphp
 
-    <div class="row g-2">
+                <div class="row g-2">
 
-        <div class="col-6">
+                    <div class="col-6">
 
-            <a href="https://wa.me/?text={{ $shareTitle }}%20{{ $shareUrl }}"
-                target="_blank"
-                class="btn btn-success w-100">
+                        <a href="https://wa.me/?text={{ $shareTitle }}%20{{ $shareUrl }}" target="_blank"
+                            class="btn btn-success w-100">
 
-                <i class="fab fa-whatsapp me-2"></i>
+                            <i class="fab fa-whatsapp me-2"></i>
 
-                WhatsApp
+                            WhatsApp
 
-            </a>
+                        </a>
 
-        </div>
+                    </div>
 
-        <div class="col-6">
+                    <div class="col-6">
 
-            <a href="https://t.me/share/url?url={{ $shareUrl }}&text={{ $shareTitle }}"
-                target="_blank"
-                class="btn btn-primary w-100">
+                        <a href="https://t.me/share/url?url={{ $shareUrl }}&text={{ $shareTitle }}"
+                            target="_blank" class="btn btn-primary w-100">
 
-                <i class="fab fa-telegram me-2"></i>
+                            <i class="fab fa-telegram me-2"></i>
 
-                Telegram
+                            Telegram
 
-            </a>
+                        </a>
 
-        </div>
+                    </div>
 
-        <div class="col-6">
+                    <div class="col-6">
 
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $shareUrl }}"
-                target="_blank"
-                class="btn btn-primary w-100">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ $shareUrl }}" target="_blank"
+                            class="btn btn-primary w-100">
 
-                <i class="fab fa-facebook-f me-2"></i>
+                            <i class="fab fa-facebook-f me-2"></i>
 
-                Facebook
+                            Facebook
 
-            </a>
+                        </a>
 
-        </div>
+                    </div>
 
-        <div class="col-6">
+                    <div class="col-6">
 
-            <a href="https://twitter.com/intent/tweet?url={{ $shareUrl }}&text={{ $shareTitle }}"
-                target="_blank"
-                class="btn btn-dark w-100">
+                        <a href="https://twitter.com/intent/tweet?url={{ $shareUrl }}&text={{ $shareTitle }}"
+                            target="_blank" class="btn btn-dark w-100">
 
-                <i class="fab fa-x-twitter me-2"></i>
+                            <i class="fab fa-x-twitter me-2"></i>
 
-                X
+                            X
 
-            </a>
+                        </a>
 
-        </div>
+                    </div>
 
-        <div class="col-6">
+                    <div class="col-6">
 
-            <a href="mailto:?subject={{ $shareTitle }}&body={{ $shareUrl }}"
-                class="btn btn-outline-secondary w-100">
+                        <a href="mailto:?subject={{ $shareTitle }}&body={{ $shareUrl }}"
+                            class="btn btn-outline-secondary w-100">
 
-                <i class="fa-solid fa-envelope me-2"></i>
+                            <i class="fa-solid fa-envelope me-2"></i>
 
-                Email
+                            Email
 
-            </a>
+                        </a>
 
-        </div>
+                    </div>
 
-        <div class="col-6">
+                    <div class="col-6">
 
-            <button
-                class="btn btn-outline-primary w-100"
-                id="copyJobLink">
+                        <button class="btn btn-outline-primary w-100" id="copyJobLink">
 
-                <i class="fa-solid fa-link me-2"></i>
+                            <i class="fa-solid fa-link me-2"></i>
 
-                Copy Link
+                            Copy Link
 
-            </button>
+                        </button>
 
-        </div>
+                    </div>
 
-    </div>
+                </div>
 
-    <div
-        id="copySuccess"
-        class="alert alert-success mt-3 mb-0 d-none">
+                <div id="copySuccess" class="alert alert-success mt-3 mb-0 d-none">
 
-        ✅ Job link copied successfully.
+                    ✅ Job link copied successfully.
 
-    </div>
+                </div>
 
-</div>
+            </div>
 
 
 
@@ -4206,89 +4198,104 @@
 
             <div class="content-card">
 
-    <h2 class="mb-3" style="color:#000;">
-        <i class="fa-solid fa-circle-info text-warning"></i>
-        Important Disclaimer
-    </h2>
+                <h2 class="mb-3" style="color:#000;">
+                    <i class="fa-solid fa-circle-info text-warning"></i>
+                    Important Disclaimer
+                </h2>
 
-    <div class="alert alert-warning mb-0">
+                <div class="alert alert-warning mb-0">
 
-        <p class="mb-2">
-            <strong>Disclaimer:</strong> SarkariHai is an independent educational and informational platform. We are <strong>not affiliated with any Government department, commission, ministry, or recruiting agency.</strong>
-        </p>
+                    <p class="mb-2">
+                        <strong>Disclaimer:</strong> SarkariHai is an independent educational and informational platform. We
+                        are <strong>not affiliated with any Government department, commission, ministry, or recruiting
+                            agency.</strong>
+                    </p>
 
-        <ul class="mb-2 ps-3">
+                    <ul class="mb-2 ps-3">
 
-            <li>✔ Job information is collected from official notifications and trusted public sources.</li>
+                        <li>✔ Job information is collected from official notifications and trusted public sources.</li>
 
-            <li>✔ Candidates should always verify eligibility, important dates, vacancies, fees, and other details from the official notification before applying.</li>
+                        <li>✔ Candidates should always verify eligibility, important dates, vacancies, fees, and other
+                            details from the official notification before applying.</li>
 
-            <li>✔ SarkariHai is not responsible for any changes, corrections, cancellations, or updates made by the recruiting authority.</li>
+                        <li>✔ SarkariHai is not responsible for any changes, corrections, cancellations, or updates made by
+                            the recruiting authority.</li>
 
-            <li>✔ We do not charge any fee for job information or recruitment assistance.</li>
+                        <li>✔ We do not charge any fee for job information or recruitment assistance.</li>
 
-        </ul>
+                    </ul>
 
-        <p class="mb-0">
-            <strong>📌 Always rely on the official notification for the final and most accurate information.</strong>
-        </p>
+                    <p class="mb-0">
+                        <strong>📌 Always rely on the official notification for the final and most accurate
+                            information.</strong>
+                    </p>
 
-    </div>
+                </div>
 
-</div>
+            </div>
 
 
 
             <!-- AUTHOR BOX -->
 
-           <div class="content-card">
+            <div class="content-card">
 
-    <div class="author-box">
+                <div class="author-box">
 
-        <div class="author-image">
+                    <div class="author-image">
 
-            <i class="fa-solid fa-shield-check"></i>
+                        <i class="fa-solid fa-shield-check"></i>
 
-        </div>
+                    </div>
 
-        <div class="author-content">
+                    <div class="author-content">
 
-            <h3 class="mb-2" style="color:#000;">
-                Reviewed by Team SarkariHai
-            </h3>
+                        <h3 class="mb-2" style="color:#000;">
+                            Reviewed by Team SarkariHai
+                        </h3>
 
-            <p class="mb-2">
+                        <p class="mb-2">
 
-                Every job listing published on <strong>SarkariHai</strong> is carefully reviewed by our editorial team using official recruitment notifications and trusted government sources.
+                            Every job listing published on <strong>SarkariHai</strong> is carefully reviewed by our
+                            editorial team using official recruitment notifications and trusted government sources.
 
-            </p>
+                        </p>
 
-            <div class="d-flex flex-wrap gap-2">
+                        <div class="d-flex flex-wrap gap-2">
 
-                <span class="badge bg-success">
-                    ✔ Official Notification Verified
-                </span>
+                            <span class="badge bg-success">
+                                ✔ Official Notification Verified
+                            </span>
 
-                <span class="badge bg-primary">
-                    ✔ Eligibility Checked
-                </span>
+                            <span class="badge bg-primary">
+                                ✔ Eligibility Checked
+                            </span>
 
-                <span class="badge bg-warning text-dark">
-                    ✔ Important Dates Verified
-                </span>
+                            <span class="badge bg-warning text-dark">
+                                ✔ Important Dates Verified
+                            </span>
 
-                <span class="badge bg-info text-dark">
-                    ✔ Updated Regularly
-                </span>
+                            <span class="badge bg-info text-dark">
+                                ✔ Updated Regularly
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
+            <hr>
 
-        </div>
+            <p class="mb-0 text-muted small">
 
-    </div>
+                <i class="fa-regular fa-clock me-1"></i>
 
-</div>
+                Last reviewed and updated by <strong>Team SarkariHai</strong> to ensure the information is accurate and up
+                to date.
 
+            </p>
         </div>
 
 
@@ -4437,26 +4444,26 @@
         });
 
 
-        $(document).on('click', '#copyJobLink', function () {
+        $(document).on('click', '#copyJobLink', function() {
 
-    navigator.clipboard.writeText(window.location.href);
+            navigator.clipboard.writeText(window.location.href);
 
-    $('#copySuccess')
-        .removeClass('d-none')
-        .hide()
-        .fadeIn();
+            $('#copySuccess')
+                .removeClass('d-none')
+                .hide()
+                .fadeIn();
 
-    setTimeout(function () {
+            setTimeout(function() {
 
-        $('#copySuccess').fadeOut(function () {
+                $('#copySuccess').fadeOut(function() {
 
-            $(this).addClass('d-none');
+                    $(this).addClass('d-none');
+
+                });
+
+            }, 2500);
 
         });
-
-    }, 2500);
-
-});
     </script>
 
 
