@@ -205,3 +205,9 @@ Route::post(
     '/check-eligibility',
     [JobController::class, 'checkEligibility']
 )->name('check.eligibility');
+
+
+Route::get(
+    '/author/{slug}',
+    [JobController::class,'author']
+)->name('author');
