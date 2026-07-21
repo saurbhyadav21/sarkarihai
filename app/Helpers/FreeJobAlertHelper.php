@@ -1081,7 +1081,7 @@ class FreeJobAlertHelper
             . 'Take printout of submitted application.#';
     }
 
-
+    // https://sarkariresult.com.cm/allahabad-high-court-research-associates-recruitment-2025-start/
 
     public static function detectUrlType($post)
     {
@@ -1137,7 +1137,10 @@ class FreeJobAlertHelper
             str_contains($title, 'recruitment')
             || str_contains($title, 'apply online')
             || str_contains($title, 'apply offline')
+            || str_contains($title, 'online form')
+            || str_contains($title, 'offline form')
             || str_contains($title, 'vacancy')
+            || str_contains($title, 'notification')
         ) {
             return 'job';
         }
@@ -1149,11 +1152,11 @@ class FreeJobAlertHelper
     public static function sendTelegramJob($job)
     {
         $link = "https://sarkarihai.com/sarkari-naukri/" .
-        ($job['state'] ?? 'all-india') . "/" .
-        ($job['category'] ?? 'government') . "/" .
-        $job['slug'];
+            ($job['state'] ?? 'all-india') . "/" .
+            ($job['category'] ?? 'government') . "/" .
+            $job['slug'];
 
-        
+
         $message = "🚨 <b>New Government Job</b>\n\n";
 
         $message .= "📌 <b>" . $job['title'] . "</b>\n";
