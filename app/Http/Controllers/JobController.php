@@ -3056,15 +3056,14 @@ class JobController extends Controller
 
     public function checkSitemapErrors()
     {
-        $response = Http::withoutVerifying()
-            ->timeout(10)
-            ->get('https://sarkarihai.com/sitemap.xml');
+       $response = Http::withoutVerifying()
+    ->timeout(10)
+    ->get('https://sarkarihai.com/sitemap.xml');
 
-        $xml = simplexml_load_string($response->body());
-
-        if (!$xml) {
-            abort(500, 'Sitemap load failed.');
-        }
+dd(
+    $response->status(),
+    $response->body()
+);
                 dd(count($xml->url));
         $urls = [];
         $count = 0;
