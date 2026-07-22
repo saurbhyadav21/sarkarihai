@@ -3083,11 +3083,23 @@ class JobController extends Controller
 
     foreach ($responses as $index => $response) {
 
+    if ($response instanceof \Illuminate\Http\Client\Response) {
+
         $results[] = [
             'url' => $urls[$index],
             'status' => $response->status(),
         ];
+
+    } else {
+
+        $results[] = [
+            'url' => $urls[$index],
+            'status' => 'ERROR',
+            'message' => $response->getMessage(),
+        ];
+
     }
+}
 
     return view('jobs.sitemap-errors', compact('results'));
 }
