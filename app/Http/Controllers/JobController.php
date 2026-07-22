@@ -16,6 +16,7 @@ use App\Helpers\FreeJobAlertHelper;
 use DOMDocument;
 use DOMXPath;
 use Carbon\Carbon;
+use Illuminate\Http\Client\Pool;
 
 
 
@@ -3054,44 +3055,42 @@ class JobController extends Controller
     }
 
     public function checkSitemapErrors()
-    {
-        $xml = simplexml_load_file('https://sarkarihai.com/sitemap.xml');
-               
-        $results = [];
-        $count = 0;
+{
+    $xml = simplexml_load_file('https://sarkarihai.com/sitemap.xml');
 
-        foreach ($xml->url as $item) {
+    $urls = [];
+    $count = 0;
 
-            if ($count >= 500) {
-                break;
-            }
+    foreach ($xml->url as $item) {
 
-            $url = (string) $item->loc;
-
-            try {
-
-                $response = Http::withoutVerifying()
-                    ->timeout(10)
-                    ->head($url); // HEAD request faster hai
-
-                $results[] = [
-                    'url' => $url,
-                    'status' => $response->status(),
-                ];
-            } catch (\Exception $e) {
-
-                $results[] = [
-                    'url' => $url,
-                    'status' => 'ERROR',
-                    'message' => $e->getMessage(),
-                ];
-            }
-
-            $count++;
+        if ($count >= 500) {
+            break;
         }
 
-        return view('jobs.sitemap-errors', compact('results'));
+        $urls[] = (string) $item->loc;
+        $count++;
     }
+
+    $responses = Http::pool(function (Pool $pool) use ($urls) {
+
+        return array_map(function ($url) use ($pool) {
+            return $pool->timeout(10)->withoutVerifying()->head($url);
+        }, $urls);
+
+    });
+
+    $results = [];
+
+    foreach ($responses as $index => $response) {
+
+        $results[] = [
+            'url' => $urls[$index],
+            'status' => $response->status(),
+        ];
+    }
+
+    return view('jobs.sitemap-errors', compact('results'));
+}
 
     public function checkEligibility(Request $request)
     {
