@@ -3411,13 +3411,13 @@
 
                                     <div class="timeline-date">
 
-                                        @if (strtolower($item['date']) == 'tba' ||
-                                                strtolower($item['date']) == 'to be announced' ||
-                                                strtolower($item['date']) == 'not announced')
-                                            {{ $item['date'] }}
-                                        @else
-                                            {{ \Carbon\Carbon::parse($item['date'])->format('d M Y') }}
-                                        @endif
+                                        @if (str_contains($item['date'], '#') || str_contains($item['date'], '$'))
+    {{ $item['date'] }}
+@elseif (in_array(strtolower($item['date']), ['tba', 'to be announced', 'not announced']))
+    {{ $item['date'] }}
+@else
+    {{ \Carbon\Carbon::parse($item['date'])->format('d M Y') }}
+@endif
 
                                     </div>
 
