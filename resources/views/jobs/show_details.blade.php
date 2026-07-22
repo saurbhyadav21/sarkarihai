@@ -1777,29 +1777,33 @@
                 @php
 
                     function parsePosts($data)
-                    {
-                        $result = [];
+{
+    $result = [];
 
-                        if (empty($data)) {
-                            return $result;
-                        }
+    if (empty($data)) {
+        return $result;
+    }
 
-                        $items = explode('#', trim($data, '#'));
+    $items = explode('#', trim($data, '#'));
 
-                        foreach ($items as $item) {
-                            if (empty($item)) {
-                                continue;
-                            }
+    foreach ($items as $item) {
+        if (empty($item)) {
+            continue;
+        }
 
-                            $parts = explode('$', $item);
+        $parts = explode('$', $item);
 
-                            if (count($parts) >= 2) {
-                                $result[trim($parts[0])] = trim($parts[1]);
-                            }
-                        }
+        if (count($parts) >= 2) {
+            $key = trim($parts[0]);
+            $value = trim($parts[1]);
 
-                        return $result;
-                    }
+            // Sirf numeric value ko integer banao
+            $result[$key] = is_numeric($value) ? (int)$value : 0;
+        }
+    }
+
+    return $result;
+}
 
                     $general = parsePosts($job->genral_post);
                     $ews = parsePosts($job->ews_post);
