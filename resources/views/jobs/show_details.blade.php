@@ -1409,7 +1409,7 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">📌</div>
                         <div>
-                            <h3>{{ isset($job->total_vacancies) ? number_format($job->total_vacancies) : 'N/A' }}</h3>
+                            <h3>{{ (isset($job->total_vacancies) && is_numeric($job->total_vacancies)) ? number_format((int)$job->total_vacancies) : ($job->total_vacancies ?? 'N/A') }}</h3>
                             <p>Total Vacancies</p>
                         </div>
                     </div>
