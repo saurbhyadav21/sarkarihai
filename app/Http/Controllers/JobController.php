@@ -3065,7 +3065,7 @@ class JobController extends Controller
         if (!$xml) {
             abort(500, 'Sitemap load failed.');
         }
-                dd(count($xml->url));
+                
         $urls = [];
         $count = 0;
 
