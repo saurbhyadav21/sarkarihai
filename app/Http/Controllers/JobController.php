@@ -3006,7 +3006,7 @@ class JobController extends Controller
 
         foreach ($xml->url as $item) {
 
-            if ($count >= 100) {
+            if ($count >= 10000) {
                 break;
             }
 
