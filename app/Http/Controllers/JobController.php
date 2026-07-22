@@ -273,7 +273,7 @@ class JobController extends Controller
             'keywords' => 'dd'
         ];
 
-          $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+        $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
 
         $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
 
@@ -300,7 +300,7 @@ class JobController extends Controller
             'keywords' => 'dd'
         ];
 
-          $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+        $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
 
         $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
 
@@ -329,7 +329,7 @@ class JobController extends Controller
 
         ];
 
-          $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+        $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
 
         $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
 
@@ -360,7 +360,7 @@ class JobController extends Controller
         ];
 
 
-         $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+        $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
 
         $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
 
@@ -371,7 +371,7 @@ class JobController extends Controller
         $ogType = 'website';
 
         $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
-        
+
 
         return view('policy', compact('seo', 'metaTitle', 'metaDescription', 'canonicalUrl', 'robots', 'ogType', 'ogImage'));
     }
@@ -3055,62 +3055,59 @@ class JobController extends Controller
     }
 
     public function checkSitemapErrors()
-{
-    $response = Http::withoutVerifying()
-    ->timeout(10)
-    ->get('https://sarkarihai.com/sitemap.xml');
+    {
+        $response = Http::withoutVerifying()
+            ->timeout(10)
+            ->get('https://sarkarihai.com/sitemap.xml');
 
-$xml = simplexml_load_string($response->body());
+        $xml = simplexml_load_string($response->body());
 
-if (!$xml) {
-    abort(500, 'Sitemap load failed.');
-}
+        if (!$xml) {
+            abort(500, 'Sitemap load failed.');
+        }
+                dd($xml);
+        $urls = [];
+        $count = 0;
 
-    $urls = [];
-    $count = 0;
+        foreach ($xml->url as $item) {
 
-    foreach ($xml->url as $item) {
+            if ($count >= 500) {
+                break;
+            }
 
-        if ($count >= 500) {
-            break;
+            $urls[] = (string) $item->loc;
+            $count++;
         }
 
-        $urls[] = (string) $item->loc;
-        $count++;
+        $responses = Http::pool(function (Pool $pool) use ($urls) {
+
+            return array_map(function ($url) use ($pool) {
+                return $pool->timeout(10)->withoutVerifying()->head($url);
+            }, $urls);
+        });
+
+        $results = [];
+
+        foreach ($responses as $index => $response) {
+
+            if ($response instanceof \Illuminate\Http\Client\Response) {
+
+                $results[] = [
+                    'url' => $urls[$index],
+                    'status' => $response->status(),
+                ];
+            } else {
+
+                $results[] = [
+                    'url' => $urls[$index],
+                    'status' => 'ERROR',
+                    'message' => $response->getMessage(),
+                ];
+            }
+        }
+
+        return view('jobs.sitemap-errors', compact('results'));
     }
-
-    $responses = Http::pool(function (Pool $pool) use ($urls) {
-
-        return array_map(function ($url) use ($pool) {
-            return $pool->timeout(10)->withoutVerifying()->head($url);
-        }, $urls);
-
-    });
-
-    $results = [];
-
-    foreach ($responses as $index => $response) {
-
-    if ($response instanceof \Illuminate\Http\Client\Response) {
-
-        $results[] = [
-            'url' => $urls[$index],
-            'status' => $response->status(),
-        ];
-
-    } else {
-
-        $results[] = [
-            'url' => $urls[$index],
-            'status' => 'ERROR',
-            'message' => $response->getMessage(),
-        ];
-
-    }
-}
-
-    return view('jobs.sitemap-errors', compact('results'));
-}
 
     public function checkEligibility(Request $request)
     {
