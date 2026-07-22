@@ -3738,17 +3738,24 @@
                     $templates = DB::table('faq_templates')->whereIn('id', $ids)->get()->keyBy('id');
 
                     $replace = [
-                        '{title}' => $job->title,
-                        '{vacancy}' => number_format($job->total_vacancies),
-                        '{last_date}' => $job->end_date,
-                        '{start_date}' => $job->start_date,
-                        '{min_age}' => $job->min_age,
-                        '{max_age}' => $job->max_age_genral,
-                        '{website}' => $job->website,
-                        '{salary}' => $job->min_salary ? '₹' . number_format($job->min_salary) : '',
-                        '{qualification}' => $job->qualification,
-                        '{mode_selection}' => $job->mode_of_selection,
-                    ];
+    '{title}' => $job->title,
+    '{vacancy}' => is_numeric(str_replace(',', '', $job->total_vacancies))
+        ? number_format((int) str_replace(',', '', $job->total_vacancies))
+        : ($job->total_vacancies ?? 'N/A'),
+
+    '{last_date}' => $job->end_date,
+    '{start_date}' => $job->start_date,
+    '{min_age}' => $job->min_age,
+    '{max_age}' => $job->max_age_genral,
+    '{website}' => $job->website,
+
+    '{salary}' => is_numeric(str_replace(',', '', $job->min_salary))
+        ? '₹' . number_format((float) str_replace(',', '', $job->min_salary))
+        : '',
+
+    '{qualification}' => $job->qualification,
+    '{mode_selection}' => $job->mode_of_selection,
+];
 
                     foreach ($ids as $id) {
                         if (!isset($templates[$id])) {
