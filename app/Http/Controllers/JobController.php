@@ -2999,8 +2999,8 @@ class JobController extends Controller
 
     public function checkSitemapErrors()
     {
-        $xml = 'https://sarkarihai.com/sitemap.xml';
-               
+        $xml = simplexml_load_file('https://sarkarihai.com/sitemap.xml');
+                dd($xml);
         $results = [];
         $count = 0;
 
