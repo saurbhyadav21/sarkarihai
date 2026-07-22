@@ -2999,37 +2999,39 @@ class JobController extends Controller
 
     public function checkSitemapErrors()
     {
-        $xml = simplexml_load_file(url('/sitemap.xml'));
+        $xml = simplexml_load_file(public_path('sitemap.xml'));
 
         $results = [];
+        $count = 0;
 
         foreach ($xml->url as $item) {
+
+            if ($count >= 100) {
+                break;
+            }
 
             $url = (string) $item->loc;
 
             try {
 
-                $response = Http::timeout(5000)
-                    ->withoutVerifying()
-                    ->get($url);
+                $response = Http::withoutVerifying()
+                    ->timeout(10)
+                    ->head($url); // HEAD request faster hai
 
                 $results[] = [
-
                     'url' => $url,
-                    'status' => $response->status()
-
+                    'status' => $response->status(),
                 ];
             } catch (\Exception $e) {
 
                 $results[] = [
-
                     'url' => $url,
                     'status' => 'ERROR',
-                    'message' => $e->getMessage()
-
+                    'message' => $e->getMessage(),
                 ];
             }
-            die;
+
+            $count++;
         }
 
         return view('jobs.sitemap-errors', compact('results'));
