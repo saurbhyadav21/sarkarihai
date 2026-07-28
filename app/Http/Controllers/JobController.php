@@ -3408,29 +3408,25 @@ class JobController extends Controller
 
             try {
 
-                $response = Http::timeout(30)
-                    ->withHeaders([
-                        'User-Agent' => 'Mozilla/5.0'
-                    ])
-                    ->get($job->url);
+                $response = Http::withHeaders([
+                    'User-Agent' => 'Mozilla/5.0'
+                ])->timeout(30)->get($job->url);
 
-                if (!$response->successful()) {
-                    continue;
-                }
+                if ($response->successful()) {
 
-                $html = $response->body();
+                    $organization = $this->extractOrganizationFullForm($response->body());
 
-                // Yahan scraping logic likhna hai
-                $fullForm = $this->extractOrganizationFullForm($html);
+                    if ($organization) {
 
-                if (!empty($fullForm)) {
+                        DB::table('job_details')
+                            ->where('id', $job->id)
+                            ->update([
+                                'organization_full_form' => $organization,
+                                'updated_at' => now(),
+                            ]);
 
-                    DB::table('job_details')
-                        ->where('id', $job->id)
-                        ->update([
-                            'organization_full_form' => $fullForm,
-                            'updated_at' => now()
-                        ]);
+                        echo "Updated {$job->id} : {$organization}<br>";
+                    }
                 }
             } catch (\Exception $e) {
                 continue;
@@ -3441,11 +3437,15 @@ class JobController extends Controller
     }
     private function extractOrganizationFullForm($html)
     {
-        // HTML parse karke full form nikalna hai
-        // Example:
-        // "SSC - Staff Selection Commission"
-        // return "Staff Selection Commission";
+        libxml_use_internal_errors(true);
 
-        return null;
+        $dom = new \DOMDocument();
+        $dom->loadHTML($html);
+
+        $xpath = new \DOMXPath($dom);
+
+        $node = $xpath->query("//th[contains(normalize-space(),'Organization')]/following-sibling::td")->item(0);
+
+        return $node ? trim($node->textContent) : null;
     }
 }
