@@ -3473,15 +3473,38 @@ private function extractOrganizationFullForm($html)
     libxml_use_internal_errors(true);
 
     $dom = new \DOMDocument();
-    $dom->loadHTML($html);
+    @$dom->loadHTML($html);
 
     $xpath = new \DOMXPath($dom);
 
-    // Organization row search
-    $node = $xpath->query("//th[contains(normalize-space(.), 'Organization')]/following-sibling::td")->item(0);
+    // Table ki sabhi rows
+    $rows = $xpath->query("//table[contains(@class,'scrollable-table')]//tr");
 
-    if ($node) {
-        return trim(html_entity_decode($node->textContent));
+    $keywords = [
+        'organization',
+        'company name',
+        'organization name',
+        'recruiting organization',
+        'department',
+        'name of the organization'
+    ];
+
+    foreach ($rows as $row) {
+
+        $cells = $xpath->query("./th|./td", $row);
+
+        if ($cells->length < 2) {
+            continue;
+        }
+
+        $label = strtolower(trim(strip_tags($cells->item(0)->textContent)));
+        $value = trim(strip_tags($cells->item(1)->textContent));
+
+        foreach ($keywords as $keyword) {
+            if (strpos($label, $keyword) !== false) {
+                return html_entity_decode($value);
+            }
+        }
     }
 
     return null;
