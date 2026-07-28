@@ -24,6 +24,10 @@ class ProcessOneJob extends Command
                 'url_type',
                 'job'
             )
+            ->where(
+                'source',
+                'FreeJobAlert'
+            )
             ->orderBy('id')
             ->first();
 
