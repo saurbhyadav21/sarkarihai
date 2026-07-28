@@ -3404,7 +3404,7 @@ class JobController extends Controller
     DB::table('job_details')
         ->where('source', 'freejobalert')
         ->whereNull('organization_full_form')
-        ->select('id', 'url')
+        ->select('id', 'source_url')
         ->orderBy('id')
         ->chunk(100, function ($jobs) use (&$updated, &$failed) {
 
