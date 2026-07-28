@@ -3417,7 +3417,7 @@ class JobController extends Controller
                     ])
                     ->timeout(30)
                     ->retry(3, 1000)
-                    ->get($job->url);
+                    ->get($job->source_url);
 
                     if (!$response->successful()) {
                         $failed++;
