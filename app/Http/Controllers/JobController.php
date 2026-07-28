@@ -3477,7 +3477,7 @@ private function extractOrganizationFullForm($html)
 
     $xpath = new \DOMXPath($dom);
 
-    // Table ki sabhi rows
+    // 1. Table labels (Organization, Company Name, etc.)
     $rows = $xpath->query("//table[contains(@class,'scrollable-table')]//tr");
 
     $keywords = [
@@ -3493,17 +3493,27 @@ private function extractOrganizationFullForm($html)
 
         $cells = $xpath->query("./th|./td", $row);
 
-        if ($cells->length < 2) {
-            continue;
-        }
+        if ($cells->length >= 2) {
 
-        $label = strtolower(trim(strip_tags($cells->item(0)->textContent)));
-        $value = trim(strip_tags($cells->item(1)->textContent));
+            $label = strtolower(trim(strip_tags($cells->item(0)->textContent)));
+            $value = trim(strip_tags($cells->item(1)->textContent));
 
-        foreach ($keywords as $keyword) {
-            if (strpos($label, $keyword) !== false) {
-                return html_entity_decode($value);
+            foreach ($keywords as $keyword) {
+                if (strpos($label, $keyword) !== false && !empty($value)) {
+                    return html_entity_decode($value);
+                }
             }
+        }
+    }
+
+    // 2. colspan="2" wali heading
+    $node = $xpath->query("//table[contains(@class,'scrollable-table')]//tr[1]/td[@colspan='2']")->item(0);
+
+    if ($node) {
+        $text = trim(preg_replace('/\s+/', ' ', strip_tags($node->textContent)));
+
+        if (!empty($text) && strlen($text) > 5) {
+            return html_entity_decode($text);
         }
     }
 
