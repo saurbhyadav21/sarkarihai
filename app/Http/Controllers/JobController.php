@@ -3396,56 +3396,94 @@ class JobController extends Controller
         );
     }
 
-    public function updateOrganizationFullForms()
-    {
-        $jobs = DB::table('job_details')
-            ->where('source', 'freejobalert')
-            ->whereNull('organization_full_form')
-            ->select('id', 'url')
-            ->get();
+   public function updateOrganizationFullForms()
+{
+    $updated = 0;
+    $failed = 0;
 
-        foreach ($jobs as $job) {
+    DB::table('job_details')
+        ->where('source', 'freejobalert')
+        ->whereNull('organization_full_form')
+        ->select('id', 'url')
+        ->orderBy('id')
+        ->chunk(100, function ($jobs) use (&$updated, &$failed) {
 
-            try {
+            foreach ($jobs as $job) {
 
-                $response = Http::withHeaders([
-                    'User-Agent' => 'Mozilla/5.0'
-                ])->timeout(30)->get($job->url);
+                try {
 
-                if ($response->successful()) {
+                    $response = Http::withHeaders([
+                        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36',
+                    ])
+                    ->timeout(30)
+                    ->retry(3, 1000)
+                    ->get($job->url);
+
+                    if (!$response->successful()) {
+                        $failed++;
+                        continue;
+                    }
 
                     $organization = $this->extractOrganizationFullForm($response->body());
 
-                    if ($organization) {
+                    if (!empty($organization)) {
 
                         DB::table('job_details')
                             ->where('id', $job->id)
                             ->update([
-                                'organization_full_form' => $organization,
+                                'organization_full_form' => trim($organization),
                                 'updated_at' => now(),
                             ]);
 
-                        echo "Updated {$job->id} : {$organization}<br>";
+                        $updated++;
+
+                        echo "Updated ID {$job->id} : {$organization}<br>";
+                        ob_flush();
+                        flush();
+                    } else {
+
+                        echo "Organization Not Found : {$job->id}<br>";
+                        ob_flush();
+                        flush();
                     }
+
+                } catch (\Exception $e) {
+
+                    $failed++;
+
+                    echo "Error ({$job->id}) : " . $e->getMessage() . "<br>";
+                    ob_flush();
+                    flush();
                 }
-            } catch (\Exception $e) {
-                continue;
             }
-        }
+        });
 
-        return "Done";
+    return response()->json([
+        'status' => 'Completed',
+        'updated' => $updated,
+        'failed' => $failed,
+    ]);
+}
+
+/**
+ * FreeJobAlert page se Organization Name scrape karega
+ */
+private function extractOrganizationFullForm($html)
+{
+    libxml_use_internal_errors(true);
+
+    $dom = new \DOMDocument();
+    $dom->loadHTML($html);
+
+    $xpath = new \DOMXPath($dom);
+
+    // Organization row search
+    $node = $xpath->query("//th[contains(normalize-space(.), 'Organization')]/following-sibling::td")->item(0);
+
+    if ($node) {
+        return trim(html_entity_decode($node->textContent));
     }
-    private function extractOrganizationFullForm($html)
-    {
-        libxml_use_internal_errors(true);
 
-        $dom = new \DOMDocument();
-        $dom->loadHTML($html);
-
-        $xpath = new \DOMXPath($dom);
-
-        $node = $xpath->query("//th[contains(normalize-space(),'Organization')]/following-sibling::td")->item(0);
-
-        return $node ? trim($node->textContent) : null;
-    }
+    return null;
+}
 }
