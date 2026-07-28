@@ -217,4 +217,4 @@ Route::get(
 Route::get(
     '/data/freejobalert',
     [JobController::class, 'freeJobAlertData']
-);
+)->name('freeJobAlertData');
