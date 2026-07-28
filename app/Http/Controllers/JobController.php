@@ -3492,6 +3492,7 @@ private function extractOrganizationFullForm($html)
         'department',
         'portal name',
         'name of the organization',
+        'Recruiting Authority'
     ];
 
     // Sabhi scrollable tables ki rows
