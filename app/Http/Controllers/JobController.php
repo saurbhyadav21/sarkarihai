@@ -3396,7 +3396,7 @@ class JobController extends Controller
         );
     }
 
-   public function updateOrganizationFullForms()
+   public function freeJobAlertData()
 {
     $updated = 0;
     $failed = 0;
