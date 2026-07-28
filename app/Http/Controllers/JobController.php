@@ -3065,7 +3065,7 @@ class JobController extends Controller
         if (!$xml) {
             abort(500, 'Sitemap load failed.');
         }
-                
+
         $urls = [];
         $count = 0;
 
@@ -3394,5 +3394,28 @@ class JobController extends Controller
                 'jobs'
             )
         );
+    }
+
+    public function freeJobAlertData()
+    {
+        $feed = DB::table('job_details')
+            ->where('source', 'freejobalert')
+            ->where(function ($query) {
+                $query->whereNull('organization_full_form')
+                    ->orWhere('organization_full_form', 'null')
+                    ->orWhere('organization_full_form', '');
+            })
+            ->orderBy('id')
+            ->first();
+
+        if (!$feed) {
+            return 'Feed not found';
+        }
+
+        return response()->json([
+            'feed_id' => $feed->id,
+            'title' => $feed->title,
+            'url' => $feed->url,
+        ]);
     }
 }

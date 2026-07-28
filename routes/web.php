@@ -211,3 +211,10 @@ Route::get(
     '/author/{slug}',
     [JobController::class,'author']
 )->name('author');
+
+
+
+Route::get(
+    '/data/freejobalert',
+    [JobController::class, 'freeJobAlertData']
+);
