@@ -3477,40 +3477,68 @@ private function extractOrganizationFullForm($html)
 
     $xpath = new \DOMXPath($dom);
 
-    // 1. Table labels (Organization, Company Name, etc.)
-    $rows = $xpath->query("//table[contains(@class,'scrollable-table')]//tr");
-
+    // Sabhi possible labels
     $keywords = [
         'organization',
-        'company name',
+        'organisation',
         'organization name',
+        'organisation name',
+        'company name',
+        'recruiting body',
+        'recruiting organisation',
         'recruiting organization',
+        'conducting body',
+        'conducting authority',
         'department',
-        'name of the organization'
+        'portal name',
+        'name of the organization',
     ];
+
+    // Sabhi scrollable tables ki rows
+    $rows = $xpath->query("//table[contains(@class,'scrollable-table')]//tr");
 
     foreach ($rows as $row) {
 
         $cells = $xpath->query("./th|./td", $row);
 
-        if ($cells->length >= 2) {
+        // Heading row skip
+        if ($cells->length == 2) {
 
             $label = strtolower(trim(strip_tags($cells->item(0)->textContent)));
             $value = trim(strip_tags($cells->item(1)->textContent));
 
+            if (in_array($label, ['particulars', 'field', 'details'])) {
+                continue;
+            }
+
             foreach ($keywords as $keyword) {
+
                 if (strpos($label, $keyword) !== false && !empty($value)) {
+
                     return html_entity_decode($value);
                 }
             }
         }
     }
 
-    // 2. colspan="2" wali heading
-    $node = $xpath->query("//table[contains(@class,'scrollable-table')]//tr[1]/td[@colspan='2']")->item(0);
+    // colspan="2" heading
+    $heading = $xpath->query("//table[contains(@class,'scrollable-table')]//tr[1]/td[@colspan='2']")->item(0);
 
-    if ($node) {
-        $text = trim(preg_replace('/\s+/', ' ', strip_tags($node->textContent)));
+    if ($heading) {
+
+        $text = trim(preg_replace('/\s+/', ' ', strip_tags($heading->textContent)));
+
+        if (!empty($text) && strlen($text) > 5) {
+            return html_entity_decode($text);
+        }
+    }
+
+    // Center aligned heading
+    $heading = $xpath->query("//table[contains(@class,'scrollable-table')]//p")->item(0);
+
+    if ($heading) {
+
+        $text = trim(preg_replace('/\s+/', ' ', strip_tags($heading->textContent)));
 
         if (!empty($text) && strlen($text) > 5) {
             return html_entity_decode($text);
