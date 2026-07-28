@@ -3396,26 +3396,56 @@ class JobController extends Controller
         );
     }
 
-    public function freeJobAlertData()
+    public function updateOrganizationFullForms()
     {
-        $feed = DB::table('job_details')
+        $jobs = DB::table('job_details')
             ->where('source', 'freejobalert')
-            ->where(function ($query) {
-                $query->whereNull('organization_full_form')
-                    ->orWhere('organization_full_form', 'null')
-                    ->orWhere('organization_full_form', '');
-            })
-            ->orderBy('id')
-            ->first();
+            ->whereNull('organization_full_form')
+            ->select('id', 'url')
+            ->get();
 
-        if (!$feed) {
-            return 'Feed not found';
+        foreach ($jobs as $job) {
+
+            try {
+
+                $response = Http::timeout(30)
+                    ->withHeaders([
+                        'User-Agent' => 'Mozilla/5.0'
+                    ])
+                    ->get($job->url);
+
+                if (!$response->successful()) {
+                    continue;
+                }
+
+                $html = $response->body();
+
+                // Yahan scraping logic likhna hai
+                $fullForm = $this->extractOrganizationFullForm($html);
+
+                if (!empty($fullForm)) {
+
+                    DB::table('job_details')
+                        ->where('id', $job->id)
+                        ->update([
+                            'organization_full_form' => $fullForm,
+                            'updated_at' => now()
+                        ]);
+                }
+            } catch (\Exception $e) {
+                continue;
+            }
         }
 
-        return response()->json([
-            'feed_id' => $feed->id,
-            'title' => $feed->title,
-            // 'url' => $feed->url,
-        ]);
+        return "Done";
+    }
+    private function extractOrganizationFullForm($html)
+    {
+        // HTML parse karke full form nikalna hai
+        // Example:
+        // "SSC - Staff Selection Commission"
+        // return "Staff Selection Commission";
+
+        return null;
     }
 }
