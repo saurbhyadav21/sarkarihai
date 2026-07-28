@@ -3415,7 +3415,7 @@ class JobController extends Controller
         return response()->json([
             'feed_id' => $feed->id,
             'title' => $feed->title,
-            'url' => $feed->url,
+            // 'url' => $feed->url,
         ]);
     }
 }
