@@ -3499,7 +3499,26 @@ private function extractOrganizationFullForm($html)
         'name of organization',
     ];
 
-    // Sabhi tables ki rows
+    // Normalize text
+    $normalize = function ($text) {
+
+        $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+        // Replace NBSP with normal space
+        $text = str_replace("\xC2\xA0", ' ', $text);
+
+        // Remove HTML
+        $text = strip_tags($text);
+
+        // Multiple spaces/new lines -> single space
+        $text = preg_replace('/\s+/u', ' ', $text);
+
+        return strtolower(trim($text));
+    };
+
+    // -----------------------------
+    // Check all table rows
+    // -----------------------------
     $rows = $xpath->query("//table[contains(@class,'scrollable-table')]//tr");
 
     foreach ($rows as $row) {
@@ -3510,14 +3529,21 @@ private function extractOrganizationFullForm($html)
             continue;
         }
 
-        $label = strtolower(trim(html_entity_decode(strip_tags($cells->item(0)->textContent))));
-        $value = trim(html_entity_decode(strip_tags($cells->item(1)->textContent)));
+        $label = $normalize($cells->item(0)->textContent);
 
-        // multiple spaces remove
-        $label = preg_replace('/\s+/', ' ', $label);
-        $value = preg_replace('/\s+/', ' ', $value);
+        $value = trim(
+            preg_replace(
+                '/\s+/u',
+                ' ',
+                html_entity_decode(
+                    strip_tags($cells->item(1)->textContent),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                )
+            )
+        );
 
-        // Heading rows skip
+        // Skip header rows
         if (in_array($label, [
             'particulars',
             'field',
@@ -3537,21 +3563,41 @@ private function extractOrganizationFullForm($html)
         }
     }
 
+    // -----------------------------
     // colspan="2" heading
+    // -----------------------------
     $heading = $xpath->query("//table[contains(@class,'scrollable-table')]//td[@colspan='2'][1]")->item(0);
 
     if ($heading) {
-        $text = trim(preg_replace('/\s+/', ' ', html_entity_decode(strip_tags($heading->textContent))));
+
+        $text = trim(
+            preg_replace(
+                '/\s+/u',
+                ' ',
+                html_entity_decode(strip_tags($heading->textContent), ENT_QUOTES | ENT_HTML5, 'UTF-8')
+            )
+        );
+
         if (!empty($text) && strlen($text) > 5) {
             return $text;
         }
     }
 
-    // centered heading
+    // -----------------------------
+    // First <p> heading
+    // -----------------------------
     $heading = $xpath->query("//table[contains(@class,'scrollable-table')]//p[1]")->item(0);
 
     if ($heading) {
-        $text = trim(preg_replace('/\s+/', ' ', html_entity_decode(strip_tags($heading->textContent))));
+
+        $text = trim(
+            preg_replace(
+                '/\s+/u',
+                ' ',
+                html_entity_decode(strip_tags($heading->textContent), ENT_QUOTES | ENT_HTML5, 'UTF-8')
+            )
+        );
+
         if (!empty($text) && strlen($text) > 5) {
             return $text;
         }
