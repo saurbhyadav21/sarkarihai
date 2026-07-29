@@ -3406,7 +3406,7 @@ class JobController extends Controller
         ->whereNull('organization_full_form')
         ->select('id', 'source_url')
         ->orderBy('id')
-        ->chunk(100, function ($jobs) use (&$updated, &$failed) {
+        ->chunk(1000, function ($jobs) use (&$updated, &$failed) {
 
             foreach ($jobs as $job) {
 
