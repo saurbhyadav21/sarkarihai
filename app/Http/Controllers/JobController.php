@@ -3807,4 +3807,14 @@ class JobController extends Controller
 
         die();
     }
+
+    public function updateOrganization()
+    {
+        $url = 'https://www.sarkariresult.com/rajasthan-rajya-vidyut-utpadan-nigam-limited-rvunl-recruitment-2023-2024/';
+    }
+
+     public function updateOrganizationFullForm()
+    {
+        $url = 'https://www.sarkariresult.com/rajasthan-rajya-vidyut-utpadan-nigam-limited-rvunl-recruitment-2023-2024/';
+    }
 }

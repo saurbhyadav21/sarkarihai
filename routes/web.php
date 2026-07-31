@@ -131,6 +131,18 @@ Route::post(
 )
     ->name('job.updateState');
 
+Route::post(
+    '/job/{id}/organization',
+    [JobController::class, 'updateOrganization']
+)
+    ->name('job.updateOrganization');
+
+Route::post(
+    '/job/{id}/organization-full-form',
+    [JobController::class, 'updateOrganizationFullForm']
+)
+    ->name('job.updateOrganizationFullForm');   
+
 
 Route::get(
     '/import/wp/{page}',
