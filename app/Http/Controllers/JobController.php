@@ -17,7 +17,7 @@ use DOMDocument;
 use DOMXPath;
 use Carbon\Carbon;
 use Illuminate\Http\Client\Pool;
-
+use Symfony\Component\DomCrawler\Crawler;
 
 
 class JobController extends Controller
@@ -3635,6 +3635,129 @@ class JobController extends Controller
 
     public function SarkariNaukriData()
     {
-                echo 'hi';
+        set_time_limit(0);
+
+        $jobs = DB::table('job_details')
+            ->where('source', 'sarkarinaukri')
+            ->whereNull('organization_full_form')
+            ->whereNotNull('source_url')
+            ->select('id', 'source_url')
+            ->get();
+
+        $updated = [];
+        $notUpdated = [];
+        $errors = [];
+
+        foreach ($jobs as $job) {
+
+            try {
+
+                $response = Http::timeout(30)
+                    ->withoutVerifying()
+                    ->get($job->source_url);
+
+                if (!$response->successful()) {
+
+                    $errors[] = [
+                        'id' => $job->id,
+                        'url' => $job->source_url,
+                        'error' => 'Page Not Accessible'
+                    ];
+
+                    continue;
+                }
+
+                $crawler = new Crawler($response->body());
+
+                $found = false;
+
+                // strong, b, a, span sab check karega
+                $crawler->filter('strong,b,a,span')->each(function ($node) use (&$found, $job, &$updated) {
+
+                    if ($found) {
+                        return;
+                    }
+
+                    $text = trim($node->text());
+
+                    // Example:
+                    // Rajasthan Rajya Vidyut Utpadan Nigam Ltd. (RVUNL)
+                    if (preg_match('/^(.*?)\s*\((.*?)\)$/', $text, $match)) {
+
+                        $organizationFullForm = trim($match[1]);
+                        $organization = trim($match[2]);
+
+                        DB::table('job_details')
+                            ->where('id', $job->id)
+                            ->update([
+                                'organization' => $organization,
+                                'organization_full_form' => $organizationFullForm
+                            ]);
+
+                        $updated[] = [
+                            'id' => $job->id,
+                            'organization' => $organization,
+                            'organization_full_form' => $organizationFullForm,
+                        ];
+
+                        $found = true;
+                    }
+                });
+
+                if (!$found) {
+
+                    $notUpdated[] = [
+                        'id' => $job->id,
+                        'url' => $job->source_url
+                    ];
+                }
+            } catch (\Exception $e) {
+
+                $errors[] = [
+                    'id' => $job->id,
+                    'url' => $job->source_url,
+                    'error' => $e->getMessage()
+                ];
+            }
+        }
+
+        echo "<h2>Completed</h2>";
+
+        echo "<hr>";
+        echo "<h3>✅ Updated Records (" . count($updated) . ")</h3>";
+
+        foreach ($updated as $row) {
+
+            echo "
+        ID : {$row['id']} <br>
+        Organization : {$row['organization']} <br>
+        Full Form : {$row['organization_full_form']}
+        <hr>";
+        }
+
+        echo "<hr>";
+        echo "<h3>❌ Not Updated (" . count($notUpdated) . ")</h3>";
+
+        foreach ($notUpdated as $row) {
+
+            echo "
+        ID : {$row['id']} <br>
+        URL : <a href='{$row['url']}' target='_blank'>{$row['url']}</a>
+        <hr>";
+        }
+
+        echo "<hr>";
+        echo "<h3>⚠ Errors (" . count($errors) . ")</h3>";
+
+        foreach ($errors as $row) {
+
+            echo "
+        ID : {$row['id']} <br>
+        URL : <a href='{$row['url']}' target='_blank'>{$row['url']}</a><br>
+        Error : {$row['error']}
+        <hr>";
+        }
+
+        die();
     }
 }
