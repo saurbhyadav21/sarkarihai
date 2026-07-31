@@ -3808,13 +3808,28 @@ class JobController extends Controller
         die();
     }
 
-    public function updateOrganization()
+    public function updateOrganization($id)
     {
-        $url = 'https://www.sarkariresult.com/rajasthan-rajya-vidyut-utpadan-nigam-limited-rvunl-recruitment-2023-2024/';
+        DB::table('job_details')
+            ->where('id', $id)
+            ->update([
+                'organization' => request('organization')
+            ]);
+
+        return back();
+    }
+   
+
+     public function updateOrganizationFullForm($id)
+    {
+        DB::table('job_details')
+            ->where('id', $id)
+            ->update([
+                'organization_full_form' => request('organization_full_form')
+            ]);
+
+        return back();
     }
 
-     public function updateOrganizationFullForm()
-    {
-        $url = 'https://www.sarkariresult.com/rajasthan-rajya-vidyut-utpadan-nigam-limited-rvunl-recruitment-2023-2024/';
-    }
+    
 }
