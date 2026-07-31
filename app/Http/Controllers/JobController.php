@@ -3429,12 +3429,20 @@ class JobController extends Controller
                         if (!empty($organizationFullForm)) {
 
                             // Check if this full form already exists with organization filled
+                            $normalized = preg_replace('/\s*\(.*?\)\s*/', '', $organizationFullForm);
+                            $normalized = trim(preg_replace('/\s+/', ' ', $normalized));
+
                             $existing = DB::table('job_details')
-                                ->where('organization_full_form', $organizationFullForm)
                                 ->whereNotNull('organization')
-                                ->where('organization', '!=', '')
-                                ->orderBy('id')
-                                ->first();
+                                ->whereNotNull('organization_full_form')
+                                ->get()
+                                ->first(function ($row) use ($normalized) {
+
+                                    $db = preg_replace('/\s*\(.*?\)\s*/', '', $row->organization_full_form);
+                                    $db = trim(preg_replace('/\s+/', ' ', $db));
+
+                                    return strcasecmp($db, $normalized) === 0;
+                                });
 
                             $data = [
                                 'organization_full_form' => $organizationFullForm,
