@@ -29,6 +29,8 @@ Route::get('/admitcard/{id}/edit', [JobController::class, 'admitEdit'])->name('a
 Route::post('/job/{id}/update', [JobController::class, 'update'])->name('job.update');
 Route::get('/job/edit-list/{limit?}', [JobController::class, 'editList'])
     ->name('job.edit.list');
+Route::get('/job/org-edit-list/{limit?}', [JobController::class, 'OrgEditList'])
+    ->name('job.org.edit.list');
 
 Route::get('/result/edit-list', [JobController::class, 'resultList'])->name('job.result.list');
 Route::get('/admit-card/edit-list', [JobController::class, 'admitList'])->name('job.admit.list');

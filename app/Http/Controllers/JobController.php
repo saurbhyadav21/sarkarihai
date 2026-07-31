@@ -429,6 +429,36 @@ class JobController extends Controller
         ));
     }
 
+    public function OrgEditList($limit = 10)
+    {
+        $jobs = Job::orderBy('id', 'desc')
+            ->paginate($limit);
+
+        $categories = DB::table('job_categories')
+            ->orderBy('name')
+            ->get();
+
+        $subCategories = DB::table('job_sub_categories')
+            ->orderBy('name')
+            ->get();
+
+        $states = DB::table('job_states')
+            ->orderBy('name')
+            ->get();
+
+        $job_topics = DB::table('job_topics')
+            ->orderBy('name')
+            ->get();
+
+        return view('jobs/job_org_edit_list', compact(
+            'jobs',
+            'categories',
+            'subCategories',
+            'states',
+            'job_topics'
+        ));
+    }
+
     public function resultList()
     {
 
