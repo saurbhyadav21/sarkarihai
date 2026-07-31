@@ -215,6 +215,6 @@ Route::get(
 
 
 Route::get(
-    'freeJobAlertData',
+    'freeJobAlertData_organization_full_form_organization_update',
     [JobController::class, 'freeJobAlertData']
 )->name('freeJobAlertData');
