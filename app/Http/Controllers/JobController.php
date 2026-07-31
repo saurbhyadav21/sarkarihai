@@ -3667,31 +3667,69 @@ class JobController extends Controller
                     continue;
                 }
 
-                $crawler = new Crawler($response->body());
+                $html = $response->body();
+
+                libxml_use_internal_errors(true);
+
+                $dom = new \DOMDocument();
+                $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
+
+                libxml_clear_errors();
+
+                $xpath = new \DOMXPath($dom);
+
+                $nodes = $xpath->query('//strong | //a');
 
                 $found = false;
 
-                // strong, b, a, span sab check karega
-                $crawler->filter('strong,b,a,span')->each(function ($node) use (&$found, $job, &$updated) {
+                foreach ($nodes as $node) {
 
-                    if ($found) {
-                        return;
+                    $text = trim(html_entity_decode(strip_tags($node->textContent)));
+
+                    if ($text == '') {
+                        continue;
                     }
 
-                    $text = trim($node->text());
+                    $organization = '';
+                    $organizationFullForm = '';
 
-                    // Example:
+                    // Pattern 1
                     // Rajasthan Rajya Vidyut Utpadan Nigam Ltd. (RVUNL)
-                    if (preg_match('/^(.*?)\s*\((.*?)\)$/', $text, $match)) {
+                    if (preg_match('/^(.*?)\s*\(([A-Z0-9&.\-]{2,20})\)$/', $text, $match)) {
 
                         $organizationFullForm = trim($match[1]);
                         $organization = trim($match[2]);
+
+                        $found = true;
+                    }
+
+                    // Pattern 2
+                    // Union Public Service Commission UPSC
+                    elseif (preg_match('/^(.*?)\s+([A-Z]{2,10})$/', $text, $match)) {
+
+                        $organizationFullForm = trim($match[1]);
+                        $organization = trim($match[2]);
+
+                        $found = true;
+                    }
+
+                    // Pattern 3
+                    // Railway Recruitment Board RRB Railway
+                    elseif (preg_match('/^(.*?)\s+([A-Z]{2,10})\s+Railway$/i', $text, $match)) {
+
+                        $organizationFullForm = trim($match[1]);
+                        $organization = trim($match[2]);
+
+                        $found = true;
+                    }
+
+                    if ($found) {
 
                         DB::table('job_details')
                             ->where('id', $job->id)
                             ->update([
                                 'organization' => $organization,
-                                'organization_full_form' => $organizationFullForm
+                                'organization_full_form' => $organizationFullForm,
                             ]);
 
                         $updated[] = [
@@ -3700,15 +3738,15 @@ class JobController extends Controller
                             'organization_full_form' => $organizationFullForm,
                         ];
 
-                        $found = true;
+                        break;
                     }
-                });
+                }
 
                 if (!$found) {
 
                     $notUpdated[] = [
                         'id' => $job->id,
-                        'url' => $job->source_url
+                        'url' => $job->source_url,
                     ];
                 }
             } catch (\Exception $e) {
@@ -3716,47 +3754,56 @@ class JobController extends Controller
                 $errors[] = [
                     'id' => $job->id,
                     'url' => $job->source_url,
-                    'error' => $e->getMessage()
+                    'error' => $e->getMessage(),
                 ];
             }
         }
 
+
         echo "<h2>Completed</h2>";
 
         echo "<hr>";
-        echo "<h3>✅ Updated Records (" . count($updated) . ")</h3>";
+        echo "<h3 style='color:green'>✅ Updated Records (" . count($updated) . ")</h3>";
 
         foreach ($updated as $row) {
 
             echo "
-        ID : {$row['id']} <br>
-        Organization : {$row['organization']} <br>
-        Full Form : {$row['organization_full_form']}
+        <b>ID :</b> {$row['id']} <br>
+        <b>Organization :</b> {$row['organization']} <br>
+        <b>Full Form :</b> {$row['organization_full_form']}
         <hr>";
         }
 
         echo "<hr>";
-        echo "<h3>❌ Not Updated (" . count($notUpdated) . ")</h3>";
+        echo "<h3 style='color:red'>❌ Not Updated (" . count($notUpdated) . ")</h3>";
 
         foreach ($notUpdated as $row) {
 
             echo "
-        ID : {$row['id']} <br>
-        URL : <a href='{$row['url']}' target='_blank'>{$row['url']}</a>
+        <b>ID :</b> {$row['id']} <br>
+        <b>URL :</b> <a href='{$row['url']}' target='_blank'>{$row['url']}</a>
         <hr>";
         }
 
         echo "<hr>";
-        echo "<h3>⚠ Errors (" . count($errors) . ")</h3>";
+        echo "<h3 style='color:orange'>⚠ Errors (" . count($errors) . ")</h3>";
 
         foreach ($errors as $row) {
 
             echo "
-        ID : {$row['id']} <br>
-        URL : <a href='{$row['url']}' target='_blank'>{$row['url']}</a><br>
-        Error : {$row['error']}
+        <b>ID :</b> {$row['id']} <br>
+        <b>URL :</b> <a href='{$row['url']}' target='_blank'>{$row['url']}</a><br>
+        <b>Error :</b> {$row['error']}
         <hr>";
         }
+
+        echo "<hr>";
+        echo "<h3>Summary</h3>";
+
+        echo "Total Jobs : " . count($jobs) . "<br>";
+        echo "Updated : " . count($updated) . "<br>";
+        echo "Not Updated : " . count($notUpdated) . "<br>";
+        echo "Errors : " . count($errors) . "<br>";
 
         die();
     }
