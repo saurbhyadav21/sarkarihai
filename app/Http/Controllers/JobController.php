@@ -3706,27 +3706,11 @@ class JobController extends Controller
 
                 if (!$found) {
 
-    if (preg_match('/^(.+?)\s+([A-Z]{2,10})(?:\s+Railway)?$/', trim($text), $match)) {
-
-        $organizationFullForm = trim($match[1]);
-        $organization = trim($match[2]);
-
-        DB::table('job_details')
-            ->where('id', $job->id)
-            ->update([
-                'organization' => $organization,
-                'organization_full_form' => $organizationFullForm
-            ]);
-
-        $updated[] = [
-            'id' => $job->id,
-            'organization' => $organization,
-            'organization_full_form' => $organizationFullForm,
-        ];
-
-        $found = true;
-    }
-}
+                    $notUpdated[] = [
+                        'id' => $job->id,
+                        'url' => $job->source_url
+                    ];
+                }
             } catch (\Exception $e) {
 
                 $errors[] = [
