@@ -37,6 +37,8 @@
                                 <th>Job Sub Category</th>
                                 <th>Job Topic</th>
                                 <th>Job State</th>
+                                <th>Organization</th>
+                                <th>Organization Full Form</th>
                                 <th>syllabus</th>
                                 <th>Delete</th>
                                 <th>Action</th>
@@ -194,7 +196,41 @@
                                             </button>
                                         </form>
                                     </td>
+                                    <td>
+                                        <span
+                                            class="badge rounded-pill {{ !empty($job->organization) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
+                                            {{ strtoupper($job->organization ?? 'NOT SET') }}
+                                        </span>
+                                        <form action="{{ route('job.updateOrganization', $job->id) }}" method="POST">
+                                            @csrf
 
+                                            <input type="text" name="organization" value="{{ $job->organization }}"
+                                                class="form-control form-control-sm mb-1" placeholder="Organization Name">
+
+                                            <button class="btn btn-success btn-sm w-100">
+                                                Save
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <span
+                                            class="badge rounded-pill {{ !empty($job->organization_full_form) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
+                                            {{ strtoupper($job->organization_full_form ?? 'NOT SET') }}
+                                        </span>
+                                        <form action="{{ route('job.updateOrganizationFullForm', $job->id) }}"
+                                            method="POST">
+                                            @csrf
+
+                                            <input type="text" name="organization_full_form"
+                                                value="{{ $job->organization_full_form }}"
+                                                class="form-control form-control-sm mb-1"
+                                                placeholder="Organization Full Form">
+
+                                            <button class="btn btn-success btn-sm w-100">
+                                                Save
+                                            </button>
+                                        </form>
+                                    </td>
                                     <!-- Syllabus -->
                                     <td>
                                         @if (!empty($job->syllabus))
