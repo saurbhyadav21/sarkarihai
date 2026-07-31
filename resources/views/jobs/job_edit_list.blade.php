@@ -211,6 +211,11 @@
                                                 Save
                                             </button>
                                         </form>
+                                        @if($job->organization_verified)
+    <span class="badge bg-success">Verified</span>
+@else
+    <span class="badge bg-warning text-dark">Pending</span>
+@endif
                                     </td>
                                     <td>
                                         <span
@@ -230,6 +235,11 @@
                                                 Save
                                             </button>
                                         </form>
+                                        @if($job->organization_full_form_verified)
+    <span class="badge bg-success">Verified</span>
+@else
+    <span class="badge bg-warning text-dark">Pending</span>
+@endif
                                     </td>
                                     <!-- Syllabus -->
                                     <td>

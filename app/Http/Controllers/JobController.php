@@ -3809,27 +3809,29 @@ class JobController extends Controller
     }
 
     public function updateOrganization($id)
-    {
-        DB::table('job_details')
-            ->where('id', $id)
-            ->update([
-                'organization' => request('organization')
-            ]);
+{
+    DB::table('job_details')
+        ->where('id', $id)
+        ->update([
+            'organization' => request('organization'),
+            'organization_verified' => 1
+        ]);
 
-        return back();
-    }
+    return back();
+}
    
 
-     public function updateOrganizationFullForm($id)
-    {
-        DB::table('job_details')
-            ->where('id', $id)
-            ->update([
-                'organization_full_form' => request('organization_full_form')
-            ]);
+    public function updateOrganizationFullForm($id)
+{
+    DB::table('job_details')
+        ->where('id', $id)
+        ->update([
+            'organization_full_form' => request('organization_full_form'),
+            'organization_full_form_verified' => 1
+        ]);
 
-        return back();
-    }
+    return back();
+}
 
     
 }
