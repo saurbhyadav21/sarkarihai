@@ -3396,213 +3396,231 @@ class JobController extends Controller
         );
     }
 
-   public function freeJobAlertData()
-{
-    $updated = 0;
-    $failed = 0;
+    public function freeJobAlertData()
+    {
+        $updated = 0;
+        $failed = 0;
 
-    DB::table('job_details')
-        ->where('source', 'freejobalert')
-        ->whereNull('organization_full_form')
-        ->select('id', 'source_url')
-        ->orderBy('id')
-        ->chunk(1000, function ($jobs) use (&$updated, &$failed) {
+        DB::table('job_details')
+            ->where('source', 'freejobalert')
+            ->whereNull('organization_full_form')
+            ->select('id', 'source_url')
+            ->orderBy('id')
+            ->chunk(1000, function ($jobs) use (&$updated, &$failed) {
 
-            foreach ($jobs as $job) {
+                foreach ($jobs as $job) {
 
-                try {
+                    try {
 
-                    $response = Http::withHeaders([
-                        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36',
-                    ])
-                    ->timeout(30)
-                    ->retry(3, 1000)
-                    ->get($job->source_url);
+                        $response = Http::withHeaders([
+                            'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36',
+                        ])
+                            ->timeout(30)
+                            ->retry(3, 1000)
+                            ->get($job->source_url);
 
-                    if (!$response->successful()) {
-                        $failed++;
-                        continue;
-                    }
+                        if (!$response->successful()) {
+                            $failed++;
+                            continue;
+                        }
 
-                    $organization = $this->extractOrganizationFullForm($response->body());
+                        $organizationFullForm = trim($this->extractOrganizationFullForm($response->body()));
 
-                    if (!empty($organization)) {
+                        if (!empty($organizationFullForm)) {
 
-                        DB::table('job_details')
-                            ->where('id', $job->id)
-                            ->update([
-                                'organization_full_form' => trim($organization),
+                            // Check if this full form already exists with organization filled
+                            $existing = DB::table('job_details')
+                                ->where('organization_full_form', $organizationFullForm)
+                                ->whereNotNull('organization')
+                                ->where('organization', '!=', '')
+                                ->orderBy('id')
+                                ->first();
+
+                            $data = [
+                                'organization_full_form' => $organizationFullForm,
                                 'updated_at' => now(),
-                            ]);
+                            ];
 
-                        $updated++;
+                            if ($existing) {
+                                $data['organization'] = $existing->organization;
+                            }
 
-                        echo "Updated ID {$job->id} : {$organization}<br>";
-                        ob_flush();
-                        flush();
-                    } else {
+                            DB::table('job_details')
+                                ->where('id', $job->id)
+                                ->update($data);
 
-                        echo "Organization Not Found : {$job->id}<br>";
+                            $updated++;
+
+                            echo "Updated ID {$job->id} : {$organizationFullForm}";
+                            if ($existing) {
+                                echo " => {$existing->organization}";
+                            }
+                            echo "<br>";
+
+                            ob_flush();
+                            flush();
+                        } else {
+
+                            echo "Organization Not Found : {$job->id}<br>";
+                            ob_flush();
+                            flush();
+                        }
+                    } catch (\Exception $e) {
+
+                        $failed++;
+
+                        echo "Error ({$job->id}) : " . $e->getMessage() . "<br>";
                         ob_flush();
                         flush();
                     }
+                }
+            });
 
-                } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'Completed',
+            'updated' => $updated,
+            'failed' => $failed,
+        ]);
+    }
 
-                    $failed++;
+    /**
+     * FreeJobAlert page se Organization Name scrape karega
+     */
+    private function extractOrganizationFullForm($html)
+    {
+        libxml_use_internal_errors(true);
 
-                    echo "Error ({$job->id}) : " . $e->getMessage() . "<br>";
-                    ob_flush();
-                    flush();
+        $dom = new \DOMDocument();
+        @$dom->loadHTML($html);
+
+        $xpath = new \DOMXPath($dom);
+
+        $keywords = [
+            'organization',
+            'organisation',
+            'organization name',
+            'organisation name',
+            'company name',
+            'recruiting body',
+            'recruiting organisation',
+            'recruiting organization',
+            'recruiting authority',
+            'recruiting agency',
+            'conducting body',
+            'conducting authority',
+            'conducting agency',
+            'department',
+            'portal name',
+            'university name',
+            'bank name',
+            'name of the organization',
+            'name of organization',
+        ];
+
+        // Normalize text
+        $normalize = function ($text) {
+
+            $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+            // Replace NBSP with normal space
+            $text = str_replace("\xC2\xA0", ' ', $text);
+
+            // Remove HTML
+            $text = strip_tags($text);
+
+            // Multiple spaces/new lines -> single space
+            $text = preg_replace('/\s+/u', ' ', $text);
+
+            return strtolower(trim($text));
+        };
+
+        // -----------------------------
+        // Check all table rows
+        // -----------------------------
+        $rows = $xpath->query("//table[contains(@class,'scrollable-table')]//tr");
+
+        foreach ($rows as $row) {
+
+            $cells = $xpath->query("./th|./td", $row);
+
+            if ($cells->length < 2) {
+                continue;
+            }
+
+            $label = $normalize($cells->item(0)->textContent);
+
+            $value = trim(
+                preg_replace(
+                    '/\s+/u',
+                    ' ',
+                    html_entity_decode(
+                        strip_tags($cells->item(1)->textContent),
+                        ENT_QUOTES | ENT_HTML5,
+                        'UTF-8'
+                    )
+                )
+            );
+
+            // Skip header rows
+            if (in_array($label, [
+                'particulars',
+                'field',
+                'details',
+                'detail',
+                'information',
+                'description'
+            ])) {
+                continue;
+            }
+
+            foreach ($keywords as $keyword) {
+
+                if (strpos($label, $keyword) !== false && !empty($value)) {
+                    return $value;
                 }
             }
-        });
-
-    return response()->json([
-        'status' => 'Completed',
-        'updated' => $updated,
-        'failed' => $failed,
-    ]);
-}
-
-/**
- * FreeJobAlert page se Organization Name scrape karega
- */
-private function extractOrganizationFullForm($html)
-{
-    libxml_use_internal_errors(true);
-
-    $dom = new \DOMDocument();
-    @$dom->loadHTML($html);
-
-    $xpath = new \DOMXPath($dom);
-
-    $keywords = [
-        'organization',
-        'organisation',
-        'organization name',
-        'organisation name',
-        'company name',
-        'recruiting body',
-        'recruiting organisation',
-        'recruiting organization',
-        'recruiting authority',
-        'recruiting agency',
-        'conducting body',
-        'conducting authority',
-        'conducting agency',
-        'department',
-        'portal name',
-        'university name',
-        'bank name',
-        'name of the organization',
-        'name of organization',
-    ];
-
-    // Normalize text
-    $normalize = function ($text) {
-
-        $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-
-        // Replace NBSP with normal space
-        $text = str_replace("\xC2\xA0", ' ', $text);
-
-        // Remove HTML
-        $text = strip_tags($text);
-
-        // Multiple spaces/new lines -> single space
-        $text = preg_replace('/\s+/u', ' ', $text);
-
-        return strtolower(trim($text));
-    };
-
-    // -----------------------------
-    // Check all table rows
-    // -----------------------------
-    $rows = $xpath->query("//table[contains(@class,'scrollable-table')]//tr");
-
-    foreach ($rows as $row) {
-
-        $cells = $xpath->query("./th|./td", $row);
-
-        if ($cells->length < 2) {
-            continue;
         }
 
-        $label = $normalize($cells->item(0)->textContent);
+        // -----------------------------
+        // colspan="2" heading
+        // -----------------------------
+        $heading = $xpath->query("//table[contains(@class,'scrollable-table')]//td[@colspan='2'][1]")->item(0);
 
-        $value = trim(
-            preg_replace(
-                '/\s+/u',
-                ' ',
-                html_entity_decode(
-                    strip_tags($cells->item(1)->textContent),
-                    ENT_QUOTES | ENT_HTML5,
-                    'UTF-8'
+        if ($heading) {
+
+            $text = trim(
+                preg_replace(
+                    '/\s+/u',
+                    ' ',
+                    html_entity_decode(strip_tags($heading->textContent), ENT_QUOTES | ENT_HTML5, 'UTF-8')
                 )
-            )
-        );
+            );
 
-        // Skip header rows
-        if (in_array($label, [
-            'particulars',
-            'field',
-            'details',
-            'detail',
-            'information',
-            'description'
-        ])) {
-            continue;
-        }
-
-        foreach ($keywords as $keyword) {
-
-            if (strpos($label, $keyword) !== false && !empty($value)) {
-                return $value;
+            if (!empty($text) && strlen($text) > 5) {
+                return $text;
             }
         }
-    }
 
-    // -----------------------------
-    // colspan="2" heading
-    // -----------------------------
-    $heading = $xpath->query("//table[contains(@class,'scrollable-table')]//td[@colspan='2'][1]")->item(0);
+        // -----------------------------
+        // First <p> heading
+        // -----------------------------
+        $heading = $xpath->query("//table[contains(@class,'scrollable-table')]//p[1]")->item(0);
 
-    if ($heading) {
+        if ($heading) {
 
-        $text = trim(
-            preg_replace(
-                '/\s+/u',
-                ' ',
-                html_entity_decode(strip_tags($heading->textContent), ENT_QUOTES | ENT_HTML5, 'UTF-8')
-            )
-        );
+            $text = trim(
+                preg_replace(
+                    '/\s+/u',
+                    ' ',
+                    html_entity_decode(strip_tags($heading->textContent), ENT_QUOTES | ENT_HTML5, 'UTF-8')
+                )
+            );
 
-        if (!empty($text) && strlen($text) > 5) {
-            return $text;
+            if (!empty($text) && strlen($text) > 5) {
+                return $text;
+            }
         }
+
+        return null;
     }
-
-    // -----------------------------
-    // First <p> heading
-    // -----------------------------
-    $heading = $xpath->query("//table[contains(@class,'scrollable-table')]//p[1]")->item(0);
-
-    if ($heading) {
-
-        $text = trim(
-            preg_replace(
-                '/\s+/u',
-                ' ',
-                html_entity_decode(strip_tags($heading->textContent), ENT_QUOTES | ENT_HTML5, 'UTF-8')
-            )
-        );
-
-        if (!empty($text) && strlen($text) > 5) {
-            return $text;
-        }
-    }
-
-    return null;
-}
 }
