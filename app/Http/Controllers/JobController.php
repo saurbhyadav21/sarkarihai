@@ -3638,7 +3638,7 @@ class JobController extends Controller
         set_time_limit(0);
 
         $jobs = DB::table('job_details')
-            ->where('source', 'sarkarinaukri')
+            ->where('source', 'sarkariresult.com.cm')
             ->whereNull('organization_full_form')
             ->whereNotNull('source_url')
             ->select('id', 'source_url')
