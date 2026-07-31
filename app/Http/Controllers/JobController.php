@@ -3706,10 +3706,31 @@ class JobController extends Controller
 
                 if (!$found) {
 
-                    $notUpdated[] = [
-                        'id' => $job->id,
-                        'url' => $job->source_url
-                    ];
+                    $old = DB::table('job_details')
+                        ->whereNotNull('organization_full_form')
+                        ->where(function ($q) use ($text) {
+                            $q->where('organization', 'LIKE', "%{$text}%")
+                                ->orWhere('organization_full_form', 'LIKE', "%{$text}%");
+                        })
+                        ->first();
+
+                    if ($old) {
+
+                        DB::table('job_details')
+                            ->where('id', $job->id)
+                            ->update([
+                                'organization' => $old->organization,
+                                'organization_full_form' => $old->organization_full_form
+                            ]);
+
+                        $updated[] = [
+                            'id' => $job->id,
+                            'organization' => $old->organization,
+                            'organization_full_form' => $old->organization_full_form,
+                        ];
+
+                        $found = true;
+                    }
                 }
             } catch (\Exception $e) {
 
