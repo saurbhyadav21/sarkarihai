@@ -3631,4 +3631,10 @@ class JobController extends Controller
 
         return null;
     }
+
+
+    public function SarkariNaukriData()
+    {
+                echo 'hi';
+    }
 }

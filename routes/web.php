@@ -213,8 +213,12 @@ Route::get(
 )->name('author');
 
 
-
+//organization_full_form &&&&&&  organization_update both sarakri.com or freejob alert.com
 Route::get(
     'freeJobAlertData_organization_full_form_organization_update',
     [JobController::class, 'freeJobAlertData']
 )->name('freeJobAlertData');
+Route::get(
+    'sarkarinaukri_organization_full_form_organization_update',
+    [JobController::class, 'SarkariNaukriData']
+)->name('SarkariNaukriData');
