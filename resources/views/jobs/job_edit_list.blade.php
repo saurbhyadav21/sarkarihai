@@ -212,7 +212,7 @@
                                             </button>
                                         </form>
                                         @if($job->organization_verified)
-    <span class="badge bg-success">Verified</span>
+    <span class="badge bg-success" style="background-color: #000 !important;">Verified</span>
 @else
     <span class="badge bg-warning text-dark">Pending</span>
 @endif
@@ -236,7 +236,7 @@
                                             </button>
                                         </form>
                                         @if($job->organization_full_form_verified)
-    <span class="badge bg-success">Verified</span>
+    <span class="badge bg-success" style="background-color: #000 !important;">Verified</span>
 @else
     <span class="badge bg-warning text-dark">Pending</span>
 @endif
