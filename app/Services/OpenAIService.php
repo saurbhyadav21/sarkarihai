@@ -26,7 +26,7 @@ PROMPT;
         $response = Http::withToken(env('OPENAI_API_KEY'))
             ->timeout(60)
             ->post('https://api.openai.com/v1/responses', [
-                'model' => 'gpt-5.5-mini',
+                'model' => 'gpt-5',
                 'input' => $prompt,
             ]);
 
