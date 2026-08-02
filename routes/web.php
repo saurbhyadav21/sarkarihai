@@ -236,3 +236,11 @@ Route::get(
     'sarkarinaukri_organization_full_form_organization_update',
     [JobController::class, 'SarkariNaukriData']
 )->name('SarkariNaukriData');
+
+
+
+Route::get('/ai-test', function(App\Services\OpenAIService $ai){
+
+    return $ai->getOrganization("Allahabad University");
+
+});

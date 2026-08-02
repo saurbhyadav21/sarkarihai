@@ -1,25 +1,41 @@
 <?php
 
+namespace App\Services;
+
 use Illuminate\Support\Facades\Http;
 
-$response = Http::withToken(env('OPENAI_API_KEY'))
-    ->post('https://api.openai.com/v1/responses', [
-        'model' => env('OPENAI_MODEL'),
-        'input' => 'You are an expert in Indian Government Organizations.
+class OpenAIService
+{
+    public function getOrganization($organization)
+    {
+        $prompt = <<<PROMPT
+You are an expert in Indian government organizations.
 
 Return ONLY valid JSON.
 
-Input:
+{
+  "full_name":"",
+  "short_name":"",
+  "aliases":[]
+}
 
 Organization:
-ICAR Central Rice Research Institute
+{$organization}
+PROMPT;
 
-Output Format
+        $response = Http::withToken(env('OPENAI_API_KEY'))
+            ->timeout(60)
+            ->post('https://api.openai.com/v1/responses', [
+                'model' => 'gpt-5.5-mini',
+                'input' => $prompt,
+            ]);
 
-{
- "full_name":"ICAR – Central Rice Research Institute",
- "short_name":"ICAR-CRRI"
-}'
-    ]);
+        if (!$response->successful()) {
+            throw new \Exception($response->body());
+        }
 
-dd($response->json());
+        $text = $response->json('output.0.content.0.text');
+
+        return json_decode($text, true);
+    }
+}

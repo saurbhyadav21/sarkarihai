@@ -18,7 +18,7 @@ use DOMXPath;
 use Carbon\Carbon;
 use Illuminate\Http\Client\Pool;
 use Symfony\Component\DomCrawler\Crawler;
-
+use App\Services\OpenAIService;
 
 class JobController extends Controller
 {
@@ -430,38 +430,38 @@ class JobController extends Controller
     }
 
     public function OrgEditList($limit = 10)
-{
-    $jobs = Job::where(function ($query) {
+    {
+        $jobs = Job::where(function ($query) {
             $query->where('organization_verified', 0)
-                  ->orWhere('organization_full_form_verified', 0);
+                ->orWhere('organization_full_form_verified', 0);
         })
-        ->orderBy('id', 'desc')
-        ->paginate($limit);
+            ->orderBy('id', 'desc')
+            ->paginate($limit);
 
-    $categories = DB::table('job_categories')
-        ->orderBy('name')
-        ->get();
+        $categories = DB::table('job_categories')
+            ->orderBy('name')
+            ->get();
 
-    $subCategories = DB::table('job_sub_categories')
-        ->orderBy('name')
-        ->get();
+        $subCategories = DB::table('job_sub_categories')
+            ->orderBy('name')
+            ->get();
 
-    $states = DB::table('job_states')
-        ->orderBy('name')
-        ->get();
+        $states = DB::table('job_states')
+            ->orderBy('name')
+            ->get();
 
-    $job_topics = DB::table('job_topics')
-        ->orderBy('name')
-        ->get();
+        $job_topics = DB::table('job_topics')
+            ->orderBy('name')
+            ->get();
 
-    return view('jobs/job_org_edit_list', compact(
-        'jobs',
-        'categories',
-        'subCategories',
-        'states',
-        'job_topics'
-    ));
-}
+        return view('jobs/job_org_edit_list', compact(
+            'jobs',
+            'categories',
+            'subCategories',
+            'states',
+            'job_topics'
+        ));
+    }
     public function resultList()
     {
 
@@ -3842,29 +3842,38 @@ class JobController extends Controller
     }
 
     public function updateOrganization($id)
-{
-    DB::table('job_details')
-        ->where('id', $id)
-        ->update([
-            'organization' => request('organization'),
-            'organization_verified' => 1
-        ]);
+    {
+        DB::table('job_details')
+            ->where('id', $id)
+            ->update([
+                'organization' => request('organization'),
+                'organization_verified' => 1
+            ]);
 
-    return back();
-}
-   
+        return back();
+    }
+
 
     public function updateOrganizationFullForm($id)
-{
-    DB::table('job_details')
-        ->where('id', $id)
-        ->update([
-            'organization_full_form' => request('organization_full_form'),
-            'organization_full_form_verified' => 1
-        ]);
+    {
+        DB::table('job_details')
+            ->where('id', $id)
+            ->update([
+                'organization_full_form' => request('organization_full_form'),
+                'organization_full_form_verified' => 1
+            ]);
 
-    return back();
-}
+        return back();
+    }
 
-    
+
+
+    public function test(OpenAIService $openAI)
+    {
+        $result = $openAI->getOrganization(
+            "ICAR Central Rice Research Institute"
+        );
+
+        dd($result);
+    }
 }
