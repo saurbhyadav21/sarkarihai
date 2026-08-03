@@ -25,6 +25,10 @@ Schedule::command('jobs:detect-category')
 
 Schedule::command('faq:generate-ids')->everyMinute();
 
+Schedule::command('sync:organization-fullform')
+    ->everyMinute();
+
+    
 Schedule::call(function () {
 
     File::append(
