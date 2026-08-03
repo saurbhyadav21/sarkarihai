@@ -31,8 +31,8 @@ class SyncOrganizationFullForm extends Command
         $jobs = DB::table('job_details')
             ->where('organization_verified', 1)
             ->where(function ($query) {
-                $query->whereNull('organization_full_form')
-                    ->orWhere('organization_full_form', '');
+                // $query->whereNull('organization_full_form')
+                //     ->orWhere('organization_full_form', '');
             })
             ->limit(500)
             ->get();
