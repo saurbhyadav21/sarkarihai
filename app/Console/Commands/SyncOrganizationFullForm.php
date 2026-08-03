@@ -50,7 +50,7 @@ class SyncOrganizationFullForm extends Command
                     ->where('id', $job->id)
                     ->update([
                         'organization_full_form' => $org->full_name,
-                        'organization_short_form' => $org->short_name,
+                        // 'organization_short_form' => $org->short_name,
                         'organization_full_form_verified' => 1,
                         'updated_at' => now(),
                     ]);
