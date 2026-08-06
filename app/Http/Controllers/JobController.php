@@ -3884,4 +3884,28 @@ class JobController extends Controller
 
         dd($result);
     }
+
+
+    public function copyOrganizationFullForm($id)
+    {
+        $job = Job::findOrFail($id);
+
+        $org = DB::table('organizations')
+            ->where('original_name', $job->organization)
+            ->first();
+
+        if (!$org) {
+            return back()->with('error', 'Organization not found.');
+        }
+
+        DB::table('job_details')
+            ->where('id', $id)
+            ->update([
+                'organization_full_form' => $org->full_form,
+                'organization_full_form_verified' => 1,
+                'updated_at' => now(),
+            ]);
+
+        return back()->with('success', 'Organization Full Form copied successfully.');
+    }
 }
