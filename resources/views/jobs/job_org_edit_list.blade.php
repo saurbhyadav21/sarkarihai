@@ -109,10 +109,12 @@
                                                 value="{{ $job->organization_full_form }}"
                                                 class="form-control form-control-sm mb-1"
                                                 placeholder="Organization Full Form">
-
+                                            @if (!$exists)
                                             <button class="btn btn-success btn-sm w-100">
                                                 Save
                                             </button>
+                                        @endif
+                                            
                                         </form>
                                         @if ($job->organization_full_form_verified)
                                             <span class="badge bg-success"
