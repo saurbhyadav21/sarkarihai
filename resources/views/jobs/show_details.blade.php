@@ -1400,7 +1400,7 @@
 
             <div class="content-card job-highlights-card">
 
-                <h2>
+                <h2 style="color: #000">
                     Job Highlights
                 </h2>
 
@@ -1519,7 +1519,7 @@
 
             <div class="content-card">
 
-                <h2>
+                <h2 style="color: #000">
                     Important Notice
                 </h2>
 
@@ -1537,7 +1537,7 @@
 
             <div class="content-card" id="fee">
 
-                <h2>
+                <h2 style="color: #000">
                     Application Fee
                 </h2>
 
@@ -1659,7 +1659,7 @@
                     $job->relaxation)
                 <div class="content-card" id="age">
 
-                    <h2>Age Limit</h2>
+                    <h2 style="color: #000">Age Limit</h2>
 
                     <table class="info-table">
 
@@ -1835,7 +1835,7 @@
 
                 <div class="content-card" id="vacancy">
 
-                    <h2>Post Wise Vacancy Details</h2>
+                    <h2 style="color: #000">Post Wise Vacancy Details</h2>
 
                     <div class="table-responsive">
 
@@ -1985,7 +1985,7 @@
             @if ($totalVacancy)
                 <div class="content-card">
 
-                    <h2>Category Wise Vacancy</h2>
+                    <h2 style="color: #000">Category Wise Vacancy</h2>
 
                     <div class="category-grid">
 
@@ -2393,7 +2393,7 @@
             @if (count($steps))
                 <div class="content-card">
 
-                    <h2>Selection Process</h2>
+                    <h2 style="color: #000">Selection Process</h2>
 
                     <div class="selection-grid">
 
@@ -2659,7 +2659,7 @@
             @if (count($documents))
                 <div class="content-card" id="documents">
 
-                    <h2>Required Documents</h2>
+                    <h2 style="color: #000">Required Documents</h2>
 
                     <div class="document-list">
 
@@ -2848,7 +2848,7 @@
             @if (count($instructions))
                 <div class="content-card" id="apply">
 
-                    <h2>How to Apply</h2>
+                     <h2 style="color: #000">How to Apply</h2>
 
                     <div class="apply-steps">
 
@@ -2919,7 +2919,7 @@
                         style="background: linear-gradient(135deg, #062a3a, #0a5467);
     color: #fff !important;">
 
-                        <h2 class="h5 mb-1">
+                        <h2 class="h5 mb-1" style="color: #000">
                             🎯 Check Your Eligibility
                         </h2>
 
