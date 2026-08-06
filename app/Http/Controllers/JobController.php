@@ -454,12 +454,20 @@ class JobController extends Controller
             ->orderBy('name')
             ->get();
 
+
+        $job_org_table = DB::table('organizations')
+            ->pluck('original_name')
+            ->map(fn($item) => strtolower(trim($item)))
+            ->toArray();
+
+
         return view('jobs/job_org_edit_list', compact(
             'jobs',
             'categories',
             'subCategories',
             'states',
-            'job_topics'
+            'job_topics',
+            'job_org_table'
         ));
     }
     public function resultList()

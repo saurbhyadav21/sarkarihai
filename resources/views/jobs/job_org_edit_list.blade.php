@@ -67,6 +67,10 @@
                                         @else
                                             <span class="badge bg-warning text-dark">Pending</span>
                                         @endif
+
+                                        @if($exists)
+    <span class="text-danger ms-1" title="Already exists">🚩</span>
+@endif
                                     </td>
                                     <td>
                                         <span
