@@ -48,10 +48,10 @@
                                     @endphp
 
                                     <td>
-                                        <span
+                                        {{-- <span
                                             class="badge rounded-pill {{ !empty($job->organization) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
                                             {{ strtoupper($job->organization ?? 'NOT SET') }}
-                                        </span>
+                                        </span> --}}
                                         <form action="{{ route('job.updateOrganization', $job->id) }}" method="POST">
                                             @csrf
 
@@ -82,10 +82,10 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <span
+                                        {{-- <span
                                             class="badge rounded-pill {{ !empty($job->organization_full_form) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
                                             {{ strtoupper($job->organization_full_form ?? 'NOT SET') }}
-                                        </span>
+                                        </span> --}}
                                         <form action="{{ route('job.updateOrganizationFullForm', $job->id) }}"
                                             method="POST">
                                             @csrf
