@@ -80,6 +80,21 @@
                                         @if ($exists)
                                             <span class="badge bg-danger ms-1">🚩 Exists</span>
                                         @endif
+
+                                        @php
+    $org = DB::table('organizations')
+        ->whereRaw('LOWER(original_name) = ?', [strtolower(trim($job->organization))])
+        ->first();
+@endphp
+
+@if($org)
+    <form action="{{ route('job.copyOrganizationFullForm', $job->id) }}" method="POST" class="mt-1">
+        @csrf
+        <button type="submit" class="btn btn-sm btn-danger">
+            Copy Full Form
+        </button>
+    </form>
+@endif
                                     </td>
                                     <td>
                                         {{-- <span
