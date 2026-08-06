@@ -1380,7 +1380,7 @@
 
             <div class="content-card" id="overview">
 
-                <h2>
+                <h2 style="color: #000">
                     Overview
                 </h2>
 
