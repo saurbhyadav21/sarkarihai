@@ -3901,7 +3901,7 @@ class JobController extends Controller
         DB::table('job_details')
             ->where('id', $id)
             ->update([
-                'organization_full_form' => $org->full_form,
+                'organization_full_form' => $org->full_name,
                 'organization_full_form_verified' => 1,
                 'updated_at' => now(),
             ]);
