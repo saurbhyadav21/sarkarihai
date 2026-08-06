@@ -38,7 +38,12 @@
                         </thead>
 
                         <tbody>
-
+ @php
+    $exists = in_array(
+        strtolower(trim($job->organization)),
+        $job_org_table
+    );
+@endphp
                             @foreach ($jobs as $job)
                                 <tr>
 
@@ -68,8 +73,15 @@
                                             <span class="badge bg-warning text-dark">Pending</span>
                                         @endif
 
-                                        @if($exists)
-    <span class="text-danger ms-1" title="Already exists">🚩</span>
+                                       
+
+<span
+    class="badge rounded-pill {{ !empty($job->organization) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
+    {{ strtoupper($job->organization ?? 'NOT SET') }}
+</span>
+
+@if($exists)
+    <span class="badge bg-danger ms-1">🚩 Exists</span>
 @endif
                                     </td>
                                     <td>
