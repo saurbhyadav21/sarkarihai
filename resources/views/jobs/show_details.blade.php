@@ -1465,7 +1465,7 @@
 
             <div class="content-card" id="dates">
 
-                <h2>
+                <h2 style="color: #000">
                     Important Dates
                 </h2>
 
