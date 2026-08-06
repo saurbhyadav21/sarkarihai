@@ -38,17 +38,17 @@
                         </thead>
 
                         <tbody>
+
+                            @foreach ($jobs as $job)
+                                <tr>
+
+                                    <td>{{ $job->id }}</td>
  @php
     $exists = in_array(
         strtolower(trim($job->organization)),
         $job_org_table
     );
 @endphp
-                            @foreach ($jobs as $job)
-                                <tr>
-
-                                    <td>{{ $job->id }}</td>
-
 
                                     <td>
                                         <span
