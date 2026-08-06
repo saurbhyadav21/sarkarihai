@@ -82,19 +82,22 @@
                                         @endif
 
                                         @php
-    $org = DB::table('organizations')
-        ->whereRaw('LOWER(original_name) = ?', [strtolower(trim($job->organization))])
-        ->first();
-@endphp
+                                            $org = DB::table('organizations')
+                                                ->whereRaw('LOWER(original_name) = ?', [
+                                                    strtolower(trim($job->organization)),
+                                                ])
+                                                ->first();
+                                        @endphp
 
-@if($org)
-    <form action="{{ route('job.copyOrganizationFullForm', $job->id) }}" method="POST" class="mt-1">
-        @csrf
-        <button type="submit" class="btn btn-sm btn-danger">
-            Copy Full Form
-        </button>
-    </form>
-@endif
+                                        @if ($org)
+                                            <form action="{{ route('job.copyOrganizationFullForm', $job->id) }}"
+                                                method="POST" class="mt-1">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    Copy Full Form
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                     <td>
                                         {{-- <span
@@ -110,18 +113,20 @@
                                                 class="form-control form-control-sm mb-1"
                                                 placeholder="Organization Full Form">
                                             @if (!$exists)
-                                            <button class="btn btn-success btn-sm w-100">
-                                                Save
-                                            </button>
-                                        @endif
-                                            
+                                                <button class="btn btn-success btn-sm w-100">
+                                                    Save
+                                                </button>
+
+                                                @if ($job->organization_full_form_verified)
+                                                    <span class="badge bg-success"
+                                                        style="background-color: #000 !important;">Verified</span>
+                                                @else
+                                                    <span class="badge bg-warning text-dark">Pending</span>
+                                                @endif
+                                            @endif
+
                                         </form>
-                                        @if ($job->organization_full_form_verified)
-                                            <span class="badge bg-success"
-                                                style="background-color: #000 !important;">Verified</span>
-                                        @else
-                                            <span class="badge bg-warning text-dark">Pending</span>
-                                        @endif
+
                                     </td>
                                     <!-- Syllabus -->
 
