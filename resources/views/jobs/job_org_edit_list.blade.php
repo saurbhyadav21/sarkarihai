@@ -43,12 +43,9 @@
                                 <tr>
 
                                     <td>{{ $job->id }}</td>
- @php
-    $exists = in_array(
-        strtolower(trim($job->organization)),
-        $job_org_table
-    );
-@endphp
+                                    @php
+                                        $exists = in_array(strtolower(trim($job->organization)), $job_org_table);
+                                    @endphp
 
                                     <td>
                                         <span
@@ -73,16 +70,16 @@
                                             <span class="badge bg-warning text-dark">Pending</span>
                                         @endif
 
-                                       
 
-<span
-    class="badge rounded-pill {{ !empty($job->organization) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
-    {{ strtoupper($job->organization ?? 'NOT SET') }}
-</span>
 
-@if($exists)
-    <span class="badge bg-danger ms-1">🚩 Exists</span>
-@endif
+                                        {{-- <span
+                                            class="badge rounded-pill {{ !empty($job->organization) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
+                                            {{ strtoupper($job->organization ?? 'NOT SET') }}
+                                        </span> --}}
+
+                                        @if ($exists)
+                                            <span class="badge bg-danger ms-1">🚩 Exists</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <span
@@ -110,7 +107,7 @@
                                         @endif
                                     </td>
                                     <!-- Syllabus -->
-                                    
+
 
                                 </tr>
                             @endforeach
