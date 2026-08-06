@@ -2108,7 +2108,7 @@
             @if (count(array_filter($postNames)))
                 <div class="content-card" id="post-details">
 
-                    <h2>Post Wise Details</h2>
+                    <h2 style="color: #000">Post Wise Details</h2>
 
                     <div class="table-responsive">
 
@@ -2919,7 +2919,7 @@
                         style="background: linear-gradient(135deg, #062a3a, #0a5467);
     color: #fff !important;">
 
-                        <h2 class="h5 mb-1" style="color: #000">
+                        <h2 class="h5 mb-1">
                             🎯 Check Your Eligibility
                         </h2>
 
