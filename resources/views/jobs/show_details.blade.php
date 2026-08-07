@@ -981,7 +981,13 @@
                     </nav>
 
                     @php
-    $totalPosts = is_numeric($job->total_posts) ? (int)$job->total_posts : 0;
+    $posts = [];
+
+    if (!empty($job->post_name)) {
+        $posts = array_filter(array_map('trim', explode('#', $job->post_name)));
+    }
+
+    $postCount = count($posts);
 @endphp
 
 <h1>
@@ -993,11 +999,9 @@
 
     Recruitment {{ date('Y') }}
 
-    @if(!empty($job->post_name))
-        - {{ $job->post_name }} Vacancy
-    @elseif($totalPosts == 1)
-        - 1 Post Vacancy
-    @elseif($totalPosts > 1)
+    @if($postCount == 1)
+        - {{ $posts[0] }} Vacancy
+    @elseif($postCount > 1)
         - Various Posts Vacancy
     @else
         - Apply Online
