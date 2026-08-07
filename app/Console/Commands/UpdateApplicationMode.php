@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Console\Commands;
+
 use Illuminate\Support\Facades\Http;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -41,7 +42,7 @@ class UpdateApplicationMode extends Command
             ->chunk(100, function ($jobs) use (&$updated, &$failed) {
 
                 foreach ($jobs as $job) {
-                    
+
                     try {
 
                         $response = Http::timeout(30)
@@ -57,10 +58,20 @@ class UpdateApplicationMode extends Command
                         }
 
                         $html = $response->body();
-                        DD($html);  
+                        // DD($html);  
                         // $mode = //$this->extractApplicationMode($html);
-                        $mode = FreeJobAlertHelper::extractApplicationMode($html);
-                       
+                        $mode = null;
+
+                        if ($job->source == 'freejobalert') {
+                            $mode = $this->extractFreeJobAlertMode($html);
+                        }
+
+                        if ($job->source == 'sarkariresult.com.cm') {
+                            $mode = $this->extractSarkariMode($html);
+                        }
+
+                        return $mode;
+
                         if (!empty($mode)) {
 
                             DB::table('job_details')
@@ -93,5 +104,4 @@ class UpdateApplicationMode extends Command
 
         return "Completed | Updated : {$updated} | Failed : {$failed}";
     }
-    
 }

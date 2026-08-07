@@ -1177,125 +1177,56 @@ class FreeJobAlertHelper
         );
     }
 
-    public static function extractApplicationMode($html)
+    public static function extractFreeJobAlertMode($html)
     {
-    dd($html);   
-    libxml_use_internal_errors(true);
-
-        $dom = new DOMDocument();
-        @$dom->loadHTML($html);
-
-        $xpath = new DOMXPath($dom);
-
-        // -------------------------
-        // STEP-1 Table Detection
-        // -------------------------
-
-        $labels = [
-
-            'application mode',
-            'mode of application',
-            'mode of apply',
-            'apply mode',
-            'application process',
-            'application type',
-            'registration mode'
-
-        ];
-
-        $rows = $xpath->query("//table//tr");
-
-        foreach ($rows as $row) {
-
-            $cells = $xpath->query("./th|./td", $row);
-
-            if ($cells->length < 2) {
-                continue;
-            }
-
-            $label = strtolower(trim(preg_replace(
-                '/\s+/u',
-                ' ',
-                html_entity_decode(strip_tags($cells->item(0)->textContent))
-            )));
-
-            $value = strtolower(trim(preg_replace(
-                '/\s+/u',
-                ' ',
-                html_entity_decode(strip_tags($cells->item(1)->textContent))
-            )));
-
-            foreach ($labels as $find) {
-
-                if (strpos($label, $find) !== false) {
-
-                    if (strpos($value, 'online') !== false && strpos($value, 'offline') !== false) {
-                        return 'Online / Offline';
-                    }
-
-                    if (strpos($value, 'online') !== false) {
-                        return 'Online';
-                    }
-
-                    if (strpos($value, 'offline') !== false) {
-                        return 'Offline';
-                    }
-                }
-            }
-        }
-
-        // -------------------------
-        // STEP-2 Button Detection
-        // -------------------------
-
-        $buttons = strtolower(strip_tags($html));
-
-        if (
-            strpos($buttons, 'apply online') !== false &&
-            strpos($buttons, 'apply offline') !== false
-        ) {
-            return 'Online / Offline';
-        }
-
-        if (
-            strpos($buttons, 'apply online') !== false ||
-            strpos($buttons, 'online application') !== false ||
-            strpos($buttons, 'online registration') !== false ||
-            strpos($buttons, 'online apply') !== false
-        ) {
-            return 'Online';
-        }
-
-        if (
-            strpos($buttons, 'apply offline') !== false ||
-            strpos($buttons, 'offline application') !== false ||
-            strpos($buttons, 'send application') !== false
-        ) {
-            return 'Offline';
-        }
-
-        // -------------------------
-        // STEP-3 Content Detection
-        // -------------------------
-
         $text = strtolower(strip_tags(html_entity_decode($html)));
 
-        if (
-            strpos($text, 'online apply start date') !== false ||
-            strpos($text, 'online apply last date') !== false ||
-            strpos($text, 'apply through online') !== false ||
-            strpos($text, 'fill online form') !== false
-        ) {
+        // Debug
+        file_put_contents(storage_path('logs/freejobalert.html'), $html);
+
+        // Table
+        if (preg_match('/application mode.*?online/is', $text)) {
             return 'Online';
         }
 
-        if (
-            strpos($text, 'offline application') !== false ||
-            strpos($text, 'application form should be sent') !== false ||
-            strpos($text, 'send the application') !== false
-        ) {
+        if (preg_match('/application mode.*?offline/is', $text)) {
             return 'Offline';
         }
+
+        // Buttons
+        if (strpos($text, 'apply online') !== false)
+            return 'Online';
+
+        if (strpos($text, 'apply offline') !== false)
+            return 'Offline';
+
+        // Dates
+        if (strpos($text, 'online apply start date') !== false)
+            return 'Online';
+
+        return null;
+    }
+
+    public static function extractSarkariMode($html)
+    {
+        $text = strtolower(strip_tags(html_entity_decode($html)));
+
+        file_put_contents(storage_path('logs/sarkari.html'), $html);
+
+        if (strpos($text, 'apply online') !== false)
+            return 'Online';
+
+        if (strpos($text, 'online application') !== false)
+            return 'Online';
+
+        if (strpos($text, 'registration') !== false)
+            return 'Online';
+
+        if (strpos($text, 'offline application') !== false)
+            return 'Offline';
+
+        if (strpos($text, 'send application') !== false)
+            return 'Offline';
 
         return null;
     }
