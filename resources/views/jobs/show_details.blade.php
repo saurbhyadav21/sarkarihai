@@ -2013,6 +2013,7 @@
                     color: #0891b2;
                 }
             </style>
+            {{dd($totalVacancy)}}
             @if ($totalVacancy)
                 <div class="content-card">
 
