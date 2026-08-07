@@ -1818,6 +1818,7 @@ class JobController extends Controller
                     '{{Category}}',
                     '{{Sub Category}}',
                     '{{State}}',
+                    '{{JobTitle}}',
                 ],
 
 
@@ -1829,6 +1830,7 @@ class JobController extends Controller
                     '<strong>' . ($job->category ?? '') . '</strong>',
                     '<strong>' . ($job->job_sub_categories ?? '') . '</strong>',
                     '<strong>' . ($job->state ?? '') . '</strong>',
+                    '<strong>' . ($job->title ?? '') . '</strong>',
                 ],
 
 
