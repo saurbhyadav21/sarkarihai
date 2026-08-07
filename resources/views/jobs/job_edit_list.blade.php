@@ -53,12 +53,12 @@
                                     <td>{{ $job->id }}</td>
 
                                     <td>
-    {{ $job->title }}
+                                        {{ $job->title }}
 
-    <br>
+                                        <br>
 
-    <small
-        style="
+                                        <small
+                                            style="
             background:#fff3cd;
             color:#856404;
             padding:2px 8px;
@@ -66,11 +66,10 @@
             font-weight:bold;
             display:inline-block;
             margin-top:5px;
-        "
-    >
-        {{ $job->source }}
-    </small>
-</td>
+        ">
+                                            {{ $job->source }}
+                                        </small>
+                                    </td>
 
                                     <!-- Image -->
                                     <td>
@@ -201,28 +200,30 @@
                                             class="badge rounded-pill {{ !empty($job->organization) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
                                             {{ strtoupper($job->organization ?? 'NOT SET') }}
                                         </span>
-                                        <form action="{{ route('job.updateOrganization', $job->id) }}" method="POST">
+                                        {{-- <form action="{{ route('job.updateOrganization', $job->id) }}" method="POST">
                                             @csrf
 
                                             <input type="text" name="organization" value="{{ $job->organization }}"
-                                                class="form-control form-control-sm mb-1" placeholder="Organization Name">
+                                                class="form-control form-control-sm mb-1"
+                                                placeholder="Organization Name">
 
                                             <button class="btn btn-success btn-sm w-100">
                                                 Save
                                             </button>
-                                        </form>
-                                        @if($job->organization_verified)
-    <span class="badge bg-success" style="background-color: #000 !important;">Verified</span>
-@else
-    <span class="badge bg-warning text-dark">Pending</span>
-@endif
+                                        </form> --}}
+                                        {{-- @if ($job->organization_verified)
+                                            <span class="badge bg-success"
+                                                style="background-color: #000 !important;">Verified</span>
+                                        @else
+                                            <span class="badge bg-warning text-dark">Pending</span>
+                                        @endif --}}
                                     </td>
                                     <td>
                                         <span
                                             class="badge rounded-pill {{ !empty($job->organization_full_form) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
                                             {{ strtoupper($job->organization_full_form ?? 'NOT SET') }}
                                         </span>
-                                        <form action="{{ route('job.updateOrganizationFullForm', $job->id) }}"
+                                        {{-- <form action="{{ route('job.updateOrganizationFullForm', $job->id) }}"
                                             method="POST">
                                             @csrf
 
@@ -235,11 +236,12 @@
                                                 Save
                                             </button>
                                         </form>
-                                        @if($job->organization_full_form_verified)
-    <span class="badge bg-success" style="background-color: #000 !important;">Verified</span>
-@else
-    <span class="badge bg-warning text-dark">Pending</span>
-@endif
+                                        @if ($job->organization_full_form_verified)
+                                            <span class="badge bg-success"
+                                                style="background-color: #000 !important;">Verified</span>
+                                        @else
+                                            <span class="badge bg-warning text-dark">Pending</span>
+                                        @endif --}}
                                     </td>
                                     <!-- Syllabus -->
                                     <td>
