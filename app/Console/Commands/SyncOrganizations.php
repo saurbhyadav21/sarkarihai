@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+
 class SyncOrganizations extends Command
 {
     protected $signature = 'sync:organizations';
@@ -30,7 +31,8 @@ class SyncOrganizations extends Command
                 NOW()
             FROM job_details jd
             LEFT JOIN organizations o
-                ON TRIM(o.original_name) = TRIM(jd.organization)
+ON TRIM(o.original_name) COLLATE utf8mb4_unicode_ci =
+   TRIM(jd.organization) COLLATE utf8mb4_unicode_ci
             WHERE jd.organization_verified = 1
               AND jd.organization_full_form_verified = 1
               AND jd.organization IS NOT NULL
