@@ -41,7 +41,7 @@ class UpdateApplicationMode extends Command
             ->chunk(100, function ($jobs) use (&$updated, &$failed) {
 
                 foreach ($jobs as $job) {
-                    dd("Processing Job ID: {$job->id} | URL: {$job->source_url}");
+                    
                     try {
 
                         $response = Http::timeout(30)
@@ -60,7 +60,7 @@ class UpdateApplicationMode extends Command
 
                         // $mode = //$this->extractApplicationMode($html);
                         $mode = FreeJobAlertHelper::extractApplicationMode($html);
-                    
+                        dd($mode);
                         if (!empty($mode)) {
 
                             DB::table('job_details')
