@@ -75,8 +75,16 @@ ON TRIM(o.original_name) COLLATE utf8mb4_unicode_ci =
               AND o.id IS NULL;
         ");
 
+        DB::statement("
+            UPDATE job_details
+            SET year = YEAR(start_date)
+            WHERE (year IS NULL OR year = '')
+            AND start_date IS NOT NULL
+        ");
 
         $this->info('Organizations synced successfully.');
         $this->info('Organization Full Forms cleaned successfully.');
+        $this->info('Year updated successfully.');
+        
     }
 }
