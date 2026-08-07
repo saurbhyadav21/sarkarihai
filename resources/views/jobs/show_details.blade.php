@@ -980,7 +980,11 @@
 
                     </nav>
 
-                    <h1>
+                    @php
+    $totalPosts = is_numeric($job->total_posts) ? (int)$job->total_posts : 0;
+@endphp
+
+<h1>
     @if(!empty($job->organization_full_form))
         {{ $job->organization_full_form }}
     @else
@@ -991,9 +995,9 @@
 
     @if(!empty($job->post_name))
         - {{ $job->post_name }} Vacancy
-    @elseif(!empty($job->total_posts) && $job->total_posts == 1)
+    @elseif($totalPosts == 1)
         - 1 Post Vacancy
-    @elseif(!empty($job->total_posts) && $job->total_posts > 1)
+    @elseif($totalPosts > 1)
         - Various Posts Vacancy
     @else
         - Apply Online
