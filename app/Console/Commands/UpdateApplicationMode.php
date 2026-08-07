@@ -37,7 +37,7 @@ class UpdateApplicationMode extends Command
                 $q->whereNull('apply_mode')
                     ->orWhere('apply_mode', '');
             })
-            ->select('id', 'source_url')
+            ->select('id', 'source_url','source')
             ->orderBy('id')
             ->chunk(100, function ($jobs) use (&$updated, &$failed) {
 
