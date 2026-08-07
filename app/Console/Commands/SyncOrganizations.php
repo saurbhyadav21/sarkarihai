@@ -15,17 +15,19 @@ class SyncOrganizations extends Command
     {
 
         $jobs = DB::table('job_details')
-            ->select('id','organization', 'organization_full_form')
+            ->select('id', 'organization', 'organization_full_form')
             // ->where('organization_verified', 1)
             // ->where('organization_full_form_verified', 1)
             ->whereNotNull('organization_full_form')
             ->where('organization_full_form', '<>', '')
             ->get();
-       
+
         foreach ($jobs as $job) {
 
             // Bracket aur uske andar ka text remove
-            $fullName = preg_replace('/\s*\([^)]*\)\s*$/', '', trim($job->organization_full_form));
+            $fullName = preg_replace('/\s*\([^)]*\)/', '', trim($job->organization_full_form));
+            $fullName = preg_replace('/\s+/', ' ', $fullName);
+            $fullName = trim($fullName);
 
             DB::table('organizations')
                 ->where('original_name', trim($job->organization))
@@ -33,8 +35,6 @@ class SyncOrganizations extends Command
                     'full_name'  => trim($fullName),
                     'updated_at' => now(),
                 ]);
-
-                 
         }
 
 
