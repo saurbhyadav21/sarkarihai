@@ -431,7 +431,8 @@ class JobController extends Controller
 
     public function OrgEditList($limit = 10)
     {
-        // $jobs = Job::where(function ($query) {
+        //dono hai    
+    // $jobs = Job::where(function ($query) {
         //     $query->where('organization_verified', 0)
         //         ->orWhere('organization_full_form_verified', 0);
         // })
