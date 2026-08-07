@@ -1179,30 +1179,120 @@ class FreeJobAlertHelper
 
     public static function extractFreeJobAlertMode($html)
     {
-        $text = strtolower(strip_tags(html_entity_decode($html)));
+        libxml_use_internal_errors(true);
 
-        // Debug
-        file_put_contents(storage_path('logs/freejobalert.html'), $html);
+        $dom = new \DOMDocument();
+        @$dom->loadHTML($html);
 
-        // Table
-        if (preg_match('/application mode.*?online/is', $text)) {
-            return 'Online';
+        $xpath = new \DOMXPath($dom);
+
+        // Debug (optional)
+        // file_put_contents(storage_path('logs/freejobalert.html'), $html);
+
+        // -------------------------
+        // STEP 1 : Table Detection
+        // -------------------------
+
+        $labels = [
+            'application mode',
+            'apply mode',
+            'mode of application',
+            'mode of apply',
+            'application process',
+            'application type',
+            'registration mode'
+        ];
+
+        $rows = $xpath->query("//table//tr");
+
+        foreach ($rows as $row) {
+
+            $cells = $xpath->query("./th|./td", $row);
+
+            if ($cells->length < 2) {
+                continue;
+            }
+
+            $label = strtolower(trim(preg_replace(
+                '/\s+/u',
+                ' ',
+                html_entity_decode(strip_tags($cells->item(0)->textContent), ENT_QUOTES | ENT_HTML5)
+            )));
+
+            $value = strtolower(trim(preg_replace(
+                '/\s+/u',
+                ' ',
+                html_entity_decode(strip_tags($cells->item(1)->textContent), ENT_QUOTES | ENT_HTML5)
+            )));
+
+            foreach ($labels as $find) {
+
+                if (strpos($label, $find) !== false) {
+
+                    if (strpos($value, 'online') !== false && strpos($value, 'offline') !== false) {
+                        return 'Online / Offline';
+                    }
+
+                    if (strpos($value, 'online') !== false) {
+                        return 'Online';
+                    }
+
+                    if (strpos($value, 'offline') !== false) {
+                        return 'Offline';
+                    }
+
+                    if (
+                        strpos($value, 'walk-in') !== false ||
+                        strpos($value, 'walk in') !== false ||
+                        strpos($value, 'walkin') !== false
+                    ) {
+                        return 'Walk-in';
+                    }
+
+                    if (strpos($value, 'interview') !== false) {
+                        return 'Interview';
+                    }
+
+                    if (strpos($value, 'email') !== false) {
+                        return 'Email';
+                    }
+
+                    if (
+                        strpos($value, 'post') !== false ||
+                        strpos($value, 'speed post') !== false
+                    ) {
+                        return 'Offline';
+                    }
+                }
+            }
         }
 
-        if (preg_match('/application mode.*?offline/is', $text)) {
-            return 'Offline';
-        }
+        // -------------------------
+        // STEP 2 : Button/Text Detection
+        // -------------------------
 
-        // Buttons
+        $text = strtolower(strip_tags(html_entity_decode($html, ENT_QUOTES | ENT_HTML5)));
+
         if (strpos($text, 'apply online') !== false)
             return 'Online';
 
         if (strpos($text, 'apply offline') !== false)
             return 'Offline';
 
-        // Dates
+        if (strpos($text, 'walk-in interview') !== false)
+            return 'Walk-in';
+
+        if (strpos($text, 'walk in interview') !== false)
+            return 'Walk-in';
+
         if (strpos($text, 'online apply start date') !== false)
             return 'Online';
+
+        if (strpos($text, 'online application') !== false)
+            return 'Online';
+
+        if (strpos($text, 'offline application') !== false)
+            return 'Offline';
 
         return null;
     }
