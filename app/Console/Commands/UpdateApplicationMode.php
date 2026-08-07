@@ -84,7 +84,7 @@ class UpdateApplicationMode extends Command
 
                             $updated++;
 
-                            echo "Updated : {$job->id} => {$mode}<br>";
+                            echo "Updated : {$job->id} => {$mode}=> {$job->source}<br>";
                         } else {
 
                             $failed++;
