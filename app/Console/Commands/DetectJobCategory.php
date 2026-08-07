@@ -32,7 +32,7 @@ class DetectJobCategory extends Command
             $state = $this->detectState($title);
 
             $organization = $this->detectOrganization($title);
-            dd($category.'-'.$job->id.'-'.$subCategory.'-'.$topic.'-'.$state.'-'.$organization);
+            dd($category.','.$job->id.','.$subCategory.','.$topic.','.$state.','.$organization);
             DB::table('job_details')
                 ->where('id', $job->id)
                 ->update([
