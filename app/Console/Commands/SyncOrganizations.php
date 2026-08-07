@@ -25,7 +25,7 @@ class SyncOrganizations extends Command
                     ->orWhere('organization_full_form', 'LIKE', '%)%');
             })
             ->get();
-
+        dd($jobs->toArray());
         foreach ($jobs as $job) {
 
             // Bracket aur uske andar ka text remove
