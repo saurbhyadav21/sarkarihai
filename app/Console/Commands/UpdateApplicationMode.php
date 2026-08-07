@@ -60,7 +60,7 @@ class UpdateApplicationMode extends Command
 
                         // $mode = //$this->extractApplicationMode($html);
                         $mode = FreeJobAlertHelper::extractApplicationMode($html);
-                        dd($mode);
+                       
                         if (!empty($mode)) {
 
                             DB::table('job_details')
