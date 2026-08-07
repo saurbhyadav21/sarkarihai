@@ -1179,7 +1179,8 @@ class FreeJobAlertHelper
 
     public static function extractApplicationMode($html)
     {
-        libxml_use_internal_errors(true);
+    dd($html);   
+    libxml_use_internal_errors(true);
 
         $dom = new DOMDocument();
         @$dom->loadHTML($html);
