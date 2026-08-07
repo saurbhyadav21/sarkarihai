@@ -25,22 +25,22 @@ class SyncOrganizations extends Command
                     ->orWhere('organization_full_form', 'LIKE', '%)%');
             })
             ->get();
-        dd($jobs->toArray());
+
         foreach ($jobs as $job) {
 
-            // Bracket aur uske andar ka text remove
-            $fullName = preg_replace('/\s*\([^)]*\)/', '', trim($job->organization_full_form));
-            $fullName = preg_replace('/\s+/', ' ', $fullName);
-            $fullName = trim($fullName);
+            // organization_full_form se bracket remove
+            $organization = preg_replace('/\([^)]*\)/', '', $job->organization_full_form);
 
-            DB::table('organizations')
-                ->where('original_name', trim($job->organization))
+            // Extra spaces clean
+            $organization = preg_replace('/\s+/', ' ', $organization);
+            $organization = trim($organization);
+
+            DB::table('job_details')
+                ->where('id', $job->id)
                 ->update([
-                    'full_name'  => trim($fullName),
-                    'updated_at' => now(),
+                    'organization' => $organization,
                 ]);
         }
-
 
 
         DB::statement("
