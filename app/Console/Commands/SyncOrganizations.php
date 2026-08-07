@@ -28,17 +28,22 @@ class SyncOrganizations extends Command
 
         foreach ($jobs as $job) {
 
-            // organization_full_form se bracket remove
-            $organization = preg_replace('/\([^)]*\)/', '', $job->organization_full_form);
+            // Bracket ke andar wali value nikalo (ACMS)
+            preg_match('/\(([^)]*)\)/', $job->organization_full_form, $match);
 
-            // Extra spaces clean
-            $organization = preg_replace('/\s+/', ' ', $organization);
-            $organization = trim($organization);
+            $organization = $match[1] ?? null;
+
+            // Full form se bracket remove
+            $fullName = preg_replace('/\([^)]*\)/', '', $job->organization_full_form);
+            $fullName = preg_replace('/\s+/', ' ', $fullName);
+            $fullName = preg_replace('/\s+,/', ',', $fullName);
+            $fullName = trim($fullName);
 
             DB::table('job_details')
                 ->where('id', $job->id)
                 ->update([
                     'organization' => $organization,
+                    'organization_full_form' => $fullName,
                 ]);
         }
 
