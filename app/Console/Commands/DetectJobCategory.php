@@ -24,12 +24,12 @@ class DetectJobCategory extends Command
             $title = strtolower($job->title);
 
             $category = $this->detectCategory($title);
+            dd($category);
+            // $subCategory = $this->detectSubCategory($title);
 
-            $subCategory = $this->detectSubCategory($title);
+            // $topic = $this->detectTopic($title);
 
-            $topic = $this->detectTopic($title);
-
-            $state = $this->detectState($title);
+            // $state = $this->detectState($title);
 
             // $organization = $this->detectOrganization($title);
 
