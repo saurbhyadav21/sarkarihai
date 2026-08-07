@@ -2014,63 +2014,61 @@
                 }
             </style>
            
-            {{-- @if ($totalVacancy) --}}
-                <div class="content-card">
+         @if (!empty($totalVacancy))
 
-                    <h2 style="color: #000">Category Wise Vacancy</h2>
+    <h2 style="color: #000">Category Wise Vacancy</h2>
 
-                    <div class="category-grid">
+    <div class="category-grid">
 
-                        @if ($genTotal)
-                            <div class="category-card general">
-                                <div class="category-icon">G</div>
-                                <div class="category-title">General</div>
-                                <div class="category-value">{{ number_format($genTotal) }}</div>
-                            </div>
-                        @endif
+        @if (!empty($genTotal))
+            <div class="category-card general">
+                <div class="category-icon">G</div>
+                <div class="category-title">General</div>
+                <div class="category-value">{{ number_format($genTotal) }}</div>
+            </div>
+        @endif
 
-                        @if ($ewsTotal)
-                            <div class="category-card ews">
-                                <div class="category-icon">E</div>
-                                <div class="category-title">EWS</div>
-                                <div class="category-value">{{ number_format($ewsTotal) }}</div>
-                            </div>
-                        @endif
+        @if (!empty($ewsTotal))
+            <div class="category-card ews">
+                <div class="category-icon">E</div>
+                <div class="category-title">EWS</div>
+                <div class="category-value">{{ number_format($ewsTotal) }}</div>
+            </div>
+        @endif
 
-                        @if ($obcTotal)
-                            <div class="category-card obc">
-                                <div class="category-icon">O</div>
-                                <div class="category-title">OBC</div>
-                                <div class="category-value">{{ number_format($obcTotal) }}</div>
-                            </div>
-                        @endif
+        @if (!empty($obcTotal))
+            <div class="category-card obc">
+                <div class="category-icon">O</div>
+                <div class="category-title">OBC</div>
+                <div class="category-value">{{ number_format($obcTotal) }}</div>
+            </div>
+        @endif
 
-                        @if ($scTotal)
-                            <div class="category-card sc">
-                                <div class="category-icon">S</div>
-                                <div class="category-title">SC</div>
-                                <div class="category-value">{{ number_format($scTotal) }}</div>
-                            </div>
-                        @endif
+        @if (!empty($scTotal))
+            <div class="category-card sc">
+                <div class="category-icon">S</div>
+                <div class="category-title">SC</div>
+                <div class="category-value">{{ number_format($scTotal) }}</div>
+            </div>
+        @endif
 
-                        @if ($stTotal)
-                            <div class="category-card st">
-                                <div class="category-icon">T</div>
-                                <div class="category-title">ST</div>
-                                <div class="category-value">{{ number_format($stTotal) }}</div>
-                            </div>
-                        @endif
+        @if (!empty($stTotal))
+            <div class="category-card st">
+                <div class="category-icon">T</div>
+                <div class="category-title">ST</div>
+                <div class="category-value">{{ number_format($stTotal) }}</div>
+            </div>
+        @endif
 
-                        <div class="category-card total">
-                            <div class="category-icon">Σ</div>
-                            <div class="category-title">Total Vacancy</div>
-                            <div class="category-value">{{ number_format($totalVacancy) }}</div>
-                        </div>
+        <div class="category-card total">
+            <div class="category-icon">Σ</div>
+            <div class="category-title">Total Vacancy</div>
+            <div class="category-value">{{ number_format($totalVacancy ?? 0) }}</div>
+        </div>
 
-                    </div>
+    </div>
 
-                </div>
-            {{-- @endif --}}
+@endif
 
 
             <!-- QUALIFICATION -->
