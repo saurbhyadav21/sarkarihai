@@ -2013,8 +2013,8 @@
                     color: #0891b2;
                 }
             </style>
-            {{dd($totalVacancy)}}
-            @if ($totalVacancy)
+           
+            {{-- @if ($totalVacancy) --}}
                 <div class="content-card">
 
                     <h2 style="color: #000">Category Wise Vacancy</h2>
@@ -2070,7 +2070,7 @@
                     </div>
 
                 </div>
-            @endif
+            {{-- @endif --}}
 
 
             <!-- QUALIFICATION -->
