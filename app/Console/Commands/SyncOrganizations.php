@@ -15,7 +15,7 @@ class SyncOrganizations extends Command
     {
 
         $jobs = DB::table('job_details')
-            ->select('organization', 'organization_full_form')
+            ->select('id','organization', 'organization_full_form')
             // ->where('organization_verified', 1)
             // ->where('organization_full_form_verified', 1)
             ->whereNotNull('organization_full_form')
