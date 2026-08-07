@@ -77,9 +77,11 @@ ON TRIM(o.original_name) COLLATE utf8mb4_unicode_ci =
 
         DB::statement("
             UPDATE job_details
-            SET year = YEAR(start_date)
-            WHERE (year IS NULL OR year = '')
-            AND start_date IS NOT NULL
+SET year = YEAR(start_date)
+WHERE (year IS NULL OR year = '')
+AND start_date IS NOT NULL
+AND start_date != ''
+AND start_date != '0000-00-00';
         ");
 
         $this->info('Organizations synced successfully.');
