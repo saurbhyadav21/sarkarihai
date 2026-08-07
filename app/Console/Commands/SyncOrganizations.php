@@ -26,13 +26,15 @@ class SyncOrganizations extends Command
 
             // Bracket aur uske andar ka text remove
             $fullName = preg_replace('/\s*\([^)]*\)\s*$/', '', trim($job->organization_full_form));
- dd($fullName);
+
             DB::table('organizations')
                 ->where('original_name', trim($job->organization))
                 ->update([
                     'full_name'  => trim($fullName),
                     'updated_at' => now(),
                 ]);
+
+                 dd($job->id, $job->organization, $job->organization_full_form, $fullName);
         }
 
 
