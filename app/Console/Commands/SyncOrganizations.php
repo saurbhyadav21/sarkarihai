@@ -14,21 +14,16 @@ class SyncOrganizations extends Command
     public function handle()
     {
         DB::statement("
-            UPDATE job_details
-            SET organization_full_form = TRIM(
-                CASE
-                    WHEN organization_full_form LIKE '%(%)'
-                    THEN SUBSTRING_INDEX(organization_full_form, '(', 1)
-                    ELSE organization_full_form
-                END
-            )
-            WHERE 
-               
-              organization_full_form IS NOT NULL
-              AND organization_full_form <> ''
-              AND organization_full_form LIKE '%(%)'
-        ");
-
+    UPDATE organizations o
+    INNER JOIN job_details jd
+        ON TRIM(o.original_name) COLLATE utf8mb4_unicode_ci =
+           TRIM(jd.organization) COLLATE utf8mb4_unicode_ci
+    SET
+        o.full_name = jd.organization_full_form
+    WHERE
+       jd.organization_full_form IS NOT NULL
+        AND jd.organization_full_form <> ''
+");
         DB::statement("
             INSERT IGNORE INTO organizations (
                 original_name,
