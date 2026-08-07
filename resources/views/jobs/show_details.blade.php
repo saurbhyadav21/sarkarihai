@@ -990,7 +990,11 @@
     Recruitment {{ date('Y') }}
 
     @if(!empty($job->post_name))
-        - {{ $job->post_name }} Posts
+        - {{ $job->post_name }} Vacancy
+    @elseif(!empty($job->total_posts) && $job->total_posts == 1)
+        - 1 Post Vacancy
+    @elseif(!empty($job->total_posts) && $job->total_posts > 1)
+        - Various Posts Vacancy
     @else
         - Apply Online
     @endif
