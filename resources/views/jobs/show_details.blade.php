@@ -1065,7 +1065,11 @@
                 <div class="summary-item">
                     <small>Total Vacancy</small>
                     <strong>
-    {{ is_numeric($job->total_vacancies) ? $job->total_vacancies : 'To Be Announced' }}
+    @php
+        preg_match('/\d+/', $job->total_vacancies, $matches);
+    @endphp
+
+    {{ !empty($matches[0]) ? $matches[0] : 'To Be Announced' }}
 </strong>
                 </div>
 
