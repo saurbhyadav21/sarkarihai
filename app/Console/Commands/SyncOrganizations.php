@@ -13,17 +13,30 @@ class SyncOrganizations extends Command
 
     public function handle()
     {
-        DB::statement("
-    UPDATE organizations o
-    INNER JOIN job_details jd
-        ON TRIM(o.original_name) COLLATE utf8mb4_unicode_ci =
-           TRIM(jd.organization) COLLATE utf8mb4_unicode_ci
-    SET
-        o.full_name = jd.organization_full_form
-    WHERE
-       jd.organization_full_form IS NOT NULL
-        AND jd.organization_full_form <> ''
-");
+
+        $jobs = DB::table('job_details')
+            ->select('organization', 'organization_full_form')
+            // ->where('organization_verified', 1)
+            // ->where('organization_full_form_verified', 1)
+            ->whereNotNull('organization_full_form')
+            ->where('organization_full_form', '<>', '')
+            ->get();
+
+        foreach ($jobs as $job) {
+
+            // Bracket aur uske andar ka text remove
+            $fullName = preg_replace('/\s*\([^)]*\)\s*$/', '', trim($job->organization_full_form));
+
+            DB::table('organizations')
+                ->where('original_name', trim($job->organization))
+                ->update([
+                    'full_name'  => trim($fullName),
+                    'updated_at' => now(),
+                ]);
+        }
+
+
+
         DB::statement("
             INSERT IGNORE INTO organizations (
                 original_name,
