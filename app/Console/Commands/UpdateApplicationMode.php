@@ -91,8 +91,8 @@ class UpdateApplicationMode extends Command
                             echo "Not Found : {$job->id}<br>";
                         }
 
-                        ob_flush();
-                        flush();
+                        // ob_flush();
+                        // flush();
                     } catch (\Exception $e) {
 
                         $failed++;
