@@ -24,7 +24,7 @@ class DetectJobCategory extends Command
             $title = strtolower($job->title);
 
             $category = $this->detectCategory($title);
-            dd($category);
+            dd($category.'-'.$job->id);
             // $subCategory = $this->detectSubCategory($title);
 
             // $topic = $this->detectTopic($title);
