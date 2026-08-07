@@ -431,12 +431,24 @@ class JobController extends Controller
 
     public function OrgEditList($limit = 10)
     {
+        // $jobs = Job::where(function ($query) {
+        //     $query->where('organization_verified', 0)
+        //         ->orWhere('organization_full_form_verified', 0);
+        // })
+        //     ->orderBy('id', 'desc')
+        //     ->paginate($limit);
+
         $jobs = Job::where(function ($query) {
-            $query->where('organization_verified', 0)
-                ->orWhere('organization_full_form_verified', 0);
-        })
-            ->orderBy('id', 'desc')
-            ->paginate($limit);
+        $query->where('organization_verified', 0)
+              ->orWhere('organization_full_form_verified', 0);
+    })
+    ->whereExists(function ($query) {
+        $query->select(DB::raw(1))
+            ->from('organizations')
+            ->whereRaw('LOWER(TRIM(organizations.original_name)) = LOWER(TRIM(job_details.organization))');
+    })
+    ->orderByDesc('id')
+    ->paginate($limit);
 
         $categories = DB::table('job_categories')
             ->orderBy('name')
