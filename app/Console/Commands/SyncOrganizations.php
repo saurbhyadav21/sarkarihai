@@ -21,7 +21,7 @@ class SyncOrganizations extends Command
             ->whereNotNull('organization_full_form')
             ->where('organization_full_form', '<>', '')
             ->get();
-
+        dd($jobs);
         foreach ($jobs as $job) {
 
             // Bracket aur uske andar ka text remove
