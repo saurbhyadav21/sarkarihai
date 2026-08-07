@@ -57,7 +57,7 @@ class UpdateApplicationMode extends Command
                         }
 
                         $html = $response->body();
-
+                        DD($html);  
                         // $mode = //$this->extractApplicationMode($html);
                         $mode = FreeJobAlertHelper::extractApplicationMode($html);
                        
