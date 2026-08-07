@@ -1065,7 +1065,7 @@
                 <div class="summary-item">
                     <small>Total Vacancy</small>
                     <strong>
-    {{ !empty($job->total_vacancies) && $job->total_vacancies != '#' ? $job->total_vacancies.' Posts' : 'To Be Announced' }}
+    {{ is_numeric($job->total_vacancies) ? $job->total_vacancies : 'To Be Announced' }}
 </strong>
                 </div>
 
