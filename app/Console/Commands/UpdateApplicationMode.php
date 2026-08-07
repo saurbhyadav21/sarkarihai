@@ -63,11 +63,11 @@ class UpdateApplicationMode extends Command
                         $mode = null;
 
                         if ($job->source == 'freejobalert') {
-                            $mode = $this->extractFreeJobAlertMode($html);
+                            $mode = FreeJobAlertHelper::extractFreeJobAlertMode($html);
                         }
 
                         if ($job->source == 'sarkariresult.com.cm') {
-                            $mode = $this->extractSarkariMode($html);
+                            $mode = FreeJobAlertHelper::extractSarkariMode($html);
                         }
 
                         return $mode;
