@@ -305,18 +305,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                                                                                                                background:#fff;
-                                                                                                                                                                                                                                                                                                                border-radius:15px;
-                                                                                                                                                                                                                                                                                                                box-shadow:
-                                                                                                                                                                                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                                                                                                                padding:30px;
-                                                                                                                                                                                                                                                                                                                border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                                                                                                                display:grid;
-                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                    background:#fff;
+                                                                                                                                                                                                                                                                                                                    border-radius:15px;
+                                                                                                                                                                                                                                                                                                                    box-shadow:
+                                                                                                                                                                                                                                                                                                                    0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                                                                                                    padding:30px;
+                                                                                                                                                                                                                                                                                                                    border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                                                                                                    display:grid;
+                                                                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                                                                                .summary-item{
-                                                                                                                                                                                                                                                                                                                text-align:center;
-                                                                                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                                                                    .summary-item{
+                                                                                                                                                                                                                                                                                                                    text-align:center;
+                                                                                                                                                                                                                                                                                                                    } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -981,32 +981,32 @@
                     </nav>
 
                     @php
-    $posts = [];
+                        $posts = [];
 
-    if (!empty($job->post_name)) {
-        $posts = array_filter(array_map('trim', explode('#', $job->post_name)));
-    }
+                        if (!empty($job->post_name)) {
+                            $posts = array_filter(array_map('trim', explode('#', $job->post_name)));
+                        }
 
-    $postCount = count($posts);
-@endphp
+                        $postCount = count($posts);
+                    @endphp
 
-<h1>
-    @if(!empty($job->organization_full_form))
-        {{ $job->organization_full_form }}
-    @else
-        {{ $job->organization }}
-    @endif
+                    <h1>
+                        @if (!empty($job->organization_full_form))
+                            {{ $job->organization_full_form }}
+                        @else
+                            {{ $job->organization }}
+                        @endif
 
-    Recruitment {{ date('Y') }}
+                        Recruitment {{ date('Y') }}
 
-    @if($postCount == 1)
-        - {{ $posts[0] }} Vacancy
-    @elseif($postCount > 1)
-        - Various Posts Vacancy
-    @else
-        - Apply Online
-    @endif
-</h1>
+                        @if ($postCount == 1)
+                            - {{ $posts[0] }} Vacancy
+                        @elseif($postCount > 1)
+                            - Various Posts Vacancy
+                        @else
+                            - Apply Online
+                        @endif
+                    </h1>
 
                     <p>
                         Check complete notification, eligibility,
@@ -1217,11 +1217,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                                                                                                                display: grid;
-                                                                                                                                                                                                                                                                       grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                                                                                                                gap: 20px;
-                                                                                                                                                                                                                                                                                margin-top: 20px;
-                                                                                                                                                                                                                                                                            } */
+                                                                                                                                                                                                                                                                                    display: grid;
+                                                                                                                                                                                                                                                                           grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                                                                                                    gap: 20px;
+                                                                                                                                                                                                                                                                                    margin-top: 20px;
+                                                                                                                                                                                                                                                                                } */
 
         .highlight-box {
             background: #fff;
@@ -1433,7 +1433,8 @@
                     <div class="highlight-box">
                         <div class="highlight-icon">📌</div>
                         <div>
-                            <h3>{{ (isset($job->total_vacancies) && is_numeric($job->total_vacancies)) ? number_format((int)$job->total_vacancies) : ($job->total_vacancies ?? 'N/A') }}</h3>
+                            <h3>{{ isset($job->total_vacancies) && is_numeric($job->total_vacancies) ? number_format((int) $job->total_vacancies) : $job->total_vacancies ?? 'N/A' }}
+                            </h3>
                             <p>Total Vacancies</p>
                         </div>
                     </div>
@@ -1801,33 +1802,33 @@
                 @php
 
                     function parsePosts($data)
-{
-    $result = [];
+                    {
+                        $result = [];
 
-    if (empty($data)) {
-        return $result;
-    }
+                        if (empty($data)) {
+                            return $result;
+                        }
 
-    $items = explode('#', trim($data, '#'));
+                        $items = explode('#', trim($data, '#'));
 
-    foreach ($items as $item) {
-        if (empty($item)) {
-            continue;
-        }
+                        foreach ($items as $item) {
+                            if (empty($item)) {
+                                continue;
+                            }
 
-        $parts = explode('$', $item);
+                            $parts = explode('$', $item);
 
-        if (count($parts) >= 2) {
-            $key = trim($parts[0]);
-            $value = trim($parts[1]);
+                            if (count($parts) >= 2) {
+                                $key = trim($parts[0]);
+                                $value = trim($parts[1]);
 
-            // Sirf numeric value ko integer banao
-            $result[$key] = is_numeric($value) ? (int)$value : 0;
-        }
-    }
+                                // Sirf numeric value ko integer banao
+                                $result[$key] = is_numeric($value) ? (int) $value : 0;
+                            }
+                        }
 
-    return $result;
-}
+                        return $result;
+                    }
 
                     $general = parsePosts($job->genral_post);
                     $ews = parsePosts($job->ews_post);
@@ -1927,11 +1928,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                                                                                                                    display: grid;
-                                                                                                                                                                                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                                                                                                                    gap: 16px;
-                                                                                                                                                                                                                                    margin-top: 20px;
-                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                        display: grid;
+                                                                                                                                                                                                                                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                                                                                                        gap: 16px;
+                                                                                                                                                                                                                                        margin-top: 20px;
+                                                                                                                                                                                                                                    } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2184,8 +2185,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                                                                                                                      Selection Process
-                                                                                                                                                                    =========================*/
+                                                                                                                                                                          Selection Process
+                                                                                                                                                                        =========================*/
 
                 .selection-grid {
 
@@ -2872,7 +2873,7 @@
             @if (count($instructions))
                 <div class="content-card" id="apply">
 
-                     <h2 style="color: #000">How to Apply</h2>
+                    <h2 style="color: #000">How to Apply</h2>
 
                     <div class="apply-steps">
 
@@ -3436,12 +3437,12 @@
                                     <div class="timeline-date">
 
                                         @if (str_contains($item['date'], '#') || str_contains($item['date'], '$'))
-    {{ $item['date'] }}
-@elseif (in_array(strtolower($item['date']), ['tba', 'to be announced', 'not announced']))
-    {{ $item['date'] }}
-@else
-    {{ \Carbon\Carbon::parse($item['date'])->format('d M Y') }}
-@endif
+                                            {{ $item['date'] }}
+                                        @elseif (in_array(strtolower($item['date']), ['tba', 'to be announced', 'not announced']))
+                                            {{ $item['date'] }}
+                                        @else
+                                            {{ \Carbon\Carbon::parse($item['date'])->format('d M Y') }}
+                                        @endif
 
                                     </div>
 
@@ -3762,24 +3763,24 @@
                     $templates = DB::table('faq_templates')->whereIn('id', $ids)->get()->keyBy('id');
 
                     $replace = [
-    '{title}' => $job->title,
-    '{vacancy}' => is_numeric(str_replace(',', '', $job->total_vacancies))
-        ? number_format((int) str_replace(',', '', $job->total_vacancies))
-        : ($job->total_vacancies ?? 'N/A'),
+                        '{title}' => $job->title,
+                        '{vacancy}' => is_numeric(str_replace(',', '', $job->total_vacancies))
+                            ? number_format((int) str_replace(',', '', $job->total_vacancies))
+                            : $job->total_vacancies ?? 'N/A',
 
-    '{last_date}' => $job->end_date,
-    '{start_date}' => $job->start_date,
-    '{min_age}' => $job->min_age,
-    '{max_age}' => $job->max_age_genral,
-    '{website}' => $job->website,
+                        '{last_date}' => $job->end_date,
+                        '{start_date}' => $job->start_date,
+                        '{min_age}' => $job->min_age,
+                        '{max_age}' => $job->max_age_genral,
+                        '{website}' => $job->website,
 
-    '{salary}' => is_numeric(str_replace(',', '', $job->min_salary))
-        ? '₹' . number_format((float) str_replace(',', '', $job->min_salary))
-        : '',
+                        '{salary}' => is_numeric(str_replace(',', '', $job->min_salary))
+                            ? '₹' . number_format((float) str_replace(',', '', $job->min_salary))
+                            : '',
 
-    '{qualification}' => $job->qualification,
-    '{mode_selection}' => $job->mode_of_selection,
-];
+                        '{qualification}' => $job->qualification,
+                        '{mode_selection}' => $job->mode_of_selection,
+                    ];
 
                     foreach ($ids as $id) {
                         if (!isset($templates[$id])) {
