@@ -41,7 +41,7 @@ class UpdateApplicationMode extends Command
             ->chunk(100, function ($jobs) use (&$updated, &$failed) {
 
                 foreach ($jobs as $job) {
-
+                    dd("Processing Job ID: {$job->id} | URL: {$job->source_url}");
                     try {
 
                         $response = Http::timeout(30)
