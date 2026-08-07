@@ -15,7 +15,7 @@ class DetectJobCategory extends Command
     public function handle()
     {
         $jobs = DB::table('job_details')
-            // ->where('classification_cron_status', 0)
+            ->where('classification_cron_status', 0)
             ->limit(3000)
             ->get();
 
@@ -32,7 +32,7 @@ class DetectJobCategory extends Command
             $state = $this->detectState($title);
 
             $organization = $this->detectOrganization($title);
-            dd($category.','.$job->id.','.$subCategory.','.$topic.','.$state.','.$organization);
+            // dd($category.','.$job->id.','.$subCategory.','.$topic.','.$state.','.$organization);
             DB::table('job_details')
                 ->where('id', $job->id)
                 ->update([
