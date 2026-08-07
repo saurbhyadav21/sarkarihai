@@ -437,7 +437,7 @@ class JobController extends Controller
                 ->orWhere('organization_full_form_verified', 0);
         })
             ->orderBy('id', 'desc')
-        //     ->paginate($limit);
+            ->paginate($limit);
 
         //only in orgatabe list me jo hai 
         // $jobs = Job::where(function ($query) {
