@@ -39,7 +39,7 @@ class UpdateApplicationMode extends Command
             })
             ->select('id', 'source_url','source')
             ->orderBy('id')
-            ->chunk(100, function ($jobs) use (&$updated, &$failed) {
+            ->chunk(1, function ($jobs) use (&$updated, &$failed) {
 
                 foreach ($jobs as $job) {
                    // dd("Processing Job ID: {$job->id}, Source: {$job->source}, URL: {$job->source_url}");
