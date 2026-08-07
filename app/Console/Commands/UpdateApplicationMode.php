@@ -39,6 +39,7 @@ class UpdateApplicationMode extends Command
             })
             ->select('id', 'source_url','source')
             ->orderBy('id')
+            ->limit(1) // Limit the number of jobs to process in one command execution
             ->chunk(1, function ($jobs) use (&$updated, &$failed) {
 
                 foreach ($jobs as $job) {
