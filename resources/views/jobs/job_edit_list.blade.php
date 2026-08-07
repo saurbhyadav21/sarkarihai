@@ -32,14 +32,14 @@
                                 <th>ID</th>
                                 <th>Title</th>
                                 <th>image</th>
-                                <th>admit date</th>
+                                {{-- <th>admit date</th> --}}
                                 <th>Job Category</th>
                                 <th>Job Sub Category</th>
                                 <th>Job Topic</th>
                                 <th>Job State</th>
                                 <th>Organization</th>
                                 <th>Organization Full Form</th>
-                                <th>syllabus</th>
+                                {{-- <th>syllabus</th> --}}
                                 <th>Delete</th>
                                 <th>Action</th>
                             </tr>
@@ -82,7 +82,7 @@
                                     </td>
 
                                     <!-- Admit Date -->
-                                    <td>
+                                    {{-- <td>
                                         {{ $job->admit_card }}
 
                                         <a href="{{ route('job.admitEdit', $job->id) }}"
@@ -90,7 +90,7 @@
 
                                             {{ $job->admit_card == 'To Be Announced' ? 'Update Admit' : 'Edit Admit' }}
                                         </a>
-                                    </td>
+                                    </td> --}}
 
                                     <!-- Main Category -->
                                     <td>
@@ -244,7 +244,7 @@
                                         @endif --}}
                                     </td>
                                     <!-- Syllabus -->
-                                    <td>
+                                    {{-- <td>
                                         @if (!empty($job->syllabus))
                                             <a href="{{ $job->syllabus }}" target="_blank"
                                                 class="btn btn-success btn-sm">
@@ -253,7 +253,7 @@
                                         @else
                                             <span class="badge bg-danger">Not Announced</span>
                                         @endif
-                                    </td>
+                                    </td> --}}
 
                                     <td>
                                         <!-- Delete Button -->
