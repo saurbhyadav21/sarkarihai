@@ -34,7 +34,7 @@ class SyncOrganizations extends Command
                     'updated_at' => now(),
                 ]);
 
-                 dd($job->id, $job->organization, $job->organization_full_form, $fullName);
+                 
         }
 
 
