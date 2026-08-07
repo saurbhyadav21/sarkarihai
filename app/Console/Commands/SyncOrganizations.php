@@ -39,7 +39,23 @@ ON TRIM(o.original_name) COLLATE utf8mb4_unicode_ci =
               AND jd.organization <> ''
               AND o.id IS NULL;
         ");
+        DB::statement("
+            UPDATE job_details
+            SET organization_full_form = TRIM(
+                CASE
+                    WHEN organization_full_form LIKE '%(%)'
+                    THEN SUBSTRING_INDEX(organization_full_form, '(', 1)
+                    ELSE organization_full_form
+                END
+            )
+            WHERE organization_verified = 1
+              AND organization_full_form_verified = 1
+              AND organization_full_form IS NOT NULL
+              AND organization_full_form <> ''
+              AND organization_full_form LIKE '%(%)'
+        ");
 
         $this->info('Organizations synced successfully.');
+         $this->info('Organization Full Forms cleaned successfully.');
     }
 }
