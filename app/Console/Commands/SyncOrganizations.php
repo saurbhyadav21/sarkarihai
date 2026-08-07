@@ -14,7 +14,7 @@ class SyncOrganizations extends Command
     public function handle()
     {
         DB::statement("
-            INSERT INTO organizations (
+            INSERT IGNORE INTO organizations (
                 original_name,
                 full_name,
                 short_name,
