@@ -16,10 +16,14 @@ class SyncOrganizations extends Command
 
         $jobs = DB::table('job_details')
             ->select('id', 'organization', 'organization_full_form')
-            // ->where('organization_verified', 1)
-            // ->where('organization_full_form_verified', 1)
+            //->where('organization_verified', 1)
+            //->where('organization_full_form_verified', 1)
             ->whereNotNull('organization_full_form')
             ->where('organization_full_form', '<>', '')
+            ->where(function ($query) {
+                $query->where('organization_full_form', 'LIKE', '%(%')
+                    ->orWhere('organization_full_form', 'LIKE', '%)%');
+            })
             ->get();
 
         foreach ($jobs as $job) {
