@@ -22,8 +22,8 @@ class SyncOrganizations extends Command
                     ELSE organization_full_form
                 END
             )
-            WHERE organization_verified = 1
-              AND organization_full_form_verified = 1
+            WHERE 
+               
               AND organization_full_form IS NOT NULL
               AND organization_full_form <> ''
               AND organization_full_form LIKE '%(%)'
