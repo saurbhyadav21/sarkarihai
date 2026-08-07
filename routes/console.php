@@ -28,7 +28,9 @@ Schedule::command('faq:generate-ids')->everyMinute();
 Schedule::command('sync:organization-fullform')
     ->everyMinute();
 
-    
+Schedule::command('sync:organizations')
+    ->everyMinute();
+
 Schedule::call(function () {
 
     File::append(
