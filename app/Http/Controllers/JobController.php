@@ -432,11 +432,11 @@ class JobController extends Controller
     public function OrgEditList($limit = 10)
     {
         //dono hai    
-    // $jobs = Job::where(function ($query) {
-        //     $query->where('organization_verified', 0)
-        //         ->orWhere('organization_full_form_verified', 0);
-        // })
-        //     ->orderBy('id', 'desc')
+    $jobs = Job::where(function ($query) {
+            $query->where('organization_verified', 0)
+                ->orWhere('organization_full_form_verified', 0);
+        })
+            ->orderBy('id', 'desc')
         //     ->paginate($limit);
 
         //only in orgatabe list me jo hai 
@@ -458,21 +458,21 @@ class JobController extends Controller
 
 
         //jo nahi ha orhgatale me 
-        $jobs = Job::where(function ($query) {
-            $query->where('organization_verified', 0)
-                ->orWhere('organization_full_form_verified', 0);
-        })
-            ->whereNotExists(function ($query) {
-                $query->select(DB::raw(1))
-                    ->from('organizations')
-                    ->whereRaw("
-                LOWER(TRIM(organizations.original_name)) COLLATE utf8mb4_unicode_ci
-                =
-                LOWER(TRIM(job_details.organization)) COLLATE utf8mb4_unicode_ci
-            ");
-            })
-            ->orderByDesc('id')
-            ->paginate($limit);
+        // $jobs = Job::where(function ($query) {
+        //     $query->where('organization_verified', 0)
+        //         ->orWhere('organization_full_form_verified', 0);
+        // })
+        //     ->whereNotExists(function ($query) {
+        //         $query->select(DB::raw(1))
+        //             ->from('organizations')
+        //             ->whereRaw("
+        //         LOWER(TRIM(organizations.original_name)) COLLATE utf8mb4_unicode_ci
+        //         =
+        //         LOWER(TRIM(job_details.organization)) COLLATE utf8mb4_unicode_ci
+        //     ");
+        //     })
+        //     ->orderByDesc('id')
+        //     ->paginate($limit);
 
         $categories = DB::table('job_categories')
             ->orderBy('name')
