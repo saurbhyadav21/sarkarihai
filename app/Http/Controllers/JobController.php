@@ -445,7 +445,11 @@ class JobController extends Controller
     ->whereExists(function ($query) {
         $query->select(DB::raw(1))
             ->from('organizations')
-            ->whereRaw('LOWER(TRIM(organizations.original_name)) = LOWER(TRIM(job_details.organization))');
+            ->whereRaw("
+                LOWER(TRIM(organizations.original_name)) COLLATE utf8mb4_unicode_ci
+                =
+                LOWER(TRIM(job_details.organization)) COLLATE utf8mb4_unicode_ci
+            ");
     })
     ->orderByDesc('id')
     ->paginate($limit);
