@@ -24,7 +24,7 @@ class SyncOrganizations extends Command
             )
             WHERE 
                
-              AND organization_full_form IS NOT NULL
+              organization_full_form IS NOT NULL
               AND organization_full_form <> ''
               AND organization_full_form LIKE '%(%)'
         ");
