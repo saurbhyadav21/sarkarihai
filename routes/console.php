@@ -31,6 +31,11 @@ Schedule::command('sync:organization-fullform')
 Schedule::command('sync:organizations')
     ->everyMinute();
 
+Schedule::command('app:update-application-mode')
+    ->everyMinute()
+    ->withoutOverlapping();
+
+    
 Schedule::call(function () {
 
     File::append(
