@@ -70,7 +70,7 @@ class UpdateApplicationMode extends Command
                             $mode = FreeJobAlertHelper::extractSarkariMode($html);
                         }
 
-                        dd($mode);
+                        
 
                         if (!empty($mode)) {
 

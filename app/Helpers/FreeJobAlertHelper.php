@@ -1299,24 +1299,95 @@ class FreeJobAlertHelper
 
     public static function extractSarkariMode($html)
     {
-        $text = strtolower(strip_tags(html_entity_decode($html)));
+        $text = strtolower(
+            preg_replace(
+                '/\s+/u',
+                ' ',
+                html_entity_decode(strip_tags($html), ENT_QUOTES | ENT_HTML5)
+            )
+        );
 
-        file_put_contents(storage_path('logs/sarkari.html'), $html);
+        // Debug (optional)
+        // file_put_contents(storage_path('logs/sarkari.html'), $html);
 
-        if (strpos($text, 'apply online') !== false)
-            return 'Online';
+        // ------------------------
+        // ONLINE
+        // ------------------------
 
-        if (strpos($text, 'online application') !== false)
-            return 'Online';
+        $onlineKeywords = [
 
-        if (strpos($text, 'registration') !== false)
-            return 'Online';
+            'application mode online',
+            'apply mode online',
+            'apply online',
+            'online application',
+            'online application start date',
+            'online apply start date',
+            'online apply last date',
+            'last date to apply online',
+            'online registration',
+            'online form',
+            'fill online form',
+            'payment mode online',
+            'payment mode : online',
+            'mode of payment online'
 
-        if (strpos($text, 'offline application') !== false)
-            return 'Offline';
+        ];
 
-        if (strpos($text, 'send application') !== false)
-            return 'Offline';
+        foreach ($onlineKeywords as $keyword) {
+
+            if (strpos($text, $keyword) !== false) {
+                return 'Online';
+            }
+        }
+
+        // ------------------------
+        // OFFLINE
+        // ------------------------
+
+        $offlineKeywords = [
+
+            'application mode offline',
+            'apply mode offline',
+            'apply offline',
+            'offline application',
+            'offline form',
+            'send application',
+            'application should be sent',
+            'submit application by post',
+            'speed post',
+            'registered post'
+
+        ];
+
+        foreach ($offlineKeywords as $keyword) {
+
+            if (strpos($text, $keyword) !== false) {
+                return 'Offline';
+            }
+        }
+
+        // ------------------------
+        // WALK-IN
+        // ------------------------
+
+        if (
+            strpos($text, 'walk-in') !== false ||
+            strpos($text, 'walk in') !== false ||
+            strpos($text, 'walkin') !== false
+        ) {
+            return 'Walk-in';
+        }
+
+        // ------------------------
+        // BOTH
+        // ------------------------
+
+        if (
+            strpos($text, 'online') !== false &&
+            strpos($text, 'offline') !== false
+        ) {
+            return 'Online / Offline';
+        }
 
         return null;
     }
