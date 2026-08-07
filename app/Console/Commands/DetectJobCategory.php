@@ -24,15 +24,15 @@ class DetectJobCategory extends Command
             $title = strtolower($job->title);
 
             $category = $this->detectCategory($title);
-            dd($category.'-'.$job->id);
-            // $subCategory = $this->detectSubCategory($title);
+            
+            $subCategory = $this->detectSubCategory($title);
 
-            // $topic = $this->detectTopic($title);
+            $topic = $this->detectTopic($title);
 
-            // $state = $this->detectState($title);
+            $state = $this->detectState($title);
 
-            // $organization = $this->detectOrganization($title);
-
+            $organization = $this->detectOrganization($title);
+            dd($category.'-'.$job->id.'-'.$subCategory.'-'.$topic.'-'.$state.'-'.$organization);
             DB::table('job_details')
                 ->where('id', $job->id)
                 ->update([
