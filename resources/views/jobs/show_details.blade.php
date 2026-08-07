@@ -997,7 +997,7 @@
                             {{ $job->organization }}
                         @endif
 
-                        Recruitment {{ date('Y') }}
+                        Recruitment {{ $year ? $year : '' }}
 
                         @if ($postCount == 1)
                             - {{ $posts[0] }} Vacancy
