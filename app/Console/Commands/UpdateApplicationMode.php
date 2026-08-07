@@ -28,81 +28,74 @@ class UpdateApplicationMode extends Command
      */
     public function handle()
     {
-        $updated = 0;
-        $failed = 0;
-
-        DB::table('job_details')
+        $job = DB::table('job_details')
             ->whereIn('source', ['freejobalert', 'sarkariresult.com.cm'])
             ->where(function ($q) {
                 $q->whereNull('apply_mode')
                     ->orWhere('apply_mode', '');
             })
-            ->select('id', 'source_url','source')
-            ->orderBy('id')
-            ->limit(5) // Limit the number of jobs to process in one command execution
-            ->chunk(5, function ($jobs) use (&$updated, &$failed) {
+            ->select('id', 'source_url', 'source')
+            ->orderBy('id', 'asc')
+            ->first();
 
-                foreach ($jobs as $job) {
-                   // dd("Processing Job ID: {$job->id}, Source: {$job->source}, URL: {$job->source_url}");
-                    try {
+        if (!$job) {
+            $this->info('No pending records found.');
+            return Command::SUCCESS;
+        }
 
-                        $response = Http::timeout(30)
-                            ->retry(2, 1000)
-                            ->withHeaders([
-                                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36'
-                            ])
-                            ->get($job->source_url);
+        try {
 
-                        if (!$response->successful()) {
-                            $failed++;
-                            continue;
-                        }
+            $response = Http::timeout(30)
+                ->retry(2, 1000)
+                ->withHeaders([
+                    'User-Agent' => 'Mozilla/5.0'
+                ])
+                ->get($job->source_url);
 
-                        $html = $response->body();
-                        // DD($html);  
-                        // $mode = //$this->extractApplicationMode($html);
-                        $mode = null;
+            if (!$response->successful()) {
+                $this->error("Failed : {$job->id}");
+                return Command::FAILURE;
+            }
 
-                        if ($job->source == 'freejobalert') {
-                            $mode = FreeJobAlertHelper::extractFreeJobAlertMode($html);
-                        }
+            $html = $response->body();
 
-                        if ($job->source == 'sarkariresult.com.cm') {
-                            $mode = FreeJobAlertHelper::extractSarkariMode($html);
-                        }
+            $mode = null;
 
-                        
+            if ($job->source == 'freejobalert') {
+                $mode = FreeJobAlertHelper::extractFreeJobAlertMode($html);
+            }
 
-                        if (!empty($mode)) {
+            if ($job->source == 'sarkariresult.com.cm') {
+                $mode = FreeJobAlertHelper::extractSarkariMode($html);
+            }
 
-                            DB::table('job_details')
-                                ->where('id', $job->id)
-                                ->update([
-                                    'apply_mode' => $mode,
-                                    'updated_at' => now()
-                                ]);
+            if (!empty($mode)) {
 
-                            $updated++;
+                DB::table('job_details')
+                    ->where('id', $job->id)
+                    ->update([
+                        'apply_mode' => $mode,
+                        'updated_at' => now(),
+                    ]);
 
-                            echo "Updated : {$job->id} => {$mode}=> {$job->source}<br>";
-                        } else {
+                $this->info("Updated : {$job->id} => {$mode}");
+            } else {
 
-                            $failed++;
+                // Optional: dubara process na ho
+                DB::table('job_details')
+                    ->where('id', $job->id)
+                    ->update([
+                        'apply_mode' => 'Not Found',
+                        'updated_at' => now(),
+                    ]);
 
-                            echo "Not Found : {$job->id}<br>";
-                        }
+                $this->warn("Not Found : {$job->id}");
+            }
+        } catch (\Exception $e) {
 
-                        // ob_flush();
-                        // flush();
-                    } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
 
-                        $failed++;
-
-                        echo "Error {$job->id} : " . $e->getMessage() . "<br>";
-                    }
-                }
-            });
-
-        return "Completed | Updated : {$updated} | Failed : {$failed}";
+        return Command::SUCCESS;
     }
 }
