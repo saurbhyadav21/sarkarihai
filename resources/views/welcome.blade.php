@@ -855,7 +855,7 @@
 
             @foreach ($organizations as $org)
                 <a href="#">
-                    {{ $org->job_topics }}
+                    {{ $org->organization }}
                     ({{ $org->total_jobs }})
                 </a>
             @endforeach
