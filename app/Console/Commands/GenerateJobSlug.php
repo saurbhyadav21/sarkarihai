@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Helpers\FreeJobAlertHelper;
 
 class GenerateJobSlug extends Command
 {
@@ -111,6 +112,8 @@ class GenerateJobSlug extends Command
                 'template_combination_id' => $templateCombination,
                 'updated_at' => now(),
             ]);
+        FreeJobAlertHelper::sendTelegramJob($job);
+
 
         $this->info(
             "ID {$job->id} updated: {$slug}"
