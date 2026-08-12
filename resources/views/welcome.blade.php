@@ -582,7 +582,7 @@
 
                             {{-- Posts --}}
                             Total Vacancies:
-                            {{ $job->total_vacancies ?? 'N/A' }} Posts
+                            <strong>{{ $job->total_posts ?? 'Not Available' }}</strong>
 
                             |
 
@@ -601,7 +601,8 @@
                             {{-- Apply Mode --}}
                             Salary:
                             {{ $job->salary ?? 'Not Available' }}   
-                        
+                            
+                            
                         </div>
 
                     </div>
