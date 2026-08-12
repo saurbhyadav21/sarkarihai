@@ -141,7 +141,7 @@
                 <!-- LEFT -->
                 <div class="col-lg-8">
 
-                    <h1>Sarkari Result 2026</h1>
+                    <h1>🏆 SarkariHai — हर सरकारी नौकरी की सही जानकारी</h1>
 
                     <p>
                         Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards, Results, and Exam Updates in
