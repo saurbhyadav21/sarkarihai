@@ -581,6 +581,7 @@
                         <div class="job-meta">
 
                             {{-- Posts --}}
+                            Total Vacancies:
                             {{ $job->total_vacancies ?? 'N/A' }} Posts
 
                             |
@@ -592,17 +593,15 @@
                             |
 
                             {{-- Apply Mode --}}
+                            Apply Mode:
                             {{ $job->apply_mode ?? 'Online' }}
                             
                             |
 
                             {{-- Apply Mode --}}
-                            {{ $job->apply_mode ?? 'Online' }}
-                            
-                            |
-
-                            {{-- Apply Mode --}}
-                            {{ $job->apply_mode ?? 'Online' }}
+                            Salary:
+                            {{ $job->salary ?? 'Not Available' }}   
+                        
                         </div>
 
                     </div>

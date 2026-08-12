@@ -1161,7 +1161,7 @@ class FreeJobAlertHelper
 
         $message .= "📌 <b>" . $job['title'] . "</b>\n";
 
-        $message .= "📅 Last Date: " . $job['last_date'] . "\n\n";
+        $message .= "📅 Last updated on: " . $job['last_date'] . "\n\n";
 
         $message .= "🔗 https://sarkarihai.com\n";
 
