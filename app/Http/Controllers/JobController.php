@@ -432,7 +432,7 @@ class JobController extends Controller
     public function OrgEditList($limit = 10)
     {
         //dono hai    
-    $jobs = Job::where(function ($query) {
+        $jobs = Job::where(function ($query) {
             $query->where('organization_verified', 0)
                 ->orWhere('organization_full_form_verified', 0);
         })
@@ -2968,14 +2968,15 @@ class JobController extends Controller
 
 
         $organizations = DB::table('job_details')
+            ->join('organizations', 'organizations.id', '=', 'job_details.organization_id')
             ->select(
-                'job_topics',
-                DB::raw('COUNT(*) as total_jobs')
+                'organizations.id',
+                'organizations.name',
+                DB::raw('COUNT(job_details.id) as total_jobs')
             )
-            ->whereNotNull('job_topics')
-            ->where('job_topics', '!=', '')
-            ->groupBy('job_topics')
-            ->orderBy('job_topics')
+            ->whereNotNull('job_details.organization_id')
+            ->groupBy('organizations.id', 'organizations.name')
+            ->orderByDesc('total_jobs')
             ->get();
 
 
