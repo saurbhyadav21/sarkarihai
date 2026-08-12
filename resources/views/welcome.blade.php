@@ -171,12 +171,12 @@
                             </div>
                         </div>
 
-                        <div class="col-6 col-md-3">
+                        {{-- <div class="col-6 col-md-3">
                             <div class="stats">
                                 <h3>{{ $totalStates }}+</h3>
                                 <small>States</small>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
                     <div class="latest-ticker">
@@ -593,7 +593,16 @@
 
                             {{-- Apply Mode --}}
                             {{ $job->apply_mode ?? 'Online' }}
+                            
+                            |
 
+                            {{-- Apply Mode --}}
+                            {{ $job->apply_mode ?? 'Online' }}
+                            
+                            |
+
+                            {{-- Apply Mode --}}
+                            {{ $job->apply_mode ?? 'Online' }}
                         </div>
 
                     </div>
