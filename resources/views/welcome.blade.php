@@ -588,7 +588,7 @@
 
                             {{-- Last Date --}}
                             Last updated on:
-                            <strong>{{ $job->last_fee_date ?? 'Not Available' }}</strong>
+                            <strong>{{ $job->updated_at ?? 'Not Available' }}</strong>
 
                             |
 
@@ -600,7 +600,7 @@
 
                             {{-- Apply Mode --}}
                             Salary:
-                            <strong>{{ $job->salary ?? 'Not Available' }}</strong>   
+                            <strong>{{ $job->max_salary ?? 'To Be Announced' }}</strong>   
                             
                             
                         </div>
