@@ -391,8 +391,8 @@
     </div>
 
     <!-- =========================
-                PART 2 - MAIN CONTENT BLOCK
-                ========================= -->
+                    PART 2 - MAIN CONTENT BLOCK
+                    ========================= -->
 
     <style>
         .section-title {
@@ -580,29 +580,35 @@
                         {{-- 📊 META INFO --}}
                         <div class="job-meta">
 
-                            {{-- Posts --}}
-                            Total Vacancies:
-                            <strong>{{ $job->total_posts ?? 'Not Available' }}</strong>
+                            @if (!empty($job->total_posts))
+                                Total Vacancies:
+                                <strong>{{ $job->total_posts }}</strong>
+                            @endif
 
-                            |
+                            @if (!empty($job->updated_at))
+                                @if (!empty($job->total_posts))
+                                    |
+                                @endif
+                                Last updated on:
+                                <strong>{{ $job->updated_at }}</strong>
+                            @endif
 
-                            {{-- Last Date --}}
-                            Last updated on:
-                            <strong>{{ $job->updated_at ?? 'Not Available' }}</strong>
+                            @if (!empty($job->apply_mode))
+                                @if (!empty($job->total_posts) || !empty($job->updated_at))
+                                    |
+                                @endif
+                                Apply Mode:
+                                <strong>{{ $job->apply_mode }}</strong>
+                            @endif
 
-                            |
+                            @if (!empty($job->max_salary))
+                                @if (!empty($job->total_posts) || !empty($job->updated_at) || !empty($job->apply_mode))
+                                    |
+                                @endif
+                                Salary:
+                                <strong>{{ $job->max_salary }}</strong>
+                            @endif
 
-                            {{-- Apply Mode --}}
-                            Apply Mode:
-                            <strong>{{ $job->apply_mode ?? 'Online' }}</strong>
-
-                            |
-
-                            {{-- Apply Mode --}}
-                            Salary:
-                            <strong>{{ $job->max_salary ?? 'To Be Announced' }}</strong>   
-                            
-                            
                         </div>
 
                     </div>
@@ -913,8 +919,6 @@
                 line-height: 1.7;
                 font-size: 14px;
             }
-
-            
         </style>
 
         <div class="container">
