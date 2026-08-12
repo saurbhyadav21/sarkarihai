@@ -2967,16 +2967,16 @@ class JobController extends Controller
             ->get();
 
 
-        $organizations = DB::table('job_details')
-    ->select(
-        'organization',
-        DB::raw('COUNT(*) as total_jobs')
-    )
-    ->whereNotNull('organization')
-    ->where('organization', '!=', '')
-    ->groupBy('organization')
-    ->orderByDesc('total_jobs')
-    ->get();
+        $categories = DB::table('job_details')
+            ->select(
+                'job_category',
+                DB::raw('COUNT(*) as total_jobs')
+            )
+            ->whereNotNull('job_category')
+            ->where('job_category', '!=', '')
+            ->groupBy('job_category')
+            ->orderByDesc('total_jobs')
+            ->get();
 
 
         $popularSearches = DB::table('popular_searches')
