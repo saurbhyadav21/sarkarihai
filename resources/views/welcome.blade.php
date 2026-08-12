@@ -853,9 +853,9 @@
 
 <div class="link-grid mb-4">
 
-    @foreach ($categories as $category)
+    @foreach ($organizations as $category)
         <a href="#">
-            {{ $category->job_category }}
+            {{ $category->category }}
             ({{ number_format($category->total_jobs) }})
         </a>
     @endforeach

@@ -2968,15 +2968,15 @@ class JobController extends Controller
 
 
         $organizations = DB::table('job_details')
-            ->select(
-                'category',
-                DB::raw('COUNT(*) as total_jobs')
-            )
-            ->whereNotNull('category')
-            ->where('category', '!=', '')
-            ->groupBy('category')
-            ->orderByDesc('total_jobs')
-            ->get();
+    ->select(
+        'category',
+        DB::raw('COUNT(*) as total_jobs')
+    )
+    ->whereNotNull('category')
+    ->where('category', '!=', '')
+    ->groupBy('category')
+    ->orderByDesc('total_jobs')
+    ->get();
 
 
         $popularSearches = DB::table('popular_searches')
