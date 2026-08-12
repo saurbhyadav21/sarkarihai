@@ -855,7 +855,7 @@
 
     @foreach ($organizations as $category)
         <a href="#">
-            {{ $category->category }}
+            {{ Str::camel($category->category) }}
             ({{ number_format($category->total_jobs) }})
         </a>
     @endforeach
