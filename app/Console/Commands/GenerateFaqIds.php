@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\FreeJobAlertHelper;
 
 class GenerateFaqIds extends Command
 {
@@ -21,7 +22,7 @@ class GenerateFaqIds extends Command
             })
             ->orderBy('id')
             ->first();
-
+        FreeJobAlertHelper::sendTelegramJob($job);
         if (!$job) {
             $this->info('All jobs already updated.');
             return;
