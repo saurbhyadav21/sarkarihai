@@ -855,7 +855,7 @@
 
     @foreach ($organizations as $category)
         <a href="#">
-            {{ Str::camel($category->category) }}
+            {{ ucwords(strtolower($category->category)) }}
             ({{ number_format($category->total_jobs) }})
         </a>
     @endforeach
