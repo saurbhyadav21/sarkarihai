@@ -391,8 +391,8 @@
     </div>
 
     <!-- =========================
-                    PART 2 - MAIN CONTENT BLOCK
-                    ========================= -->
+                        PART 2 - MAIN CONTENT BLOCK
+                        ========================= -->
 
     <style>
         .section-title {
@@ -586,7 +586,7 @@
                                     {{ number_format((int) preg_replace('/[^0-9]/', '', $job->total_vacancies)) }}
                                 </strong>
                             @endif
-                                    |
+                            |
                             @if (!empty($job->updated_at))
                                 @if (!empty($job->total_posts))
                                     |
@@ -608,7 +608,7 @@
                                     |
                                 @endif
                                 Salary:
-                                
+
                                 <strong>
                                     {{ number_format((int) preg_replace('/[^0-9]/', '', $job->max_salary)) }}
                                 </strong>
@@ -851,16 +851,16 @@
         <!-- ================= ORGANIZATION WISE ================= -->
         <div class="sec-title">Category Wise Jobs</div>
 
-<div class="link-grid mb-4">
+        <div class="link-grid mb-4">
 
-    @foreach ($organizations as $category)
-        <a href="#">
-            {{ ucwords(strtolower($category->category)) }}
-            ({{ number_format($category->total_jobs) }})
-        </a>
-    @endforeach
+            @foreach ($organizations as $category)
+                <a href="#">
+                    {{ ucwords(strtolower($category->category)) }}
+                    ({{ number_format($category->total_jobs) }})
+                </a>
+            @endforeach
 
-</div>
+        </div>
 
 
         <!-- ================= POPULAR SEARCHES ================= -->

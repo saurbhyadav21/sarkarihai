@@ -230,7 +230,7 @@ DEBUG
                     );
 
 
-                FreeJobAlertHelper::sendTelegramJob($json);
+                // FreeJobAlertHelper::sendTelegramJob($json);
 
                 echo "\n";
                 echo "SCRAPED JSON\n";
