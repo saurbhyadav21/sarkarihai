@@ -2969,12 +2969,12 @@ class JobController extends Controller
 
         $categories = DB::table('job_details')
             ->select(
-                'job_category',
+                'category',
                 DB::raw('COUNT(*) as total_jobs')
             )
-            ->whereNotNull('job_category')
-            ->where('job_category', '!=', '')
-            ->groupBy('job_category')
+            ->whereNotNull('category')
+            ->where('category', '!=', '')
+            ->groupBy('category')
             ->orderByDesc('total_jobs')
             ->get();
 
