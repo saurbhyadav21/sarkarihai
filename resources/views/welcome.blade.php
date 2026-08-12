@@ -586,7 +586,7 @@
                                     {{ number_format((int) preg_replace('/[^0-9]/', '', $job->total_vacancies)) }}
                                 </strong>
                             @endif
-
+                                    |
                             @if (!empty($job->updated_at))
                                 @if (!empty($job->total_posts))
                                     |
