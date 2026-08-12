@@ -586,7 +586,7 @@
                             |
 
                             {{-- Last Date --}}
-                            Last Date:
+                            Last updated on:
                             {{ $job->last_fee_date ?? 'Not Available' }}
 
                             |
