@@ -851,7 +851,7 @@
         <!-- ================= ORGANIZATION WISE ================= -->
         <div class="sec-title">Organization Wise Jobs</div>
 
-        {{-- <div class="link-grid mb-4">
+         <div class="link-grid mb-4">
 
             @foreach ($organizations as $org)
                 <a href="#">
@@ -860,7 +860,7 @@
                 </a>
             @endforeach
 
-        </div> --}}
+        </div>
 
 
         <!-- ================= POPULAR SEARCHES ================= -->
