@@ -580,10 +580,10 @@
                         {{-- 📊 META INFO --}}
                         <div class="job-meta">
 
-                            @if (!empty($job->total_posts))
+                            @if (!empty($job->total_vacancies))
                                 Total Vacancies:
                                 <strong>
-                                    {{ number_format((int) preg_replace('/[^0-9]/', '', $job->total_posts)) }}
+                                    {{ number_format((int) preg_replace('/[^0-9]/', '', $job->total_vacancies)) }}
                                 </strong>
                             @endif
 
