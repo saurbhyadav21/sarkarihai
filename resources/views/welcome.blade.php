@@ -849,18 +849,18 @@
 
 
         <!-- ================= ORGANIZATION WISE ================= -->
-        <div class="sec-title">Organization Wise Jobs</div>
+        <div class="sec-title">Category Wise Jobs</div>
 
-         <div class="link-grid mb-4">
+<div class="link-grid mb-4">
 
-            @foreach ($organizations as $org)
-                <a href="#">
-                    {{ $org->organization }}
-                    ({{ $org->total_jobs }})
-                </a>
-            @endforeach
+    @foreach ($categories as $category)
+        <a href="#">
+            {{ $category->job_category }}
+            ({{ number_format($category->total_jobs) }})
+        </a>
+    @endforeach
 
-        </div>
+</div>
 
 
         <!-- ================= POPULAR SEARCHES ================= -->
