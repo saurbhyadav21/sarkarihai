@@ -1165,7 +1165,7 @@ class FreeJobAlertHelper
 
         $message .= "🔗 https://sarkarihai.com\n";
 
-        $message .= "🔗 <a href=\"$link\">View Full Notification & Apply Online</a>";
+        $message .= "🔗 <a href=\"$link\">$link</a>";
 
         Http::post(
             "https://api.telegram.org/bot" . env('TELEGRAM_BOT_TOKEN') . "/sendMessage",
