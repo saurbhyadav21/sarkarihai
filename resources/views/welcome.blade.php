@@ -588,19 +588,19 @@
 
                             {{-- Last Date --}}
                             Last updated on:
-                            {{ $job->last_fee_date ?? 'Not Available' }}
+                            <strong>{{ $job->last_fee_date ?? 'Not Available' }}</strong>
 
                             |
 
                             {{-- Apply Mode --}}
                             Apply Mode:
-                            {{ $job->apply_mode ?? 'Online' }}
-                            
+                            <strong>{{ $job->apply_mode ?? 'Online' }}</strong>
+
                             |
 
                             {{-- Apply Mode --}}
                             Salary:
-                            {{ $job->salary ?? 'Not Available' }}   
+                            <strong>{{ $job->salary ?? 'Not Available' }}</strong>   
                             
                             
                         </div>
