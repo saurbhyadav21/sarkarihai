@@ -2967,7 +2967,7 @@ class JobController extends Controller
             ->get();
 
 
-        $categories = DB::table('job_details')
+        $organizations = DB::table('job_details')
             ->select(
                 'category',
                 DB::raw('COUNT(*) as total_jobs')
