@@ -608,7 +608,10 @@
                                     |
                                 @endif
                                 Salary:
-                                <strong>{{ $job->max_salary }}</strong>
+                                
+                                <strong>
+                                    {{ number_format((int) preg_replace('/[^0-9]/', '', $job->max_salary)) }}
+                                </strong>
                             @endif
 
                         </div>
