@@ -579,6 +579,53 @@ text-align:center;
         border-radius: 8px;
         margin-bottom: 10px;
     }
+
+
+    /* SUMMARY */
+
+    .summary {
+        margin-top: -40px;
+        margin-bottom: 30px;
+    }
+
+    .summary-card {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, .08);
+        padding: 30px;
+        border-top: 4px solid #F59E0B;
+        display: grid;
+    }
+
+    .summary-item {
+        text-align: center;
+    }
+
+    .summary-card {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+        padding: 30px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .summary-item {
+        text-align: center;
+    }
+
+    .summary-item small {
+        display: block;
+        color: #888;
+        margin-bottom: 10px;
+    }
+
+    .summary-item strong {
+        font-size: 20px;
+        color: #0B4F6C;
+    }
 </style>
 @section('content')
     <section class="hero">
