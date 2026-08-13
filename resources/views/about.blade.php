@@ -74,11 +74,12 @@
 
     .about-card {
         background: #fff;
-        border-radius: 6px;
-        padding: 18px 12px;
-        text-align: center;
-        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-        border: 1px solid #e9eef4;
+    border-radius: 14px;
+    padding: 28px;
+    text-align: center;
+    height: 100%;
+    border: 1px solid #eef2f7;
+    transition: .3s;
     }
 
     .about-card-icon {
