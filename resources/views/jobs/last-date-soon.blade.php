@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -517,9 +517,9 @@ text-align:center;
     </style>
 </head>
 
-<body>
+<body> --}}
 
-    <header class="header">
+    {{-- <header class="header">
 
         <div class="container">
 
@@ -546,9 +546,11 @@ text-align:center;
 
         </div>
 
-    </header>
+    </header> --}}
 
+@extends('layouts.front')
 
+@section('content')
 
     <section class="hero">
 
@@ -988,7 +990,7 @@ text-align:center;
 
 
 
-
+@endsection
 
 
 
@@ -1002,7 +1004,7 @@ text-align:center;
 
     <!-- FOOTER -->
 
-    <footer class="site-footer">
+    {{-- <footer class="site-footer">
 
         <div class="footer-grid">
 
@@ -1099,4 +1101,4 @@ text-align:center;
 
         </div>
 
-    </footer>
+    </footer> --}}
