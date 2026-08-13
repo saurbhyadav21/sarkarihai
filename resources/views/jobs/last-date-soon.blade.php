@@ -1870,16 +1870,13 @@ text-align:center;
                                     </a>
                                 </td>
 
-                               <td>
-    {{ $job->state === 'all-india'
-        ? 'All India'
-        : ucwords(str_replace(['-', '_'], ' ', $job->state))
-    }}
-</td>
+                                <td>
+                                    {{ $job->state === 'all-india' ? 'All India' : ucwords(str_replace(['-', '_'], ' ', $job->state)) }}
+                                </td>
 
-<td>
-    {{ ucwords(str_replace(['-', '_'], ' ', $job->category)) }}
-</td>
+                                <td>
+                                    {{ ucwords(str_replace(['-', '_'], ' ', $job->category)) }}
+                                </td>
 
                                 <td>
                                     {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
