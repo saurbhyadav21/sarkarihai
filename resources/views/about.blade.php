@@ -4,229 +4,213 @@
 
 
 <style>
+   /* ========================================
+   SARKARIHAI ABOUT PAGE
+   Spacious Layout
+======================================== */
+
+.about-page {
+    background: #f4f7fb;
+    padding: 28px 0 50px;
+}
+
+.about-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 18px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.about-hero {
+    padding: 40px 30px !important;
+    min-height: 150px;
+    margin-bottom: 18px !important;
+}
+
+.about-hero h1 {
+    font-size: 30px !important;
+    margin-bottom: 14px !important;
+}
+
+.about-hero p {
+    max-width: 780px;
+    font-size: 13px !important;
+    line-height: 1.8 !important;
+}
+
+
+/* =========================
+   TOP CARDS
+========================= */
+
+.about-cards {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.about-card {
+    min-height: 115px;
+    padding: 22px 15px !important;
+}
+
+.about-card-icon {
+    font-size: 27px;
+    margin-bottom: 9px;
+}
+
+.about-card h3 {
+    font-size: 14px !important;
+    margin-bottom: 8px !important;
+}
+
+.about-card p {
+    font-size: 10px !important;
+    line-height: 1.6 !important;
+}
+
+
+/* =========================
+   MAIN SECTIONS
+========================= */
+
+.about-section {
+    padding: 25px 20px !important;
+    margin-bottom: 18px !important;
+}
+
+.about-section h2 {
+    font-size: 19px !important;
+    margin-bottom: 14px !important;
+}
+
+.about-section p {
+    font-size: 12px !important;
+    line-height: 1.85 !important;
+    margin-bottom: 12px !important;
+}
+
+
+/* =========================
+   LIST
+========================= */
+
+.about-list {
+    margin-top: 12px;
+    padding-left: 22px;
+}
+
+.about-list li {
+    font-size: 12px !important;
+    line-height: 1.9 !important;
+    margin-bottom: 4px;
+}
+
+
+/* =========================
+   MISSION BOXES
+========================= */
+
+.mission-box {
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.mission-item {
+    padding: 17px !important;
+    min-height: 95px;
+}
+
+.mission-item strong {
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.mission-item p {
+    font-size: 11px !important;
+    line-height: 1.7 !important;
+}
+
+
+/* =========================
+   HIGHLIGHT
+========================= */
+
+.about-highlight,
+.about-notice {
+    margin-top: 16px !important;
+    padding: 14px 16px !important;
+    font-size: 11px !important;
+    line-height: 1.75 !important;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
     .about-page {
-        background: #f4f7fb;
-        padding: 22px 0 40px;
-        font-family: Arial, sans-serif;
-        color: #333;
+        padding: 18px 0 35px;
     }
 
     .about-container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0 15px;
+        padding: 0 12px;
     }
 
-    /* Hero */
     .about-hero {
-        position: relative;
-        overflow: hidden;
-        background: #064c5d;
-        color: #fff;
-        border-radius: 8px;
-        padding: 32px 25px;
-        text-align: center;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        margin-bottom: 15px;
-    }
-
-    .about-hero:before {
-        content: "";
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        right: -35px;
-        top: -45px;
-        background: rgba(255,255,255,0.07);
-        border-radius: 50%;
-    }
-
-    .about-hero:after {
-        content: "";
-        position: absolute;
-        width: 85px;
-        height: 85px;
-        left: -35px;
-        bottom: -45px;
-        background: rgba(255,255,255,0.06);
-        border-radius: 50%;
+        padding: 32px 20px !important;
     }
 
     .about-hero h1 {
-        margin: 0 0 10px;
-        font-size: 30px;
-        font-weight: 700;
+        font-size: 25px !important;
     }
 
-    .about-hero p {
-        max-width: 750px;
-        margin: 0 auto;
-        font-size: 13px;
-        line-height: 1.7;
-        color: #e8f5f7;
-    }
-
-    /* Cards */
     .about-cards {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-        margin-bottom: 15px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 
     .about-card {
-        background: #fff;
-        border-radius: 6px;
-        padding: 18px 12px;
-        text-align: center;
-        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-        border: 1px solid #e9eef4;
+        min-height: 105px;
     }
 
-    .about-card-icon {
-        font-size: 25px;
-        margin-bottom: 8px;
-    }
-
-    .about-card h3 {
-        font-size: 14px;
-        color: #0755ad;
-        margin: 0 0 6px;
-    }
-
-    .about-card p {
-        margin: 0;
-        font-size: 10px;
-        line-height: 1.5;
-        color: #777;
-    }
-
-    /* Content */
     .about-section {
-        background: #fff;
-        border-radius: 7px;
-        padding: 22px 18px;
-        margin-bottom: 15px;
-        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-        border: 1px solid #e9eef4;
+        padding: 21px 16px !important;
+        margin-bottom: 15px !important;
     }
 
     .about-section h2 {
-        margin: 0 0 12px;
-        color: #0755ad;
-        font-size: 20px;
-        font-weight: 700;
+        font-size: 18px !important;
     }
 
-    .about-section h2 span {
-        margin-right: 5px;
-    }
-
-    .about-section p {
-        font-size: 12px;
-        line-height: 1.8;
-        margin: 0 0 10px;
-        color: #555;
-    }
-
-    .about-section p:last-child {
-        margin-bottom: 0;
-    }
-
-    /* Highlight */
-    .about-highlight {
-        background: #fff6dd;
-        border-left: 4px solid #f0b323;
-        padding: 12px 14px;
-        border-radius: 4px;
-        font-size: 11px;
-        line-height: 1.7;
-        color: #705500;
-        margin-top: 12px;
-    }
-
-    /* Blue notice */
-    .about-notice {
-        background: #edf6ff;
-        border-left: 4px solid #1976d2;
-        padding: 12px 14px;
-        border-radius: 4px;
-        font-size: 11px;
-        line-height: 1.7;
-        color: #345;
-        margin-top: 12px;
-    }
-
-    /* Lists */
-    .about-list {
-        margin: 10px 0 0;
-        padding-left: 20px;
-    }
-
-    .about-list li {
-        font-size: 12px;
-        line-height: 1.8;
-        color: #555;
-        margin-bottom: 3px;
-    }
-
-    /* Mission */
     .mission-box {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-top: 12px;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .about-card {
+        padding: 17px 10px !important;
     }
 
-    .mission-item {
-        background: #f8fafc;
-        border: 1px solid #e8edf3;
-        border-radius: 5px;
-        padding: 14px;
+    .about-card h3 {
+        font-size: 13px !important;
     }
 
-    .mission-item strong {
-        display: block;
-        color: #0755ad;
-        font-size: 13px;
-        margin-bottom: 5px;
+    .about-section p,
+    .about-list li {
+        font-size: 11px !important;
     }
-
-    .mission-item p {
-        font-size: 11px;
-        margin: 0;
-        line-height: 1.6;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .about-cards {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .mission-box {
-            grid-template-columns: 1fr;
-        }
-
-        .about-hero h1 {
-            font-size: 25px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .about-cards {
-            grid-template-columns: 1fr 1fr;
-            gap: 7px;
-        }
-
-        .about-card {
-            padding: 15px 8px;
-        }
-
-        .about-section {
-            padding: 18px 14px;
-        }
-    }
+}
 </style>
 
 
