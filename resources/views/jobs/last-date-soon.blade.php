@@ -1756,7 +1756,7 @@ text-align:center;
         <div class="sidebar">
             <div class="sidebar-inner">
 
-                <div class="sidebar-card">
+                {{-- <div class="sidebar-card">
 
                     <div class="sidebar-title">
                         Table Of Contents
@@ -1812,7 +1812,7 @@ text-align:center;
 
                     </ul>
 
-                </div>
+                </div> --}}
 
 
                 <div class="sidebar-card">
