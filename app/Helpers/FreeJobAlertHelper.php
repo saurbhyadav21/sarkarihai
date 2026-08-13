@@ -1171,8 +1171,20 @@ class FreeJobAlertHelper
 
         $title = $job->title ?? 'Government Job';
 
-        $lastDate = !empty($job->updated_at)
-            ? $job->updated_at->format('d M Y')
+        $totalVacancies = !empty($job->total_vacancies)
+            ? $job->total_vacancies
+            : 'Not Available';
+
+        $maxSalary = !empty($job->max_salary)
+            ? $job->max_salary
+            : 'Not Available';
+
+        $examDate = !empty($job->exam_date)
+            ? $job->exam_date
+            : 'To be Announced';
+
+        $lastDate = !empty($job->end_date)
+            ? $job->end_date
             : 'Not Available';
 
 
@@ -1180,7 +1192,19 @@ class FreeJobAlertHelper
 
         $message .= "📢 <b>Detailed Notification : Released</b>\n\n";
 
-        $message .= "📅 <b>Last Date : "
+        $message .= "📌 <b>Total Vacancies : "
+            . e($totalVacancies)
+            . "</b>\n";
+
+        $message .= "💰 <b>Maximum Salary : "
+            . e($maxSalary)
+            . "</b>\n";
+
+        $message .= "📝 <b>Exam Date : "
+            . e($examDate)
+            . "</b>\n";
+
+        $message .= "📅 <b>Last Date to Apply : "
             . e($lastDate)
             . "</b>\n\n";
 
