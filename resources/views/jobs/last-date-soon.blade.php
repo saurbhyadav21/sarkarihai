@@ -519,7 +519,7 @@ text-align:center;
 
 <body> --}}
 
-    {{-- <header class="header">
+{{-- <header class="header">
 
         <div class="container">
 
@@ -549,9 +549,38 @@ text-align:center;
     </header> --}}
 
 @extends('layouts.front')
+<style>
+    /* SEARCH BOX */
 
+    .hero-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .search-card {
+        background: #ffffff;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, .08);
+    }
+
+    .search-card h3 {
+        color: #222;
+        margin-bottom: 15px;
+    }
+
+    .search-card input {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+</style>
 @section('content')
-
     <section class="hero">
 
         <div class="container">
@@ -987,9 +1016,6 @@ text-align:center;
 
 
     </div>
-
-
-
 @endsection
 
 
@@ -1002,9 +1028,9 @@ text-align:center;
 
 
 
-    <!-- FOOTER -->
+<!-- FOOTER -->
 
-    {{-- <footer class="site-footer">
+{{-- <footer class="site-footer">
 
         <div class="footer-grid">
 
