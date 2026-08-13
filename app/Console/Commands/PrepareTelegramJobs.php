@@ -63,7 +63,7 @@ class PrepareTelegramJobs extends Command
             )
 
             ->orderBy('updated_at')
-
+            ->limit(1)
             ->get();
 
 
