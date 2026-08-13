@@ -12,7 +12,7 @@
     }
 
     .about-container {
-        max-width: 1100px;
+        max-width: 1320px;
         margin: 0 auto;
         padding: 0 15px;
     }
