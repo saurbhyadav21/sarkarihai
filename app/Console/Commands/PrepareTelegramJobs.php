@@ -11,39 +11,65 @@ class PrepareTelegramJobs extends Command
 {
     protected $signature = 'telegram:prepare-jobs';
 
-    protected $description = 'Find newly updated jobs for Telegram';
+    protected $description = 'Send newly updated jobs to Telegram';
+
 
     public function handle()
     {
+        $this->info('Telegram Job Cron Started...');
+
+
         /*
         |--------------------------------------------------------------------------
-        | Last successful check
+        | Last Successful Run
         |--------------------------------------------------------------------------
         */
 
         $lastRun = Cache::get('telegram_last_run');
 
+
         if (!$lastRun) {
+
             $lastRun = now()->subMinute();
+
         }
+
+
+        $this->info(
+            'Checking jobs updated after: ' . $lastRun
+        );
 
 
         /*
         |--------------------------------------------------------------------------
-        | Find newly updated jobs
+        | Get New / Updated Jobs
         |--------------------------------------------------------------------------
         */
 
         $jobs = DB::table('job_details')
+
             ->where('updated_at', '>', $lastRun)
+
             ->whereNull('telegram_sent_at')
+
+            ->select(
+                'id',
+                'title',
+                'slug',
+                'state',
+                'category',
+                'last_date',
+                'updated_at'
+            )
+
             ->orderBy('updated_at')
+
             ->get();
 
 
         /*
         |--------------------------------------------------------------------------
-        | No jobs
+        | No Jobs
         |--------------------------------------------------------------------------
         */
 
@@ -52,8 +78,7 @@ class PrepareTelegramJobs extends Command
             $this->info('No new jobs found.');
 
             /*
-            | Important:
-            | Last run update only after successful processing.
+            | Update last run because checking was successful.
             */
 
             Cache::put(
@@ -66,41 +91,104 @@ class PrepareTelegramJobs extends Command
         }
 
 
+        $this->info(
+            'Found ' . $jobs->count() . ' jobs.'
+        );
+
+
+        $sent = 0;
+
+        $failed = 0;
+
+
         /*
         |--------------------------------------------------------------------------
-        | Display jobs
+        | Process Jobs
         |--------------------------------------------------------------------------
-        |
-        | Telegram code intentionally NOT included.
-        |
         */
 
         foreach ($jobs as $job) {
 
             $this->line(
-                "Job ID: {$job->id} | Updated: {$job->updated_at}"
+                'Processing Job ID: ' . $job->id
             );
 
-            FreeJobAlertHelper::sendTelegramJob($job);
+
+            try {
+
+                /*
+                |--------------------------------------------------------------------------
+                | Send Telegram
+                |--------------------------------------------------------------------------
+                */
+
+                $telegramSent =
+                    FreeJobAlertHelper::sendTelegramJob($job);
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | Success
+                |--------------------------------------------------------------------------
+                */
+
+                if ($telegramSent) {
+
+                    DB::table('job_details')
+
+                        ->where('id', $job->id)
+
+                        ->update([
+                            'telegram_sent_at' => now(),
+                        ]);
+
+
+                    $sent++;
+
+
+                    $this->info(
+                        'Telegram Sent: '
+                        . $job->id
+                    );
+                }
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | Failed
+                |--------------------------------------------------------------------------
+                */
+
+                else {
+
+                    $failed++;
+
+
+                    $this->error(
+                        'Telegram Failed: '
+                        . $job->id
+                    );
+                }
+
+
+            } catch (\Throwable $e) {
+
+                $failed++;
+
+
+                $this->error(
+                    'Error Job '
+                    . $job->id
+                    . ': '
+                    . $e->getMessage()
+                );
+            }
         }
 
 
         /*
         |--------------------------------------------------------------------------
-        | IMPORTANT
-        |--------------------------------------------------------------------------
-        |
-        | Yahan Telegram send hone ke baad hi
-        | telegram_sent_at update karna hai.
-        |
-        | Telegram code tum separately lagaoge.
-        |
-        */
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Update last successful check
+        | Update Last Run
         |--------------------------------------------------------------------------
         */
 
@@ -111,9 +199,30 @@ class PrepareTelegramJobs extends Command
         );
 
 
+        /*
+        |--------------------------------------------------------------------------
+        | Summary
+        |--------------------------------------------------------------------------
+        */
+
+        $this->newLine();
+
         $this->info(
-            "Found {$jobs->count()} new/updated jobs."
+            'Completed'
         );
+
+        $this->info(
+            'Total Found: ' . $jobs->count()
+        );
+
+        $this->info(
+            'Telegram Sent: ' . $sent
+        );
+
+        $this->info(
+            'Failed: ' . $failed
+        );
+
 
         return Command::SUCCESS;
     }
