@@ -149,7 +149,17 @@
            SARKARIHAI STATIC PAGES
            About | Contact | Privacy | Disclaimer | Terms
         ========================================================= */
+/* =========================
+   MAIN CONTAINER
+========================= */
 
+.about-container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
         body {
             background: #f5f7fb;
         }
