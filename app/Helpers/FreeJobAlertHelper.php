@@ -1171,22 +1171,28 @@ class FreeJobAlertHelper
 
         $title = $job->title ?? 'Government Job';
 
-        $lastDate = !empty($job->updated_at)
-            ? $job->updated_at
+        $lastDate = !empty($job->last_date)
+            ? $job->last_date
             : 'Not Available';
 
 
-        $message = "🚨 <b>New Government Job</b>\n\n";
+        $message = "🚨 <b>" . e($title) . "</b>\n\n";
 
-        $message .= "📌 <b>" . e($title) . "</b>\n";
+        $message .= "📢 <b>Detailed Notification : Released</b>\n\n";
 
-        $message .= "📅 Last updated on: "
+        $message .= "📅 <b>Last Date : "
             . e($lastDate)
-            . "\n\n";
+            . "</b>\n\n";
 
-        $message .= "🔗 <a href=\""
+        $message .= "#SarkariHai #GovernmentJobs #SarkariNaukri\n\n";
+
+        $message .= "<b>Apply & Details :</b>\n\n";
+
+        $message .= "<a href=\""
             . e($link)
-            . "\">View Job Details</a>";
+            . "\">"
+            . e($link)
+            . "</a>";
 
 
         try {
@@ -1198,18 +1204,14 @@ class FreeJobAlertHelper
                         . '/sendMessage',
                     [
                         'chat_id' => env('TELEGRAM_CHANNEL'),
-
                         'text' => $message,
-
                         'parse_mode' => 'HTML',
-
                         'disable_web_page_preview' => false,
                     ]
                 );
 
 
             if ($response->successful()) {
-
                 return true;
             }
 
