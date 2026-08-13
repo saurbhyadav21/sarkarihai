@@ -1838,69 +1838,435 @@ text-align:center;
 
         <!-- RIGHT -->
 
-        <div class="content">
+        <style>
+    /* ================================
+       JOB LISTING PAGE
+    ================================= */
 
-            <div class="container mt-4">
+    .job-listing-wrapper {
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 25px 15px 40px;
+    }
 
-                <h2>{{ $title }}</h2>
+    /* Page Header */
 
-                <table class="table table-bordered table-hover">
+    .job-listing-header {
+        background: #fff;
+        border: 1px solid #e8edf3;
+        border-radius: 12px;
+        padding: 22px 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, .04);
+    }
 
-                    <thead>
+    .job-listing-header h2 {
+        margin: 0;
+        color: #172b4d;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.4;
+    }
+
+    .job-listing-header p {
+        margin: 7px 0 0;
+        color: #6b7280;
+        font-size: 14px;
+    }
+
+    /* Table Card */
+
+    .job-table-card {
+        background: #fff;
+        border: 1px solid #e8edf3;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, .04);
+    }
+
+    .job-table {
+        margin: 0;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .job-table thead th {
+        background: #f5f8fc;
+        color: #374151;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 15px 16px;
+        border-bottom: 1px solid #e3e8ef;
+        white-space: nowrap;
+    }
+
+    .job-table tbody td {
+        padding: 16px;
+        vertical-align: middle;
+        border-bottom: 1px solid #edf0f4;
+        color: #4b5563;
+        font-size: 14px;
+    }
+
+    .job-table tbody tr:last-child td {
+        border-bottom: 0;
+    }
+
+    .job-table tbody tr {
+        transition: .2s ease;
+    }
+
+    .job-table tbody tr:hover {
+        background: #f9fbfd;
+    }
+
+    /* Serial Number */
+
+    .job-number {
+        width: 55px;
+        color: #6b7280 !important;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    /* Job Title */
+
+    .job-title-link {
+        color: #1459a6;
+        font-weight: 600;
+        text-decoration: none;
+        line-height: 1.5;
+        display: inline-block;
+    }
+
+    .job-title-link:hover {
+        color: #0d6efd;
+        text-decoration: underline;
+    }
+
+    /* State / Category */
+
+    .job-tag {
+        display: inline-block;
+        background: #f1f5f9;
+        color: #475569;
+        border-radius: 6px;
+        padding: 5px 9px;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    /* Last Date */
+
+    .last-date {
+        color: #374151;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    /* Pagination */
+
+    .job-pagination {
+        margin-top: 22px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .job-pagination nav {
+        display: inline-flex;
+    }
+
+    /* Empty */
+
+    .no-jobs {
+        padding: 50px 20px !important;
+        text-align: center;
+        color: #6b7280 !important;
+        font-size: 15px;
+    }
+
+    .no-jobs-icon {
+        font-size: 35px;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+
+    /* =================================
+       MOBILE
+    ================================= */
+
+    @media (max-width: 767px) {
+
+        .job-listing-wrapper {
+            padding: 15px 10px 30px;
+        }
+
+        .job-listing-header {
+            padding: 18px 16px;
+            margin-bottom: 15px;
+        }
+
+        .job-listing-header h2 {
+            font-size: 21px;
+        }
+
+        .job-listing-header p {
+            font-size: 13px;
+        }
+
+        /* Hide desktop table */
+
+        .job-table-card {
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+            overflow: visible;
+        }
+
+        .job-table,
+        .job-table thead,
+        .job-table tbody,
+        .job-table tr,
+        .job-table td {
+            display: block;
+            width: 100%;
+        }
+
+        .job-table thead {
+            display: none;
+        }
+
+        .job-table tbody tr {
+            background: #fff;
+            border: 1px solid #e5eaf0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            padding: 14px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, .04);
+        }
+
+        .job-table tbody tr:hover {
+            background: #fff;
+        }
+
+        .job-table tbody td {
+            border: 0;
+            padding: 6px 0;
+            font-size: 13px;
+        }
+
+        .job-table tbody td::before {
+            content: attr(data-label);
+            display: block;
+            color: #7b8491;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+            letter-spacing: .3px;
+        }
+
+        .job-number {
+            width: auto;
+            text-align: left;
+            padding-bottom: 8px !important;
+        }
+
+        .job-number::before {
+            display: none !important;
+        }
+
+        .job-title-link {
+            font-size: 15px;
+            line-height: 1.55;
+        }
+
+        .job-tag {
+            font-size: 11px;
+            padding: 4px 8px;
+        }
+
+        .last-date {
+            font-size: 13px;
+        }
+
+        .no-jobs {
+            padding: 35px 15px !important;
+        }
+    }
+</style>
+
+
+<div class="content">
+
+    <div class="job-listing-wrapper">
+
+        <!-- PAGE HEADER -->
+
+        <div class="job-listing-header">
+
+            <h2>
+                {{ $title }}
+            </h2>
+
+            <p>
+                Browse the latest government job notifications,
+                recruitment updates and important dates.
+            </p>
+
+        </div>
+
+
+        <!-- JOB TABLE -->
+
+        <div class="job-table-card">
+
+            <table class="job-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th class="text-center">#</th>
+
+                        <th>Job Title</th>
+
+                        <th>State</th>
+
+                        <th>Category</th>
+
+                        <th>Last Date</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    @forelse($jobs as $job)
+
                         <tr>
-                            <th>#</th>
-                            <th>Job Title</th>
-                            <th>State</th>
-                            <th>Category</th>
-                            <th>Last Date</th>
+
+                            <!-- Number -->
+
+                            <td class="job-number">
+
+                                {{ $loop->iteration + (($jobs->currentPage() - 1) * $jobs->perPage()) }}
+
+                            </td>
+
+
+                            <!-- Job Title -->
+
+                            <td data-label="Job Title">
+
+                                <a
+                                    class="job-title-link"
+                                    href="{{ url('sarkari-naukri/' . ($job->state ?: 'all-india') . '/' . ($job->category ?: 'uncategorized') . '/' . $job->slug) }}"
+                                >
+
+                                    {{ $job->title }}
+
+                                </a>
+
+                            </td>
+
+
+                            <!-- State -->
+
+                            <td data-label="State">
+
+                                <span class="job-tag">
+
+                                    {{ $job->state === 'all-india'
+                                        ? 'All India'
+                                        : ucwords(str_replace(['-', '_'], ' ', $job->state ?? ''))
+                                    }}
+
+                                </span>
+
+                            </td>
+
+
+                            <!-- Category -->
+
+                            <td data-label="Category">
+
+                                <span class="job-tag">
+
+                                    {{ ucwords(str_replace(['-', '_'], ' ', $job->category ?? '')) }}
+
+                                </span>
+
+                            </td>
+
+
+                            <!-- Last Date -->
+
+                            <td data-label="Last Date">
+
+                                @if (!empty($job->end_date))
+
+                                    <span class="last-date">
+
+                                        {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+
+                                    </span>
+
+                                @else
+
+                                    <span class="text-muted">
+                                        Not Available
+                                    </span>
+
+                                @endif
+
+                            </td>
+
                         </tr>
-                    </thead>
 
-                    <tbody>
 
-                        @forelse($jobs as $job)
-                            <tr>
+                    @empty
 
-                                <td>{{ $loop->iteration + ($jobs->currentPage() - 1) * $jobs->perPage() }}</td>
+                        <tr>
 
-                                <td>
-                                    <a
-                                        href="{{ url('sarkari-naukri/' . ($job->state ?: 'all-india') . '/' . ($job->category ?: 'uncategorized') . '/' . $job->slug) }}">
-                                        {{ $job->title }}
-                                    </a>
-                                </td>
+                            <td colspan="5" class="no-jobs">
 
-                                <td>
-                                    {{ $job->state === 'all-india' ? 'All India' : ucwords(str_replace(['-', '_'], ' ', $job->state)) }}
-                                </td>
+                                <span class="no-jobs-icon">📋</span>
 
-                                <td>
-                                    {{ ucwords(str_replace(['-', '_'], ' ', $job->category)) }}
-                                </td>
+                                No Jobs Found
 
-                                <td>
-                                    {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
-                                </td>
+                            </td>
 
-                            </tr>
+                        </tr>
 
-                        @empty
+                    @endforelse
 
-                            <tr>
-                                <td colspan="5" class="text-center">
-                                    No Jobs Found
-                                </td>
-                            </tr>
-                        @endforelse
+                </tbody>
 
-                    </tbody>
+            </table>
 
-                </table>
+        </div>
+
+
+        <!-- PAGINATION -->
+
+        @if ($jobs->hasPages())
+
+            <div class="job-pagination">
 
                 {{ $jobs->links() }}
 
             </div>
-        </div>
+
+        @endif
+
+    </div>
+
+</div>
 
 
     </div>
