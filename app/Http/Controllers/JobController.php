@@ -393,6 +393,22 @@ class JobController extends Controller
         return view('dmca', compact('seo'));
     }
 
+    public function about()
+    {
+        $seo = [
+            'title' => 'about',
+            'description' => 'about',
+
+
+
+            'keywords' => 'dd'
+
+
+
+        ];
+        return view('about', compact('seo'));
+    }
+
     public function edit($id)
     {
         $job = Job::findOrFail($id);

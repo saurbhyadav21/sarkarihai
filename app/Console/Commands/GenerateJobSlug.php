@@ -25,7 +25,7 @@ class GenerateJobSlug extends Command
             $this->info('No pending records found.');
             return;
         }
-        FreeJobAlertHelper::sendTelegramJob($job);
+        
         $title = $job->title;
 
         /*
