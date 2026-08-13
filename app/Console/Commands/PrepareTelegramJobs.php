@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\FreeJobAlertHelper;
 
 class PrepareTelegramJobs extends Command
 {
@@ -79,6 +80,8 @@ class PrepareTelegramJobs extends Command
             $this->line(
                 "Job ID: {$job->id} | Updated: {$job->updated_at}"
             );
+
+            FreeJobAlertHelper::sendTelegramJob($job);
         }
 
 
