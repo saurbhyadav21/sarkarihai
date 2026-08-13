@@ -51,17 +51,17 @@
     } */
 
     .about-hero h1 {
-        margin: 0 0 10px;
-        font-size: 30px;
-        font-weight: 700;
+           font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 18px;
     }
 
     .about-hero p {
-        max-width: 750px;
-        margin: 0 auto;
-        font-size: 13px;
-        line-height: 1.7;
-        color: #e8f5f7;
+        font-size: 18px;
+    max-width: 850px;
+    margin: auto;
+    line-height: 1.9;
+    opacity: .95;
     }
 
     /* Cards */
