@@ -1,472 +1,672 @@
 @extends('layouts.front')
 
 @section('content')
+    <style>
+        /* =========================================================
+           SARKARIHAI - ABOUT PAGE
+           Same Static Page Design System
+           ========================================================= */
+
+        body {
+            background: #f5f7fb;
+        }
+
+        /* =========================================================
+           HERO
+           ========================================================= */
+
+        .page-hero {
+            background: linear-gradient(135deg, #062a3a, #0a5467);
+            color: #fff;
+            padding: 60px 45px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 28px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .10);
+        }
+
+        .page-hero h1 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .page-hero p {
+            font-size: 16px;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.8;
+            color: #fff;
+            opacity: .95;
+        }
 
 
-<style>
-    .about-page {
-        background: #f4f7fb;
-        padding: 22px 0 40px;
-        font-family: Arial, sans-serif;
-        color: #333;
-    }
+        /* =========================================================
+           MAIN CONTENT CARD
+           ========================================================= */
 
-    .about-container {
-        max-width: 1320px;
-        margin: 0 auto;
-        padding: 0 15px;
-    }
+        .page-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 22px;
+            box-shadow: 0 7px 24px rgba(0, 0, 0, .06);
+            border: 1px solid #edf1f6;
+        }
 
-    /* Hero */
-    .about-hero {
-       background: linear-gradient(135deg, #062a3a, #0a5467);
-    color: #fff;
-    padding: 70px 50px;
-    border-radius: 18px;
-    text-align: center;
-    margin-bottom: 35px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, .12);
-    }
+        .page-card h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #0755ad;
+        }
 
-    /* .about-hero:before {
-        content: "";
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        right: -35px;
-        top: -45px;
-        background: rgba(255,255,255,0.07);
-        border-radius: 50%;
-    }
+        .page-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #222;
+        }
 
-    .about-hero:after {
-        content: "";
-        position: absolute;
-        width: 85px;
-        height: 85px;
-        left: -35px;
-        bottom: -45px;
-        background: rgba(255,255,255,0.06);
-        border-radius: 50%;
-    } */
+        .page-card p {
+            color: #555;
+            line-height: 1.85;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
 
-    .about-hero h1 {
-           font-size: 42px;
-    font-weight: 800;
-    margin-bottom: 18px;
-    }
 
-    .about-hero p {
-        font-size: 18px;
-    max-width: 850px;
-    margin: auto;
-    line-height: 1.9;
-    opacity: .95;
-    }
+        /* =========================================================
+           FEATURE CARDS
+           ========================================================= */
 
-    /* Cards */
-    .about-cards {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-        margin-bottom: 15px;
-    }
+        .feature-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 25px 18px;
+            text-align: center;
+            height: 100%;
+            border: 1px solid #e9eef5;
+            transition: .25s;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, .04);
+        }
 
-    .about-card {
-        background: #fff;
-    border-radius: 14px;
-    padding: 28px;
-    text-align: center;
-    height: 100%;
-    border: 1px solid #eef2f7;
-    transition: .3s;
-    }
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+        }
 
-    .about-card-icon {
-        font-size: 25px;
-        margin-bottom: 8px;
-    }
+        .feature-icon {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
 
-    .about-card h3 {
-        font-size: 14px;
-        color: #0755ad;
-        margin: 0 0 6px;
-    }
+        .feature-card h4 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #0755ad;
+        }
 
-    .about-card p {
-        margin: 0;
-        font-size: 10px;
-        line-height: 1.5;
-        color: #777;
-    }
+        .feature-card p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.65;
+            margin-bottom: 0;
+        }
 
-    /* Content */
-    .about-section {
-        background: #fff;
-        border-radius: 7px;
-        padding: 22px 18px;
-        margin-bottom: 15px;
-        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-        border: 1px solid #e9eef4;
-    }
 
-    .about-section h2 {
-        margin: 0 0 12px;
-        color: #0755ad;
-        font-size: 20px;
-        font-weight: 700;
-    }
+        /* =========================================================
+           ABOUT INTRO / HIGHLIGHT
+           ========================================================= */
 
-    .about-section h2 span {
-        margin-right: 5px;
-    }
+        .info-box {
+            background: #f8fbff;
+            border-left: 4px solid #0d6efd;
+            border-radius: 7px;
+            padding: 16px 18px;
+            margin-top: 15px;
+            color: #444;
+            font-size: 13px;
+            line-height: 1.75;
+        }
 
-    .about-section p {
-        font-size: 12px;
-        line-height: 1.8;
-        margin: 0 0 10px;
-        color: #555;
-    }
 
-    .about-section p:last-child {
-        margin-bottom: 0;
-    }
+        /* =========================================================
+           IMPORTANT / WARNING BOX
+           ========================================================= */
 
-    /* Highlight */
-    .about-highlight {
-        background: #fff6dd;
-        border-left: 4px solid #f0b323;
-        padding: 12px 14px;
-        border-radius: 4px;
-        font-size: 11px;
-        line-height: 1.7;
-        color: #705500;
-        margin-top: 12px;
-    }
+        .alert {
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-top: 15px;
+        }
 
-    /* Blue notice */
-    .about-notice {
-        background: #edf6ff;
-        border-left: 4px solid #1976d2;
-        padding: 12px 14px;
-        border-radius: 4px;
-        font-size: 11px;
-        line-height: 1.7;
-        color: #345;
-        margin-top: 12px;
-    }
 
-    /* Lists */
-    .about-list {
-        margin: 10px 0 0;
-        padding-left: 20px;
-    }
+        /* =========================================================
+           ABOUT FEATURES GRID
+           ========================================================= */
 
-    .about-list li {
-        font-size: 12px;
-        line-height: 1.8;
-        color: #555;
-        margin-bottom: 3px;
-    }
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 22px;
+        }
 
-    /* Mission */
-    .mission-box {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-top: 12px;
-    }
 
-    .mission-item {
-        background: #f8fafc;
-        border: 1px solid #e8edf3;
-        border-radius: 5px;
-        padding: 14px;
-    }
+        /* =========================================================
+           MISSION / VALUES
+           ========================================================= */
 
-    .mission-item strong {
-        display: block;
-        color: #0755ad;
-        font-size: 13px;
-        margin-bottom: 5px;
-    }
-
-    .mission-item p {
-        font-size: 11px;
-        margin: 0;
-        line-height: 1.6;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .about-cards {
+        .about-values {
+            display: grid;
             grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-top: 18px;
         }
 
-        .mission-box {
-            grid-template-columns: 1fr;
+        .about-value {
+            background: #f8fafc;
+            border: 1px solid #e8edf3;
+            border-radius: 8px;
+            padding: 18px;
         }
 
-        .about-hero h1 {
+        .about-value h4 {
+            color: #0755ad;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .about-value p {
+            font-size: 12px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+
+        /* =========================================================
+           LIST
+           ========================================================= */
+
+        .page-card ul {
+            padding-left: 22px;
+            margin-top: 10px;
+        }
+
+        .page-card li {
+            margin-bottom: 7px;
+            color: #444;
+            line-height: 1.75;
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           SIMPLE TWO COLUMN CONTENT
+           ========================================================= */
+
+        .about-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .about-columns h3 {
+            color: #0755ad;
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================================================
+           CTA
+           ========================================================= */
+
+        .page-cta {
+            background: linear-gradient(135deg, #0d6efd, #0056d6);
+            color: #fff;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .page-cta h2 {
+            color: #fff;
+            margin-bottom: 10px;
             font-size: 25px;
         }
-    }
 
-    @media (max-width: 480px) {
-        .about-cards {
-            grid-template-columns: 1fr 1fr;
-            gap: 7px;
+        .page-cta p {
+            color: #fff;
+            opacity: .95;
+            font-size: 14px;
+            line-height: 1.7;
         }
 
-        .about-card {
-            padding: 15px 8px;
+
+        /* =========================================================
+           BUTTON
+           ========================================================= */
+
+        .btn-primary {
+            border-radius: 8px;
+            padding: 10px 25px;
+            font-weight: 600;
         }
 
-        .about-section {
-            padding: 18px 14px;
+
+        /* =========================================================
+           MOBILE
+           ========================================================= */
+
+        @media(max-width:768px) {
+
+            .page-hero {
+                padding: 40px 22px;
+                margin-bottom: 20px;
+            }
+
+            .page-hero h1 {
+                font-size: 30px;
+            }
+
+            .page-hero p {
+                font-size: 14px;
+            }
+
+            .page-card {
+                padding: 22px 18px;
+                margin-bottom: 16px;
+            }
+
+            .page-card h2 {
+                font-size: 21px;
+            }
+
+            .page-card h3 {
+                font-size: 18px;
+            }
+
+            .feature-card {
+                margin-bottom: 0;
+            }
+
+            .about-features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .about-values {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .about-columns {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .page-cta {
+                padding: 28px 18px;
+            }
         }
-    }
-</style>
 
 
-<div class="about-page">
+        @media(max-width:480px) {
 
-    <div class="about-container">
+            .about-features {
+                grid-template-columns: 1fr 1fr;
+            }
 
-        <!-- Hero -->
-        <section class="about-hero">
-            <h1>About SarkariHai</h1>
+            .feature-card {
+                padding: 18px 10px;
+            }
 
-            <p>
-                SarkariHai.com is an independent information platform created
-                to help job seekers, students and government job aspirants
-                find useful information about government jobs, recruitment,
-                exams, admit cards, results and other important updates.
-            </p>
-        </section>
+            .feature-icon {
+                font-size: 28px;
+            }
+
+            .feature-card h4 {
+                font-size: 14px;
+            }
+
+            .feature-card p {
+                font-size: 10px;
+            }
+
+            .page-card p,
+            .page-card li {
+                font-size: 12px;
+            }
+        }
+    </style>
 
 
-        <!-- Quick Information -->
-        <div class="about-cards">
 
-            <div class="about-card">
-                <div class="about-card-icon">📢</div>
-                <h3>Job Updates</h3>
+    <div class="about-page">
+
+        <div class="about-container">
+
+            <!-- =========================
+         ABOUT PAGE
+    ========================= -->
+
+            <div class="page-hero">
+
+                <h1>About SarkariHai</h1>
+
                 <p>
-                    Find information about government job notifications
-                    and recruitment opportunities.
+                    SarkariHai.com is an independent educational and informational
+                    platform created to help students, job seekers and government
+                    job aspirants find important recruitment and examination updates
+                    in a simple and convenient way.
                 </p>
+
             </div>
 
-            <div class="about-card">
-                <div class="about-card-icon">📄</div>
-                <h3>Exam Information</h3>
-                <p>
-                    Useful information related to exams, eligibility,
-                    important dates and application processes.
-                </p>
+
+            <!-- =========================
+         FEATURE CARDS
+    ========================= -->
+
+            <div class="row g-3 mb-4">
+
+                <div class="col-md-3 col-6">
+                    <div class="feature-card">
+
+                        <div class="feature-icon">📢</div>
+
+                        <h4>Government Jobs</h4>
+
+                        <p>
+                            Find information about government jobs,
+                            recruitment notifications and vacancies.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 col-6">
+                    <div class="feature-card">
+
+                        <div class="feature-icon">📄</div>
+
+                        <h4>Exam Updates</h4>
+
+                        <p>
+                            Get useful information about examinations,
+                            application dates and eligibility.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 col-6">
+                    <div class="feature-card">
+
+                        <div class="feature-icon">✓</div>
+
+                        <h4>Results & Admit Cards</h4>
+
+                        <p>
+                            Access information about exam results,
+                            admit cards and related updates.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 col-6">
+                    <div class="feature-card">
+
+                        <div class="feature-icon">🔎</div>
+
+                        <h4>Easy Information</h4>
+
+                        <p>
+                            Important information presented in a simple
+                            and easy-to-understand format.
+                        </p>
+
+                    </div>
+                </div>
+
             </div>
 
-            <div class="about-card">
-                <div class="about-card-icon">✓</div>
-                <h3>Results & Admit Cards</h3>
+
+            <!-- =========================
+         ABOUT US
+    ========================= -->
+
+            <div class="page-card">
+
+                <h2>📌 About SarkariHai</h2>
+
                 <p>
-                    Stay updated with results, admit cards, answer keys
-                    and examination-related information.
+                    Welcome to <strong>SarkariHai.com</strong>, an independent
+                    educational and informational website focused on government
+                    jobs, recruitment, examinations, results, admit cards and
+                    other career-related updates.
                 </p>
+
+                <p>
+                    Our purpose is to make important government recruitment
+                    information easier to discover and understand for students,
+                    job seekers and government job aspirants.
+                </p>
+
+                <p>
+                    We organize information from publicly available sources and
+                    official notifications so that users can quickly find the
+                    information they are looking for.
+                </p>
+
+                <div class="info-box">
+
+                    <strong>Important:</strong>
+                    SarkariHai.com is an independent information platform.
+                    It is not an official government website and is not affiliated
+                    with any government department, recruitment board or examination
+                    authority.
+
+                </div>
+
             </div>
 
-            <div class="about-card">
-                <div class="about-card-icon">🔎</div>
-                <h3>Easy Information</h3>
+
+            <!-- =========================
+         WHAT WE PROVIDE
+    ========================= -->
+
+            <div class="page-card">
+
+                <h2>📚 What We Provide</h2>
+
                 <p>
-                    Important recruitment information organized in a
-                    simple and easy-to-understand format.
+                    SarkariHai provides organized information related to
+                    government recruitment and examinations, including:
                 </p>
+
+                <ul>
+
+                    <li>Government Job Notifications</li>
+
+                    <li>Recruitment and Vacancy Information</li>
+
+                    <li>Eligibility and Qualification Details</li>
+
+                    <li>Important Application Dates</li>
+
+                    <li>Application and Recruitment Information</li>
+
+                    <li>Admit Card Updates</li>
+
+                    <li>Examination Results</li>
+
+                    <li>Government Scheme and Educational Updates</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- =========================
+         OUR PURPOSE
+    ========================= -->
+
+            <div class="page-card">
+
+                <h2>🎯 Our Purpose</h2>
+
+                <p>
+                    Finding reliable government job information can sometimes
+                    require checking multiple websites and notifications.
+                    SarkariHai aims to make this process easier by presenting
+                    relevant information in an organized format.
+                </p>
+
+                <div class="about-values">
+
+                    <div class="about-value">
+
+                        <h4>📋 Organized Information</h4>
+
+                        <p>
+                            We organize recruitment and examination information
+                            so users can find important details more easily.
+                        </p>
+
+                    </div>
+
+
+                    <div class="about-value">
+
+                        <h4>🔎 Easy Discovery</h4>
+
+                        <p>
+                            Our website is designed to help users discover relevant
+                            jobs, examinations and updates quickly.
+                        </p>
+
+                    </div>
+
+
+                    <div class="about-value">
+
+                        <h4>📢 Regular Updates</h4>
+
+                        <p>
+                            We regularly update available information when new
+                            recruitment and examination updates are published.
+                        </p>
+
+                    </div>
+
+
+                    <div class="about-value">
+
+                        <h4>🎓 For Job Aspirants</h4>
+
+                        <p>
+                            Our content is created primarily to help students,
+                            applicants and government job aspirants.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+         INFORMATION ACCURACY
+    ========================= -->
+
+            <div class="page-card">
+
+                <h2>📖 Information & Accuracy</h2>
+
+                <p>
+                    We make reasonable efforts to present information accurately
+                    and keep the website updated. However, recruitment rules,
+                    vacancies, eligibility criteria, examination dates and other
+                    details may change at any time.
+                </p>
+
+                <p>
+                    Users should always verify important information from the
+                    official notification or official website of the concerned
+                    government department, recruitment board or examination
+                    authority before taking any action.
+                </p>
+
+                <div class="alert alert-warning">
+
+                    <strong>Important:</strong>
+                    Official government notifications and websites should always
+                    be treated as the final and authoritative source of information.
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+         INDEPENDENT WEBSITE
+    ========================= -->
+
+            <div class="page-card">
+
+                <h2>🏛️ Independent Information Platform</h2>
+
+                <p>
+                    SarkariHai.com is an independent website and does not represent
+                    or operate on behalf of any government organization.
+                </p>
+
+                <p>
+                    Government departments, recruitment boards, universities,
+                    examination authorities and other organizations mentioned on
+                    this website belong to their respective owners.
+                </p>
+
+                <div class="info-box">
+
+                    Every recruitment or examination should be verified through
+                    the official notification issued by the concerned authority.
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+         DISCLAIMER CTA
+    ========================= -->
+
+            <div class="page-cta">
+
+                <h2>Stay Informed. Verify Before You Apply.</h2>
+
+                <p>
+                    SarkariHai helps you discover useful information, but always
+                    check the official notification before submitting an application
+                    or making any decision.
+                </p>
+
             </div>
 
         </div>
 
-
-        <!-- About -->
-        <section class="about-section">
-
-            <h2><span>📌</span> About Us</h2>
-
-            <p>
-                Welcome to <strong>SarkariHai.com</strong>, an independent
-                educational and informational website focused on government
-                job and examination-related information.
-            </p>
-
-            <p>
-                Our goal is to make recruitment information easier to find
-                and understand. We organize information related to government
-                vacancies, recruitment notifications, application dates,
-                eligibility, admit cards, results, answer keys, syllabus and
-                other examination updates.
-            </p>
-
-            <div class="about-highlight">
-                <strong>Important:</strong>
-                SarkariHai.com is not an official government website and is
-                not affiliated with any government department, recruitment
-                board, examination authority or university unless explicitly
-                stated otherwise.
-            </div>
-
-        </section>
-
-
-        <!-- What We Provide -->
-        <section class="about-section">
-
-            <h2><span>📚</span> What We Provide</h2>
-
-            <p>
-                SarkariHai provides information that can help users discover
-                and understand recruitment and examination opportunities.
-            </p>
-
-            <ul class="about-list">
-                <li>Government job recruitment information</li>
-                <li>Recruitment notifications and vacancy details</li>
-                <li>Eligibility and important dates</li>
-                <li>Online and offline application information</li>
-                <li>Admit card and examination updates</li>
-                <li>Government examination results</li>
-                <li>Answer key and syllabus information</li>
-                <li>Useful links to official websites and notifications</li>
-            </ul>
-
-        </section>
-
-
-        <!-- Our Mission -->
-        <section class="about-section">
-
-            <h2><span>🎯</span> Our Mission</h2>
-
-            <p>
-                Our mission is to make government recruitment and examination
-                information easier for students and job seekers to discover.
-            </p>
-
-            <div class="mission-box">
-
-                <div class="mission-item">
-                    <strong>Simple Information</strong>
-                    <p>
-                        We try to present important recruitment information
-                        in a simple and easy-to-read format.
-                    </p>
-                </div>
-
-                <div class="mission-item">
-                    <strong>Easy Discovery</strong>
-                    <p>
-                        We organize jobs, exams, results and other updates
-                        so users can find relevant information quickly.
-                    </p>
-                </div>
-
-                <div class="mission-item">
-                    <strong>Useful Updates</strong>
-                    <p>
-                        We focus on information that is useful to students,
-                        applicants and government job aspirants.
-                    </p>
-                </div>
-
-                <div class="mission-item">
-                    <strong>Official Sources</strong>
-                    <p>
-                        Users are encouraged to verify important information
-                        through the concerned official website or notification.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- Accuracy -->
-        <section class="about-section">
-
-            <h2><span>🔎</span> Accuracy of Information</h2>
-
-            <p>
-                We make reasonable efforts to keep the information published
-                on SarkariHai accurate and updated. However, recruitment
-                notifications, examination schedules, eligibility criteria,
-                vacancies and application details may change.
-            </p>
-
-            <p>
-                Therefore, users should always verify important details from
-                the official notification or official website of the concerned
-                organization before submitting an application.
-            </p>
-
-            <div class="about-notice">
-                <strong>Always Verify:</strong>
-                Check the official recruitment notification for eligibility,
-                age limit, vacancies, application dates, fees, selection
-                process and other important conditions before applying.
-            </div>
-
-        </section>
-
-
-        <!-- Independent Platform -->
-        <section class="about-section">
-
-            <h2><span>🏛️</span> Independent Information Platform</h2>
-
-            <p>
-                SarkariHai.com is an independent website created for
-                informational and educational purposes. The website does not
-                represent any government department or recruitment authority.
-            </p>
-
-            <p>
-                Names, logos, trademarks and recruitment authorities mentioned
-                on the website belong to their respective owners.
-            </p>
-
-            <div class="about-highlight">
-                SarkariHai does not guarantee selection, employment or
-                recruitment outcomes. Applicants are responsible for checking
-                and following the official recruitment instructions.
-            </div>
-
-        </section>
-
-
-        <!-- Contact / Feedback -->
-        <section class="about-section">
-
-            <h2><span>💬</span> Feedback & Suggestions</h2>
-
-            <p>
-                We value feedback from our users. If you find an incorrect,
-                outdated or incomplete piece of information, you can contact
-                us so that the information can be reviewed and updated where
-                appropriate.
-            </p>
-
-            <p>
-                Your feedback helps us improve the quality and usefulness of
-                the information available on SarkariHai.com.
-            </p>
-
-        </section>
-
     </div>
-
-</div>
-
 @endsection
-
-
