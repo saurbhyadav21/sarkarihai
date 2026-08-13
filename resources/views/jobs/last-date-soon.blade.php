@@ -1522,7 +1522,7 @@ text-align:center;
                         
 
                     </div>
-                    <div class="latest-ticker">
+                    {{-- <div class="latest-ticker">
 
                         <div class="ticker-heading" style="margin-top: 30px;font-size: 15px;background: #f4b400;color: #000;border-radius: 5px;">
                             🔥 Latest Updates
@@ -1583,7 +1583,7 @@ text-align:center;
                             
                         </marquee>
 
-                    </div>
+                    </div> --}}
 
                 </div>
 
