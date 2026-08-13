@@ -391,8 +391,8 @@
     </div>
 
     <!-- =========================
-                        PART 2 - MAIN CONTENT BLOCK
-                        ========================= -->
+                            PART 2 - MAIN CONTENT BLOCK
+                            ========================= -->
 
     <style>
         .section-title {
@@ -563,7 +563,7 @@
                     <div class="job-card">
 
                         {{-- 🔥 NEW BADGE --}}
-                        @if (!empty($job->created_at) && \Carbon\Carbon::parse($job->created_at)->diffInDays() <= 3)
+                        @if (!empty($job->created_at) && \Carbon\Carbon::parse($job->created_at)->greaterThanOrEqualTo(now()->subHour()))
                             <span class="badge-new">NEW</span>
                         @endif
 
