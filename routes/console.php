@@ -35,6 +35,10 @@ Schedule::command('app:update-application-mode')
     ->everyMinute()
     ->withoutOverlapping();
 
+Schedule::command('telegram:prepare-jobs')
+    ->everyMinute()
+    ->withoutOverlapping();
+
     
 Schedule::call(function () {
 
