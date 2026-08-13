@@ -1574,22 +1574,22 @@ text-align:center;
 
                 <div class="summary-item">
                     <small>Total job last date Today</small>
-                    <strong>{{count($jobs)}}</strong>
+                    <strong>{{ count($jobs) }}</strong>
                 </div>
 
                 <div class="summary-item">
-    <small>Last Date</small>
+                    <small>Last Date</small>
 
-    <strong>
-        @if (request()->is('last-date-soon/today'))
-            {{ now()->format('d M Y') }}
-        @elseif (!empty($job->end_date))
-            {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
-        @else
-            Not Available
-        @endif
-    </strong>
-</div>
+                    <strong>
+                        @if (request()->is('last-date-soon/today'))
+                            {{ now()->format('d M Y') }}
+                        @elseif (!empty($job->end_date))
+                            {{ \Carbon\Carbon::parse($job->end_date)->format('d M Y') }}
+                        @else
+                            Not Available
+                        @endif
+                    </strong>
+                </div>
 
             </div>
 
@@ -1849,8 +1849,8 @@ text-align:center;
 
         <style>
             /* ================================
-           JOB LISTING PAGE
-        ================================= */
+               JOB LISTING PAGE
+            ================================= */
 
             .job-listing-wrapper {
                 max-width: 1320px;
@@ -2003,8 +2003,8 @@ text-align:center;
 
 
             /* =================================
-           MOBILE
-        ================================= */
+               MOBILE
+            ================================= */
 
             @media (max-width: 767px) {
 
