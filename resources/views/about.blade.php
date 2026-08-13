@@ -19,18 +19,16 @@
 
     /* Hero */
     .about-hero {
-        position: relative;
-        overflow: hidden;
-        background: #064c5d;
-        color: #fff;
-        border-radius: 8px;
-        padding: 32px 25px;
-        text-align: center;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        margin-bottom: 15px;
+       background: linear-gradient(135deg, #062a3a, #0a5467);
+    color: #fff;
+    padding: 70px 50px;
+    border-radius: 18px;
+    text-align: center;
+    margin-bottom: 35px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .12);
     }
 
-    .about-hero:before {
+    /* .about-hero:before {
         content: "";
         position: absolute;
         width: 100px;
@@ -50,7 +48,7 @@
         bottom: -45px;
         background: rgba(255,255,255,0.06);
         border-radius: 50%;
-    }
+    } */
 
     .about-hero h1 {
         margin: 0 0 10px;
