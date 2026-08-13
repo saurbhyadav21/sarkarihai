@@ -1487,9 +1487,103 @@ text-align:center;
 
             <div class="hero-flex">
 
-                <div>
+                <div class="col-lg-8">
 
+                    <h1>🏆 SarkariHai — हर सरकारी नौकरी की सही जानकारी</h1>
 
+                    <p>
+                        Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards, Results, and Exam Updates in
+                        one place.
+                    </p>
+
+                    <div class="row mt-4">
+
+                        <div class="col-6 col-md-3">
+                            <div class="stats">
+                                <h3>4,742+</h3>
+                                <small>Jobs</small>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                            <div class="stats">
+                                <h3>230+</h3>
+                                <small>Results</small>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                            <div class="stats">
+                                <h3>505+</h3>
+                                <small>Admit Card</small>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+                    <div class="latest-ticker">
+
+                        <div class="ticker-heading" style="margin-top: 30px;font-size: 15px;background: #f4b400;color: #000;border-radius: 5px;">
+                            🔥 Latest Updates
+                        </div>
+
+                        <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();">
+
+                                                            <a href="https://sarkarihai.com/sarkari-naukri/uttar-pradesh/university/iit-bhu-project-scientist-recruitment-2026-apply-offline" style="color: #fff;text-decoration: none;">
+                                    IIT BHU Project Scientist Recruitment 2026 - Apply Offline
+                                </a>
+
+                                <span class="ticker-separator">●</span>
+                                                            <a href="https://sarkarihai.com/sarkari-naukri/all-india/medical/bhel-part-time-medical-consultant-recruitment-2026" style="color: #fff;text-decoration: none;">
+                                    BHEL Part Time Medical Consultant Recruitment 2026 - Apply Online
+                                </a>
+
+                                <span class="ticker-separator">●</span>
+                                                            <a href="https://sarkarihai.com/sarkari-naukri/all-india/government/tmc-actrec-administrative-assistant-recruitment-2026-walkin" style="color: #fff;text-decoration: none;">
+                                    TMC ACTREC Administrative Assistant Recruitment 2026 - Walkin
+                                </a>
+
+                                <span class="ticker-separator">●</span>
+                                                            <a href="https://sarkarihai.com/sarkari-naukri/all-india/university/hnbgu-guest-faculty-recruitment-2026-walkin" style="color: #fff;text-decoration: none;">
+                                    HNBGU Guest Faculty Recruitment 2026 - Walkin
+                                </a>
+
+                                <span class="ticker-separator">●</span>
+                                                            <a href="https://sarkarihai.com/sarkari-naukri/all-india/research/bhu-research-assistant-recruitment-2026-apply-offline" style="color: #fff;text-decoration: none;">
+                                    BHU Research Assistant Recruitment 2026 - Apply Offline
+                                </a>
+
+                                <span class="ticker-separator">●</span>
+                                                            <a href="https://sarkarihai.com/sarkari-naukri/bihar/medical/aiims-patna-project-technical-support-1-recruitment-2026" style="color: #fff;text-decoration: none;">
+                                    AIIMS Patna Project Technical Support 1 Recruitment 2026 - Apply Online
+                                </a>
+
+                                <span class="ticker-separator">●</span>
+                                                            <a href="https://sarkarihai.com/sarkari-naukri/odisha/other/wcd-odisha-anganwadi-worker-recruitment-2026" style="color: #fff;text-decoration: none;">
+                                    WCD Odisha Anganwadi Worker Recruitment 2026 - Apply Online
+                                </a>
+
+                                <span class="ticker-separator">●</span>
+                                                            <a href="https://sarkarihai.com/sarkari-naukri/gujarat/university/ram-lal-anand-college-guest-faculty-recruitment-2026" style="color: #fff;text-decoration: none;">
+                                    Ram Lal Anand College Guest Faculty Recruitment 2026 - Apply Online
+                                </a>
+
+                                <span class="ticker-separator">●</span>
+                                                            <a href="https://sarkarihai.com/sarkari-naukri/all-india/teaching/pm-shri-balikonta-school-yogasports-teachertrainer-recruitment-2026-apply-offline" style="color: #fff;text-decoration: none;">
+                                    PM Shri Balikonta School Yoga/Sports Teacher/Trainer Recruitment 2026 - Apply Offline
+                                </a>
+
+                                <span class="ticker-separator">●</span>
+                                                            <a href="https://sarkarihai.com/sarkari-naukri/gujarat/police/bharuch-police-mitra-recruitment-2026-apply-offline-for-351-gram-rakshak-dal-grd-and-shahri-rakshak-dal-srd-posts" style="color: #fff;text-decoration: none;">
+                                    Bharuch Police Mitra Recruitment 2026 Notification Out - Apply Offline for 351 Gram Rakshak Dal (GRD) and Shahri Rakshak Dal (SRD) Posts
+                                </a>
+
+                                <span class="ticker-separator">●</span>
+                            
+                        </marquee>
+
+                    </div>
 
                 </div>
 
