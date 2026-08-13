@@ -1151,30 +1151,90 @@ class FreeJobAlertHelper
 
     public static function sendTelegramJob($job)
     {
-        $link = "https://sarkarihai.com/sarkari-naukri/" .
-            ($job['state'] ?? 'all-india') . "/" .
-            ($job['category'] ?? 'government') . "/" .
-            $job['slug'];
+        $state = !empty($job->state)
+            ? trim($job->state)
+            : 'all-india';
+
+        $category = !empty($job->category)
+            ? trim($job->category)
+            : 'government';
+
+        $slug = !empty($job->slug)
+            ? trim($job->slug)
+            : '';
+
+        $link = 'https://sarkarihai.com/sarkari-naukri/'
+            . $state . '/'
+            . $category . '/'
+            . $slug;
+
+
+        $title = $job->title ?? 'Government Job';
+
+        $lastDate = !empty($job->last_date)
+            ? $job->last_date
+            : 'Not Available';
 
 
         $message = "🚨 <b>New Government Job</b>\n\n";
 
-        $message .= "📌 <b>" . $job['title'] . "</b>\n";
+        $message .= "📌 <b>" . e($title) . "</b>\n";
 
-        $message .= "📅 Last updated on: " . $job['last_date'] . "\n\n";
+        $message .= "📅 Last updated on: "
+            . e($lastDate)
+            . "\n\n";
 
-        $message .= "🔗 https://sarkarihai.com\n";
+        $message .= "🔗 <a href=\""
+            . e($link)
+            . "\">View Job Details</a>";
 
-        $message .= "🔗 <a href=\"$link\">$link</a>";
 
-        Http::post(
-            "https://api.telegram.org/bot" . env('TELEGRAM_BOT_TOKEN') . "/sendMessage",
-            [
-                'chat_id' => env('TELEGRAM_CHANNEL'),
-                'text' => $message,
-                'parse_mode' => 'HTML'
-            ]
-        );
+        try {
+
+            $response = \Illuminate\Support\Facades\Http::timeout(20)
+                ->post(
+                    'https://api.telegram.org/bot'
+                        . env('TELEGRAM_BOT_TOKEN')
+                        . '/sendMessage',
+                    [
+                        'chat_id' => env('TELEGRAM_CHANNEL'),
+
+                        'text' => $message,
+
+                        'parse_mode' => 'HTML',
+
+                        'disable_web_page_preview' => false,
+                    ]
+                );
+
+
+            if ($response->successful()) {
+
+                return true;
+            }
+
+
+            \Illuminate\Support\Facades\Log::error(
+                'Telegram Send Failed',
+                [
+                    'job_id' => $job->id ?? null,
+                    'response' => $response->body(),
+                ]
+            );
+
+            return false;
+        } catch (\Throwable $e) {
+
+            \Illuminate\Support\Facades\Log::error(
+                'Telegram Exception',
+                [
+                    'job_id' => $job->id ?? null,
+                    'error' => $e->getMessage(),
+                ]
+            );
+
+            return false;
+        }
     }
 
     public static function extractFreeJobAlertMode($html)
