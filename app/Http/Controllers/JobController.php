@@ -3186,7 +3186,7 @@ class JobController extends Controller
         $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
 
 
-        return view('jobs.last-date-soon', compact('jobs', 'title','seo', 'metaTitle', 'metaDescription', 'canonicalUrl', 'robots', 'ogType', 'ogImage'));
+        return view('jobs.last-date-soon', compact('jobs', 'title', 'metaTitle', 'metaDescription', 'canonicalUrl', 'robots', 'ogType', 'ogImage'));
 
 
         // return view('jobs.last-date-soon', compact('jobs', 'title'));
