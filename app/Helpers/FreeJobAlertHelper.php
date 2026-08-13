@@ -1171,8 +1171,8 @@ class FreeJobAlertHelper
 
         $title = $job->title ?? 'Government Job';
 
-        $lastDate = !empty($job->last_date)
-            ? $job->last_date
+        $lastDate = !empty($job->updated_at)
+            ? $job->updated_at
             : 'Not Available';
 
 

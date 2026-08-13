@@ -58,7 +58,7 @@ class PrepareTelegramJobs extends Command
                 'slug',
                 'state',
                 'category',
-                'last_date',
+                // 'last_date',
                 'updated_at'
             )
 
