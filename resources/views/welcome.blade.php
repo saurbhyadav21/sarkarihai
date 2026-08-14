@@ -391,8 +391,8 @@
     </div>
 
     <!-- =========================
-                                PART 2 - MAIN CONTENT BLOCK
-                                ========================= -->
+                                    PART 2 - MAIN CONTENT BLOCK
+                                    ========================= -->
 
     <style>
         .section-title {
@@ -853,14 +853,12 @@
 
         <div class="link-grid mb-4">
 
-           @foreach ($organizations as $category)
-
-    <a href="{{ url('/jobs/' . $category->slug) }}">
-        {{ $category->category }}
-        ({{ number_format($category->total_jobs) }})
-    </a>
-
-@endforeach
+            @foreach ($organizations as $category)
+                <a href="{{ url('/jobs/' . $category->name) }}">
+                    {{ $category->category }}
+                    ({{ number_format($category->total_jobs) }})
+                </a>
+            @endforeach
 
         </div>
 
