@@ -1568,12 +1568,12 @@ text-align:center;
                 </div>
 
                 <div class="summary-item">
-                    <small>Total Vacancy</small>
+                    <small>Total Vacancies</small>
                     <strong>14582</strong>
                 </div>
 
                 <div class="summary-item">
-                    <small>Total job last date Today</small>
+                    <small>Jobs Closing Today</small>
                     <strong>{{ count($jobs) }}</strong>
                 </div>
 
