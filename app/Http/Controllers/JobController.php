@@ -390,7 +390,7 @@ class JobController extends Controller
 
 
         ];
-         $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+        $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
 
         $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
 
@@ -419,7 +419,7 @@ class JobController extends Controller
 
 
         ];
-       $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+        $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
 
         $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
 
@@ -3010,15 +3010,15 @@ class JobController extends Controller
 
 
         $organizations = DB::table('job_details')
-    ->select(
-        'category',
-        DB::raw('COUNT(*) as total_jobs')
-    )
-    ->whereNotNull('category')
-    ->where('category', '!=', '')
-    ->groupBy('category')
-    ->orderByDesc('total_jobs')
-    ->get();
+            ->select(
+                'category',
+                DB::raw('COUNT(*) as total_jobs')
+            )
+            ->whereNotNull('category')
+            ->where('category', '!=', '')
+            ->groupBy('category')
+            ->orderByDesc('total_jobs')
+            ->get();
 
 
         $popularSearches = DB::table('popular_searches')
@@ -3140,57 +3140,152 @@ class JobController extends Controller
         return view('search', compact('popularSearches', 'keyword'));
     }
 
-    public function lastDateSoon($type)
-    {
-        $query = DB::table('job_details');
+    use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
-        switch ($type) {
+public function lastDateSoon($type)
+{
+    $query = DB::table('job_details')
+        ->whereNotNull('end_date');
 
-            case 'today':
-                $title = 'Today Last Date Jobs';
-                $query->whereDate('end_date', Carbon::today());
-                break;
+    switch ($type) {
 
-            case 'tomorrow':
-                $title = 'Tomorrow Last Date Jobs';
-                $query->whereDate('end_date', Carbon::tomorrow());
-                break;
+        case 'today':
 
-            case 'week':
-                $title = 'Next 7 Days Last Date Jobs';
-                $query->whereBetween('end_date', [
-                    Carbon::today(),
-                    Carbon::today()->addDays(7)
-                ]);
-                break;
+            $title = 'Today Last Date Jobs';
 
-            default:
-                abort(404);
+            $query->whereDate('end_date', Carbon::today());
+
+            $closingLabel = 'Closing Today';
+
+            break;
+
+
+        case 'tomorrow':
+
+            $title = 'Tomorrow Last Date Jobs';
+
+            $query->whereDate('end_date', Carbon::tomorrow());
+
+            $closingLabel = 'Closing Tomorrow';
+
+            break;
+
+
+        case 'week':
+
+            $title = 'Next 7 Days Last Date Jobs';
+
+            $query->whereBetween('end_date', [
+                Carbon::today()->startOfDay(),
+                Carbon::today()->addDays(7)->endOfDay()
+            ]);
+
+            $closingLabel = 'Closing This Week';
+
+            break;
+
+
+        default:
+
+            abort(404);
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | SUMMARY DATA
+    |--------------------------------------------------------------------------
+    */
+
+    // Total matching jobs
+    $jobsFound = (clone $query)->count();
+
+
+    // Get total_posts for all matching jobs
+    $vacancyRows = (clone $query)
+        ->select('total_posts')
+        ->get();
+
+
+    $totalVacancies = 0;
+
+    foreach ($vacancyRows as $row) {
+
+        if (empty($row->total_posts)) {
+            continue;
         }
 
-        $jobs = $query
-            ->orderBy('end_date')
-            ->paginate(30);
+        /*
+        Example:
+        206 Posts       => 206
+        100 Vacancies   => 100
+        50              => 50
+        */
 
+        if (preg_match('/[\d,]+/', $row->total_posts, $matches)) {
 
-             $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+            $number = str_replace(',', '', $matches[0]);
 
-        $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
-
-        $canonicalUrl = request()->url();
-
-        $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
-
-        $ogType = 'website';
-
-        $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
-
-
-        return view('jobs.last-date-soon', compact('jobs', 'title', 'metaTitle', 'metaDescription', 'canonicalUrl', 'robots', 'ogType', 'ogImage'));
-
-
-        // return view('jobs.last-date-soon', compact('jobs', 'title'));
+            $totalVacancies += (int) $number;
+        }
     }
+
+
+    // Earliest last date in current listing
+    $listingLastDate = (clone $query)
+        ->min('end_date');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | PAGINATION
+    |--------------------------------------------------------------------------
+    */
+
+    $jobs = $query
+        ->orderBy('end_date', 'asc')
+        ->paginate(30)
+        ->withQueryString();
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | SEO
+    |--------------------------------------------------------------------------
+    */
+
+    $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+
+    $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
+
+    $canonicalUrl = request()->url();
+
+    $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+
+    $ogType = 'website';
+
+    $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
+
+
+    return view(
+        'jobs.last-date-soon',
+        compact(
+            'jobs',
+            'title',
+            'metaTitle',
+            'metaDescription',
+            'canonicalUrl',
+            'robots',
+            'ogType',
+            'ogImage',
+            'jobsFound',
+            'totalVacancies',
+            'closingLabel',
+            'listingLastDate'
+        )
+    );
+}
 
     public function checkSitemapErrors()
     {
