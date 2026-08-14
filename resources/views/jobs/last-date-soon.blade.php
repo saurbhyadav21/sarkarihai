@@ -1567,18 +1567,15 @@ text-align:center;
         <strong>{{ number_format($jobsFound) }}</strong>
     </div>
 
-
     <div class="summary-item">
         <small>Total Vacancies</small>
         <strong>{{ number_format($totalVacancies) }}</strong>
     </div>
 
-
     <div class="summary-item">
         <small>{{ $closingLabel }}</small>
         <strong>{{ number_format($jobsFound) }}</strong>
     </div>
-
 
     <div class="summary-item">
         <small>Last Date</small>

@@ -3192,41 +3192,80 @@ class JobController extends Controller
 
 
         /*
-    |--------------------------------------------------------------------------
-    | SUMMARY DATA
-    |--------------------------------------------------------------------------
-    */
+    /*
+|--------------------------------------------------------------------------
+| SUMMARY DATA
+|--------------------------------------------------------------------------
+*/
 
-        // Total matching jobs
         $jobsFound = (clone $query)->count();
 
 
-        // Get total_posts for all matching jobs
+        // Get category-wise vacancy fields
         $vacancyRows = (clone $query)
-            ->select('total_posts')
+            ->select(
+                'genral_post',
+                'ews_post',
+                'obc_post',
+                'sc_post',
+                'st_post'
+            )
             ->get();
 
 
         $totalVacancies = 0;
 
+
         foreach ($vacancyRows as $row) {
 
-            if (empty($row->total_posts)) {
-                continue;
-            }
+            $fields = [
+                $row->genral_post,
+                $row->ews_post,
+                $row->obc_post,
+                $row->sc_post,
+                $row->st_post,
+            ];
 
-            /*
+
+            foreach ($fields as $posts) {
+
+                if (empty($posts)) {
+                    continue;
+                }
+
+
+                /*
         Example:
-        206 Posts       => 206
-        100 Vacancies   => 100
-        50              => 50
+
+        Assistant Audit Officer$225#
+        Assistant Section Officer$982#
+        Inspector of Income Tax$412
         */
 
-            if (preg_match('/[\d,]+/', $row->total_posts, $matches)) {
 
-                $number = str_replace(',', '', $matches[0]);
+                $parts = preg_split('/[#]+/', $posts);
 
-                $totalVacancies += (int) $number;
+
+                foreach ($parts as $post) {
+
+                    $post = trim($post);
+
+                    if ($post === '') {
+                        continue;
+                    }
+
+
+                    /*
+            Get number after $
+            */
+
+                    if (preg_match('/\$(\d[\d,]*)/', $post, $matches)) {
+
+                        $number = str_replace(',', '', $matches[1]);
+
+                        $totalVacancies += (int) $number;
+                    }
+                }
             }
         }
 
