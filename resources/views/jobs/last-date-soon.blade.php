@@ -1677,7 +1677,7 @@ text-align:center;
 
                 <div class="col-lg-8">
 
-                    <h1>🏆 SarkariHai — Latest Sarkari Naukri & Government Jobs</h1>
+                    <h1>🏆 SarkariHai — Latest Sarakri Result, Sarkari Naukri & Government Jobs</h1>
 
                     <div class="row mt-4">
 
