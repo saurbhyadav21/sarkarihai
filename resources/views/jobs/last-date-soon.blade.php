@@ -1595,6 +1595,78 @@ text-align:center;
             font-size: 10px;
         }
     }
+
+    .hero-last-date-tabs {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    max-width: 650px;
+}
+
+.hero-last-date-tabs a {
+    flex: 1;
+    min-height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 8px 12px;
+
+    color: #fff;
+    text-decoration: none;
+
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.20);
+    border-radius: 9px;
+
+    transition: .2s ease;
+}
+
+.hero-last-date-tabs a:hover {
+    background: rgba(255,255,255,.16);
+    color: #fff;
+}
+
+.hero-last-date-tabs a.active {
+    background: #fff;
+    color: #0b5368;
+}
+
+.hero-last-date-tabs strong {
+    font-size: 13px;
+}
+
+.hero-last-date-tabs small {
+    font-size: 10px;
+    opacity: .75;
+}
+
+
+/* Mobile */
+
+@media(max-width:767px) {
+
+    .hero-last-date-tabs {
+        gap: 6px;
+        width: 100%;
+    }
+
+    .hero-last-date-tabs a {
+        padding: 7px 4px;
+        min-height: 50px;
+        gap: 3px;
+    }
+
+    .hero-last-date-tabs strong {
+        font-size: 11px;
+    }
+
+    .hero-last-date-tabs small {
+        font-size: 9px;
+    }
+}
 </style>
 @section('content')
     <section class="hero">
@@ -1609,26 +1681,27 @@ text-align:center;
 
                     <div class="row mt-4">
 
-                        <div class="col-6 col-md-3">
-                            <div class="stats">
-                                <h3>4,742+</h3>
-                                <small>Jobs</small>
-                            </div>
-                        </div>
+                        <div class="hero-last-date-tabs">
 
-                        <div class="col-6 col-md-3">
-                            <div class="stats">
-                                <h3>230+</h3>
-                                <small>Results</small>
-                            </div>
-                        </div>
+    <a href="{{ url('/last-date-soon/today') }}"
+       class="{{ request()->is('last-date-soon/today') ? 'active' : '' }}">
+        🔴 <strong>Today</strong>
+        <small>Last Date</small>
+    </a>
 
-                        <div class="col-6 col-md-3">
-                            <div class="stats">
-                                <h3>505+</h3>
-                                <small>Admit Card</small>
-                            </div>
-                        </div>
+    <a href="{{ url('/last-date-soon/tomorrow') }}"
+       class="{{ request()->is('last-date-soon/tomorrow') ? 'active' : '' }}">
+        🟠 <strong>Tomorrow</strong>
+        <small>Last Date</small>
+    </a>
+
+    <a href="{{ url('/last-date-soon/week') }}"
+       class="{{ request()->is('last-date-soon/week') ? 'active' : '' }}">
+        📅 <strong>Next 7 Days</strong>
+        <small>Last Date</small>
+    </a>
+
+</div>
 
 
 
