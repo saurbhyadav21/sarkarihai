@@ -1677,7 +1677,7 @@ text-align:center;
 
                 <div class="col-lg-8">
 
-                    <h1>🏆 SarkariHai — हर सरकारी नौकरी की सही जानकारी</h1>
+                    <h1>🏆 SarkariHai — Latest Sarkari Naukri & Government Jobs</h1>
 
                     <div class="row mt-4">
 
@@ -1685,20 +1685,20 @@ text-align:center;
 
                             <a href="{{ url('/last-date-soon/today') }}"
                                 class="{{ request()->is('last-date-soon/today') ? 'active' : '' }}">
-                                🔴 <strong>Today</strong>
-                                <small>Last Date</small>
+                                🔴 <strong>Last Date Today</strong>
+                                {{-- <small>Last Date</small> --}}
                             </a>
 
                             <a href="{{ url('/last-date-soon/tomorrow') }}"
                                 class="{{ request()->is('last-date-soon/tomorrow') ? 'active' : '' }}">
-                                🟠 <strong>Tomorrow</strong>
-                                <small>Last Date</small>
+                                🟠 <strong>Last Date Tomorrow</strong>
+                                {{-- <small>Last Date</small> --}}
                             </a>
 
                             <a href="{{ url('/last-date-soon/week') }}"
                                 class="{{ request()->is('last-date-soon/week') ? 'active' : '' }}">
-                                📅 <strong>Next 7 Days</strong>
-                                <small>Last Date</small>
+                                📅 <strong>Last Date Within 7 Days</strong>
+                                {{-- <small>Last Date</small> --}}
                             </a>
 
                         </div>
@@ -1709,8 +1709,7 @@ text-align:center;
                     <br />
 
                     <p>
-                        Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards, Results, and Exam Updates in
-                        one place.
+                        Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards, Results, and Exam Updates in one place.
                     </p>
 
                 </div>
