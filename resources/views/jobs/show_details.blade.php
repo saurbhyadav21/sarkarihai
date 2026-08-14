@@ -28,9 +28,21 @@
         }
 
         .container {
-            width: 1200px;
-            margin: auto;
-        }
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+@media (max-width: 767px) {
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
 
         .nav {
             height: 70px;
