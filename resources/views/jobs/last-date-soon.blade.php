@@ -1563,8 +1563,8 @@ text-align:center;
             <div class="summary-card">
 
                 <div class="summary-item">
-                    <small>Organization</small>
-                    <strong>SSC</strong>
+                    <small>Jobs Found</small>
+                    <strong>{{ count($jobs) }}</strong>
                 </div>
 
                 <div class="summary-item">
@@ -1573,7 +1573,7 @@ text-align:center;
                 </div>
 
                 <div class="summary-item">
-                    <small>Jobs Closing Today</small>
+                    <small>Closing Today</small>
                     <strong>{{ count($jobs) }}</strong>
                 </div>
 
