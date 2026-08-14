@@ -22,7 +22,7 @@ class GenerateFaqIds extends Command
             })
             ->orderBy('id')
             ->first();
-        FreeJobAlertHelper::sendTelegramJob($job);
+        // FreeJobAlertHelper::sendTelegramJob($job);
         if (!$job) {
             $this->info('All jobs already updated.');
             return;
