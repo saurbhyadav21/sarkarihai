@@ -144,7 +144,8 @@
                     <h1>🏆 SarkariHai — Latest Sarakri Result, Sarkari Naukri & Government Jobs</h1>
 
                     <p>
-                        Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards, Results, and Exam Updates in one place.
+                        Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards, Results, and Exam Updates in one
+                        place.
                     </p>
 
                     <div class="row mt-4">
@@ -362,27 +363,27 @@
                     }
                 </style>
                 <!-- RIGHT SEARCH -->
-                    <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="col-lg-4 mt-4 mt-lg-0">
 
-                        <div class="search-card">
+                    <div class="search-card">
 
-                            <h5 class="mb-3 fw-bold">
-                                🔍 Search Sarkari Jobs
-                            </h5>
+                        <h5 class="mb-3 fw-bold">
+                            🔍 Search Sarkari Jobs
+                        </h5>
 
-                            <div class="position-relative">
+                        <div class="position-relative">
 
-                                <input type="text" id="jobSearch" class="form-control form-control-lg rounded-4 shadow-sm"
-                                    placeholder="Search SSC, Railway, UPSC..." autocomplete="off">
+                            <input type="text" id="jobSearch" class="form-control form-control-lg rounded-4 shadow-sm"
+                                placeholder="Search SSC, Railway, UPSC..." autocomplete="off">
 
-                                <div class="search-dropdown" style="display:none">
-                                </div>
-
+                            <div class="search-dropdown" style="display:none">
                             </div>
 
                         </div>
 
                     </div>
+
+                </div>
 
             </div>
 
@@ -390,8 +391,8 @@
     </div>
 
     <!-- =========================
-                            PART 2 - MAIN CONTENT BLOCK
-                            ========================= -->
+                                PART 2 - MAIN CONTENT BLOCK
+                                ========================= -->
 
     <style>
         .section-title {
@@ -853,10 +854,10 @@
         <div class="link-grid mb-4">
 
             @foreach ($organizations as $category)
-                 <a href="{{ url('/jobs/' . \Illuminate\Support\Str::slug($category->category)) }}">
-            {{ ucwords(str_replace(['-', '_'], ' ', $category->category)) }}
-            ({{ number_format($category->total_jobs) }})
-        </a>
+                <a href="{{ url('/jobs/' . \Illuminate\Support\Str::slug($category->category)) }}">
+                    {{ ucwords(str_replace(['-', '_'], ' ', $category->category)) }}
+                    ({{ number_format($category->total_jobs) }})
+                </a>
             @endforeach
 
         </div>
