@@ -1479,6 +1479,122 @@ text-align:center;
         display: flex;
         gap: 10px;
     }
+
+
+    /* =========================================
+   LAST DATE NAVIGATION TABS
+========================================= */
+
+    .last-date-tabs {
+        width: 100%;
+        display: flex;
+        gap: 12px;
+        margin-top: 18px;
+        margin-bottom: 25px;
+    }
+
+    .last-date-tab {
+        flex: 1;
+        min-height: 68px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+
+        padding: 12px 18px;
+
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+
+        color: #183b56;
+        text-decoration: none;
+
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+
+        transition: all .25s ease;
+    }
+
+    .last-date-tab:hover {
+        transform: translateY(-2px);
+        border-color: #0d6efd;
+        box-shadow: 0 6px 18px rgba(13, 110, 253, .10);
+        color: #0d6efd;
+    }
+
+    .last-date-tab.active {
+        background: #0b5368;
+        border-color: #0b5368;
+        color: #ffffff;
+        box-shadow: 0 6px 18px rgba(11, 83, 104, .20);
+    }
+
+    .last-date-tab .tab-icon {
+        width: 38px;
+        height: 38px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #f1f5f9;
+        border-radius: 9px;
+
+        font-size: 18px;
+    }
+
+    .last-date-tab.active .tab-icon {
+        background: rgba(255, 255, 255, .15);
+    }
+
+    .last-date-tab strong {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    .last-date-tab small {
+        display: block;
+        margin-top: 2px;
+        font-size: 12px;
+        opacity: .75;
+    }
+
+
+    /* =========================================
+   MOBILE
+========================================= */
+
+    @media (max-width: 767px) {
+
+        .last-date-tabs {
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .last-date-tab {
+            min-height: 62px;
+            padding: 9px 6px;
+            gap: 6px;
+            border-radius: 9px;
+        }
+
+        .last-date-tab .tab-icon {
+            width: 30px;
+            height: 30px;
+            font-size: 14px;
+        }
+
+        .last-date-tab strong {
+            font-size: 12px;
+        }
+
+        .last-date-tab small {
+            font-size: 10px;
+        }
+    }
 </style>
 @section('content')
     <section class="hero">
@@ -1517,8 +1633,8 @@ text-align:center;
 
 
                     </div>
-                    <br/>
-            
+                    <br />
+
                     <p>
                         Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards, Results, and Exam Updates in
                         one place.
@@ -1562,34 +1678,65 @@ text-align:center;
 
             <div class="summary-card">
 
-    <div class="summary-item">
-    <small>Apply Online</small>
-    <strong>{{ number_format($onlineJobs) }}</strong>
-</div>
+                <div class="summary-item">
+                    <small>Apply Online</small>
+                    <strong>{{ number_format($onlineJobs) }}</strong>
+                </div>
 
-    <div class="summary-item">
-        <small>Total Vacancies</small>
-        <strong>{{ number_format($totalVacancies) }}</strong>
-    </div>
+                <div class="summary-item">
+                    <small>Total Vacancies</small>
+                    <strong>{{ number_format($totalVacancies) }}</strong>
+                </div>
 
-    <div class="summary-item">
-        <small>{{ $closingLabel }}</small>
-        <strong>{{ number_format($jobsFound) }}</strong>
-    </div>
+                <div class="summary-item">
+                    <small>{{ $closingLabel }}</small>
+                    <strong>{{ number_format($jobsFound) }}</strong>
+                </div>
 
-    <div class="summary-item">
-        <small>Last Date</small>
+                <div class="summary-item">
+                    <small>Last Date</small>
 
-        <strong>
-            @if (!empty($listingLastDate))
-                {{ \Carbon\Carbon::parse($listingLastDate)->format('d M Y') }}
-            @else
-                Not Available
-            @endif
-        </strong>
-    </div>
+                    <strong>
+                        @if (!empty($listingLastDate))
+                            {{ \Carbon\Carbon::parse($listingLastDate)->format('d M Y') }}
+                        @else
+                            Not Available
+                        @endif
+                    </strong>
+                </div>
 
-</div>
+            </div>
+
+        </div>
+
+        <div class="last-date-tabs">
+
+            <a href="{{ url('/last-date-soon/today') }}"
+                class="last-date-tab {{ request()->is('last-date-soon/today') ? 'active' : '' }}">
+                <span class="tab-icon">🔴</span>
+                <span>
+                    <strong>Today</strong>
+                    <small>Last Date</small>
+                </span>
+            </a>
+
+            <a href="{{ url('/last-date-soon/tomorrow') }}"
+                class="last-date-tab {{ request()->is('last-date-soon/tomorrow') ? 'active' : '' }}">
+                <span class="tab-icon">🟠</span>
+                <span>
+                    <strong>Tomorrow</strong>
+                    <small>Last Date</small>
+                </span>
+            </a>
+
+            <a href="{{ url('/last-date-soon/week') }}"
+                class="last-date-tab {{ request()->is('last-date-soon/week') ? 'active' : '' }}">
+                <span class="tab-icon">📅</span>
+                <span>
+                    <strong>Next 7 Days</strong>
+                    <small>Last Date</small>
+                </span>
+            </a>
 
         </div>
 
@@ -1847,8 +1994,8 @@ text-align:center;
 
         <style>
             /* ================================
-               JOB LISTING PAGE
-            ================================= */
+                           JOB LISTING PAGE
+                        ================================= */
 
             .job-listing-wrapper {
                 max-width: 1320px;
@@ -2001,8 +2148,8 @@ text-align:center;
 
 
             /* =================================
-               MOBILE
-            ================================= */
+                           MOBILE
+                        ================================= */
 
             @media (max-width: 767px) {
 
