@@ -1635,7 +1635,7 @@ text-align:center;
     }
 
     .hero-last-date-tabs strong {
-        font-size: 13px;
+        font-size: 24px;
     }
 
     .hero-last-date-tabs small {
