@@ -3140,8 +3140,7 @@ class JobController extends Controller
         return view('search', compact('popularSearches', 'keyword'));
     }
 
-    use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
+    
 
 public function lastDateSoon($type)
 {
