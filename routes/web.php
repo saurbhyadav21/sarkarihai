@@ -250,3 +250,6 @@ Route::get('/ai-test', function(App\Services\OpenAIService $ai){
 Route::post('/job/{id}/copy-organization-fullform',
     [JobController::class, 'copyOrganizationFullForm'])
     ->name('job.copyOrganizationFullForm');
+
+Route::get('/jobs/{category}', [JobController::class, 'categoryJobs'])
+    ->name('jobs.category');

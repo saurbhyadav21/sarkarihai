@@ -3305,9 +3305,9 @@ class JobController extends Controller
 
         $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
 
-                $onlineJobs = (clone $query)
-    ->where('apply_mode', 'Online')
-    ->count();
+        $onlineJobs = (clone $query)
+            ->where('apply_mode', 'Online')
+            ->count();
 
 
         return view(
@@ -4142,5 +4142,66 @@ class JobController extends Controller
             ]);
 
         return back()->with('success', 'Organization Full Form copied successfully.');
+    }
+
+
+    public function categoryJobs($category)
+    {
+        // URL slug को normalize करें
+        $categorySlug = Str::slug($category);
+
+        // Category के matching jobs निकालें
+        $jobs = DB::table('job_details')
+            ->whereNotNull('category')
+            ->where('category', '!=', '')
+            ->whereRaw(
+                "LOWER(REPLACE(REPLACE(category, ' ', '-'), '_', '-')) = ?",
+                [strtolower($categorySlug)]
+            )
+            ->orderByDesc('id')
+            ->paginate(30)
+            ->withQueryString();
+
+        // Display name
+        $categoryName = ucwords(
+            str_replace(
+                ['-', '_'],
+                ' ',
+                $categorySlug
+            )
+        );
+
+        /*
+    |--------------------------------------------------------------------------
+    | SEO
+    |--------------------------------------------------------------------------
+    */
+
+        $title = $categoryName . ' Jobs 2026 - Latest Government Jobs | SarkariHai';
+
+        $metaDescription =
+            'Find the latest ' . $categoryName .
+            ' Jobs 2026. Check government job notifications, vacancies, eligibility, last date, salary and apply online details on SarkariHai.';
+
+        $canonicalUrl = url('/jobs/' . $categorySlug);
+
+        $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+
+        $ogType = 'website';
+
+        $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
+
+
+        return view('jobs.category', compact(
+            'jobs',
+            'categoryName',
+            'categorySlug',
+            'title',
+            'metaDescription',
+            'canonicalUrl',
+            'robots',
+            'ogType',
+            'ogImage'
+        ));
     }
 }
