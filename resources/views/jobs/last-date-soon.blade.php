@@ -1563,9 +1563,9 @@ text-align:center;
             <div class="summary-card">
 
     <div class="summary-item">
-        <small>Jobs Found</small>
-        <strong>{{ number_format($jobsFound) }}</strong>
-    </div>
+    <small>Apply Online</small>
+    <strong>{{ number_format($onlineJobs) }}</strong>
+</div>
 
     <div class="summary-item">
         <small>Total Vacancies</small>

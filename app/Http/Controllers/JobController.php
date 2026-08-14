@@ -3305,6 +3305,10 @@ class JobController extends Controller
 
         $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
 
+                $onlineJobs = (clone $query)
+    ->where('apply_mode', 'Online')
+    ->count();
+
 
         return view(
             'jobs.last-date-soon',
@@ -3320,7 +3324,8 @@ class JobController extends Controller
                 'jobsFound',
                 'totalVacancies',
                 'closingLabel',
-                'listingLastDate'
+                'listingLastDate',
+                'onlineJobs'
             )
         );
     }
