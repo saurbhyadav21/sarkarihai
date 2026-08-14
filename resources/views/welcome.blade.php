@@ -853,12 +853,14 @@
 
         <div class="link-grid mb-4">
 
-            @foreach ($organizations as $category)
-                <a href="{{ url('/jobs/' . \Illuminate\Support\Str::slug($category->$category->slug)) }}">
-                    {{ ucwords(str_replace(['-', '_'], ' ', $category->category)) }}
-                    ({{ number_format($category->total_jobs) }})
-                </a>
-            @endforeach
+           @foreach ($organizations as $category)
+
+    <a href="{{ url('/jobs/' . $category->slug) }}">
+        {{ $category->category }}
+        ({{ number_format($category->total_jobs) }})
+    </a>
+
+@endforeach
 
         </div>
 
