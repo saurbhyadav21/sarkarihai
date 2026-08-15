@@ -4222,9 +4222,9 @@ class JobController extends Controller
     | Return View
     |--------------------------------------------------------------------------
     */
-        $onlineJobs = (clone $query)
-            ->where('apply_mode', 'Online')
-            ->count();
+        // $onlineJobs = (clone $query)
+        //     ->where('apply_mode', 'Online')
+        //     ->count();
 
         return view('jobs.job-category', compact(
             'jobs',
