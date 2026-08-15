@@ -1962,7 +1962,7 @@ text-align:center;
 
                 <!-- RIGHT SEARCH -->
                
-                @include('partials.social-links')
+                @include('partial.social-links')
             </div>
 
         </div>
