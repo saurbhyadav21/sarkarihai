@@ -2045,7 +2045,7 @@ text-align:center;
 
             <div class="summary-card category-summary-card">
 
-                @foreach ($categories->take(6) as $category)
+                @foreach ($categories->take(18) as $category)
                     <a href="{{ url('/jobs/' . $category->slug) }}" class="summary-category">
                         <span>{{ $category->name }}</span>
                         <small>({{ number_format($category->total_jobs) }})</small>
