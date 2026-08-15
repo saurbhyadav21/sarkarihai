@@ -1862,6 +1862,63 @@ text-align:center;
                         }
 
                     }
+
+                    .hero-category-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+    margin-top: 18px;
+}
+
+.hero-category-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 14px;
+    border-right: 1px solid rgba(255,255,255,.35);
+    line-height: 1.4;
+    transition: .2s;
+}
+
+.hero-category-links a:first-child {
+    padding-left: 0;
+}
+
+.hero-category-links a:last-child {
+    border-right: none;
+}
+
+.hero-category-links a:hover {
+    color: #ffd166;
+}
+
+.hero-category-links span {
+    font-size: 12px;
+    opacity: .8;
+    font-weight: 500;
+}
+
+
+/* Mobile */
+
+@media (max-width: 575px) {
+
+    .hero-category-links {
+        gap: 8px 0;
+    }
+
+    .hero-category-links a {
+        font-size: 12px;
+        padding: 0 9px;
+    }
+
+    .hero-category-links a:first-child {
+        padding-left: 0;
+    }
+
+}
                 </style>
                 <div class="col-lg-8">
 
@@ -1885,23 +1942,18 @@ text-align:center;
                             </div>
 
 
-                            <div class="hero-categories">
+                            <div class="hero-category-links">
 
-                                @foreach ($categories as $category)
-                                    <a href="{{ url('/jobs/' . $category->slug) }}" class="hero-category">
+    @foreach ($categories->take(6) as $category)
 
-                                        <span class="category-name">
-                                            {{ $category->name }}
-                                        </span>
+        <a href="{{ url('/jobs/' . $category->slug) }}">
+            {{ $category->name }}
+            <span>({{ number_format($category->total_jobs) }})</span>
+        </a>
 
-                                        <span class="category-count">
-                                            {{ number_format($category->total_jobs) }}
-                                        </span>
+    @endforeach
 
-                                    </a>
-                                @endforeach
-
-                            </div>
+</div>
 
                         </div>
 
