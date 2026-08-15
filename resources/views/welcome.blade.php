@@ -391,8 +391,8 @@
     </div>
 
     <!-- =========================
-                                    PART 2 - MAIN CONTENT BLOCK
-                                    ========================= -->
+                                        PART 2 - MAIN CONTENT BLOCK
+                                        ========================= -->
 
     <style>
         .section-title {
@@ -849,25 +849,22 @@
 
 
         <!-- ================= ORGANIZATION WISE ================= -->
+       
+
         <div class="sec-title">Category Wise Jobs</div>
 
-       <div class="sec-title">Category Wise Jobs</div>
+        <div class="link-grid mb-4">
 
-<div class="link-grid mb-4">
+            @foreach ($categories as $category)
+                <a href="{{ url('/jobs/' . $category->slug) }}">
 
-    @foreach ($categories as $category)
+                    {{ $category->name }}
 
-        <a href="{{ url('/jobs/' . $category->slug) }}">
+                    ({{ number_format($category->total_jobs) }})
+                </a>
+            @endforeach
 
-            {{ $category->name }}
-
-            ({{ number_format($category->total_jobs) }})
-
-        </a>
-
-    @endforeach
-
-</div>
+        </div>
 
         <!-- ================= POPULAR SEARCHES ================= -->
         <div class="sec-title">Popular Searches</div>
