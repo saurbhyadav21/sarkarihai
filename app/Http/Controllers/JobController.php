@@ -2954,7 +2954,7 @@ class JobController extends Controller
                 'c.slug'
             )
             ->orderBy('c.name')
-            ->limit(8)
+            // ->limit(8)
             ->get();
 
         $totalJobs = DB::table('job_details')
