@@ -1752,7 +1752,7 @@ text-align:center;
 
                 <div class="summary-item">
                     <small>Apply Online</small>
-                    <strong>{{ number_format($onlineJobs) }}</strong>
+                    {{-- <strong>{{ number_format($onlineJobs) }}</strong> --}}
                 </div>
 
                 <div class="summary-item">
