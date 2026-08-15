@@ -4237,7 +4237,7 @@ class JobController extends Controller
             'robots',
             'ogType',
             'ogImage',
-            'onlineJobs'
+            // 'onlineJobs'
         ));
     }
 }
