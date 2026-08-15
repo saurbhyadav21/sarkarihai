@@ -1757,24 +1757,24 @@ text-align:center;
 
                 <div class="summary-item">
                     <small>Total Vacancies</small>
-                    <strong>{{ number_format($totalVacancies) }}</strong>
+                    {{-- <strong>{{ number_format($totalVacancies) }}</strong> --}}
                 </div>
 
                 <div class="summary-item">
                     <small>{{ $closingLabel }}</small>
-                    <strong>{{ number_format($jobsFound) }}</strong>
+                    {{-- <strong>{{ number_format($jobsFound) }}</strong> --}}
                 </div>
 
                 <div class="summary-item">
                     <small>Last Date</small>
 
-                    <strong>
+                    {{-- <strong>
                         @if (!empty($listingLastDate))
                             {{ \Carbon\Carbon::parse($listingLastDate)->format('d M Y') }}
                         @else
                             Not Available
                         @endif
-                    </strong>
+                    </strong> --}}
                 </div>
 
             </div>
