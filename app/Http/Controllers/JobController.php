@@ -4222,6 +4222,9 @@ class JobController extends Controller
     | Return View
     |--------------------------------------------------------------------------
     */
+        $onlineJobs = (clone $query)
+            ->where('apply_mode', 'Online')
+            ->count();
 
         return view('jobs.job-category', compact(
             'jobs',
@@ -4233,7 +4236,8 @@ class JobController extends Controller
             'canonicalUrl',
             'robots',
             'ogType',
-            'ogImage'
+            'ogImage',
+            'onlineJobs'
         ));
     }
 }
