@@ -2007,8 +2007,10 @@ text-align:center;
                 font-weight: 600;
                 padding: 7px 16px;
                 border-right: 1px solid #dfe5ec;
+                border-left: 1px solid #dfe5ec;
                 border-radius: 6px;
                 transition: all .25s ease;
+                margin-left: 5px;
             }
 
             .summary-category:hover {
@@ -2350,8 +2352,8 @@ text-align:center;
 
         <style>
             /* ================================
-                                                       JOB LISTING PAGE
-                                                    ================================= */
+                                                           JOB LISTING PAGE
+                                                        ================================= */
 
             .job-listing-wrapper {
                 max-width: 1320px;
@@ -2504,8 +2506,8 @@ text-align:center;
 
 
             /* =================================
-                                                       MOBILE
-                                                    ================================= */
+                                                           MOBILE
+                                                        ================================= */
 
             @media (max-width: 767px) {
 
