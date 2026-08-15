@@ -4261,6 +4261,7 @@ class JobController extends Controller
 
     public function ageCalculator()
     {
+        $metaTitle = 'Age Calculator - Calculate Your Exact Age | SarkariHai';
         $title = 'Age Calculator - Calculate Your Exact Age | SarkariHai';
 
         $metaDescription = 'Use our free Age Calculator to calculate your exact age in years, months and days from your date of birth. Find your age as of today or any specific date.';
