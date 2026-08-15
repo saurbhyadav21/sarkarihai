@@ -1003,7 +1003,7 @@
                 <p>
                     Our goal is to make searching for <strong>Sarkari Naukri</strong> and
                     <strong>Government Jobs</strong> simple, fast, and reliable. Thousands of aspirants visit
-                    <strong>SarkariHai</strong> every day to check the latest job notifications, online forms,
+                    <a href="/"><strong>SarkariHai</strong></a> every day to check the latest job notifications, online forms,
                     exam results, answer keys, admissions, and recruitment updates from official sources in one place.
                 </p>
 
