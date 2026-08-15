@@ -391,8 +391,8 @@
     </div>
 
     <!-- =========================
-                                        PART 2 - MAIN CONTENT BLOCK
-                                        ========================= -->
+                                            PART 2 - MAIN CONTENT BLOCK
+                                            ========================= -->
 
     <style>
         .section-title {
@@ -849,7 +849,7 @@
 
 
         <!-- ================= ORGANIZATION WISE ================= -->
-       
+
 
         <div class="sec-title">Category Wise Jobs</div>
 
@@ -984,11 +984,16 @@
                 </p>
 
                 <p>
-                    Whether you are preparing for <strong>SSC</strong>, <strong>UPSC</strong>, <strong>Railway</strong>,
-                    <strong>Bank</strong>, <strong>IBPS</strong>, <strong>SBI</strong>, <strong>RBI</strong>,
-                    <strong>Police</strong>, <strong>Defence</strong>, <strong>Teaching</strong>,
-                    <strong>Engineering</strong>, <strong>Medical</strong>, <strong>ISRO</strong>,
-                    <strong>DRDO</strong>, <strong>NTA</strong>, or State Government recruitment exams, SarkariHai helps
+                    Whether you are preparing for
+                    @foreach ($categories as $category)
+                        <a href="{{ url('/jobs/' . $category->slug) }}">
+
+                            <strong>{{ $category->name }}</strong>
+
+                            ({{ number_format($category->total_jobs) }})
+                        </a>
+                    @endforeach
+                    or State Government recruitment exams, SarkariHai helps
                     you
                     stay updated with the latest notifications, eligibility, important dates, vacancies, exam patterns,
                     admit
