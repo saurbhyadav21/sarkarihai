@@ -851,17 +851,23 @@
         <!-- ================= ORGANIZATION WISE ================= -->
         <div class="sec-title">Category Wise Jobs</div>
 
-        <div class="link-grid mb-4">
+       <div class="sec-title">Category Wise Jobs</div>
 
-            @foreach ($organizations as $category)
-                <a href="{{ url('/jobs/' . $category->name) }}">
-                    {{ $category->category }}
-                    ({{ number_format($category->total_jobs) }})
-                </a>
-            @endforeach
+<div class="link-grid mb-4">
 
-        </div>
+    @foreach ($categories as $category)
 
+        <a href="{{ url('/jobs/' . $category->slug) }}">
+
+            {{ $category->name }}
+
+            ({{ number_format($category->total_jobs) }})
+
+        </a>
+
+    @endforeach
+
+</div>
 
         <!-- ================= POPULAR SEARCHES ================= -->
         <div class="sec-title">Popular Searches</div>

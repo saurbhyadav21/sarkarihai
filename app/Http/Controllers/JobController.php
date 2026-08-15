@@ -4146,67 +4146,94 @@ class JobController extends Controller
 
 
     public function categoryJobs($category)
-    {
-        // URL slug को normalize करें
-        $categorySlug = Str::slug($category);
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Find Category From Master Table
+    |--------------------------------------------------------------------------
+    */
 
-        // Category के matching jobs निकालें
-        $jobs = DB::table('job_categories as c')
-            ->leftJoin('job_details as j', 'j.category', '=', 'c.slug')
-            ->where('c.status', 1)
-            ->select(
-                'c.slug',
-                'c.name',
-                DB::raw('COUNT(j.id) as total_jobs')
-            )
-            ->groupBy(
-                'c.id',
-                'c.slug',
-                'c.name'
-            )
-            ->orderByDesc('total_jobs')
-            ->get();
+    $categoryData = DB::table('job_categories')
+        ->where('slug', $category)
+        ->where('status', 1)
+        ->first();
 
-        // Display name
-        $categoryName = ucwords(
-            str_replace(
-                ['-', '_'],
-                ' ',
-                $categorySlug
-            )
-        );
+    /*
+    |--------------------------------------------------------------------------
+    | Category Not Found
+    |--------------------------------------------------------------------------
+    */
 
-        /*
+    if (!$categoryData) {
+        abort(404);
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get Jobs Of This Category
+    |--------------------------------------------------------------------------
+    */
+
+    $jobs = DB::table('job_details')
+        ->where('category', $categoryData->slug)
+        ->orderByDesc('id')
+        ->paginate(30)
+        ->withQueryString();
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Category Name
+    |--------------------------------------------------------------------------
+    */
+
+    $categoryName = $categoryData->name;
+
+    $categorySlug = $categoryData->slug;
+
+
+    /*
     |--------------------------------------------------------------------------
     | SEO
     |--------------------------------------------------------------------------
     */
 
-        $title = $categoryName . ' Jobs 2026 - Latest Government Jobs | SarkariHai';
+    $title = $categoryName .
+        ' 2026 - Latest Government Jobs, Vacancy & Recruitment | SarkariHai';
 
-        $metaDescription =
-            'Find the latest ' . $categoryName .
-            ' Jobs 2026. Check government job notifications, vacancies, eligibility, last date, salary and apply online details on SarkariHai.';
+    $metaDescription =
+        'Find the latest ' . $categoryName .
+        ' 2026 notifications, vacancies, eligibility, salary, exam dates, last dates and application details on SarkariHai.';
 
-        $canonicalUrl = url('/jobs/' . $categorySlug);
+    $canonicalUrl = url('/jobs/' . $categorySlug);
 
-        $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+    $robots =
+        'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
 
-        $ogType = 'website';
+    $ogType = 'website';
 
-        $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
+    $ogImage =
+        'https://sarkarihai.com/public/images/logo.png?v=2';
 
 
-        return view('jobs.category', compact(
-            'jobs',
-            'categoryName',
-            'categorySlug',
-            'title',
-            'metaDescription',
-            'canonicalUrl',
-            'robots',
-            'ogType',
-            'ogImage'
-        ));
-    }
+    /*
+    |--------------------------------------------------------------------------
+    | Return View
+    |--------------------------------------------------------------------------
+    */
+
+    return view('jobs.category', compact(
+        'jobs',
+        'categoryData',
+        'categoryName',
+        'categorySlug',
+        'title',
+        'metaDescription',
+        'canonicalUrl',
+        'robots',
+        'ogType',
+        'ogImage'
+    ));
+}
 }
