@@ -363,7 +363,7 @@
                     }
                 </style>
                 <!-- RIGHT SEARCH -->
-                div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="col-lg-4 mt-4 mt-lg-0">
                 <style>
                     .social-links {
                         display: flex;
