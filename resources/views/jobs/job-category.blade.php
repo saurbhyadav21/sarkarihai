@@ -1674,50 +1674,238 @@ text-align:center;
         <div class="container">
 
             <div class="hero-flex">
+                <style>
+                    .hero-content {
+                        padding: 8px 0;
+                    }
 
+                    .hero-content h1 {
+                        font-size: 38px;
+                        line-height: 1.25;
+                        font-weight: 800;
+                        margin-bottom: 22px;
+                        color: #fff;
+                    }
+
+                    .hero-description {
+                        font-size: 16px;
+                        line-height: 1.8;
+                        color: rgba(255, 255, 255, .92);
+                        max-width: 760px;
+                        margin-bottom: 25px;
+                    }
+
+
+                    /* Category Section */
+
+                    .hero-category-section {
+                        margin-top: 22px;
+                    }
+
+                    .category-heading {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        max-width: 760px;
+                        margin-bottom: 12px;
+                    }
+
+                    .category-heading span {
+                        font-size: 14px;
+                        font-weight: 700;
+                        color: #fff;
+                        text-transform: uppercase;
+                        letter-spacing: .5px;
+                    }
+
+                    .category-heading small {
+                        font-size: 12px;
+                        color: rgba(255, 255, 255, .65);
+                    }
+
+
+                    /* Category Grid */
+
+                    .hero-categories {
+                        display: grid;
+                        grid-template-columns: repeat(3, minmax(0, 1fr));
+                        gap: 10px;
+                        max-width: 760px;
+                    }
+
+
+                    /* Category Card */
+
+                    .hero-category {
+                        min-height: 54px;
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        padding: 10px 14px;
+
+                        text-decoration: none !important;
+                        color: #fff !important;
+
+                        background: rgba(255, 255, 255, .09);
+
+                        border: 1px solid rgba(255, 255, 255, .18);
+                        border-radius: 10px;
+
+                        backdrop-filter: blur(5px);
+
+                        transition: all .2s ease;
+                    }
+
+                    .hero-category:hover {
+                        background: rgba(255, 255, 255, .17);
+                        border-color: rgba(255, 255, 255, .35);
+                        transform: translateY(-2px);
+                    }
+
+
+                    /* Category Name */
+
+                    .category-name {
+                        font-size: 13px;
+                        font-weight: 600;
+                        line-height: 1.3;
+                    }
+
+
+                    /* Job Count */
+
+                    .category-count {
+                        min-width: 32px;
+                        height: 24px;
+
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        padding: 0 7px;
+
+                        background: rgba(255, 255, 255, .15);
+
+                        border-radius: 20px;
+
+                        font-size: 11px;
+                        font-weight: 700;
+
+                        color: #fff;
+                    }
+
+
+                    /* Tablet */
+
+                    @media (max-width: 991px) {
+
+                        .hero-content h1 {
+                            font-size: 32px;
+                        }
+
+                        .hero-categories {
+                            max-width: 100%;
+                        }
+
+                    }
+
+
+                    /* Mobile */
+
+                    @media (max-width: 575px) {
+
+                        .hero-content h1 {
+                            font-size: 27px;
+                            line-height: 1.3;
+                            margin-bottom: 16px;
+                        }
+
+                        .hero-description {
+                            font-size: 14px;
+                            line-height: 1.7;
+                            margin-bottom: 20px;
+                        }
+
+                        .category-heading {
+                            margin-bottom: 10px;
+                        }
+
+                        .category-heading span {
+                            font-size: 12px;
+                        }
+
+                        .category-heading small {
+                            font-size: 10px;
+                        }
+
+                        .hero-categories {
+                            grid-template-columns: repeat(2, minmax(0, 1fr));
+                            gap: 8px;
+                        }
+
+                        .hero-category {
+                            min-height: 48px;
+                            padding: 8px 10px;
+                        }
+
+                        .category-name {
+                            font-size: 12px;
+                        }
+
+                        .category-count {
+                            min-width: 28px;
+                            height: 21px;
+                            font-size: 10px;
+                            padding: 0 5px;
+                        }
+
+                    }
+                </style>
                 <div class="col-lg-8">
 
-                    <h1>🏆 SarkariHai — Latest Sarakri Result, Sarkari Naukri & Government Jobs</h1>
+                    <div class="hero-content">
 
-                    <div class="row mt-4">
+                        <h1>
+                            🏆 SarkariHai — Latest Sarkari Result, Sarkari Naukri & Government Jobs
+                        </h1>
 
-                        <div class="hero-last-date-tabs">
- @foreach ($categories as $category)
-                <a href="{{ url('/jobs/' . $category->slug) }}">
+                        <p class="hero-description">
+                            Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards,
+                            Results, and Exam Updates in one place.
+                        </p>
 
-                    {{ $category->name }}
 
-                    ({{ number_format($category->total_jobs) }})
-                </a>
-            @endforeach
-                            <a href="{{ url('/last-date-soon/today') }}"
-                                class="{{ request()->is('last-date-soon/today') ? 'active' : '' }}">
-                                🔴 <strong>Last Date Today</strong>
-                                {{-- <small>Last Date</small> --}}
-                            </a>
+                        <div class="hero-category-section">
 
-                            <a href="{{ url('/last-date-soon/tomorrow') }}"
-                                class="{{ request()->is('last-date-soon/tomorrow') ? 'active' : '' }}">
-                                🟠 <strong>Last Date Tomorrow</strong>
-                                {{-- <small>Last Date</small> --}}
-                            </a>
+                            <div class="category-heading">
+                                <span>Popular Job Categories</span>
+                                <small>Explore Jobs</small>
+                            </div>
 
-                            <a href="{{ url('/last-date-soon/week') }}"
-                                class="{{ request()->is('last-date-soon/week') ? 'active' : '' }}">
-                                📅 <strong>Last Date Within 7 Days</strong>
-                                {{-- <small>Last Date</small> --}}
-                            </a>
+
+                            <div class="hero-categories">
+
+                                @foreach ($categories as $category)
+                                    <a href="{{ url('/jobs/' . $category->slug) }}" class="hero-category">
+
+                                        <span class="category-name">
+                                            {{ $category->name }}
+                                        </span>
+
+                                        <span class="category-count">
+                                            {{ number_format($category->total_jobs) }}
+                                        </span>
+
+                                    </a>
+                                @endforeach
+
+                            </div>
 
                         </div>
 
-
-
                     </div>
-                    <br />
-
-                    <p>
-                        Find the latest Sarkari Naukri 2026, Government Jobs, Admit Cards, Results, and Exam Updates in one place.
-                    </p>
 
                 </div>
 
@@ -2073,8 +2261,8 @@ text-align:center;
 
         <style>
             /* ================================
-                               JOB LISTING PAGE
-                            ================================= */
+                                           JOB LISTING PAGE
+                                        ================================= */
 
             .job-listing-wrapper {
                 max-width: 1320px;
@@ -2227,8 +2415,8 @@ text-align:center;
 
 
             /* =================================
-                               MOBILE
-                            ================================= */
+                                           MOBILE
+                                        ================================= */
 
             @media (max-width: 767px) {
 
