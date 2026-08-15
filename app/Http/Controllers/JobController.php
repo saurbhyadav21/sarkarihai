@@ -4223,7 +4223,7 @@ class JobController extends Controller
     |--------------------------------------------------------------------------
     */
 
-        return view('jobs.category', compact(
+        return view('jobs.job-category', compact(
             'jobs',
             'categoryData',
             'categoryName',
