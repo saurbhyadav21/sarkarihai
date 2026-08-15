@@ -2031,9 +2031,9 @@ text-align:center;
                 transition: color .25s ease;
             }
 
-            .summary-category:last-child {
+            /* .summary-category:last-child {
                 border-right: none;
-            }
+            } */
 
             @media (max-width: 767px) {
 
