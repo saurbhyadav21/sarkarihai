@@ -177,7 +177,7 @@
     </div>
     <div class="social-links">
 
-        <a href="YOUR_YOUTUBE_URL" target="_blank" rel="noopener" class="social-card youtube">
+        <a href="https://www.youtube.com/@sarkarihaiofficial" target="_blank" rel="noopener" class="social-card youtube">
 
             <span class="social-icon">▶</span>
 
@@ -191,7 +191,7 @@
         </a>
 
 
-        <a href="YOUR_INSTAGRAM_URL" target="_blank" rel="noopener" class="social-card instagram">
+        {{-- <a href="YOUR_INSTAGRAM_URL" target="_blank" rel="noopener" class="social-card instagram">
 
             <span class="social-icon">◎</span>
 
@@ -202,10 +202,10 @@
 
             <span class="social-arrow">→</span>
 
-        </a>
+        </a> --}}
 
 
-        <a href="YOUR_TELEGRAM_URL" target="_blank" rel="noopener" class="social-card telegram">
+        <a href="https://t.me/sarkarihaiofficial" target="_blank" rel="noopener" class="social-card telegram">
 
             <span class="social-icon">✈</span>
 
