@@ -364,7 +364,7 @@
                 </style>
                 <!-- RIGHT SEARCH -->
                
-                @include('partials.social-links')
+                @include('partials.search-social-links')
             </div>
 
         </div>
