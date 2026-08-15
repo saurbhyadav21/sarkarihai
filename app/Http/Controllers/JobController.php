@@ -4217,12 +4217,34 @@ class JobController extends Controller
     | Return View
     |--------------------------------------------------------------------------
     */
-        // $onlineJobs = (clone $query)
-        //     ->where('apply_mode', 'Online')
-        //     ->count();
+        // ======================
+        // CATEGORIES (SAFE)
+        // ======================
+        $categories = DB::table('job_categories as c')
+            ->leftJoin('job_details as j', function ($join) {
+                $join->on(
+                    DB::raw('j.category COLLATE utf8mb4_unicode_ci'),
+                    '=',
+                    'c.slug'
+                );
+            })
+            ->select(
+                'c.name',
+                'c.slug',
+                DB::raw('COUNT(j.id) as total_jobs')
+            )
+            ->groupBy(
+                'c.id',
+                'c.name',
+                'c.slug'
+            )
+            ->orderBy('c.name')
+            // ->limit(8)
+            ->get();
 
         return view('jobs.job-category', compact(
             'jobs',
+            'categories',
             'categoryData',
             'categoryName',
             'categorySlug',

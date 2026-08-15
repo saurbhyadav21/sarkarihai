@@ -1682,7 +1682,14 @@ text-align:center;
                     <div class="row mt-4">
 
                         <div class="hero-last-date-tabs">
+ @foreach ($categories as $category)
+                <a href="{{ url('/jobs/' . $category->slug) }}">
 
+                    {{ $category->name }}
+
+                    ({{ number_format($category->total_jobs) }})
+                </a>
+            @endforeach
                             <a href="{{ url('/last-date-soon/today') }}"
                                 class="{{ request()->is('last-date-soon/today') ? 'active' : '' }}">
                                 🔴 <strong>Last Date Today</strong>
