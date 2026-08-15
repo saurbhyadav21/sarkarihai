@@ -4280,7 +4280,8 @@ class JobController extends Controller
             'canonicalUrl',
             'robots',
             'ogType',
-            'ogImage'
+            'ogImage',
+            'metaTitle'
         ));
     }
 }
