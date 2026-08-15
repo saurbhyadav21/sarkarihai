@@ -4237,41 +4237,5 @@ class JobController extends Controller
     }
 }
 
-            'Find the latest ' . $categoryName .
-            ' 2026 notifications, vacancies, eligibility, salary, exam dates, last dates and application details on SarkariHai.';
-
-        $canonicalUrl = url('/jobs/' . $categorySlug);
-
-        $robots =
-            'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
-
-        $ogType = 'website';
-
-        $ogImage =
-            'https://sarkarihai.com/public/images/logo.png?v=2';
 
 
-        /*
-    |--------------------------------------------------------------------------
-    | Return View
-    |--------------------------------------------------------------------------
-    */
-        // $onlineJobs = (clone $query)
-        //     ->where('apply_mode', 'Online')
-        //     ->count();
-
-        return view('jobs.job-category', compact(
-            'jobs',
-            'categoryData',
-            'categoryName',
-            'categorySlug',
-            'title',
-            'metaDescription',
-            'canonicalUrl',
-            'robots',
-            'ogType',
-            'ogImage',
-            // 'onlineJobs'
-        ));
-    }
-}
