@@ -2001,7 +2001,7 @@ text-align:center;
             }
 
             .summary-category {
-                color: #1d3557;
+                color: #fff;
                 text-decoration: none;
                 font-size: 14px;
                 font-weight: 600;
@@ -2024,7 +2024,7 @@ text-align:center;
 
             .summary-category small {
                 font-size: 12px;
-                color: #777;
+                color: #fff;
                 font-weight: 500;
                 transition: color .25s ease;
             }
