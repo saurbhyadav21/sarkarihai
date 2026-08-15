@@ -993,7 +993,7 @@
                             ({{ number_format($category->total_jobs) }})
                         </a> ,
                     @endforeach
-                    or State Government recruitment exams, SarkariHai helps
+                    or State Government recruitment exams, <a href="/contact">SarkariHai helps</a> 
                     you
                     stay updated with the latest notifications, eligibility, important dates, vacancies, exam patterns,
                     admit
