@@ -2005,12 +2005,20 @@ text-align:center;
                 text-decoration: none;
                 font-size: 14px;
                 font-weight: 600;
-                padding: 4px 16px;
+                padding: 7px 16px;
                 border-right: 1px solid #dfe5ec;
-                transition: .2s ease;
+                border-radius: 6px;
+                transition: all .25s ease;
             }
 
             .summary-category:hover {
+                color: #0d6efd;
+                background: #f0f6ff;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(13, 110, 253, .10);
+            }
+
+            .summary-category:hover small {
                 color: #0d6efd;
             }
 
@@ -2018,6 +2026,7 @@ text-align:center;
                 font-size: 12px;
                 color: #777;
                 font-weight: 500;
+                transition: color .25s ease;
             }
 
             .summary-category:last-child {
@@ -2341,8 +2350,8 @@ text-align:center;
 
         <style>
             /* ================================
-                                                   JOB LISTING PAGE
-                                                ================================= */
+                                                       JOB LISTING PAGE
+                                                    ================================= */
 
             .job-listing-wrapper {
                 max-width: 1320px;
@@ -2495,8 +2504,8 @@ text-align:center;
 
 
             /* =================================
-                                                   MOBILE
-                                                ================================= */
+                                                       MOBILE
+                                                    ================================= */
 
             @media (max-width: 767px) {
 
