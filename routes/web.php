@@ -245,7 +245,7 @@ Route::get('/ai-test', function(App\Services\OpenAIService $ai){
     return $ai->getOrganization("Allahabad University");
 
 });
-
+ 
 
 Route::post('/job/{id}/copy-organization-fullform',
     [JobController::class, 'copyOrganizationFullForm'])
