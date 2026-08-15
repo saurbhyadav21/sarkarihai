@@ -991,7 +991,7 @@
                             <strong>{{ $category->name }}</strong>
 
                             ({{ number_format($category->total_jobs) }})
-                        </a>
+                        </a> ,
                     @endforeach
                     or State Government recruitment exams, SarkariHai helps
                     you
