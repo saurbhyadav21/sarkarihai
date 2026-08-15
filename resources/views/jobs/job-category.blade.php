@@ -1761,7 +1761,7 @@ text-align:center;
                 </div>
 
                 <div class="summary-item">
-                    <small>{{ $closingLabel }}</small>
+                    {{-- <small>{{ $closingLabel }}</small> --}}
                     {{-- <strong>{{ number_format($jobsFound) }}</strong> --}}
                 </div>
 
