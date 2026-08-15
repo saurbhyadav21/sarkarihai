@@ -854,10 +854,10 @@
         <div class="link-grid mb-4">
 
             @foreach ($organizations as $category)
-                <a href="{{ url('/jobs/' . $category->name) }}">
+                {{-- <a href="{{ url('/jobs/' . $category->name) }}">
                     {{ $category->category }}
                     ({{ number_format($category->total_jobs) }})
-                </a>
+                </a> --}}
             @endforeach
 
         </div>
