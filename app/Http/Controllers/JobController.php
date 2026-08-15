@@ -4151,16 +4151,21 @@ class JobController extends Controller
         $categorySlug = Str::slug($category);
 
         // Category के matching jobs निकालें
-        $jobs = DB::table('job_details')
-            ->whereNotNull('category')
-            ->where('category', '!=', '')
-            ->whereRaw(
-                "LOWER(REPLACE(REPLACE(category, ' ', '-'), '_', '-')) = ?",
-                [strtolower($categorySlug)]
+        $jobs = DB::table('job_categories as c')
+            ->leftJoin('job_details as j', 'j.category', '=', 'c.slug')
+            ->where('c.status', 1)
+            ->select(
+                'c.slug',
+                'c.name',
+                DB::raw('COUNT(j.id) as total_jobs')
             )
-            ->orderByDesc('id')
-            ->paginate(30)
-            ->withQueryString();
+            ->groupBy(
+                'c.id',
+                'c.slug',
+                'c.name'
+            )
+            ->orderByDesc('total_jobs')
+            ->get();
 
         // Display name
         $categoryName = ucwords(
