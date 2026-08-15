@@ -2334,7 +2334,7 @@ text-align:center;
                 <div class="job-listing-header">
 
                     <h2>
-                        {{ $title }}
+                        {{-- {{ $title }} --}}
                     </h2>
 
                     <p>
