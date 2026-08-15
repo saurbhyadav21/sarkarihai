@@ -1961,7 +1961,79 @@ text-align:center;
 
 
                 <div class="col-lg-4 mt-4 mt-lg-0">
+                    <style>
+                        .social-links {
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            margin-top: 14px;
+                        }
 
+                        .social-link {
+                            flex: 1;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 5px;
+
+                            padding: 8px 7px;
+
+                            border-radius: 8px;
+                            background: #f6f8fb;
+                            border: 1px solid #e5eaf0;
+
+                            color: #34495e;
+                            text-decoration: none !important;
+
+                            font-size: 12px;
+                            font-weight: 600;
+
+                            transition: all .2s ease;
+                        }
+
+                        .social-link span {
+                            font-size: 14px;
+                        }
+
+                        .social-link:hover {
+                            transform: translateY(-2px);
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+                        }
+
+                        /* YouTube */
+                        .social-link.youtube:hover {
+                            color: #e60000;
+                            background: #fff5f5;
+                            border-color: #ffd6d6;
+                        }
+
+                        /* Instagram */
+                        .social-link.instagram:hover {
+                            color: #c13584;
+                            background: #fff5fa;
+                            border-color: #f4d7e8;
+                        }
+
+                        /* Telegram */
+                        .social-link.telegram:hover {
+                            color: #168ac0;
+                            background: #f0f9ff;
+                            border-color: #d4edf9;
+                        }
+
+                        @media (max-width: 575px) {
+
+                            .social-links {
+                                gap: 6px;
+                            }
+
+                            .social-link {
+                                font-size: 11px;
+                                padding: 7px 5px;
+                            }
+
+                        }
+                    </style>
                     <div class="search-card">
 
                         <h5 class="mb-3 fw-bold">
@@ -1979,7 +2051,21 @@ text-align:center;
                         </div>
 
                     </div>
+                    <div class="social-links">
 
+                        <a href="YOUR_YOUTUBE_URL" target="_blank" rel="noopener" class="social-link youtube">
+                            <span>▶</span> YouTube
+                        </a>
+
+                        <a href="YOUR_INSTAGRAM_URL" target="_blank" rel="noopener" class="social-link instagram">
+                            <span>◎</span> Instagram
+                        </a>
+
+                        <a href="YOUR_TELEGRAM_URL" target="_blank" rel="noopener" class="social-link telegram">
+                            <span>✈</span> Telegram
+                        </a>
+
+                    </div>
                 </div>
             </div>
 
@@ -2032,8 +2118,8 @@ text-align:center;
             }
 
             /* .summary-category:last-child {
-                border-right: none;
-            } */
+                        border-right: none;
+                    } */
 
             @media (max-width: 767px) {
 
@@ -2352,8 +2438,8 @@ text-align:center;
 
         <style>
             /* ================================
-                                                           JOB LISTING PAGE
-                                                        ================================= */
+                                                                   JOB LISTING PAGE
+                                                                ================================= */
 
             .job-listing-wrapper {
                 max-width: 1320px;
@@ -2506,8 +2592,8 @@ text-align:center;
 
 
             /* =================================
-                                                           MOBILE
-                                                        ================================= */
+                                                                   MOBILE
+                                                                ================================= */
 
             @media (max-width: 767px) {
 
