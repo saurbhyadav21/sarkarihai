@@ -191,7 +191,7 @@
         </a>
 
 
-        {{-- <a href="YOUR_INSTAGRAM_URL" target="_blank" rel="noopener" class="social-card instagram">
+        <a href="YOUR_INSTAGRAM_URL" target="_blank" rel="noopener" class="social-card instagram">
 
             <span class="social-icon">◎</span>
 
@@ -202,7 +202,7 @@
 
             <span class="social-arrow">→</span>
 
-        </a> --}}
+        </a>
 
 
         <a href="https://t.me/sarkarihaiofficial" target="_blank" rel="noopener" class="social-card telegram">
