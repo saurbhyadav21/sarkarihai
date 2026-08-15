@@ -1864,61 +1864,61 @@ text-align:center;
                     }
 
                     .hero-category-links {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0;
-    margin-top: 18px;
-}
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
+                        gap: 0;
+                        margin-top: 18px;
+                    }
 
-.hero-category-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 0 14px;
-    border-right: 1px solid rgba(255,255,255,.35);
-    line-height: 1.4;
-    transition: .2s;
-}
+                    .hero-category-links a {
+                        color: #fff;
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-weight: 600;
+                        padding: 0 14px;
+                        border-right: 1px solid rgba(255, 255, 255, .35);
+                        line-height: 1.4;
+                        transition: .2s;
+                    }
 
-.hero-category-links a:first-child {
-    padding-left: 0;
-}
+                    .hero-category-links a:first-child {
+                        padding-left: 0;
+                    }
 
-.hero-category-links a:last-child {
-    border-right: none;
-}
+                    .hero-category-links a:last-child {
+                        border-right: none;
+                    }
 
-.hero-category-links a:hover {
-    color: #ffd166;
-}
+                    .hero-category-links a:hover {
+                        color: #ffd166;
+                    }
 
-.hero-category-links span {
-    font-size: 12px;
-    opacity: .8;
-    font-weight: 500;
-}
+                    .hero-category-links span {
+                        font-size: 12px;
+                        opacity: .8;
+                        font-weight: 500;
+                    }
 
 
-/* Mobile */
+                    /* Mobile */
 
-@media (max-width: 575px) {
+                    @media (max-width: 575px) {
 
-    .hero-category-links {
-        gap: 8px 0;
-    }
+                        .hero-category-links {
+                            gap: 8px 0;
+                        }
 
-    .hero-category-links a {
-        font-size: 12px;
-        padding: 0 9px;
-    }
+                        .hero-category-links a {
+                            font-size: 12px;
+                            padding: 0 9px;
+                        }
 
-    .hero-category-links a:first-child {
-        padding-left: 0;
-    }
+                        .hero-category-links a:first-child {
+                            padding-left: 0;
+                        }
 
-}
+                    }
                 </style>
                 <div class="col-lg-8">
 
@@ -1934,7 +1934,7 @@ text-align:center;
                         </p>
 
 
-                        <div class="hero-category-section">
+                        {{-- <div class="hero-category-section">
 
                             <div class="category-heading">
                                 <span>Popular Job Categories</span>
@@ -1944,18 +1944,16 @@ text-align:center;
 
                             <div class="hero-category-links">
 
-    @foreach ($categories->take(6) as $category)
+                                @foreach ($categories->take(6) as $category)
+                                    <a href="{{ url('/jobs/' . $category->slug) }}">
+                                        {{ $category->name }}
+                                        <span>({{ number_format($category->total_jobs) }})</span>
+                                    </a>
+                                @endforeach
 
-        <a href="{{ url('/jobs/' . $category->slug) }}">
-            {{ $category->name }}
-            <span>({{ number_format($category->total_jobs) }})</span>
-        </a>
+                            </div>
 
-    @endforeach
-
-</div>
-
-                        </div>
+                        </div> --}}
 
                     </div>
 
@@ -1992,37 +1990,67 @@ text-align:center;
 
 
     <div class="container">
+        <style>
+            .category-summary-card {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding: 16px 20px;
+                gap: 0;
+            }
 
+            .summary-category {
+                color: #1d3557;
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 4px 16px;
+                border-right: 1px solid #dfe5ec;
+                transition: .2s ease;
+            }
+
+            .summary-category:hover {
+                color: #0d6efd;
+            }
+
+            .summary-category small {
+                font-size: 12px;
+                color: #777;
+                font-weight: 500;
+            }
+
+            .summary-category:last-child {
+                border-right: none;
+            }
+
+            @media (max-width: 767px) {
+
+                .category-summary-card {
+                    padding: 12px 8px;
+                }
+
+                .summary-category {
+                    font-size: 12px;
+                    padding: 5px 9px;
+                }
+
+                .summary-category small {
+                    font-size: 10px;
+                }
+
+            }
+        </style>
         <div class="summary">
 
-            <div class="summary-card">
+            <div class="summary-card category-summary-card">
 
-                <div class="summary-item">
-                    <small>Apply Online</small>
-                    {{-- <strong>{{ number_format($onlineJobs) }}</strong> --}}
-                </div>
-
-                <div class="summary-item">
-                    <small>Total Vacancies</small>
-                    {{-- <strong>{{ number_format($totalVacancies) }}</strong> --}}
-                </div>
-
-                <div class="summary-item">
-                    {{-- <small>{{ $closingLabel }}</small> --}}
-                    {{-- <strong>{{ number_format($jobsFound) }}</strong> --}}
-                </div>
-
-                <div class="summary-item">
-                    <small>Last Date</small>
-
-                    {{-- <strong>
-                        @if (!empty($listingLastDate))
-                            {{ \Carbon\Carbon::parse($listingLastDate)->format('d M Y') }}
-                        @else
-                            Not Available
-                        @endif
-                    </strong> --}}
-                </div>
+                @foreach ($categories->take(6) as $category)
+                    <a href="{{ url('/jobs/' . $category->slug) }}" class="summary-category">
+                        <span>{{ $category->name }}</span>
+                        <small>({{ number_format($category->total_jobs) }})</small>
+                    </a>
+                @endforeach
 
             </div>
 
@@ -2313,8 +2341,8 @@ text-align:center;
 
         <style>
             /* ================================
-                                           JOB LISTING PAGE
-                                        ================================= */
+                                                   JOB LISTING PAGE
+                                                ================================= */
 
             .job-listing-wrapper {
                 max-width: 1320px;
@@ -2467,8 +2495,8 @@ text-align:center;
 
 
             /* =================================
-                                           MOBILE
-                                        ================================= */
+                                                   MOBILE
+                                                ================================= */
 
             @media (max-width: 767px) {
 
