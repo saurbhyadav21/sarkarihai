@@ -847,7 +847,7 @@ text-align:center;
     /* SUMMARY */
 
     .summary {
-        margin-top: -40px;
+        margin-top: -20px;
         margin-bottom: 30px;
     }
 
@@ -1980,6 +1980,7 @@ text-align:center;
                 flex-wrap: wrap;
                 padding: 16px 20px;
                 gap: 0;
+                margin-top: 10px;
             }
 
             .summary-category {
