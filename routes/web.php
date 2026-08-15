@@ -253,3 +253,9 @@ Route::post('/job/{id}/copy-organization-fullform',
 
 Route::get('/jobs/{category}', [JobController::class, 'categoryJobs'])
     ->name('jobs.category');
+
+Route::get('/age-calculator', [JobController::class, 'ageCalculator'])
+    ->name('age.calculator');
+
+Route::post('/age-calculator', [JobController::class, 'calculate'])
+    ->name('age.calculator.calculate');

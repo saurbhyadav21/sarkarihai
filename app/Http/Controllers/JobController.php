@@ -4199,7 +4199,7 @@ class JobController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+        $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
 
         $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
 
@@ -4257,7 +4257,29 @@ class JobController extends Controller
             // 'onlineJobs'
         ));
     }
+
+
+    public function ageCalculator()
+    {
+        $title = 'Age Calculator - Calculate Your Exact Age | SarkariHai';
+
+        $metaDescription = 'Use our free Age Calculator to calculate your exact age in years, months and days from your date of birth. Find your age as of today or any specific date.';
+
+        $canonicalUrl = url('/age-calculator');
+
+        $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+
+        $ogType = 'website';
+
+        $ogImage = asset('images/logo.png') . '?v=2';
+
+        return view('tools.age-calculator', compact(
+            'title',
+            'metaDescription',
+            'canonicalUrl',
+            'robots',
+            'ogType',
+            'ogImage'
+        ));
+    }
 }
-
-
-
