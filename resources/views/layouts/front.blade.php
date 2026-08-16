@@ -463,7 +463,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
         <div class="row">
 
-            <div class="col-lg-4">
+            <div class="col-lg-3">
 
                 <div class="footer-title">SarkariHai</div>
                 <p style="font-size:14px;opacity:.9;">
@@ -472,7 +472,16 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 </p>
 
             </div>
+            <div class="col-lg-3">
 
+                <div class="footer-title">Important Links</div>
+
+                <a href="/">Latest Jobs</a>
+                <a href="#">Admit Card</a>
+                <a href="#">Results</a>
+                <a href="#">Answer Key</a>
+
+            </div>
             <div class="col-lg-3">
 
                 <div class="footer-title">Important Links</div>
