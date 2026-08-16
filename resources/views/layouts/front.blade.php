@@ -482,6 +482,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 <a href="#">Results</a>
                 <a href="#">Answer Key</a>
                 <a href="/age-calculator">Age Calculator</a>
+                <a href="/salary-calculator">Salary Calculator</a>
                 {{-- <a href="#">Answer Key</a>
                 <a href="#">Answer Key</a> --}}
 
