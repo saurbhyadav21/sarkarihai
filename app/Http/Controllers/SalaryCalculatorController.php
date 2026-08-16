@@ -17,7 +17,7 @@ class SalaryCalculatorController extends Controller
             ->orderBy('category')
             ->pluck('category');
 
-        return view('salary-calculator', compact('categories'));
+        return view('tools/salary-calculator', compact('categories'));
     }
 
     public function organizations(Request $request)
