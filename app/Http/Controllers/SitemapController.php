@@ -53,7 +53,13 @@ class SitemapController extends Controller
 
         ['url'=>'/disclaimer','priority'=>'0.5'],
 
-        ['url'=>'/fact-checking-policy','priority'=>'0.5']
+        ['url'=>'/fact-checking-policy','priority'=>'0.5'],
+
+        ['url'=>'/age-calculator','priority'=>'0.5'],
+
+        ['url'=>'/salary-calculator','priority'=>'0.5'],
+
+        ['url'=>'/qualification-checker','priority'=>'0.5']
 
     ];
 
