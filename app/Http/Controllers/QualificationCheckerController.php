@@ -9,7 +9,23 @@ class QualificationCheckerController extends Controller
 {
     public function index()
     {
-        $categories = DB::table('job_details')
+       
+     $metaTitle = 'Age Calculator - Calculate Your Exact Age | SarkariHai';
+        $title = 'Age Calculator - Calculate Your Exact Age | SarkariHai';
+
+        $metaDescription = 'Use our free Age Calculator to calculate your exact age in years, months and days from your date of birth. Find your age as of today or any specific date.';
+
+        $canonicalUrl = url('/age-calculator');
+
+        $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+
+        $ogType = 'website';
+
+        $ogImage = asset('images/logo.png') . '?v=2';
+
+
+
+    $categories = DB::table('job_details')
             ->whereNotNull('category')
             ->where('category', '!=', '')
             ->select('category')
@@ -17,7 +33,7 @@ class QualificationCheckerController extends Controller
             ->orderBy('category')
             ->pluck('category');
 
-        return view('tools/qualification-checker', compact('categories'));
+        return view('tools/qualification-checker', compact('categories', 'metaTitle', 'title', 'metaDescription', 'canonicalUrl', 'robots', 'ogType', 'ogImage'));
     }
 
 
