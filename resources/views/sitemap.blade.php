@@ -40,6 +40,26 @@
         <priority>0.3</priority>
     </url>
 
+    <url>
+        <loc>{{ url('/qualification-checker') }}</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+
+    <url>
+        <loc>{{ url('/salary-calculator') }}</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+
+    <url>
+        <loc>{{ url('/age-calculator') }}</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
     <!-- Jobs -->
     @foreach($jobs as $job)
 
