@@ -472,16 +472,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 </p>
 
             </div>
-            <div class="col-lg-3">
-
-                <div class="footer-title">Important Links</div>
-
-                <a href="/">Latest Jobs</a>
-                <a href="#">Admit Card</a>
-                <a href="#">Results</a>
-                <a href="#">Answer Key</a>
-
-            </div>
+            
             <div class="col-lg-3">
 
                 <div class="footer-title">Important Links</div>
@@ -504,7 +495,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-lg-3">
 
                 <div class="footer-title">Support</div>
 
