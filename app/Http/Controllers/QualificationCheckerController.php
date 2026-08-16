@@ -17,7 +17,7 @@ class QualificationCheckerController extends Controller
             ->orderBy('category')
             ->pluck('category');
 
-        return view('qualification-checker', compact('categories'));
+        return view('tools/qualification-checker', compact('categories'));
     }
 
 
