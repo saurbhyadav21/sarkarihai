@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\SalaryCalculatorController;
+use App\Http\Controllers\QualificationCheckerController;
 
 
 
@@ -278,3 +279,13 @@ Route::get('/salary-calculator/posts', [SalaryCalculatorController::class, 'post
 
 Route::get('/salary-calculator/salary', [SalaryCalculatorController::class, 'salary'])
     ->name('salary.calculator.salary');
+
+
+Route::get('/qualification-checker', [QualificationCheckerController::class, 'index'])
+    ->name('qualification.checker');
+
+Route::get('/qualification-checker/organizations', [QualificationCheckerController::class, 'organizations'])
+    ->name('qualification.checker.organizations');
+
+Route::get('/qualification-checker/posts', [QualificationCheckerController::class, 'posts'])
+    ->name('qualification.checker.posts');
