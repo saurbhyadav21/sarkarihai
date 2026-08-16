@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\SalaryCalculatorController;
+
+
 
 Route::get('/', [JobController::class, 'home'])->name('home');
 
@@ -259,3 +262,19 @@ Route::get('/age-calculator', [JobController::class, 'ageCalculator'])
 
 Route::post('/age-calculator', [JobController::class, 'calculate'])
     ->name('age.calculator.calculate');
+
+
+
+// routes/web.php
+
+Route::get('/salary-calculator', [SalaryCalculatorController::class, 'index'])
+    ->name('salary.calculator');
+
+Route::get('/salary-calculator/organizations', [SalaryCalculatorController::class, 'organizations'])
+    ->name('salary.calculator.organizations');
+
+Route::get('/salary-calculator/posts', [SalaryCalculatorController::class, 'posts'])
+    ->name('salary.calculator.posts');
+
+Route::get('/salary-calculator/salary', [SalaryCalculatorController::class, 'salary'])
+    ->name('salary.calculator.salary');
