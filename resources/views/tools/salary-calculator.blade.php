@@ -443,7 +443,7 @@ post.addEventListener('change', function () {
     <meta property="og:description" content="{{ $metaDescription }}">
     <meta property="og:url" content="{{ $canonicalUrl }}">
     <meta property="og:image" content="{{ $ogImage }}"> --}}
-@endsection
+
 
 @section('content')
 
