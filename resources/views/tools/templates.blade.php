@@ -34,8 +34,8 @@ body {
 ========================================================= */
 
 .poster {
-    width: 1024px;
-    height: 1536px;
+    width: 1080px;
+    height: 1920px;
     overflow: hidden;
     position: relative;
     background:
