@@ -289,3 +289,7 @@ Route::get('/qualification-checker/organizations', [QualificationCheckerControll
 
 Route::get('/qualification-checker/posts', [QualificationCheckerController::class, 'posts'])
     ->name('qualification.checker.posts');
+
+
+Route::get('/templates', [QualificationCheckerController::class, 'templates'])
+    ->name('qualification.templates');

@@ -135,4 +135,9 @@ class QualificationCheckerController extends Controller
             array_values($unique)
         );
     }
+
+    public function templates()
+    {
+         return view('tools.templates');
+    }
 }
