@@ -704,8 +704,8 @@ footer img {
     <!-- ================= HEADER ================= -->
     <header class="hero">
 
-        <img class="hero-megaphone" src="megaphone.png" alt="">
-        <img class="hero-bell" src="bell.png" alt="">
+        <img class="hero-megaphone" src="https://sarkarihai.com/public/images/temp/megaphone.png" alt="">
+        <img class="hero-bell" src="https://sarkarihai.com/public/images/temp/bell.png" alt="">
 
         <h1>
             आज की 2 नई
@@ -724,14 +724,14 @@ footer img {
 
         <div class="job-top">
 
-            <img class="org-logo" src="cg_logo.png" alt="CG SET">
+            <img class="org-logo" src="https://sarkarihai.com/public/images/temp/cg_logo.png" alt="CG SET">
 
             <div class="job-title-area">
                 <h2>CG SET 2026</h2>
                 <p>Chhattisgarh State Eligibility Test</p>
             </div>
 
-            <img class="update-flame" src="new_flame.png" alt="New Update">
+            <img class="update-flame" src="https://sarkarihai.com/public/images/temp/new_flame.png" alt="New Update">
 
         </div>
 
@@ -739,7 +739,7 @@ footer img {
         <div class="details details-4">
 
             <div class="detail">
-                <img src="grad_purple.png" alt="">
+                <img src="https://sarkarihai.com/public/images/temp/grad_purple.png" alt="">
                 <div>
                     <b>योग्यता</b>
                     <span>Post Graduate</span>
@@ -747,7 +747,7 @@ footer img {
             </div>
 
             <div class="detail">
-                <img src="people_green.png" alt="">
+                <img src="https://sarkarihai.com/public/images/temp/people_green.png" alt="">
                 <div>
                     <b class="green">पद</b>
                     <span>Various Posts</span>
@@ -755,7 +755,7 @@ footer img {
             </div>
 
             <div class="detail">
-                <img src="calendar_red.png" alt="">
+                <img src="https://sarkarihai.com/public/images/temp/calendar_red.png" alt="">
                 <div>
                     <b class="red">अंतिम तिथि</b>
                     <span>20 अगस्त 2026</span>
@@ -763,7 +763,7 @@ footer img {
             </div>
 
             <div class="detail">
-                <img src="globe_blue.png" alt="">
+                <img src="https://sarkarihai.com/public/images/temp/globe_blue.png" alt="">
                 <div>
                     <b class="blue">आवेदन प्रक्रिया</b>
                     <span>Online</span>
@@ -776,7 +776,7 @@ footer img {
         <div class="job-bottom">
 
             <div class="description">
-                <img src="document_purple.png" alt="">
+                <img src="https://sarkarihai.com/public/images/temp/document_purple.png" alt="">
                 <p>
                     Post Graduate उम्मीदवारों के लिए<br>
                     सुनहरा अवसर। पूरी जानकारी के लिए<br>
@@ -799,7 +799,7 @@ footer img {
 
         <div class="job-top railway-top">
 
-            <img class="org-logo" src="rail_logo.png" alt="Indian Railways">
+            <img class="org-logo" src="https://sarkarihai.com/public/images/temp/rail_logo.png" alt="Indian Railways">
 
             <div class="job-title-area">
                 <h2>RAILWAY</h2>
@@ -821,7 +821,7 @@ footer img {
         <div class="details details-5">
 
             <div class="detail">
-                <img src="grad_blue.png" alt="">
+                <img src="https://sarkarihai.com/public/images/temp/grad_blue.png" alt="">
                 <div>
                     <b>योग्यता</b>
                     <span>10th / ITI</span>
@@ -829,7 +829,7 @@ footer img {
             </div>
 
             <div class="detail">
-                <img src="people_green2.png" alt="">
+                <img src="https://sarkarihai.com/public/images/temp/people_green2.png" alt="">
                 <div>
                     <b class="green">कुल पद</b>
                     <span>3500+</span>
@@ -837,7 +837,7 @@ footer img {
             </div>
 
             <div class="detail">
-                <img src="person_orange.png" alt="">
+                <img src="https://sarkarihai.com/public/images/temp/person_orange.png" alt="">
                 <div>
                     <b class="orange">आयु सीमा</b>
                     <span>18 - 33 वर्ष</span>
@@ -845,7 +845,7 @@ footer img {
             </div>
 
             <div class="detail">
-                <img src="calendar_red2.png" alt="">
+                <img src="https://sarkarihai.com/public/images/temp/calendar_red2.png" alt="">
                 <div>
                     <b class="red">अंतिम तिथि</b>
                     <span>25 अगस्त 2026</span>
@@ -853,7 +853,7 @@ footer img {
             </div>
 
             <div class="detail">
-                <img src="globe_blue2.png" alt="">
+                <img src="https://sarkarihai.com/public/images/temp/globe_blue2.png" alt="">
                 <div>
                     <b class="blue">आवेदन प्रक्रिया</b>
                     <span>Online</span>
@@ -866,7 +866,7 @@ footer img {
         <div class="job-bottom">
 
             <div class="description">
-                <img src="document_blue.png" alt="">
+                <img src="https://sarkarihai.com/public/images/temp/document_blue.png" alt="">
                 <p>
                     10th / ITI पास उम्मीदवार आवेदन कर सकते हैं।<br>
                     अधिक जानकारी के लिए ऑफिशियल नोटिफिकेशन देखें।
@@ -887,7 +887,7 @@ footer img {
     <section class="cta">
 
         <div class="cta-left">
-            <img src="footer_globe.png" alt="">
+            <img src="https://sarkarihai.com/public/images/temp/footer_globe.png" alt="">
             <div>
                 <small>पूरी जानकारी और Apply Link के लिए</small>
                 <strong>SARKARIHAI.COM</strong>
@@ -895,7 +895,7 @@ footer img {
         </div>
 
         <div class="cta-right">
-            <img src="footer_bell.png" alt="">
+            <img src="https://sarkarihai.com/public/images/temp/footer_bell.png" alt="">
             <div>
                 <p>DAILY JOB UPDATES के लिए</p>
                 <strong>SUBSCRIBE NOW!</strong>
@@ -909,28 +909,28 @@ footer img {
     <section class="social">
 
         <div>
-            <img src="like.png" alt="">
+            <img src="https://sarkarihai.com/public/images/temp/like.png" alt="">
             <span>LIKE करें</span>
         </div>
 
         <i></i>
 
         <div>
-            <img src="share.png" alt="">
+            <img src="https://sarkarihai.com/public/images/temp/share.png" alt="">
             <span>SHARE करें</span>
         </div>
 
         <i></i>
 
         <div>
-            <img src="comment.png" alt="">
+            <img src="https://sarkarihai.com/public/images/temp/comment.png" alt="">
             <span>COMMENT करें</span>
         </div>
 
         <i></i>
 
         <div>
-            <img src="youtube.png" alt="">
+            <img src="https://sarkarihai.com/public/images/temp/youtube.png" alt="">
             <span>SUBSCRIBE करें</span>
         </div>
 
@@ -939,7 +939,7 @@ footer img {
 
     <!-- ================= DISCLAIMER ================= -->
     <footer>
-        <img src="check.png" alt="">
+        <img src="https://sarkarihai.com/public/images/temp/check.png" alt="">
         <span>
             हम किसी भर्ती एजेंसी नहीं हैं |
             अधिक जानकारी के लिए ऑफिशियल नोटिफिकेशन जरूर देखें!
