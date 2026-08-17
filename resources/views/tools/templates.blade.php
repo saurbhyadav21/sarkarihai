@@ -1,415 +1,753 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=1080, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, initial-scale=1.0">
 
-    <title>SarkariHai Job Shorts</title>
+<!--
+===========================================================
+SARKARIHAI SHORT POSTER
+Canvas: 1080 x 1920
+Format: YouTube Shorts
+===========================================================
+-->
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<title>SarkariHai - 2 Government Jobs</title>
 
-        body {
-            background: #222;
-            font-family: Arial, "Noto Sans Devanagari", sans-serif;
-        }
+<style>
 
-        .short {
-            width: 1080px;
-            height: 1920px;
-            margin: auto;
-            overflow: hidden;
-            background: #06112b;
-            color: #111;
-        }
+/* =========================================================
+   FONT
+========================================================= */
 
-        /* =========================
-           HEADER
-        ========================== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap');
 
-        .header {
-            height: 300px;
-            padding: 25px 45px 15px;
-            background: linear-gradient(135deg, #020817, #071a3e);
-            color: white;
-            text-align: center;
-            position: relative;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .header .icon-left {
-            position: absolute;
-            left: 25px;
-            top: 35px;
-            font-size: 75px;
-        }
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    background: #111827;
+    font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+}
 
-        .header .icon-right {
-            position: absolute;
-            right: 25px;
-            top: 35px;
-            font-size: 65px;
-        }
+.poster {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    margin: 0 auto;
+    background: #071532;
+    position: relative;
+}
 
-        .hook {
-            font-size: 62px;
-            font-weight: 900;
-            line-height: 1.15;
-            color: white;
-            text-shadow: 3px 4px 0 #000;
-            padding: 0 90px;
-        }
 
-        .hook span {
-            display: block;
-            color: #ffd400;
-            font-size: 72px;
-            margin-top: 4px;
-        }
+/* =========================================================
+   HEADER
+========================================================= */
 
-        .sub-title {
-            display: inline-block;
-            margin-top: 14px;
-            padding: 10px 45px;
-            background: #e21c12;
-            color: white;
-            border-radius: 35px;
-            font-size: 30px;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
+.header {
+    height: 285px;
+    background: linear-gradient(
+        180deg,
+        #06112b 0%,
+        #091b3e 100%
+    );
 
-        /* =========================
-           JOB CARD
-        ========================== */
+    position: relative;
+    text-align: center;
+    padding-top: 34px;
+    overflow: hidden;
+}
 
-        .jobs {
-            padding: 28px 22px 0;
-            background: #06112b;
-        }
+/* Decorative circles */
 
-        .job-card {
-            background: #fff;
-            border-radius: 24px;
-            margin-bottom: 25px;
-            padding: 25px 28px 22px;
-            border: 4px solid #d6d6d6;
-            overflow: hidden;
-        }
+.header::before {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.04);
+    left: -70px;
+    top: -70px;
+}
 
-        .job-card.purple {
-            border-color: #8d50d8;
-        }
+.header::after {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.035);
+    right: -80px;
+    top: -90px;
+}
 
-        .job-card.blue {
-            border-color: #356bdc;
-        }
+/* Notification icons */
 
-        .job-head {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+.header-icon {
+    position: absolute;
+    top: 30px;
+    font-size: 70px;
+    z-index: 2;
+}
 
-        .logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: contain;
-            background: white;
-            border: 3px solid #ddd;
-            padding: 7px;
-        }
+.header-icon.left {
+    left: 28px;
+}
 
-        .job-title-box {
-            flex: 1;
-        }
+.header-icon.right {
+    right: 28px;
+}
 
-        .job-title {
-            font-size: 58px;
-            line-height: 1;
-            font-weight: 950;
-            color: #4e1b9e;
-            margin-bottom: 10px;
-        }
+/* Main title */
 
-        .blue .job-title {
-            color: #1745a3;
-        }
+.main-title {
+    position: relative;
+    z-index: 3;
 
-        .organization {
-            font-size: 28px;
-            font-weight: 700;
-            color: #222;
-            line-height: 1.2;
-        }
+    color: #ffffff;
 
-        .badge {
-            padding: 18px 20px;
-            background: #df1b18;
-            color: white;
-            border-radius: 15px;
-            font-size: 27px;
-            font-weight: 900;
-            text-align: center;
-            min-width: 145px;
-        }
+    font-size: 62px;
+    line-height: 1.05;
 
-        .badge.yellow {
-            background: #e51b17;
-            color: #ffd400;
-        }
+    font-weight: 900;
 
-        /* =========================
-           DETAILS
-        ========================== */
+    letter-spacing: -1px;
 
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            border-top: 2px solid #ddd;
-            border-bottom: 2px solid #ddd;
-            margin-top: 20px;
-            padding: 20px 0;
-        }
+    text-shadow:
+        0 3px 0 #000,
+        0 5px 8px rgba(0,0,0,.35);
+}
 
-        .detail {
-            text-align: center;
-            border-right: 2px solid #ddd;
-            padding: 0 8px;
-        }
+.main-title strong {
+    display: block;
 
-        .detail:last-child {
-            border-right: none;
-        }
+    color: #ffd400;
 
-        .detail-icon {
-            font-size: 38px;
-            margin-bottom: 5px;
-        }
+    font-size: 72px;
 
-        .detail-label {
-            font-size: 21px;
-            font-weight: 900;
-            color: #4d1b9a;
-            margin-bottom: 5px;
-        }
+    font-weight: 900;
 
-        .blue .detail-label {
-            color: #12459e;
-        }
+    margin-top: 4px;
+}
 
-        .detail-value {
-            font-size: 22px;
-            font-weight: 800;
-            line-height: 1.15;
-        }
+/* Latest jobs badge */
 
-        /* =========================
-           DESCRIPTION
-        ========================== */
+.latest-badge {
+    position: relative;
+    z-index: 3;
 
-        .job-bottom {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-top: 18px;
-            background: #f0eafa;
-            border-radius: 18px;
-            padding: 18px;
-        }
+    display: inline-block;
 
-        .blue .job-bottom {
-            background: #edf3ff;
-        }
+    margin-top: 16px;
 
-        .description {
-            flex: 1;
-            font-size: 23px;
-            line-height: 1.35;
-            font-weight: 700;
-        }
+    padding: 10px 46px;
 
-        .apply {
-            width: 230px;
-            padding: 18px 10px;
-            background: #5416a0;
-            color: white;
-            border-radius: 15px;
-            text-align: center;
-            font-size: 23px;
-            font-weight: 900;
-        }
+    border-radius: 50px;
 
-        .blue .apply {
-            background: #123fa1;
-        }
+    background: #e51b16;
 
-        .apply strong {
-            display: block;
-            font-size: 32px;
-            margin-top: 3px;
-        }
+    color: #ffffff;
 
-        /* =========================
-           FOOTER
-        ========================== */
+    font-size: 29px;
 
-        .footer-main {
-            height: 135px;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(90deg, #ffd400, #ffbd00 50%, #e71b14 50%);
-        }
+    line-height: 1;
 
-        .website {
-            width: 58%;
-            padding-left: 40px;
-            font-weight: 900;
-        }
+    font-weight: 900;
 
-        .website-small {
-            font-size: 22px;
-            margin-bottom: 4px;
-        }
+    letter-spacing: .5px;
 
-        .website-name {
-            font-size: 43px;
-            color: #111;
-            font-weight: 950;
-        }
+    box-shadow:
+        0 5px 0 rgba(0,0,0,.25);
+}
 
-        .subscribe {
-            width: 42%;
-            text-align: center;
-            color: white;
-        }
 
-        .subscribe-small {
-            font-size: 23px;
-            font-weight: 800;
-        }
+/* =========================================================
+   JOB AREA
+========================================================= */
 
-        .subscribe-button {
-            display: inline-block;
-            background: #ffd400;
-            color: #111;
-            padding: 10px 30px;
-            border-radius: 30px;
-            margin-top: 6px;
-            font-size: 26px;
-            font-weight: 950;
-        }
+.jobs-area {
+    height: 1270px;
 
-        .social {
-            height: 82px;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            background: #07122c;
-            color: white;
-        }
+    background: #071532;
 
-        .social-item {
-            font-size: 25px;
-            font-weight: 800;
-            text-align: center;
-        }
+    padding: 24px 22px 0;
+}
 
-        .social-icon {
-            font-size: 32px;
-            margin-right: 5px;
-        }
 
-        .disclaimer {
-            height: 58px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #020817;
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
-            text-align: center;
-        }
+/* =========================================================
+   JOB CARD
+========================================================= */
 
-        /* =========================
-           PRINT
-        ========================== */
+.job-card {
+    width: 100%;
 
-        @media print {
-            body {
-                background: white;
-            }
+    background: #ffffff;
 
-            .short {
-                margin: 0;
-            }
-        }
-    </style>
+    border-radius: 24px;
+
+    margin-bottom: 22px;
+
+    overflow: hidden;
+
+    border: 4px solid #d7d7d7;
+
+    box-shadow:
+        0 6px 14px rgba(0,0,0,.20);
+}
+
+
+/* Purple card */
+
+.job-card.purple {
+    border-color: #8d55d9;
+}
+
+
+/* Blue card */
+
+.job-card.blue {
+    border-color: #3e6ed8;
+}
+
+
+/* =========================================================
+   JOB TOP
+========================================================= */
+
+.job-top {
+    min-height: 150px;
+
+    padding: 21px 23px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+/* Logo */
+
+.job-logo {
+    width: 112px;
+    height: 112px;
+
+    flex: 0 0 112px;
+
+    object-fit: contain;
+
+    background: #ffffff;
+
+    border-radius: 50%;
+
+    border: 3px solid #dedede;
+
+    padding: 6px;
+}
+
+
+/* Job title area */
+
+.job-heading {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.job-title {
+    color: #531b9d;
+
+    font-size: 50px;
+
+    line-height: .98;
+
+    font-weight: 900;
+
+    letter-spacing: -.7px;
+
+    text-transform: uppercase;
+}
+
+.job-card.blue .job-title {
+    color: #15469f;
+}
+
+.job-organization {
+    margin-top: 8px;
+
+    color: #202020;
+
+    font-size: 25px;
+
+    line-height: 1.15;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   RIGHT BADGE
+========================================================= */
+
+.job-badge {
+    flex: 0 0 142px;
+
+    min-height: 82px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background: #df1b17;
+
+    color: #ffffff;
+
+    font-size: 24px;
+
+    line-height: 1.05;
+
+    font-weight: 900;
+
+    padding: 8px;
+}
+
+.job-card.blue .job-badge {
+    background: #e41b17;
+
+    color: #ffd400;
+}
+
+
+/* =========================================================
+   DETAILS GRID
+========================================================= */
+
+.details {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    margin: 0 20px;
+
+    padding: 18px 0;
+
+    border-top: 2px solid #dedede;
+
+    border-bottom: 2px solid #dedede;
+}
+
+.detail {
+    min-height: 112px;
+
+    padding: 0 9px;
+
+    text-align: center;
+
+    border-right: 2px solid #dddddd;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.detail:last-child {
+    border-right: none;
+}
+
+
+/* Icons */
+
+.detail-icon {
+    font-size: 35px;
+
+    line-height: 1;
+
+    margin-bottom: 7px;
+}
+
+
+/* Label */
+
+.detail-label {
+    color: #531b9d;
+
+    font-size: 20px;
+
+    line-height: 1.05;
+
+    font-weight: 900;
+
+    margin-bottom: 6px;
+}
+
+.job-card.blue .detail-label {
+    color: #17469f;
+}
+
+
+/* Value */
+
+.detail-value {
+    color: #171717;
+
+    font-size: 21px;
+
+    line-height: 1.12;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   JOB DESCRIPTION / APPLY
+========================================================= */
+
+.job-bottom {
+    margin: 16px 20px 19px;
+
+    min-height: 92px;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 14px 15px;
+
+    background: #f0eafa;
+}
+
+.job-card.blue .job-bottom {
+    background: #edf3ff;
+}
+
+.job-description {
+    flex: 1;
+
+    color: #242424;
+
+    font-size: 21px;
+
+    line-height: 1.28;
+
+    font-weight: 700;
+}
+
+
+/* Apply button */
+
+.apply-box {
+    width: 210px;
+
+    flex: 0 0 210px;
+
+    border-radius: 14px;
+
+    background: #5417a0;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    padding: 12px 8px;
+}
+
+.job-card.blue .apply-box {
+    background: #1545a1;
+}
+
+.apply-label {
+    font-size: 20px;
+
+    line-height: 1;
+
+    font-weight: 800;
+}
+
+.apply-mode {
+    font-size: 30px;
+
+    line-height: 1.05;
+
+    font-weight: 900;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   CTA / WEBSITE FOOTER
+========================================================= */
+
+.cta {
+    height: 138px;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffd400 0%,
+            #ffd400 58%,
+            #e51c16 58%,
+            #e51c16 100%
+        );
+}
+
+
+/* Website */
+
+.website {
+    width: 58%;
+
+    padding-left: 38px;
+}
+
+.website-label {
+    color: #171717;
+
+    font-size: 21px;
+
+    line-height: 1.1;
+
+    font-weight: 800;
+}
+
+.website-name {
+    margin-top: 4px;
+
+    color: #111111;
+
+    font-size: 42px;
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    letter-spacing: -.7px;
+}
+
+
+/* Subscribe */
+
+.subscribe {
+    width: 42%;
+
+    text-align: center;
+
+    color: #ffffff;
+}
+
+.subscribe-label {
+    font-size: 22px;
+
+    line-height: 1.1;
+
+    font-weight: 800;
+}
+
+.subscribe-button {
+    display: inline-block;
+
+    margin-top: 7px;
+
+    padding: 10px 27px;
+
+    border-radius: 35px;
+
+    background: #ffd400;
+
+    color: #111111;
+
+    font-size: 24px;
+
+    line-height: 1;
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   SOCIAL BAR
+========================================================= */
+
+.social-bar {
+    height: 92px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-around;
+
+    background: #06112b;
+
+    color: #ffffff;
+}
+
+.social-item {
+    text-align: center;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    font-weight: 800;
+}
+
+.social-icon {
+    font-size: 31px;
+
+    vertical-align: middle;
+
+    margin-right: 4px;
+}
+
+
+/* =========================================================
+   DISCLAIMER
+========================================================= */
+
+.disclaimer {
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 20px;
+
+    background: #020817;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    font-size: 17px;
+
+    line-height: 1;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SMALL LABEL
+========================================================= */
+
+.small-red-label {
+    display: inline-block;
+
+    background: #e21b16;
+
+    color: #ffffff;
+
+    padding: 7px 14px;
+
+    border-radius: 8px;
+
+    font-size: 17px;
+
+    font-weight: 900;
+}
+
+</style>
 </head>
+
 
 <body>
 
-<div class="short">
+<div class="poster">
 
-    <!-- =========================
-         HEADER / HOOK
-    ========================== -->
 
-    <div class="header">
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-        <div class="icon-left">📢</div>
-        <div class="icon-right">🔔</div>
+    <section class="header">
 
-        <div class="hook">
+        <div class="header-icon left">📢</div>
+
+        <div class="header-icon right">🔔</div>
+
+        <div class="main-title">
+
             आज की 2 नई
-            <span>सरकारी नौकरी अपडेट!</span>
+
+            <strong>
+                सरकारी नौकरी अपडेट!
+            </strong>
+
         </div>
 
-        <div class="sub-title">
+        <div class="latest-badge">
             LATEST GOVERNMENT JOBS 2026
         </div>
 
-    </div>
+    </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          JOBS
-    ========================== -->
+    ====================================================== -->
 
-    <div class="jobs">
+    <section class="jobs-area">
 
 
-        <!-- =====================
+        <!-- =================================================
              JOB 1
-        ====================== -->
+        ================================================== -->
 
-        <div class="job-card purple">
+        <article class="job-card purple">
 
-            <div class="job-head">
+            <div class="job-top">
 
                 <img
-                    class="logo"
+                    class="job-logo"
                     src="images/cg-set.png"
-                    alt="CG SET">
+                    alt="CG SET 2026"
+                >
 
-                <div class="job-title-box">
+                <div class="job-heading">
 
                     <div class="job-title">
                         CG SET 2026
                     </div>
 
-                    <div class="organization">
+                    <div class="job-organization">
                         Chhattisgarh State Eligibility Test
                     </div>
 
                 </div>
 
-                <div class="badge">
+                <div class="job-badge">
                     NEW<br>
                     UPDATE!
                 </div>
@@ -417,11 +755,13 @@
             </div>
 
 
-            <div class="details-grid">
+            <div class="details">
 
                 <div class="detail">
 
-                    <div class="detail-icon">🎓</div>
+                    <div class="detail-icon">
+                        🎓
+                    </div>
 
                     <div class="detail-label">
                         योग्यता
@@ -436,7 +776,9 @@
 
                 <div class="detail">
 
-                    <div class="detail-icon">👥</div>
+                    <div class="detail-icon">
+                        👥
+                    </div>
 
                     <div class="detail-label">
                         पद
@@ -451,7 +793,9 @@
 
                 <div class="detail">
 
-                    <div class="detail-icon">📅</div>
+                    <div class="detail-icon">
+                        📅
+                    </div>
 
                     <div class="detail-label">
                         अंतिम तिथि
@@ -466,7 +810,9 @@
 
                 <div class="detail">
 
-                    <div class="detail-icon">🌐</div>
+                    <div class="detail-icon">
+                        🌐
+                    </div>
 
                     <div class="detail-label">
                         आवेदन प्रक्रिया
@@ -483,62 +829,77 @@
 
             <div class="job-bottom">
 
-                <div class="description">
+                <div class="job-description">
+
                     📋 Post Graduate उम्मीदवारों के लिए
-                    सुनहरा अवसर। पूरी जानकारी के लिए
+                    महत्वपूर्ण अवसर। पूरी जानकारी के लिए
                     आधिकारिक नोटिफिकेशन देखें।
+
                 </div>
 
-                <div class="apply">
-                    APPLY MODE
-                    <strong>ONLINE</strong>
+                <div class="apply-box">
+
+                    <div class="apply-label">
+                        APPLY MODE
+                    </div>
+
+                    <div class="apply-mode">
+                        ONLINE
+                    </div>
+
                 </div>
 
             </div>
 
-        </div>
+        </article>
 
 
-        <!-- =====================
+
+        <!-- =================================================
              JOB 2
-        ====================== -->
+        ================================================== -->
 
-        <div class="job-card blue">
+        <article class="job-card blue">
 
-            <div class="job-head">
+            <div class="job-top">
 
                 <img
-                    class="logo"
+                    class="job-logo"
                     src="images/railway.png"
-                    alt="Indian Railways">
+                    alt="Indian Railway"
+                >
 
-                <div class="job-title-box">
+                <div class="job-heading">
 
                     <div class="job-title">
-                        RAILWAY
-                        <br>
+                        RAILWAY<br>
                         RECRUITMENT 2026
                     </div>
 
-                    <div class="organization">
+                    <div class="job-organization">
                         Indian Railways
                     </div>
 
                 </div>
 
-                <div class="badge yellow">
-                    3500+<br>
+                <div class="job-badge">
+                    <span style="font-size:34px;">
+                        3500+
+                    </span>
+                    <br>
                     POSTS
                 </div>
 
             </div>
 
 
-            <div class="details-grid">
+            <div class="details">
 
                 <div class="detail">
 
-                    <div class="detail-icon">🎓</div>
+                    <div class="detail-icon">
+                        🎓
+                    </div>
 
                     <div class="detail-label">
                         योग्यता
@@ -553,7 +914,9 @@
 
                 <div class="detail">
 
-                    <div class="detail-icon">👥</div>
+                    <div class="detail-icon">
+                        👥
+                    </div>
 
                     <div class="detail-label">
                         कुल पद
@@ -568,7 +931,9 @@
 
                 <div class="detail">
 
-                    <div class="detail-icon">👤</div>
+                    <div class="detail-icon">
+                        👤
+                    </div>
 
                     <div class="detail-label">
                         आयु सीमा
@@ -583,7 +948,9 @@
 
                 <div class="detail">
 
-                    <div class="detail-icon">📅</div>
+                    <div class="detail-icon">
+                        📅
+                    </div>
 
                     <div class="detail-label">
                         अंतिम तिथि
@@ -600,33 +967,44 @@
 
             <div class="job-bottom">
 
-                <div class="description">
+                <div class="job-description">
+
                     📋 10th / ITI पास उम्मीदवार
-                    आवेदन कर सकते हैं। अधिक जानकारी
-                    के लिए आधिकारिक नोटिफिकेशन देखें।
+                    आवेदन कर सकते हैं। अधिक जानकारी के लिए
+                    आधिकारिक नोटिफिकेशन देखें।
+
                 </div>
 
-                <div class="apply">
-                    APPLY MODE
-                    <strong>ONLINE</strong>
+                <div class="apply-box">
+
+                    <div class="apply-label">
+                        APPLY MODE
+                    </div>
+
+                    <div class="apply-mode">
+                        ONLINE
+                    </div>
+
                 </div>
 
             </div>
 
-        </div>
-
-    </div>
+        </article>
 
 
-    <!-- =========================
-         WEBSITE / CTA
-    ========================== -->
+    </section>
 
-    <div class="footer-main">
+
+
+    <!-- =====================================================
+         CTA
+    ====================================================== -->
+
+    <section class="cta">
 
         <div class="website">
 
-            <div class="website-small">
+            <div class="website-label">
                 🌐 पूरी जानकारी और Apply Link के लिए
             </div>
 
@@ -639,7 +1017,7 @@
 
         <div class="subscribe">
 
-            <div class="subscribe-small">
+            <div class="subscribe-label">
                 🔔 DAILY JOB UPDATES के लिए
             </div>
 
@@ -649,48 +1027,50 @@
 
         </div>
 
-    </div>
+    </section>
 
 
-    <!-- =========================
-         SOCIAL CTA
-    ========================== -->
 
-    <div class="social">
+    <!-- =====================================================
+         SOCIAL
+    ====================================================== -->
+
+    <section class="social-bar">
 
         <div class="social-item">
             <span class="social-icon">👍</span>
-            LIKE करें
+            LIKE
         </div>
 
         <div class="social-item">
             <span class="social-icon">↗️</span>
-            SHARE करें
+            SHARE
         </div>
 
         <div class="social-item">
             <span class="social-icon">💬</span>
-            COMMENT करें
+            COMMENT
         </div>
 
         <div class="social-item">
             <span class="social-icon">▶️</span>
-            SUBSCRIBE करें
+            SUBSCRIBE
         </div>
 
-    </div>
+    </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          DISCLAIMER
-    ========================== -->
+    ====================================================== -->
 
-    <div class="disclaimer">
+    <footer class="disclaimer">
 
-        ✅ हम किसी भर्ती एजेंसी नहीं हैं |
-        अधिक जानकारी के लिए ऑफिशियल नोटिफिकेशन जरूर देखें।
+        जानकारी आधिकारिक नोटिफिकेशन के अनुसार ही जांचें।
 
-    </div>
+    </footer>
+
 
 </div>
 
