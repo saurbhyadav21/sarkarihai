@@ -201,7 +201,7 @@
         ? ucwords(str_replace('-', ' ', strtolower($job->state)))
         : '-' }}
 </td>
-<td>
+<td style="display: none">
     @php
         $jobUrl = url(
         '/sarkari-naukri/' .
