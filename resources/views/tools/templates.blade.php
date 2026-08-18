@@ -1,7 +1,7 @@
 @php
     $jobs = DB::table('job_details')
         ->select(
-            *
+            '*'
         )
         ->where('created_at', '>=', '2026-08-10 00:00:00')
         ->where('created_at', '<', '2026-08-11 00:00:00')
