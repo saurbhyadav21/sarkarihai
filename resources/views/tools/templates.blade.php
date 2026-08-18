@@ -205,8 +205,8 @@
     @php
         $jobUrl = url(
         '/sarkari-naukri/' .
-        $state . '/' .
-        $category . '/' .
+        $job->state . '/' .
+        $job->category . '/' .
         $job->slug
     );
 
