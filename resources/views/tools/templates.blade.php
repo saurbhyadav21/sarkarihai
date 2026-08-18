@@ -86,33 +86,7 @@
 
                 <td>{{ $job->total_vacancies ?: '-' }}</td>
 
-                @php
-    $salaryText = $job->post_salary ?? '';
-
-    preg_match_all('/(?:Rs\.?|₹)\s*([\d,]+(?:\.\d+)?)/i', $salaryText, $matches);
-
-    $amounts = [];
-
-    foreach ($matches[1] as $amount) {
-        $amounts[] = (float) str_replace(',', '', $amount);
-    }
-
-    // Range ke second amounts bhi pakadne ke liye
-    preg_match_all('/-\s*([\d,]+(?:\.\d+)?)/', $salaryText, $rangeMatches);
-
-    foreach ($rangeMatches[1] as $amount) {
-        $amounts[] = (float) str_replace(',', '', $amount);
-    }
-
-    $amounts = array_filter($amounts);
-
-    $minSalary = !empty($amounts) ? min($amounts) : null;
-    $maxSalary = !empty($amounts) ? max($amounts) : null;
-@endphp
-
-{{ $minSalary && $maxSalary
-    ? 'Rs. ' . number_format($minSalary) . ' - ' . number_format($maxSalary)
-    : '-' }}
+                <td>{{ $job->post_salary ?: '-' }}</td>
 
                 <td>{{ $job->min_age ?: '-' }} - {{ $job->max_age_genral ?: '-' }}</td>
 
