@@ -72,7 +72,30 @@
 
                 <td>{{ $job->organization }}</td>
 
-                <td>{{ $job->post_eligibility }}</td>
+                <td>
+    @php
+        $qualificationText = $job->post_eligibility ?? '';
+
+        $qualifications = preg_split(
+            '/\s*#\s*/',
+            $qualificationText
+        );
+
+        $qualifications = array_filter($qualifications, function ($qualification) {
+            return trim($qualification) !== '';
+        });
+
+        $qualifications = array_values(
+            array_unique($qualifications)
+        );
+    @endphp
+
+    @if(count($qualifications) === 1)
+        {{ trim($qualifications[0]) }}
+    @else
+        Various Qualifications
+    @endif
+</td>
 
                 <td>
     @php
