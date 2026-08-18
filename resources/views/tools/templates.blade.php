@@ -70,7 +70,7 @@
 
                 <td>{{ $job->organization }}</td>
 
-                <td>{{ $job->min_qulification }}</td>
+                <td>{{ $job->post_eligibility }}</td>
 
                 <td>{{ $job->post_name }}</td>
 
