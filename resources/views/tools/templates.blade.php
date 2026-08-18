@@ -1,19 +1,7 @@
 @php
     $jobs = DB::table('job_details')
         ->select(
-            'id',
-            'title',
-            'organization',
-            'min_qulification',
-            'post_name',
-            'end_date',
-            'apply_mode',
-            'total_vacancies',
-            'post_salary',
-            'min_age',
-            'max_age_genral',
-            'state',
-            'post_eligibility',
+            *
         )
         ->where('created_at', '>=', '2026-08-10 00:00:00')
         ->where('created_at', '<', '2026-08-11 00:00:00')
