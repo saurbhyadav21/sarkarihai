@@ -78,7 +78,7 @@
 
     <tbody>
 
-        @forelse($jobs->chunk(2) as $pair)
+        @forelse($jobs as $pair)
 
             <tr>
 
