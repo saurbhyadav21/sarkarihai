@@ -78,16 +78,14 @@
     @php
         $postText = $job->post_name ?? '';
 
-        // # से split
-        $posts = preg_split('/\s*#\s*/', $postText);
-
-        // unwanted values remove
         $removePosts = [
-            'Total Posts',
-            'No. of Posts',
-            'Salary Per Month',
-            'Salary',
+            'total posts',
+            'no. of posts',
+            'salary per month',
+            'salary',
         ];
+
+        $posts = preg_split('/\s*#\s*/', $postText);
 
         $posts = array_filter($posts, function ($post) use ($removePosts) {
             $post = trim($post);
@@ -96,22 +94,16 @@
                 return false;
             }
 
-            return !in_array(strtolower($post), array_map('strtolower', $removePosts));
+            return !in_array(strtolower($post), $removePosts);
         });
 
-        // Duplicate posts remove
-        $posts = array_unique($posts);
-
-        // Re-index
-        $posts = array_values($posts);
+        $posts = array_values(array_unique($posts));
     @endphp
 
-    @if(count($posts) == 1)
+    @if(count($posts) === 1)
         {{ $posts[0] }}
-    @elseif(count($posts) > 1)
-        Various Posts
     @else
-        -
+        Various Posts
     @endif
 </td>
 
