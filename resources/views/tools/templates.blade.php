@@ -47,7 +47,7 @@
 <table class="job-table">
     <thead>
         <tr>
-            <th>ID</th>
+          
             <th>Title</th>
             <th>Organization</th>
             <th>Qualification</th>
@@ -64,7 +64,7 @@
     <tbody>
         @forelse($jobs as $job)
             <tr>
-                <td>{{ $job->id }}</td>
+             
 
                 <td>{{ $job->title }}</td>
 
