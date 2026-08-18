@@ -74,7 +74,46 @@
 
                 <td>{{ $job->post_eligibility }}</td>
 
-                <td>{{ $job->post_name }}</td>
+                <td>
+    @php
+        $postText = $job->post_name ?? '';
+
+        // # से split
+        $posts = preg_split('/\s*#\s*/', $postText);
+
+        // unwanted values remove
+        $removePosts = [
+            'Total Posts',
+            'No. of Posts',
+            'Salary Per Month',
+            'Salary',
+        ];
+
+        $posts = array_filter($posts, function ($post) use ($removePosts) {
+            $post = trim($post);
+
+            if ($post === '') {
+                return false;
+            }
+
+            return !in_array(strtolower($post), array_map('strtolower', $removePosts));
+        });
+
+        // Duplicate posts remove
+        $posts = array_unique($posts);
+
+        // Re-index
+        $posts = array_values($posts);
+    @endphp
+
+    @if(count($posts) == 1)
+        {{ $posts[0] }}
+    @elseif(count($posts) > 1)
+        Various Posts
+    @else
+        -
+    @endif
+</td>
 
                 <td>
     @if($job->end_date)
