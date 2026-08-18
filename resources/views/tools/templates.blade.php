@@ -84,7 +84,11 @@
 
                 <td>{{ $job->apply_mode ?: '-' }}</td>
 
-                <td>{{ $job->total_vacancies ?: '-' }}</td>
+                <td>
+    {{ $job->total_vacancies
+        ? preg_replace('/\s*posts?\b/i', '', $job->total_vacancies)
+        : '-' }}
+</td>
 
                 @php
     $salaryText = $job->post_salary ?? '';
