@@ -11,7 +11,8 @@
             'total_vacancies',
             'post_salary',
             'age_p',
-            'state'
+            'state',
+            'post_eligibility',
         )
         ->where('created_at', '>=', '2026-08-10 00:00:00')
         ->where('created_at', '<', '2026-08-11 00:00:00')
