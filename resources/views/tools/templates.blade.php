@@ -127,7 +127,11 @@
     {{ $minAge ?: '-' }} - {{ $maxAge ?: '-' }}
 </td>
 
-                <td>{{ $job->state ?: '-' }}</td>
+                <td>
+    {{ $job->state
+        ? ucwords(str_replace('-', ' ', strtolower($job->state)))
+        : '-' }}
+</td>
             </tr>
         @empty
             <tr>
