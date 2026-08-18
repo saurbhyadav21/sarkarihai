@@ -215,7 +215,12 @@
 </td>
 <td>
     @php
-        $jobUrl = url('/job/' . $job->id);
+        $jobUrl = url(
+        '/sarkari-naukri/' .
+        $state . '/' .
+        $category . '/' .
+        $job->slug
+    );
 
         $youtubeDescription =
             "📢 {$job->title}\n\n" .
