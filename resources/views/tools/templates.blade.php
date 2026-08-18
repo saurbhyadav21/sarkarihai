@@ -114,30 +114,18 @@
     ? 'Rs. ' . number_format($minSalary) . ' - ' . number_format($maxSalary)
     : '-' }}</td>
 
-                @php
-    $ageText = $job->age_p ?? '';
+                <td>
+    @php
+        $minAge = $job->min_age;
+        $maxAge = $job->max_age_genral;
 
-    preg_match_all('/\d+/', $ageText, $ageMatches);
-
-    $ages = array_map('intval', $ageMatches[0]);
-
-    if (!empty($ages)) {
-        $minAge = min($ages);
-        $maxAge = max($ages);
-
-        // Agar minimum aur maximum same hain
-        // to starting age 18 kar do
-        if ($minAge == $maxAge) {
+        if ($minAge == $maxAge && $maxAge) {
             $minAge = 18;
         }
+    @endphp
 
-        $ageDisplay = $minAge . ' - ' . $maxAge;
-    } else {
-        $ageDisplay = '-';
-    }
-@endphp
-
-<td>{{ $ageDisplay }}</td>
+    {{ $minAge ?: '-' }} - {{ $maxAge ?: '-' }}
+</td>
 
                 <td>{{ $job->state ?: '-' }}</td>
             </tr>
