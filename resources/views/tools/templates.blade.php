@@ -10,7 +10,8 @@
             'apply_mode',
             'total_vacancies',
             'post_salary',
-            'age_p',
+            'min_age',
+            'max_age_genral',
             'state',
             'post_eligibility',
         )
@@ -87,7 +88,7 @@
 
                 <td>{{ $job->post_salary ?: '-' }}</td>
 
-                <td>{{ $job->age_p ?: '-' }}</td>
+                <td>{{ $job->min_age ?: '-' }} - {{ $job->max_age_genral ?: '-' }}</td>
 
                 <td>{{ $job->state ?: '-' }}</td>
             </tr>
