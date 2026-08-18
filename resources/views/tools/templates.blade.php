@@ -20,79 +20,127 @@
 @endphp
 
 <style>
-    .job-table {
+  .job-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
+    table-layout: fixed;
 }
 
-.job-table th,
 .job-table td {
+    width: 50%;
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 15px;
     text-align: left;
     vertical-align: top;
 }
 
-.job-table th {
-    background: #f5f5f5;
-    font-weight: 700;
-}
-
 .job-table tr:nth-child(even) {
     background: #fafafa;
+}
+
+.job-table strong {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.job-table small {
+    line-height: 1.6;
 }
 </style>
 
 <table class="job-table">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Organization</th>
-            <th>Qualification</th>
-            <th>Post Name</th>
-            <th>Last Date</th>
-            <th>Apply Mode</th>
-            <th>Vacancies</th>
-            <th>Salary</th>
-            <th>Age</th>
-            <th>State</th>
+            <th colspan="2">Job Post 1</th>
+            <th colspan="2">Job Post 2</th>
         </tr>
     </thead>
 
     <tbody>
-        @forelse($jobs as $job)
+        @forelse($jobs->chunk(2) as $pair)
             <tr>
-                <td>{{ $job->id }}</td>
 
-                <td>{{ $job->title }}</td>
+                {{-- JOB 1 --}}
+                @if(isset($pair[0]))
+                    <td>
+                        <strong>{{ $pair[0]->title }}</strong><br>
+                        <small>{{ $pair[0]->organization }}</small><br>
+                        <small>
+                            Qualification: {{ $pair[0]->min_qulification ?: '-' }}
+                        </small><br>
+                        <small>
+                            Post: {{ $pair[0]->post_name ?: '-' }}
+                        </small><br>
+                        <small>
+                            Last Date:
+                            {{ $pair[0]->end_date
+                                ? \Carbon\Carbon::parse($pair[0]->end_date)->format('d M Y')
+                                : '-' }}
+                        </small><br>
+                        <small>
+                            Apply: {{ $pair[0]->apply_mode ?: '-' }}
+                        </small><br>
+                        <small>
+                            Vacancies: {{ $pair[0]->total_vacancies ?: '-' }}
+                        </small><br>
+                        <small>
+                            Salary: {{ $pair[0]->post_salary ?: '-' }}
+                        </small><br>
+                        <small>
+                            Age: {{ $pair[0]->age_p ?: '-' }}
+                        </small><br>
+                        <small>
+                            State: {{ $pair[0]->state ?: '-' }}
+                        </small>
+                    </td>
+                @else
+                    <td>-</td>
+                @endif
 
-                <td>{{ $job->organization }}</td>
 
-                <td>{{ $job->min_qulification }}</td>
+                {{-- JOB 2 --}}
+                @if(isset($pair[1]))
+                    <td>
+                        <strong>{{ $pair[1]->title }}</strong><br>
+                        <small>{{ $pair[1]->organization }}</small><br>
+                        <small>
+                            Qualification: {{ $pair[1]->min_qulification ?: '-' }}
+                        </small><br>
+                        <small>
+                            Post: {{ $pair[1]->post_name ?: '-' }}
+                        </small><br>
+                        <small>
+                            Last Date:
+                            {{ $pair[1]->end_date
+                                ? \Carbon\Carbon::parse($pair[1]->end_date)->format('d M Y')
+                                : '-' }}
+                        </small><br>
+                        <small>
+                            Apply: {{ $pair[1]->apply_mode ?: '-' }}
+                        </small><br>
+                        <small>
+                            Vacancies: {{ $pair[1]->total_vacancies ?: '-' }}
+                        </small><br>
+                        <small>
+                            Salary: {{ $pair[1]->post_salary ?: '-' }}
+                        </small><br>
+                        <small>
+                            Age: {{ $pair[1]->age_p ?: '-' }}
+                        </small><br>
+                        <small>
+                            State: {{ $pair[1]->state ?: '-' }}
+                        </small>
+                    </td>
+                @else
+                    <td>-</td>
+                @endif
 
-                <td>{{ $job->post_name }}</td>
-
-                <td>
-                    {{ $job->end_date
-                        ? \Carbon\Carbon::parse($job->end_date)->format('d M Y')
-                        : '-' }}
-                </td>
-
-                <td>{{ $job->apply_mode ?: '-' }}</td>
-
-                <td>{{ $job->total_vacancies ?: '-' }}</td>
-
-                <td>{{ $job->post_salary ?: '-' }}</td>
-
-                <td>{{ $job->age_p ?: '-' }}</td>
-
-                <td>{{ $job->state ?: '-' }}</td>
             </tr>
         @empty
             <tr>
-                <td colspan="11">
+                <td colspan="2">
                     No jobs found.
                 </td>
             </tr>
