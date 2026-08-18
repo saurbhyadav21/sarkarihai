@@ -60,6 +60,7 @@
             <th>Salary</th>
             <th>Age</th>
             <th>State</th>
+            <th>YouTube Description</th>
         </tr>
     </thead>
 
@@ -211,6 +212,29 @@
     {{ $job->state
         ? ucwords(str_replace('-', ' ', strtolower($job->state)))
         : '-' }}
+</td>
+<td>
+    @php
+        $jobUrl = url('/job/' . $job->id);
+
+        $youtubeDescription =
+            "📢 {$job->title}\n\n" .
+            "🏢 Organization: " . ($job->organization ?: '-') . "\n" .
+            "💼 Post: " . ($job->post_name ?: 'Various Posts') . "\n" .
+            "🎓 Qualification: " . ($job->min_qulification ?: 'Various Qualifications') . "\n" .
+            "👥 Total Vacancies: " . ($job->total_vacancies ?: '-') . "\n" .
+            "💰 Salary: " . ($job->post_salary ?: '-') . "\n" .
+            "🎯 Age Limit: " . (($job->min_age ?: '-') . ' - ' . ($job->max_age_genral ?: '-')) . "\n" .
+            "📅 Last Date: " . ($job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : '-') . "\n" .
+            "📝 Apply Mode: " . ($job->apply_mode ?: '-') . "\n" .
+            "📍 State: " . ($job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-') . "\n\n" .
+            "🔗 Apply / Full Details:\n" .
+            $jobUrl . "\n\n" .
+            "SarkariHai.com पर इस भर्ती की पूरी जानकारी, पात्रता, आयु सीमा, वेतन, महत्वपूर्ण तिथियां और आवेदन प्रक्रिया देखें।\n\n" .
+            "#SarkariNaukri #GovernmentJobs #JobAlert #SarkariHai #Recruitment2026";
+    @endphp
+
+    <textarea rows="12" style="width:500px;">{{ $youtubeDescription }}</textarea>
 </td>
             </tr>
         @empty
