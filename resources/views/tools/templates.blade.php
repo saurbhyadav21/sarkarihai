@@ -3,8 +3,8 @@
         ->select(
             '*'
         )
-        ->where('created_at', '>=', '2026-08-10 00:00:00')
-        ->where('created_at', '<', '2026-08-11 00:00:00')
+        ->where('created_at', '>=', '2026-08-11 00:00:00')
+        ->where('created_at', '<', '2026-08-12 00:00:00')
         ->whereDate('end_date', '>=', now()->toDateString())
         ->get();
 @endphp
