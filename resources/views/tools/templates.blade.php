@@ -184,48 +184,69 @@
                 <td>
                     {{ $job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-' }}
                 </td>
-                <td style="display: noxne;">
-                    @php
-                        $jobUrl = url('/sarkari-naukri/' . $job->state . '/' . $job->category . '/' . $job->slug);
+                <td style="display: none;">
+    @php 
+        $jobUrl = url('/sarkari-naukri/' . $job->state . '/' . $job->category . '/' . $job->slug); 
+ 
+        $youtubeDescription = 
+            "📢 {$job->title}\n\n" . 
+            '🏢 Organization: ' . ($job->organization ?: '-') . "\n" .
+            '💼 Post: ' . ($job->post_name ?: 'Various Posts') . "\n" .
+            '🎓 Qualification: ' . ($job->min_qulification ?: 'Various Qualifications') . "\n" .
+            '👥 Total Vacancies: ' . ($job->total_vacancies ?: '-') . "\n" .
+            '💰 Salary: ' . ($job->post_salary ?: '-') . "\n" .
+            '🎯 Age Limit: ' . (($job->min_age ?: '-') . ' - ' . ($job->max_age_genral ?: '-')) . "\n" .
+            '📅 Last Date: ' . ($job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : '-') . "\n" .
+            '📝 Apply Mode: ' . ($job->apply_mode ?: '-') . "\n" .
+            '📍 State: ' . ($job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-') . "\n\n" .
+            "🔗 Apply / Full Details:\n" .
+            $jobUrl . "\n\n" .
+            "SarkariHai.com पर इस भर्ती की पूरी जानकारी, पात्रता, आयु सीमा, वेतन, महत्वपूर्ण तिथियां और आवेदन प्रक्रिया देखें।\n\n" .
+            '#SarkariNaukri #GovernmentJobs #JobAlert #SarkariHai #Recruitment2026'; 
+    @endphp 
 
-                        $youtubeDescription =
-                            "📢 {$job->title}\n\n" .
-                            '🏢 Organization: ' .
-                            ($job->organization ?: '-') .
-                            "\n" .
-                            '💼 Post: ' .
-                            ($job->post_name ?: 'Various Posts') .
-                            "\n" .
-                            '🎓 Qualification: ' .
-                            ($job->min_qulification ?: 'Various Qualifications') .
-                            "\n" .
-                            '👥 Total Vacancies: ' .
-                            ($job->total_vacancies ?: '-') .
-                            "\n" .
-                            '💰 Salary: ' .
-                            ($job->post_salary ?: '-') .
-                            "\n" .
-                            '🎯 Age Limit: ' .
-                            (($job->min_age ?: '-') . ' - ' . ($job->max_age_genral ?: '-')) .
-                            "\n" .
-                            '📅 Last Date: ' .
-                            ($job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : '-') .
-                            "\n" .
-                            '📝 Apply Mode: ' .
-                            ($job->apply_mode ?: '-') .
-                            "\n" .
-                            '📍 State: ' .
-                            ($job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-') .
-                            "\n\n" .
-                            "🔗 Apply / Full Details:\n" .
-                            $jobUrl .
-                            "\n\n" .
-                            "SarkariHai.com पर इस भर्ती की पूरी जानकारी, पात्रता, आयु सीमा, वेतन, महत्वपूर्ण तिथियां और आवेदन प्रक्रिया देखें।\n\n" .
-                            '#SarkariNaukri #GovernmentJobs #JobAlert #SarkariHai #Recruitment2026';
-                    @endphp
+    <textarea 
+        id="youtubeDescription{{ $job->id }}" 
+        rows="12" 
+        style="width:500px;"
+    >{{ $youtubeDescription }}</textarea>
 
-                    <textarea rows="12" style="width:500px;">{{ $youtubeDescription }}</textarea>
-                </td>
+    <br>
+
+    <button 
+        type="button"
+        onclick="copyYoutubeDescription({{ $job->id }}, this)"
+        style="margin-top:5px; padding:8px 15px; cursor:pointer;"
+    >
+        📋 Copy
+    </button>
+</td>
+
+<script>
+function copyYoutubeDescription(id, button) {
+    const textarea = document.getElementById('youtubeDescription' + id);
+
+    navigator.clipboard.writeText(textarea.value).then(function () {
+        const oldText = button.innerHTML;
+
+        button.innerHTML = '✅ Copied!';
+
+        setTimeout(function () {
+            button.innerHTML = oldText;
+        }, 1500);
+
+    }).catch(function () {
+        textarea.select();
+        document.execCommand('copy');
+
+        button.innerHTML = '✅ Copied!';
+
+        setTimeout(function () {
+            button.innerHTML = '📋 Copy';
+        }, 1500);
+    });
+}
+</script>
             </tr>
         @empty
             <tr>
