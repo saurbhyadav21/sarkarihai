@@ -291,5 +291,5 @@ Route::get('/qualification-checker/posts', [QualificationCheckerController::clas
     ->name('qualification.checker.posts');
 
 
-Route::get('/templates', [QualificationCheckerController::class, 'templates'])
+Route::get('/templates/{date}', [QualificationCheckerController::class, 'templates'])
     ->name('qualification.templates');
