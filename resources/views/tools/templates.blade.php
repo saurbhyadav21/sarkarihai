@@ -201,8 +201,8 @@
             '📍 State: ' . ($job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-') . "\n\n" .
             // "🔗 Apply / Full Details:\n" .
             // $jobUrl . "\n\n" .
-            "SarkariHai.com पर इस भर्ती की पूरी जानकारी, पात्रता, आयु सीमा, वेतन, महत्वपूर्ण तिथियां और आवेदन प्रक्रिया देखें।\n\n" .
-            '#SarkariNaukri #GovernmentJobs #JobAlert #SarkariHai #Recruitment2026'; 
+            // "SarkariHai.com पर इस भर्ती की पूरी जानकारी, पात्रता, आयु सीमा, वेतन, महत्वपूर्ण तिथियां और आवेदन प्रक्रिया देखें।\n\n" .
+            // '#SarkariNaukri #GovernmentJobs #JobAlert #SarkariHai #Recruitment2026'; 
     @endphp 
 
     <textarea 
