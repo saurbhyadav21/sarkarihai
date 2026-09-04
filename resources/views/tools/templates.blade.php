@@ -3,7 +3,7 @@
         ->select('*')
         ->where('created_at', '>=', $date . ' 00:00:00')
         ->where('created_at', '<', date('Y-m-d', strtotime($date . ' +1 day')) . ' 00:00:00')
-        ->whereDate('end_date', '>=', now()->toDateString())
+        // ->whereDate('end_date', '>=', now()->toDateString())
         ->get();
 @endphp
 
