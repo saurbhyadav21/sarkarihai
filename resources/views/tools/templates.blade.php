@@ -198,7 +198,7 @@
             '🎯 Age Limit: ' . (($job->min_age ?: '-') . ' - ' . ($job->max_age_genral ?: '-')) . "\n" .
             '📅 Last Date: ' . ($job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : '-') . "\n" .
             '📝 Apply Mode: ' . ($job->apply_mode ?: '-') . "\n" .
-            '📍 State: ' . ($job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-') . "\n\n" .
+            '📍 State: ' . ($job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-') . "\n\n" ;
             // "🔗 Apply / Full Details:\n" .
             // $jobUrl . "\n\n" .
             // "SarkariHai.com पर इस भर्ती की पूरी जानकारी, पात्रता, आयु सीमा, वेतन, महत्वपूर्ण तिथियां और आवेदन प्रक्रिया देखें।\n\n" .
