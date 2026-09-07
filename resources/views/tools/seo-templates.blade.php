@@ -36,7 +36,7 @@
     <thead>
         <tr>
 
-            <th>Title</th>
+            {{-- <th>Title</th>
             <th>Organization</th>
             <th>Qualification</th>
             <th>Post Name</th>
@@ -45,7 +45,7 @@
             <th>Vacancies</th>
             <th>Salary</th>
             <th>Age</th>
-            <th>State</th>
+            <th>State</th> --}}
             <th>YouTube Description</th>
         </tr>
     </thead>
@@ -55,7 +55,7 @@
             <tr>
 
 
-                <td>{{ $job->title }}</td>
+                {{-- <td>{{ $job->title }}</td>
 
                 <td>{{ $job->organization }}</td>
 
@@ -183,7 +183,7 @@
 
                 <td>
                     {{ $job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-' }}
-                </td>
+                </td> --}}
                 <td style="display: noxne;">
     @php 
         $jobUrl = url('/sarkari-naukri/' . $job->state . '/' . $job->category . '/' . $job->slug); 
