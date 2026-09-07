@@ -140,4 +140,9 @@ class QualificationCheckerController extends Controller
     {
         return view('tools.templates', compact('date'));
     }
+
+    public function seotemplates($date)
+    {
+        return view('tools.seo-templates', compact('date'));
+    }
 }

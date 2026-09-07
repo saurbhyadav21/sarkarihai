@@ -293,3 +293,7 @@ Route::get('/qualification-checker/posts', [QualificationCheckerController::clas
 
 Route::get('/templates/{date}', [QualificationCheckerController::class, 'templates'])
     ->name('qualification.templates');
+
+
+Route::get('/seo-templates/{date}', [QualificationCheckerController::class, 'seotemplates'])
+    ->name('qualification.seo.templates');
