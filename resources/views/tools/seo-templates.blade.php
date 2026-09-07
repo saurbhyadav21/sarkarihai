@@ -275,9 +275,11 @@
                             '👥 Total Vacancies: ' .
                             ($job->total_vacancies ?: '-') .
                             "\n" .
-                            '💰 Salary: ' .
-                            ($job->post_salary ?: '-') .
-                            "\n" .
+                          '💰 Salary: ' . (
+    $job->post_salary
+        ? str_replace('#', "\n👉 ", $job->post_salary)
+        : '-'
+    ) . "\n" .
                             '🎯 Age Limit: ' .
                             (($job->min_age ?: '-') . ' - ' . ($job->max_age_genral ?: '-')) .
                             "\n" .
