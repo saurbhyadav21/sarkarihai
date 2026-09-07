@@ -35,7 +35,7 @@
 <table class="job-table">
     <thead>
         <tr>
-<th>Title</th>
+            <th>Title</th>
             {{-- 
             <th>Organization</th>
             <th>Qualification</th>
@@ -54,58 +54,58 @@
         @forelse($jobs as $job)
             <tr>
 
-<td>{{ $job->title }}</td>
+                <td>{{ $job->title }}</td>
 
-@php
-                        $postText = $job->post_name ?? '';
+                @php
+                    $postText = $job->post_name ?? '';
 
-                        $removePosts = ['total posts', 'no. of posts', 'salary per month', 'salary'];
+                    $removePosts = ['total posts', 'no. of posts', 'salary per month', 'salary'];
 
-                        $posts = preg_split('/\s*#\s*/', $postText);
+                    $posts = preg_split('/\s*#\s*/', $postText);
 
-                        $posts = array_filter($posts, function ($post) use ($removePosts) {
-                            $post = trim($post);
+                    $posts = array_filter($posts, function ($post) use ($removePosts) {
+                        $post = trim($post);
 
-                            if ($post === '') {
-                                return false;
-                            }
+                        if ($post === '') {
+                            return false;
+                        }
 
-                            return !in_array(strtolower($post), $removePosts);
-                        });
+                        return !in_array(strtolower($post), $removePosts);
+                    });
 
-                        $posts = array_values(array_unique($posts));
-                    @endphp
-                    @php
-                        $qualificationText = $job->post_eligibility ?? '';
+                    $posts = array_values(array_unique($posts));
+                @endphp
+                @php
+                    $qualificationText = $job->post_eligibility ?? '';
 
-                        $qualifications = preg_split('/\s*#\s*/', $qualificationText);
+                    $qualifications = preg_split('/\s*#\s*/', $qualificationText);
 
-                        $qualifications = array_filter($qualifications, function ($qualification) {
-                            return trim($qualification) !== '';
-                        });
+                    $qualifications = array_filter($qualifications, function ($qualification) {
+                        return trim($qualification) !== '';
+                    });
 
-                        $qualifications = array_values(array_unique($qualifications));
-                    @endphp
-                     @php
-                            $months = [
-                                'January' => 'जनवरी',
-                                'February' => 'फरवरी',
-                                'March' => 'मार्च',
-                                'April' => 'अप्रैल',
-                                'May' => 'मई',
-                                'June' => 'जून',
-                                'July' => 'जुलाई',
-                                'August' => 'अगस्त',
-                                'September' => 'सितंबर',
-                                'October' => 'अक्टूबर',
-                                'November' => 'नवंबर',
-                                'December' => 'दिसंबर',
-                            ];
+                    $qualifications = array_values(array_unique($qualifications));
+                @endphp
+                @php
+                    $months = [
+                        'January' => 'जनवरी',
+                        'February' => 'फरवरी',
+                        'March' => 'मार्च',
+                        'April' => 'अप्रैल',
+                        'May' => 'मई',
+                        'June' => 'जून',
+                        'July' => 'जुलाई',
+                        'August' => 'अगस्त',
+                        'September' => 'सितंबर',
+                        'October' => 'अक्टूबर',
+                        'November' => 'नवंबर',
+                        'December' => 'दिसंबर',
+                    ];
 
-                            $date = \Carbon\Carbon::parse($job->end_date);
-                            $month = $date->format('F');
-                        @endphp
-                         @php
+                    $date = \Carbon\Carbon::parse($job->end_date);
+                    $month = $date->format('F');
+                @endphp
+                @php
                     $salaryText = $job->post_salary ?? '';
 
                     preg_match_all('/(?:Rs\.?|₹)\s*([\d,]+(?:\.\d+)?)/i', $salaryText, $matches);
@@ -258,68 +258,79 @@
                     {{ $job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-' }}
                 </td> --}}
                 <td style="display: noxne;">
-    @php 
-        $jobUrl = url('/sarkari-naukri/' . $job->state . '/' . $job->category . '/' . $job->slug); 
- 
-        $youtubeDescription = 
-            "📢 {$job->title}\n\n" .  
-            '🏢 Organization: ' . ($job->organization ?: '-') . "\n" .
-            '💼 Post: ' . ($job->post_name ?: 'Various Posts') . "\n" .
-            '🎓 Qualification: ' . ($job->min_qulification ?: 'Various Qualifications') . "\n" .
-            '👥 Total Vacancies: ' . ($job->total_vacancies ?: '-') . "\n" .
-            '💰 Salary: ' . ($job->post_salary ?: '-') . "\n" .
-            '🎯 Age Limit: ' . (($job->min_age ?: '-') . ' - ' . ($job->max_age_genral ?: '-')) . "\n" .
-            '📅 Last Date: ' . ($job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : '-') . "\n" .
-            '📝 Apply Mode: ' . ($job->apply_mode ?: '-') . "\n" .
-            '📍 State: ' . ($job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-') . "\n\n" ;
-            // "🔗 Apply / Full Details:\n" .
-            // $jobUrl . "\n\n" .
-            // "SarkariHai.com पर इस भर्ती की पूरी जानकारी, पात्रता, आयु सीमा, वेतन, महत्वपूर्ण तिथियां और आवेदन प्रक्रिया देखें।\n\n" .
-            // '#SarkariNaukri #GovernmentJobs #JobAlert #SarkariHai #Recruitment2026'; 
-    @endphp 
+                    @php
+                        $jobUrl = url('/sarkari-naukri/' . $job->state . '/' . $job->category . '/' . $job->slug);
 
-    <textarea 
-        id="youtubeDescription{{ $job->id }}" 
-        rows="12" 
-        style="width:500px;"
-    >{{ $youtubeDescription }}</textarea>
+                        $youtubeDescription =
+                            "📢 {$job->title}\n\n" .
+                            '🏢 Organization: ' .
+                            ($job->organization ?: '-') .
+                            "\n" .
+                            '💼 Post: ' .
+                            ($job->post_name ? str_replace('#', "\n👉 ", $job->post_name) : 'Various Posts') .
+                            "\n" .
+                            '🎓 Qualification: ' .
+                            ($job->min_qulification ?: 'Various Qualifications') .
+                            "\n" .
+                            '👥 Total Vacancies: ' .
+                            ($job->total_vacancies ?: '-') .
+                            "\n" .
+                            '💰 Salary: ' .
+                            ($job->post_salary ?: '-') .
+                            "\n" .
+                            '🎯 Age Limit: ' .
+                            (($job->min_age ?: '-') . ' - ' . ($job->max_age_genral ?: '-')) .
+                            "\n" .
+                            '📅 Last Date: ' .
+                            ($job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : '-') .
+                            "\n" .
+                            '📝 Apply Mode: ' .
+                            ($job->apply_mode ?: '-') .
+                            "\n" .
+                            '📍 State: ' .
+                            ($job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-') .
+                            "\n\n";
+                        // "🔗 Apply / Full Details:\n" .
+                        // $jobUrl . "\n\n" .
+                        // "SarkariHai.com पर इस भर्ती की पूरी जानकारी, पात्रता, आयु सीमा, वेतन, महत्वपूर्ण तिथियां और आवेदन प्रक्रिया देखें।\n\n" .
+                        // '#SarkariNaukri #GovernmentJobs #JobAlert #SarkariHai #Recruitment2026';
+                    @endphp
 
-    <br>
+                    <textarea id="youtubeDescription{{ $job->id }}" rows="12" style="width:500px;">{{ $youtubeDescription }}</textarea>
 
-    <button 
-        type="button"
-        onclick="copyYoutubeDescription({{ $job->id }}, this)"
-        style="margin-top:5px; padding:8px 15px; cursor:pointer;"
-    >
-        📋 Copy
-    </button>
-</td>
+                    <br>
 
-<script>
-function copyYoutubeDescription(id, button) {
-    const textarea = document.getElementById('youtubeDescription' + id);
+                    <button type="button" onclick="copyYoutubeDescription({{ $job->id }}, this)"
+                        style="margin-top:5px; padding:8px 15px; cursor:pointer;">
+                        📋 Copy
+                    </button>
+                </td>
 
-    navigator.clipboard.writeText(textarea.value).then(function () {
-        const oldText = button.innerHTML;
+                <script>
+                    function copyYoutubeDescription(id, button) {
+                        const textarea = document.getElementById('youtubeDescription' + id);
 
-        button.innerHTML = '✅ Copied!';
+                        navigator.clipboard.writeText(textarea.value).then(function() {
+                            const oldText = button.innerHTML;
 
-        setTimeout(function () {
-            button.innerHTML = oldText;
-        }, 1500);
+                            button.innerHTML = '✅ Copied!';
 
-    }).catch(function () {
-        textarea.select();
-        document.execCommand('copy');
+                            setTimeout(function() {
+                                button.innerHTML = oldText;
+                            }, 1500);
 
-        button.innerHTML = '✅ Copied!';
+                        }).catch(function() {
+                            textarea.select();
+                            document.execCommand('copy');
 
-        setTimeout(function () {
-            button.innerHTML = '📋 Copy';
-        }, 1500);
-    });
-}
-</script>
+                            button.innerHTML = '✅ Copied!';
+
+                            setTimeout(function() {
+                                button.innerHTML = '📋 Copy';
+                            }, 1500);
+                        });
+                    }
+                </script>
             </tr>
         @empty
             <tr>
