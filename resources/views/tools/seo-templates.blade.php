@@ -285,7 +285,7 @@
                         $postSalaryTable .= '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
 
                         $youtubeDescription =
-                            "📢 {$job->title}\n\n" .
+                            "<b>📢 {$job->title}</b>\n\n" .
                             '🏢 Organization: ' .
                             ($job->organization ?: '-') .
                             "\n\n" .
