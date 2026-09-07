@@ -55,6 +55,79 @@
             <tr>
 
 <td>{{ $job->title }}</td>
+
+@php
+                        $postText = $job->post_name ?? '';
+
+                        $removePosts = ['total posts', 'no. of posts', 'salary per month', 'salary'];
+
+                        $posts = preg_split('/\s*#\s*/', $postText);
+
+                        $posts = array_filter($posts, function ($post) use ($removePosts) {
+                            $post = trim($post);
+
+                            if ($post === '') {
+                                return false;
+                            }
+
+                            return !in_array(strtolower($post), $removePosts);
+                        });
+
+                        $posts = array_values(array_unique($posts));
+                    @endphp
+                    @php
+                        $qualificationText = $job->post_eligibility ?? '';
+
+                        $qualifications = preg_split('/\s*#\s*/', $qualificationText);
+
+                        $qualifications = array_filter($qualifications, function ($qualification) {
+                            return trim($qualification) !== '';
+                        });
+
+                        $qualifications = array_values(array_unique($qualifications));
+                    @endphp
+                     @php
+                            $months = [
+                                'January' => 'जनवरी',
+                                'February' => 'फरवरी',
+                                'March' => 'मार्च',
+                                'April' => 'अप्रैल',
+                                'May' => 'मई',
+                                'June' => 'जून',
+                                'July' => 'जुलाई',
+                                'August' => 'अगस्त',
+                                'September' => 'सितंबर',
+                                'October' => 'अक्टूबर',
+                                'November' => 'नवंबर',
+                                'December' => 'दिसंबर',
+                            ];
+
+                            $date = \Carbon\Carbon::parse($job->end_date);
+                            $month = $date->format('F');
+                        @endphp
+                         @php
+                    $salaryText = $job->post_salary ?? '';
+
+                    preg_match_all('/(?:Rs\.?|₹)\s*([\d,]+(?:\.\d+)?)/i', $salaryText, $matches);
+
+                    $amounts = [];
+
+                    foreach ($matches[1] as $amount) {
+                        $amounts[] = (float) str_replace(',', '', $amount);
+                    }
+
+                    // Range ke second amounts bhi pakadne ke liye
+                    preg_match_all('/-\s*([\d,]+(?:\.\d+)?)/', $salaryText, $rangeMatches);
+
+                    foreach ($rangeMatches[1] as $amount) {
+                        $amounts[] = (float) str_replace(',', '', $amount);
+                    }
+
+                    $amounts = array_filter($amounts);
+
+                    $minSalary = !empty($amounts) ? min($amounts) : null;
+                    $maxSalary = !empty($amounts) ? max($amounts) : null;
+                @endphp
                 {{-- 
 
                 <td>{{ $job->organization }}</td>
