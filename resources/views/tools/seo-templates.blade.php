@@ -262,7 +262,7 @@
         $jobUrl = url('/sarkari-naukri/' . $job->state . '/' . $job->category . '/' . $job->slug); 
  
         $youtubeDescription = 
-            "📢 {$job->title}\n\n" . 
+            "📢 {$job->title}\n\n" .  
             '🏢 Organization: ' . ($job->organization ?: '-') . "\n" .
             '💼 Post: ' . ($job->post_name ?: 'Various Posts') . "\n" .
             '🎓 Qualification: ' . ($job->min_qulification ?: 'Various Qualifications') . "\n" .
