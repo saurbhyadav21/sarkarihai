@@ -257,29 +257,46 @@
                 <td>
                     {{ $job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-' }}
                 </td> --}}
-                <td style="display: noxne;">
+                <td style="display: none;">
                     @php
                         $jobUrl = url('/sarkari-naukri/' . $job->state . '/' . $job->category . '/' . $job->slug);
+
+                        // Post & Salary Arrays
+                        $posts = $job->post_name ? array_map('trim', explode('#', $job->post_name)) : [];
+
+                        $salaries = $job->post_salary ? array_map('trim', explode('#', $job->post_salary)) : [];
+
+                        // Create Post + Salary Table
+                        $postSalaryTable = "📋 Post & Salary Details\n";
+                        $postSalaryTable .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+                        $postSalaryTable .= "Post                              Salary\n";
+                        $postSalaryTable .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+
+                        if (count($posts) > 0) {
+                            foreach ($posts as $index => $post) {
+                                $salary = $salaries[$index] ?? '-';
+
+                                $postSalaryTable .= str_pad(mb_substr($post, 0, 32), 34, ' ') . $salary . "\n";
+                            }
+                        } else {
+                            $postSalaryTable .= 'Various Posts                    ' . ($job->post_salary ?: '-') . "\n";
+                        }
+
+                        $postSalaryTable .= '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
 
                         $youtubeDescription =
                             "📢 {$job->title}\n\n" .
                             '🏢 Organization: ' .
                             ($job->organization ?: '-') .
-                            "\n" .
-                            '💼 Post: ' .
-                            ($job->post_name ? str_replace('#', "\n👉 ", $job->post_name) : 'Various Posts') .
-                            "\n" .
+                            "\n\n" .
+                            $postSalaryTable .
+                            "\n\n" .
                             '🎓 Qualification: ' .
                             ($job->min_qulification ?: 'Various Qualifications') .
                             "\n" .
                             '👥 Total Vacancies: ' .
                             ($job->total_vacancies ?: '-') .
                             "\n" .
-                          '💰 Salary: ' . (
-    $job->post_salary
-        ? str_replace('#', "\n👉 ", $job->post_salary)
-        : '-'
-    ) . "\n" .
                             '🎯 Age Limit: ' .
                             (($job->min_age ?: '-') . ' - ' . ($job->max_age_genral ?: '-')) .
                             "\n" .
@@ -292,13 +309,18 @@
                             '📍 State: ' .
                             ($job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-') .
                             "\n\n";
-                        // "🔗 Apply / Full Details:\n" .
-                        // $jobUrl . "\n\n" .
-                        // "SarkariHai.com पर इस भर्ती की पूरी जानकारी, पात्रता, आयु सीमा, वेतन, महत्वपूर्ण तिथियां और आवेदन प्रक्रिया देखें।\n\n" .
-                        // '#SarkariNaukri #GovernmentJobs #JobAlert #SarkariHai #Recruitment2026';
+
+                        /*
+        $youtubeDescription .=
+            "🔗 Apply / Full Details:\n" .
+            $jobUrl . "\n\n" .
+            "SarkariHai.com पर इस भर्ती की पूरी जानकारी, पात्रता, आयु सीमा, वेतन, महत्वपूर्ण तिथियां और आवेदन प्रक्रिया देखें।\n\n" .
+            "#SarkariNaukri #GovernmentJobs #JobAlert #SarkariHai #Recruitment2026";
+        */
+
                     @endphp
 
-                    <textarea id="youtubeDescription{{ $job->id }}" rows="12" style="width:500px;">{{ $youtubeDescription }}</textarea>
+                    <textarea id="youtubeDescription{{ $job->id }}" rows="25" style="width:700px; font-family:monospace;">{{ $youtubeDescription }}</textarea>
 
                     <br>
 
