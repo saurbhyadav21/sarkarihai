@@ -35,8 +35,8 @@
 <table class="job-table">
     <thead>
         <tr>
-
-            {{-- <th>Title</th>
+<th>Title</th>
+            {{-- 
             <th>Organization</th>
             <th>Qualification</th>
             <th>Post Name</th>
@@ -54,8 +54,8 @@
         @forelse($jobs as $job)
             <tr>
 
-
-                {{-- <td>{{ $job->title }}</td>
+<td>{{ $job->title }}</td>
+                {{-- 
 
                 <td>{{ $job->organization }}</td>
 
