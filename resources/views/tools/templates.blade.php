@@ -76,65 +76,196 @@
                     </td>
 
                     <td>
-                        {{ $job->min_qulification ?: 'Various Qualifications' }}
-                    </td>
+
+                    @php
+
+                        $qualificationText = $job->post_eligibility ?? '';
+
+                        $qualifications = preg_split('/\s*#\s*/', $qualificationText);
+
+                        $qualifications = array_filter($qualifications, function ($qualification) {
+
+                            return trim($qualification) !== '';
+
+                        });
+
+                        $qualifications = array_values(array_unique($qualifications));
+
+                    @endphp
+
+                    @if (count($qualifications) === 1)
+
+                        {{ trim($qualifications[0]) }}
+
+                    @else
+
+                        Various Qualifications
+
+                    @endif
+
+                </td>
 
                     <td>
-                        {{ $job->post_name ? rtrim(str_replace('#', ',', $job->post_name), ', ') : 'Various Posts' }}
-                    </td>
+
+                    @php
+
+                        $postText = $job->post_name ?? '';
+
+                        $removePosts = ['total posts', 'no. of posts', 'salary per month', 'salary'];
+
+                        $posts = preg_split('/\s*#\s*/', $postText);
+
+                        $posts = array_filter($posts, function ($post) use ($removePosts) {
+
+                            $post = trim($post);
+
+                            if ($post === '') {
+
+                                return false;
+
+                            }
+
+                            return !in_array(strtolower($post), $removePosts);
+
+                        });
+
+                        $posts = array_values(array_unique($posts));
+
+                    @endphp
+
+                    @if (count($posts) === 1)
+
+                        {{ $posts[0] }}
+
+                    @else
+
+                        Various Posts
+
+                    @endif
+
+                </td>
 
                     <td>
-                        @if ($job->end_date)
-                            @php
-                                $months = [
-                                    'Jan' => 'जनवरी',
-                                    'Feb' => 'फरवरी',
-                                    'Mar' => 'मार्च',
-                                    'Apr' => 'अप्रैल',
-                                    'May' => 'मई',
-                                    'Jun' => 'जून',
-                                    'Jul' => 'जुलाई',
-                                    'Aug' => 'अगस्त',
-                                    'Sep' => 'सितंबर',
-                                    'Oct' => 'अक्टूबर',
-                                    'Nov' => 'नवंबर',
-                                    'Dec' => 'दिसंबर',
-                                ];
 
-                                $date = \Carbon\Carbon::parse($job->end_date);
-                            @endphp
+                    @if ($job->end_date)
 
-                            {{ $date->format('d') }}
-                            {{ $months[$date->format('M')] }}
-                            {{ $date->format('Y') }}
-                        @else
-                            -
-                        @endif
-                    </td>
+                        @php
+
+                            $months = [
+
+                                'January' => 'जनवरी',
+
+                                'February' => 'फरवरी',
+
+                                'March' => 'मार्च',
+
+                                'April' => 'अप्रैल',
+
+                                'May' => 'मई',
+
+                                'June' => 'जून',
+
+                                'July' => 'जुलाई',
+
+                                'August' => 'अगस्त',
+
+                                'September' => 'सितंबर',
+
+                                'October' => 'अक्टूबर',
+
+                                'November' => 'नवंबर',
+
+                                'December' => 'दिसंबर',
+
+                            ];
+
+                            $date = \Carbon\Carbon::parse($job->end_date);
+
+                            $month = $date->format('F');
+
+                        @endphp
+
+                        {{ $date->format('d') }} {{ $months[$month] }} {{ $date->format('Y') }}
+
+                    @else
+
+                        -
+
+                    @endif
+
+                </td>
 
                     <td>
                         {{ $job->apply_mode ?: '-' }}
                     </td>
 
                     <td>
-                        {{ $job->total_vacancies ?: '-' }}
-                    </td>
+
+                    {{ $job->total_vacancies ? preg_replace('/\s*posts?\b/i', '', $job->total_vacancies) : '-' }}
+
+                </td>
+
+                    @php
+
+                    $salaryText = $job->post_salary ?? '';
+
+                    preg_match_all('/(?:Rs\.?|₹)\s*([\d,]+(?:\.\d+)?)/i', $salaryText, $matches);
+
+                    $amounts = [];
+
+                    foreach ($matches[1] as $amount) {
+
+                        $amounts[] = (float) str_replace(',', '', $amount);
+
+                    }
+
+                    // Range ke second amounts bhi pakadne ke liye
+
+                    preg_match_all('/-\s*([\d,]+(?:\.\d+)?)/', $salaryText, $rangeMatches);
+
+                    foreach ($rangeMatches[1] as $amount) {
+
+                        $amounts[] = (float) str_replace(',', '', $amount);
+
+                    }
+
+                    $amounts = array_filter($amounts);
+
+                    $minSalary = !empty($amounts) ? min($amounts) : null;
+
+                    $maxSalary = !empty($amounts) ? max($amounts) : null;
+
+                @endphp
+
+                <td>{{ $minSalary && $maxSalary ? 'Rs. ' . number_format($minSalary) . ' - ' . number_format($maxSalary) : '-' }}
+
+                </td>
 
                     <td>
-                        {{ $job->post_salary
-                            ? preg_replace(['/\\s*#\\s*/', '/\\s*per\\s+month\\s*/i'], [', ', ''], trim($job->post_salary, ' #'))
-                            : '-' }}
-                    </td>
+
+                    @php
+
+                        $minAge = $job->min_age;
+
+                        $maxAge = $job->max_age_genral;
+
+                        if ($minAge == $maxAge && $maxAge) {
+
+                            $minAge = 18;
+
+                        }
+
+                    @endphp
+
+                    {{ $minAge ?: '-' }} - {{ $maxAge ?: '-' }}
+
+                </td>
 
                     <td>
-                        {{ $job->min_age ?: '-' }}
-                        -
-                        {{ $job->max_age_genral ?: '-' }}
-                    </td>
 
-                    <td>
-                        {{ $job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-' }}
-                    </td>
+                    {{ $job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-' }}
+
+                </td>
 
                     {{-- YouTube Description - BOTH JOBS IN ONE TEXTAREA --}}
 
