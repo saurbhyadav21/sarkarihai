@@ -161,7 +161,7 @@
     }
 @endphp
 
-<td>
+<td style="display: none;">
     <textarea
         id="youtubeDescription{{ $jobPair->first()->id }}"
         rows="18"
