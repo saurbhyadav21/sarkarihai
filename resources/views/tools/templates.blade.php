@@ -80,7 +80,7 @@
                     </td>
 
                     <td>
-                        {{ $job->post_name ? str_replace('#', ',', $job->post_name) : 'Various Posts' }}
+                        {{ $job->post_name ? rtrim(str_replace('#', ',', $job->post_name), ', ') : 'Various Posts' }}
                     </td>
 
                     <td>
