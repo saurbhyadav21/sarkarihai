@@ -30,304 +30,238 @@
     .job-table tr:nth-child(even) {
         background: #fafafa;
     }
+    .job-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 1600px;
+}
+
+.job-table th,
+.job-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+    white-space: normal;
+}
+
+.job-table th {
+    background: #f5f5f5;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.job-table tr:nth-child(even) {
+    background: #fafafa;
+}
 </style>
 
 <table class="job-table">
     <thead>
         <tr>
-            <th>Job 1 - Title</th>
-            <th>Job 1 - Organization</th>
-            <th>Job 1 - Qualification</th>
-            <th>Job 1 - Post Name</th>
-            <th>Job 1 - Last Date</th>
-            <th>Job 1 - Apply Mode</th>
-            <th>Job 1 - Vacancies</th>
-            <th>Job 1 - Salary</th>
-            <th>Job 1 - Age</th>
-            <th>Job 1 - State</th>
-            <th>Job 1 - YouTube Description</th>
-
-            <th>Job 2 - Title</th>
-            <th>Job 2 - Organization</th>
-            <th>Job 2 - Qualification</th>
-            <th>Job 2 - Post Name</th>
-            <th>Job 2 - Last Date</th>
-            <th>Job 2 - Apply Mode</th>
-            <th>Job 2 - Vacancies</th>
-            <th>Job 2 - Salary</th>
-            <th>Job 2 - Age</th>
-            <th>Job 2 - State</th>
-            {{-- <th>Job 2 - YouTube Description</th> --}}
+            <th>Organization</th>
+            <th>Organization Full Form</th>
+            <th>Post</th>
+            <th>Mode</th>
+            <th>Post Number</th>
+            <th>योग्यता</th>
+            <th>पद</th>
+            <th>आवेदन शुरू</th>
+            <th>जॉब लोकेशन</th>
+            <th>वेतनमान</th>
+            <th>अंतिम तिथि</th>
         </tr>
     </thead>
 
     <tbody>
 
-        @foreach ($jobs->chunk(2) as $jobPair)
-            <tr>
+    @foreach ($jobs as $job)
 
-                @foreach ($jobPair as $job)
-                    <td>
-                        {{ $job->title }}
-                    </td>
+        <tr>
 
-                    <td>
-                        {{ $job->organization ?: '-' }}
-                    </td>
+            {{-- Organization --}}
+            <td>
+                {{ $job->organization ?: '-' }}
+            </td>
 
-                    <td>
+            {{-- Organization Full Form --}}
+            <td>
+                {{ $job->organization_full_form ?: '-' }}
+            </td>
 
-                    @php
+            {{-- Post --}}
+            <td>
+                {{ $job->title ?: '-' }}
+            </td>
 
-                        $qualificationText = $job->post_eligibility ?? '';
+            {{-- Mode --}}
+            <td>
+                {{ $job->apply_mode ?: '-' }}
+            </td>
 
-                        $qualifications = preg_split('/\s*#\s*/', $qualificationText);
+            {{-- Post Number --}}
+            <td>
+                {{ $job->total_vacancies
+                    ? preg_replace('/\s*posts?\b/i', '', $job->total_vacancies)
+                    : '-' }}
+            </td>
 
-                        $qualifications = array_filter($qualifications, function ($qualification) {
+            {{-- योग्यता --}}
+            <td>
+                @php
+                    $qualificationText = $job->post_eligibility ?? '';
 
-                            return trim($qualification) !== '';
+                    $qualifications = preg_split(
+                        '/\s*#\s*/',
+                        $qualificationText
+                    );
 
-                        });
+                    $qualifications = array_filter(
+                        $qualifications,
+                        fn($qualification) => trim($qualification) !== ''
+                    );
 
-                        $qualifications = array_values(array_unique($qualifications));
+                    $qualifications = array_values(
+                        array_unique($qualifications)
+                    );
+                @endphp
 
-                    @endphp
+                @if(count($qualifications) === 1)
+                    {{ trim($qualifications[0]) }}
+                @elseif(!empty($job->min_qulification))
+                    {{ $job->min_qulification }}
+                @else
+                    -
+                @endif
+            </td>
 
-                    @if (count($qualifications) === 1)
+            {{-- पद --}}
+            <td>
+                @php
+                    $postText = $job->post_name ?? '';
 
-                        {{ trim($qualifications[0]) }}
+                    $removePosts = [
+                        'total posts',
+                        'no. of posts',
+                        'salary per month',
+                        'salary'
+                    ];
 
-                    @else
+                    $posts = preg_split(
+                        '/\s*#\s*/',
+                        $postText
+                    );
 
-                        Various Qualifications
-
-                    @endif
-
-                </td>
-
-                    <td>
-
-                    @php
-
-                        $postText = $job->post_name ?? '';
-
-                        $removePosts = ['total posts', 'no. of posts', 'salary per month', 'salary'];
-
-                        $posts = preg_split('/\s*#\s*/', $postText);
-
-                        $posts = array_filter($posts, function ($post) use ($removePosts) {
+                    $posts = array_filter(
+                        $posts,
+                        function ($post) use ($removePosts) {
 
                             $post = trim($post);
 
                             if ($post === '') {
-
                                 return false;
-
                             }
 
-                            return !in_array(strtolower($post), $removePosts);
+                            return !in_array(
+                                strtolower($post),
+                                $removePosts
+                            );
+                        }
+                    );
 
-                        });
+                    $posts = array_values(
+                        array_unique($posts)
+                    );
+                @endphp
 
-                        $posts = array_values(array_unique($posts));
+                @if(count($posts) === 1)
+                    {{ $posts[0] }}
+                @elseif(count($posts) > 1)
+                    {{ implode(', ', $posts) }}
+                @else
+                    -
+                @endif
+            </td>
 
-                    @endphp
+            {{-- आवेदन शुरू --}}
+            <td>
+                @if(!empty($job->start_date))
+                    {{ \Carbon\Carbon::parse($job->start_date)->format('d-M-y') }}
+                @else
+                    -
+                @endif
+            </td>
 
-                    @if (count($posts) === 1)
+            {{-- जॉब लोकेशन --}}
+            <td>
+                {{ $job->job_location ?: ($job->state ?: '-') }}
+            </td>
 
-                        {{ $posts[0] }}
-
-                    @else
-
-                        Various Posts
-
-                    @endif
-
-                </td>
-
-                    <td>
-
-                    @if ($job->end_date)
-
-                        @php
-
-                            $months = [
-
-                                'January' => 'जनवरी',
-
-                                'February' => 'फरवरी',
-
-                                'March' => 'मार्च',
-
-                                'April' => 'अप्रैल',
-
-                                'May' => 'मई',
-
-                                'June' => 'जून',
-
-                                'July' => 'जुलाई',
-
-                                'August' => 'अगस्त',
-
-                                'September' => 'सितंबर',
-
-                                'October' => 'अक्टूबर',
-
-                                'November' => 'नवंबर',
-
-                                'December' => 'दिसंबर',
-
-                            ];
-
-                            $date = \Carbon\Carbon::parse($job->end_date);
-
-                            $month = $date->format('F');
-
-                        @endphp
-
-                        {{ $date->format('d') }} {{ $months[$month] }} {{ $date->format('Y') }}
-
-                    @else
-
-                        -
-
-                    @endif
-
-                </td>
-
-                    <td>
-                        {{ $job->apply_mode ?: '-' }}
-                    </td>
-
-                    <td>
-
-                    {{ $job->total_vacancies ? preg_replace('/\s*posts?\b/i', '', $job->total_vacancies) : '-' }}
-
-                </td>
-
-                    @php
-
+            {{-- वेतनमान --}}
+            <td>
+                @php
                     $salaryText = $job->post_salary ?? '';
 
-                    preg_match_all('/(?:Rs\.?|₹)\s*([\d,]+(?:\.\d+)?)/i', $salaryText, $matches);
+                    preg_match_all(
+                        '/(?:Rs\.?|₹)\s*([\d,]+(?:\.\d+)?)/i',
+                        $salaryText,
+                        $matches
+                    );
 
                     $amounts = [];
 
                     foreach ($matches[1] as $amount) {
-
                         $amounts[] = (float) str_replace(',', '', $amount);
-
                     }
 
-                    // Range ke second amounts bhi pakadne ke liye
-
-                    preg_match_all('/-\s*([\d,]+(?:\.\d+)?)/', $salaryText, $rangeMatches);
+                    // Range ke second amount
+                    preg_match_all(
+                        '/-\s*([\d,]+(?:\.\d+)?)/',
+                        $salaryText,
+                        $rangeMatches
+                    );
 
                     foreach ($rangeMatches[1] as $amount) {
-
                         $amounts[] = (float) str_replace(',', '', $amount);
-
                     }
 
                     $amounts = array_filter($amounts);
 
-                    $minSalary = !empty($amounts) ? min($amounts) : null;
+                    $minSalary = !empty($amounts)
+                        ? min($amounts)
+                        : null;
 
-                    $maxSalary = !empty($amounts) ? max($amounts) : null;
-
+                    $maxSalary = !empty($amounts)
+                        ? max($amounts)
+                        : null;
                 @endphp
 
-                <td>{{ $minSalary && $maxSalary ? 'Rs. ' . number_format($minSalary) . ' - ' . number_format($maxSalary) : '-' }}
-
-                </td>
-
-                    <td>
-
-                    @php
-
-                        $minAge = $job->min_age;
-
-                        $maxAge = $job->max_age_genral;
-
-                        if ($minAge == $maxAge && $maxAge) {
-
-                            $minAge = 18;
-
-                        }
-
-                    @endphp
-
-                    {{ $minAge ?: '-' }} - {{ $maxAge ?: '-' }}
-
-                </td>
-
-                    <td>
-
-                    {{ $job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-' }}
-
-                </td>
-
-                    {{-- YouTube Description - BOTH JOBS IN ONE TEXTAREA --}}
-
-                    @php
-                        $youtubeDescription = '';
-
-                        foreach ($jobPair as $job) {
-                            $youtubeDescription .=
-                                "📢 {$job->title}\n\n" .
-                                '🏢 Organization: ' .
-                                ($job->organization ?: '-') .
-                                "\n" .
-                                '💼 Post: ' .
-                                ($job->post_name ?: 'Various Posts') .
-                                "\n" .
-                                '🎓 Qualification: ' .
-                                ($job->min_qulification ?: 'Various Qualifications') .
-                                "\n" .
-                                '👥 Total Vacancies: ' .
-                                ($job->total_vacancies ?: '-') .
-                                "\n" .
-                                '💰 Salary: ' .
-                                ($job->post_salary ?: '-') .
-                                "\n" .
-                                '🎯 Age Limit: ' .
-                                (($job->min_age ?: '-') . ' - ' . ($job->max_age_genral ?: '-')) .
-                                "\n" .
-                                '📅 Last Date: ' .
-                                ($job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : '-') .
-                                "\n" .
-                                '📝 Apply Mode: ' .
-                                ($job->apply_mode ?: '-') .
-                                "\n" .
-                                '📍 State: ' .
-                                ($job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-') .
-                                "\n\n";
-                        }
-                    @endphp
-
-                    <td style="display: noxne;">
-                        <textarea id="youtubeDescription{{ $jobPair->first()->id }}" rows="18" style="width:500px;">{{ $youtubeDescription }}</textarea>
-
-                        <br>
-
-                        <button type="button" onclick="copyYoutubeDescription({{ $jobPair->first()->id }}, this)"
-                            style="margin-top:5px; padding:8px 15px; cursor:pointer;">
-                            📋 Copy
-                        </button>
-                    </td>
-                @endforeach
-
-                {{-- अगर आखिरी में केवल 1 job बची --}}
-                @if ($jobPair->count() == 1)
-                    @for ($i = 0; $i < 11; $i++)
-                        <td>-</td>
-                    @endfor
+                @if($minSalary && $maxSalary)
+                    Rs. {{ number_format($minSalary) }}
+                    -
+                    {{ number_format($maxSalary) }}/-
+                @elseif($job->post_salary)
+                    {{ $job->post_salary }}
+                @else
+                    -
                 @endif
+            </td>
 
-            </tr>
-        @endforeach
+            {{-- अंतिम तिथि --}}
+            <td>
+                @if($job->end_date)
+                    {{ \Carbon\Carbon::parse($job->end_date)->format('d-M-y') }}
+                @else
+                    -
+                @endif
+            </td>
 
-    </tbody>
+        </tr>
+
+    @endforeach
+
+</tbody>
 </table>
 
 <script>
