@@ -84,7 +84,32 @@
                     </td>
 
                     <td>
-                        {{ $job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : '-' }}
+                        @if ($job->end_date)
+                            @php
+                                $months = [
+                                    'Jan' => 'जनवरी',
+                                    'Feb' => 'फरवरी',
+                                    'Mar' => 'मार्च',
+                                    'Apr' => 'अप्रैल',
+                                    'May' => 'मई',
+                                    'Jun' => 'जून',
+                                    'Jul' => 'जुलाई',
+                                    'Aug' => 'अगस्त',
+                                    'Sep' => 'सितंबर',
+                                    'Oct' => 'अक्टूबर',
+                                    'Nov' => 'नवंबर',
+                                    'Dec' => 'दिसंबर',
+                                ];
+
+                                $date = \Carbon\Carbon::parse($job->end_date);
+                            @endphp
+
+                            {{ $date->format('d') }}
+                            {{ $months[$date->format('M')] }}
+                            {{ $date->format('Y') }}
+                        @else
+                            -
+                        @endif
                     </td>
 
                     <td>
