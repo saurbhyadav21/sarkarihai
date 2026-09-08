@@ -57,7 +57,7 @@
             <th>Job 2 - Salary</th>
             <th>Job 2 - Age</th>
             <th>Job 2 - State</th>
-            <th>Job 2 - YouTube Description</th>
+            {{-- <th>Job 2 - YouTube Description</th> --}}
         </tr>
     </thead>
 
