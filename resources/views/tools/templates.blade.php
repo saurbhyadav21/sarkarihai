@@ -96,7 +96,9 @@
                     </td>
 
                     <td>
-                        {{ $job->post_salary ? preg_replace('/\s*#\s*/', ', ', $job->post_salary) : '-' }}
+                        {{ $job->post_salary
+                            ? preg_replace(['/\\s*#\\s*/', '/\\s*per\\s+month\\s*/i'], [', ', ''], trim($job->post_salary, ' #'))
+                            : '-' }}
                     </td>
 
                     <td>
