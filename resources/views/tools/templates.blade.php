@@ -45,7 +45,7 @@
             <th>Job 1 - Salary</th>
             <th>Job 1 - Age</th>
             <th>Job 1 - State</th>
-            {{-- <th>Job 1 - YouTube Description</th> --}}
+            <th>Job 1 - YouTube Description</th>
 
             <th>Job 2 - Title</th>
             <th>Job 2 - Organization</th>
@@ -305,7 +305,7 @@
                         }
                     @endphp
 
-                    <td style="display: none;">
+                    <td style="display: noxne;">
                         <textarea id="youtubeDescription{{ $jobPair->first()->id }}" rows="18" style="width:500px;">{{ $youtubeDescription }}</textarea>
 
                         <br>
