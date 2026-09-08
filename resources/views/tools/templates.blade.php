@@ -61,294 +61,141 @@
         </tr>
     </thead>
 
-   
-<tbody>
+    <tbody>
 
-    @foreach ($jobs->chunk(2) as $jobPair)
+        @foreach($jobs->chunk(2) as $jobPair)
 
-        <tr>
+    <tr>
 
-            {{-- ================= JOB 1 ================= --}}
-            @php
-                $job1 = $jobPair->get(0);
-            @endphp
+        @foreach($jobPair as $job)
 
-            @if ($job1)
-
-                <td>
-                    {{ $job1->title }}
-                </td>
-
-                <td>
-                    {{ $job1->organization ?: '-' }}
-                </td>
-
-                <td>
-                    {{ $job1->min_qulification ?: 'Various Qualifications' }}
-                </td>
-
-                <td>
-                    {{ $job1->post_name ?: 'Various Posts' }}
-                </td>
-
-                <td>
-                    {{ $job1->end_date
-                        ? \Carbon\Carbon::parse($job1->end_date)->format('d M Y')
-                        : '-' }}
-                </td>
+            <td>
+                {{ $job->title }}
+            </td>
 
-                <td>
-                    {{ $job1->apply_mode ?: '-' }}
-                </td>
+            <td>
+                {{ $job->organization ?: '-' }}
+            </td>
 
-                <td>
-                    {{ $job1->total_vacancies ?: '-' }}
-                </td>
+            <td>
+                {{ $job->min_qulification ?: 'Various Qualifications' }}
+            </td>
 
-                <td>
-                    {{ $job1->post_salary ?: '-' }}
-                </td>
+            <td>
+                {{ $job->post_name ?: 'Various Posts' }}
+            </td>
 
-                <td>
-                    {{ $job1->min_age ?: '-' }}
-                    -
-                    {{ $job1->max_age_genral ?: '-' }}
-                </td>
+            <td>
+                {{ $job->end_date
+                    ? \Carbon\Carbon::parse($job->end_date)->format('d M Y')
+                    : '-' }}
+            </td>
 
-                <td>
-                    {{ $job1->state
-                        ? ucwords(str_replace('-', ' ', strtolower($job1->state)))
-                        : '-' }}
-                </td>
+            <td>
+                {{ $job->apply_mode ?: '-' }}
+            </td>
 
-                {{-- JOB 1 YOUTUBE DESCRIPTION HIDDEN --}}
-                <td style="display:none;">
-                    Job 1 YouTube Description
-                </td>
+            <td>
+                {{ $job->total_vacancies ?: '-' }}
+            </td>
 
-            @endif
-
+            <td>
+                {{ $job->post_salary ?: '-' }}
+            </td>
 
-            {{-- ================= JOB 2 ================= --}}
-            @php
-                $job2 = $jobPair->get(1);
-            @endphp
+            <td>
+                {{ $job->min_age ?: '-' }}
+                -
+                {{ $job->max_age_genral ?: '-' }}
+            </td>
 
-            @if ($job2)
-
-                <td>
-                    {{ $job2->title }}
-                </td>
-
-                <td>
-                    {{ $job2->organization ?: '-' }}
-                </td>
+            <td>
+                {{ $job->state
+                    ? ucwords(str_replace('-', ' ', strtolower($job->state)))
+                    : '-' }}
+            </td>
 
-                <td>
-                    {{ $job2->min_qulification ?: 'Various Qualifications' }}
-                </td>
-
-                <td>
-                    {{ $job2->post_name ?: 'Various Posts' }}
-                </td>
+            {{-- YouTube Description - BOTH JOBS IN ONE TEXTAREA --}}
 
-                <td>
-                    {{ $job2->end_date
-                        ? \Carbon\Carbon::parse($job2->end_date)->format('d M Y')
-                        : '-' }}
-                </td>
-
-                <td>
-                    {{ $job2->apply_mode ?: '-' }}
-                </td>
+@php
+    $youtubeDescription = '';
 
-                <td>
-                    {{ $job2->total_vacancies ?: '-' }}
-                </td>
+    foreach ($jobPair as $job) {
 
-                <td>
-                    {{ $job2->post_salary ?: '-' }}
-                </td>
+        $youtubeDescription .=
+            "📢 {$job->title}\n\n" .
 
-                <td>
-                    {{ $job2->min_age ?: '-' }}
-                    -
-                    {{ $job2->max_age_genral ?: '-' }}
-                </td>
+            "🏢 Organization: " .
+            ($job->organization ?: '-') . "\n" .
 
-                <td>
-                    {{ $job2->state
-                        ? ucwords(str_replace('-', ' ', strtolower($job2->state)))
-                        : '-' }}
-                </td>
+            "💼 Post: " .
+            ($job->post_name ?: 'Various Posts') . "\n" .
 
-                {{-- ========================================= --}}
-                {{-- COMBINED YOUTUBE DESCRIPTION              --}}
-                {{-- JOB 1 + JOB 2 IN ONE TEXTAREA              --}}
-                {{-- ========================================= --}}
+            "🎓 Qualification: " .
+            ($job->min_qulification ?: 'Various Qualifications') . "\n" .
 
-                @php
+            "👥 Total Vacancies: " .
+            ($job->total_vacancies ?: '-') . "\n" .
 
-                    $youtubeDescription = '';
+            "💰 Salary: " .
+            ($job->post_salary ?: '-') . "\n" .
 
-                    foreach ($jobPair as $descJob) {
+            "🎯 Age Limit: " .
+            (($job->min_age ?: '-') . ' - ' .
+            ($job->max_age_genral ?: '-')) . "\n" .
 
-                        $youtubeDescription .=
-                            "📢 {$descJob->title}\n\n" .
+            "📅 Last Date: " .
+            ($job->end_date
+                ? \Carbon\Carbon::parse($job->end_date)->format('d M Y')
+                : '-') . "\n" .
 
-                            "🏢 Organization: " .
-                            ($descJob->organization ?: '-') .
-                            "\n" .
+            "📝 Apply Mode: " .
+            ($job->apply_mode ?: '-') . "\n" .
 
-                            "💼 Post: " .
-                            ($descJob->post_name ?: 'Various Posts') .
-                            "\n" .
+            "📍 State: " .
+            ($job->state
+                ? ucwords(str_replace('-', ' ', strtolower($job->state)))
+                : '-') .
 
-                            "🎓 Qualification: " .
-                            ($descJob->min_qulification ?: 'Various Qualifications') .
-                            "\n" .
-
-                            "👥 Total Vacancies: " .
-                            ($descJob->total_vacancies ?: '-') .
-                            "\n" .
-
-                            "💰 Salary: " .
-                            ($descJob->post_salary ?: '-') .
-                            "\n" .
-
-                            "🎯 Age Limit: " .
-                            (($descJob->min_age ?: '-') .
-                            ' - ' .
-                            ($descJob->max_age_genral ?: '-')) .
-                            "\n" .
+            "\n\n";
+    }
+@endphp
 
-                            "📅 Last Date: " .
-                            ($descJob->end_date
-                                ? \Carbon\Carbon::parse($descJob->end_date)->format('d M Y')
-                                : '-') .
-                            "\n" .
-
-                            "📝 Apply Mode: " .
-                            ($descJob->apply_mode ?: '-') .
-                            "\n" .
+<td>
+    <textarea
+        id="youtubeDescription{{ $jobPair->first()->id }}"
+        rows="18"
+        style="width:500px;"
+    >{{ $youtubeDescription }}</textarea>
 
-                            "📍 State: " .
-                            ($descJob->state
-                                ? ucwords(str_replace('-', ' ', strtolower($descJob->state)))
-                                : '-') .
-                            "\n\n";
-                    }
-
-                @endphp
-
-                <td>
-
-                    <textarea
-                        id="youtubeDescription{{ $job2->id }}"
-                        rows="18"
-                        style="width:500px;"
-                    >{{ $youtubeDescription }}</textarea>
+    <br>
 
-                    <br>
+    <button
+        type="button"
+        onclick="copyYoutubeDescription({{ $jobPair->first()->id }}, this)"
+        style="margin-top:5px; padding:8px 15px; cursor:pointer;"
+    >
+        📋 Copy
+    </button>
+</td>
 
-                    <button
-                        type="button"
-                        onclick="copyYoutubeDescription({{ $job2->id }}, this)"
-                        style="margin-top:5px; padding:8px 15px; cursor:pointer;"
-                    >
-                        📋 Copy
-                    </button>
+        @endforeach
 
-                </td>
+        {{-- अगर आखिरी में केवल 1 job बची --}}
+        @if($jobPair->count() == 1)
 
-            @else
+            @for($i = 0; $i < 11; $i++)
+                <td>-</td>
+            @endfor
 
-                {{-- अगर आखिरी row में सिर्फ Job 1 है --}}
-                {{-- Job 2 के 10 normal columns खाली --}}
-                @for ($i = 0; $i < 10; $i++)
-                    <td>-</td>
-                @endfor
+        @endif
 
-                {{-- Combined YouTube Description फिर भी Job 1 की होगी --}}
-                @php
+    </tr>
 
-                    $youtubeDescription = '';
+@endforeach
 
-                    $youtubeDescription .=
-                        "📢 {$job1->title}\n\n" .
-
-                        "🏢 Organization: " .
-                        ($job1->organization ?: '-') .
-                        "\n" .
-
-                        "💼 Post: " .
-                        ($job1->post_name ?: 'Various Posts') .
-                        "\n" .
-
-                        "🎓 Qualification: " .
-                        ($job1->min_qulification ?: 'Various Qualifications') .
-                        "\n" .
-
-                        "👥 Total Vacancies: " .
-                        ($job1->total_vacancies ?: '-') .
-                        "\n" .
-
-                        "💰 Salary: " .
-                        ($job1->post_salary ?: '-') .
-                        "\n" .
-
-                        "🎯 Age Limit: " .
-                        (($job1->min_age ?: '-') .
-                        ' - ' .
-                        ($job1->max_age_genral ?: '-')) .
-                        "\n" .
-
-                        "📅 Last Date: " .
-                        ($job1->end_date
-                            ? \Carbon\Carbon::parse($job1->end_date)->format('d M Y')
-                            : '-') .
-                        "\n" .
-
-                        "📝 Apply Mode: " .
-                        ($job1->apply_mode ?: '-') .
-                        "\n" .
-
-                        "📍 State: " .
-                        ($job1->state
-                            ? ucwords(str_replace('-', ' ', strtolower($job1->state)))
-                            : '-') .
-                        "\n\n";
-
-                @endphp
-
-                <td>
-
-                    <textarea
-                        id="youtubeDescription{{ $job1->id }}"
-                        rows="18"
-                        style="width:500px;"
-                    >{{ $youtubeDescription }}</textarea>
-
-                    <br>
-
-                    <button
-                        type="button"
-                        onclick="copyYoutubeDescription({{ $job1->id }}, this)"
-                        style="margin-top:5px; padding:8px 15px; cursor:pointer;"
-                    >
-                        📋 Copy
-                    </button>
-
-                </td>
-
-            @endif
-
-        </tr>
-
-    @endforeach
-
-</tbody>
-
+    </tbody>
+</table>
 
 <script>
 function copyYoutubeDescription(id, button) {
@@ -357,18 +204,18 @@ function copyYoutubeDescription(id, button) {
         document.getElementById('youtubeDescription' + id);
 
     navigator.clipboard.writeText(textarea.value)
-        .then(function () {
+        .then(function() {
 
             const oldText = button.innerHTML;
 
             button.innerHTML = '✅ Copied!';
 
-            setTimeout(function () {
+            setTimeout(function() {
                 button.innerHTML = oldText;
             }, 1500);
 
         })
-        .catch(function () {
+        .catch(function() {
 
             textarea.select();
 
@@ -376,45 +223,9 @@ function copyYoutubeDescription(id, button) {
 
             button.innerHTML = '✅ Copied!';
 
-            setTimeout(function () {
+            setTimeout(function() {
                 button.innerHTML = '📋 Copy';
             }, 1500);
         });
 }
-</script>
-
-
-</table>
-
-<script>
-    function copyYoutubeDescription(id, button) {
-
-        const textarea =
-            document.getElementById('youtubeDescription' + id);
-
-        navigator.clipboard.writeText(textarea.value)
-            .then(function() {
-
-                const oldText = button.innerHTML;
-
-                button.innerHTML = '✅ Copied!';
-
-                setTimeout(function() {
-                    button.innerHTML = oldText;
-                }, 1500);
-
-            })
-            .catch(function() {
-
-                textarea.select();
-
-                document.execCommand('copy');
-
-                button.innerHTML = '✅ Copied!';
-
-                setTimeout(function() {
-                    button.innerHTML = '📋 Copy';
-                }, 1500);
-            });
-    }
 </script>
