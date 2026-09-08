@@ -63,145 +63,145 @@
 
     <tbody>
 
-        @foreach($jobs->chunk(2) as $jobPair)
+        @foreach ($jobs->chunk(2) as $jobPair)
+            <tr>
 
-    <tr>
+                @foreach ($jobPair as $job)
+                    <td>
+                        {{ $job->title }}
+                    </td>
 
-        @foreach($jobPair as $job)
+                    <td>
+                        {{ $job->organization ?: '-' }}
+                    </td>
 
-            <td>
-                {{ $job->title }}
-            </td>
+                    <td>
+                        {{ $job->min_qulification ?: 'Various Qualifications' }}
+                    </td>
 
-            <td>
-                {{ $job->organization ?: '-' }}
-            </td>
+                    <td>
+                        {{ $job->post_name ?: 'Various Posts' }}
+                    </td>
 
-            <td>
-                {{ $job->min_qulification ?: 'Various Qualifications' }}
-            </td>
+                    <td>
+                        {{ $job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : '-' }}
+                    </td>
 
-            <td>
-                {{ $job->post_name ?: 'Various Posts' }}
-            </td>
+                    <td>
+                        {{ $job->apply_mode ?: '-' }}
+                    </td>
 
-            <td>
-                {{ $job->end_date
-                    ? \Carbon\Carbon::parse($job->end_date)->format('d M Y')
-                    : '-' }}
-            </td>
+                    <td>
+                        {{ $job->total_vacancies ?: '-' }}
+                    </td>
 
-            <td>
-                {{ $job->apply_mode ?: '-' }}
-            </td>
+                    <td>
+                        {{ $job->post_salary ?: '-' }}
+                    </td>
 
-            <td>
-                {{ $job->total_vacancies ?: '-' }}
-            </td>
+                    <td>
+                        {{ $job->min_age ?: '-' }}
+                        -
+                        {{ $job->max_age_genral ?: '-' }}
+                    </td>
 
-            <td>
-                {{ $job->post_salary ?: '-' }}
-            </td>
+                    <td>
+                        {{ $job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-' }}
+                    </td>
 
-            <td>
-                {{ $job->min_age ?: '-' }}
-                -
-                {{ $job->max_age_genral ?: '-' }}
-            </td>
+                    <td>
+                        {{-- YouTube Description - BOTH JOBS IN ONE TEXTAREA --}}
 
-            <td>
-                {{ $job->state
-                    ? ucwords(str_replace('-', ' ', strtolower($job->state)))
-                    : '-' }}
-            </td>
+                        @php
+                            $youtubeDescription = '';
 
-            <td>
-                @php
-                    $youtubeDescription =
-                        "📢 {$job->title}\n\n" .
-                        "🏢 Organization: " . ($job->organization ?: '-') . "\n" .
-                        "💼 Post: " . ($job->post_name ?: 'Various Posts') . "\n" .
-                        "🎓 Qualification: " . ($job->min_qulification ?: 'Various Qualifications') . "\n" .
-                        "👥 Total Vacancies: " . ($job->total_vacancies ?: '-') . "\n" .
-                        "💰 Salary: " . ($job->post_salary ?: '-') . "\n" .
-                        "🎯 Age Limit: " .
-                        (($job->min_age ?: '-') . ' - ' . ($job->max_age_genral ?: '-')) . "\n" .
-                        "📅 Last Date: " .
-                        ($job->end_date
-                            ? \Carbon\Carbon::parse($job->end_date)->format('d M Y')
-                            : '-') . "\n" .
-                        "📝 Apply Mode: " . ($job->apply_mode ?: '-') . "\n" .
-                        "📍 State: " .
-                        ($job->state
-                            ? ucwords(str_replace('-', ' ', strtolower($job->state)))
-                            : '-') .
-                        "\n\n";
-                @endphp
+                            foreach ($jobPair as $job) {
+                                $youtubeDescription .=
+                                    "📢 {$job->title}\n\n" .
+                                    '🏢 Organization: ' .
+                                    ($job->organization ?: '-') .
+                                    "\n" .
+                                    '💼 Post: ' .
+                                    ($job->post_name ?: 'Various Posts') .
+                                    "\n" .
+                                    '🎓 Qualification: ' .
+                                    ($job->min_qulification ?: 'Various Qualifications') .
+                                    "\n" .
+                                    '👥 Total Vacancies: ' .
+                                    ($job->total_vacancies ?: '-') .
+                                    "\n" .
+                                    '💰 Salary: ' .
+                                    ($job->post_salary ?: '-') .
+                                    "\n" .
+                                    '🎯 Age Limit: ' .
+                                    (($job->min_age ?: '-') . ' - ' . ($job->max_age_genral ?: '-')) .
+                                    "\n" .
+                                    '📅 Last Date: ' .
+                                    ($job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d M Y') : '-') .
+                                    "\n" .
+                                    '📝 Apply Mode: ' .
+                                    ($job->apply_mode ?: '-') .
+                                    "\n" .
+                                    '📍 State: ' .
+                                    ($job->state ? ucwords(str_replace('-', ' ', strtolower($job->state))) : '-') .
+                                    "\n\n";
+                            }
+                        @endphp
 
-                <textarea
-                    id="youtubeDescription{{ $job->id }}"
-                    rows="12"
-                    style="width:500px;"
-                >{{ $youtubeDescription }}</textarea>
+                    <td>
+                        <textarea id="youtubeDescription{{ $jobPair->first()->id }}" rows="18" style="width:500px;">{{ $youtubeDescription }}</textarea>
 
-                <br>
+                        <br>
 
-                <button
-                    type="button"
-                    onclick="copyYoutubeDescription({{ $job->id }}, this)"
-                    style="margin-top:5px; padding:8px 15px; cursor:pointer;"
-                >
-                    📋 Copy
-                </button>
-            </td>
+                        <button type="button" onclick="copyYoutubeDescription({{ $jobPair->first()->id }}, this)"
+                            style="margin-top:5px; padding:8px 15px; cursor:pointer;">
+                            📋 Copy
+                        </button>
+                    </td>
+                @endforeach
 
+                {{-- अगर आखिरी में केवल 1 job बची --}}
+                @if ($jobPair->count() == 1)
+                    @for ($i = 0; $i < 11; $i++)
+                        <td>-</td>
+                    @endfor
+                @endif
+
+            </tr>
         @endforeach
-
-        {{-- अगर आखिरी में केवल 1 job बची --}}
-        @if($jobPair->count() == 1)
-
-            @for($i = 0; $i < 11; $i++)
-                <td>-</td>
-            @endfor
-
-        @endif
-
-    </tr>
-
-@endforeach
 
     </tbody>
 </table>
 
 <script>
-function copyYoutubeDescription(id, button) {
+    function copyYoutubeDescription(id, button) {
 
-    const textarea =
-        document.getElementById('youtubeDescription' + id);
+        const textarea =
+            document.getElementById('youtubeDescription' + id);
 
-    navigator.clipboard.writeText(textarea.value)
-        .then(function() {
+        navigator.clipboard.writeText(textarea.value)
+            .then(function() {
 
-            const oldText = button.innerHTML;
+                const oldText = button.innerHTML;
 
-            button.innerHTML = '✅ Copied!';
+                button.innerHTML = '✅ Copied!';
 
-            setTimeout(function() {
-                button.innerHTML = oldText;
-            }, 1500);
+                setTimeout(function() {
+                    button.innerHTML = oldText;
+                }, 1500);
 
-        })
-        .catch(function() {
+            })
+            .catch(function() {
 
-            textarea.select();
+                textarea.select();
 
-            document.execCommand('copy');
+                document.execCommand('copy');
 
-            button.innerHTML = '✅ Copied!';
+                button.innerHTML = '✅ Copied!';
 
-            setTimeout(function() {
-                button.innerHTML = '📋 Copy';
-            }, 1500);
-        });
-}
+                setTimeout(function() {
+                    button.innerHTML = '📋 Copy';
+                }, 1500);
+            });
+    }
 </script>
