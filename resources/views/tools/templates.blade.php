@@ -1,10 +1,26 @@
 @php
+
+    $shortDate = \Carbon\Carbon::parse($date);
+
     $jobs = DB::table('job_details')
         ->select('*')
+
+        // इस दिन के jobs
         ->where('created_at', '>=', $date . ' 00:00:00')
         ->where('created_at', '<', date('Y-m-d', strtotime($date . ' +1 day')) . ' 00:00:00')
-        ->whereDate('end_date', '>=', now()->toDateString())
+
+        // अगले 7 दिनों में expire होने वाले jobs
+        ->whereDate('end_date', '>=', $shortDate->toDateString())
+        ->whereDate('end_date', '<=', $shortDate->copy()->addDays(6)->toDateString())
+
+        // जो पहले Short में इस्तेमाल नहीं हुआ
+        ->where('short_used', 0)
+
+        // सबसे पहले जल्दी expire होने वाली job
+        ->orderBy('end_date', 'asc')
+
         ->get();
+
 @endphp
 
 <style>
