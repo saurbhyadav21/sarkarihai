@@ -14,7 +14,7 @@
         ->whereDate('end_date', '<=', $shortDate->copy()->addDays(6)->toDateString())
 
         // जो पहले Short में इस्तेमाल नहीं हुआ
-        ->where('short_used', 0)
+        // ->where('short_used', 0)
 
         // सबसे पहले जल्दी expire होने वाली job
         ->orderBy('end_date', 'asc')
