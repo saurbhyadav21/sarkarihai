@@ -1792,7 +1792,7 @@ class JobController extends Controller
 
     public function jobDetail($state, $category, $slug)
     {
-        dd('ss');
+        
         $job = Job::where('slug', $slug)->firstOrFail();
 
 
