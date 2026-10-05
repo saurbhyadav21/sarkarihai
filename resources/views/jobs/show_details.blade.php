@@ -1005,9 +1005,9 @@
 
                     <h1>
                         @if (!empty($job->organization_full_form))
-                            {{ $job->organization_full_form }}
+                            {{ $job->title }}
                         @else
-                            {{ $job->organization }}
+                            {{ $job->title }} - {{ $job->organization }}
                         @endif
 
                         Recruitment {{ $job->year ? $job->year : '' }}
