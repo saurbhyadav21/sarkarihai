@@ -529,7 +529,7 @@
 
                 <!-- LATEST JOBS -->
                 <div class="section-title">
-                    <span>Latest Government Jobs</span>
+                    <span>🔥 Trending Govt Jobs 2026</span>
 
                     <img src="https://sarkarihai.com/public/images/live.png?v=5" alt="LIVE" class="live-badge">
 
