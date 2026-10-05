@@ -538,8 +538,10 @@
                         {{ \Carbon\Carbon::parse($job->created_at)->format('d M Y H:i:s') }}
                     </span>
 
-                    <a class="ssj-section-link" href="https://sarkarihai.com/sarkari-naukri"
+                    <span style="margin-left:auto; font-size: 13px;">
+                        <a class="ssj-section-link" href="https://sarkarihai.com/sarkari-naukri"
                         aria-label="View All Trending Govt Jobs">View All →</a>
+                    </span>
                 </div>
 
                 @foreach ($latestJobs as $job)
