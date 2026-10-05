@@ -1034,10 +1034,10 @@
                         @else
                             All India
                         @endif
-@if (!empty($job->state))
-    ({{ $job->state }})
+@if (!empty($job->organization))
+    ({{ $job->organization }})
 @else
-    (All India)
+    
 @endif
 Recruitment 2026 for 1 post of Young Professional. 
 Candidates Can Apply Online. 
