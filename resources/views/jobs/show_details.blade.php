@@ -1037,20 +1037,20 @@
     ({{ $job->organization }})
 @else
     
-@endif
+@endif has released the official notification for the recruitment of 13123132 post title.
 {{-- Recruitment 2026 for 1 post of Young Professional. 
 Candidates Can Apply Online. 
 The last date to apply online is 20-10-2026. 
 The candidate shall apply online through NIFTEM official website. --}}
                     </p>
 
-                    <p>
+                    {{-- <p>
                         Check complete notification, eligibility,
                         vacancy details, age limit, salary,
                         selection process, important dates,
                         exam pattern, required documents,
                         and apply online process.
-                    </p>
+                    </p> --}}
 
                 </div>
 
