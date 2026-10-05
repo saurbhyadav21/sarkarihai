@@ -28,21 +28,22 @@
         }
 
         .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    box-sizing: border-box;
-}
-@media (max-width: 767px) {
-    .container {
-        width: 100%;
-        max-width: 100%;
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-}
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
 
         .nav {
             height: 70px;
@@ -317,18 +318,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                                                                                                                    background:#fff;
-                                                                                                                                                                                                                                                                                                                    border-radius:15px;
-                                                                                                                                                                                                                                                                                                                    box-shadow:
-                                                                                                                                                                                                                                                                                                                    0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                                                                                                                    padding:30px;
-                                                                                                                                                                                                                                                                                                                    border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                                                                                                                    display:grid;
-                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                        background:#fff;
+                                                                                                                                                                                                                                                                                                                        border-radius:15px;
+                                                                                                                                                                                                                                                                                                                        box-shadow:
+                                                                                                                                                                                                                                                                                                                        0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                                                                                                        padding:30px;
+                                                                                                                                                                                                                                                                                                                        border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                                                                                                        display:grid;
+                                                                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                                                                                    .summary-item{
-                                                                                                                                                                                                                                                                                                                    text-align:center;
-                                                                                                                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                                                                                                        .summary-item{
+                                                                                                                                                                                                                                                                                                                        text-align:center;
+                                                                                                                                                                                                                                                                                                                        } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1077,12 +1078,12 @@
                 <div class="summary-item">
                     <small>Total Vacancy</small>
                     <strong>
-    @php
-        preg_match('/\d+/', $job->total_vacancies, $matches);
-    @endphp
+                        @php
+                            preg_match('/\d+/', $job->total_vacancies, $matches);
+                        @endphp
 
-    {{ !empty($matches[0]) ? $matches[0] : 'To Be Announced' }}
-</strong>
+                        {{ !empty($matches[0]) ? $matches[0] : 'To Be Announced' }}
+                    </strong>
                 </div>
 
                 <div class="summary-item">
@@ -1235,11 +1236,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                                                                                                                    display: grid;
-                                                                                                                                                                                                                                                                           grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                                                                                                                    gap: 20px;
-                                                                                                                                                                                                                                                                                    margin-top: 20px;
-                                                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                                        display: grid;
+                                                                                                                                                                                                                                                                               grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                                                                                                        gap: 20px;
+                                                                                                                                                                                                                                                                                        margin-top: 20px;
+                                                                                                                                                                                                                                                                                    } */
 
         .highlight-box {
             background: #fff;
@@ -1271,7 +1272,7 @@
     </style>
 
 
-    <div class="main-wrapper">
+    <div class="main-wrapper" style="display: none;">
 
 
         <!-- LEFT -->
@@ -1946,11 +1947,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                                                                                                                        display: grid;
-                                                                                                                                                                                                                                        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                                                                                                                        gap: 16px;
-                                                                                                                                                                                                                                        margin-top: 20px;
-                                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                            display: grid;
+                                                                                                                                                                                                                                            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                                                                                                            gap: 16px;
+                                                                                                                                                                                                                                            margin-top: 20px;
+                                                                                                                                                                                                                                        } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2025,62 +2026,60 @@
                     color: #0891b2;
                 }
             </style>
-           
-         @if (!empty($totalVacancy))
 
-    <h2 style="color: #000">Category Wise Vacancy</h2>
+            @if (!empty($totalVacancy))
+                <h2 style="color: #000">Category Wise Vacancy</h2>
 
-    <div class="category-grid">
+                <div class="category-grid">
 
-        @if (!empty($genTotal))
-            <div class="category-card general">
-                <div class="category-icon">G</div>
-                <div class="category-title">General</div>
-                <div class="category-value">{{ number_format($genTotal) }}</div>
-            </div>
-        @endif
+                    @if (!empty($genTotal))
+                        <div class="category-card general">
+                            <div class="category-icon">G</div>
+                            <div class="category-title">General</div>
+                            <div class="category-value">{{ number_format($genTotal) }}</div>
+                        </div>
+                    @endif
 
-        @if (!empty($ewsTotal))
-            <div class="category-card ews">
-                <div class="category-icon">E</div>
-                <div class="category-title">EWS</div>
-                <div class="category-value">{{ number_format($ewsTotal) }}</div>
-            </div>
-        @endif
+                    @if (!empty($ewsTotal))
+                        <div class="category-card ews">
+                            <div class="category-icon">E</div>
+                            <div class="category-title">EWS</div>
+                            <div class="category-value">{{ number_format($ewsTotal) }}</div>
+                        </div>
+                    @endif
 
-        @if (!empty($obcTotal))
-            <div class="category-card obc">
-                <div class="category-icon">O</div>
-                <div class="category-title">OBC</div>
-                <div class="category-value">{{ number_format($obcTotal) }}</div>
-            </div>
-        @endif
+                    @if (!empty($obcTotal))
+                        <div class="category-card obc">
+                            <div class="category-icon">O</div>
+                            <div class="category-title">OBC</div>
+                            <div class="category-value">{{ number_format($obcTotal) }}</div>
+                        </div>
+                    @endif
 
-        @if (!empty($scTotal))
-            <div class="category-card sc">
-                <div class="category-icon">S</div>
-                <div class="category-title">SC</div>
-                <div class="category-value">{{ number_format($scTotal) }}</div>
-            </div>
-        @endif
+                    @if (!empty($scTotal))
+                        <div class="category-card sc">
+                            <div class="category-icon">S</div>
+                            <div class="category-title">SC</div>
+                            <div class="category-value">{{ number_format($scTotal) }}</div>
+                        </div>
+                    @endif
 
-        @if (!empty($stTotal))
-            <div class="category-card st">
-                <div class="category-icon">T</div>
-                <div class="category-title">ST</div>
-                <div class="category-value">{{ number_format($stTotal) }}</div>
-            </div>
-        @endif
+                    @if (!empty($stTotal))
+                        <div class="category-card st">
+                            <div class="category-icon">T</div>
+                            <div class="category-title">ST</div>
+                            <div class="category-value">{{ number_format($stTotal) }}</div>
+                        </div>
+                    @endif
 
-        <div class="category-card total">
-            <div class="category-icon">Σ</div>
-            <div class="category-title">Total Vacancy</div>
-            <div class="category-value">{{ number_format($totalVacancy ?? 0) }}</div>
-        </div>
+                    <div class="category-card total">
+                        <div class="category-icon">Σ</div>
+                        <div class="category-title">Total Vacancy</div>
+                        <div class="category-value">{{ number_format($totalVacancy ?? 0) }}</div>
+                    </div>
 
-    </div>
-
-@endif
+                </div>
+            @endif
 
 
             <!-- QUALIFICATION -->
@@ -2202,8 +2201,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                                                                                                                          Selection Process
-                                                                                                                                                                        =========================*/
+                                                                                                                                                                              Selection Process
+                                                                                                                                                                            =========================*/
 
                 .selection-grid {
 
