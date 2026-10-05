@@ -1004,7 +1004,7 @@
                     @endphp
 
                     <h1>
-                        @if (!empty($job->organization_full_form))
+                        {{-- @if (!empty($job->organization_full_form))
                             {{ $job->title }}
                         @else
                             {{ $job->title }} - {{ $job->organization }}
@@ -1018,7 +1018,8 @@
                             - Various Posts Vacancy
                         @else
                             - Apply Online
-                        @endif
+                        @endif --}}
+                        {{ $job->title }}
                     </h1>
 
                     <p>
