@@ -1029,11 +1029,10 @@
                             {{ $job->organization }}
                         @endif, 
                         @if (!empty($job->state))
-                            {{ $job->state }}
-                            
-                        @else
-                            All India
-                        @endif
+    {{ ucfirst($job->state) }}
+@else
+    All India
+@endif
 @if (!empty($job->organization))
     ({{ $job->organization }})
 @else
