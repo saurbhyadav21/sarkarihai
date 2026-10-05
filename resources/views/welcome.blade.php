@@ -363,7 +363,7 @@
                     }
                 </style>
                 <!-- RIGHT SEARCH -->
-               
+
                 @include('partials.search-social-links')
             </div>
 
@@ -371,8 +371,8 @@
     </div>
 
     <!-- =========================
-                                                    PART 2 - MAIN CONTENT BLOCK
-                                                    ========================= -->
+                                                        PART 2 - MAIN CONTENT BLOCK
+                                                        ========================= -->
 
     <style>
         .section-title {
@@ -537,6 +537,9 @@
                         Last Updated:
                         {{ \Carbon\Carbon::parse($job->created_at)->format('d M Y H:i:s') }}
                     </span>
+
+                    <a class="ssj-section-link" href="https://sarkarihai.com/sarkari-naukri"
+                        aria-label="View All Trending Govt Jobs">View All →</a>
                 </div>
 
                 @foreach ($latestJobs as $job)
