@@ -1023,6 +1023,13 @@
                     </h1>
 
                     <p>
+                        National Institute of Food Technology Entrepreneurship and Management, Kundli (NIFTEM) Recruitment 2026 for 1 post of Young Professional. 
+Candidates Can Apply Online. 
+The last date to apply online is 20-10-2026. 
+The candidate shall apply online through NIFTEM official website.
+                    </p>
+
+                    <p>
                         Check complete notification, eligibility,
                         vacancy details, age limit, salary,
                         selection process, important dates,
