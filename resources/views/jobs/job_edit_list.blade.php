@@ -31,17 +31,17 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Title</th>
-                                <th>image</th>
+                                {{-- <th>image</th> --}}
                                 {{-- <th>admit date</th> --}}
-                                <th>Job Category</th>
+                                {{-- <th>Job Category</th>
                                 <th>Job Sub Category</th>
                                 <th>Job Topic</th>
                                 <th>Job State</th>
                                 <th>Organization</th>
-                                <th>Organization Full Form</th>
+                                <th>Organization Full Form</th> --}}
                                 {{-- <th>syllabus</th> --}}
-                                <th>Delete</th>
-                                <th>Action</th>
+                                {{-- <th>Delete</th>
+                                <th>Action</th> --}}
                             </tr>
                         </thead>
 
@@ -58,28 +58,20 @@
                                         <br>
 
                                         <small
-                                            style="
-            background:#fff3cd;
-            color:#856404;
-            padding:2px 8px;
-            border-radius:4px;
-            font-weight:bold;
-            display:inline-block;
-            margin-top:5px;
-        ">
+                                            style="background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;font-weight:bold;display:inline-block;margin-top:5px;">
                                             {{ $job->source }}
                                         </small>
                                     </td>
 
                                     <!-- Image -->
-                                    <td>
+                                    {{-- <td>
                                         @if (!empty($job->image))
                                             <img src="{{ asset('/public/job-images/' . $job->image) }}" width="60"
                                                 height="60" style="object-fit:cover;">
                                         @else
                                             <span class="badge bg-danger">No Image</span>
                                         @endif
-                                    </td>
+                                    </td> --}}
 
                                     <!-- Admit Date -->
                                     {{-- <td>
@@ -93,7 +85,7 @@
                                     </td> --}}
 
                                     <!-- Main Category -->
-                                    <td>
+                                    {{-- <td>
                                         <span
                                             class="badge rounded-pill {{ !empty($job->category) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
                                             {{ strtoupper($job->category ?? 'NOT SET') }}
@@ -119,10 +111,10 @@
                                                 Save
                                             </button>
                                         </form>
-                                    </td>
+                                    </td> --}}
 
                                     <!-- Sub Category -->
-                                    <td>
+                                    {{-- <td>
                                         <span
                                             class="badge rounded-pill {{ !empty($job->job_sub_categories) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
                                             {{ strtoupper($job->job_sub_categories ?? 'NOT SET') }}
@@ -148,10 +140,10 @@
                                                 Save
                                             </button>
                                         </form>
-                                    </td>
+                                    </td> --}}
 
                                     <!-- Topic -->
-                                    <td>
+                                    {{-- <td>
                                         <span
                                             class="badge rounded-pill {{ !empty($job->job_topics) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
                                             {{ strtoupper($job->job_topics ?? 'NOT SET') }}
@@ -166,10 +158,10 @@
                                                 Save
                                             </button>
                                         </form>
-                                    </td>
+                                    </td> --}}
 
                                     <!-- State -->
-                                    <td>
+                                    {{-- <td>
                                         <span
                                             class="badge rounded-pill {{ !empty($job->state) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
                                             {{ strtoupper($job->state ?? 'NOT SET') }}
@@ -194,8 +186,8 @@
                                                 Save
                                             </button>
                                         </form>
-                                    </td>
-                                    <td>
+                                    </td> --}}
+                                    {{-- <td>
                                         <span
                                             class="badge rounded-pill {{ !empty($job->organization) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
                                             {{ strtoupper($job->organization ?? 'NOT SET') }}
@@ -216,13 +208,13 @@
                                                 style="background-color: #000 !important;">Verified</span>
                                         @else
                                             <span class="badge bg-warning text-dark">Pending</span>
-                                        @endif --}}
-                                    </td>
-                                    <td>
+                                        @endif 
+                                    </td> --}}
+                                    {{-- <td>
                                         <span
                                             class="badge rounded-pill {{ !empty($job->organization_full_form) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
                                             {{ strtoupper($job->organization_full_form ?? 'NOT SET') }}
-                                        </span>
+                                        </span> --}}
                                         {{-- <form action="{{ route('job.updateOrganizationFullForm', $job->id) }}"
                                             method="POST">
                                             @csrf
@@ -242,7 +234,7 @@
                                         @else
                                             <span class="badge bg-warning text-dark">Pending</span>
                                         @endif --}}
-                                    </td>
+                                    {{-- </td> --}}
                                     <!-- Syllabus -->
                                     {{-- <td>
                                         @if (!empty($job->syllabus))
@@ -255,8 +247,8 @@
                                         @endif
                                     </td> --}}
 
-                                    <td>
-                                        <!-- Delete Button -->
+                                    {{-- <td>
+                                        
                                         <form action="{{ route('job.destroy', $job->id) }}" method="POST"
                                             style="display:inline-block;"
                                             onsubmit="return confirm('Delete karna hai kya?')">
@@ -275,7 +267,7 @@
                                             Edit
                                         </a>
 
-                                    </td>
+                                    </td> --}}
 
                                 </tr>
                             @endforeach
