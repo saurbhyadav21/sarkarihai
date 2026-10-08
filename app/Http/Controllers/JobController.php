@@ -4285,4 +4285,25 @@ class JobController extends Controller
             'metaTitle'
         ));
     }
+
+
+   public function updateInline(Request $request)
+{
+    $request->validate([
+        'id' => 'required|integer',
+        'slug' => 'nullable|string',
+        'title' => 'nullable|string',
+    ]);
+
+    DB::table('job_details')
+        ->where('id', $request->id)
+        ->update([
+            'slug' => $request->slug,
+            'title' => $request->title,
+            'is_edited' => 1,
+            'updated_at' => now(),
+        ]);
+
+    return redirect()->back()->with('success', 'Job updated successfully.');
+}
 }

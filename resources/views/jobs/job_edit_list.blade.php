@@ -30,6 +30,7 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>ID</th>
+                                <th>Slug</th>
                                 <th>Title</th>
                                 {{-- <th>image</th> --}}
                                 {{-- <th>admit date</th> --}}
@@ -51,17 +52,43 @@
                                 <tr>
 
                                     <td>{{ $job->id }}</td>
+                                    <form action="{{ route('admin.jobs.updateInline') }}" method="POST">
+    @csrf
 
-                                    <td>
-                                        {{ $job->title }}
+    <td>
+        <input type="text"
+               name="slug"
+               class="form-control form-control-sm"
+               value="{{ $job->slug }}">
+    </td>
 
-                                        <br>
+    <td>
+        <input type="text"
+               name="title"
+               class="form-control form-control-sm"
+               value="{{ $job->title }}">
 
-                                        <small
-                                            style="background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;font-weight:bold;display:inline-block;margin-top:5px;">
-                                            {{ $job->source }}
-                                        </small>
-                                    </td>
+        <br>
+
+        <small
+            style="background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;font-weight:bold;display:inline-block;margin-top:5px;">
+            {{ $job->source }}
+        </small>
+
+        @if($job->is_edited)
+            <br>
+            <small class="text-success fw-bold">
+                ✓ Edited
+            </small>
+        @endif
+
+        <input type="hidden" name="id" value="{{ $job->id }}">
+
+        <button type="submit" class="btn btn-sm btn-primary mt-2">
+            Save
+        </button>
+    </td>
+</form>
 
                                     <!-- Image -->
                                     {{-- <td>

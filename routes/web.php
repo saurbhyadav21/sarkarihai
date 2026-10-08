@@ -37,6 +37,9 @@ Route::get('/job/edit-list/{limit?}', [JobController::class, 'editList'])
 Route::get('/job/org-edit-list/{limit?}', [JobController::class, 'OrgEditList'])
     ->name('job.org.edit.list');
 
+Route::post('/admin/jobs/update-inline', [JobController::class, 'updateInline'])
+    ->name('admin.jobs.updateInline');
+    
 Route::get('/result/edit-list', [JobController::class, 'resultList'])->name('job.result.list');
 Route::get('/admit-card/edit-list', [JobController::class, 'admitList'])->name('job.admit.list');
 
