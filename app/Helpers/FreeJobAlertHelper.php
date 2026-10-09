@@ -1484,142 +1484,139 @@ public static function totalVacancies($html)
         return null;
     }
 
-        libxml_use_internal_errors(true);
+    libxml_use_internal_errors(true);
 
-        $dom = new \DOMDocument();
-        $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
+    $dom = new \DOMDocument();
+    $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
 
-        libxml_clear_errors();
+    libxml_clear_errors();
 
-        $xpath = new \DOMXPath($dom);
+    $xpath = new \DOMXPath($dom);
 
-        // -------------------------------------------------
-        // 1. Overview heading ke baad wali table check karein
-        // -------------------------------------------------
-        $headings = $xpath->query(
-            '//h2[contains(
-                translate(normalize-space(.),
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                "abcdefghijklmnopqrstuvwxyz"),
-                "overview"
-            )]'
+    // -------------------------------------------------
+    // 1. Overview heading ke baad wali table check karein
+    // -------------------------------------------------
+    $headings = $xpath->query(
+        '//h2[contains(
+            translate(normalize-space(.),
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            "abcdefghijklmnopqrstuvwxyz"),
+            "overview"
+        )]'
+    );
+
+    foreach ($headings as $heading) {
+
+        $containers = $xpath->query(
+            'following-sibling::div[
+                contains(
+                    concat(" ", normalize-space(@class), " "),
+                    " table-container "
+                )
+            ][1]',
+            $heading
         );
 
-        foreach ($headings as $heading) {
+        if ($containers->length === 0) {
+            continue;
+        }
 
-            $containers = $xpath->query(
-                'following-sibling::div[
-                    contains(
-                        concat(" ", normalize-space(@class), " "),
-                        " table-container "
-                    )
-                ][1]',
-                $heading
-            );
+        $rows = $xpath->query(
+            './/table//tr',
+            $containers->item(0)
+        );
 
-            if ($containers->length === 0) {
+        foreach ($rows as $row) {
+
+            $cells = $xpath->query('./td | ./th', $row);
+
+            if ($cells->length < 2) {
                 continue;
             }
 
-            $rows = $xpath->query(
-                './/table//tr',
-                $containers->item(0)
-            );
+            $label = strtolower(trim($cells->item(0)->textContent));
+            $label = preg_replace('/[^a-z\s]/', '', $label);
+            $label = preg_replace('/\s+/', ' ', $label);
 
-            foreach ($rows as $row) {
+            if (in_array($label, [
+                'no of post',
+                'no of posts',
+                'number of post',
+                'number of posts',
+                'total post',
+                'total posts',
+                'no of vacancy',
+                'no of vacancies',
+                'total vacancy',
+                'total vacancies'
+            ], true)) {
 
-                $cells = $xpath->query('./td | ./th', $row);
+                $value = trim($cells->item(1)->textContent);
+                $value = str_replace(',', '', $value);
 
-                if ($cells->length < 2) {
-                    continue;
+                if (preg_match('/^\d+$/', $value) && (int) $value > 0) {
+                    return (int) $value;
                 }
 
-                $label = strtolower(trim($cells->item(0)->textContent));
-                $label = preg_replace('/[^a-z\s]/', '', $label);
-                $label = preg_replace('/\s+/', ' ', $label);
-
-                if (in_array($label, [
-                    'no of post',
-                    'no of posts',
-                    'number of post',
-                    'number of posts',
-                    'total post',
-                    'total posts',
-                    'no of vacancy',
-                    'no of vacancies',
-                    'total vacancy',
-                    'total vacancies'
-                ], true)) {
-
-                    $value = trim($cells->item(1)->textContent);
-                    $value = str_replace(',', '', $value);
-
-                    if (preg_match('/^\d+$/', $value) && (int) $value > 0) {
-                        return (int) $value;
-                    }
-
-                    return null;
-                }
-            }
-
-            // Overview table mili, lekin count nahi mila
-            break;
-        }
-
-        // -------------------------------------------------
-        // 2. SarkariResult: Total Post heading ke neeche count
-        // -------------------------------------------------
-        $totalHeadings = $xpath->query(
-            '//h1 | //h2 | //h3 | //h4 | //h5 | //h6'
-        );
-
-        foreach ($totalHeadings as $heading) {
-
-            $headingText = strtolower(trim($heading->textContent));
-            $headingText = preg_replace('/\s+/', ' ', $headingText);
-
-            if (!preg_match(
-                '/^(total posts?|total vacancies?|number of posts?|number of vacancies?)$/i',
-                $headingText
-            )) {
-                continue;
-            }
-
-            // Heading ke baad agle heading tak ka content padhein
-            for (
-                $node = $heading->nextSibling;
-                $node !== null;
-                $node = $node->nextSibling
-            ) {
-                if (
-                    $node instanceof \DOMElement &&
-                    preg_match('/^H[1-6]$/i', $node->nodeName)
-                ) {
-                    break;
-                }
-
-                $text = trim($node->textContent);
-
-                if (
-                    preg_match(
-                        '/^\s*([\d,]+)\s*(?:posts?|vacancies?)\s*$/i',
-                        $text,
-                        $matches
-                    )
-                ) {
-                    $value = (int) str_replace(',', '', $matches[1]);
-
-                    if ($value > 0) {
-                        return $value;
-                    }
-                }
+                return null;
             }
         }
 
-        // Koi reliable count nahi mila
-        return null;
+        // Overview table mili, lekin count nahi mila
+        break;
     }
 
+    // -------------------------------------------------
+    // 2. SarkariResult: Total Post heading ke neeche count
+    // -------------------------------------------------
+    $totalHeadings = $xpath->query(
+        '//h1 | //h2 | //h3 | //h4 | //h5 | //h6'
+    );
 
+    foreach ($totalHeadings as $heading) {
 
+        $headingText = strtolower(trim($heading->textContent));
+        $headingText = preg_replace('/\s+/', ' ', $headingText);
+
+        if (!preg_match(
+            '/^(total posts?|total vacancies?|number of posts?|number of vacancies?)$/i',
+            $headingText
+        )) {
+            continue;
+        }
+
+        // Heading ke baad agle heading tak ka content padhein
+        for (
+            $node = $heading->nextSibling;
+            $node !== null;
+            $node = $node->nextSibling
+        ) {
+            if (
+                $node instanceof \DOMElement &&
+                preg_match('/^H[1-6]$/i', $node->nodeName)
+            ) {
+                break;
+            }
+
+            $text = trim($node->textContent);
+
+            if (
+                preg_match(
+                    '/^\s*([\d,]+)\s*(?:posts?|vacancies?)\s*$/i',
+                    $text,
+                    $matches
+                )
+            ) {
+                $value = (int) str_replace(',', '', $matches[1]);
+
+                if ($value > 0) {
+                    return $value;
+                }
+            }
+        }
+    }
+
+    // Koi reliable count nahi mila
+    return null;
+    }
 }
