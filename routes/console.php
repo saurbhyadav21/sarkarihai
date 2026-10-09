@@ -24,18 +24,8 @@ Schedule::command('jobs:process-one')
 
 
 
-
-
-
 Schedule::command('jobs:generate-slug')
     ->everyMinute();
-
-
-
-
-
-
-
 
 
 
