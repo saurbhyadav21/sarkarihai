@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Helpers;
-
 use DOMDocument;
 use DOMXPath;
 use Illuminate\Support\Facades\Http;
@@ -1479,53 +1477,73 @@ class FreeJobAlertHelper
     }
 
     public static function extractFreeJobAlertVacancies($html)
-{
-    if (empty($html)) {
-        return null;
-    }
+    {
+        if (empty($html)) {
+            return null;
+        }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Remove unnecessary spaces
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | Remove unnecessary spaces
+        |--------------------------------------------------------------------------
+        */
 
-    $text = strip_tags($html);
+        $text = strip_tags($html);
 
-    $text = html_entity_decode(
-        $text,
-        ENT_QUOTES | ENT_HTML5,
-        'UTF-8'
-    );
+        $text = html_entity_decode(
+            $text,
+            ENT_QUOTES | ENT_HTML5,
+            'UTF-8'
+        );
 
-    $text = preg_replace('/\s+/', ' ', $text);
+        $text = preg_replace('/\s+/', ' ', $text);
 
-    $text = trim($text);
+        $text = trim($text);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Total Vacancies / Total Posts
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | Total Vacancies / Total Posts
+        |--------------------------------------------------------------------------
+        */
 
-    $patterns = [
+        $patterns = [
 
-        '/Total\s+(?:Vacancies|Posts|Post)\s*[:\-]?\s*([0-9,]+)/i',
+            '/Total\s+(?:Vacancies|Posts|Post)\s*[:\-]?\s*([0-9,]+)/i',
 
-        '/Total\s+Vacancies\s*[:\-]?\s*([0-9,]+)/i',
+            '/Total\s+Vacancies\s*[:\-]?\s*([0-9,]+)/i',
 
-        '/Total\s+Posts\s*[:\-]?\s*([0-9,]+)/i',
+            '/Total\s+Posts\s*[:\-]?\s*([0-9,]+)/i',
 
-        '/No\.\s*of\s*(?:Vacancies|Posts)\s*[:\-]?\s*([0-9,]+)/i',
+            '/No\.\s*of\s*(?:Vacancies|Posts)\s*[:\-]?\s*([0-9,]+)/i',
 
-        '/Number\s+of\s+(?:Vacancies|Posts)\s*[:\-]?\s*([0-9,]+)/i',
+            '/Number\s+of\s+(?:Vacancies|Posts)\s*[:\-]?\s*([0-9,]+)/i',
 
-        '/Vacancies\s*[:\-]?\s*([0-9,]+)/i',
-    ];
+            '/Vacancies\s*[:\-]?\s*([0-9,]+)/i',
+        ];
 
-    foreach ($patterns as $pattern) {
+        foreach ($patterns as $pattern) {
 
-        if (preg_match($pattern, $text, $matches)) {
+            if (preg_match($pattern, $text, $matches)) {
+
+                $value = str_replace(',', '', $matches[1]);
+
+                if (is_numeric($value)) {
+                    return (int) $value;
+                }
+            }
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Try HTML table / structured content
+        |--------------------------------------------------------------------------
+        */
+
+        if (preg_match(
+            '/Total\s+(?:Vacancies|Posts|Post).*?([0-9][0-9,]*)/is',
+            $html,
+            $matches
+        )) {
 
             $value = str_replace(',', '', $matches[1]);
 
@@ -1533,27 +1551,7 @@ class FreeJobAlertHelper
                 return (int) $value;
             }
         }
+
+        return null;
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Try HTML table / structured content
-    |--------------------------------------------------------------------------
-    */
-
-    if (preg_match(
-        '/Total\s+(?:Vacancies|Posts|Post).*?([0-9][0-9,]*)/is',
-        $html,
-        $matches
-    )) {
-
-        $value = str_replace(',', '', $matches[1]);
-
-        if (is_numeric($value)) {
-            return (int) $value;
-        }
-    }
-
-    return null;
-}
 }
