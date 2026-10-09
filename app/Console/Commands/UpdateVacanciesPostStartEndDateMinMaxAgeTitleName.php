@@ -36,4 +36,5 @@ class UpdateVacanciesPostStartEndDateMinMaxAgeTitleName extends Command
         */
 
        echo "Getting one pending FreeJobAlert record...\n";
+    }
 }
