@@ -476,9 +476,12 @@ class JobController extends Controller
         $limit = max(1, min((int) $limit, 100));
 
         $jobs = DB::table('job_details')
-            ->whereNull('total_vacancies')
-            ->orderBy('id', 'desc')
-            ->paginate($limit);
+    ->where(function ($query) {
+        $query->whereNull('total_vacancies')
+              ->orWhere('total_vacancies', '');
+    })
+    ->orderBy('id', 'desc')
+    ->paginate($limit);
 
         return view('jobs.job_edit_vacancy_list', compact('jobs', 'limit'));
     }
