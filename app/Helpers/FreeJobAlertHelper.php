@@ -1476,82 +1476,118 @@ class FreeJobAlertHelper
         return null;
     }
 
-    public static function extractFreeJobAlertVacancies($html)
-    {
-        if (empty($html)) {
-            return null;
-        }
+    
+public static function extractFreeJobAlertVacancies($html)
+{
+    if (empty($html)) {
+        return null;
+    }
 
-        /*
-        |--------------------------------------------------------------------------
-        | Remove unnecessary spaces
-        |--------------------------------------------------------------------------
-        */
+    libxml_use_internal_errors(true);
 
-        $text = strip_tags($html);
+    $dom = new \DOMDocument();
 
-        $text = html_entity_decode(
-            $text,
-            ENT_QUOTES | ENT_HTML5,
-            'UTF-8'
+    $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
+
+    libxml_clear_errors();
+
+    $xpath = new \DOMXPath($dom);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Find Overview heading
+    |--------------------------------------------------------------------------
+    */
+
+    $headings = $xpath->query(
+        '//h1 | //h2 | //h3 | //h4 | //h5 | //h6'
+    );
+
+    $overviewFound = false;
+    $overviewText = '';
+
+    foreach ($headings as $heading) {
+
+        $headingText = strtolower(
+            trim($heading->textContent)
         );
 
-        $text = preg_replace('/\s+/', ' ', $text);
+        if ($headingText === 'overview' ||
+            $headingText === 'job overview' ||
+            $headingText === 'recruitment overview') {
 
-        $text = trim($text);
+            $overviewFound = true;
 
-        /*
-        |--------------------------------------------------------------------------
-        | Total Vacancies / Total Posts
-        |--------------------------------------------------------------------------
-        */
+            // Read content until the next heading
+            for (
+                $node = $heading->nextSibling;
+                $node !== null;
+                $node = $node->nextSibling
+            ) {
 
-        $patterns = [
-
-            '/Total\s+(?:Vacancies|Posts|Post)\s*[:\-]?\s*([0-9,]+)/i',
-
-            '/Total\s+Vacancies\s*[:\-]?\s*([0-9,]+)/i',
-
-            '/Total\s+Posts\s*[:\-]?\s*([0-9,]+)/i',
-
-            '/No\.\s*of\s*(?:Vacancies|Posts)\s*[:\-]?\s*([0-9,]+)/i',
-
-            '/Number\s+of\s+(?:Vacancies|Posts)\s*[:\-]?\s*([0-9,]+)/i',
-
-            '/Vacancies\s*[:\-]?\s*([0-9,]+)/i',
-        ];
-
-        foreach ($patterns as $pattern) {
-
-            if (preg_match($pattern, $text, $matches)) {
-
-                $value = str_replace(',', '', $matches[1]);
-
-                if (is_numeric($value)) {
-                    return (int) $value;
+                if (
+                    $node instanceof \DOMElement &&
+                    preg_match(
+                        '/^H[1-6]$/i',
+                        $node->nodeName
+                    )
+                ) {
+                    break;
                 }
-            }
-        }
 
-        /*
-        |--------------------------------------------------------------------------
-        | Try HTML table / structured content
-        |--------------------------------------------------------------------------
-        */
+                $overviewText .= ' ' . $node->textContent;
+            }
+
+            break;
+        }
+    }
+
+    if (!$overviewFound || trim($overviewText) === '') {
+        return null;
+    }
+
+    $overviewText = html_entity_decode(
+        $overviewText,
+        ENT_QUOTES | ENT_HTML5,
+        'UTF-8'
+    );
+
+    $overviewText = preg_replace(
+        '/\s+/',
+        ' ',
+        $overviewText
+    );
+
+    /*
+    |--------------------------------------------------------------------------
+    | Extract vacancy count from Overview only
+    |--------------------------------------------------------------------------
+    */
+
+    $patterns = [
+        '/Total\s+(?:Number\s+of\s+)?Vacancies?\s*[:\-]?\s*([0-9,]+)/i',
+        '/Total\s+(?:Number\s+of\s+)?Posts?\s*[:\-]?\s*([0-9,]+)/i',
+        '/Vacancies?\s*[:\-]\s*([0-9,]+)/i',
+        '/Posts?\s*[:\-]\s*([0-9,]+)/i',
+    ];
+
+    foreach ($patterns as $pattern) {
 
         if (preg_match(
-            '/Total\s+(?:Vacancies|Posts|Post).*?([0-9][0-9,]*)/is',
-            $html,
+            $pattern,
+            $overviewText,
             $matches
         )) {
 
             $value = str_replace(',', '', $matches[1]);
 
-            if (is_numeric($value)) {
+            if (is_numeric($value) && (int) $value > 0) {
                 return (int) $value;
             }
         }
-
-        return null;
     }
+
+    return null;
+}
+
 }
