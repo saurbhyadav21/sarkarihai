@@ -95,7 +95,7 @@ class UpdateVacanciesPostStartEndDateMinMaxAgeTitleName extends Command
             */
 
             $totalVacancies =
-                FreeJobAlertHelper::extractFreeJobAlertVacancies($html);
+                FreeJobAlertHelper::totalVacancies($html);
 
             /*
             |--------------------------------------------------------------------------
