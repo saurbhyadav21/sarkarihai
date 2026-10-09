@@ -50,9 +50,9 @@ Schedule::command('telegram:prepare-jobs')
     ->everyMinute()
     ->withoutOverlapping();
 
-Schedule::command('app:update-vacancies-post-start-end-date-min-max-age-title-name')
-    ->everyMinute()
-    ->withoutOverlapping();
+// Schedule::command('app:update-vacancies-post-start-end-date-min-max-age-title-name')
+//     ->everyMinute()
+//     ->withoutOverlapping();
 
 Schedule::call(function () {
 
