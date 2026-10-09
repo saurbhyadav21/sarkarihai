@@ -480,7 +480,7 @@ class JobController extends Controller
             ->orderBy('id', 'desc')
             ->paginate($limit);
 
-        return view('jobs/job_edit_vacancy_list', compact('jobs', 'limit'));
+        return view('jobs.job_edit_vacancy_list', compact('jobs', 'limit'));
     }
 
 public function vacancyUpdate(Request $request)

@@ -40,7 +40,7 @@ Route::get('/job/vacancy-edit-list/{limit?}', [JobController::class, 'vacancyEdi
     ->name('job.vacancy.edit.list');
 
 Route::post('/job/vacancy-update', [JobController::class, 'vacancyUpdate'])
-    ->name('job.vacancy.update');  
+    ->name('job.vacancy.update');
 
 
 Route::get('/job/org-edit-list/{limit?}', [JobController::class, 'OrgEditList'])
