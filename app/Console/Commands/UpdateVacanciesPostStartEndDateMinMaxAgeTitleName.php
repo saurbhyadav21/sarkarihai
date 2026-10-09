@@ -151,5 +151,5 @@ class UpdateVacanciesPostStartEndDateMinMaxAgeTitleName extends Command
 
         return Command::SUCCESS;
     }
-    }
+    
 }
