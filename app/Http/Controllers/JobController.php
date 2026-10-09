@@ -471,6 +471,41 @@ class JobController extends Controller
         ));
     }
 
+     public function vacancyEditList($limit = 10)
+{
+    $limit = max(1, min((int) $limit, 100));
+
+    $jobs = DB::table('job_details')
+        ->whereNull('total_vacancies')
+        ->orderBy('id', 'desc')
+        ->paginate($limit);
+
+    return view('jobs.job_edit_list', compact('jobs', 'limit'));
+}
+
+public function vacancyUpdate(Request $request)
+{
+    $request->validate([
+        'id' => 'required|integer',
+        'total_vacancies' => 'required|integer|min:1',
+    ]);
+
+    $updated = DB::table('job_details')
+        ->where('id', $request->id)
+        ->whereNull('total_vacancies')
+        ->update([
+            'total_vacancies' => $request->total_vacancies,
+            'vacancy_flag' => 1,
+            'updated_at' => now(),
+        ]);
+
+    if ($updated) {
+        return redirect()->back()->with('success', 'Vacancies saved successfully.');
+    }
+
+    return redirect()->back()->with('error', 'Record already updated or not found.');
+}
+
     public function OrgEditList($limit = 10)
     {
         //dono hai    
