@@ -35,7 +35,7 @@ class UpdateVacanciesPostStartEndDateMinMaxAgeTitleName extends Command
         */
 
         $job = DB::table('job_details')
-            ->where('source', 'freejobalert')
+            ->where('source', 'sarkariresult.com.cm')
             ->where('vacancy_flag', 0)
             ->select(
                 'id',
