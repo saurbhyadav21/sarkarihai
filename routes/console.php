@@ -50,9 +50,7 @@ Schedule::command('telegram:prepare-jobs')
     ->everyMinute()
     ->withoutOverlapping();
 
-// Schedule::command('app:update-vacancies-post-start-end-date-min-max-age-title-name')
-//     ->everyMinute()
-//     ->withoutOverlapping();
+
 
 Schedule::call(function () {
 
@@ -61,3 +59,9 @@ Schedule::call(function () {
         now() . " : Cron Working\n"
     );
 })->everyMinute();
+
+
+// Total vacancy records in job_details table for Freejobalert and SarkariResult
+Schedule::command('app:update-vacancies-post-start-end-date-min-max-age-title-name')
+    ->everyMinute()
+    ->withoutOverlapping();
