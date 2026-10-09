@@ -471,17 +471,17 @@ class JobController extends Controller
         ));
     }
 
-     public function vacancyEditList($limit = 10)
-{
-    $limit = max(1, min((int) $limit, 100));
+    public function vacancyEditList($limit = 10)
+    {
+        $limit = max(1, min((int) $limit, 100));
 
-    $jobs = DB::table('job_details')
-        ->whereNull('total_vacancies')
-        ->orderBy('id', 'desc')
-        ->paginate($limit);
+        $jobs = DB::table('job_details')
+            ->whereNull('total_vacancies')
+            ->orderBy('id', 'desc')
+            ->paginate($limit);
 
-    return view('jobs.job_edit_list', compact('jobs', 'limit'));
-}
+        return view('jobs.job_edit_list', compact('jobs', 'limit'));
+    }
 
 public function vacancyUpdate(Request $request)
 {
