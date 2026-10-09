@@ -41,9 +41,7 @@
                     <thead class="table-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Source</th>
-                            <th>Slug</th>
-                            <th>Title</th>
+                            <th>Source</th> 
                             <th style="min-width:180px;">Total Vacancies</th>
                             <th>Save</th>
                         </tr>
@@ -62,10 +60,7 @@
                                     </a>
                                 </td>
 
-                                <td>{{ $job->slug }}</td>
-
-                                <td>{{ $job->title }}</td>
-
+                                
                                 <form action="{{ route('job.vacancy.update') }}" method="POST">
                                     @csrf
 
