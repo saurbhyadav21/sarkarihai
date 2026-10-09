@@ -30,8 +30,10 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>ID</th>
+                                <th>Source</th>
                                 <th>Slug</th>
                                 <th>Title</th>
+                                <th>Total Vacancies</th>
                                 {{-- <th>image</th> --}}
                                 {{-- <th>admit date</th> --}}
                                 {{-- <th>Job Category</th>
@@ -52,44 +54,41 @@
                                 <tr>
 
                                     <td>{{ $job->id }}</td>
+                                    <td><a href="{{ $job->source_url }}" target="_blank">{{ $job->source }}</a></td>
                                     <form action="{{ route('admin.jobs.updateInline') }}" method="POST">
-    @csrf
+                                        @csrf
 
-    <td>
-        <input type="text"
-               name="slug"
-               class="form-control form-control-sm"
-               value="{{ $job->slug }}">
-    </td>
+                                        <td>
+                                            <input type="text" name="slug" class="form-control form-control-sm"
+                                                value="{{ $job->slug }}">
+                                        </td>
 
-    <td>
-        <input type="text"
-               name="title"
-               class="form-control form-control-sm"
-               value="{{ $job->title }}">
+                                        <td>
+                                            <input type="text" name="title" class="form-control form-control-sm"
+                                                value="{{ $job->title }}">
 
-        <br>
+                                            <br>
 
-        <small
-            style="background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;font-weight:bold;display:inline-block;margin-top:5px;">
-            {{ $job->source }}
-        </small>
+                                            <small
+                                                style="background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;font-weight:bold;display:inline-block;margin-top:5px;">
+                                                {{ $job->source }}
+                                            </small>
 
-        @if($job->is_edited)
-            <br>
-            <small class="text-success fw-bold">
-                ✓ Edited
-            </small>
-        @endif
+                                            @if ($job->is_edited)
+                                                <br>
+                                                <small class="text-success fw-bold">
+                                                    ✓ Edited
+                                                </small>
+                                            @endif
 
-        <input type="hidden" name="id" value="{{ $job->id }}">
+                                            <input type="hidden" name="id" value="{{ $job->id }}">
 
-        <button type="submit" class="btn btn-sm btn-primary mt-2">
-            Save
-        </button>
-    </td>
-</form>
-
+                                            <button type="submit" class="btn btn-sm btn-primary mt-2">
+                                                Save
+                                            </button>
+                                        </td>
+                                    </form>
+                                    <th>{{ $job->total_vacancies }}</th>
                                     <!-- Image -->
                                     {{-- <td>
                                         @if (!empty($job->image))
@@ -230,7 +229,7 @@
                                                 Save
                                             </button>
                                         </form> --}}
-                                        {{-- @if ($job->organization_verified)
+                                    {{-- @if ($job->organization_verified)
                                             <span class="badge bg-success"
                                                 style="background-color: #000 !important;">Verified</span>
                                         @else
@@ -242,7 +241,7 @@
                                             class="badge rounded-pill {{ !empty($job->organization_full_form) ? 'bg-dark' : 'bg-danger' }} px-3 py-2">
                                             {{ strtoupper($job->organization_full_form ?? 'NOT SET') }}
                                         </span> --}}
-                                        {{-- <form action="{{ route('job.updateOrganizationFullForm', $job->id) }}"
+                                    {{-- <form action="{{ route('job.updateOrganizationFullForm', $job->id) }}"
                                             method="POST">
                                             @csrf
 
