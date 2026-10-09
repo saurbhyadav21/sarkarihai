@@ -1476,7 +1476,7 @@ class FreeJobAlertHelper
         return null;
     }
 
-    
+
 public static function extractFreeJobAlertVacancies($html)
 {
     if (empty($html)) {
@@ -1486,108 +1486,76 @@ public static function extractFreeJobAlertVacancies($html)
     libxml_use_internal_errors(true);
 
     $dom = new \DOMDocument();
-
     $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
 
     libxml_clear_errors();
 
     $xpath = new \DOMXPath($dom);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Find Overview heading
-    |--------------------------------------------------------------------------
-    */
-
-    $headings = $xpath->query(
-        '//h1 | //h2 | //h3 | //h4 | //h5 | //h6'
-    );
-
-    $overviewFound = false;
-    $overviewText = '';
+    // H2 mein Overview heading find karein
+    $headings = $xpath->query('//h2[contains(translate(normalize-space(.),
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "abcdefghijklmnopqrstuvwxyz"), "overview")]');
 
     foreach ($headings as $heading) {
 
-        $headingText = strtolower(
-            trim($heading->textContent)
+        // Heading ke baad aane wali pehli table-container find karein
+        $tableContainers = $xpath->query(
+            'following-sibling::div[
+                contains(
+                    concat(" ", normalize-space(@class), " "),
+                    " table-container "
+                )
+            ][1]',
+            $heading
         );
 
-        if ($headingText === 'overview' ||
-            $headingText === 'job overview' ||
-            $headingText === 'recruitment overview') {
+        if ($tableContainers->length === 0) {
+            continue;
+        }
 
-            $overviewFound = true;
+        $container = $tableContainers->item(0);
 
-            // Read content until the next heading
-            for (
-                $node = $heading->nextSibling;
-                $node !== null;
-                $node = $node->nextSibling
-            ) {
+        $rows = $xpath->query('.//table//tr', $container);
 
-                if (
-                    $node instanceof \DOMElement &&
-                    preg_match(
-                        '/^H[1-6]$/i',
-                        $node->nodeName
-                    )
-                ) {
-                    break;
+        foreach ($rows as $row) {
+
+            $cells = $xpath->query('./td | ./th', $row);
+
+            if ($cells->length < 2) {
+                continue;
+            }
+
+            $label = strtolower(trim($cells->item(0)->textContent));
+            $label = preg_replace('/\s+/', ' ', $label);
+
+            if (in_array($label, [
+                'no of posts',
+                'no. of posts',
+                'number of posts',
+                'total posts',
+                'no of vacancies',
+                'number of vacancies',
+                'total vacancies'
+            ], true)) {
+
+                $value = trim($cells->item(1)->textContent);
+                $value = str_replace(',', '', $value);
+
+                if (preg_match('/^\d+$/', $value) && (int) $value > 0) {
+                    return (int) $value;
                 }
 
-                $overviewText .= ' ' . $node->textContent;
+                return null;
             }
-
-            break;
         }
-    }
 
-    if (!$overviewFound || trim($overviewText) === '') {
+        // Overview mila, lekin uski table mein count nahi mila
         return null;
-    }
-
-    $overviewText = html_entity_decode(
-        $overviewText,
-        ENT_QUOTES | ENT_HTML5,
-        'UTF-8'
-    );
-
-    $overviewText = preg_replace(
-        '/\s+/',
-        ' ',
-        $overviewText
-    );
-
-    /*
-    |--------------------------------------------------------------------------
-    | Extract vacancy count from Overview only
-    |--------------------------------------------------------------------------
-    */
-
-    $patterns = [
-        '/Total\s+(?:Number\s+of\s+)?Vacancies?\s*[:\-]?\s*([0-9,]+)/i',
-        '/Total\s+(?:Number\s+of\s+)?Posts?\s*[:\-]?\s*([0-9,]+)/i',
-        '/Vacancies?\s*[:\-]\s*([0-9,]+)/i',
-        '/Posts?\s*[:\-]\s*([0-9,]+)/i',
-    ];
-
-    foreach ($patterns as $pattern) {
-
-        if (preg_match(
-            $pattern,
-            $overviewText,
-            $matches
-        )) {
-
-            $value = str_replace(',', '', $matches[1]);
-
-            if (is_numeric($value) && (int) $value > 0) {
-                return (int) $value;
-            }
-        }
     }
 
     return null;
 }
+
 
 }
