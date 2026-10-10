@@ -1622,84 +1622,101 @@ public static function totalVacancies($html)
 
 
  
+
 public static function extractAgeLimit($html)
 {
-    if (empty($html)) {
-        return null;
-    }
-
     libxml_use_internal_errors(true);
 
     $dom = new \DOMDocument();
     $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
 
-    libxml_clear_errors();
-
     $xpath = new \DOMXPath($dom);
 
+    $text = '';
+
+    // Age Limit heading ke baad wala paragraph/content hi lena hai
     $headings = $xpath->query(
-        '//h1 | //h2 | //h3 | //h4 | //h5 | //h6'
+        '//h1[contains(translate(., "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "age limit")] |
+         //h2[contains(translate(., "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "age limit")] |
+         //h3[contains(translate(., "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "age limit")] |
+         //h4[contains(translate(., "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "age limit")] |
+         //h5[contains(translate(., "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "age limit")] |
+         //h6[contains(translate(., "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "age limit")]'
     );
 
     foreach ($headings as $heading) {
+        $node = $heading->nextSibling;
 
-        $headingText = strtolower(trim($heading->textContent));
-
-        if (strpos($headingText, 'age limit') === false) {
-            continue;
-        }
-
-        $text = '';
-
-        // Heading ke baad aane wale elements se age details nikalein
-        for (
-            $node = $heading->nextSibling;
-            $node !== null;
-            $node = $node->nextSibling
-        ) {
+        while ($node) {
             if (
                 $node instanceof \DOMElement &&
-                preg_match('/^H[1-6]$/i', $node->nodeName)
+                preg_match('/^h[1-6]$/i', $node->nodeName)
             ) {
                 break;
             }
 
             $text .= ' ' . $node->textContent;
+            $node = $node->nextSibling;
         }
 
-        $text = html_entity_decode(
-            $text,
-            ENT_QUOTES | ENT_HTML5,
-            'UTF-8'
-        );
-
-        $text = preg_replace('/\s+/', ' ', trim($text));
-
-        if ($text === '') {
-            continue;
+        if (trim($text) !== '') {
+            break;
         }
-
-        // Example: age limit is from 25 years to 45 years
-        if (preg_match(
-            '/\b(\d{1,3})\s*years?\b.*?\b(\d{1,3})\s*years?\b/i',
-            $text,
-            $matches
-        )) {
-            return [
-                'min_age' => (int) $matches[1],
-                'max_age_genral' => (int) $matches[2],
-                'relaxation' => $text,
-            ];
-        }
-
-        // Age section mila, lekin do numeric ages nahi mile
-        return [
-            'min_age' => null,
-            'max_age_genral' => null,
-            'relaxation' => $text,
-        ];
     }
 
-    return null;
+    $text = trim(preg_replace('/\s+/', ' ', $text));
+
+    $result = [
+        'min_age'        => 'TBA',
+        'max_age_genral' => 'TBA',
+        'max_age_obc'    => 'TBA',
+        'max_age_sc_st'  => 'TBA',
+        'max_age_female' => 'TBA',
+        'relaxation'     => $text !== '' ? $text : 'TBA',
+        'post_age_limit' => 'TBA',
+    ];
+
+    if ($text === '') {
+        return $result;
+    }
+
+    // Case 1: Maximum Age Limit: 69 years
+    if (preg_match(
+        '/maximum\s+age(?:\s+limit)?\s*[:\-]?\s*(\d{1,3})\s*years?/i',
+        $text,
+        $matches
+    )) {
+        $minAge = 18;
+        $maxAge = (int) $matches[1];
+
+        $result['min_age']        = $minAge;
+        $result['max_age_genral'] = $maxAge;
+        $result['max_age_obc']    = $maxAge;
+        $result['max_age_sc_st']  = $maxAge;
+        $result['max_age_female'] = $maxAge;
+        $result['post_age_limit'] = $minAge . '-' . $maxAge;
+
+        return $result;
+    }
+
+    // Case 2: Paragraph mein do age values, jaise 18 years to 50 years
+    preg_match_all('/(\d{1,3})\s*years?\b/i', $text, $matches);
+
+    if (count($matches[1]) >= 2) {
+        $minAge = (int) $matches[1][0];
+        $maxAge = (int) $matches[1][1];
+
+        if ($minAge <= $maxAge) {
+            $result['min_age']        = $minAge;
+            $result['max_age_genral'] = $maxAge;
+            $result['max_age_obc']    = $maxAge;
+            $result['max_age_sc_st']  = $maxAge;
+            $result['max_age_female'] = $maxAge;
+            $result['post_age_limit'] = $minAge . '-' . $maxAge;
+        }
+    }
+
+    return $result;
 }
+
 }
