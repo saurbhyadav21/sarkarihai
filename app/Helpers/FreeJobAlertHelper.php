@@ -1619,4 +1619,87 @@ public static function totalVacancies($html)
     // Koi reliable count nahi mila
     return null;
     }
+
+
+ 
+public static function extractAgeLimit($html)
+{
+    if (empty($html)) {
+        return null;
+    }
+
+    libxml_use_internal_errors(true);
+
+    $dom = new \DOMDocument();
+    $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
+
+    libxml_clear_errors();
+
+    $xpath = new \DOMXPath($dom);
+
+    $headings = $xpath->query(
+        '//h1 | //h2 | //h3 | //h4 | //h5 | //h6'
+    );
+
+    foreach ($headings as $heading) {
+
+        $headingText = strtolower(trim($heading->textContent));
+
+        if (strpos($headingText, 'age limit') === false) {
+            continue;
+        }
+
+        $text = '';
+
+        // Heading ke baad aane wale elements se age details nikalein
+        for (
+            $node = $heading->nextSibling;
+            $node !== null;
+            $node = $node->nextSibling
+        ) {
+            if (
+                $node instanceof \DOMElement &&
+                preg_match('/^H[1-6]$/i', $node->nodeName)
+            ) {
+                break;
+            }
+
+            $text .= ' ' . $node->textContent;
+        }
+
+        $text = html_entity_decode(
+            $text,
+            ENT_QUOTES | ENT_HTML5,
+            'UTF-8'
+        );
+
+        $text = preg_replace('/\s+/', ' ', trim($text));
+
+        if ($text === '') {
+            continue;
+        }
+
+        // Example: age limit is from 25 years to 45 years
+        if (preg_match(
+            '/\b(\d{1,3})\s*years?\b.*?\b(\d{1,3})\s*years?\b/i',
+            $text,
+            $matches
+        )) {
+            return [
+                'min_age' => (int) $matches[1],
+                'max_age_genral' => (int) $matches[2],
+                'relaxation' => $text,
+            ];
+        }
+
+        // Age section mila, lekin do numeric ages nahi mile
+        return [
+            'min_age' => null,
+            'max_age_genral' => null,
+            'relaxation' => $text,
+        ];
+    }
+
+    return null;
+}
 }
