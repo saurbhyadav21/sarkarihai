@@ -64,14 +64,18 @@ class UpdateFreeJobAlertAgeLimit extends Command
                 )
             ) {
                 DB::table('job_details')
-                    ->where('id', $job->id)
-                    ->update([
-                        'min_age' => $ageData['min_age'],
-                        'max_age_genral' => $ageData['max_age_genral'],
-                        'relaxation' => $ageData['relaxation'],
-                        'age_flag' => 1,
-                        'updated_at' => now(),
-                    ]);
+                ->where('id', $job->id)
+                ->update([
+                    'min_age'          => $ageData['min_age'] ?? null,
+                    'max_age_genral'   => $ageData['max_age_genral'] ?? null,
+                    'max_age_obc'      => $ageData['max_age_obc'] ?? null,
+                    'max_age_sc_st'    => $ageData['max_age_sc_st'] ?? null,
+                    'max_age_female'   => $ageData['max_age_female'] ?? null,
+                    'relaxation'       => $ageData['relaxation'] ?? null,
+                    'post_age_limit'   => $ageData['post_age_limit'] ?? null,
+                    'age_flag'         => 1,
+                    'updated_at'       => now(),
+                ]);
 
                 $this->info(
                     "UPDATED: ID {$job->id} | Min Age: " .
