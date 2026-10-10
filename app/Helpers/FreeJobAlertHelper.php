@@ -1478,6 +1478,7 @@ class FreeJobAlertHelper
 
 
 
+
 public static function totalVacancies($html)
 {
     if (empty($html)) {
@@ -1493,9 +1494,7 @@ public static function totalVacancies($html)
 
     $xpath = new \DOMXPath($dom);
 
-    // -------------------------------------------------
-    // 1. Overview heading ke baad wali table check karein
-    // -------------------------------------------------
+    // 1. Overview heading ke baad wali table
     $headings = $xpath->query(
         '//h2[contains(
             translate(normalize-space(.),
@@ -1506,7 +1505,6 @@ public static function totalVacancies($html)
     );
 
     foreach ($headings as $heading) {
-
         $containers = $xpath->query(
             'following-sibling::div[
                 contains(
@@ -1527,7 +1525,6 @@ public static function totalVacancies($html)
         );
 
         foreach ($rows as $row) {
-
             $cells = $xpath->query('./td | ./th', $row);
 
             if ($cells->length < 2) {
@@ -1545,36 +1542,40 @@ public static function totalVacancies($html)
                 'number of posts',
                 'total post',
                 'total posts',
+                'total vacancies',
+                'total vacancy',
                 'no of vacancy',
                 'no of vacancies',
-                'total vacancy',
-                'total vacancies'
+                'total number of vacancies',
+                'total number of posts',
             ], true)) {
-
                 $value = trim($cells->item(1)->textContent);
                 $value = str_replace(',', '', $value);
 
-                if (preg_match('/^\d+$/', $value) && (int) $value > 0) {
-                    return (int) $value;
+                // Examples: 3, 3 Vacancies, 3 Posts
+                if (preg_match(
+                    '/^\s*(\d+)\s*(?:posts?|vacancies?)?\s*$/i',
+                    $value,
+                    $matches
+                )) {
+                    $count = (int) $matches[1];
+
+                    if ($count > 0) {
+                        return $count;
+                    }
                 }
 
                 return null;
             }
         }
-
-        // Overview table mili, lekin count nahi mila
-        break;
     }
 
-    // -------------------------------------------------
-    // 2. SarkariResult: Total Post heading ke neeche count
-    // -------------------------------------------------
+    // 2. SarkariResult: Total Posts / Total Vacancies heading
     $totalHeadings = $xpath->query(
         '//h1 | //h2 | //h3 | //h4 | //h5 | //h6'
     );
 
     foreach ($totalHeadings as $heading) {
-
         $headingText = strtolower(trim($heading->textContent));
         $headingText = preg_replace('/\s+/', ' ', $headingText);
 
@@ -1585,7 +1586,6 @@ public static function totalVacancies($html)
             continue;
         }
 
-        // Heading ke baad agle heading tak ka content padhein
         for (
             $node = $heading->nextSibling;
             $node !== null;
@@ -1593,32 +1593,31 @@ public static function totalVacancies($html)
         ) {
             if (
                 $node instanceof \DOMElement &&
-                preg_match('/^H[1-6]$/i', $node->nodeName)
+                preg_match('/^h[1-6]$/i', $node->nodeName)
             ) {
                 break;
             }
 
             $text = trim($node->textContent);
+            $text = str_replace(',', '', $text);
 
-            if (
-                preg_match(
-                    '/^\s*([\d,]+)\s*(?:posts?|vacancies?)\s*$/i',
-                    $text,
-                    $matches
-                )
-            ) {
-                $value = (int) str_replace(',', '', $matches[1]);
+            if (preg_match(
+                '/^\s*(\d+)\s*(?:posts?|vacancies?)?\s*$/i',
+                $text,
+                $matches
+            )) {
+                $count = (int) $matches[1];
 
-                if ($value > 0) {
-                    return $value;
+                if ($count > 0) {
+                    return $count;
                 }
             }
         }
     }
 
-    // Koi reliable count nahi mila
     return null;
-    }
+}
+
 
 
  
