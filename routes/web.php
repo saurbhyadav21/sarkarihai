@@ -57,13 +57,7 @@ Route::delete('/job/{id}', [JobController::class, 'destroy'])->name('job.destroy
 
 Route::delete('/result/{id}', [JobController::class, 'resultDestroy'])->name('result.destroy');
 
-// Route::get('/add-job', function () {
-//     return view('jobs/add-job');
-// });
-
 Route::post('/add-job', [JobController::class, 'storeJson'])->name('job.store.json');
-
-
 
 // Route::get('/state/{state}/jobs', [JobController::class, 'stateJobs'])->name('state.jobs');
 Route::get('/jobs/{state}/{category}', [JobController::class, 'stateCategoryJobs'])
