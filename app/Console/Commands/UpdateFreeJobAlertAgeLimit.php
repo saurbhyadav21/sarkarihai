@@ -56,37 +56,40 @@ class UpdateFreeJobAlertAgeLimit extends Command
             // Extract age details from FreeJobAlert HTML
             $ageData = FreeJobAlertHelper::extractAgeLimit($html);
 
-            if (
-                $ageData !== null &&
-                (
-                    $ageData['min_age'] !== null ||
-                    $ageData['max_age_genral'] !== null
-                )
-            ) {
+            if ($ageData && (
+                !empty($ageData['min_age']) ||
+                !empty($ageData['max_age_genral']) ||
+                !empty($ageData['relaxation'])
+            )) {
                 DB::table('job_details')
-                ->where('id', $job->id)
-                ->update([
-                    'min_age'          => $ageData['min_age'] ?? null,
-                    'max_age_genral'   => $ageData['max_age_genral'] ?? null,
-                    'max_age_obc'      => $ageData['max_age_obc'] ?? null,
-                    'max_age_sc_st'    => $ageData['max_age_sc_st'] ?? null,
-                    'max_age_female'   => $ageData['max_age_female'] ?? null,
-                    'relaxation'       => $ageData['relaxation'] ?? null,
-                    'post_age_limit'   => $ageData['post_age_limit'] ?? null,
-                    'age_flag'         => 1,
-                    'updated_at'       => now(),
-                ]);
-
-                $this->info(
-                    "UPDATED: ID {$job->id} | Min Age: " .
-                    ($ageData['min_age'] ?? 'NULL') .
-                    " | Max Age: " .
-                    ($ageData['max_age_genral'] ?? 'NULL')
-                );
+                    ->where('id', $job->id)
+                    ->update([
+                        'min_age'        => $ageData['min_age'] ?? 'TBA',
+                        'max_age_genral' => $ageData['max_age_genral'] ?? 'TBA',
+                        'max_age_obc'    => $ageData['max_age_obc'] ?? 'TBA',
+                        'max_age_sc_st'  => $ageData['max_age_sc_st'] ?? 'TBA',
+                        'max_age_female' => $ageData['max_age_female'] ?? 'TBA',
+                        'relaxation'     => $ageData['relaxation'] ?? 'TBA',
+                        'post_age_limit' => $ageData['post_age_limit'] ?? 'TBA',
+                        'age_flag'       => 1,
+                        'updated_at'     => now(),
+                    ]);
             } else {
-                $this->warn(
-                    "AGE NOT FOUND: ID {$job->id} | Record remains pending."
-                );
+                DB::table('job_details')
+                    ->where('id', $job->id)
+                    ->update([
+                        'min_age'        => 'TBA',
+                        'max_age_genral' => 'TBA',
+                        'max_age_obc'    => 'TBA',
+                        'max_age_sc_st'  => 'TBA',
+                        'max_age_female' => 'TBA',
+                        'relaxation'     => 'TBA',
+                        'post_age_limit' => 'TBA',
+                        'age_flag'       => 1,
+                        'updated_at'     => now(),
+                    ]);
+
+                $this->warn("AGE NOT FOUND: ID {$job->id} — TBA saved.");
             }
         } catch (\Throwable $e) {
             $this->error(
