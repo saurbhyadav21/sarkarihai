@@ -1712,6 +1712,27 @@ public static function extractAgeLimit($html)
         }
     }
 
+    // Case 3: between 18 and 35 years
+    if (preg_match(
+        '/between\s+(\d{1,3})\s+and\s+(\d{1,3})\s+years?/i',
+        $text,
+        $matches
+    )) {
+        $minAge = (int) $matches[1];
+        $maxAge = (int) $matches[2];
+
+        if ($minAge <= $maxAge) {
+            $result['min_age']        = $minAge;
+            $result['max_age_genral'] = $maxAge;
+            $result['max_age_obc']    = $maxAge;
+            $result['max_age_sc_st']  = $maxAge;
+            $result['max_age_female'] = $maxAge;
+            $result['post_age_limit'] = $minAge . '-' . $maxAge;
+        }
+
+        return $result;
+    }
+
     return $result;
 }
 
