@@ -474,7 +474,6 @@ class JobController extends Controller
     public function vacancyEditList($limit = 10)
     { 
         $limit = max(1, min((int) $limit, 100));
-
         $jobs = DB::table('job_details')
             ->where(function ($query) {
                 $query->whereNull('total_vacancies')
