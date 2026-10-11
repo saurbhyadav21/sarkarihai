@@ -46,7 +46,7 @@ public function handle()
         //     ->orderBy('id', 'asc')
         //     ->first();
         
-        $job = DB::table('job_details')
+        $query = DB::table('job_details')
     ->whereIn('source', [
         'freejobalert',
         'sarkariresult.com.cm',
@@ -57,8 +57,14 @@ public function handle()
     })
     ->where('vacancy_flag', 0);
 
-dd($job->count());
-        dd($job->count());
+dd([
+    'database' => DB::connection()->getDatabaseName(),
+    'total_count' => (clone $query)->count(),
+    'freejobalert' => (clone $query)
+        ->where('source', 'freejobalert')->count(),
+    'sarkariresult' => (clone $query)
+        ->where('source', 'sarkariresult.com.cm')->count(),
+]);
         if (!$job) {
             $this->info('No pending vacancy records found.');
             break;
