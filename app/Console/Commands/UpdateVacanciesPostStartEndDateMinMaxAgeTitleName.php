@@ -47,13 +47,10 @@ public function handle()
         //     ->first();
         
         
-$count = DB::table('job_details')
-    ->where(function ($q) {
-        $q->whereNull('total_vacancies')
-          ->orWhere('total_vacancies', '');
-    })
-    ->where('vacancy_flag', 1)
-    ->count();
+$count = \Illuminate\Support\Facades\DB::connection()
+    ->getPdo()
+    ->query("SELECT COUNT(*) FROM job_details WHERE (total_vacancies IS NULL OR total_vacancies = '') AND vacancy_flag = 1")
+    ->fetchColumn();
 
 dd($count);
 
