@@ -46,7 +46,8 @@ public function handle()
         //     ->orderBy('id', 'asc')
         //     ->first();
         
-        $query = DB::table('job_details')
+        
+$query = DB::table('job_details')
     ->whereIn('source', [
         'freejobalert',
         'sarkariresult.com.cm',
@@ -57,14 +58,8 @@ public function handle()
     })
     ->where('vacancy_flag', 0);
 
-$count = DB::table('job_details')
-    ->where(function ($query) {
-        $query->whereNull('total_vacancies')
-              ->orWhereRaw("TRIM(total_vacancies) = ''");
-    })
-    ->count();
+dd($query->count());
 
-dd($count);
         if (!$job) {
             $this->info('No pending vacancy records found.');
             break;
