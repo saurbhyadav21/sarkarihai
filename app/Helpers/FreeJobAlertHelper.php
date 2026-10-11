@@ -1618,6 +1618,7 @@ public static function totalVacancies($html)
     }
 
     // 3. Total Vacancy paragraph condition
+    // Example: Total Vacancy: 73 Posts (nested strong/span supported)
     $vacancyParagraphs = $xpath->query('//p');
 
     foreach ($vacancyParagraphs as $paragraph) {
@@ -1639,6 +1640,8 @@ public static function totalVacancies($html)
 
     return null;
 }
+
+
 
 
  
