@@ -63,81 +63,83 @@ $jobs = \Illuminate\Support\Facades\DB::connection()
     $this->info("Processing ID: {$job->id} | Source: {$job->source}");
 
     // Yahan apna existing job processing code rakho
-}
+
         // dd('ss');
-        // try {
-        //     $response = Http::timeout(30)
-        //         ->retry(2, 1000)
-        //         ->withHeaders([
-        //             'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/154.0.0.0 Safari/537.36',
-        //             'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        //             'Accept-Language' => 'en-US,en;q=0.9',
-        //         ])
-        //         ->get($job->source_url);
+        try {
+            $response = Http::timeout(30)
+                ->retry(2, 1000)
+                ->withHeaders([
+                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/154.0.0.0 Safari/537.36',
+                    'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                    'Accept-Language' => 'en-US,en;q=0.9',
+                ])
+                ->get($job->source_url);
 
-        //     if (!$response->successful()) {
-        //         $this->error(
-        //             "HTTP ERROR: ID {$job->id} | Status: {$response->status()}"
-        //         );
+            if (!$response->successful()) {
+                $this->error(
+                    "HTTP ERROR: ID {$job->id} | Status: {$response->status()}"
+                );
 
-        //         // Failed record ko loop mein atakne se bachao
-        //         DB::table('job_details')
-        //             ->where('id', $job->id)
-        //             ->update([
-        //                 'vacancy_flag' => 2,
-        //                 'updated_at' => now(),
-        //             ]);
+                // Failed record ko loop mein atakne se bachao
+                DB::table('job_details')
+                    ->where('id', $job->id)
+                    ->update([
+                        'vacancy_flag' => 2,
+                        'updated_at' => now(),
+                    ]);
 
-        //         $failed++;
-        //         continue;
-        //     }
+                $failed++;
+                continue;
+            }
 
-        //     $totalVacancies = FreeJobAlertHelper::totalVacancies(
-        //         $response->body()
-        //     );
+            $totalVacancies = FreeJobAlertHelper::totalVacancies(
+                $response->body()
+            );
 
-        //     if ($totalVacancies !== null) {
-        //         DB::table('job_details')
-        //             ->where('id', $job->id)
-        //             ->update([
-        //                 'total_vacancies' => $totalVacancies,
-        //                 'vacancy_flag' => 1,
-        //                 'updated_at' => now(),
-        //             ]);
+            if ($totalVacancies !== null) {
+                DB::table('job_details')
+                    ->where('id', $job->id)
+                    ->update([
+                        'total_vacancies' => $totalVacancies,
+                        'vacancy_flag' => 1,
+                        'updated_at' => now(),
+                    ]);
 
-        //         $this->info(
-        //             "UPDATED: ID {$job->id} | Posts: {$totalVacancies}"
-        //         );
-        //     } else {
-        //         DB::table('job_details')
-        //             ->where('id', $job->id)
-        //             ->update([
-        //                 'vacancy_flag' => 1,
-        //                 'updated_at' => now(),
-        //             ]);
+                $this->info(
+                    "UPDATED: ID {$job->id} | Posts: {$totalVacancies}"
+                );
+            } else {
+                DB::table('job_details')
+                    ->where('id', $job->id)
+                    ->update([
+                        'vacancy_flag' => 1,
+                        'updated_at' => now(),
+                    ]);
 
-        //         $this->warn(
-        //             "NOT FOUND: ID {$job->id} | Vacancy not detected"
-        //         );
-        //     }
+                $this->warn(
+                    "NOT FOUND: ID {$job->id} | Vacancy not detected"
+                );
+            }
 
-        //     $processed++;
+            $processed++;
 
-        // } catch (\Throwable $e) {
-        //     $this->error("ERROR: ID {$job->id} | {$e->getMessage()}");
+        } catch (\Throwable $e) {
+            $this->error("ERROR: ID {$job->id} | {$e->getMessage()}");
 
-        //     // Error record ko skip karo; baad mein manually retry kar sakte ho
-        //     DB::table('job_details')
-        //         ->where('id', $job->id)
-        //         ->update([
-        //             'vacancy_flag' => 2,
-        //             'updated_at' => now(),
-        //         ]);
+            // Error record ko skip karo; baad mein manually retry kar sakte ho
+            DB::table('job_details')
+                ->where('id', $job->id)
+                ->update([
+                    'vacancy_flag' => 2,
+                    'updated_at' => now(),
+                ]);
 
-        //     $failed++;
-        //     continue;
-        // }
+            $failed++;
+            continue;
+        }
         
+    }
+
     }
 
     $this->info("Completed | Processed: {$processed} | Failed: {$failed}");
