@@ -492,7 +492,7 @@ class JobController extends Controller
     {
         $request->validate([
             'id' => 'required|integer',
-            'total_vacancies' => 'required|integer|min:1',
+            'total_vacancies' => 'required',
         ]);
 
         $updated = DB::table('job_details')
