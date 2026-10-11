@@ -33,7 +33,7 @@ public function handle()
     $processed = 0;
     $failed = 0;
 
-    while (true) {
+    while ($processed <10) {
        
         
         
