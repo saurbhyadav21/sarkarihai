@@ -39,8 +39,8 @@ public function handle()
                 'freejobalert',
                 'sarkariresult.com.cm',
             ])
-             ->whereNull('total_vacancies')
-            ->orWhere('total_vacancies', '')
+            //  ->whereNull('total_vacancies')
+            ->Where('total_vacancies', '')
             ->where('vacancy_flag', 0)
             ->select('id', 'source', 'source_url')
             ->orderBy('id', 'asc')
