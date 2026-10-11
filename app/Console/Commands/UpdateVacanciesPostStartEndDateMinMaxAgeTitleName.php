@@ -50,9 +50,9 @@ public function handle()
             $this->info('No pending vacancy records found.');
             break;
         }
-
+        dd("Processing ID: {$job->id} | Source: {$job->source}");
         $this->info("Processing ID: {$job->id} | Source: {$job->source}");
-
+        
         try {
             $response = Http::timeout(30)
                 ->retry(2, 1000)
