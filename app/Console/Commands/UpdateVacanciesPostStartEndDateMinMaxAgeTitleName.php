@@ -59,7 +59,7 @@ public function handle()
             ->select('id', 'source', 'source_url')
             ->orderBy('id', 'asc')
             ->first();
-
+        dd(count($job));    
         if (!$job) {
             $this->info('No pending vacancy records found.');
             break;
