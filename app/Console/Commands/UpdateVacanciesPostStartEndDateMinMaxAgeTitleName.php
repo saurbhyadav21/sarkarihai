@@ -28,35 +28,27 @@ class UpdateVacanciesPostStartEndDateMinMaxAgeTitleName extends Command
      */
 
 
+
 public function handle()
 {
     $processed = 0;
     $failed = 0;
 
-    while (true ) {
-       
-        
-        
-$jobs = DB::connection()
-    ->getPdo()
-    ->query("SELECT * FROM `job_details`
-        WHERE (`total_vacancies` IS NULL OR TRIM(`total_vacancies`) = '')
-        AND `vacancy_flag` = 1")
-    ->fetchAll(\PDO::FETCH_OBJ);
+    $jobs = DB::connection()
+        ->getPdo()
+        ->query("SELECT * FROM `job_details`
+            WHERE (`total_vacancies` IS NULL OR TRIM(`total_vacancies`) = '')
+            AND `vacancy_flag` = 1")
+        ->fetchAll(\PDO::FETCH_OBJ);
 
-// dd($count);
+    if (!$jobs) {
+        $this->info('No pending vacancy records found.');
+        return Command::SUCCESS;
+    }
 
-        if (!$jobs) {
-            $this->info('No pending vacancy records found.');
-            break;
-        }
-        // dd("Processing ID: {$job->id} | Source: {$job->source}");
-        foreach ($jobs as $job) {
-    $this->info("Processing ID: {$job->id} | Source: {$job->source}");
+    foreach ($jobs as $job) {
+        $this->info("Processing ID: {$job->id} | Source: {$job->source}");
 
-    // Yahan apna existing job processing code rakho
-
-        // dd('ss');
         try {
             $response = Http::timeout(30)
                 ->retry(2, 1000)
@@ -72,7 +64,6 @@ $jobs = DB::connection()
                     "HTTP ERROR: ID {$job->id} | Status: {$response->status()}"
                 );
 
-                // Failed record ko loop mein atakne se bachao
                 DB::table('job_details')
                     ->where('id', $job->id)
                     ->update([
@@ -118,7 +109,6 @@ $jobs = DB::connection()
         } catch (\Throwable $e) {
             $this->error("ERROR: ID {$job->id} | {$e->getMessage()}");
 
-            // Error record ko skip karo; baad mein manually retry kar sakte ho
             DB::table('job_details')
                 ->where('id', $job->id)
                 ->update([
@@ -129,15 +119,13 @@ $jobs = DB::connection()
             $failed++;
             continue;
         }
-        
-    }
-
     }
 
     $this->info("Completed | Processed: {$processed} | Failed: {$failed}");
 
     return Command::SUCCESS;
 }
+
 
 
     
