@@ -1515,18 +1515,55 @@ public static function totalVacancies($html)
             if ($count > 0) {
                 return $count;
             }
-
-            return $value;
         }
 
-        // Any other non-empty value: return as string
         // Ignore generic heading text
-            if (strcasecmp($value, 'Vacancies') === 0) {
-                return null;
-            }
+        if (strcasecmp($value, 'Vacancies') === 0) {
+            return null;
+        }
+
+        // Return any other non-empty value as string
+        return $value;
     };
 
-    // 1. Overview heading and its following table-container
+    // 1. Find Vacancies label in any table-container
+    $vacancyRows = $xpath->query(
+        '//div[contains(
+            concat(" ", normalize-space(@class), " "),
+            " table-container "
+        )]//tr'
+    );
+
+    foreach ($vacancyRows as $row) {
+        $cells = $xpath->query('./td | ./th', $row);
+
+        if ($cells->length < 2) {
+            continue;
+        }
+
+        $label = strtolower(trim($cells->item(0)->textContent));
+        $label = preg_replace('/\s+/', ' ', $label);
+
+        if (in_array($label, [
+            'vacancies',
+            'total vacancies',
+            'total vacancy',
+            'no of vacancies',
+            'no. of vacancies',
+            'no of vacancy',
+            'no. of vacancy',
+            'number of vacancies',
+            'number of vacancy',
+        ], true)) {
+            $value = trim($cells->item(1)->textContent);
+
+            if ($value !== '') {
+                return $extractCount($value);
+            }
+        }
+    }
+
+    // 2. Overview heading and its following table-container
     $headings = $xpath->query(
         '//h2[contains(
             translate(normalize-space(.),
@@ -1589,7 +1626,7 @@ public static function totalVacancies($html)
         }
     }
 
-    // 2. SarkariResult: Total Posts / Total Vacancies headings
+    // 3. SarkariResult: Total Posts / Total Vacancies headings
     $totalHeadings = $xpath->query(
         '//h1 | //h2 | //h3 | //h4 | //h5 | //h6'
     );
@@ -1625,7 +1662,7 @@ public static function totalVacancies($html)
         }
     }
 
-    // 3. Paragraphs: Total Vacancy: 73 Posts / Total Vacancy: 1,250
+    // 4. Paragraphs: Total Vacancy: 73 Posts / Total Vacancy: 1,250
     $vacancyParagraphs = $xpath->query('//p');
 
     foreach ($vacancyParagraphs as $paragraph) {
