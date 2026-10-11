@@ -1617,10 +1617,12 @@ public static function totalVacancies($html)
         }
     }
 
-     // 3. Total Vacancy paragraph condition
-    // Supports: Total Vacancy: 73 Posts
-    // Supports: Total Vacancy: 1,250
-    // Supports: Total Vacancy: Not Mentioned
+    
+    // 3. Total Vacancy paragraph condition
+    // Supports:
+    // Total Vacancy: 73 Posts
+    // Total Vacancy: 1,250
+    // Total Vacancy: Not Mentioned
 
     $vacancyParagraphs = $xpath->query('//p');
 
@@ -1638,7 +1640,7 @@ public static function totalVacancies($html)
 
         $value = trim($matches[1]);
 
-        // Vacancy count is not mentioned
+        // Not Mentioned: skip and continue checking
         if (preg_match('/^not\s+mentioned$/i', $value)) {
             continue;
         }
@@ -1656,6 +1658,7 @@ public static function totalVacancies($html)
             }
         }
     }
+
 
     return null;
 }
