@@ -1480,6 +1480,7 @@ class FreeJobAlertHelper
 
 
 
+
 public static function totalVacancies($html)
 {
     if (empty($html)) {
@@ -1495,7 +1496,37 @@ public static function totalVacancies($html)
 
     $xpath = new \DOMXPath($dom);
 
-    // 1. Overview heading ke baad wali table
+    // Helper: extract valid numeric vacancy count
+    $extractCount = function ($value) {
+        $value = trim(preg_replace('/\s+/', ' ', $value));
+
+        if ($value === '') {
+            return null;
+        }
+
+        // Ignore unspecified vacancy values
+        if (preg_match(
+            '/^(?:not\s+mentioned|not\s+specified(?:\s+in\s+the\s+notification)?|not\s+available|n\/a|na|nil|none|-+)$/i',
+            $value
+        )) {
+            return null;
+        }
+
+        // Supports: 3, 73 Posts, 1,250 Vacancies, 1 (One)
+        if (preg_match(
+            '/^([\d,]+)(?:\s*\([^)]*\))?\s*(?:posts?|vacancies?)?\s*$/i',
+            $value,
+            $matches
+        )) {
+            $count = (int) str_replace(',', '', $matches[1]);
+
+            return $count > 0 ? $count : null;
+        }
+
+        return null;
+    };
+
+    // 1. Overview heading and its following table-container
     $headings = $xpath->query(
         '//h2[contains(
             translate(normalize-space(.),
@@ -1520,10 +1551,7 @@ public static function totalVacancies($html)
             continue;
         }
 
-        $rows = $xpath->query(
-            './/table//tr',
-            $containers->item(0)
-        );
+        $rows = $xpath->query('.//table//tr', $containers->item(0));
 
         foreach ($rows as $row) {
             $cells = $xpath->query('./td | ./th', $row);
@@ -1536,7 +1564,7 @@ public static function totalVacancies($html)
             $label = preg_replace('/[^a-z\s]/', '', $label);
             $label = preg_replace('/\s+/', ' ', $label);
 
-            if (in_array($label, [
+            if (!in_array($label, [
                 'no of post',
                 'no of posts',
                 'number of post',
@@ -1550,30 +1578,20 @@ public static function totalVacancies($html)
                 'total number of vacancies',
                 'total number of posts',
             ], true)) {
-
-                $value = trim($cells->item(1)->textContent);
-                $value = preg_replace('/\s+/', ' ', $value);
-
-                // Numeric values: 3, 73 Posts, 1,250 Vacancies, 1 (One)
-                if (preg_match(
-                    '/^\s*([\d,]+)(?:\s*\([^)]*\))?\s*(?:posts?|vacancies?)?\s*$/i',
-                    $value,
-                    $matches
-                )) {
-                    $count = (int) str_replace(',', '', $matches[1]);
-
-                    if ($count > 0) {
-                        return $count;
-                    }
-                }
-
-                // Unknown vacancy count: continue checking other conditions
                 continue;
             }
+
+            $count = $extractCount($cells->item(1)->textContent);
+
+            if ($count !== null) {
+                return $count;
+            }
+
+            // Unknown value: continue checking other rows/conditions
         }
     }
 
-    // 2. SarkariResult: Total Posts / Total Vacancies heading
+    // 2. SarkariResult: Total Posts / Total Vacancies headings
     $totalHeadings = $xpath->query(
         '//h1 | //h2 | //h3 | //h4 | //h5 | //h6'
     );
@@ -1601,30 +1619,15 @@ public static function totalVacancies($html)
                 break;
             }
 
-            $text = trim($node->textContent);
-            $text = preg_replace('/\s+/', ' ', $text);
+            $count = $extractCount($node->textContent);
 
-            if (preg_match(
-                '/^\s*([\d,]+)(?:\s*\([^)]*\))?\s*(?:posts?|vacancies?)?\s*$/i',
-                $text,
-                $matches
-            )) {
-                $count = (int) str_replace(',', '', $matches[1]);
-
-                if ($count > 0) {
-                    return $count;
-                }
+            if ($count !== null) {
+                return $count;
             }
         }
     }
 
-    
-    // 3. Total Vacancy paragraph condition
-    // Supports:
-    // Total Vacancy: 73 Posts
-    // Total Vacancy: 1,250
-    // Total Vacancy: Not Mentioned
-
+    // 3. Paragraphs: Total Vacancy: 73 Posts / Total Vacancy: 1,250
     $vacancyParagraphs = $xpath->query('//p');
 
     foreach ($vacancyParagraphs as $paragraph) {
@@ -1632,37 +1635,23 @@ public static function totalVacancies($html)
         $paragraphText = preg_replace('/\s+/', ' ', $paragraphText);
 
         if (!preg_match(
-            '/^\s*Total\s+Vacanc(?:y|ies)\s*:\s*(.*?)\s*$/i',
+            '/^Total\s+Vacanc(?:y|ies)\s*:\s*(.*?)\s*$/i',
             $paragraphText,
             $matches
         )) {
             continue;
         }
 
-        $value = trim($matches[1]);
+        $count = $extractCount($matches[1]);
 
-        // Not Mentioned: skip and continue checking
-        if (preg_match('/^not\s+mentioned$/i', $value)) {
-            continue;
-        }
-
-        // Extract numeric vacancy count
-        if (preg_match(
-            '/^([\d,]+)(?:\s*\([^)]*\))?\s*(?:posts?|vacancies?)?$/i',
-            $value,
-            $countMatches
-        )) {
-            $count = (int) str_replace(',', '', $countMatches[1]);
-
-            if ($count > 0) {
-                return $count;
-            }
+        if ($count !== null) {
+            return $count;
         }
     }
 
-
     return null;
 }
+
 
 
 
