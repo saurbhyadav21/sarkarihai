@@ -34,22 +34,12 @@ public function handle()
     $failed = 0;
 
     while (true) {
-        // $job = DB::table('job_details')
-        //     ->whereIn('source', [
-        //         'freejobalert',
-        //         'sarkariresult.com.cm',
-        //     ])
-        //     //  ->whereNull('total_vacancies')
-        //     ->Where('total_vacancies', '')
-        //     ->where('vacancy_flag', 0)
-        //     ->select('id', 'source', 'source_url')
-        //     ->orderBy('id', 'asc')
-        //     ->first();
+       
         
         
 $jobs = \Illuminate\Support\Facades\DB::connection()
     ->getPdo()
-    ->query("SELECT * FROM `job_details` WHERE (`total_vacancies` IS NULL OR TRIM(`total_vacancies`) = '') AND `vacancy_flag` = 1")
+    ->query("SELECT * FROM `job_details` WHERE (`total_vacancies` IS NULL OR TRIM(`total_vacancies`) = '') AND `vacancy_flag` = 1 AND `id`=8860")
     ->fetchAll(\PDO::FETCH_OBJ);
 
 // dd($count);
