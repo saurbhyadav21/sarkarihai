@@ -1596,7 +1596,7 @@ public static function totalVacancies($html)
         $headingText = preg_replace('/\s+/', ' ', $headingText);
 
         if (!preg_match(
-            '/^(total posts?|total vacancies?|number of posts?|number of vacancies?)$/i',
+            '/^(total posts?|total vacancies?|number of posts?|number of vacancies?|vacancies?)$/i',
             $headingText
         )) {
             continue;
