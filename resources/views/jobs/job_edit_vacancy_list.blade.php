@@ -71,8 +71,8 @@
                                             type="number"
                                             name="total_vacancies"
                                             class="form-control form-control-sm"
-                                            min="1"
-                                            step="1"
+                                            {{-- min="1"
+                                            step="1" --}}
                                             placeholder="Enter posts"
                                             required
                                         >
