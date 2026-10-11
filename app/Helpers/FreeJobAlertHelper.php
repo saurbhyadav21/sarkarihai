@@ -1479,6 +1479,7 @@ class FreeJobAlertHelper
 
 
 
+
 public static function totalVacancies($html)
 {
     if (empty($html)) {
@@ -1549,16 +1550,17 @@ public static function totalVacancies($html)
                 'total number of vacancies',
                 'total number of posts',
             ], true)) {
-                $value = trim($cells->item(1)->textContent);
-                $value = str_replace(',', '', $value);
 
-                // Examples: 3, 3 Vacancies, 3 Posts
+                $value = trim($cells->item(1)->textContent);
+                $value = preg_replace('/\s+/', ' ', $value);
+
+                // Examples: 3, 3 Vacancies, 3 Posts, 1 (One)
                 if (preg_match(
-                    '/^\s*(\d+)\s*(?:posts?|vacancies?)?\s*$/i',
+                    '/^\s*([\d,]+)(?:\s*\([^)]*\))?\s*(?:posts?|vacancies?)?\s*$/i',
                     $value,
                     $matches
                 )) {
-                    $count = (int) $matches[1];
+                    $count = (int) str_replace(',', '', $matches[1]);
 
                     if ($count > 0) {
                         return $count;
@@ -1599,14 +1601,14 @@ public static function totalVacancies($html)
             }
 
             $text = trim($node->textContent);
-            $text = str_replace(',', '', $text);
+            $text = preg_replace('/\s+/', ' ', $text);
 
             if (preg_match(
-                '/^\s*(\d+)\s*(?:posts?|vacancies?)?\s*$/i',
+                '/^\s*([\d,]+)(?:\s*\([^)]*\))?\s*(?:posts?|vacancies?)?\s*$/i',
                 $text,
                 $matches
             )) {
-                $count = (int) $matches[1];
+                $count = (int) str_replace(',', '', $matches[1]);
 
                 if ($count > 0) {
                     return $count;
@@ -1615,9 +1617,8 @@ public static function totalVacancies($html)
         }
     }
 
-
-
-    // 2. Total Vacancy paragraph condition
+    // 3. Total Vacancy paragraph condition
+    // Example: Total Vacancy: 73 Posts (nested strong/span supported)
     $vacancyParagraphs = $xpath->query('//p');
 
     foreach ($vacancyParagraphs as $paragraph) {
@@ -1625,7 +1626,7 @@ public static function totalVacancies($html)
         $paragraphText = preg_replace('/\s+/', ' ', $paragraphText);
 
         if (preg_match(
-            '/^\s*Total\s+Vacanc(?:y|ies)\s*:\s*([\d,]+)\s*(?:posts?|vacancies?)?\s*$/i',
+            '/^\s*Total\s+Vacanc(?:y|ies)\s*:\s*([\d,]+)(?:\s*\([^)]*\))?\s*(?:posts?|vacancies?)?\s*$/i',
             $paragraphText,
             $matches
         )) {
@@ -1639,7 +1640,6 @@ public static function totalVacancies($html)
 
     return null;
 }
-
 
 
  
