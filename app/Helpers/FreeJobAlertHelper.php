@@ -1496,19 +1496,11 @@ public static function totalVacancies($html)
 
     $xpath = new \DOMXPath($dom);
 
-    // Helper: extract valid numeric vacancy count
+    // Helper: return numeric count or original string
     $extractCount = function ($value) {
         $value = trim(preg_replace('/\s+/', ' ', $value));
 
         if ($value === '') {
-            return null;
-        }
-
-        // Ignore unspecified vacancy values
-        if (preg_match(
-            '/^(?:not\s+mentioned|not\s+specified(?:\s+in\s+the\s+notification)?|not\s+available|n\/a|na|nil|none|-+)$/i',
-            $value
-        )) {
             return null;
         }
 
@@ -1520,10 +1512,15 @@ public static function totalVacancies($html)
         )) {
             $count = (int) str_replace(',', '', $matches[1]);
 
-            return $count > 0 ? $count : null;
+            if ($count > 0) {
+                return $count;
+            }
+
+            return $value;
         }
 
-        return null;
+        // Any other non-empty value: return as string
+        return $value;
     };
 
     // 1. Overview heading and its following table-container
@@ -1586,8 +1583,6 @@ public static function totalVacancies($html)
             if ($count !== null) {
                 return $count;
             }
-
-            // Unknown value: continue checking other rows/conditions
         }
     }
 
