@@ -1617,20 +1617,39 @@ public static function totalVacancies($html)
         }
     }
 
-    // 3. Total Vacancy paragraph condition
-    // Example: Total Vacancy: 73 Posts (nested strong/span supported)
+     // 3. Total Vacancy paragraph condition
+    // Supports: Total Vacancy: 73 Posts
+    // Supports: Total Vacancy: 1,250
+    // Supports: Total Vacancy: Not Mentioned
+
     $vacancyParagraphs = $xpath->query('//p');
 
     foreach ($vacancyParagraphs as $paragraph) {
         $paragraphText = trim($paragraph->textContent);
         $paragraphText = preg_replace('/\s+/', ' ', $paragraphText);
 
-        if (preg_match(
-            '/^\s*Total\s+Vacanc(?:y|ies)\s*:\s*([\d,]+)(?:\s*\([^)]*\))?\s*(?:posts?|vacancies?)?\s*$/i',
+        if (!preg_match(
+            '/^\s*Total\s+Vacanc(?:y|ies)\s*:\s*(.*?)\s*$/i',
             $paragraphText,
             $matches
         )) {
-            $count = (int) str_replace(',', '', $matches[1]);
+            continue;
+        }
+
+        $value = trim($matches[1]);
+
+        // Vacancy count is not mentioned
+        if (preg_match('/^not\s+mentioned$/i', $value)) {
+            continue;
+        }
+
+        // Extract numeric vacancy count
+        if (preg_match(
+            '/^([\d,]+)(?:\s*\([^)]*\))?\s*(?:posts?|vacancies?)?$/i',
+            $value,
+            $countMatches
+        )) {
+            $count = (int) str_replace(',', '', $countMatches[1]);
 
             if ($count > 0) {
                 return $count;
