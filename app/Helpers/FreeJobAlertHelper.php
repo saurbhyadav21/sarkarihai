@@ -1544,7 +1544,6 @@ public static function totalVacancies($html)
                 'total post',
                 'total posts',
                 'total vacancies',
-                'Total Vacancies',
                 'total vacancy',
                 'no of vacancy',
                 'no of vacancies',
@@ -1555,7 +1554,7 @@ public static function totalVacancies($html)
                 $value = trim($cells->item(1)->textContent);
                 $value = preg_replace('/\s+/', ' ', $value);
 
-                // Examples: 3, 3 Vacancies, 3 Posts, 1 (One)
+                // Numeric values: 3, 73 Posts, 1,250 Vacancies, 1 (One)
                 if (preg_match(
                     '/^\s*([\d,]+)(?:\s*\([^)]*\))?\s*(?:posts?|vacancies?)?\s*$/i',
                     $value,
@@ -1568,7 +1567,8 @@ public static function totalVacancies($html)
                     }
                 }
 
-                return null;
+                // Unknown vacancy count: continue checking other conditions
+                continue;
             }
         }
     }
