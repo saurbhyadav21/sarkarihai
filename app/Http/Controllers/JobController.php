@@ -478,7 +478,7 @@ class JobController extends Controller
             ->where(function ($query) {
                 $query->whereNull('total_vacancies')
                     ->orWhere('total_vacancies', '')
-                    ->orWhere('total_vacancies', 'NULL');
+                    ->orWhere('total_vacancies', null);
             })
             ->where('vacancy_flag', 0)
             ->orderBy('id', 'desc')
