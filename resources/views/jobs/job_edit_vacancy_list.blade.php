@@ -68,7 +68,7 @@
 
                                     <td>
                                         <input
-                                            type="number"
+                                            type="text"
                                             name="total_vacancies"
                                             class="form-control form-control-sm"
                                             {{-- min="1"
