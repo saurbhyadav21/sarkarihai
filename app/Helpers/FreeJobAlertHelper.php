@@ -1684,6 +1684,71 @@ public static function totalVacancies($html)
         }
     }
 
+
+
+
+
+    // FAQ: Find total vacancies from question and answer
+    $faqItems = $xpath->query(
+        '//div[contains(
+            concat(" ", normalize-space(@class), " "),
+            " faq-item "
+        )]'
+    );
+
+    foreach ($faqItems as $faqItem) {
+        $questionNodes = $xpath->query(
+            './/*[contains(
+                concat(" ", normalize-space(@class), " "),
+                " faq-question "
+            )]',
+            $faqItem
+        );
+
+        if ($questionNodes->length === 0) {
+            continue;
+        }
+
+        $question = trim($questionNodes->item(0)->textContent);
+
+        if (!preg_match(
+            '/\b(?:how many|what is the number of|total number of)\b.*\b(?:vacancies|posts)\b|\bhow many\b.*\b(?:posts|vacancies)\b/i',
+            $question
+        )) {
+            continue;
+        }
+
+        $answerNodes = $xpath->query(
+            './/*[contains(
+                concat(" ", normalize-space(@class), " "),
+                " faq-answer "
+            )]',
+            $faqItem
+        );
+
+        if ($answerNodes->length === 0) {
+            continue;
+        }
+
+        $answer = trim($answerNodes->item(0)->textContent);
+        $answer = preg_replace('/\s+/', ' ', $answer);
+
+        // Extract numeric count from answer, e.g. 210 vacancies
+        if (preg_match(
+            '/\b(\d[\d,]*)\b/',
+            $answer,
+            $matches
+        )) {
+            return (int) str_replace(',', '', $matches[1]);
+        }
+
+        // If no number exists, return the answer as a string
+        if ($answer !== '') {
+            return $answer;
+        }
+    }
+
+
     return null;
 }
 
