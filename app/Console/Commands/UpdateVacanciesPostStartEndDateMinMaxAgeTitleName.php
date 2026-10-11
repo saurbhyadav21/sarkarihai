@@ -33,13 +33,15 @@ public function handle()
     $processed = 0;
     $failed = 0;
 
-    while (true) {
+    while (true ) {
        
         
         
-$jobs = \Illuminate\Support\Facades\DB::connection()
+$jobs = DB::connection()
     ->getPdo()
-    ->query("SELECT * FROM `job_details` WHERE (`total_vacancies` IS NULL OR TRIM(`total_vacancies`) = '') AND `vacancy_flag` = 1 AND `id`=8860")
+    ->query("SELECT * FROM `job_details`
+        WHERE (`total_vacancies` IS NULL OR TRIM(`total_vacancies`) = '')
+        AND `vacancy_flag` = 1")
     ->fetchAll(\PDO::FETCH_OBJ);
 
 // dd($count);
