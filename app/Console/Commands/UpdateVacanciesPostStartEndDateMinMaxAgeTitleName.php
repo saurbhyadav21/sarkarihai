@@ -55,8 +55,8 @@ $query = DB::table('job_details')
     ->where(function ($query) {
         $query->whereNull('total_vacancies')
               ->orWhereRaw("TRIM(total_vacancies) = ''");
-    })
-    ->where('vacancy_flag', 0);
+    });
+    // ->where('vacancy_flag', 0);
 
 dd($query->count());
 
