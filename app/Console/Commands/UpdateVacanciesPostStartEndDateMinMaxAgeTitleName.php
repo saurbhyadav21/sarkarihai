@@ -84,7 +84,7 @@ public function handle()
                 $response->body()
             );
 
-            if ($totalVacancies !== nullxx) {
+            if ($totalVacancies !== null) {
                 DB::table('job_details')
                     ->where('id', $job->id)
                     ->update([
