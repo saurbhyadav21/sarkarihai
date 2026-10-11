@@ -1520,7 +1520,10 @@ public static function totalVacancies($html)
         }
 
         // Any other non-empty value: return as string
-        return $value;
+        // Ignore generic heading text
+            if (strcasecmp($value, 'Vacancies') === 0) {
+                return null;
+            }
     };
 
     // 1. Overview heading and its following table-container
