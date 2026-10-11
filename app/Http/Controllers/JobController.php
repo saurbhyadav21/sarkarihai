@@ -475,11 +475,12 @@ class JobController extends Controller
     { 
         $limit = max(1, min((int) $limit, 100));
         $jobs = DB::table('job_details')
-            ->where(function ($query) {
-                $query->whereNull('total_vacancies')
-                    ->orWhere('total_vacancies', '')
-                    ->orWhere('total_vacancies', null);
-            })
+            // ->where(function ($query) {
+            //     $query->whereNull('total_vacancies')
+            //         ->orWhere('total_vacancies', '');
+            // })
+            ->whereNull('total_vacancies')
+            ->orWhere('total_vacancies', '')
             ->where('vacancy_flag', 0)
             ->orderBy('id', 'desc')
             ->paginate($limit);
