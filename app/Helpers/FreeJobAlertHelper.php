@@ -1544,6 +1544,7 @@ public static function totalVacancies($html)
                 'total post',
                 'total posts',
                 'total vacancies',
+                'Total Vacancies',
                 'total vacancy',
                 'no of vacancy',
                 'no of vacancies',
