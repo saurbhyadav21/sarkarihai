@@ -125,7 +125,7 @@ public function handle()
             $failed++;
             continue;
         }
-        break;
+        
     }
 
     $this->info("Completed | Processed: {$processed} | Failed: {$failed}");
