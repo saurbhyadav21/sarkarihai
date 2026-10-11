@@ -49,7 +49,7 @@ public function handle()
         
 $count = \Illuminate\Support\Facades\DB::connection()
     ->getPdo()
-    ->query("SELECT count(*) FROM `job_details` WHERE `total_vacancies` IS NULL OR TRIM(`total_vacancies`) = '' and vacancy_flag=0")
+    ->query("SELECT count(*) FROM `job_details` WHERE `total_vacancies` IS NULL OR TRIM(`total_vacancies`) = '' and vacancy_flag=1")
     ->fetchColumn();
 
 dd($count);
