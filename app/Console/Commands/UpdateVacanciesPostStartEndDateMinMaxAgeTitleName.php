@@ -33,7 +33,7 @@ public function handle()
     $processed = 0;
     $failed = 0;
 
-    // while (true) {
+    while (true) {
         $job = DB::table('job_details')
             ->whereIn('source', [
                 'freejobalert',
@@ -48,8 +48,7 @@ public function handle()
 
         if (!$job) {
             $this->info('No pending vacancy records found.');
-            // break;
-            exit(0);
+            break;
         }
         // dd("Processing ID: {$job->id} | Source: {$job->source}");
         $this->info("Processing ID: {$job->id} | Source: {$job->source}");
@@ -126,7 +125,8 @@ public function handle()
             $failed++;
             continue;
         }
-    // }
+        break;
+    }
 
     $this->info("Completed | Processed: {$processed} | Failed: {$failed}");
 
