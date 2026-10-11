@@ -1615,6 +1615,28 @@ public static function totalVacancies($html)
         }
     }
 
+
+
+    // 2. Total Vacancy paragraph condition
+    $vacancyParagraphs = $xpath->query('//p');
+
+    foreach ($vacancyParagraphs as $paragraph) {
+        $paragraphText = trim($paragraph->textContent);
+        $paragraphText = preg_replace('/\s+/', ' ', $paragraphText);
+
+        if (preg_match(
+            '/^\s*Total\s+Vacanc(?:y|ies)\s*:\s*([\d,]+)\s*(?:posts?|vacancies?)?\s*$/i',
+            $paragraphText,
+            $matches
+        )) {
+            $count = (int) str_replace(',', '', $matches[1]);
+
+            if ($count > 0) {
+                return $count;
+            }
+        }
+    }
+
     return null;
 }
 
