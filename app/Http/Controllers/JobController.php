@@ -499,6 +499,7 @@ class JobController extends Controller
         $updated = DB::table('job_details')
             ->where('id', $request->id)
             ->whereNull('total_vacancies')
+            ->where('total_vacancies', '')
             ->update([
                 'total_vacancies' => $request->total_vacancies,
                 'vacancy_flag' => 1,
