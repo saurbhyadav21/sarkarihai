@@ -490,7 +490,7 @@ class JobController extends Controller
 
     public function vacancyUpdate(Request $request)
     {
-        dd($request->all());
+        
         $request->validate([
             'id' => 'required|integer',
             'total_vacancies' => 'required',
@@ -504,7 +504,7 @@ class JobController extends Controller
                 'vacancy_flag' => 1,
                 'updated_at' => now(),
             ]);
-
+        dd($updated);
         if ($updated) {
             return redirect()->back()->with('success', 'Vacancies saved successfully.');
         }
