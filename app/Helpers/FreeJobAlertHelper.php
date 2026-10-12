@@ -1749,6 +1749,76 @@ public static function totalVacancies($html)
     }
 
 
+
+// 5. At a Glance heading and its following table-container
+$glanceHeadings = $xpath->query(
+    '//h2[contains(
+        translate(
+            normalize-space(.),
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            "abcdefghijklmnopqrstuvwxyz"
+        ),
+        "at a glance"
+    )]'
+);
+
+foreach ($glanceHeadings as $heading) {
+
+    $containers = $xpath->query(
+        'following-sibling::div[
+            contains(
+                concat(" ", normalize-space(@class), " "),
+                " table-container "
+            )
+        ][1]',
+        $heading
+    );
+
+    if ($containers->length === 0) {
+        continue;
+    }
+
+    $rows = $xpath->query(
+        './/table//tr',
+        $containers->item(0)
+    );
+
+    foreach ($rows as $row) {
+
+        $cells = $xpath->query('./td | ./th', $row);
+
+        if ($cells->length < 2) {
+            continue;
+        }
+
+        $label = strtolower(trim($cells->item(0)->textContent));
+        $label = preg_replace('/\s+/', ' ', $label);
+
+        if (in_array($label, [
+            'vacancies',
+            'total vacancies',
+            'total vacancy',
+            'no of vacancies',
+            'no. of vacancies',
+            'no of vacancy',
+            'no. of vacancy',
+            'number of vacancies',
+            'number of vacancy',
+            'no of posts',
+            'no. of posts',
+            'total posts',
+        ], true)) {
+
+            $value = trim($cells->item(1)->textContent);
+
+            if ($value !== '') {
+                return $extractCount($value);
+            }
+        }
+    }
+}
+
+
     return null;
 }
 
