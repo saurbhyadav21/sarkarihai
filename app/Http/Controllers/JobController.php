@@ -490,7 +490,7 @@ class JobController extends Controller
 
     public function vacancyUpdate(Request $request)
     {
-        d()d($request->all());
+        dd($request->all());
         $request->validate([
             'id' => 'required|integer',
             'total_vacancies' => 'required',
