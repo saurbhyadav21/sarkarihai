@@ -2,9 +2,9 @@
 
 $url = 'https://nakshtratak.com/api/panchang?lang=hi';
 
-// Payload Data
+// 19 अक्टूबर 2026 (कल) के लिए API पेलोड (day = 19)
 $postData = json_encode([
-    "day" => 18,
+    "day" => 19,
     "month" => 10,
     "year" => 2026,
     "lat" => 28.6139,
@@ -70,22 +70,19 @@ $englishMonthsHindi = [
     9 => 'सितंबर', 10 => 'अक्टूबर', 11 => 'नवंबर', 12 => 'दिसंबर'
 ];
 
-// JSON की डेट या मंथ से अंग्रेजी महीने का नाम निकालें
 $dateParts = explode('-', $data['date'] ?? '');
-$dayNumber = isset($dateParts[0]) ? (int)$dateParts[0] : 18;
+$dayNumber = isset($dateParts[0]) ? (int)$dateParts[0] : 19;
 $monthNum  = isset($dateParts[1]) ? (int)$dateParts[1] : 10;
 $monthHindi = $englishMonthsHindi[$monthNum] ?? 'अक्टूबर';
 
 // ==================== 2. FULL NAME MAPPINGS ====================
-
-// नक्षत्र के पूरे नाम
 $nakshatraMap = [
     'पू.आषाढ़' => 'पूर्वाषाढ़ा', 'उ.आषाढ़' => 'उत्तराषाढ़ा',
     'पू.फाल्गुनी' => 'पूर्वाफाल्गुनी', 'उ.फाल्गुनी' => 'उत्तराफाल्गुनी',
-    'पू.भाद्रपद' => 'पूर्वाभाद्रपद', 'उ.भाद्रपद' => 'उत्तराभाद्रपद'
+    'पू.भाद्रपद' => 'पूर्वाभाद्रपद', 'उ.भाद्रपद' => 'उत्तराभाद्रपद',
+    'श्रवण' => 'श्रवण'
 ];
 
-// योग के पूरे नाम
 $yogaMap = [
     'सुकर्म' => 'सुकर्मा', 'विष्कुम्भ' => 'विष्कुंभ', 'आयुष्मान' => 'आयुष्मान',
     'सौभाग्य' => 'सौभाग्य', 'शोभन' => 'शोभन', 'अतिगण्ड' => 'अतिगंड',
@@ -96,14 +93,12 @@ $yogaMap = [
     'शुभ' => 'शुभ', 'शुक्ल' => 'शुक्ल', 'ब्रह्म' => 'ब्रह्म', 'ऐन्द्र' => 'ऐन्द्र', 'वैधृति' => 'वैधृति'
 ];
 
-// करण के पूरे नाम
 $karanaMap = [
     'बव' => 'बव', 'बालव' => 'बालव', 'कौलव' => 'कौलव', 'तैतिल' => 'तैतिल',
     'गर' => 'गर', 'वणिज' => 'वणिज', 'विष्टि' => 'विष्टि (भद्रा)', 'शकुनि' => 'शकुनि',
     'चतुष्पद' => 'चतुष्पद', 'नाग' => 'नाग', 'किंस्तुघ्न' => 'किंस्तुघ्न'
 ];
 
-// चंद्र राशि के पूरे नाम
 $rashiMap = [
     'मेष' => 'मेष राशि', 'वृष' => 'वृषभ राशि', 'मिथुन' => 'मिथुन राशि',
     'कर्क' => 'कर्क राशि', 'सिंह' => 'सिंह राशि', 'कन्या' => 'कन्या राशि',
@@ -112,49 +107,35 @@ $rashiMap = [
 ];
 
 // ==================== 3. DATA FORMATTING ====================
-
-// Nakshatra Formatting
 $nak1 = $data['nakshatra'] ?? '';
 $nak2 = $data['next_nakshatra'] ?? '';
 $nak1_full = $nakshatraMap[$nak1] ?? $nak1;
 $nak2_full = $nakshatraMap[$nak2] ?? $nak2;
 $nakshatra = $nak1_full . " (" . ($data['nak_end'] ?? '') . " तक), फिर " . $nak2_full;
 
-// Yoga Formatting
 $yo1 = $data['yoga'] ?? '';
 $yo2 = $data['next_yoga'] ?? '';
 $yo1_full = $yogaMap[$yo1] ?? $yo1;
 $yo2_full = $yogaMap[$yo2] ?? $yo2;
 $yog = $yo1_full . " (" . ($data['yoga_end'] ?? '') . " तक), फिर " . $yo2_full;
 
-// Karan Formatting
 $kar1 = $data['karana'] ?? '';
 $kar2 = $data['next_karana'] ?? '';
 $kar1_full = $karanaMap[$kar1] ?? $kar1;
 $kar2_full = $karanaMap[$kar2] ?? $kar2;
 $karan = $kar1_full . " (" . ($data['karana_end'] ?? '') . " तक), फिर " . $kar2_full;
 
-// Chandra Rashi Formatting
 $rashi1 = $data['chandra_rashi'] ?? '';
 $rashi2 = $data['next_chandra_rashi'] ?? '';
 $rashi1_full = $rashiMap[$rashi1] ?? $rashi1;
 $rashi2_full = $rashiMap[$rashi2] ?? $rashi2;
 $chanderRashi = $rashi1_full . " (" . ($data['chandra_rashi_end'] ?? '') . " तक), फिर " . $rashi2_full;
 
-// Tithi Formatting
 $tithi = ($data['tithi'] ?? '') . " (" . ($data['tithi_end'] ?? '') . " तक), तत्पश्चात " . ($data['next_tithi'] ?? '');
 
-// Vart or Tyohaar Logic (खाली न दिखे इसके लिए)
-$festivals = trim($data['festival'] ?? '');
-if (empty($festivals) || $festivals === '—') {
-    $paksha = $data['paksha'] ?? '';
-    $masa = $data['masa'] ?? '';
-    $currentTithi = $data['tithi'] ?? '';
-    // अगर कोई त्यौहार नहीं है तो उस दिन की हिंदू तिथि दिखा देगा
-    $festivals = "सामान्य दिन (" . $masa . " " . $paksha . " " . $currentTithi . ")";
-}
+// सीधा API से आने वाला फेस्टिवल डेटा उपयोग किया गया है
+$festivals = (!empty($data['festival']) && $data['festival'] !== '—') ? $data['festival'] : '—';
 
-// Other Fields
 $vijayMuhurat = isset($data['vijaya']) ? ($data['vijaya']['start'] ?? '') . " - " . ($data['vijaya']['end'] ?? '') : '';
 $godhuliMuhurat = isset($data['godhuli']) ? ($data['godhuli']['start'] ?? '') . " - " . ($data['godhuli']['end'] ?? '') : '';
 
@@ -164,7 +145,7 @@ $godhuliMuhurat = isset($data['godhuli']) ? ($data['godhuli']['start'] ?? '') . 
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <title>आज का पंचांग</title>
+    <title>पंचांग - 19 अक्टूबर 2026</title>
     <style>
         .panchang-table-container {
             width: 100%;
