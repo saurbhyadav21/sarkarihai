@@ -4,7 +4,7 @@ $url = 'https://nakshtratak.com/api/panchang?lang=hi';
 
 // Payload Data
 $postData = json_encode([
-    "day" => 19,
+    "day" => 18,
     "month" => 10,
     "year" => 2026,
     "lat" => 28.6139,
