@@ -56,7 +56,6 @@ if (curl_errno($ch)) {
 
 curl_close($ch);
 
-// JSON डेटा को एरे में डिकोड करें
 $data = json_decode($response, true);
 
 if (!$data) {
@@ -64,35 +63,112 @@ if (!$data) {
     exit;
 }
 
-// डेट से केवल तारीख (Day) निकालने के लिए
+// ==================== 1. FULL NAME MAPPINGS ====================
+
+// नक्षत्र के पूरे नाम
+$nakshatraMap = [
+    'पू.आषाढ़' => 'पूर्वाषाढ़ा', 'उ.आषाढ़' => 'उत्तराषाढ़ा',
+    'पू.फाल्गुनी' => 'पूर्वाफाल्गुनी', 'उ.फाल्गुनी' => 'उत्तराफाल्गुनी',
+    'पू.भाद्रपद' => 'पूर्वाभाद्रपद', 'उ.भाद्रपद' => 'उत्तराभाद्रपद'
+];
+
+// योग के पूरे नाम
+$yogaMap = [
+    'सुकर्म' => 'सुकर्मा',
+    'विष्कुम्भ' => 'विष्कुंभ',
+    'आयुष्मान' => 'आयुष्मान',
+    'सौभाग्य' => 'सौभाग्य',
+    'शोभन' => 'शोभन',
+    'अतिगण्ड' => 'अतिगंड',
+    'धृति' => 'धृति',
+    'शूल' => 'शूल',
+    'गण्ड' => 'गंड',
+    'वृद्धि' => 'वृद्धि',
+    'ध्रुव' => 'ध्रुव',
+    'व्याघात' => 'व्याघात',
+    'हर्षण' => 'हर्षण',
+    'वज्र' => 'वज्र',
+    'सिद्धि' => 'सिद्धि',
+    'व्यतीपात' => 'व्यतीपात',
+    'वरीयान' => 'वरीयान',
+    'परिघ' => 'परिघ',
+    'शिव' => 'शिव',
+    'सिद्ध' => 'सिद्ध',
+    'साध्य' => 'साध्य',
+    'शुभ' => 'शुभ',
+    'शुक्ल' => 'शुक्ल',
+    'ब्रह्म' => 'ब्रह्म',
+    'ऐन्द्र' => 'ऐन्द्र',
+    'वैधृति' => 'वैधृति'
+];
+
+// करण के पूरे नाम (संक्षिप्त नाम से स्पष्ट नाम)
+$karanaMap = [
+    'बव' => 'बव',
+    'बालव' => 'बालव',
+    'कौलव' => 'कौलव',
+    'तैतिल' => 'तैतिल',
+    'गर' => 'गर',
+    'वणिज' => 'वणिज',
+    'विष्टि' => 'विष्टि (भद्रा)',
+    'शकुनि' => 'शकुनि',
+    'चतुष्पद' => 'चतुष्पद',
+    'नाग' => 'नाग',
+    'किंस्तुघ्न' => 'किंस्तुघ्न'
+];
+
+// चंद्र राशि के पूरे नाम
+$rashiMap = [
+    'मेष' => 'मेष राशि',
+    'वृष' => 'वृषभ राशि',
+    'मिथुन' => 'मिथुन राशि',
+    'कर्क' => 'कर्क राशि',
+    'सिंह' => 'सिंह राशि',
+    'कन्या' => 'कन्या राशि',
+    'तुला' => 'तुला राशि',
+    'वृश्चिक' => 'वृश्चिक राशि',
+    'धनु' => 'धनु राशि',
+    'मकर' => 'मकर राशि',
+    'कुंभ' => 'कुंभ राशि',
+    'मीन' => 'मीन राशि'
+];
+
+// ==================== 2. DATA FORMATTING ====================
+
+// Date Parts
 $dateParts = explode('-', $data['date'] ?? '');
 $dayNumber = isset($dateParts[0]) ? (int)$dateParts[0] : '18';
 
-// डेटा फ़ील्ड्स सेट करें
-$tithi = ($data['tithi'] ?? '') . " (" . ($data['tithi_end'] ?? '') . " तक), तत्पश्चात " . ($data['next_tithi'] ?? '');
-// शॉर्ट नेम को पूरे नाम में बदलने के लिए मैपिंग
-$nakshatraFullNames = [
-    'पू.आषाढ़' => 'पूर्वाषाढ़ा',
-    'उ.आषाढ़' => 'उत्तराषाढ़ा',
-    'पू.फाल्गुनी' => 'पूर्वाफाल्गुनी',
-    'उ.फाल्गुनी' => 'उत्तराफाल्गुनी',
-    'पू.भाद्रपद' => 'पूर्वाभाद्रपद',
-    'उ.भाद्रपद' => 'उत्तराभाद्रपद',
-    'मृगशिरा'  => 'मृगशिरा'
-];
-
-// API से आए नाम को चेक करें और पूरा नाम निकालें
+// Nakshatra Formatting
 $nak1 = $data['nakshatra'] ?? '';
 $nak2 = $data['next_nakshatra'] ?? '';
-
-$nak1_full = $nakshatraFullNames[$nak1] ?? $nak1;
-$nak2_full = $nakshatraFullNames[$nak2] ?? $nak2;
-
-// अब इसे टेबल के लिए फॉर्मेट करें
+$nak1_full = $nakshatraMap[$nak1] ?? $nak1;
+$nak2_full = $nakshatraMap[$nak2] ?? $nak2;
 $nakshatra = $nak1_full . " (" . ($data['nak_end'] ?? '') . " तक), फिर " . $nak2_full;
-$yog = ($data['yoga'] ?? '') . " (" . ($data['yoga_end'] ?? '') . " तक), फिर " . ($data['next_yoga'] ?? '');
-$karan = ($data['karana'] ?? '') . " (" . ($data['karana_end'] ?? '') . " तक), फिर " . ($data['next_karana'] ?? '');
-$chanderRashi = ($data['chandra_rashi'] ?? '') . " (" . ($data['chandra_rashi_end'] ?? '') . " तक), फिर " . ($data['next_chandra_rashi'] ?? '');
+
+// Yoga Formatting
+$yo1 = $data['yoga'] ?? '';
+$yo2 = $data['next_yoga'] ?? '';
+$yo1_full = $yogaMap[$yo1] ?? $yo1;
+$yo2_full = $yogaMap[$yo2] ?? $yo2;
+$yog = $yo1_full . " (" . ($data['yoga_end'] ?? '') . " तक), फिर " . $yo2_full;
+
+// Karan Formatting
+$kar1 = $data['karana'] ?? '';
+$kar2 = $data['next_karana'] ?? '';
+$kar1_full = $karanaMap[$kar1] ?? $kar1;
+$kar2_full = $karanaMap[$kar2] ?? $kar2;
+$karan = $kar1_full . " (" . ($data['karana_end'] ?? '') . " तक), फिर " . $kar2_full;
+
+// Chandra Rashi Formatting
+$rashi1 = $data['chandra_rashi'] ?? '';
+$rashi2 = $data['next_chandra_rashi'] ?? '';
+$rashi1_full = $rashiMap[$rashi1] ?? $rashi1;
+$rashi2_full = $rashiMap[$rashi2] ?? $rashi2;
+$chanderRashi = $rashi1_full . " (" . ($data['chandra_rashi_end'] ?? '') . " तक), फिर " . $rashi2_full;
+
+// Other Fields
+$tithi = ($data['tithi'] ?? '') . " (" . ($data['tithi_end'] ?? '') . " तक), तत्पश्चात " . ($data['next_tithi'] ?? '');
 $vijayMuhurat = isset($data['vijaya']) ? ($data['vijaya']['start'] ?? '') . " - " . ($data['vijaya']['end'] ?? '') : '';
 $godhuliMuhurat = isset($data['godhuli']) ? ($data['godhuli']['start'] ?? '') . " - " . ($data['godhuli']['end'] ?? '') : '';
 $festivals = (!empty($data['festival']) && $data['festival'] !== '—') ? $data['festival'] : '—';
