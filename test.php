@@ -70,7 +70,26 @@ $dayNumber = isset($dateParts[0]) ? (int)$dateParts[0] : '18';
 
 // डेटा फ़ील्ड्स सेट करें
 $tithi = ($data['tithi'] ?? '') . " (" . ($data['tithi_end'] ?? '') . " तक), तत्पश्चात " . ($data['next_tithi'] ?? '');
-$nakshatra = ($data['nakshatra'] ?? '') . " (" . ($data['nak_end'] ?? '') . " तक), फिर " . ($data['next_nakshatra'] ?? '');
+// शॉर्ट नेम को पूरे नाम में बदलने के लिए मैपिंग
+$nakshatraFullNames = [
+    'पू.आषाढ़' => 'पूर्वाषाढ़ा',
+    'उ.आषाढ़' => 'उत्तराषाढ़ा',
+    'पू.फाल्गुनी' => 'पूर्वाफाल्गुनी',
+    'उ.फाल्गुनी' => 'उत्तराफाल्गुनी',
+    'पू.भाद्रपद' => 'पूर्वाभाद्रपद',
+    'उ.भाद्रपद' => 'उत्तराभाद्रपद',
+    'मृगशिरा'  => 'मृगशिरा'
+];
+
+// API से आए नाम को चेक करें और पूरा नाम निकालें
+$nak1 = $data['nakshatra'] ?? '';
+$nak2 = $data['next_nakshatra'] ?? '';
+
+$nak1_full = $nakshatraFullNames[$nak1] ?? $nak1;
+$nak2_full = $nakshatraFullNames[$nak2] ?? $nak2;
+
+// अब इसे टेबल के लिए फॉर्मेट करें
+$nakshatra = $nak1_full . " (" . ($data['nak_end'] ?? '') . " तक), फिर " . $nak2_full;
 $yog = ($data['yoga'] ?? '') . " (" . ($data['yoga_end'] ?? '') . " तक), फिर " . ($data['next_yoga'] ?? '');
 $karan = ($data['karana'] ?? '') . " (" . ($data['karana_end'] ?? '') . " तक), फिर " . ($data['next_karana'] ?? '');
 $chanderRashi = ($data['chandra_rashi'] ?? '') . " (" . ($data['chandra_rashi_end'] ?? '') . " तक), फिर " . ($data['next_chandra_rashi'] ?? '');
