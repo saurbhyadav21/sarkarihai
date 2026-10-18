@@ -1,20 +1,50 @@
 <?php
 
-$url = 'https://nakshtratak.com/api/panchang?lang=hi';
+// आगामी 7 दिनों का पंचांग निकालने के लिए स्क्रिप्ट
+$totalDays = 7;
+$startDate = new DateTime('2026-10-19'); // आगामी 7 दिनों की शुरुआत (19 अक्टूबर 2026)
 
-// 19 अक्टूबर 2026 (कल) के लिए API पेलोड (day = 19)
-$postData = json_encode([
-    "day" => 19,
-    "month" => 10,
-    "year" => 2026,
-    "lat" => 28.6139,
-    "lon" => 77.209,
-    "tz" => 5.5,
-    "tzname" => ""
-]);
+$allPanchangData = [];
 
-$ch = curl_init($url);
+// अंग्रेजी से हिंदी महीने का नाम
+$englishMonthsHindi = [
+    1 => 'जनवरी', 2 => 'फरवरी', 3 => 'मार्च', 4 => 'अप्रैल',
+    5 => 'मई', 6 => 'जून', 7 => 'जुलाई', 8 => 'अगस्त',
+    9 => 'सितंबर', 10 => 'अक्टूबर', 11 => 'नवंबर', 12 => 'दिसंबर'
+];
 
+// नक्शत्र, योग, करण और राशि के पूरे नाम मैपिंग
+$nakshatraMap = [
+    'पू.आषाढ़' => 'पूर्वाषाढ़ा', 'उ.आषाढ़' => 'उत्तराषाढ़ा',
+    'पू.फाल्गुनी' => 'पूर्वाफाल्गुनी', 'उ.फाल्गुनी' => 'उत्तराफाल्गुनी',
+    'पू.भाद्रपद' => 'पूर्वाभाद्रपद', 'उ.भाद्रपद' => 'उत्तराभाद्रपद',
+    'श्रवण' => 'श्रवण', 'धनिष्ठा' => 'धनिष्ठा', 'शतभिषा' => 'शतभिषा'
+];
+
+$yogaMap = [
+    'सुकर्म' => 'सुकर्मा', 'विष्कुम्भ' => 'विष्कुंभ', 'आयुष्मान' => 'आयुष्मान',
+    'सौभाग्य' => 'सौभाग्य', 'शोभन' => 'शोभन', 'अतिगण्ड' => 'अतिगंड',
+    'धृति' => 'धृति', 'शूल' => 'शूल', 'गण्ड' => 'गंड', 'वृद्धि' => 'वृद्धि',
+    'ध्रुव' => 'ध्रुव', 'व्याघात' => 'व्याघात', 'हर्षण' => 'हर्षण', 'वज्र' => 'वज्र',
+    'सिद्धि' => 'सिद्धि', 'व्यतीपात' => 'व्यतीपात', 'वरीयान' => 'वरीयान',
+    'परिघ' => 'परिघ', 'शिव' => 'शिव', 'सिद्ध' => 'सिद्ध', 'साध्य' => 'साध्य',
+    'शुभ' => 'शुभ', 'शुक्ल' => 'शुक्ल', 'ब्रह्म' => 'ब्रह्म', 'ऐन्द्र' => 'ऐन्द्र', 'वैधृति' => 'वैधृति'
+];
+
+$karanaMap = [
+    'बव' => 'बव', 'बालव' => 'बालव', 'कौलव' => 'कौलव', 'तैतिल' => 'तैतिल',
+    'गर' => 'गर', 'वणिज' => 'वणिज', 'विष्टि' => 'विष्टि (भद्रा)', 'शकुनि' => 'शकुनि',
+    'चतुष्पद' => 'चतुष्पद', 'नाग' => 'नाग', 'किंस्तुघ्न' => 'किंस्तुघ्न'
+];
+
+$rashiMap = [
+    'मेष' => 'मेष राशि', 'वृष' => 'वृषभ राशि', 'मिथुन' => 'मिथुन राशि',
+    'कर्क' => 'कर्क राशि', 'सिंह' => 'सिंह राशि', 'कन्या' => 'कन्या राशि',
+    'तुला' => 'तुला राशि', 'वृश्चिक' => 'वृश्चिक राशि', 'धनु' => 'धनु राशि',
+    'मकर' => 'मकर राशि', 'कुंभ' => 'कुंभ राशि', 'मीन' => 'मीन राशि'
+];
+
+// cURL Headers और Cookies
 $cookies = '_ga=GA1.1.547723380.1792339784; ' .
            '_gcl_au=1.1.132493895.1792339784; ' .
            '__gads=ID=5644513e69c7fcd1:T=1792339783:RT=1792339783:S=ALNI_MZT5gYbkkNEjUFJDoPtZxeVQf8CkA; ' .
@@ -41,111 +71,93 @@ $headers = [
     "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
 ];
 
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+// 7 दिनों के लिए लूप चलाएं
+for ($i = 0; $i < $totalDays; $i++) {
+    $currentDate = clone $startDate;
+    $currentDate->modify("+$i day");
 
-$response = curl_exec($ch);
+    $day   = (int)$currentDate->format('d');
+    $month = (int)$currentDate->format('m');
+    $year  = (int)$currentDate->format('Y');
 
-if (curl_errno($ch)) {
-    echo 'cURL Error: ' . curl_error($ch);
+    $postData = json_encode([
+        "day" => $day,
+        "month" => $month,
+        "year" => $year,
+        "lat" => 28.6139,
+        "lon" => 77.209,
+        "tz" => 5.5,
+        "tzname" => ""
+    ]);
+
+    $ch = curl_init('https://nakshtratak.com/api/panchang?lang=hi');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+    $response = curl_exec($ch);
     curl_close($ch);
-    exit;
+
+    $data = json_decode($response, true);
+
+    if ($data) {
+        // डेटा फॉर्मेटिंग
+        $monthHindi = $englishMonthsHindi[$month] ?? 'अक्टूबर';
+
+        $nak1 = $data['nakshatra'] ?? '';
+        $nak2 = $data['next_nakshatra'] ?? '';
+        $nakshatra = ($nakshatraMap[$nak1] ?? $nak1) . " (" . ($data['nak_end'] ?? '') . " तक), फिर " . ($nakshatraMap[$nak2] ?? $nak2);
+
+        $yo1 = $data['yoga'] ?? '';
+        $yo2 = $data['next_yoga'] ?? '';
+        $yog = ($yogaMap[$yo1] ?? $yo1) . " (" . ($data['yoga_end'] ?? '') . " तक), फिर " . ($yogaMap[$yo2] ?? $yo2);
+
+        $kar1 = $data['karana'] ?? '';
+        $kar2 = $data['next_karana'] ?? '';
+        $karan = ($karanaMap[$kar1] ?? $kar1) . " (" . ($data['karana_end'] ?? '') . " तक), फिर " . ($karanaMap[$kar2] ?? $kar2);
+
+        $rashi1 = $data['chandra_rashi'] ?? '';
+        $rashi2 = $data['next_chandra_rashi'] ?? '';
+        $chanderRashi = ($rashiMap[$rashi1] ?? $rashi1) . " (" . ($data['chandra_rashi_end'] ?? '') . " तक), फिर " . ($rashiMap[$rashi2] ?? $rashi2);
+
+        $tithi = ($data['tithi'] ?? '') . " (" . ($data['tithi_end'] ?? '') . " तक), तत्पश्चात " . ($data['next_tithi'] ?? '');
+        $vijayMuhurat = isset($data['vijaya']) ? ($data['vijaya']['start'] ?? '') . " - " . ($data['vijaya']['end'] ?? '') : '';
+        $godhuliMuhurat = isset($data['godhuli']) ? ($data['godhuli']['start'] ?? '') . " - " . ($data['godhuli']['end'] ?? '') : '';
+        $festivals = (!empty($data['festival']) && $data['festival'] !== '—') ? $data['festival'] : '—';
+
+        $allPanchangData[] = [
+            'dayNumber'      => $day,
+            'monthHindi'     => $monthHindi,
+            'year'           => $data['vikram_samvat'] ?? $year,
+            'weekday'        => $data['weekday'] ?? '',
+            'tithi'          => $tithi,
+            'nakshatra'      => $nakshatra,
+            'yog'            => $yog,
+            'karan'          => $karan,
+            'chanderRashi'   => $chanderRashi,
+            'sunrise'        => $data['sunrise'] ?? '',
+            'sunset'         => $data['sunset'] ?? '',
+            'moonrise'       => $data['moonrise'] ?? '',
+            'moonset'        => $data['moonset'] ?? '',
+            'abhijit'        => $data['abhijit'] ?? '',
+            'vijayMuhurat'   => $vijayMuhurat,
+            'brahmaMuhurat'  => $data['brahma_muhurat'] ?? '',
+            'godhuliMuhurat' => $godhuliMuhurat,
+            'rahukaal'       => $data['rahukaal'] ?? '',
+            'gulika'         => $data['gulika'] ?? '',
+            'yamganda'       => $data['yamganda'] ?? '',
+            'festivals'      => $festivals
+        ];
+    }
 }
-
-curl_close($ch);
-
-$data = json_decode($response, true);
-
-if (!$data) {
-    echo "अमान्य रिस्पॉन्स डेटा प्राप्त हुआ।";
-    exit;
-}
-
-// ==================== 1. ENGLISH MONTH TO HINDI NAME MAPPING ====================
-$englishMonthsHindi = [
-    1 => 'जनवरी', 2 => 'फरवरी', 3 => 'मार्च', 4 => 'अप्रैल',
-    5 => 'मई', 6 => 'जून', 7 => 'जुलाई', 8 => 'अगस्त',
-    9 => 'सितंबर', 10 => 'अक्टूबर', 11 => 'नवंबर', 12 => 'दिसंबर'
-];
-
-$dateParts = explode('-', $data['date'] ?? '');
-$dayNumber = isset($dateParts[0]) ? (int)$dateParts[0] : 19;
-$monthNum  = isset($dateParts[1]) ? (int)$dateParts[1] : 10;
-$monthHindi = $englishMonthsHindi[$monthNum] ?? 'अक्टूबर';
-
-// ==================== 2. FULL NAME MAPPINGS ====================
-$nakshatraMap = [
-    'पू.आषाढ़' => 'पूर्वाषाढ़ा', 'उ.आषाढ़' => 'उत्तराषाढ़ा',
-    'पू.फाल्गुनी' => 'पूर्वाफाल्गुनी', 'उ.फाल्गुनी' => 'उत्तराफाल्गुनी',
-    'पू.भाद्रपद' => 'पूर्वाभाद्रपद', 'उ.भाद्रपद' => 'उत्तराभाद्रपद',
-    'श्रवण' => 'श्रवण'
-];
-
-$yogaMap = [
-    'सुकर्म' => 'सुकर्मा', 'विष्कुम्भ' => 'विष्कुंभ', 'आयुष्मान' => 'आयुष्मान',
-    'सौभाग्य' => 'सौभाग्य', 'शोभन' => 'शोभन', 'अतिगण्ड' => 'अतिगंड',
-    'धृति' => 'धृति', 'शूल' => 'शूल', 'गण्ड' => 'गंड', 'वृद्धि' => 'वृद्धि',
-    'ध्रुव' => 'ध्रुव', 'व्याघात' => 'व्याघात', 'हर्षण' => 'हर्षण', 'वज्र' => 'वज्र',
-    'सिद्धि' => 'सिद्धि', 'व्यतीपात' => 'व्यतीपात', 'वरीयान' => 'वरीयान',
-    'परिघ' => 'परिघ', 'शिव' => 'शिव', 'सिद्ध' => 'सिद्ध', 'साध्य' => 'साध्य',
-    'शुभ' => 'शुभ', 'शुक्ल' => 'शुक्ल', 'ब्रह्म' => 'ब्रह्म', 'ऐन्द्र' => 'ऐन्द्र', 'वैधृति' => 'वैधृति'
-];
-
-$karanaMap = [
-    'बव' => 'बव', 'बालव' => 'बालव', 'कौलव' => 'कौलव', 'तैतिल' => 'तैतिल',
-    'गर' => 'गर', 'वणिज' => 'वणिज', 'विष्टि' => 'विष्टि (भद्रा)', 'शकुनि' => 'शकुनि',
-    'चतुष्पद' => 'चतुष्पद', 'नाग' => 'नाग', 'किंस्तुघ्न' => 'किंस्तुघ्न'
-];
-
-$rashiMap = [
-    'मेष' => 'मेष राशि', 'वृष' => 'वृषभ राशि', 'मिथुन' => 'मिथुन राशि',
-    'कर्क' => 'कर्क राशि', 'सिंह' => 'सिंह राशि', 'कन्या' => 'कन्या राशि',
-    'तुला' => 'तुला राशि', 'वृश्चिक' => 'वृश्चिक राशि', 'धनु' => 'धनु राशि',
-    'मकर' => 'मकर राशि', 'कुंभ' => 'कुंभ राशि', 'मीन' => 'मीन राशि'
-];
-
-// ==================== 3. DATA FORMATTING ====================
-$nak1 = $data['nakshatra'] ?? '';
-$nak2 = $data['next_nakshatra'] ?? '';
-$nak1_full = $nakshatraMap[$nak1] ?? $nak1;
-$nak2_full = $nakshatraMap[$nak2] ?? $nak2;
-$nakshatra = $nak1_full . " (" . ($data['nak_end'] ?? '') . " तक), फिर " . $nak2_full;
-
-$yo1 = $data['yoga'] ?? '';
-$yo2 = $data['next_yoga'] ?? '';
-$yo1_full = $yogaMap[$yo1] ?? $yo1;
-$yo2_full = $yogaMap[$yo2] ?? $yo2;
-$yog = $yo1_full . " (" . ($data['yoga_end'] ?? '') . " तक), फिर " . $yo2_full;
-
-$kar1 = $data['karana'] ?? '';
-$kar2 = $data['next_karana'] ?? '';
-$kar1_full = $karanaMap[$kar1] ?? $kar1;
-$kar2_full = $karanaMap[$kar2] ?? $kar2;
-$karan = $kar1_full . " (" . ($data['karana_end'] ?? '') . " तक), फिर " . $kar2_full;
-
-$rashi1 = $data['chandra_rashi'] ?? '';
-$rashi2 = $data['next_chandra_rashi'] ?? '';
-$rashi1_full = $rashiMap[$rashi1] ?? $rashi1;
-$rashi2_full = $rashiMap[$rashi2] ?? $rashi2;
-$chanderRashi = $rashi1_full . " (" . ($data['chandra_rashi_end'] ?? '') . " तक), फिर " . $rashi2_full;
-
-$tithi = ($data['tithi'] ?? '') . " (" . ($data['tithi_end'] ?? '') . " तक), तत्पश्चात " . ($data['next_tithi'] ?? '');
-
-// सीधा API से आने वाला फेस्टिवल डेटा उपयोग किया गया है
-$festivals = (!empty($data['festival']) && $data['festival'] !== '—') ? $data['festival'] : '—';
-
-$vijayMuhurat = isset($data['vijaya']) ? ($data['vijaya']['start'] ?? '') . " - " . ($data['vijaya']['end'] ?? '') : '';
-$godhuliMuhurat = isset($data['godhuli']) ? ($data['godhuli']['start'] ?? '') . " - " . ($data['godhuli']['end'] ?? '') : '';
-
 ?>
 
 <!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <title>पंचांग - 19 अक्टूबर 2026</title>
+    <title>आगामी 7 दिनों का पंचांग</title>
     <style>
         .panchang-table-container {
             width: 100%;
@@ -157,12 +169,12 @@ $godhuliMuhurat = isset($data['godhuli']) ? ($data['godhuli']['start'] ?? '') . 
             border-collapse: collapse;
             width: 100%;
             white-space: nowrap;
-            font-size: 14px;
+            font-size: 13px;
             text-align: center;
         }
         table.panchang-table th, table.panchang-table td {
             border: 1px solid #cccccc;
-            padding: 10px 12px;
+            padding: 8px 10px;
         }
         table.panchang-table th {
             background-color: #f2f2f2;
@@ -175,6 +187,8 @@ $godhuliMuhurat = isset($data['godhuli']) ? ($data['godhuli']['start'] ?? '') . 
     </style>
 </head>
 <body>
+
+<h2 style="font-family: Arial; text-align: center;">आगामी 7 दिनों का पंचांग (19 से 25 अक्टूबर 2026)</h2>
 
 <div class="panchang-table-container">
     <table class="panchang-table">
@@ -205,30 +219,32 @@ $godhuliMuhurat = isset($data['godhuli']) ? ($data['godhuli']['start'] ?? '') . 
             </tr>
         </thead>
         <tbody>
+            <?php foreach ($allPanchangData as $row): ?>
             <tr>
-                <td><?= htmlspecialchars($dayNumber) ?></td>
-                <td><?= htmlspecialchars($monthHindi) ?></td>
-                <td><?= htmlspecialchars($data['vikram_samvat'] ?? '') ?></td>
-                <td><?= htmlspecialchars($data['weekday'] ?? '') ?></td>
-                <td><?= htmlspecialchars($tithi) ?></td>
-                <td><?= htmlspecialchars($nakshatra) ?></td>
-                <td><?= htmlspecialchars($yog) ?></td>
-                <td><?= htmlspecialchars($karan) ?></td>
-                <td><?= htmlspecialchars($chanderRashi) ?></td>
-                <td><?= htmlspecialchars($data['sunrise'] ?? '') ?></td>
-                <td><?= htmlspecialchars($data['sunset'] ?? '') ?></td>
-                <td><?= htmlspecialchars($data['moonrise'] ?? '') ?></td>
-                <td><?= htmlspecialchars($data['moonset'] ?? '') ?></td>
-                <td><?= htmlspecialchars($data['abhijit'] ?? '') ?></td>
-                <td><?= htmlspecialchars($vijayMuhurat) ?></td>
-                <td><?= htmlspecialchars($data['brahma_muhurat'] ?? '') ?></td>
-                <td><?= htmlspecialchars($godhuliMuhurat) ?></td>
-                <td><?= htmlspecialchars($data['rahukaal'] ?? '') ?></td>
-                <td><?= htmlspecialchars($data['gulika'] ?? '') ?></td>
-                <td><?= htmlspecialchars($data['yamganda'] ?? '') ?></td>
-                <td><?= htmlspecialchars($vijayMuhurat) ?></td>
-                <td><?= htmlspecialchars($festivals) ?></td>
+                <td><?= htmlspecialchars($row['dayNumber']) ?></td>
+                <td><?= htmlspecialchars($row['monthHindi']) ?></td>
+                <td><?= htmlspecialchars($row['year']) ?></td>
+                <td><?= htmlspecialchars($row['weekday']) ?></td>
+                <td><?= htmlspecialchars($row['tithi']) ?></td>
+                <td><?= htmlspecialchars($row['nakshatra']) ?></td>
+                <td><?= htmlspecialchars($row['yog']) ?></td>
+                <td><?= htmlspecialchars($row['karan']) ?></td>
+                <td><?= htmlspecialchars($row['chanderRashi']) ?></td>
+                <td><?= htmlspecialchars($row['sunrise']) ?></td>
+                <td><?= htmlspecialchars($row['sunset']) ?></td>
+                <td><?= htmlspecialchars($row['moonrise']) ?></td>
+                <td><?= htmlspecialchars($row['moonset']) ?></td>
+                <td><?= htmlspecialchars($row['abhijit']) ?></td>
+                <td><?= htmlspecialchars($row['vijayMuhurat']) ?></td>
+                <td><?= htmlspecialchars($row['brahmaMuhurat']) ?></td>
+                <td><?= htmlspecialchars($row['godhuliMuhurat']) ?></td>
+                <td><?= htmlspecialchars($row['rahukaal']) ?></td>
+                <td><?= htmlspecialchars($row['gulika']) ?></td>
+                <td><?= htmlspecialchars($row['yamganda']) ?></td>
+                <td><?= htmlspecialchars($row['vijayMuhurat']) ?></td>
+                <td><?= htmlspecialchars($row['festivals']) ?></td>
             </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>
