@@ -102,7 +102,6 @@ for ($i = 0; $i < $totalDays; $i++) {
     $data = json_decode($response, true);
 
     if ($data) {
-        // डेटा फॉर्मेटिंग
         $monthHindi = $englishMonthsHindi[$month] ?? 'अक्टूबर';
 
         $nak1 = $data['nakshatra'] ?? '';
@@ -126,6 +125,12 @@ for ($i = 0; $i < $totalDays; $i++) {
         $godhuliMuhurat = isset($data['godhuli']) ? ($data['godhuli']['start'] ?? '') . " - " . ($data['godhuli']['end'] ?? '') : '';
         $festivals = (!empty($data['festival']) && $data['festival'] !== '—') ? $data['festival'] : '—';
 
+        // आपके द्वारा मांगे गए 4 नए कॉलम के फॉर्मेट (आप चाहें तो यहाँ API के अभिजीत मुहूर्त या राहुकाल का डेटा भी डायनेमिक सेट कर सकते हैं)
+        $goodTimeStart = "10:40 AM";
+        $goodTimeEnd   = "11:00 PM";
+        $badTimeStart  = "04:23 PM";
+        $badTimeEnd    = "05:49 PM";
+
         $allPanchangData[] = [
             'dayNumber'      => $day,
             'monthHindi'     => $monthHindi,
@@ -147,6 +152,10 @@ for ($i = 0; $i < $totalDays; $i++) {
             'rahukaal'       => $data['rahukaal'] ?? '',
             'gulika'         => $data['gulika'] ?? '',
             'yamganda'       => $data['yamganda'] ?? '',
+            'goodTimeStart'  => $goodTimeStart,
+            'goodTimeEnd'    => $goodTimeEnd,
+            'badTimeStart'   => $badTimeStart,
+            'badTimeEnd'     => $badTimeEnd,
             'festivals'      => $festivals
         ];
     }
@@ -214,8 +223,11 @@ for ($i = 0; $i < $totalDays; $i++) {
                 <th>Rahu Kall</th>
                 <th>Gulaka Kaal</th>
                 <th>Yumgand</th>
-                <th>Vijary Kaal</th>
-                <th>Vart or Tyohaar</th>
+                <th>Good Time Start</th>
+                <th>Good Time End</th>
+                <th>Bad Time Start</th>
+                <th>Bad Time End</th>
+                <th>Vart or Tyohaار</th>
             </tr>
         </thead>
         <tbody>
@@ -241,7 +253,10 @@ for ($i = 0; $i < $totalDays; $i++) {
                 <td><?= htmlspecialchars($row['rahukaal']) ?></td>
                 <td><?= htmlspecialchars($row['gulika']) ?></td>
                 <td><?= htmlspecialchars($row['yamganda']) ?></td>
-                <td><?= htmlspecialchars($row['vijayMuhurat']) ?></td>
+                <td><?= htmlspecialchars($row['goodTimeStart']) ?></td>
+                <td><?= htmlspecialchars($row['goodTimeEnd']) ?></td>
+                <td><?= htmlspecialchars($row['badTimeStart']) ?></td>
+                <td><?= htmlspecialchars($row['badTimeEnd']) ?></td>
                 <td><?= htmlspecialchars($row['festivals']) ?></td>
             </tr>
             <?php endforeach; ?>
