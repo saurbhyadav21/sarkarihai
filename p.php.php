@@ -1,28 +1,22 @@
 <?php
-// ==========================================
-// 1. YAHAN SE DATE AUR DAY CHANGE KAREIN
-// ==========================================
-$date_str          = "20-10-2026";        // DD-MM-YYYY
-$day_hindi         = "मंगलवार";           // Hindi Day
-$day_english       = "Tuesday";          // English Day
-$channel_handle    = "@kathaaartisangrah"; // Channel Handle
-$month_name_hindi  = "अक्टूबर";          // Month in Hindi
-$month_name_eng    = "October";          // Month in English
+// Default Values (Aap form se badal sakte hain)
+$date_str          = $_POST['date_str'] ?? "20-10-2026";
+$day_hindi         = $_POST['day_hindi'] ?? "मंगलवार";
+$day_english       = $_POST['day_english'] ?? "Tuesday";
+$month_name_hindi  = $_POST['month_name_hindi'] ?? "अक्टूबर";
+$month_name_eng    = $_POST['month_name_eng'] ?? "October";
+$channel_handle    = $_POST['channel_handle'] ?? "@kathaaartisangrah";
 
-// Date variables automatically parsed
+// Automatically parse Date
 $date_parts = explode("-", $date_str);
-$day_num    = $date_parts[0]; // 20
-$month_num  = $date_parts[1]; // 10
-$year_num   = $date_parts[2]; // 2026
+$day_num    = $date_parts[0] ?? "20";
+$month_num  = $date_parts[1] ?? "10";
+$year_num   = $date_parts[2] ?? "2026";
 
-// ==========================================
-// 2. DYNAMIC TITLE
-// ==========================================
+// Dynamic Title
 $title = "{$date_str} Panchang | भूलकर भी इस समय न करें काम! ⚠️ आज का पंचांग #aajkapanchang #shorts #rahukaal";
 
-// ==========================================
-// 3. COMPLETE UNCUT DESCRIPTION
-// ==========================================
+// Complete Uncut Dynamic Description
 $description = "{$date_str} Panchang | भूलकर भी इस समय न करें काम! ⚠️ आज का पंचांग #aajkapanchang #shorts #rahukaal
 
 {$channel_handle} 
@@ -145,35 +139,77 @@ Aaj kab hai Hindu festival calendar {$year_num}
 #horoscope #dailyhoroscope #dailyrashifal #entertainment #hindi  #aajkarashifal #aajkapanchang #jyotish #astrology #aajkarashifal #shortsfeed #viral #todayshorts #kathaaartisangrah 
 
 यहां दी गई जानकारी सामान्य मान्यताओं, विभिन्न श्रोतों, ज्योतिष, पंचांग, धार्मिक ग्रंथों आदि पर आधारित है। यहां दी गई सूचना और तथ्यों की सटीकता, संपूर्णता के लिए kathaaartisangrah उत्तरदायी नहीं है।";
-
-// ==========================================
-// 4. HTML DISPLAY / OUTPUT
-// ==========================================
 ?>
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <title>Panchang Content Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panchang Shorts Content Generator</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; }
-        .container { max-width: 900px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h2 { color: #d32f2f; }
-        label { font-weight: bold; display: block; margin-top: 15px; }
-        input[type="text"], textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        textarea { height: 450px; font-family: monospace; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; }
+        .box { max-width: 900px; margin: auto; background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { color: #d32f2f; text-align: center; margin-bottom: 20px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: #fff8e1; padding: 15px; border-radius: 8px; border: 1px solid #ffe082; }
+        .form-group { display: flex; flex-direction: column; }
+        label { font-weight: bold; margin-bottom: 5px; color: #333; }
+        input[type="text"] { padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; }
+        .btn-submit { grid-column: span 2; padding: 12px; background: #d32f2f; color: #fff; border: none; font-size: 16px; font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { background: #b71c1c; }
+        .output-group { margin-top: 25px; }
+        textarea { width: 100%; height: 380px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit; font-size: 14px; box-sizing: border-box; }
+        .copy-hint { color: #666; font-size: 12px; margin-top: 4px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>YouTube Shorts Content Generator (Full Text)</h2>
-    
-    <label>1. Title (कॉपी करें):</label>
-    <input type="text" value="<?php echo htmlspecialchars($title); ?>" readonly onclick="this.select();">
+<div class="box">
+    <h2>🚩 Daily Panchang Content Generator</h2>
 
-    <label>2. Full Description (बिना किसी कट के पूरी की पूरी डिस्क्रिप्शन):</label>
-    <textarea readonly onclick="this.select();"><?php echo htmlspecialchars($description); ?></textarea>
+    <!-- INPUT FORM -->
+    <form method="POST" action="">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Date (DD-MM-YYYY):</label>
+                <input type="text" name="date_str" value="<?php echo htmlspecialchars($date_str); ?>" required>
+            </div>
+            <div class="form-group">
+                <label>Channel Handle:</label>
+                <input type="text" name="channel_handle" value="<?php echo htmlspecialchars($channel_handle); ?>" required>
+            </div>
+            <div class="form-group">
+                <label>Day (Hindi):</label>
+                <input type="text" name="day_hindi" value="<?php echo htmlspecialchars($day_hindi); ?>" required>
+            </div>
+            <div class="form-group">
+                <label>Day (English):</label>
+                <input type="text" name="day_english" value="<?php echo htmlspecialchars($day_english); ?>" required>
+            </div>
+            <div class="form-group">
+                <label>Month (Hindi):</label>
+                <input type="text" name="month_name_hindi" value="<?php echo htmlspecialchars($month_name_hindi); ?>" required>
+            </div>
+            <div class="form-group">
+                <label>Month (English):</label>
+                <input type="text" name="month_name_eng" value="<?php echo htmlspecialchars($month_name_eng); ?>" required>
+            </div>
+            <button type="submit" class="btn-submit">🚀 Generate Updated Content</button>
+        </div>
+    </form>
+
+    <!-- OUTPUT SECTION -->
+    <div class="output-group">
+        <label>1. Dynamic Title (कॉपी करें):</label>
+        <input type="text" value="<?php echo htmlspecialchars($title); ?>" readonly onclick="this.select();">
+        <div class="copy-hint">💡 बॉक्स पर क्लिक करके सीधा Copy (Ctrl+C) करें।</div>
+    </div>
+
+    <div class="output-group">
+        <label>2. Full Dynamic Description (Uncut Content):</label>
+        <textarea readonly onclick="this.select();"><?php echo htmlspecialchars($description); ?></textarea>
+        <div class="copy-hint">💡 बॉक्स पर क्लिक करके सीधा Copy (Ctrl+C) करें।</div>
+    </div>
 </div>
 
 </body>
