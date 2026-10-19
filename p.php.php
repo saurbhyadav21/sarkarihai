@@ -61,7 +61,7 @@ $title = "{$date_str} Panchang | भूलकर भी इस समय न क
 // ==========================================
 // 4. DYNAMIC YOUTUBE TAGS
 // ==========================================
-$tags = "aaj ka panchang, panchang, today panchang, panchangam, aaj ka panchang {$date_str}, {$day_num} {$month_name_hindi} panchang, {$day_hindi} panchang, aaj ka panchang {$year_num}, aaj ka shubh muhurat, rahukaal timing, abhijeet muhurt, dainik panchang, {$day_english} panchang, {$day_num} {$month_name_eng} {$year_num} panchang, kathaaartisangrah, daily panchang hindi, aaj ki tithi, aaj ka choghdiya";
+$tags = "aaj ka panchang, panchang, today panchang, panchangam, aaj ka panchang {$date_str}, {$day_num} {$month_name_hindi} panchang, {$day_hindi} panchang, aaj ka panchang {$year_num}, aaj ka shubh muhurat, rahukaal timing, abhijeet muhurt, dainik panchang, {$day_english} panchang, {$day_num} {$month_name_eng} {$year_num} panchang, @bhaktisagar42529, daily panchang hindi, aaj ki tithi, aaj ka choghdiya";
 
 // ==========================================
 // 5. FULL UNCUT DYNAMIC DESCRIPTION
@@ -179,9 +179,9 @@ Aaj kab hai Hindu festival calendar {$year_num}
 #rahukal
 #{$day_num}{$month_name_eng}{$year_num}
 #rashifal #astro #राशिफल
-#horoscope #dailyhoroscope #dailyrashifal #entertainment #hindi #aajkarashifal #aajkapanchang #jyotish #astrology #aajkarashifal #shortsfeed #viral #todayshorts #kathaaartisangrah
+#horoscope #dailyhoroscope #dailyrashifal #entertainment #hindi #aajkarashifal #aajkapanchang #jyotish #astrology #aajkarashifal #shortsfeed #viral #todayshorts @bhaktisagar42529
 
-यहां दी गई जानकारी सामान्य मान्यताओं, विभिन्न श्रोतों, ज्योतिष, पंचांग, धार्मिक ग्रंथों आदि पर आधारित है। यहां दी गई सूचना और तथ्यों की सटीकता, संपूर्णता के लिए kathaaartisangrah उत्तरदायी नहीं है।";
+यहां दी गई जानकारी सामान्य मान्यताओं, विभिन्न श्रोतों, ज्योतिष, पंचांग, धार्मिक ग्रंथों आदि पर आधारित है। यहां दी गई सूचना और तथ्यों की सटीकता, संपूर्णता के लिए @bhaktisagar42529 उत्तरदायी नहीं है।";
 ?>
 
 <!DOCTYPE html>
