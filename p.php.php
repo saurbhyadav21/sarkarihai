@@ -1,4 +1,44 @@
 <?php
+
+// ==========================================
+// MONTH & DAY LOOKUP ARRAYS
+// ==========================================
+
+// Months (Hindi & English)
+$months_hindi = [
+    "01" => "जनवरी",   "02" => "फरवरी",   "03" => "मार्च",
+    "04" => "अप्रैल",   "05" => "मई",      "06" => "जून",
+    "07" => "जुलाई",   "08" => "अगस्त",   "09" => "सितंबर",
+    "10" => "अक्टूबर",  "11" => "नवंबर",   "12" => "दिसंबर"
+];
+
+$months_english = [
+    "01" => "January",   "02" => "February", "03" => "March",
+    "04" => "April",     "05" => "May",      "06" => "June",
+    "07" => "July",      "08" => "August",   "09" => "September",
+    "10" => "October",   "11" => "November", "12" => "December"
+];
+
+// Weekdays / Days (Hindi & English)
+$days_hindi = [
+    "Monday"    => "सोमवार",
+    "Tuesday"   => "मंगलवार",
+    "Wednesday" => "बुधवार",
+    "Thursday"  => "गुरुवार",
+    "Friday"    => "शुक्रवार",
+    "Saturday"  => "शनिवार",
+    "Sunday"    => "रविवार"
+];
+
+$days_english = [
+    "Monday"    => "Monday",
+    "Tuesday"   => "Tuesday",
+    "Wednesday" => "Wednesday",
+    "Thursday"  => "Thursday",
+    "Friday"    => "Friday",
+    "Saturday"  => "Saturday",
+    "Sunday"    => "Sunday"
+];
 // Default Input Values
 $date_str          = $_POST['date_str'] ?? "20-10-2026";
 $day_hindi         = $_POST['day_hindi'] ?? "मंगलवार";
@@ -16,6 +56,18 @@ $year_num   = $date_parts[2] ?? "2026";
 // English Case Handling for Dynamic Hashtags
 $day_eng_lower   = strtolower($day_english);
 $month_eng_lower = strtolower($month_name_eng);
+
+// Date parsing example (e.g. "20-10-2026")
+$date_parts = explode("-", $date_str); 
+$month_num  = $date_parts[1]; // "10"
+
+// Auto Fetch Names
+$month_name_hindi = $months_hindi[$month_num];       // "अक्टूबर"
+$month_name_eng   = $months_english[$month_num];     // "October"
+
+// Day Auto Fetch (using English day as key)
+$day_hindi   = $days_hindi[$day_english];             // "मंगलवार" (if $day_english = "Tuesday")
+$day_english = $days_english[$day_english];           // "Tuesday"
 
 // ---------------------------------------------------------
 // 1. DYNAMIC TITLE
