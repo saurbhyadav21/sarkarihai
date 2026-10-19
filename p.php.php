@@ -1,10 +1,8 @@
 <?php
-
 // ==========================================
-// MONTH & DAY LOOKUP ARRAYS
+// 1. MONTH & DAY LOOKUP ARRAYS
 // ==========================================
 
-// Months (Hindi & English)
 $months_hindi = [
     "01" => "जनवरी",   "02" => "फरवरी",   "03" => "मार्च",
     "04" => "अप्रैल",   "05" => "मई",      "06" => "जून",
@@ -19,7 +17,6 @@ $months_english = [
     "10" => "October",   "11" => "November", "12" => "December"
 ];
 
-// Weekdays / Days (Hindi & English)
 $days_hindi = [
     "Monday"    => "सोमवार",
     "Tuesday"   => "मंगलवार",
@@ -30,58 +27,45 @@ $days_hindi = [
     "Sunday"    => "रविवार"
 ];
 
-$days_english = [
-    "Monday"    => "Monday",
-    "Tuesday"   => "Tuesday",
-    "Wednesday" => "Wednesday",
-    "Thursday"  => "Thursday",
-    "Friday"    => "Friday",
-    "Saturday"  => "Saturday",
-    "Sunday"    => "Sunday"
-];
-// Default Input Values
-$date_str          = $_POST['date_str'] ?? "20-10-2026";
-$day_hindi         = $_POST['day_hindi'] ?? "मंगलवार";
-$day_english       = $_POST['day_english'] ?? "Tuesday";
-$month_name_hindi  = $_POST['month_name_hindi'] ?? "अक्टूबर";
-$month_name_eng    = $_POST['month_name_eng'] ?? "October";
-$channel_handle    = $_POST['channel_handle'] ?? "@kathaaartisangrah";
+// ==========================================
+// 2. INPUT & DATE AUTOMATIC PARSING
+// ==========================================
 
-// Date Automatic Parsing
+$date_str       = $_POST['date_str'] ?? "20-10-2026";
+$channel_handle = $_POST['channel_handle'] ?? "@kathaaartisangrah";
+
+// Date Processing
 $date_parts = explode("-", $date_str);
 $day_num    = $date_parts[0] ?? "20";
 $month_num  = $date_parts[1] ?? "10";
 $year_num   = $date_parts[2] ?? "2026";
 
-// English Case Handling for Dynamic Hashtags
+// Auto Calculate Day Name from Date String
+$timestamp    = strtotime("{$year_num}-{$month_num}-{$day_num}");
+$day_english  = date("l", $timestamp); // Automatic English Day (e.g. "Tuesday")
+$day_hindi    = $days_hindi[$day_english] ?? "मंगलवार";
+
+// Auto Fetch Month Names
+$month_name_hindi = $months_hindi[$month_num] ?? "अक्टूबर";
+$month_name_eng   = $months_english[$month_num] ?? "October";
+
+// Lowercase for Hashtags
 $day_eng_lower   = strtolower($day_english);
 $month_eng_lower = strtolower($month_name_eng);
 
-// Date parsing example (e.g. "20-10-2026")
-$date_parts = explode("-", $date_str); 
-$month_num  = $date_parts[1]; // "10"
-
-// Auto Fetch Names
-$month_name_hindi = $months_hindi[$month_num];       // "अक्टूबर"
-$month_name_eng   = $months_english[$month_num];     // "October"
-
-// Day Auto Fetch (using English day as key)
-$day_hindi   = $days_hindi[$day_english];             // "मंगलवार" (if $day_english = "Tuesday")
-$day_english = $days_english[$day_english];           // "Tuesday"
-
-// ---------------------------------------------------------
-// 1. DYNAMIC TITLE
-// ---------------------------------------------------------
+// ==========================================
+// 3. DYNAMIC TITLE
+// ==========================================
 $title = "{$date_str} Panchang | भूलकर भी इस समय न करें काम! ⚠️ आज का पंचांग #aajkapanchang #shorts #rahukaal";
 
-// ---------------------------------------------------------
-// 2. DYNAMIC TAGS (Comma Separated for YouTube Tags Field)
-// ---------------------------------------------------------
+// ==========================================
+// 4. DYNAMIC YOUTUBE TAGS
+// ==========================================
 $tags = "aaj ka panchang, panchang, today panchang, panchangam, aaj ka panchang {$date_str}, {$day_num} {$month_name_hindi} panchang, {$day_hindi} panchang, aaj ka panchang {$year_num}, aaj ka shubh muhurat, rahukaal timing, abhijeet muhurt, dainik panchang, {$day_english} panchang, {$day_num} {$month_name_eng} {$year_num} panchang, kathaaartisangrah, daily panchang hindi, aaj ki tithi, aaj ka choghdiya";
 
-// ---------------------------------------------------------
-// 3. FULL DYNAMIC UNCUT DESCRIPTION (WITH DYNAMIC HASHTAGS)
-// ---------------------------------------------------------
+// ==========================================
+// 5. FULL UNCUT DYNAMIC DESCRIPTION
+// ==========================================
 $description = "{$date_str} Panchang | भूलकर भी इस समय न करें काम! ⚠️ आज का पंचांग #aajkapanchang #shorts #rahukaal
 
 {$channel_handle} 
@@ -224,7 +208,7 @@ Aaj kab hai Hindu festival calendar {$year_num}
 <body>
 
 <div class="box">
-    <h2>🚩 Dynamic Panchang Generator (With Tags & Hashtags)</h2>
+    <h2>🚩 Dynamic Panchang Generator</h2>
 
     <!-- INPUT FORM -->
     <form method="POST" action="">
@@ -238,20 +222,12 @@ Aaj kab hai Hindu festival calendar {$year_num}
                 <input type="text" name="channel_handle" value="<?php echo htmlspecialchars($channel_handle); ?>" required>
             </div>
             <div class="form-group">
-                <label>Day (Hindi):</label>
-                <input type="text" name="day_hindi" value="<?php echo htmlspecialchars($day_hindi); ?>" required>
+                <label>Auto Detected Day:</label>
+                <input type="text" value="<?php echo htmlspecialchars($day_hindi . " / " . $day_english); ?>" disabled style="background:#eee;">
             </div>
             <div class="form-group">
-                <label>Day (English):</label>
-                <input type="text" name="day_english" value="<?php echo htmlspecialchars($day_english); ?>" required>
-            </div>
-            <div class="form-group">
-                <label>Month (Hindi):</label>
-                <input type="text" name="month_name_hindi" value="<?php echo htmlspecialchars($month_name_hindi); ?>" required>
-            </div>
-            <div class="form-group">
-                <label>Month (English):</label>
-                <input type="text" name="month_name_eng" value="<?php echo htmlspecialchars($month_name_eng); ?>" required>
+                <label>Auto Detected Month:</label>
+                <input type="text" value="<?php echo htmlspecialchars($month_name_hindi . " / " . $month_name_eng); ?>" disabled style="background:#eee;">
             </div>
             <button type="submit" class="btn-submit">🚀 Generate Dynamic Content, Tags & Hashtags</button>
         </div>
