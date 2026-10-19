@@ -1,5 +1,5 @@
 <?php
-// Default Values (Aap form se badal sakte hain)
+// Default Input Values
 $date_str          = $_POST['date_str'] ?? "20-10-2026";
 $day_hindi         = $_POST['day_hindi'] ?? "मंगलवार";
 $day_english       = $_POST['day_english'] ?? "Tuesday";
@@ -7,16 +7,29 @@ $month_name_hindi  = $_POST['month_name_hindi'] ?? "अक्टूबर";
 $month_name_eng    = $_POST['month_name_eng'] ?? "October";
 $channel_handle    = $_POST['channel_handle'] ?? "@kathaaartisangrah";
 
-// Automatically parse Date
+// Date Automatic Parsing
 $date_parts = explode("-", $date_str);
 $day_num    = $date_parts[0] ?? "20";
 $month_num  = $date_parts[1] ?? "10";
 $year_num   = $date_parts[2] ?? "2026";
 
-// Dynamic Title
+// English Case Handling for Dynamic Hashtags
+$day_eng_lower   = strtolower($day_english);
+$month_eng_lower = strtolower($month_name_eng);
+
+// ---------------------------------------------------------
+// 1. DYNAMIC TITLE
+// ---------------------------------------------------------
 $title = "{$date_str} Panchang | भूलकर भी इस समय न करें काम! ⚠️ आज का पंचांग #aajkapanchang #shorts #rahukaal";
 
-// Complete Uncut Dynamic Description
+// ---------------------------------------------------------
+// 2. DYNAMIC TAGS (Comma Separated for YouTube Tags Field)
+// ---------------------------------------------------------
+$tags = "aaj ka panchang, panchang, today panchang, panchangam, aaj ka panchang {$date_str}, {$day_num} {$month_name_hindi} panchang, {$day_hindi} panchang, aaj ka panchang {$year_num}, aaj ka shubh muhurat, rahukaal timing, abhijeet muhurt, dainik panchang, {$day_english} panchang, {$day_num} {$month_name_eng} {$year_num} panchang, kathaaartisangrah, daily panchang hindi, aaj ki tithi, aaj ka choghdiya";
+
+// ---------------------------------------------------------
+// 3. FULL DYNAMIC UNCUT DESCRIPTION (WITH DYNAMIC HASHTAGS)
+// ---------------------------------------------------------
 $description = "{$date_str} Panchang | भूलकर भी इस समय न करें काम! ⚠️ आज का पंचांग #aajkapanchang #shorts #rahukaal
 
 {$channel_handle} 
@@ -99,44 +112,38 @@ Aaj kab hai Hindu festival calendar {$year_num}
 #{$year_num}
 #panchang
 #today
-#{$day_english} 
-#sunday 
-#wednesday 
-#yt 
-#thursday 
+#{$day_eng_lower}
+#sunday
+#wednesday
+#yt
+#thursday
 #friday
 #pradoshkaaltime
 #abhijeetmuhurt
-#september
-#september{$year_num}
-#youtubeshorts 
-#panchang 
-#viralshort 
+#{$month_eng_lower}
+#{$month_eng_lower}{$year_num}
+#youtubeshorts
+#panchang
+#viralshort
 #festival{$year_num}
-#muhurat 
-#ytshorts 
-#shorts 
-#September
-#panchang 
-#shorts 
-#panchang 
-#shortsfeed 
-#dainikpanchang 
-#trendingshorts 
-#dailypanchang 
-#panchangam 
-#abhijeetmuhurt 
-#astrology 
-#aajkapanchang 
-#vedicastrology 
-#tithi 
-#kalkapanchang 
-#day 
+#muhurat
+#ytshorts
+#shorts
+#dainikpanchang
+#trendingshorts
+#dailypanchang
+#panchangam
+#astrology
+#aajkapanchang
+#vedicastrology
+#tithi
+#kalkapanchang
+#day
 #rahukaal
-#rahukal 
-#{$day_num} {$month_name_eng} {$year_num}
-#rashifal #astro #राशिफल 
-#horoscope #dailyhoroscope #dailyrashifal #entertainment #hindi  #aajkarashifal #aajkapanchang #jyotish #astrology #aajkarashifal #shortsfeed #viral #todayshorts #kathaaartisangrah 
+#rahukal
+#{$day_num}{$month_name_eng}{$year_num}
+#rashifal #astro #राशिफल
+#horoscope #dailyhoroscope #dailyrashifal #entertainment #hindi #aajkarashifal #aajkapanchang #jyotish #astrology #aajkarashifal #shortsfeed #viral #todayshorts #kathaaartisangrah
 
 यहां दी गई जानकारी सामान्य मान्यताओं, विभिन्न श्रोतों, ज्योतिष, पंचांग, धार्मिक ग्रंथों आदि पर आधारित है। यहां दी गई सूचना और तथ्यों की सटीकता, संपूर्णता के लिए kathaaartisangrah उत्तरदायी नहीं है।";
 ?>
@@ -146,7 +153,7 @@ Aaj kab hai Hindu festival calendar {$year_num}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panchang Shorts Content Generator</title>
+    <title>Panchang Shorts Content & Tags Generator</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; }
         .box { max-width: 900px; margin: auto; background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
@@ -158,14 +165,14 @@ Aaj kab hai Hindu festival calendar {$year_num}
         .btn-submit { grid-column: span 2; padding: 12px; background: #d32f2f; color: #fff; border: none; font-size: 16px; font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.3s; }
         .btn-submit:hover { background: #b71c1c; }
         .output-group { margin-top: 25px; }
-        textarea { width: 100%; height: 380px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit; font-size: 14px; box-sizing: border-box; }
+        textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit; font-size: 14px; box-sizing: border-box; }
         .copy-hint { color: #666; font-size: 12px; margin-top: 4px; }
     </style>
 </head>
 <body>
 
 <div class="box">
-    <h2>🚩 Daily Panchang Content Generator</h2>
+    <h2>🚩 Dynamic Panchang Generator (With Tags & Hashtags)</h2>
 
     <!-- INPUT FORM -->
     <form method="POST" action="">
@@ -194,21 +201,29 @@ Aaj kab hai Hindu festival calendar {$year_num}
                 <label>Month (English):</label>
                 <input type="text" name="month_name_eng" value="<?php echo htmlspecialchars($month_name_eng); ?>" required>
             </div>
-            <button type="submit" class="btn-submit">🚀 Generate Updated Content</button>
+            <button type="submit" class="btn-submit">🚀 Generate Dynamic Content, Tags & Hashtags</button>
         </div>
     </form>
 
-    <!-- OUTPUT SECTION -->
+    <!-- OUTPUT 1: TITLE -->
     <div class="output-group">
-        <label>1. Dynamic Title (कॉपी करें):</label>
+        <label>1. Dynamic Title:</label>
         <input type="text" value="<?php echo htmlspecialchars($title); ?>" readonly onclick="this.select();">
-        <div class="copy-hint">💡 बॉक्स पर क्लिक करके सीधा Copy (Ctrl+C) करें।</div>
+        <div class="copy-hint">💡 Click to Copy Title</div>
     </div>
 
+    <!-- OUTPUT 2: TAGS FIELD -->
     <div class="output-group">
-        <label>2. Full Dynamic Description (Uncut Content):</label>
-        <textarea readonly onclick="this.select();"><?php echo htmlspecialchars($description); ?></textarea>
-        <div class="copy-hint">💡 बॉक्स पर क्लिक करके सीधा Copy (Ctrl+C) करें।</div>
+        <label>2. YouTube Video Tags (Tags Box Mein Paste Karein):</label>
+        <textarea style="height: 90px;" readonly onclick="this.select();"><?php echo htmlspecialchars($tags); ?></textarea>
+        <div class="copy-hint">💡 Direct Copy and Paste inside YouTube Studio Tags section</div>
+    </div>
+
+    <!-- OUTPUT 3: FULL DESCRIPTION -->
+    <div class="output-group">
+        <label>3. Full Description (With Dynamic Hashtags & Queries):</label>
+        <textarea style="height: 380px;" readonly onclick="this.select();"><?php echo htmlspecialchars($description); ?></textarea>
+        <div class="copy-hint">💡 Click to Copy Full Description</div>
     </div>
 </div>
 
