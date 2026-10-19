@@ -32,7 +32,7 @@ $days_hindi = [
 // ==========================================
 
 $date_str       = $_POST['date_str'] ?? "20-10-2026";
-$channel_handle = $_POST['channel_handle'] ?? "@kathaaartisangrah";
+$channel_handle = $_POST['channel_handle'] ?? "@bhaktisagar42529";
 
 // Date Processing
 $date_parts = explode("-", $date_str);
@@ -219,7 +219,7 @@ Aaj kab hai Hindu festival calendar {$year_num}
             </div>
             <div class="form-group">
                 <label>Channel Handle:</label>
-                <input type="text" name="channel_handle" value="<?php echo htmlspecialchars($channel_handle); ?>" required>
+                <input type="text" name="channel_handle" value="<?php echo htmlspecialchars($channel_handle); ?>" required disabled style="background:#eee;">
             </div>
             <div class="form-group">
                 <label>Auto Detected Day:</label>
