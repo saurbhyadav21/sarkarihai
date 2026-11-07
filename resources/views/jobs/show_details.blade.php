@@ -1056,7 +1056,7 @@ The candidate shall apply online through NIFTEM official website. --}}
 
 
                 <!-- RIGHT SEARCH -->
-                <div class="col-lg-12 mt-4">
+                <div class="col-lg-12">
 
                     <div class="search-card">
 
