@@ -109,6 +109,7 @@
             justify-content: space-between;
             align-items: flex-start;
             gap: 30px;
+            flex-direction: column;
         }
 
         .search-card {
