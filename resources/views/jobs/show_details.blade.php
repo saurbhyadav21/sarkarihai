@@ -952,7 +952,7 @@
 
             <div class="hero-flex">
 
-                <div>
+                <div class="col-lg-12">
 
                     <nav aria-label="breadcrumb" class="breadcrumb">
 
