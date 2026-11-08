@@ -65,3 +65,10 @@ Schedule::call(function () {
 Schedule::command('app:update-vacancies-post-start-end-date-min-max-age-title-name')
     ->everyMinute()
     ->withoutOverlapping();
+
+
+// This commadand extarct the all date.
+/*
+start_date, end_date, last_fee_date,correction_date, exam_date,result_date, info_date, notification_date, interview_date, walkin_date, important_date
+*/
+Schedule::command('all_date')->everyMinute();
