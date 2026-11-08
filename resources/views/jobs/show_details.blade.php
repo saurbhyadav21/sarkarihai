@@ -99,7 +99,7 @@
             font-size: 16px;
             line-height: 28px;
             opacity: .9;
-            max-width: 900px;
+            /* max-width: 900px; */
         }
 
         /* SEARCH BOX */
@@ -1023,7 +1023,7 @@
                             ({{ $job->organization }})
                         @else
     
-@endif has released the official notification for the recruitment of <span style="font-size: 30px;color: #f4b400;font-weight: bolder;">{{$job->total_vacancies}}</span> post title1,title2.The online application process will begin on 08 October 2026, and the last date to apply is 31 October 2026. Candidates must be 23 to 64 years old to be eligible for this recruitment.Candidates are advised to send their applications well before the deadline. In this article, you will find complete details about Young Professional Recruitment 2026, including vacancy details, eligibility criteria, age limit, salary, selection process, email application steps, and important links.
+@endif has released the official notification for the recruitment of <span style="font-size: 30px;color: #f4b400;font-weight: bolder;">{{$job->total_vacancies}} vacancies</span>  for various posts. post title1,title2.The online application process will begin on 08 October 2026, and the last date to apply is 31 October 2026. Candidates must be 23 to 64 years old to be eligible for this recruitment.Candidates are advised to send their applications well before the deadline. In this article, you will find complete details about Young Professional Recruitment 2026, including vacancy details, eligibility criteria, age limit, salary, selection process, email application steps, and important links.
                     </p>
 
                     {{-- <p>
