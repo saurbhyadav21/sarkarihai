@@ -79,7 +79,7 @@
                 </p>
 
                 @php
-    $chunks = $jobs->getCollection()->chunk(10);
+    $chunks = $jobs->getCollection()->chunk(25);
 
     $prompt = <<<'PROMPT'
 You are an expert recruitment data extractor and deep research analyst.
