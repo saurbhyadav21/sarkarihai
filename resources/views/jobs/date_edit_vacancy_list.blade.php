@@ -79,39 +79,44 @@
                 </p>
 
                 @php
-                    $chunks = $jobs->getCollection()->chunk(5);
+    $chunks = $jobs->getCollection()->chunk(10);
 
-                    $prompt = <<<'PROMPT'
-                    You are an expert recruitment data extractor and deep research analyst. Parse the given job notification text carefully and strictly output the response in valid JSON format matching the exact schema below.
+    $prompt = <<<'PROMPT'
+You are an expert recruitment data extractor and deep research analyst.
 
-                    ### Output JSON Structure (Include all 11 fields and ID):
-                    {
-                      "id": "[JOB ID]",
-                      "notification_date": "[Exact Date with short context in Hindi or N/A with reason]",
-                      "start_date": "[Exact Date with short context in Hindi or N/A with reason]",
-                      "end_date": "[Exact Date with short context in Hindi or N/A with reason]",
-                      "walkin_date": "[Exact Date/Time details or N/A with reason]",
-                      "interview_date": "[Exact Date/Time details or N/A with reason]",
-                      "last_fee_date": "[Fee Last Date or N/A with reason]",
-                      "correction_date": "[Correction Date or N/A with reason]",
-                      "exam_date": "[Exam Date or N/A with reason]",
-                      "result_date": "[Result Date status in Hindi or N/A with reason]",
-                      "info_date": "[Info Date details or N/A with reason]",
-                      "important_date": "[Key Highlighted Date or N/A with reason]"
-                    }
+Return strictly valid JSON as an array of objects.
 
-                    ### Strict Rules & Formatting Guidelines:
-                    1. STRICT ACCURACY: Extract information ONLY from the supplied job text. Do not guess or invent dates.
-                    2. MISSING DATES: If not mentioned or not applicable, use "N/A" followed by a short factual reason in Hindi.
-                    3. OUTPUT: Return strictly valid JSON. No markdown or explanation outside JSON.
-                    4. DATE FORMAT: Use DD Month YYYY for dates, with time where available.
-                    5. ID: Copy the exact JOB ID supplied for this job. Never change it.
-                    6. IMPORTANT: Return one JSON object per job, in the same order as the supplied IDs.
+Each object must contain these 12 fields:
 
-                    Job Text:
-                    [Paste the raw job text here]
-                    PROMPT;
-                @endphp
+{
+    "id": "[JOB ID]",
+    "notification_date": "[Exact Date with short context in Hindi or N/A with reason]",
+    "start_date": "[Exact Date with short context in Hindi or N/A with reason]",
+    "end_date": "[Exact Date with short context in Hindi or N/A with reason]",
+    "walkin_date": "[Exact Date/Time details or N/A with reason]",
+    "interview_date": "[Exact Date/Time details or N/A with reason]",
+    "last_fee_date": "[Fee Last Date or N/A with reason]",
+    "correction_date": "[Correction Date or N/A with reason]",
+    "exam_date": "[Exam Date or N/A with reason]",
+    "result_date": "[Result Date status in Hindi or N/A with reason]",
+    "info_date": "[Info Date details or N/A with reason]",
+    "important_date": "[Key Highlighted Date or N/A with reason]"
+}
+
+STRICT RULES:
+
+1. Extract information ONLY from supplied job text.
+2. Never guess or invent dates.
+3. If date is missing, return N/A with a short Hindi reason.
+4. Return valid JSON array only. No markdown.
+5. Preserve dates in DD Month YYYY format, with Hindi context.
+6. Copy exact ID. Never change IDs.
+7. Return exactly one object per supplied job, in the same order.
+8. Do not skip any job.
+
+JOB DATA:
+PROMPT;
+@endphp
 
                 <div class="table-responsive">
 
@@ -128,94 +133,86 @@
                         </thead>
 
                         <tbody>
+    @forelse($chunks as $chunkIndex => $chunk)
 
-                            @forelse($chunks as $chunkIndex => $chunk)
+        @php
+            $ids = $chunk->pluck('id')->implode(', ');
 
-                                @php
-                                    $ids = $chunk->pluck('id')->implode(', ');
+            $titles = $chunk
+                ->pluck('title')
+                ->map(fn($title) => trim($title ?? ''))
+                ->implode(', ');
 
-                                    $titles = $chunk
-                                        ->pluck('title')
-                                        ->map(fn($title) => trim($title ?? ''))
-                                        ->implode(', ');
-                                @endphp
+            $chunkPrompt = $prompt . "\n\nJOB IDs:\n" . $ids .
+                "\n\nJOB TITLES:\n" . $titles .
+                "\n\nFor each ID, extract dates from its corresponding job notification. Use the supplied job data below.";
+        @endphp
 
-                                <tr class="chunk-heading">
-                                    <td colspan="5">
-                                        Chunk {{ $chunkIndex + 1 }}
-                                        (ID: {{ $chunk->first()->id }} - {{ $chunk->last()->id }})
-                                        | Total Jobs: {{ $chunk->count() }}
-                                    </td>
-                                </tr>
+        <tr>
+            <td>
+                <strong>Chunk {{ $chunkIndex + 1 }}</strong>
+                <br>
+                <span class="badge bg-primary">{{ $chunk->count() }} Jobs</span>
+                <br>
+                <small>{{ $chunk->first()->id }} - {{ $chunk->last()->id }}</small>
+            </td>
 
-                                @foreach ($chunk as $job)
-                                    <tr>
-                                        <td>
-                                            <strong>{{ $job->id }}</strong>
-                                        </td>
+            <td>
+                @foreach($chunk as $job)
+                    <div class="mb-2">
+                        <a href="{{ $job->source_url }}" target="_blank"
+                           rel="noopener noreferrer">
+                            ID: {{ $job->id }} - {{ $job->source ?? 'Source' }}
+                        </a>
+                    </div>
+                @endforeach
+            </td>
 
-                                        <td>
-                                            <a href="{{ $job->source_url }}" target="_blank" rel="noopener noreferrer">
-                                                {{ $job->source ?? 'Source' }}
-                                            </a>
-                                        </td>
+            <td class="title-box">
+                {{ $titles }}
 
-                                        <td class="title-box">
+                <button type="button"
+                    class="btn btn-sm btn-outline-primary mt-2"
+                    onclick="copyText(this, @js($titles))">
+                    Copy All {{ $chunk->count() }} Titles
+                </button>
+            </td>
 
-                                            {{ $job->title }}
+            <td class="prompt-box">
+                <textarea class="form-control mb-2" rows="12" readonly>{{ $chunkPrompt }}</textarea>
 
-                                            <button type="button" class="btn btn-sm btn-outline-primary copy-btn mt-2"
-                                                onclick="copyText(this, @js($titles))">
-                                                Copy All 5 Titles
-                                            </button>
+                <button type="button"
+                    class="btn btn-sm btn-primary w-100"
+                    onclick="copyText(this, this.parentElement.querySelector('textarea').value)">
+                    Copy Prompt
+                </button>
+            </td>
 
-                                        </td>
+            <td class="output-box">
+                <form action="{{ route('job.date.update') }}" method="POST">
+                    @csrf
 
-                                        <td class="prompt-box">
+                    <textarea name="date_json"
+                        class="form-control"
+                        rows="20"
+                        placeholder="Paste 10 Jobs JSON Array Here..."
+                        required>{{ old('date_json') }}</textarea>
 
-                                            <textarea class="form-control mb-2 prompt-text" rows="8" readonly>{{ $prompt }}
+                    <button type="submit" class="btn btn-success mt-2 w-100">
+                        Submit & Update {{ $chunk->count() }} Jobs
+                    </button>
+                </form>
+            </td>
+        </tr>
 
-JOB IDs: {{ $ids }}
-
-Job Titles:
-{{ $titles }}</textarea>
-
-                                            <button type="button" class="btn btn-sm btn-primary copy-btn"
-                                                onclick="copyText(this, this.parentElement.querySelector('textarea').value)">
-                                                Copy Prompt
-                                            </button>
-
-                                        </td>
-
-
-                                        <td class="output-box">
-
-                                            <form action="{{ route('job.date.update') }}" method="POST">
-                                                @csrf
-
-                                                <textarea name="date_json" class="form-control" rows="15" placeholder='Paste ChatGPT JSON output here...' required>{{ old('date_json') }}</textarea>
-
-                                                <button type="submit" class="btn btn-success mt-2 w-100">
-                                                    Submit & Update Dates
-                                                </button>
-                                            </form>
-
-                                        </td>
-
-
-                                    </tr>
-                                @endforeach
-
-                            @empty
-
-                                <tr>
-                                    <td colspan="5" class="text-center text-success">
-                                        No pending records found.
-                                    </td>
-                                </tr>
-                            @endforelse
-
-                        </tbody>
+    @empty
+        <tr>
+            <td colspan="5" class="text-center text-success">
+                No pending records found.
+            </td>
+        </tr>
+    @endforelse
+</tbody>
 
                     </table>
 
