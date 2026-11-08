@@ -538,70 +538,133 @@ class JobController extends Controller
 
 
     
-    public function dateUpdate(Request $request)
-    {
-        $request->validate([
-            'id' => 'required|integer',
-            'date_json' => 'required|json',
-        ]);
+    
+public function dateUpdate(Request $request)
+{
+    $request->validate([
+        'date_json' => 'required|string',
+    ]);
 
-        $data = json_decode($request->date_json, true);
+    $data = json_decode($request->date_json, true);
 
-        if (!is_array($data)) {
-            return back()->with('error', 'Invalid JSON format.');
-        }
+    if (json_last_error() !== JSON_ERROR_NONE || !is_array($data)) {
+        return back()->with('error', 'Invalid JSON format.');
+    }
 
-        $columns = [
-            'start_date',
-            'end_date',
-            'last_fee_date',
-            'correction_date',
-            'exam_date',
-            'result_date',
-            'info_date',
-            'notification_date',
-            'interview_date',
-            'walkin_date',
-            'important_date',
-        ];
+    // Single JSON object को array में convert करना
+    if (isset($data['id'])) {
+        $data = [$data];
+    }
 
-        $updateData = [];
+    $columns = [
+        'start_date',
+        'end_date',
+        'last_fee_date',
+        'correction_date',
+        'exam_date',
+        'result_date',
+        'info_date',
+        'notification_date',
+        'interview_date',
+        'walkin_date',
+        'important_date',
+    ];
 
-        foreach ($columns as $column) {
+    $updated = 0;
+    $errors = [];
 
-            if (!array_key_exists($column, $data)) {
+    DB::beginTransaction();
+
+    try {
+
+        foreach ($data as $item) {
+
+            if (!is_array($item) || empty($item['id'])) {
+                $errors[] = 'Job ID missing.';
                 continue;
             }
 
-            $value = trim((string) $data[$column]);
+            $updateData = [];
 
-            if (
-                $value === '' ||
-                strtoupper($value) === 'N/A' ||
-                strtoupper($value) === 'NULL'
-            ) {
-                $updateData[$column] = null;
-            } else {
-                try {
-                    $updateData[$column] = \Carbon\Carbon::parse($value)->format('Y-m-d');
-                } catch (\Throwable $e) {
-                    return back()->with('error', "Invalid date in {$column}: {$value}");
+            foreach ($columns as $column) {
+
+                if (!array_key_exists($column, $item)) {
+                    continue;
                 }
+
+                $value = trim((string) $item[$column]);
+
+                if (
+                    $value === '' ||
+                    strtoupper($value) === 'N/A' ||
+                    strtoupper($value) === 'NULL'
+                ) {
+                    $updateData[$column] = null;
+                    continue;
+                }
+
+                // Hindi date और context में से date निकालना
+                preg_match(
+                    '/\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]+\s+\d{4}|\d{1,2}[-\/.]\d{1,2}[-\/.]\d{4}|\d{4}-\d{2}-\d{2}/i',
+                    $value,
+                    $matches
+                );
+
+                if (empty($matches[0])) {
+                    $errors[] = "ID {$item['id']}: Invalid date in {$column}";
+                    continue;
+                }
+
+                $dateText = preg_replace(
+                    '/(\d)(st|nd|rd|th)\b/i',
+                    '$1',
+                    $matches[0]
+                );
+
+                try {
+                    $updateData[$column] = \Carbon\Carbon::parse($dateText)->format('Y-m-d');
+                } catch (\Throwable $e) {
+                    $errors[] = "ID {$item['id']}: Invalid date in {$column}";
+                }
+            }
+
+            if (empty($updateData)) {
+                continue;
+            }
+
+            $updateData['updated_at'] = now();
+
+            $affected = DB::table('job_details')
+                ->where('id', $item['id'])
+                ->update($updateData);
+
+            if ($affected) {
+                $updated++;
             }
         }
 
-        if (empty($updateData)) {
-            return back()->with('error', 'No valid date fields found.');
-        }
+        DB::commit();
 
-        $updateData['updated_at'] = now();
+    } catch (\Throwable $e) {
 
-        DB::table('job_details')
-            ->where('id', $request->id)
-            ->update($updateData);
+        DB::rollBack();
 
-        return back()->with('success', 'All dates updated successfully.');
+        return back()->with('error', $e->getMessage());
     }
+
+    if (!empty($errors)) {
+        return back()->with(
+            'error',
+            "Updated: {$updated}. Issues: " . implode(' | ', $errors)
+        );
+    }
+
+    return back()->with(
+        'success',
+        "{$updated} job records updated successfully."
+    );
+}
+
 
 
 
@@ -1990,14 +2053,14 @@ class JobController extends Controller
             $overview = str_replace(
 
                 [
-                    '{{Organization Full Form}}',
-                    '{{Organization}}',
-                    '{{Job Title}}',
-                    '{{Job Topic}}',
-                    '{{Category}}',
-                    '{{Sub Category}}',
-                    '{{State}}',
-                    '{{JobTitle}}',
+                    '{{ Organization Full Form }}',
+                    '{{ Organization }}',
+                    '{{ Job Title }}',
+                    '{{ Job Topic }}',
+                    '{{ Category }}',
+                    '{{ Sub Category }}',
+                    '{{ State }}',
+                    '{{ JobTitle }}',
                 ],
 
 
@@ -2728,1021 +2791,1021 @@ class JobController extends Controller
         $dom = new DOMDocument();
         $dom->loadHTML(
             '<?xml encoding="utf-8" ?>' . $html
-        );
+);
 
-        $xpath = new DOMXPath($dom);
+$xpath = new DOMXPath($dom);
 
-        foreach ($xpath->query('//tr') as $tr) {
+foreach ($xpath->query('//tr') as $tr) {
 
-            // row me pehla link nikalo
-            $a = $tr->getElementsByTagName('a')
-                ->item(0);
+// row me pehla link nikalo
+$a = $tr->getElementsByTagName('a')
+->item(0);
 
-            if (!$a) {
-                continue;
-            }
+if (!$a) {
+continue;
+}
 
-            $url = trim(
-                $a->getAttribute('href')
-            );
+$url = trim(
+$a->getAttribute('href')
+);
 
-            if (!$url) {
-                continue;
-            }
+if (!$url) {
+continue;
+}
 
-            // poori row ka text
-            $rowText = trim(
-                preg_replace(
-                    '/\s+/',
-                    ' ',
-                    strip_tags(
-                        $tr->textContent
-                    )
-                )
-            );
+// poori row ka text
+$rowText = trim(
+preg_replace(
+'/\s+/',
+' ',
+strip_tags(
+$tr->textContent
+)
+)
+);
 
-            // Click Here, Follow Now hata do
-            $title = preg_replace(
-                '/(Click Here|Follow Now)$/i',
-                '',
-                $rowText
-            );
+// Click Here, Follow Now hata do
+$title = preg_replace(
+'/(Click Here|Follow Now)$/i',
+'',
+$rowText
+);
 
-            $title = trim($title);
+$title = trim($title);
 
-            if ($title != '') {
-                $important_links[] =
-                    $title . '$' . $url;
-            }
-        }
+if ($title != '') {
+$important_links[] =
+$title . '$' . $url;
+}
+}
 
-        $important_links =
-            !empty($important_links)
-            ? implode('#', $important_links)
-            : null;
+$important_links =
+!empty($important_links)
+? implode('#', $important_links)
+: null;
 
-        $website = null;
+$website = null;
 
-        if (!empty($important_links) && is_array($important_links)) {
+if (!empty($important_links) && is_array($important_links)) {
 
-            foreach ($important_links as $item) {
-
-                list($title, $link) =
-                    array_pad(
-                        explode('$', $item, 2),
-                        2,
-                        null
-                    );
-
-                if (
-                    stripos($title, 'official website') !== false
-                    || stripos($title, 'official site') !== false
-                ) {
-                    $website = $link;
-                    break;
-                }
-            }
-        }
-
-        // $important_links =
-        //     !empty($important_links)
-        //     ? implode('#', $important_links)
-        //     : null;
-
-        $title = html_entity_decode(
-            $json['acf']['long_post_title']
-                ?? $json['title']['rendered']
-                ?? ''
-        );
-
-        $jobYear = null;
-
-        // 2000-2099 ka pehla year nikalo
-        if (preg_match('/\b20\d{2}\b/', $title, $match)) {
-            $jobYear = $match[0];
-        }
-
-
-
-
-
-
-
-
+foreach ($important_links as $item) {
+
+list($title, $link) =
+array_pad(
+explode('$', $item, 2),
+2,
+null
+);
+
+if (
+stripos($title, 'official website') !== false
+|| stripos($title, 'official site') !== false
+) {
+$website = $link;
+break;
+}
+}
+}
+
+// $important_links =
+// !empty($important_links)
+// ? implode('#', $important_links)
+// : null;
+
+$title = html_entity_decode(
+$json['acf']['long_post_title']
+?? $json['title']['rendered']
+?? ''
+);
+
+$jobYear = null;
+
+// 2000-2099 ka pehla year nikalo
+if (preg_match('/\b20\d{2}\b/', $title, $match)) {
+$jobYear = $match[0];
+}
+
+
+
+
+
+
+
+
 
-        DB::table('job_details')->updateOrInsert(
-
-            [
-                'source_url' => $json['link'] ?? ''
-            ],
-
-            [
-
-                // 2-5
-                'title'                 => html_entity_decode($json['acf']['long_post_title'] ?? $json['title']['rendered'] ?? ''),
-                'category'              => null,
-                'state'                 => 'All Indiax',
-                'desce'                 => null,
-
-
-                // 6-13
-                'start_date'      => $start[1] ?? null,
-                'end_date'        => $last[1] ?? null,
-                'last_fee_date'   => isset($fee[1]) ? trim(preg_replace('/\x{00A0}/u', ' ', $fee[1])) : null,
-                'correction_date' => null,
-                'exam_date'       => $exam[1] ?? 'To Be Announced',
-                'admit_card'      => $admit[1] ?? 'To Be Announced',
-                'result_date'     => $result[1] ?? 'To Be Announced',
-                'syllabus'        => 'To Be Announced',
-
-                // 14-19
-                'info_date'             => $json['date'] ?? null,
-                'genral_fees' => $general,
-                'obc_fees'    => $obc,
-                'ews_fees'    => $ews,
-                'sc_fees'     => $sc,
-                'st_fees'     => $st,
-                'extra_charge' => null,
-
-                // 20-25
-                // Age
-                'min_age'         => $minAge,
-                'max_age_genral'  => $maxAge,
-                'max_age_obc'     => $maxAge,
-                'max_age_sc_st'   => $maxAge,
-                'max_age_female'  => $maxAge,
-
-                'relaxation'      => strip_tags(
-                    html_entity_decode(
-                        $json['acf']['age_limits_details'] ?? ''
-                    )
-                ),
-
-                'post_age_limit'  => $json['acf']['age_limit_for']
-                    ?? null,
-
-                // 26-33
-                'total_vacancies'       => $json['acf']['total_post'] ?? null,
-                'min_salary'            => 0,
-                'max_salary'            => 0,
-                'genral_post' => $genral_post,
-                'ews_post'    => $ews_post,
-                'obc_post'    => $obc_post,
-                'sc_post'     => $sc_post,
-                'st_post'     => $st_post,
-
-                // 34-41
-                'mode_selection' => $mode_selection,
-                'post_name'        => $post_name,
-                'post_eligibility' => $post_eligibility,
-                'post_salary'      => $post_salary,
-                'min_qulification'      => $min_qulification,
-                'instruction'           => $instruction,
-                'link'                  => $important_links,
-                'doc'                   => null,
-
-                // 42-45
-                'image'                 => null,
-                'website'               => $website,
-                'updated_at'            => now(),
-                'created_at'            => now(),
-
-                // 46-53
-                'main_p'                => null,
-                'date_p'                => null,
-                'fee_p'                 => null,
-                'age_p'                 => null,
-                'vaccancy_p'            => null,
-                'category_p'            => null,
-                'selection_p'           => null,
-                'post_p'                => null,
-
-                // 54-59
-                'slug'                  => null,
-                'year'                  => $jobYear,
-                'organization'          => null,
-                'department'            => null,
-                'sector'                => null,
-                'sub_sector'            => null,
-
-                // 60-68
-                'job_location'          => null,
-                'job_location_type'     => null,
-                'job_type'              => null,
-                'employment_type'       => null,
-                'notification_date'     => $json['date'] ?? null,
-                'interview_date'        => null,
-                'walkin_date'           => null,
-                'salary_text'           => null,
-                'pay_level'             => null,
-
-                // 69-78
-                'qualification'         => null,
-                'experience'            => null,
-                'experience_years'      => null,
-
-                'ph_fees'               => null,
-                'female_fees'           => null,
-                'apply_mode'            => null,
-
-                'post_experience'       => null,
-                'application_process'  => null,
-
-                // 79-88
-                'advt_no'               => null,
-                'notification_number'   => null,
-                'official_notification_pdf' =>  null,
-                'apply_online_link'     => null,
-                'answer_key_link'       => null,
-                'admit_card_link'       => null,
-                'result_link'           => null,
-                'reservation'           => null,
-                'important_dates'        => null,
-                'important_links'       => null,
-
-                // 89-96
-                'is_interview_only'     => 0,
-                'is_exam_required'      => 1,
-                'is_walkin'             => 0,
-                'is_contractual'        => 0,
-                'is_apprentice'         => 0,
-                'status'                => $json['status'] ?? null,
-                'source'                => 'sarkariresult.com.cm',
-                'source_url'            => $json['link'] ?? null,
-
-                // 97-98
-                'job_sub_categories'    => null,
-                'job_topics'            => null,
-            ]
-        );
-
-
-        // successful hone par
-        DB::table('job_feeds')
-            ->where('id', $feed->id)
-            ->update([
-                'scrape_status' => 'completed',
-                'updated_at'    => now(),
-            ]);
-
-
-
-        return response()->json([
-            'success' => true,
-            'feed_id' => $feed->id,
-            'title' => $json['title']['rendered'] ?? '',
-            'url' => $json['link'] ?? '',
-            'message' => 'Inserted into job_details'
-        ]);
-    }
-
-
-
-    public function home()
-    {
-        // BASE QUERY
-
-        $baseQuery = DB::table('job_details');
-
-        // ======================
-        // LATEST JOBS
-        // ======================
-        $latestJobs = (clone $baseQuery)
-            ->orderBy('id', 'desc')
-            ->limit(10)
-            ->get();
-
-        // ======================
-        // LAST DATE JOBS (URGENT)
-        // ======================
-        $lastDateJobs = (clone $baseQuery)
-            ->whereNotNull('last_fee_date')
-            ->orderBy('last_fee_date', 'asc')
-            ->limit(10)
-            ->get();
-
-        // ======================
-        // RESULTS (SAFE TYPE CHECK)
-        // ======================
-        $results = (clone $baseQuery)
-            ->where(function ($q) {
-                $q->where('result_date', '!=', null)
-                    ->where('result_date', '!=', 'To Be Announced');
-            })
-            ->latest('id')
-            ->limit(10)
-            ->get();
-
-        // ======================
-        // ADMIT CARDS
-        // ======================
-        $admitCards = (clone $baseQuery)
-            ->where(function ($q) {
-                $q->where('admit_card', '!=', null)
-                    ->where('admit_card', '!=', 'To Be Announced');
-            })
-            ->latest('id')
-            ->limit(10)
-            ->get();
-
-        // ======================
-        // STATES (SAFE + CLEAN)
-        // ======================
-        $states = DB::table('job_states as s')
-            ->leftJoin('job_details as j', function ($join) {
-                $join->on(
-                    DB::raw('j.state COLLATE utf8mb4_unicode_ci'),
-                    '=',
-                    's.slug'
-                );
-            })
-            ->select(
-                's.name',
-                's.slug',
-                DB::raw('COUNT(j.id) as total_jobs')
-            )
-            ->groupBy(
-                's.id',
-                's.name',
-                's.slug'
-            )
-            ->orderBy('s.name')
-            ->get();
-
-        // ======================
-        // CATEGORIES (SAFE)
-        // ======================
-        $categories = DB::table('job_categories as c')
-            ->leftJoin('job_details as j', function ($join) {
-                $join->on(
-                    DB::raw('j.category COLLATE utf8mb4_unicode_ci'),
-                    '=',
-                    'c.slug'
-                );
-            })
-            ->select(
-                'c.name',
-                'c.slug',
-                DB::raw('COUNT(j.id) as total_jobs')
-            )
-            ->groupBy(
-                'c.id',
-                'c.name',
-                'c.slug'
-            )
-            ->orderBy('c.name')
-            // ->limit(8)
-            ->get();
-
-        $totalJobs = DB::table('job_details')
-            ->count();
-
-        $totalResults = DB::table('job_details')
-            ->whereNotNull('result_date')
-            ->where('result_date', '!=', 'To Be Announced')
-            ->count();
-
-        $totalAdmitCards = DB::table('job_details')
-            ->whereNotNull('admit_card')
-            ->where('admit_card', '!=', 'To Be Announced')
-            ->count();
-
-        $totalStates = DB::table('job_details')
-            ->whereNotNull('state')
-            // ->distinct()
-            ->count('state');
-        $latestUpdates = DB::table('job_details')
-            // ->where('status', 'active')
-            ->orderBy('id', 'desc')
-            ->limit(10)
-            ->get();
-
-        $today = now()->format('Y-m-d');
-        $thirdDay = now()->addDays(2)->format('Y-m-d');
-
-        $lastDateSoon = DB::table('job_details')
-            ->whereNotNull('end_date')
-            ->where('end_date', '!=', '')
-            ->where('end_date', '!=', 'To Be Announced')
-            ->whereRaw("
-        CASE
-            WHEN end_date REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
-                THEN STR_TO_DATE(end_date, '%Y-%m-%d')
-            WHEN end_date REGEXP '^[0-9]{1,2} [A-Za-z]+ [0-9]{4}$'
-                THEN STR_TO_DATE(end_date, '%d %M %Y')
-            ELSE NULL
-        END BETWEEN ? AND ?
-    ", [$today, $thirdDay])
-            ->orderByRaw("
-        CASE
-            WHEN end_date REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
-                THEN STR_TO_DATE(end_date, '%Y-%m-%d')
-            WHEN end_date REGEXP '^[0-9]{1,2} [A-Za-z]+ [0-9]{4}$'
-                THEN STR_TO_DATE(end_date, '%d %M %Y')
-            ELSE '9999-12-31'
-        END ASC
-    ")
-            // ->limit(10)
-            ->get();
-
-
-        $organizations = DB::table('job_details')
-            ->select(
-                'category',
-                DB::raw('COUNT(*) as total_jobs')
-            )
-            ->whereNotNull('category')
-            ->where('category', '!=', '')
-            ->groupBy('category')
-            ->orderByDesc('total_jobs')
-            ->get();
-
-
-        $popularSearches = DB::table('popular_searches')
-            ->orderByDesc('count')
-            // ->orderByDesc('updated_at')
-            ->limit(8)
-            ->get();
-
-
-        $todayJobs = Job::whereDate('end_date', today())
-            ->orderBy('end_date')->limit(10)
-            ->get();
-        $todayCount = Job::whereDate('end_date', today())->count();
-
-        $tomorrowJobs = Job::whereDate('end_date', today()->addDay())
-            ->orderBy('end_date')->limit(10)
-            ->get();
-        $tomorrowCount = Job::whereDate('end_date', today()->addDay())->count();
-        $weekJobs = Job::whereBetween('end_date', [
-            today()->addDays(2),
-            today()->addDays(7)
-        ])
-            ->limit(10)
-            ->orderBy('end_date')
-            ->get();
-
-        $weekCount = Job::whereBetween('end_date', [today()->addDays(2), today()->addDays(7)])->count();
-
-        $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
-
-        $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
-
-        $canonicalUrl = request()->url();
-
-        $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
-
-        $ogType = 'website';
-
-        $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
-
-        $stateName = 'xxx';
-        return view('welcome', compact(
-            'latestJobs',
-            'lastDateJobs',
-            'results',
-            'admitCards',
-            'states',
-            'categories',
-            'totalJobs',
-            'totalResults',
-            'totalAdmitCards',
-            'totalStates',
-            'latestUpdates',
-            'lastDateSoon',
-            'organizations',
-            'popularSearches',
-            'todayJobs',
-            'tomorrowJobs',
-            'weekJobs',
-            'todayCount',
-            'tomorrowCount',
-            'weekCount',
-            'metaTitle',
-            'metaDescription',
-            'canonicalUrl',
-            'robots',
-            'ogType',
-            'ogImage',
-            'stateName'
-        ));
-    }
-
-    public function searchJobs(Request $request)
-    {
-        $keyword = trim($request->query('q'));
-
-        if (strlen($keyword) >= 3) {
-
-            $exists = DB::table('popular_searches')
-                ->where('keyword', $keyword)
-                ->exists();
-
-            if ($exists) {
-                DB::table('popular_searches')
-                    ->where('keyword', $keyword)
-                    ->increment('count');
-            } else {
-                DB::table('popular_searches')->insert([
-                    'keyword' => $keyword,
-                    'count' => 1,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
-            }
-        }
-
-
-        return DB::table('job_details')
-            ->select(
-                'title',
-                'slug',
-                'state',
-                'category'
-            )
-            ->where('title', 'like', '%' . $request->q . '%')
-            ->orderByDesc('id')
-            ->limit(5)
-            ->get();
-    }
-
-
-    public function search(Request $request)
-    {
-        $keyword = trim($request->q);
-
-        $popularSearches = Job::where('title', 'LIKE', "%{$keyword}%")
-            ->paginate(20);
-
-        return view('search', compact('popularSearches', 'keyword'));
-    }
-
-
-
-    public function lastDateSoon($type)
-    {
-        $query = DB::table('job_details')
-            ->whereNotNull('end_date');
-
-        switch ($type) {
-
-            case 'today':
-
-                $title = 'Today Last Date Jobs';
-
-                $query->whereDate('end_date', Carbon::today());
-
-                $closingLabel = 'Closing Today';
-
-                break;
-
-
-            case 'tomorrow':
-
-                $title = 'Tomorrow Last Date Jobs';
-
-                $query->whereDate('end_date', Carbon::tomorrow());
-
-                $closingLabel = 'Closing Tomorrow';
-
-                break;
-
-
-            case 'week':
-
-                $title = 'Next 7 Days Last Date Jobs';
-
-                $query->whereBetween('end_date', [
-                    Carbon::today()->startOfDay(),
-                    Carbon::today()->addDays(7)->endOfDay()
-                ]);
-
-                $closingLabel = 'Closing This Week';
-
-                break;
-
-
-            default:
-
-                abort(404);
-        }
-
-
-        /*
-    /*
+DB::table('job_details')->updateOrInsert(
+
+[
+'source_url' => $json['link'] ?? ''
+],
+
+[
+
+// 2-5
+'title' => html_entity_decode($json['acf']['long_post_title'] ?? $json['title']['rendered'] ?? ''),
+'category' => null,
+'state' => 'All Indiax',
+'desce' => null,
+
+
+// 6-13
+'start_date' => $start[1] ?? null,
+'end_date' => $last[1] ?? null,
+'last_fee_date' => isset($fee[1]) ? trim(preg_replace('/\x{00A0}/u', ' ', $fee[1])) : null,
+'correction_date' => null,
+'exam_date' => $exam[1] ?? 'To Be Announced',
+'admit_card' => $admit[1] ?? 'To Be Announced',
+'result_date' => $result[1] ?? 'To Be Announced',
+'syllabus' => 'To Be Announced',
+
+// 14-19
+'info_date' => $json['date'] ?? null,
+'genral_fees' => $general,
+'obc_fees' => $obc,
+'ews_fees' => $ews,
+'sc_fees' => $sc,
+'st_fees' => $st,
+'extra_charge' => null,
+
+// 20-25
+// Age
+'min_age' => $minAge,
+'max_age_genral' => $maxAge,
+'max_age_obc' => $maxAge,
+'max_age_sc_st' => $maxAge,
+'max_age_female' => $maxAge,
+
+'relaxation' => strip_tags(
+html_entity_decode(
+$json['acf']['age_limits_details'] ?? ''
+)
+),
+
+'post_age_limit' => $json['acf']['age_limit_for']
+?? null,
+
+// 26-33
+'total_vacancies' => $json['acf']['total_post'] ?? null,
+'min_salary' => 0,
+'max_salary' => 0,
+'genral_post' => $genral_post,
+'ews_post' => $ews_post,
+'obc_post' => $obc_post,
+'sc_post' => $sc_post,
+'st_post' => $st_post,
+
+// 34-41
+'mode_selection' => $mode_selection,
+'post_name' => $post_name,
+'post_eligibility' => $post_eligibility,
+'post_salary' => $post_salary,
+'min_qulification' => $min_qulification,
+'instruction' => $instruction,
+'link' => $important_links,
+'doc' => null,
+
+// 42-45
+'image' => null,
+'website' => $website,
+'updated_at' => now(),
+'created_at' => now(),
+
+// 46-53
+'main_p' => null,
+'date_p' => null,
+'fee_p' => null,
+'age_p' => null,
+'vaccancy_p' => null,
+'category_p' => null,
+'selection_p' => null,
+'post_p' => null,
+
+// 54-59
+'slug' => null,
+'year' => $jobYear,
+'organization' => null,
+'department' => null,
+'sector' => null,
+'sub_sector' => null,
+
+// 60-68
+'job_location' => null,
+'job_location_type' => null,
+'job_type' => null,
+'employment_type' => null,
+'notification_date' => $json['date'] ?? null,
+'interview_date' => null,
+'walkin_date' => null,
+'salary_text' => null,
+'pay_level' => null,
+
+// 69-78
+'qualification' => null,
+'experience' => null,
+'experience_years' => null,
+
+'ph_fees' => null,
+'female_fees' => null,
+'apply_mode' => null,
+
+'post_experience' => null,
+'application_process' => null,
+
+// 79-88
+'advt_no' => null,
+'notification_number' => null,
+'official_notification_pdf' => null,
+'apply_online_link' => null,
+'answer_key_link' => null,
+'admit_card_link' => null,
+'result_link' => null,
+'reservation' => null,
+'important_dates' => null,
+'important_links' => null,
+
+// 89-96
+'is_interview_only' => 0,
+'is_exam_required' => 1,
+'is_walkin' => 0,
+'is_contractual' => 0,
+'is_apprentice' => 0,
+'status' => $json['status'] ?? null,
+'source' => 'sarkariresult.com.cm',
+'source_url' => $json['link'] ?? null,
+
+// 97-98
+'job_sub_categories' => null,
+'job_topics' => null,
+]
+);
+
+
+// successful hone par
+DB::table('job_feeds')
+->where('id', $feed->id)
+->update([
+'scrape_status' => 'completed',
+'updated_at' => now(),
+]);
+
+
+
+return response()->json([
+'success' => true,
+'feed_id' => $feed->id,
+'title' => $json['title']['rendered'] ?? '',
+'url' => $json['link'] ?? '',
+'message' => 'Inserted into job_details'
+]);
+}
+
+
+
+public function home()
+{
+// BASE QUERY
+
+$baseQuery = DB::table('job_details');
+
+// ======================
+// LATEST JOBS
+// ======================
+$latestJobs = (clone $baseQuery)
+->orderBy('id', 'desc')
+->limit(10)
+->get();
+
+// ======================
+// LAST DATE JOBS (URGENT)
+// ======================
+$lastDateJobs = (clone $baseQuery)
+->whereNotNull('last_fee_date')
+->orderBy('last_fee_date', 'asc')
+->limit(10)
+->get();
+
+// ======================
+// RESULTS (SAFE TYPE CHECK)
+// ======================
+$results = (clone $baseQuery)
+->where(function ($q) {
+$q->where('result_date', '!=', null)
+->where('result_date', '!=', 'To Be Announced');
+})
+->latest('id')
+->limit(10)
+->get();
+
+// ======================
+// ADMIT CARDS
+// ======================
+$admitCards = (clone $baseQuery)
+->where(function ($q) {
+$q->where('admit_card', '!=', null)
+->where('admit_card', '!=', 'To Be Announced');
+})
+->latest('id')
+->limit(10)
+->get();
+
+// ======================
+// STATES (SAFE + CLEAN)
+// ======================
+$states = DB::table('job_states as s')
+->leftJoin('job_details as j', function ($join) {
+$join->on(
+DB::raw('j.state COLLATE utf8mb4_unicode_ci'),
+'=',
+'s.slug'
+);
+})
+->select(
+'s.name',
+'s.slug',
+DB::raw('COUNT(j.id) as total_jobs')
+)
+->groupBy(
+'s.id',
+'s.name',
+'s.slug'
+)
+->orderBy('s.name')
+->get();
+
+// ======================
+// CATEGORIES (SAFE)
+// ======================
+$categories = DB::table('job_categories as c')
+->leftJoin('job_details as j', function ($join) {
+$join->on(
+DB::raw('j.category COLLATE utf8mb4_unicode_ci'),
+'=',
+'c.slug'
+);
+})
+->select(
+'c.name',
+'c.slug',
+DB::raw('COUNT(j.id) as total_jobs')
+)
+->groupBy(
+'c.id',
+'c.name',
+'c.slug'
+)
+->orderBy('c.name')
+// ->limit(8)
+->get();
+
+$totalJobs = DB::table('job_details')
+->count();
+
+$totalResults = DB::table('job_details')
+->whereNotNull('result_date')
+->where('result_date', '!=', 'To Be Announced')
+->count();
+
+$totalAdmitCards = DB::table('job_details')
+->whereNotNull('admit_card')
+->where('admit_card', '!=', 'To Be Announced')
+->count();
+
+$totalStates = DB::table('job_details')
+->whereNotNull('state')
+// ->distinct()
+->count('state');
+$latestUpdates = DB::table('job_details')
+// ->where('status', 'active')
+->orderBy('id', 'desc')
+->limit(10)
+->get();
+
+$today = now()->format('Y-m-d');
+$thirdDay = now()->addDays(2)->format('Y-m-d');
+
+$lastDateSoon = DB::table('job_details')
+->whereNotNull('end_date')
+->where('end_date', '!=', '')
+->where('end_date', '!=', 'To Be Announced')
+->whereRaw("
+CASE
+WHEN end_date REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
+THEN STR_TO_DATE(end_date, '%Y-%m-%d')
+WHEN end_date REGEXP '^[0-9]{1,2} [A-Za-z]+ [0-9]{4}$'
+THEN STR_TO_DATE(end_date, '%d %M %Y')
+ELSE NULL
+END BETWEEN ? AND ?
+", [$today, $thirdDay])
+->orderByRaw("
+CASE
+WHEN end_date REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
+THEN STR_TO_DATE(end_date, '%Y-%m-%d')
+WHEN end_date REGEXP '^[0-9]{1,2} [A-Za-z]+ [0-9]{4}$'
+THEN STR_TO_DATE(end_date, '%d %M %Y')
+ELSE '9999-12-31'
+END ASC
+")
+// ->limit(10)
+->get();
+
+
+$organizations = DB::table('job_details')
+->select(
+'category',
+DB::raw('COUNT(*) as total_jobs')
+)
+->whereNotNull('category')
+->where('category', '!=', '')
+->groupBy('category')
+->orderByDesc('total_jobs')
+->get();
+
+
+$popularSearches = DB::table('popular_searches')
+->orderByDesc('count')
+// ->orderByDesc('updated_at')
+->limit(8)
+->get();
+
+
+$todayJobs = Job::whereDate('end_date', today())
+->orderBy('end_date')->limit(10)
+->get();
+$todayCount = Job::whereDate('end_date', today())->count();
+
+$tomorrowJobs = Job::whereDate('end_date', today()->addDay())
+->orderBy('end_date')->limit(10)
+->get();
+$tomorrowCount = Job::whereDate('end_date', today()->addDay())->count();
+$weekJobs = Job::whereBetween('end_date', [
+today()->addDays(2),
+today()->addDays(7)
+])
+->limit(10)
+->orderBy('end_date')
+->get();
+
+$weekCount = Job::whereBetween('end_date', [today()->addDays(2), today()->addDays(7)])->count();
+
+$metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+
+$metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police,
+Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
+
+$canonicalUrl = request()->url();
+
+$robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+
+$ogType = 'website';
+
+$ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
+
+$stateName = 'xxx';
+return view('welcome', compact(
+'latestJobs',
+'lastDateJobs',
+'results',
+'admitCards',
+'states',
+'categories',
+'totalJobs',
+'totalResults',
+'totalAdmitCards',
+'totalStates',
+'latestUpdates',
+'lastDateSoon',
+'organizations',
+'popularSearches',
+'todayJobs',
+'tomorrowJobs',
+'weekJobs',
+'todayCount',
+'tomorrowCount',
+'weekCount',
+'metaTitle',
+'metaDescription',
+'canonicalUrl',
+'robots',
+'ogType',
+'ogImage',
+'stateName'
+));
+}
+
+public function searchJobs(Request $request)
+{
+$keyword = trim($request->query('q'));
+
+if (strlen($keyword) >= 3) {
+
+$exists = DB::table('popular_searches')
+->where('keyword', $keyword)
+->exists();
+
+if ($exists) {
+DB::table('popular_searches')
+->where('keyword', $keyword)
+->increment('count');
+} else {
+DB::table('popular_searches')->insert([
+'keyword' => $keyword,
+'count' => 1,
+'created_at' => now(),
+'updated_at' => now(),
+]);
+}
+}
+
+
+return DB::table('job_details')
+->select(
+'title',
+'slug',
+'state',
+'category'
+)
+->where('title', 'like', '%' . $request->q . '%')
+->orderByDesc('id')
+->limit(5)
+->get();
+}
+
+
+public function search(Request $request)
+{
+$keyword = trim($request->q);
+
+$popularSearches = Job::where('title', 'LIKE', "%{$keyword}%")
+->paginate(20);
+
+return view('search', compact('popularSearches', 'keyword'));
+}
+
+
+
+public function lastDateSoon($type)
+{
+$query = DB::table('job_details')
+->whereNotNull('end_date');
+
+switch ($type) {
+
+case 'today':
+
+$title = 'Today Last Date Jobs';
+
+$query->whereDate('end_date', Carbon::today());
+
+$closingLabel = 'Closing Today';
+
+break;
+
+
+case 'tomorrow':
+
+$title = 'Tomorrow Last Date Jobs';
+
+$query->whereDate('end_date', Carbon::tomorrow());
+
+$closingLabel = 'Closing Tomorrow';
+
+break;
+
+
+case 'week':
+
+$title = 'Next 7 Days Last Date Jobs';
+
+$query->whereBetween('end_date', [
+Carbon::today()->startOfDay(),
+Carbon::today()->addDays(7)->endOfDay()
+]);
+
+$closingLabel = 'Closing This Week';
+
+break;
+
+
+default:
+
+abort(404);
+}
+
+
+/*
+/*
 |--------------------------------------------------------------------------
 | SUMMARY DATA
 |--------------------------------------------------------------------------
 */
 
-        $jobsFound = (clone $query)->count();
+$jobsFound = (clone $query)->count();
 
 
-        // Get category-wise vacancy fields
-        $vacancyRows = (clone $query)
-            ->select(
-                'genral_post',
-                'ews_post',
-                'obc_post',
-                'sc_post',
-                'st_post'
-            )
-            ->get();
+// Get category-wise vacancy fields
+$vacancyRows = (clone $query)
+->select(
+'genral_post',
+'ews_post',
+'obc_post',
+'sc_post',
+'st_post'
+)
+->get();
 
 
-        $totalVacancies = 0;
+$totalVacancies = 0;
 
 
-        foreach ($vacancyRows as $row) {
+foreach ($vacancyRows as $row) {
 
-            $fields = [
-                $row->genral_post,
-                $row->ews_post,
-                $row->obc_post,
-                $row->sc_post,
-                $row->st_post,
-            ];
-
-
-            foreach ($fields as $posts) {
-
-                if (empty($posts)) {
-                    continue;
-                }
+$fields = [
+$row->genral_post,
+$row->ews_post,
+$row->obc_post,
+$row->sc_post,
+$row->st_post,
+];
 
 
-                /*
-        Example:
+foreach ($fields as $posts) {
 
-        Assistant Audit Officer$225#
-        Assistant Section Officer$982#
-        Inspector of Income Tax$412
-        */
+if (empty($posts)) {
+continue;
+}
 
 
-                $parts = preg_split('/[#]+/', $posts);
+/*
+Example:
+
+Assistant Audit Officer$225#
+Assistant Section Officer$982#
+Inspector of Income Tax$412
+*/
 
 
-                foreach ($parts as $post) {
-
-                    $post = trim($post);
-
-                    if ($post === '') {
-                        continue;
-                    }
+$parts = preg_split('/[#]+/', $posts);
 
 
-                    /*
-            Get number after $
-            */
+foreach ($parts as $post) {
 
-                    if (preg_match('/\$(\d[\d,]*)/', $post, $matches)) {
+$post = trim($post);
 
-                        $number = str_replace(',', '', $matches[1]);
-
-                        $totalVacancies += (int) $number;
-                    }
-                }
-            }
-        }
+if ($post === '') {
+continue;
+}
 
 
-        // Earliest last date in current listing
-        $listingLastDate = (clone $query)
-            ->min('end_date');
+/*
+Get number after $
+*/
+
+if (preg_match('/\$(\d[\d,]*)/', $post, $matches)) {
+
+$number = str_replace(',', '', $matches[1]);
+
+$totalVacancies += (int) $number;
+}
+}
+}
+}
 
 
-        /*
-    |--------------------------------------------------------------------------
-    | PAGINATION
-    |--------------------------------------------------------------------------
-    */
-
-        $jobs = $query
-            ->orderBy('end_date', 'asc')
-            ->paginate(30)
-            ->withQueryString();
+// Earliest last date in current listing
+$listingLastDate = (clone $query)
+->min('end_date');
 
 
-        /*
-    |--------------------------------------------------------------------------
-    | SEO
-    |--------------------------------------------------------------------------
-    */
+/*
+|--------------------------------------------------------------------------
+| PAGINATION
+|--------------------------------------------------------------------------
+*/
 
-        $metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
-
-        $metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police, Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
-
-        $canonicalUrl = request()->url();
-
-        $robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
-
-        $ogType = 'website';
-
-        $ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
-
-        $onlineJobs = (clone $query)
-            ->where('apply_mode', 'Online')
-            ->count();
+$jobs = $query
+->orderBy('end_date', 'asc')
+->paginate(30)
+->withQueryString();
 
 
-        return view(
-            'jobs.last-date-soon',
-            compact(
-                'jobs',
-                'title',
-                'metaTitle',
-                'metaDescription',
-                'canonicalUrl',
-                'robots',
-                'ogType',
-                'ogImage',
-                'jobsFound',
-                'totalVacancies',
-                'closingLabel',
-                'listingLastDate',
-                'onlineJobs'
-            )
-        );
+/*
+|--------------------------------------------------------------------------
+| SEO
+|--------------------------------------------------------------------------
+*/
+
+$metaTitle = 'Latest Sarkari Naukri 2026 - All Government Jobs Notifications | SarkariHai';
+
+$metaDescription = 'Find the latest Sarkari Naukri 2026 notifications from SSC, UPSC, Railway, Banking, Defence, Police,
+Teaching, PSU, Central and State Government departments. Check eligibility, last date and apply online.';
+
+$canonicalUrl = request()->url();
+
+$robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+
+$ogType = 'website';
+
+$ogImage = 'https://sarkarihai.com/public/images/logo.png?v=2';
+
+$onlineJobs = (clone $query)
+->where('apply_mode', 'Online')
+->count();
+
+
+return view(
+'jobs.last-date-soon',
+compact(
+'jobs',
+'title',
+'metaTitle',
+'metaDescription',
+'canonicalUrl',
+'robots',
+'ogType',
+'ogImage',
+'jobsFound',
+'totalVacancies',
+'closingLabel',
+'listingLastDate',
+'onlineJobs'
+)
+);
+}
+
+public function checkSitemapErrors()
+{
+$response = Http::withoutVerifying()
+->timeout(10)
+->get('https://sarkarihai.com/sitemap.xml');
+
+$xml = simplexml_load_string($response->body());
+
+if (!$xml) {
+abort(500, 'Sitemap load failed.');
+}
+
+$urls = [];
+$count = 0;
+
+foreach ($xml->url as $item) {
+
+if ($count >= 500) {
+break;
+}
+
+$urls[] = (string) $item->loc;
+$count++;
+}
+
+$responses = Http::pool(function (Pool $pool) use ($urls) {
+
+return array_map(function ($url) use ($pool) {
+return $pool->timeout(10)->withoutVerifying()->head($url);
+}, $urls);
+});
+
+$results = [];
+
+foreach ($responses as $index => $response) {
+
+if ($response instanceof \Illuminate\Http\Client\Response) {
+
+$results[] = [
+'url' => $urls[$index],
+'status' => $response->status(),
+];
+} else {
+
+$results[] = [
+'url' => $urls[$index],
+'status' => 'ERROR',
+'message' => $response->getMessage(),
+];
+}
+}
+
+return view('jobs.sitemap-errors', compact('results'));
+}
+
+public function checkEligibility(Request $request)
+{
+$job = DB::table('job_details')
+->where('id', $request->job_id)
+->first();
+
+if (!$job) {
+
+return response()->json([
+'html' => '<div class="alert alert-danger">Job not found.</div>'
+]);
+}
+
+$eligible = true;
+
+$reasons = [];
+
+/*
+|--------------------------------------------------------------------------
+| Qualification Check
+|--------------------------------------------------------------------------
+*/
+
+if (!empty($job->min_qulification)) {
+
+$requiredQualifications = array_filter(
+array_map('trim', explode('#', $job->min_qulification))
+);
+
+$matched = false;
+
+foreach ($requiredQualifications as $qualification) {
+
+if (
+stripos(
+$qualification,
+$request->qualification
+) !== false
+||
+stripos(
+$request->qualification,
+$qualification
+) !== false
+) {
+
+$matched = true;
+
+break;
+}
+}
+
+if (!$matched) {
+
+$eligible = false;
+
+$reasons[] = 'Required Qualification : ' . $job->min_qulification;
+}
+}
+
+/*
+|--------------------------------------------------------------------------
+| Age Check
+|--------------------------------------------------------------------------
+*/
+
+if (
+!empty($job->minimum_age)
+&&
+$request->age < $job->minimum_age
+    ) {
+
+    $eligible = false;
+
+    $reasons[] = 'Minimum Age : ' . $job->minimum_age;
     }
 
-    public function checkSitemapErrors()
-    {
-        $response = Http::withoutVerifying()
-            ->timeout(10)
-            ->get('https://sarkarihai.com/sitemap.xml');
+    if (
+    !empty($job->maximum_age)
+    &&
+    $request->age > $job->maximum_age
+    ) {
 
-        $xml = simplexml_load_string($response->body());
+    $eligible = false;
 
-        if (!$xml) {
-            abort(500, 'Sitemap load failed.');
-        }
-
-        $urls = [];
-        $count = 0;
-
-        foreach ($xml->url as $item) {
-
-            if ($count >= 500) {
-                break;
-            }
-
-            $urls[] = (string) $item->loc;
-            $count++;
-        }
-
-        $responses = Http::pool(function (Pool $pool) use ($urls) {
-
-            return array_map(function ($url) use ($pool) {
-                return $pool->timeout(10)->withoutVerifying()->head($url);
-            }, $urls);
-        });
-
-        $results = [];
-
-        foreach ($responses as $index => $response) {
-
-            if ($response instanceof \Illuminate\Http\Client\Response) {
-
-                $results[] = [
-                    'url' => $urls[$index],
-                    'status' => $response->status(),
-                ];
-            } else {
-
-                $results[] = [
-                    'url' => $urls[$index],
-                    'status' => 'ERROR',
-                    'message' => $response->getMessage(),
-                ];
-            }
-        }
-
-        return view('jobs.sitemap-errors', compact('results'));
+    $reasons[] = 'Maximum Age : ' . $job->maximum_age;
     }
 
-    public function checkEligibility(Request $request)
-    {
-        $job = DB::table('job_details')
-            ->where('id', $request->job_id)
-            ->first();
-
-        if (!$job) {
-
-            return response()->json([
-                'html' => '<div class="alert alert-danger">Job not found.</div>'
-            ]);
-        }
-
-        $eligible = true;
-
-        $reasons = [];
-
-        /*
-    |--------------------------------------------------------------------------
-    | Qualification Check
-    |--------------------------------------------------------------------------
-    */
-
-        if (!empty($job->min_qulification)) {
-
-            $requiredQualifications = array_filter(
-                array_map('trim', explode('#', $job->min_qulification))
-            );
-
-            $matched = false;
-
-            foreach ($requiredQualifications as $qualification) {
-
-                if (
-                    stripos(
-                        $qualification,
-                        $request->qualification
-                    ) !== false
-                    ||
-                    stripos(
-                        $request->qualification,
-                        $qualification
-                    ) !== false
-                ) {
-
-                    $matched = true;
-
-                    break;
-                }
-            }
-
-            if (!$matched) {
-
-                $eligible = false;
-
-                $reasons[] = 'Required Qualification : ' . $job->min_qulification;
-            }
-        }
-
-        /*
-    |--------------------------------------------------------------------------
-    | Age Check
-    |--------------------------------------------------------------------------
-    */
-
-        if (
-            !empty($job->minimum_age)
-            &&
-            $request->age < $job->minimum_age
-        ) {
-
-            $eligible = false;
-
-            $reasons[] = 'Minimum Age : ' . $job->minimum_age;
-        }
-
-        if (
-            !empty($job->maximum_age)
-            &&
-            $request->age > $job->maximum_age
-        ) {
-
-            $eligible = false;
-
-            $reasons[] = 'Maximum Age : ' . $job->maximum_age;
-        }
-
-        /*
+    /*
     |--------------------------------------------------------------------------
     | Similar Jobs
     |--------------------------------------------------------------------------
     */
 
-        $similarJobs = collect();
+    $similarJobs = collect();
 
-        if (!empty($job->min_qulification)) {
+    if (!empty($job->min_qulification)) {
 
-            $quals = array_filter(
-                array_map('trim', explode('#', $job->min_qulification))
-            );
+    $quals = array_filter(
+    array_map('trim', explode('#', $job->min_qulification))
+    );
 
-            $query = DB::table('job_details')
-                ->where('id', '!=', $job->id)
-                ->whereDate('end_date', '>=', now()->toDateString());
+    $query = DB::table('job_details')
+    ->where('id', '!=', $job->id)
+    ->whereDate('end_date', '>=', now()->toDateString());
 
-            $query->where(function ($q) use ($quals) {
+    $query->where(function ($q) use ($quals) {
 
-                foreach ($quals as $qual) {
+    foreach ($quals as $qual) {
 
-                    $q->orWhere(
-                        'min_qulification',
-                        'LIKE',
-                        '%' . $qual . '%'
-                    );
-                }
-            });
+    $q->orWhere(
+    'min_qulification',
+    'LIKE',
+    '%' . $qual . '%'
+    );
+    }
+    });
 
-            $similarJobs = $query
-                ->orderByDesc('id')
-                ->limit(5)
-                ->get();
-        }
+    $similarJobs = $query
+    ->orderByDesc('id')
+    ->limit(5)
+    ->get();
+    }
 
-        /*
+    /*
     |--------------------------------------------------------------------------
     | HTML
     |--------------------------------------------------------------------------
     */
 
-        $html = '';
+    $html = '';
 
-        if ($eligible) {
+    if ($eligible) {
 
-            $html .= '
+    $html .= '
 
-        <div class="alert alert-success">
+    <div class="alert alert-success">
 
-            <h4 class="mb-3">
+        <h4 class="mb-3">
 
-                🎉 Congratulations!
+            🎉 Congratulations!
 
-            </h4>
+        </h4>
 
-            <p>
+        <p>
 
-                You appear to be eligible for this recruitment.
+            You appear to be eligible for this recruitment.
 
-            </p>
+        </p>
 
-            <ul>
+        <ul>
 
-                <li>✅ Qualification Matched</li>
+            <li>✅ Qualification Matched</li>
 
-                <li>✅ Age Eligible</li>
+            <li>✅ Age Eligible</li>
 
-                <li>✅ Category Checked</li>
+            <li>✅ Category Checked</li>
 
-            </ul>
+        </ul>
 
-        </div>';
-        } else {
+    </div>';
+    } else {
 
-            $html .= '
+    $html .= '
 
-        <div class="alert alert-danger">
+    <div class="alert alert-danger">
 
-            <h4 class="mb-3">
+        <h4 class="mb-3">
 
-                ❌ Not Eligible
+            ❌ Not Eligible
 
-            </h4>
+        </h4>
 
-            <ul>';
+        <ul>';
 
             foreach ($reasons as $reason) {
 
-                $html .= '<li>' . $reason . '</li>';
+            $html .= '<li>' . $reason . '</li>';
             }
 
             $html .= '
 
-            </ul>
+        </ul>
 
-        </div>';
-        }
+    </div>';
+    }
 
-        /*
+    /*
     |--------------------------------------------------------------------------
     | Recommended Jobs
     |--------------------------------------------------------------------------
     */
 
-        if ($similarJobs->count()) {
+    if ($similarJobs->count()) {
 
-            $html .= '
+    $html .= '
 
-        <div class="card mt-4">
+    <div class="card mt-4">
 
-            <div class="card-header bg-primary text-white">
+        <div class="card-header bg-primary text-white">
 
-                🔥 Also Eligible For
+            🔥 Also Eligible For
 
-            </div>
+        </div>
 
-            <div class="list-group list-group-flush">';
+        <div class="list-group list-group-flush">';
 
             foreach ($similarJobs as $similarJob) {
 
-                $state = !empty($similarJob->state)
-                    ? $similarJob->state
-                    : 'all-india';
+            $state = !empty($similarJob->state)
+            ? $similarJob->state
+            : 'all-india';
 
-                $category = !empty($similarJob->category)
-                    ? $similarJob->category
-                    : 'other';
+            $category = !empty($similarJob->category)
+            ? $similarJob->category
+            : 'other';
 
-                $html .= '
+            $html .= '
 
-            <a
-
-                href="' .
+            <a href="' .
                     route(
                         'sarkari.naukri.detail',
                         [
@@ -3751,9 +3814,7 @@ class JobController extends Controller
                             'slug' => $similarJob->slug
                         ]
                     ) .
-                    '"
-
-                class="list-group-item list-group-item-action">
+                    '" class="list-group-item list-group-item-action">
 
                 <strong>
 
@@ -3774,232 +3835,228 @@ class JobController extends Controller
 
             $html .= '
 
-            </div>
+        </div>
 
-        </div>';
-        }
+    </div>';
+    }
 
-        return response()->json([
+    return response()->json([
 
-            'html' => $html
+    'html' => $html
 
-        ]);
+    ]);
     }
 
     public function author($slug)
     {
 
-        $author = DB::table('authors')
-            ->where('slug', $slug)
-            ->first();
+    $author = DB::table('authors')
+    ->where('slug', $slug)
+    ->first();
 
-        abort_if(!$author, 404);
+    abort_if(!$author, 404);
 
-        $jobs = DB::table('job_details')
-            ->where('author_id', $author->id)
-            ->latest()
-            ->paginate(20);
+    $jobs = DB::table('job_details')
+    ->where('author_id', $author->id)
+    ->latest()
+    ->paginate(20);
 
-        return view(
-            'author.show',
-            compact(
-                'author',
-                'jobs'
-            )
-        );
+    return view(
+    'author.show',
+    compact(
+    'author',
+    'jobs'
+    )
+    );
     }
 
     public function freeJobAlertData()
     {
-        $updated = 0;
-        $failed = 0;
+    $updated = 0;
+    $failed = 0;
 
-        DB::table('job_details')
-            ->where('source', 'freejobalert')
-            ->whereNull('organization_full_form')
-            ->select('id', 'source_url')
-            ->orderBy('id')
-            ->chunk(1000, function ($jobs) use (&$updated, &$failed) {
+    DB::table('job_details')
+    ->where('source', 'freejobalert')
+    ->whereNull('organization_full_form')
+    ->select('id', 'source_url')
+    ->orderBy('id')
+    ->chunk(1000, function ($jobs) use (&$updated, &$failed) {
 
-                foreach ($jobs as $job) {
+    foreach ($jobs as $job) {
 
-                    try {
+    try {
 
-                        $response = Http::withHeaders([
-                            'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36',
-                        ])
-                            ->timeout(30)
-                            ->retry(3, 1000)
-                            ->get($job->source_url);
+    $response = Http::withHeaders([
+    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36',
+    ])
+    ->timeout(30)
+    ->retry(3, 1000)
+    ->get($job->source_url);
 
-                        if (!$response->successful()) {
-                            $failed++;
-                            continue;
-                        }
+    if (!$response->successful()) {
+    $failed++;
+    continue;
+    }
 
-                        $organizationFullForm = trim($this->extractOrganizationFullForm($response->body()));
+    $organizationFullForm = trim($this->extractOrganizationFullForm($response->body()));
 
-                        if (!empty($organizationFullForm)) {
+    if (!empty($organizationFullForm)) {
 
-                            // Check if this full form already exists with organization filled
-                            $normalized = preg_replace('/\s*\(.*?\)\s*/', '', $organizationFullForm);
-                            $normalized = trim(preg_replace('/\s+/', ' ', $normalized));
+    // Check if this full form already exists with organization filled
+    $normalized = preg_replace('/\s*\(.*?\)\s*/', '', $organizationFullForm);
+    $normalized = trim(preg_replace('/\s+/', ' ', $normalized));
 
-                            $existing = DB::table('job_details')
-                                ->whereNotNull('organization')
-                                ->whereNotNull('organization_full_form')
-                                ->get()
-                                ->first(function ($row) use ($normalized) {
+    $existing = DB::table('job_details')
+    ->whereNotNull('organization')
+    ->whereNotNull('organization_full_form')
+    ->get()
+    ->first(function ($row) use ($normalized) {
 
-                                    $db = preg_replace('/\s*\(.*?\)\s*/', '', $row->organization_full_form);
-                                    $db = trim(preg_replace('/\s+/', ' ', $db));
+    $db = preg_replace('/\s*\(.*?\)\s*/', '', $row->organization_full_form);
+    $db = trim(preg_replace('/\s+/', ' ', $db));
 
-                                    return strcasecmp($db, $normalized) === 0;
-                                });
+    return strcasecmp($db, $normalized) === 0;
+    });
 
-                            $data = [
-                                'organization_full_form' => $organizationFullForm,
-                                'updated_at' => now(),
-                            ];
+    $data = [
+    'organization_full_form' => $organizationFullForm,
+    'updated_at' => now(),
+    ];
 
-                            if ($existing) {
-                                $data['organization'] = $existing->organization;
-                            }
+    if ($existing) {
+    $data['organization'] = $existing->organization;
+    }
 
-                            DB::table('job_details')
-                                ->where('id', $job->id)
-                                ->update($data);
+    DB::table('job_details')
+    ->where('id', $job->id)
+    ->update($data);
 
-                            $updated++;
+    $updated++;
 
-                            echo "Updated ID {$job->id} : {$organizationFullForm}";
-                            if ($existing) {
-                                echo " => {$existing->organization}";
-                            }
-                            echo "<br>";
+    echo "Updated ID {$job->id} : {$organizationFullForm}";
+    if ($existing) {
+    echo " => {$existing->organization}";
+    }
+    echo "<br>";
 
-                            ob_flush();
-                            flush();
-                        } else {
+    ob_flush();
+    flush();
+    } else {
 
-                            echo "Organization Not Found : {$job->id}<br>";
-                            ob_flush();
-                            flush();
-                        }
-                    } catch (\Exception $e) {
+    echo "Organization Not Found : {$job->id}<br>";
+    ob_flush();
+    flush();
+    }
+    } catch (\Exception $e) {
 
-                        $failed++;
+    $failed++;
 
-                        echo "Error ({$job->id}) : " . $e->getMessage() . "<br>";
-                        ob_flush();
-                        flush();
-                    }
-                }
-            });
+    echo "Error ({$job->id}) : " . $e->getMessage() . "<br>";
+    ob_flush();
+    flush();
+    }
+    }
+    });
 
-        return response()->json([
-            'status' => 'Completed',
-            'updated' => $updated,
-            'failed' => $failed,
-        ]);
+    return response()->json([
+    'status' => 'Completed',
+    'updated' => $updated,
+    'failed' => $failed,
+    ]);
     }
 
     /**
-     * FreeJobAlert page se Organization Name scrape karega
-     */
+    * FreeJobAlert page se Organization Name scrape karega
+    */
     private function extractOrganizationFullForm($html)
     {
-        libxml_use_internal_errors(true);
+    libxml_use_internal_errors(true);
 
-        $dom = new \DOMDocument();
-        @$dom->loadHTML($html);
+    $dom = new \DOMDocument();
+    @$dom->loadHTML($html);
 
-        $xpath = new \DOMXPath($dom);
+    $xpath = new \DOMXPath($dom);
 
-        $keywords = [
-            'organization',
-            'organisation',
-            'organization name',
-            'organisation name',
-            'company name',
-            'recruiting body',
-            'recruiting organisation',
-            'recruiting organization',
-            'recruiting authority',
-            'recruiting agency',
-            'conducting body',
-            'conducting authority',
-            'conducting agency',
-            'department',
-            'portal name',
-            'university name',
-            'bank name',
-            'name of the organization',
-            'name of organization',
-        ];
+    $keywords = [
+    'organization',
+    'organisation',
+    'organization name',
+    'organisation name',
+    'company name',
+    'recruiting body',
+    'recruiting organisation',
+    'recruiting organization',
+    'recruiting authority',
+    'recruiting agency',
+    'conducting body',
+    'conducting authority',
+    'conducting agency',
+    'department',
+    'portal name',
+    'university name',
+    'bank name',
+    'name of the organization',
+    'name of organization',
+    ];
 
-        // Normalize text
-        $normalize = function ($text) {
+    // Normalize text
+    $normalize = function ($text) {
 
-            $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 
-            // Replace NBSP with normal space
-            $text = str_replace("\xC2\xA0", ' ', $text);
+    // Replace NBSP with normal space
+    $text = str_replace("\xC2\xA0", ' ', $text);
 
-            // Remove HTML
-            $text = strip_tags($text);
+    // Remove HTML
+    $text = strip_tags($text);
 
-            // Multiple spaces/new lines -> single space
-            $text = preg_replace('/\s+/u', ' ', $text);
+    // Multiple spaces/new lines -> single space
+    $text = preg_replace('/\s+/u', ' ', $text);
 
-            return strtolower(trim($text));
-        };
+    return strtolower(trim($text));
+    };
 
-        // -----------------------------
-        // Check all table rows
-        // -----------------------------
-        $rows = $xpath->query("//table[contains(@class,'scrollable-table')]//tr");
+    // -----------------------------
+    // Check all table rows
+    // -----------------------------
+    $rows = $xpath->query("//table[contains(@class,'scrollable-table')]//tr");
 
-        foreach ($rows as $row) {
+    foreach ($rows as $row) {
 
-            $cells = $xpath->query("./th|./td", $row);
+    $cells = $xpath->query("./th|./td", $row);
 
-            if ($cells->length < 2) {
-                continue;
-            }
+    if ($cells->length < 2) { continue; } $label=$normalize($cells->item(0)->textContent);
 
-            $label = $normalize($cells->item(0)->textContent);
+        $value = trim(
+        preg_replace(
+        '/\s+/u',
+        ' ',
+        html_entity_decode(
+        strip_tags($cells->item(1)->textContent),
+        ENT_QUOTES | ENT_HTML5,
+        'UTF-8'
+        )
+        )
+        );
 
-            $value = trim(
-                preg_replace(
-                    '/\s+/u',
-                    ' ',
-                    html_entity_decode(
-                        strip_tags($cells->item(1)->textContent),
-                        ENT_QUOTES | ENT_HTML5,
-                        'UTF-8'
-                    )
-                )
-            );
+        // Skip header rows
+        if (in_array($label, [
+        'particulars',
+        'field',
+        'details',
+        'detail',
+        'information',
+        'description'
+        ])) {
+        continue;
+        }
 
-            // Skip header rows
-            if (in_array($label, [
-                'particulars',
-                'field',
-                'details',
-                'detail',
-                'information',
-                'description'
-            ])) {
-                continue;
-            }
+        foreach ($keywords as $keyword) {
 
-            foreach ($keywords as $keyword) {
-
-                if (strpos($label, $keyword) !== false && !empty($value)) {
-                    return $value;
-                }
-            }
+        if (strpos($label, $keyword) !== false && !empty($value)) {
+        return $value;
+        }
+        }
         }
 
         // -----------------------------
@@ -4009,83 +4066,84 @@ class JobController extends Controller
 
         if ($heading) {
 
-            $text = trim(
-                preg_replace(
-                    '/\s+/u',
-                    ' ',
-                    html_entity_decode(strip_tags($heading->textContent), ENT_QUOTES | ENT_HTML5, 'UTF-8')
-                )
-            );
+        $text = trim(
+        preg_replace(
+        '/\s+/u',
+        ' ',
+        html_entity_decode(strip_tags($heading->textContent), ENT_QUOTES | ENT_HTML5, 'UTF-8')
+        )
+        );
 
-            if (!empty($text) && strlen($text) > 5) {
-                return $text;
-            }
+        if (!empty($text) && strlen($text) > 5) {
+        return $text;
+        }
         }
 
         // -----------------------------
         // First <p> heading
-        // -----------------------------
-        $heading = $xpath->query("//table[contains(@class,'scrollable-table')]//p[1]")->item(0);
+            // -----------------------------
+            $heading = $xpath->query("//table[contains(@class,'scrollable-table')]//p[1]")->item(0);
 
-        if ($heading) {
+            if ($heading) {
 
             $text = trim(
-                preg_replace(
-                    '/\s+/u',
-                    ' ',
-                    html_entity_decode(strip_tags($heading->textContent), ENT_QUOTES | ENT_HTML5, 'UTF-8')
-                )
+            preg_replace(
+            '/\s+/u',
+            ' ',
+            html_entity_decode(strip_tags($heading->textContent), ENT_QUOTES | ENT_HTML5, 'UTF-8')
+            )
             );
 
             if (!empty($text) && strlen($text) > 5) {
-                return $text;
+            return $text;
             }
-        }
+            }
 
-        return null;
-    }
+            return null;
+            }
 
 
-    public function SarkariNaukriData()
-    {
-        set_time_limit(0);
+            public function SarkariNaukriData()
+            {
+            set_time_limit(0);
 
-        $jobs = DB::table('job_details')
+            $jobs = DB::table('job_details')
             ->where('source', 'sarkariresult.com.cm')
             ->whereNull('organization_full_form')
             ->whereNotNull('source_url')
             ->select('id', 'source_url')
             ->get();
 
-        $updated = [];
-        $notUpdated = [];
-        $errors = [];
+            $updated = [];
+            $notUpdated = [];
+            $errors = [];
 
-        foreach ($jobs as $job) {
+            foreach ($jobs as $job) {
 
             try {
 
-                $response = Http::timeout(30)
-                    ->withoutVerifying()
-                    ->get($job->source_url);
+            $response = Http::timeout(30)
+            ->withoutVerifying()
+            ->get($job->source_url);
 
-                if (!$response->successful()) {
+            if (!$response->successful()) {
 
-                    $errors[] = [
-                        'id' => $job->id,
-                        'url' => $job->source_url,
-                        'error' => 'Page Not Accessible'
-                    ];
+            $errors[] = [
+            'id' => $job->id,
+            'url' => $job->source_url,
+            'error' => 'Page Not Accessible'
+            ];
 
-                    continue;
-                }
+            continue;
+            }
 
-                $html = $response->body();
+            $html = $response->body();
 
-                libxml_use_internal_errors(true);
+            libxml_use_internal_errors(true);
 
-                $dom = new \DOMDocument();
-                $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
+            $dom = new \DOMDocument();
+            $dom->loadHTML('
+            <?xml encoding="UTF-8">' . $html);
 
                 libxml_clear_errors();
 
