@@ -556,6 +556,7 @@ public function dateUpdate(Request $request)
     if (isset($data['id'])) {
         $data = [$data];
     }
+    //teste
 
     $columns = [
         'start_date',
@@ -567,8 +568,7 @@ public function dateUpdate(Request $request)
         'info_date',
         'notification_date',
         'interview_date',
-        'walkin_date',
-        'important_date',
+        'walkin_date'
     ];
 
     $months = [
