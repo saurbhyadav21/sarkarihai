@@ -539,6 +539,7 @@ class JobController extends Controller
 
     
     
+
 public function dateUpdate(Request $request)
 {
     $request->validate([
@@ -551,7 +552,7 @@ public function dateUpdate(Request $request)
         return back()->with('error', 'Invalid JSON format.');
     }
 
-    // Single JSON object को array में convert करना
+    // Single object ko array mein convert karo
     if (isset($data['id'])) {
         $data = [$data];
     }
@@ -570,13 +571,28 @@ public function dateUpdate(Request $request)
         'important_date',
     ];
 
+    $months = [
+        'जनवरी' => 'January',
+        'फ़रवरी' => 'February',
+        'फरवरी' => 'February',
+        'मार्च' => 'March',
+        'अप्रैल' => 'April',
+        'मई' => 'May',
+        'जून' => 'June',
+        'जुलाई' => 'July',
+        'अगस्त' => 'August',
+        'सितंबर' => 'September',
+        'अक्टूबर' => 'October',
+        'नवंबर' => 'November',
+        'दिसंबर' => 'December',
+    ];
+
     $updated = 0;
     $errors = [];
 
     DB::beginTransaction();
 
     try {
-
         foreach ($data as $item) {
 
             if (!is_array($item) || empty($item['id'])) {
@@ -594,52 +610,92 @@ public function dateUpdate(Request $request)
 
                 $value = trim((string) $item[$column]);
 
+                // N/A, NULL, blank ko database mein NULL rakho
                 if (
                     $value === '' ||
-                    strtoupper($value) === 'N/A' ||
+                    stripos($value, 'N/A') !== false ||
                     strtoupper($value) === 'NULL'
                 ) {
                     $updateData[$column] = null;
                     continue;
                 }
 
-                // Hindi date और context में से date निकालना
-                preg_match(
-                    '/\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]+\s+\d{4}|\d{1,2}[-\/.]\d{1,2}[-\/.]\d{4}|\d{4}-\d{2}-\d{2}/i',
-                    $value,
-                    $matches
+                // Hindi months ko English mein convert karo
+                $dateText = str_replace(
+                    array_keys($months),
+                    array_values($months),
+                    $value
                 );
 
-                if (empty($matches[0])) {
+                $date = null;
+
+                // Format: 08 November 2026
+                if (preg_match(
+                    '/\b(\d{1,2})(?:st|nd|rd|th)?[\s\-\/.]+([A-Za-z]+)[\s,\/\-]+(\d{4})\b/i',
+                    $dateText,
+                    $m
+                )) {
+                    try {
+                        $date = Carbon::createFromFormat(
+                            '!j F Y',
+                            $m[1] . ' ' . $m[2] . ' ' . $m[3]
+                        );
+                    } catch (\Throwable $e) {
+                        $date = null;
+                    }
+                }
+
+                // Format: 08-11-2026 or 08/11/2026
+                if (!$date && preg_match(
+                    '/\b(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})\b/',
+                    $dateText,
+                    $m
+                )) {
+                    try {
+                        $date = Carbon::createFromFormat(
+                            '!d-m-Y',
+                            $m[1] . '-' . $m[2] . '-' . $m[3]
+                        );
+                    } catch (\Throwable $e) {
+                        $date = null;
+                    }
+                }
+
+                // Format: 2026-11-08
+                if (!$date && preg_match(
+                    '/\b(\d{4})-(\d{2})-(\d{2})\b/',
+                    $dateText,
+                    $m
+                )) {
+                    try {
+                        $date = Carbon::createFromFormat(
+                            '!Y-m-d',
+                            $m[1] . '-' . $m[2] . '-' . $m[3]
+                        );
+                    } catch (\Throwable $e) {
+                        $date = null;
+                    }
+                }
+
+                if (!$date) {
                     $errors[] = "ID {$item['id']}: Invalid date in {$column}";
                     continue;
                 }
 
-                $dateText = preg_replace(
-                    '/(\d)(st|nd|rd|th)\b/i',
-                    '$1',
-                    $matches[0]
-                );
+                $updateData[$column] = $date->format('Y-m-d');
+            }
 
-                try {
-                    $updateData[$column] = \Carbon\Carbon::parse($dateText)->format('Y-m-d');
-                } catch (\Throwable $e) {
-                    $errors[] = "ID {$item['id']}: Invalid date in {$column}";
+            if (!empty($updateData)) {
+
+                $updateData['updated_at'] = now();
+
+                $affected = DB::table('job_details')
+                    ->where('id', $item['id'])
+                    ->update($updateData);
+
+                if ($affected > 0) {
+                    $updated++;
                 }
-            }
-
-            if (empty($updateData)) {
-                continue;
-            }
-
-            $updateData['updated_at'] = now();
-
-            $affected = DB::table('job_details')
-                ->where('id', $item['id'])
-                ->update($updateData);
-
-            if ($affected) {
-                $updated++;
             }
         }
 
