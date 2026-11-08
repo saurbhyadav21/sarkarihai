@@ -540,6 +540,7 @@ class JobController extends Controller
     
     
 
+
 public function dateUpdate(Request $request)
 {
     $request->validate([
@@ -556,9 +557,9 @@ public function dateUpdate(Request $request)
     if (isset($data['id'])) {
         $data = [$data];
     }
-    //teste
 
     $columns = [
+        'notification_date',
         'start_date',
         'end_date',
         'last_fee_date',
@@ -566,25 +567,8 @@ public function dateUpdate(Request $request)
         'exam_date',
         'result_date',
         'info_date',
-        'notification_date',
+        'walkin_date',
         'interview_date',
-        'walkin_date'
-    ];
-
-    $months = [
-        'जनवरी' => 'January',
-        'फ़रवरी' => 'February',
-        'फरवरी' => 'February',
-        'मार्च' => 'March',
-        'अप्रैल' => 'April',
-        'मई' => 'May',
-        'जून' => 'June',
-        'जुलाई' => 'July',
-        'अगस्त' => 'August',
-        'सितंबर' => 'September',
-        'अक्टूबर' => 'October',
-        'नवंबर' => 'November',
-        'दिसंबर' => 'December',
     ];
 
     $updated = 0;
@@ -593,6 +577,7 @@ public function dateUpdate(Request $request)
     DB::beginTransaction();
 
     try {
+
         foreach ($data as $item) {
 
             if (!is_array($item) || empty($item['id'])) {
@@ -608,81 +593,14 @@ public function dateUpdate(Request $request)
                     continue;
                 }
 
-                $value = trim((string) $item[$column]);
+                // JSON ka exact text save hoga, Hindi aur English dono
+                $value = $item[$column];
 
-                // N/A, NULL, blank ko database mein NULL rakho
-                if (
-                    $value === '' ||
-                    stripos($value, 'N/A') !== false ||
-                    strtoupper($value) === 'NULL'
-                ) {
+                if ($value === null || trim((string) $value) === '') {
                     $updateData[$column] = null;
-                    continue;
+                } else {
+                    $updateData[$column] = trim((string) $value);
                 }
-
-                // Hindi months ko English mein convert karo
-                $dateText = str_replace(
-                    array_keys($months),
-                    array_values($months),
-                    $value
-                );
-
-                $date = null;
-
-                // Format: 08 November 2026
-                if (preg_match(
-                    '/\b(\d{1,2})(?:st|nd|rd|th)?[\s\-\/.]+([A-Za-z]+)[\s,\/\-]+(\d{4})\b/i',
-                    $dateText,
-                    $m
-                )) {
-                    try {
-                        $date = Carbon::createFromFormat(
-                            '!j F Y',
-                            $m[1] . ' ' . $m[2] . ' ' . $m[3]
-                        );
-                    } catch (\Throwable $e) {
-                        $date = null;
-                    }
-                }
-
-                // Format: 08-11-2026 or 08/11/2026
-                if (!$date && preg_match(
-                    '/\b(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})\b/',
-                    $dateText,
-                    $m
-                )) {
-                    try {
-                        $date = Carbon::createFromFormat(
-                            '!d-m-Y',
-                            $m[1] . '-' . $m[2] . '-' . $m[3]
-                        );
-                    } catch (\Throwable $e) {
-                        $date = null;
-                    }
-                }
-
-                // Format: 2026-11-08
-                if (!$date && preg_match(
-                    '/\b(\d{4})-(\d{2})-(\d{2})\b/',
-                    $dateText,
-                    $m
-                )) {
-                    try {
-                        $date = Carbon::createFromFormat(
-                            '!Y-m-d',
-                            $m[1] . '-' . $m[2] . '-' . $m[3]
-                        );
-                    } catch (\Throwable $e) {
-                        $date = null;
-                    }
-                }
-
-                if (!$date) {
-                    $errors[] = "ID {$item['id']}: Invalid date in {$column}";
-                    continue;
-                }
-
-                $updateData[$column] = $date->format('Y-m-d');
             }
 
             if (!empty($updateData)) {
@@ -720,6 +638,7 @@ public function dateUpdate(Request $request)
         "{$updated} job records updated successfully."
     );
 }
+
 
 
 
