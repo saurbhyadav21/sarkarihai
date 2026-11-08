@@ -514,7 +514,7 @@ class JobController extends Controller
 
 
     
-    public function dateEditList($limit = 100)
+    public function dateEditList($limit = 50)
     {
         $limit = max(1, min((int) $limit, 100));
 
