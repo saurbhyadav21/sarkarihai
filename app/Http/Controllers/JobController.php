@@ -526,11 +526,9 @@ class JobController extends Controller
                     ->orWhereNull('correction_date')->orWhere('correction_date', '')
                     ->orWhereNull('exam_date')->orWhere('exam_date', '')
                     ->orWhereNull('result_date')->orWhere('result_date', '')
-                    ->orWhereNull('info_date')->orWhere('info_date', '')
                     ->orWhereNull('notification_date')->orWhere('notification_date', '')
                     ->orWhereNull('interview_date')->orWhere('interview_date', '')
-                    ->orWhereNull('walkin_date')->orWhere('walkin_date', '')
-                    ->orWhereNull('important_date')->orWhere('important_date', '');
+                    ->orWhereNull('walkin_date')->orWhere('walkin_date', '');
             })
             ->orderBy('id', 'desc')
             ->paginate($limit);
