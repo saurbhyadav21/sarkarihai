@@ -511,6 +511,104 @@ class JobController extends Controller
         return redirect()->back()->with('error', 'Record already updated or not found.');
     }
 
+
+
+    
+    public function dateEditList($limit = 10)
+    {
+        $limit = max(1, min((int) $limit, 100));
+
+        $jobs = DB::table('job_details')
+            ->where(function ($query) {
+                $query->whereNull('start_date')->orWhere('start_date', '')
+                    ->orWhereNull('end_date')->orWhere('end_date', '')
+                    ->orWhereNull('last_fee_date')->orWhere('last_fee_date', '')
+                    ->orWhereNull('correction_date')->orWhere('correction_date', '')
+                    ->orWhereNull('exam_date')->orWhere('exam_date', '')
+                    ->orWhereNull('result_date')->orWhere('result_date', '')
+                    ->orWhereNull('info_date')->orWhere('info_date', '')
+                    ->orWhereNull('notification_date')->orWhere('notification_date', '')
+                    ->orWhereNull('interview_date')->orWhere('interview_date', '')
+                    ->orWhereNull('walkin_date')->orWhere('walkin_date', '')
+                    ->orWhereNull('important_date')->orWhere('important_date', '');
+            })
+            ->orderBy('id', 'desc')
+            ->paginate($limit);
+
+        return view('jobs.date_edit_vacancy_list', compact('jobs', 'limit'));
+    }
+
+
+    
+    public function dateUpdate(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer',
+            'date_json' => 'required|json',
+        ]);
+
+        $data = json_decode($request->date_json, true);
+
+        if (!is_array($data)) {
+            return back()->with('error', 'Invalid JSON format.');
+        }
+
+        $columns = [
+            'start_date',
+            'end_date',
+            'last_fee_date',
+            'correction_date',
+            'exam_date',
+            'result_date',
+            'info_date',
+            'notification_date',
+            'interview_date',
+            'walkin_date',
+            'important_date',
+        ];
+
+        $updateData = [];
+
+        foreach ($columns as $column) {
+
+            if (!array_key_exists($column, $data)) {
+                continue;
+            }
+
+            $value = trim((string) $data[$column]);
+
+            if (
+                $value === '' ||
+                strtoupper($value) === 'N/A' ||
+                strtoupper($value) === 'NULL'
+            ) {
+                $updateData[$column] = null;
+            } else {
+                try {
+                    $updateData[$column] = \Carbon\Carbon::parse($value)->format('Y-m-d');
+                } catch (\Throwable $e) {
+                    return back()->with('error', "Invalid date in {$column}: {$value}");
+                }
+            }
+        }
+
+        if (empty($updateData)) {
+            return back()->with('error', 'No valid date fields found.');
+        }
+
+        $updateData['updated_at'] = now();
+
+        DB::table('job_details')
+            ->where('id', $request->id)
+            ->update($updateData);
+
+        return back()->with('success', 'All dates updated successfully.');
+    }
+
+
+
+
+
     public function OrgEditList($limit = 10)
     {
         //dono hai    
