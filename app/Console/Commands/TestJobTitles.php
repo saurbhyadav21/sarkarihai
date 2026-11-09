@@ -319,7 +319,7 @@ if (!$postName) {
                     $cells->item(0)->textContent
                 ));
 
-                if (strcasecmp($label, 'Post Name') === 0) {
+                if (in_array(strtolower($label), ['post name', 'post name(s)'], true)) {
 
                     $postName = trim(preg_replace(
                         '/\s+/u',
