@@ -174,25 +174,25 @@ class TestJobTitles extends Command
                     $this->warn('Post title not found.');
 
                     // Debug: available table labels print karo
-                    $this->line('Available table labels:');
+                    // $this->line('Available table labels:');
 
-                    $allRows = $xpath->query('//table//tr');
+                    // $allRows = $xpath->query('//table//tr');
 
-                    foreach ($allRows as $row) {
+                    // foreach ($allRows as $row) {
 
-                        $cells = $xpath->query('./td', $row);
+                    //     $cells = $xpath->query('./td', $row);
 
-                        if ($cells->length >= 2) {
+                    //     if ($cells->length >= 2) {
 
-                            $label = trim(preg_replace(
-                                '/\s+/u',
-                                ' ',
-                                $cells->item(0)->textContent
-                            ));
+                    //         $label = trim(preg_replace(
+                    //             '/\s+/u',
+                    //             ' ',
+                    //             $cells->item(0)->textContent
+                    //         ));
 
-                            $this->line('- ' . $label);
-                        }
-                    }
+                    //         $this->line('- ' . $label);
+                    //     }
+                    // }
                 }
 
             } catch (\Throwable $e) {
