@@ -551,6 +551,41 @@ class TestJobTitles extends Command
                     }
                 }
 
+                // Format - Overview Table: TH Label + TD Value
+if (!$postName) {
+    $headings = $xpath->query(
+        "//h2[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'overview')]"
+    );
+
+    foreach ($headings as $heading) {
+        $tables = $xpath->query("following::table[1]", $heading);
+
+        if ($tables->length > 0) {
+            $rows = $xpath->query('.//tr', $tables->item(0));
+
+            foreach ($rows as $row) {
+                $th = $xpath->query('./th', $row);
+                $td = $xpath->query('./td', $row);
+
+                if ($th->length > 0 && $td->length > 0) {
+                    $label = strtolower(trim($th->item(0)->textContent));
+
+                    if ($label === 'post name') {
+                        $postName = trim(
+                            preg_replace('/\s+/u', ' ', $td->item(0)->textContent)
+                        );
+
+                        if ($postName !== '') {
+                            $matchedFormat = 'Overview Format - TH Label / TD Value';
+                            break 2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 
                 //update the table with the extracted post title and set post_flag to 1
