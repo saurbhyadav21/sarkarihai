@@ -1029,25 +1029,25 @@
 
     has released the official notification for the recruitment of
 
-    <span style="font-size:16px; color:#ffc107; font-weight:700;">
+    <span style="font-size:18px; color:#ffc107; font-weight:700;">
         {{ $job->total_vacancies }} Vacancies
     </span>
 
     for the posts of
 
-    <span style="font-size:16px; color:#8fd3ff; font-weight:700;">
+    <span style="font-size:18px; color:#ffc107; font-weight:700;">
         {{ $job->post_name }} 
     </span>.
 
     The online application process will begin on
 
-    <span style="font-size:15px; color:#7ee2a8; font-weight:600;">
+    <span style="font-size:18px; color:#ffc107; font-weight:700;">
         {{ $job->start_date }}
     </span>,
 
     and the last date to apply is
 
-    <span style="font-size:15px; color:#ff8585; font-weight:600;">
+    <span style="font-size:18px; color:#ffc107; font-weight:700;">
         {{ $job->end_date }}
     </span>.
 
