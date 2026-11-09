@@ -1009,90 +1009,56 @@
                     </h1>
 
                     
-@php
-    $organizationName = $job->organization_full_form ?: $job->organization;
-    $organizationShort = $job->organization_full_form && $job->organization_full_form != $job->organization
-        ? $job->organization
-        : null;
+<p style="font-size:16px; line-height:1.9; text-align:justify;">
 
-    $location = $job->state ? ucwords($job->state) : 'All India';
+    @if (!empty($job->organization_full_form))
+        {{ $job->organization_full_form }}
+    @else
+        {{ $job->organization }}
+    @endif,
 
-    $vacancies = $job->total_vacancies ?: 'Various';
-    $postName = $job->post_name ?: 'Various Posts';
-
-    $startDate = $job->start_date ?: 'To Be Announced';
-    $endDate = $job->end_date ?: 'To Be Announced';
-@endphp
-
-<div class="recruitment-intro bg-light border rounded p-3 mb-4">
-
-    <p class="mb-3" style="line-height:1.9; font-size:16px;">
-
-        <strong>{{ $organizationName }}</strong>
-
-        @if($organizationShort)
-            ({{ $organizationShort }})
-        @endif
-
-        @if($organizationName)
-            ,
-        @endif
-
-        <strong>{{ $location }}</strong>
-        has released the official notification for the recruitment of
-
-        <strong class="text-primary">{{ $vacancies }} {{ is_numeric($vacancies) && $vacancies == 1 ? 'vacancy' : 'vacancies' }}</strong>
-
-        for the post(s) of
-
-        <strong class="text-primary">{{ $postName }}</strong>.
-
-        Interested and eligible candidates can apply through the prescribed application process.
-    </p>
-
-    <div class="row g-2 mb-3">
-
-        <div class="col-md-6">
-            <div class="bg-white border rounded p-2 h-100">
-                <small class="text-muted d-block">Application Start Date</small>
-                <strong class="text-success">{{ $startDate }}</strong>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="bg-white border rounded p-2 h-100">
-                <small class="text-muted d-block">Last Date to Apply</small>
-                <strong class="text-danger">{{ $endDate }}</strong>
-            </div>
-        </div>
-
-    </div>
-
-    @if(!empty($job->min_age) || !empty($job->max_age_genral))
-        <div class="mb-2">
-            <strong>Age Limit:</strong>
-
-            @if(!empty($job->min_age))
-                {{ $job->min_age }} Years
-            @endif
-
-            @if(!empty($job->min_age) && !empty($job->max_age_genral))
-                to
-            @endif
-
-            @if(!empty($job->max_age_genral))
-                {{ $job->max_age_genral }} Years
-            @endif
-        </div>
+    @if (!empty($job->state))
+        {{ ucfirst($job->state) }}
+    @else
+        All India
     @endif
 
-    <p class="mb-0 text-muted" style="font-size:14px; line-height:1.7;">
-        Candidates are advised to read the official notification carefully before applying.
-        This article provides complete information about vacancy details, eligibility criteria,
-        age limit, salary, selection process, application procedure and important links.
-    </p>
+    @if (!empty($job->organization))
+        ({{ $job->organization }})
+    @endif
 
-</div>
+    has released the official notification for the recruitment of
+
+    <strong style="font-size:19px; color:#d99b00; font-weight:700;">
+        {{ $job->total_vacancies }} Vacancies
+    </strong>
+
+    for the posts of
+
+    <strong style="font-size:19px; color:#0d6efd; font-weight:700;">
+        {{ $job->post_name }}
+    </strong>.
+
+    The online application process will begin on
+
+    <strong style="font-size:17px; color:#198754;">
+        {{ $job->start_date }}
+    </strong>,
+
+    and the last date to apply is
+
+    <strong style="font-size:17px; color:#dc3545;">
+        {{ $job->end_date }}
+    </strong>.
+
+    Candidates are advised to check the eligibility criteria, including age limit, before applying and submit their applications well before the deadline.
+
+    In this article, you will find complete details about
+    {{ $job->post_name }} Recruitment 2026, including vacancy details,
+    eligibility criteria, age limit, salary, selection process,
+    application procedure, and important links.
+
+</p>
 
 
                     {{-- <p>
