@@ -445,6 +445,72 @@ class TestJobTitles extends Command
                 }
 
 
+                
+                /*
+                |--------------------------------------------------------------------------
+                | FORMAT 8: Quick Highlights UL list
+                | Label: Post Name
+                |--------------------------------------------------------------------------
+                */
+
+                if (!$postName) {
+
+                    $headings = $xpath->query(
+                        "//h2[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'quick highlights')]"
+                    );
+
+                    foreach ($headings as $heading) {
+
+                        $lists = $xpath->query('following-sibling::ul[1]', $heading);
+
+                        foreach ($lists as $list) {
+
+                            $items = $xpath->query('.//li', $list);
+
+                            foreach ($items as $item) {
+
+                                $strong = $xpath->query('.//strong', $item);
+
+                                if ($strong->length == 0) {
+                                    continue;
+                                }
+
+                                $label = trim($strong->item(0)->textContent);
+
+                                $label = trim(str_replace(':', '', $label));
+
+                                if (strcasecmp($label, 'Post Name') === 0) {
+
+                                    // Strong tag ke baad ka text extract karo
+                                    $postName = '';
+
+                                    foreach ($item->childNodes as $node) {
+
+                                        if ($node->isSameNode($strong->item(0))) {
+                                            continue;
+                                        }
+
+                                        $postName .= ' ' . $node->textContent;
+                                    }
+
+                                    $postName = trim(preg_replace(
+                                        '/\s+/u',
+                                        ' ',
+                                        $postName
+                                    ));
+
+                                    if ($postName !== '') {
+                                        $matchedFormat = 'Format 8 - Quick Highlights / UL';
+                                        break 3;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
 
                 //update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
