@@ -1010,7 +1010,7 @@
 
                     <p>
                         @if (!empty($job->organization_full_form))
-                            {{ $job->organization_full_form }}
+                            ({{ $job->organization_full_form }})
                         @else
                             {{ $job->organization }}
                         @endif,
