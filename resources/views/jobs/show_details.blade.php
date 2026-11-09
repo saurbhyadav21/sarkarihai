@@ -1036,7 +1036,7 @@
     for the posts of
 
     <span style="font-size:16px; color:#8fd3ff; font-weight:700;">
-        {{ $job->post_name }}
+        {{ $job->post_name }} 
     </span>.
 
     The online application process will begin on
