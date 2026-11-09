@@ -222,6 +222,65 @@ class TestJobTitles extends Command
                 }
 
 
+                
+/*
+|--------------------------------------------------------------------------
+| FORMAT 4: Overview table
+| Label: Post Names
+|--------------------------------------------------------------------------
+*/
+
+if (!$postName) {
+
+    $headings = $xpath->query(
+        "//h2[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'overview')]"
+    );
+
+    foreach ($headings as $heading) {
+
+        $tables4 = $xpath->query(
+            "following::table[contains(concat(' ', normalize-space(@class), ' '), ' scrollable-table ')]",
+            $heading
+        );
+
+        foreach ($tables4 as $table) {
+
+            $rows = $xpath->query('.//tr', $table);
+
+            foreach ($rows as $row) {
+
+                $cells = $xpath->query('./td', $row);
+
+                if ($cells->length < 2) {
+                    continue;
+                }
+
+                $label = trim(preg_replace(
+                    '/\s+/u',
+                    ' ',
+                    $cells->item(0)->textContent
+                ));
+
+                if (strcasecmp($label, 'Post Names') === 0) {
+
+                    $postName = trim(preg_replace(
+                        '/\s+/u',
+                        ' ',
+                        $cells->item(1)->textContent
+                    ));
+
+                    if ($postName !== '') {
+                        $matchedFormat = 'Format 4 - Overview / Post Names';
+                        break 3;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
                 libxml_clear_errors();
 
                 if ($postName) {
