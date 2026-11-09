@@ -639,6 +639,43 @@ if (!$postName) {
     }
 }
 
+
+// New Format - Full Page Post Name Search
+if (!$postName) {
+    $nodes = $xpath->query(
+        "//*[self::td or self::th or self::strong or self::b or self::p or self::div or self::span]"
+    );
+
+    foreach ($nodes as $node) {
+        $label = trim(preg_replace('/\s+/u', ' ', $node->textContent));
+
+        if (strcasecmp(trim($label, " \t\n\r\0\x0B:"), 'Post Name') !== 0) {
+            continue;
+        }
+
+        // Case 1: Table label ke next TD mein value
+        if ($node->parentNode && strtolower($node->parentNode->nodeName) === 'tr') {
+            $cells = $xpath->query('./td | ./th', $node->parentNode);
+
+            if ($cells->length > 1) {
+                $postName = trim(preg_replace('/\s+/u', ' ', $cells->item(1)->textContent));
+            }
+        }
+
+        // Case 2: Strong/B label ke baad paragraph mein value
+        if (!$postName && in_array(strtolower($node->nodeName), ['strong', 'b'])) {
+            $postName = trim(preg_replace('/\s+/u', ' ', $node->parentNode->textContent));
+            $postName = preg_replace('/^Post\s+Name\s*:\s*/iu', '', $postName);
+        }
+
+        if ($postName && strcasecmp($postName, 'Post Name') !== 0) {
+            $matchedFormat = 'New Format - Full Page Post Name Search';
+            break;
+        }
+
+        $postName = '';
+    }
+}
                 //update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
 
