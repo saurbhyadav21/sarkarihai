@@ -23,7 +23,7 @@ class TestJobTitles extends Command
             ->where('source_url', '!=', '')
             ->orderBy('id', 'desc')
             // ->skip(10)
-            ->limit(25)
+            // ->limit(25)
             ->get();
 
         if ($jobs->isEmpty()) {
