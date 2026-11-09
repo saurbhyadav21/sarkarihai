@@ -343,6 +343,48 @@ class TestJobTitles extends Command
                     }
                 }
 
+
+                
+                /*
+                |--------------------------------------------------------------------------
+                | FORMAT 6: FreeJobAlert entry-content
+                | Text: Name of the Post:
+                |--------------------------------------------------------------------------
+                */
+
+                if (!$postName) {
+
+                    $paragraphs = $xpath->query(
+                        "//div[contains(concat(' ', normalize-space(@class), ' '), ' entry-content ')]//p"
+                    );
+
+                    foreach ($paragraphs as $paragraph) {
+
+                        $text = trim(preg_replace(
+                            '/\s+/u',
+                            ' ',
+                            $paragraph->textContent
+                        ));
+
+                        if (preg_match('/Name\s+of\s+the\s+Post\s*:/iu', $text)) {
+
+                            $postName = preg_replace(
+                                '/^.*?Name\s+of\s+the\s+Post\s*:\s*/iu',
+                                '',
+                                $text
+                            );
+
+                            $postName = trim($postName);
+
+                            if ($postName !== '') {
+                                $matchedFormat = 'Format 6 - Entry Content / Name of the Post';
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                //update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
 
                     $updated = DB::table('job_details')
