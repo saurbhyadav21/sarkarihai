@@ -1,5 +1,14 @@
 <?php
-
+/*
+genral_post
+ews_post
+obc_post
+sc_post
+st_post
+post_name
+post_eligibility
+post_salary
+*/
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
