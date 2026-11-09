@@ -1526,14 +1526,52 @@
 
 
                     <div class="highlight-box">
-                        <div class="highlight-icon">📅</div>
-                        <div>
-                            <h3>
-                                {{ $job->end_date ? \Carbon\Carbon::parse($job->end_date)->format('d F Y') : 'N/A' }}
-                            </h3>
-                            <p>Last Date</p>
-                        </div>
-                    </div>
+    <div class="highlight-icon">📅</div>
+    <div>
+        <h3>
+            @php
+                $endDate = $job->end_date;
+
+                $months = [
+                    'जनवरी' => 'January',
+                    'फ़रवरी' => 'February',
+                    'फरवरी' => 'February',
+                    'मार्च' => 'March',
+                    'अप्रैल' => 'April',
+                    'मई' => 'May',
+                    'जून' => 'June',
+                    'जुलाई' => 'July',
+                    'अगस्त' => 'August',
+                    'सितंबर' => 'September',
+                    'अक्टूबर' => 'October',
+                    'नवंबर' => 'November',
+                    'दिसंबर' => 'December',
+                ];
+
+                $formattedDate = 'N/A';
+
+                if (!empty($endDate)) {
+                    $endDate = str_replace(
+                        array_keys($months),
+                        array_values($months),
+                        $endDate
+                    );
+
+                    if (preg_match('/\b\d{1,2}\s+[A-Za-z]+\s+\d{4}\b/i', $endDate, $matches)) {
+                        try {
+                            $formattedDate = \Carbon\Carbon::parse($matches[0])->format('d F Y');
+                        } catch (\Throwable $e) {
+                            $formattedDate = 'N/A';
+                        }
+                    }
+                }
+            @endphp
+
+            {{ $formattedDate }}
+        </h3>
+        <p>Last Date</p>
+    </div>
+</div>
 
 
                     <div class="highlight-box">
