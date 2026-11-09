@@ -13,7 +13,7 @@ class TestJobTitles extends Command
 {
     protected $signature = 'jobs:test-titles';
 
-    protected $description = 'Test scrape Post Name or Posts from job overview HTML';
+    protected $description = 'Test scrape job post title from different overview table formats';
 
     public function handle()
     {
@@ -45,7 +45,7 @@ class TestJobTitles extends Command
                 ])->timeout(30)->retry(2, 1000)->get($job->source_url);
 
                 if (!$response->successful()) {
-                    $this->error('Page request failed: ' . $response->status());
+                    $this->error('Request failed: ' . $response->status());
                     continue;
                 }
 
@@ -59,13 +59,22 @@ class TestJobTitles extends Command
                 $xpath = new DOMXPath($dom);
 
                 $postName = null;
+                $matchedFormat = null;
 
-                // Overview tables ke rows check karo
-                $rows = $xpath->query('//table//tr');
+                /*
+                |--------------------------------------------------------------------------
+                | FORMAT 1: FreeJobAlert fja-t-kv table
+                | Label: Post Name
+                |--------------------------------------------------------------------------
+                */
 
-                // Priority 1: Post Name
-                // Priority 2: Posts
-                foreach (['Post Name', 'Posts'] as $searchLabel) {
+                $tables1 = $xpath->query(
+                    "//table[contains(concat(' ', normalize-space(@class), ' '), ' fja-t-kv ')]"
+                );
+
+                foreach ($tables1 as $table) {
+
+                    $rows = $xpath->query('.//tr', $table);
 
                     foreach ($rows as $row) {
 
@@ -81,7 +90,7 @@ class TestJobTitles extends Command
                             $cells->item(0)->textContent
                         ));
 
-                        if (strcasecmp($label, $searchLabel) === 0) {
+                        if (strcasecmp($label, 'Post Name') === 0) {
 
                             $postName = trim(preg_replace(
                                 '/\s+/u',
@@ -90,7 +99,65 @@ class TestJobTitles extends Command
                             ));
 
                             if ($postName !== '') {
+                                $matchedFormat = 'Format 1 - fja-t-kv / Post Name';
                                 break 2;
+                            }
+                        }
+                    }
+                }
+
+                /*
+                |--------------------------------------------------------------------------
+                | FORMAT 2: Overview heading + scrollable-table
+                | Label: Posts
+                |--------------------------------------------------------------------------
+                */
+
+                if (!$postName) {
+
+                    $headings = $xpath->query(
+                        "//h2[contains(translate(normalize-space(.), 'OVERVIEW', 'overview'), 'overview')]"
+                    );
+
+                    foreach ($headings as $heading) {
+
+                        // Heading ke baad aane wali tables check karo
+                        $tables2 = $xpath->query(
+                            "following::table[contains(concat(' ', normalize-space(@class), ' '), ' scrollable-table ')]",
+                            $heading
+                        );
+
+                        foreach ($tables2 as $table) {
+
+                            $rows = $xpath->query('.//tr', $table);
+
+                            foreach ($rows as $row) {
+
+                                $cells = $xpath->query('./td', $row);
+
+                                if ($cells->length < 2) {
+                                    continue;
+                                }
+
+                                $label = trim(preg_replace(
+                                    '/\s+/u',
+                                    ' ',
+                                    $cells->item(0)->textContent
+                                ));
+
+                                if (strcasecmp($label, 'Posts') === 0) {
+
+                                    $postName = trim(preg_replace(
+                                        '/\s+/u',
+                                        ' ',
+                                        $cells->item(1)->textContent
+                                    ));
+
+                                    if ($postName !== '') {
+                                        $matchedFormat = 'Format 2 - Overview / scrollable-table / Posts';
+                                        break 3;
+                                    }
+                                }
                             }
                         }
                     }
@@ -99,9 +166,34 @@ class TestJobTitles extends Command
                 libxml_clear_errors();
 
                 if ($postName) {
+
+                    $this->info('Matched: ' . $matchedFormat);
                     $this->info('Extracted Post Title: ' . $postName);
+
                 } else {
-                    $this->warn('Post Name / Posts not found.');
+
+                    $this->warn('Post title not found.');
+
+                    // Debug: available table labels print karo
+                    $this->line('Available table labels:');
+
+                    $allRows = $xpath->query('//table//tr');
+
+                    foreach ($allRows as $row) {
+
+                        $cells = $xpath->query('./td', $row);
+
+                        if ($cells->length >= 2) {
+
+                            $label = trim(preg_replace(
+                                '/\s+/u',
+                                ' ',
+                                $cells->item(0)->textContent
+                            ));
+
+                            $this->line('- ' . $label);
+                        }
+                    }
                 }
 
             } catch (\Throwable $e) {
