@@ -3537,7 +3537,39 @@
                                         @elseif (in_array(strtolower($item['date']), ['tba', 'to be announced', 'not announced']))
                                             {{ $item['date'] }}
                                         @else
-                                            {{ \Carbon\Carbon::parse($item['date'])->format('d M Y') }}
+                                           @php
+    $dateText = $item['date'] ?? '';
+
+    $months = [
+        'जनवरी' => 'January',
+        'फ़रवरी' => 'February',
+        'फरवरी' => 'February',
+        'मार्च' => 'March',
+        'अप्रैल' => 'April',
+        'मई' => 'May',
+        'जून' => 'June',
+        'जुलाई' => 'July',
+        'अगस्त' => 'August',
+        'सितंबर' => 'September',
+        'अक्टूबर' => 'October',
+        'नवंबर' => 'November',
+        'दिसंबर' => 'December',
+    ];
+
+    $dateText = str_replace(array_keys($months), array_values($months), $dateText);
+
+    $formattedDate = 'N/A';
+
+    if (preg_match('/\b\d{1,2}\s+[A-Za-z]+\s+\d{4}\b/i', $dateText, $matches)) {
+        try {
+            $formattedDate = \Carbon\Carbon::parse($matches[0])->format('d M Y');
+        } catch (\Throwable $e) {
+            $formattedDate = 'N/A';
+        }
+    }
+@endphp
+
+{{ $formattedDate }}
                                         @endif
 
                                     </div>
