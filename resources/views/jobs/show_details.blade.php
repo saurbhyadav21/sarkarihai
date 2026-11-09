@@ -1008,8 +1008,8 @@
                         {{ $job->title }}
                     </h1>
 
-                     
-<p style="font-size:16px; line-height:1.9; text-align:justify;">
+                    
+<p style="font-size:15px; line-height:1.8; color:#ffffff; margin-bottom:0;">
 
     @if (!empty($job->organization_full_form))
         {{ $job->organization_full_form }}
@@ -1029,30 +1029,29 @@
 
     has released the official notification for the recruitment of
 
-    <strong style="font-size:19px; color:#d99b00; font-weight:700;">
+    <span style="font-size:16px; color:#ffc107; font-weight:700;">
         {{ $job->total_vacancies }} Vacancies
-    </strong>
+    </span>
 
     for the posts of
 
-    <strong style="font-size:19px; color:#0d6efd; font-weight:700;">
+    <span style="font-size:16px; color:#8fd3ff; font-weight:700;">
         {{ $job->post_name }}
-    </strong>.
+    </span>.
 
     The online application process will begin on
 
-    <strong style="font-size:17px; color:#198754;">
+    <span style="font-size:15px; color:#7ee2a8; font-weight:600;">
         {{ $job->start_date }}
-    </strong>,
+    </span>,
 
     and the last date to apply is
 
-    <strong style="font-size:17px; color:#dc3545;">
+    <span style="font-size:15px; color:#ff8585; font-weight:600;">
         {{ $job->end_date }}
-    </strong>.
+    </span>.
 
-    Candidates are advised to check the eligibility criteria, including age limit, before applying and submit their applications well before the deadline.
-
+    Candidates are advised to send their applications well before the deadline.
     In this article, you will find complete details about
     {{ $job->post_name }} Recruitment 2026, including vacancy details,
     eligibility criteria, age limit, salary, selection process,
