@@ -149,7 +149,8 @@ class TestJobTitles extends Command
                                     'post name',
                                     'post name(s)',
                                     'post(s)',
-                                    'posts'
+                                    'posts',
+                                    'posts covered'
                                 ], true)) {
 
                                     $postName = trim(preg_replace(
