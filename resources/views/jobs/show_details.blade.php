@@ -1008,30 +1008,92 @@
                         {{ $job->title }}
                     </h1>
 
-                    <p>
-                        @if (!empty($job->organization_full_form))
-                            ({{ $job->organization_full_form }})
-                        @else
-                            {{ $job->organization }}
-                        @endif,
-                        @if (!empty($job->state))
-                            {{ ucfirst($job->state) }}
-                        @else
-                            All India
-                        @endif
-                        @if (!empty($job->organization))
-                            ({{ $job->organization }})
-                        @else
-                        @endif has released the official notification for the recruitment of <span
-                            style="font-size: 30px;color: #f4b400;font-weight: bolder;">{{ $job->total_vacancies }}
-                            vacancies</span> for the posts of <span
-                            style="font-size: 30px;color: #f4b400;font-weight: bolder;">{{ $job->post_name }}</span>.The online application process
-                        will begin on <span style="font-size: 30px;color: #f4b400;font-weight: bolder;">{{ $job->start_date }}</span>, and the last date to apply is <span style="font-size: 30px;color: #f4b400;font-weight: bolder;">{{ $job->end_date }}</span>. Candidates must be 23
-                        to 64 years old to be eligible for this recruitment.Candidates are advised to send their
-                        applications well before the deadline. In this article, you will find complete details about Young
-                        Professional Recruitment 2026, including vacancy details, eligibility criteria, age limit, salary,
-                        selection process, email application steps, and important links.
-                    </p>
+                    
+@php
+    $organizationName = $job->organization_full_form ?: $job->organization;
+    $organizationShort = $job->organization_full_form && $job->organization_full_form != $job->organization
+        ? $job->organization
+        : null;
+
+    $location = $job->state ? ucwords($job->state) : 'All India';
+
+    $vacancies = $job->total_vacancies ?: 'Various';
+    $postName = $job->post_name ?: 'Various Posts';
+
+    $startDate = $job->start_date ?: 'To Be Announced';
+    $endDate = $job->end_date ?: 'To Be Announced';
+@endphp
+
+<div class="recruitment-intro bg-light border rounded p-3 mb-4">
+
+    <p class="mb-3" style="line-height:1.9; font-size:16px;">
+
+        <strong>{{ $organizationName }}</strong>
+
+        @if($organizationShort)
+            ({{ $organizationShort }})
+        @endif
+
+        @if($organizationName)
+            ,
+        @endif
+
+        <strong>{{ $location }}</strong>
+        has released the official notification for the recruitment of
+
+        <strong class="text-primary">{{ $vacancies }} {{ is_numeric($vacancies) && $vacancies == 1 ? 'vacancy' : 'vacancies' }}</strong>
+
+        for the post(s) of
+
+        <strong class="text-primary">{{ $postName }}</strong>.
+
+        Interested and eligible candidates can apply through the prescribed application process.
+    </p>
+
+    <div class="row g-2 mb-3">
+
+        <div class="col-md-6">
+            <div class="bg-white border rounded p-2 h-100">
+                <small class="text-muted d-block">Application Start Date</small>
+                <strong class="text-success">{{ $startDate }}</strong>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="bg-white border rounded p-2 h-100">
+                <small class="text-muted d-block">Last Date to Apply</small>
+                <strong class="text-danger">{{ $endDate }}</strong>
+            </div>
+        </div>
+
+    </div>
+
+    @if(!empty($job->min_age) || !empty($job->max_age_genral))
+        <div class="mb-2">
+            <strong>Age Limit:</strong>
+
+            @if(!empty($job->min_age))
+                {{ $job->min_age }} Years
+            @endif
+
+            @if(!empty($job->min_age) && !empty($job->max_age_genral))
+                to
+            @endif
+
+            @if(!empty($job->max_age_genral))
+                {{ $job->max_age_genral }} Years
+            @endif
+        </div>
+    @endif
+
+    <p class="mb-0 text-muted" style="font-size:14px; line-height:1.7;">
+        Candidates are advised to read the official notification carefully before applying.
+        This article provides complete information about vacancy details, eligibility criteria,
+        age limit, salary, selection process, application procedure and important links.
+    </p>
+
+</div>
+
 
                     {{-- <p>
                         Check complete notification, eligibility,
