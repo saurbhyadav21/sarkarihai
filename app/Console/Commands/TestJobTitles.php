@@ -518,6 +518,38 @@ class TestJobTitles extends Command
                 }
 
 
+                // Format - LIC HFL: H6 Heading + First Column Post Name
+                if (!$postName) {
+                    $headings = $xpath->query(
+                        "//h6[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'junior assistant')]"
+                    );
+
+                    foreach ($headings as $heading) {
+                        $tables = $xpath->query(
+                            "following::table[1]",
+                            $heading
+                        );
+
+                        if ($tables->length > 0) {
+                            $rows = $xpath->query('.//tr', $tables->item(0));
+
+                            if ($rows->length > 1) {
+                                $cells = $xpath->query('./td', $rows->item(1));
+
+                                if ($cells->length > 0) {
+                                    $postName = trim(
+                                        preg_replace('/\s+/u', ' ', $cells->item(0)->textContent)
+                                    );
+
+                                    if ($postName !== '') {
+                                        $matchedFormat = 'LIC HFL Format - H6 Heading / First Column';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
 
 
                 //update the table with the extracted post title and set post_flag to 1
