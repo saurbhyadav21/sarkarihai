@@ -162,6 +162,66 @@ class TestJobTitles extends Command
                     }
                 }
 
+
+
+                
+                /*
+                |--------------------------------------------------------------------------
+                | FORMAT 3: Walk-in Interview Date, Time and Venue
+                | Label: Posts
+                |--------------------------------------------------------------------------
+                */
+
+                if (!$postName) {
+
+                    $headings = $xpath->query(
+                        "//h2[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'walk-in interview date, time and venue')]"
+                    );
+
+                    foreach ($headings as $heading) {
+
+                        $tables3 = $xpath->query(
+                            "following::table[contains(concat(' ', normalize-space(@class), ' '), ' scrollable-table ')]",
+                            $heading
+                        );
+
+                        foreach ($tables3 as $table) {
+
+                            $rows = $xpath->query('.//tr', $table);
+
+                            foreach ($rows as $row) {
+
+                                $cells = $xpath->query('./td', $row);
+
+                                if ($cells->length < 2) {
+                                    continue;
+                                }
+
+                                $label = trim(preg_replace(
+                                    '/\s+/u',
+                                    ' ',
+                                    $cells->item(0)->textContent
+                                ));
+
+                                if (strcasecmp($label, 'Posts') === 0) {
+
+                                    $postName = trim(preg_replace(
+                                        '/\s+/u',
+                                        ' ',
+                                        $cells->item(1)->textContent
+                                    ));
+
+                                    if ($postName !== '') {
+                                        $matchedFormat = 'Format 3 - Walk-in Interview / Posts';
+                                        break 3;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
                 libxml_clear_errors();
 
                 if ($postName) {
