@@ -281,6 +281,64 @@ if (!$postName) {
 
 
 
+/*
+|--------------------------------------------------------------------------
+| FORMAT 5: Banking Associates at a Glance
+| Label: Post Name
+|--------------------------------------------------------------------------
+*/
+
+if (!$postName) {
+
+    $headings = $xpath->query(
+        "//h2[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'at a glance')]"
+    );
+
+    foreach ($headings as $heading) {
+
+        $tables = $xpath->query(
+            "following::table[contains(concat(' ', normalize-space(@class), ' '), ' scrollable-table ')]",
+            $heading
+        );
+
+        foreach ($tables as $table) {
+
+            $rows = $xpath->query('.//tr', $table);
+
+            foreach ($rows as $row) {
+
+                $cells = $xpath->query('./td', $row);
+
+                if ($cells->length < 2) {
+                    continue;
+                }
+
+                $label = trim(preg_replace(
+                    '/\s+/u',
+                    ' ',
+                    $cells->item(0)->textContent
+                ));
+
+                if (strcasecmp($label, 'Post Name') === 0) {
+
+                    $postName = trim(preg_replace(
+                        '/\s+/u',
+                        ' ',
+                        $cells->item(1)->textContent
+                    ));
+
+                    if ($postName !== '') {
+                        $matchedFormat = 'Format 5 - At a Glance / Post Name';
+                        break 3;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
                 libxml_clear_errors();
 
                 if ($postName) {
