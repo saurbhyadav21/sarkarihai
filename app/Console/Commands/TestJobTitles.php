@@ -319,7 +319,7 @@ if (!$postName) {
                     $cells->item(0)->textContent
                 ));
 
-                if (in_array(strtolower($label), ['post name', 'post name(s)', 'Post(s)'], true)) {
+                if (in_array(strtolower($label), ['post name', 'post name(s)', 'post(s)'], true)) {
 
                     $postName = trim(preg_replace(
                         '/\s+/u',
