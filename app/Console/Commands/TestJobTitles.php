@@ -649,7 +649,9 @@ if (!$postName) {
     foreach ($nodes as $node) {
         $label = trim(preg_replace('/\s+/u', ' ', $node->textContent));
 
-        if (strcasecmp(trim($label, " \t\n\r\0\x0B:"), 'Post Name') !== 0) {
+        $label = trim($label, " \t\n\r\0\x0B:");
+
+        if (!in_array(strtolower($label), ['post name', 'post'], true)) {
             continue;
         }
 
