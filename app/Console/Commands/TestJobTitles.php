@@ -144,7 +144,12 @@ class TestJobTitles extends Command
                                     $cells->item(0)->textContent
                                 ));
 
-                                if (strcasecmp($label, 'Posts') === 0) {
+                                if (in_array(strtolower($label), [
+                                    'post name',
+                                    'post name(s)',
+                                    'post(s)',
+                                    'posts'
+                                ], true)) {
 
                                     $postName = trim(preg_replace(
                                         '/\s+/u',
