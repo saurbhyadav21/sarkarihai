@@ -640,104 +640,10 @@ if (!$postName) {
 }
 
 
-// New Format - Full Page Post Name Search
-if (!$postName) {
+          
 
-    $nodes = $xpath->query(
-        "//*[self::td or self::th or self::strong or self::b or self::p or self::div or self::span]"
-    );
 
-    foreach ($nodes as $node) {
-
-        $label = trim(preg_replace('/\s+/u', ' ', $node->textContent));
-        $label = trim($label, " \t\n\r\0\x0B:");
-
-        if (!in_array(strtolower($label), ['post name', 'post'], true)) {
-            continue;
-        }
-
-        // Case 1: Table format
-        if ($node->parentNode && strtolower($node->parentNode->nodeName) === 'tr') {
-
-            $row = $node->parentNode;
-            $table = $row->parentNode;
-
-            // Case 1A: TH Post inside THEAD
-            if (
-                strtolower($node->nodeName) === 'th' &&
-                strtolower($table->nodeName) === 'thead'
-            ) {
-                $tableElement = $table->parentNode;
-
-                $tbodyRows = $xpath->query('./tbody/tr', $tableElement);
-
-                if ($tbodyRows->length > 0) {
-
-                    $cells = $xpath->query('./td', $tbodyRows->item(0));
-
-                    if ($cells->length > 0) {
-                        $postName = trim(preg_replace(
-                            '/\s+/u',
-                            ' ',
-                            $cells->item(0)->textContent
-                        ));
-                    }
-                }
-            }
-
-            // Case 1B: TD/TH Post Name label with next TD value
-            else {
-
-                $cells = $xpath->query('./td | ./th', $row);
-
-                if ($cells->length > 1) {
-
-                    $postName = trim(preg_replace(
-                        '/\s+/u',
-                        ' ',
-                        $cells->item(1)->textContent
-                    ));
-                }
-            }
-        }
-
-        // Case 2: Strong/B label ke baad paragraph mein value
-        if (
-            !$postName &&
-            in_array(strtolower($node->nodeName), ['strong', 'b'])
-        ) {
-            $postName = trim(preg_replace(
-                '/\s+/u',
-                ' ',
-                $node->parentNode->textContent
-            ));
-
-            $postName = preg_replace(
-                '/^Post(?:\s+Name)?\s*:\s*/iu',
-                '',
-                $postName
-            );
-        }
-
-        // Validate extracted value
-        if (
-            $postName &&
-            !in_array(strtolower(trim($postName)), [
-                'post',
-                'post name',
-                'essential qualification',
-                'essential qualification (educational)',
-                'experience required'
-            ], true)
-        ) {
-            $matchedFormat = 'New Format - Full Page Post Name Search';
-            break;
-        }
-
-        $postName = '';
-    }
-}
-                //update the table with the extracted post title and set post_flag to 1
+//update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
 
                     $updated = DB::table('job_details')
