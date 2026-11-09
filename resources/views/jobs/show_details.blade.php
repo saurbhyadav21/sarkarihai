@@ -1122,7 +1122,7 @@
                                 'सितंबर' => 'September',
                                 'अक्टूबर' => 'October',
                                 'नवंबर' => 'November',
-                                'दिसंबर' => 'December',
+                                'दिसंबर' => 'December', 
                             ];
 
                             $endDate = str_replace(array_keys($months), array_values($months), $endDate);
