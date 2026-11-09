@@ -229,121 +229,143 @@ class TestJobTitles extends Command
 
 
                 
-/*
-|--------------------------------------------------------------------------
-| FORMAT 4: Overview table
-| Label: Post Names
-|--------------------------------------------------------------------------
-*/
+                /*
+                |--------------------------------------------------------------------------
+                | FORMAT 4: Overview table
+                | Label: Post Names
+                |--------------------------------------------------------------------------
+                */
 
-if (!$postName) {
+                if (!$postName) {
 
-    $headings = $xpath->query(
-        "//h2[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'overview')]"
-    );
+                    $headings = $xpath->query(
+                        "//h2[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'overview')]"
+                    );
 
-    foreach ($headings as $heading) {
+                    foreach ($headings as $heading) {
 
-        $tables4 = $xpath->query(
-            "following::table[contains(concat(' ', normalize-space(@class), ' '), ' scrollable-table ')]",
-            $heading
-        );
+                        $tables4 = $xpath->query(
+                            "following::table[contains(concat(' ', normalize-space(@class), ' '), ' scrollable-table ')]",
+                            $heading
+                        );
 
-        foreach ($tables4 as $table) {
+                        foreach ($tables4 as $table) {
 
-            $rows = $xpath->query('.//tr', $table);
+                            $rows = $xpath->query('.//tr', $table);
 
-            foreach ($rows as $row) {
+                            foreach ($rows as $row) {
 
-                $cells = $xpath->query('./td', $row);
+                                $cells = $xpath->query('./td', $row);
 
-                if ($cells->length < 2) {
-                    continue;
-                }
+                                if ($cells->length < 2) {
+                                    continue;
+                                }
 
-                $label = trim(preg_replace(
-                    '/\s+/u',
-                    ' ',
-                    $cells->item(0)->textContent
-                ));
+                                $label = trim(preg_replace(
+                                    '/\s+/u',
+                                    ' ',
+                                    $cells->item(0)->textContent
+                                ));
 
-                if (strcasecmp($label, 'Post Names') === 0) {
+                                if (strcasecmp($label, 'Post Names') === 0) {
 
-                    $postName = trim(preg_replace(
-                        '/\s+/u',
-                        ' ',
-                        $cells->item(1)->textContent
-                    ));
+                                    $postName = trim(preg_replace(
+                                        '/\s+/u',
+                                        ' ',
+                                        $cells->item(1)->textContent
+                                    ));
 
-                    if ($postName !== '') {
-                        $matchedFormat = 'Format 4 - Overview / Post Names';
-                        break 3;
+                                    if ($postName !== '') {
+                                        $matchedFormat = 'Format 4 - Overview / Post Names';
+                                        break 3;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-            }
-        }
-    }
-}
 
 
 
-/*
-|--------------------------------------------------------------------------
-| FORMAT 5: Banking Associates at a Glance
-| Label: Post Name
-|--------------------------------------------------------------------------
-*/
+                /*
+                |--------------------------------------------------------------------------
+                | FORMAT 5: Banking Associates at a Glance
+                | Label: Post Name
+                |--------------------------------------------------------------------------
+                */
 
-if (!$postName) {
+                if (!$postName) {
 
-    $headings = $xpath->query(
-        "//h2[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'at a glance')]"
-    );
+                    $headings = $xpath->query(
+                        "//h2[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'at a glance')]"
+                    );
 
-    foreach ($headings as $heading) {
+                    foreach ($headings as $heading) {
 
-        $tables = $xpath->query(
-            "following::table[contains(concat(' ', normalize-space(@class), ' '), ' scrollable-table ')]",
-            $heading
-        );
+                        $tables = $xpath->query(
+                            "following::table[contains(concat(' ', normalize-space(@class), ' '), ' scrollable-table ')]",
+                            $heading
+                        );
 
-        foreach ($tables as $table) {
+                        foreach ($tables as $table) {
 
-            $rows = $xpath->query('.//tr', $table);
+                            $rows = $xpath->query('.//tr', $table);
 
-            foreach ($rows as $row) {
+                            foreach ($rows as $row) {
 
-                $cells = $xpath->query('./td', $row);
+                                $cells = $xpath->query('./td', $row);
 
-                if ($cells->length < 2) {
-                    continue;
-                }
+                                if ($cells->length < 2) {
+                                    continue;
+                                }
 
-                $label = trim(preg_replace(
-                    '/\s+/u',
-                    ' ',
-                    $cells->item(0)->textContent
-                ));
+                                $label = trim(preg_replace(
+                                    '/\s+/u',
+                                    ' ',
+                                    $cells->item(0)->textContent
+                                ));
 
-                if (in_array(strtolower($label), ['post name', 'post name(s)', 'post(s)'], true)) {
+                                if (in_array(strtolower($label), ['post name', 'post name(s)', 'post(s)'], true)) {
 
-                    $postName = trim(preg_replace(
-                        '/\s+/u',
-                        ' ',
-                        $cells->item(1)->textContent
-                    ));
+                                    $postName = trim(preg_replace(
+                                        '/\s+/u',
+                                        ' ',
+                                        $cells->item(1)->textContent
+                                    ));
 
-                    if ($postName !== '') {
-                        $matchedFormat = 'Format 5 - At a Glance / Post Name';
-                        break 3;
+                                    if ($postName !== '') {
+                                        $matchedFormat = 'Format 5 - At a Glance / Post Name';
+                                        break 3;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-            }
-        }
-    }
-}
 
+                if ($postName) {
 
+                    $updated = DB::table('job_details')
+                        ->where('id', $job->id)
+                        ->update([
+                            'post_name' => $postName,
+                            'post_flag' => 1,
+                            'updated_at' => now(),
+                        ]);
+
+                    $this->info('Matched: ' . $matchedFormat);
+                    $this->info('Extracted Post Title: ' . $postName);
+
+                    if ($updated) {
+                        $this->info('Database Updated: ID ' . $job->id);
+                    } else {
+                        $this->warn('Database not changed for ID: ' . $job->id);
+                    }
+
+                } else {
+
+                    $this->warn('Post title not found. ID: ' . $job->id);
+                }
 
                 libxml_clear_errors();
 
