@@ -1008,7 +1008,7 @@
                         {{ $job->title }}
                     </h1>
 
-                    
+                     
 <p style="font-size:16px; line-height:1.9; text-align:justify;">
 
     @if (!empty($job->organization_full_form))
