@@ -586,7 +586,58 @@ if (!$postName) {
     }
 }
 
+// Format - H6 Vacancy Details / Multiple Post Names
+if (!$postName) {
+    $headings = $xpath->query(
+        "//h6[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'vacancy details')]"
+    );
 
+    foreach ($headings as $heading) {
+        $tables = $xpath->query("following::table[1]", $heading);
+
+        if ($tables->length > 0) {
+            $rows = $xpath->query('.//tr', $tables->item(0));
+            $postNames = [];
+            $postColumn = null;
+
+            foreach ($rows as $row) {
+                $cells = $xpath->query('./td | ./th', $row);
+
+                if ($cells->length == 0) {
+                    continue;
+                }
+
+                // Find Post Name column
+                foreach ($cells as $index => $cell) {
+                    $label = strtolower(trim($cell->textContent));
+
+                    if ($label === 'post name') {
+                        $postColumn = $index;
+                        break;
+                    }
+                }
+
+                // Extract post names from subsequent rows
+                if ($postColumn !== null && $cells->length > $postColumn) {
+                    $value = trim(preg_replace(
+                        '/\s+/u',
+                        ' ',
+                        $cells->item($postColumn)->textContent
+                    ));
+
+                    if ($value !== '' && strtolower($value) !== 'post name') {
+                        $postNames[] = $value;
+                    }
+                }
+            }
+
+            if (!empty($postNames)) {
+                $postName = implode(', ', array_unique($postNames));
+                $matchedFormat = 'H6 Vacancy Details - Multiple Post Names';
+            }
+        }
+    }
+}
 
                 //update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
