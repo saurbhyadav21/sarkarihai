@@ -1025,7 +1025,7 @@
                         @endif has released the official notification for the recruitment of <span
                             style="font-size: 30px;color: #f4b400;font-weight: bolder;">{{ $job->total_vacancies }}
                             vacancies</span> for the posts of Post Title 1 and Post Title 2.The online application process
-                        will begin on {{ formatJobDate($job->start_date) }}, and the last date to apply is 31 October 2026. Candidates must be 23
+                        will begin on {{ $job->start_date }}, and the last date to apply is 31 October 2026. Candidates must be 23
                         to 64 years old to be eligible for this recruitment.Candidates are advised to send their
                         applications well before the deadline. In this article, you will find complete details about Young
                         Professional Recruitment 2026, including vacancy details, eligibility criteria, age limit, salary,
