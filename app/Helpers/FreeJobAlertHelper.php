@@ -2,6 +2,8 @@
 namespace App\Helpers;
 use DOMDocument;
 use DOMXPath;
+use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Http;
 
 class FreeJobAlertHelper
@@ -1940,5 +1942,73 @@ public static function extractAgeLimit($html)
 
     return $result;
 }
+
+
+if (!function_exists('formatJobDate')) {
+
+    function formatJobDate($value, $format = 'd M Y')
+    {
+        if (empty($value)) {
+            return 'N/A';
+        }
+
+        $months = [
+            'जनवरी' => 'January',
+            'फ़रवरी' => 'February',
+            'फरवरी' => 'February',
+            'मार्च' => 'March',
+            'अप्रैल' => 'April',
+            'मई' => 'May',
+            'जून' => 'June',
+            'जुलाई' => 'July',
+            'अगस्त' => 'August',
+            'सितंबर' => 'September',
+            'अक्टूबर' => 'October',
+            'नवंबर' => 'November',
+            'दिसंबर' => 'December',
+        ];
+
+        $dateText = str_replace(
+            array_keys($months),
+            array_values($months),
+            trim((string) $value)
+        );
+
+        // DD Month YYYY
+        if (preg_match('/\b(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})\b/i', $dateText, $matches)) {
+            $dateText = $matches[1] . ' ' . $matches[2] . ' ' . $matches[3];
+
+            try {
+                return Carbon::createFromFormat('!j F Y', $dateText)->format($format);
+            } catch (\Throwable $e) {
+                return 'N/A';
+            }
+        }
+
+        // YYYY-MM-DD
+        if (preg_match('/\b\d{4}-\d{2}-\d{2}\b/', $dateText, $matches)) {
+            try {
+                return Carbon::createFromFormat('!Y-m-d', $matches[0])->format($format);
+            } catch (\Throwable $e) {
+                return 'N/A';
+            }
+        }
+
+        // DD-MM-YYYY / DD/MM/YYYY
+        if (preg_match('/\b(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})\b/', $dateText, $matches)) {
+            try {
+                return Carbon::createFromFormat(
+                    '!d-m-Y',
+                    $matches[1] . '-' . $matches[2] . '-' . $matches[3]
+                )->format($format);
+            } catch (\Throwable $e) {
+                return 'N/A';
+            }
+        }
+
+        return 'N/A';
+    }
+}
+
 
 }

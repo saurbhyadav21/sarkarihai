@@ -319,18 +319,18 @@
         }
 
         /* .summary-card{
-                                                                                                                                                                                                                                                                                                                            background:#fff;
-                                                                                                                                                                                                                                                                                                                            border-radius:15px;
-                                                                                                                                                                                                                                                                                                                            box-shadow:
-                                                                                                                                                                                                                                                                                                                            0 10px 30px rgba(0,0,0,.08);
-                                                                                                                                                                                                                                                                                                                            padding:30px;
-                                                                                                                                                                                                                                                                                                                            border-top:4px solid #F59E0B;
-                                                                                                                                                                                                                                                                                                                            display:grid;
-                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                background:#fff;
+                                                                                                                                                                                                                                                                                                                                border-radius:15px;
+                                                                                                                                                                                                                                                                                                                                box-shadow:
+                                                                                                                                                                                                                                                                                                                                0 10px 30px rgba(0,0,0,.08);
+                                                                                                                                                                                                                                                                                                                                padding:30px;
+                                                                                                                                                                                                                                                                                                                                border-top:4px solid #F59E0B;
+                                                                                                                                                                                                                                                                                                                                display:grid;
+                                                                                                                                                                                                                                                                                                                                }
 
-                                                                                                                                                                                                                                                                                                                            .summary-item{
-                                                                                                                                                                                                                                                                                                                            text-align:center;
-                                                                                                                                                                                                                                                                                                                            } */
+                                                                                                                                                                                                                                                                                                                                .summary-item{
+                                                                                                                                                                                                                                                                                                                                text-align:center;
+                                                                                                                                                                                                                                                                                                                                } */
         .summary-card {
             background: linear-gradient(135deg, #062a3a, #0a5467);
             border-radius: 15px;
@@ -1025,7 +1025,7 @@
                         @endif has released the official notification for the recruitment of <span
                             style="font-size: 30px;color: #f4b400;font-weight: bolder;">{{ $job->total_vacancies }}
                             vacancies</span> for the posts of Post Title 1 and Post Title 2.The online application process
-                        will begin on 08 October 2026, and the last date to apply is 31 October 2026. Candidates must be 23
+                        will begin on {{ formatJobDate($job->start_date) }}, and the last date to apply is 31 October 2026. Candidates must be 23
                         to 64 years old to be eligible for this recruitment.Candidates are advised to send their
                         applications well before the deadline. In this article, you will find complete details about Young
                         Professional Recruitment 2026, including vacancy details, eligibility criteria, age limit, salary,
@@ -1122,7 +1122,7 @@
                                 'सितंबर' => 'September',
                                 'अक्टूबर' => 'October',
                                 'नवंबर' => 'November',
-                                'दिसंबर' => 'December', 
+                                'दिसंबर' => 'December',
                             ];
 
                             $endDate = str_replace(array_keys($months), array_values($months), $endDate);
@@ -1278,11 +1278,11 @@
         }
 
         /* .highlight-grid {
-                                                                                                                                                                                                                                                                                            display: grid;
-                                                                                                                                                                                                                                                                                   grid-template-columns: repeat(3, 1fr);
-                                                                                                                                                                                                                                                                                            gap: 20px;
-                                                                                                                                                                                                                                                                                            margin-top: 20px;
-                                                                                                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                                                                                                display: grid;
+                                                                                                                                                                                                                                                                                       grid-template-columns: repeat(3, 1fr);
+                                                                                                                                                                                                                                                                                                gap: 20px;
+                                                                                                                                                                                                                                                                                                margin-top: 20px;
+                                                                                                                                                                                                                                                                                            } */
 
         .highlight-box {
             background: #fff;
@@ -1526,52 +1526,48 @@
 
 
                     <div class="highlight-box">
-    <div class="highlight-icon">📅</div>
-    <div>
-        <h3>
-            @php
-                $endDate = $job->end_date;
+                        <div class="highlight-icon">📅</div>
+                        <div>
+                            <h3>
+                                @php
+                                    $endDate = $job->end_date;
 
-                $months = [
-                    'जनवरी' => 'January',
-                    'फ़रवरी' => 'February',
-                    'फरवरी' => 'February',
-                    'मार्च' => 'March',
-                    'अप्रैल' => 'April',
-                    'मई' => 'May',
-                    'जून' => 'June',
-                    'जुलाई' => 'July',
-                    'अगस्त' => 'August',
-                    'सितंबर' => 'September',
-                    'अक्टूबर' => 'October',
-                    'नवंबर' => 'November',
-                    'दिसंबर' => 'December',
-                ];
+                                    $months = [
+                                        'जनवरी' => 'January',
+                                        'फ़रवरी' => 'February',
+                                        'फरवरी' => 'February',
+                                        'मार्च' => 'March',
+                                        'अप्रैल' => 'April',
+                                        'मई' => 'May',
+                                        'जून' => 'June',
+                                        'जुलाई' => 'July',
+                                        'अगस्त' => 'August',
+                                        'सितंबर' => 'September',
+                                        'अक्टूबर' => 'October',
+                                        'नवंबर' => 'November',
+                                        'दिसंबर' => 'December',
+                                    ];
 
-                $formattedDate = 'N/A';
+                                    $formattedDate = 'N/A';
 
-                if (!empty($endDate)) {
-                    $endDate = str_replace(
-                        array_keys($months),
-                        array_values($months),
-                        $endDate
-                    );
+                                    if (!empty($endDate)) {
+                                        $endDate = str_replace(array_keys($months), array_values($months), $endDate);
 
-                    if (preg_match('/\b\d{1,2}\s+[A-Za-z]+\s+\d{4}\b/i', $endDate, $matches)) {
-                        try {
-                            $formattedDate = \Carbon\Carbon::parse($matches[0])->format('d F Y');
-                        } catch (\Throwable $e) {
-                            $formattedDate = 'N/A';
-                        }
-                    }
-                }
-            @endphp
+                                        if (preg_match('/\b\d{1,2}\s+[A-Za-z]+\s+\d{4}\b/i', $endDate, $matches)) {
+                                            try {
+                                                $formattedDate = \Carbon\Carbon::parse($matches[0])->format('d F Y');
+                                            } catch (\Throwable $e) {
+                                                $formattedDate = 'N/A';
+                                            }
+                                        }
+                                    }
+                                @endphp
 
-            {{ $formattedDate }}
-        </h3>
-        <p>Last Date</p>
-    </div>
-</div>
+                                {{ $formattedDate }}
+                            </h3>
+                            <p>Last Date</p>
+                        </div>
+                    </div>
 
 
                     <div class="highlight-box">
@@ -2027,11 +2023,11 @@
             <!-- CATEGORY WISE -->
             <style>
                 /* .category-grid {
-                                                                                                                                                                                                                                                display: grid;
-                                                                                                                                                                                                                                                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-                                                                                                                                                                                                                                                gap: 16px;
-                                                                                                                                                                                                                                                margin-top: 20px;
-                                                                                                                                                                                                                                            } */
+                                                                                                                                                                                                                                                    display: grid;
+                                                                                                                                                                                                                                                    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                                                                                                                                                                                                                                                    gap: 16px;
+                                                                                                                                                                                                                                                    margin-top: 20px;
+                                                                                                                                                                                                                                                } */
 
                 .category-card {
                     background: linear-gradient(135deg, #062a3a, #0a5467);
@@ -2281,8 +2277,8 @@
             <!-- SELECTION PROCESS -->
             <style>
                 /*=========================
-                                                                                                                                                                                  Selection Process
-                                                                                                                                                                                =========================*/
+                                                                                                                                                                                      Selection Process
+                                                                                                                                                                                    =========================*/
 
                 .selection-grid {
 
@@ -3537,39 +3533,51 @@
                                         @elseif (in_array(strtolower($item['date']), ['tba', 'to be announced', 'not announced']))
                                             {{ $item['date'] }}
                                         @else
-                                           @php
-    $dateText = $item['date'] ?? '';
+                                            @php
+                                                $dateText = $item['date'] ?? '';
 
-    $months = [
-        'जनवरी' => 'January',
-        'फ़रवरी' => 'February',
-        'फरवरी' => 'February',
-        'मार्च' => 'March',
-        'अप्रैल' => 'April',
-        'मई' => 'May',
-        'जून' => 'June',
-        'जुलाई' => 'July',
-        'अगस्त' => 'August',
-        'सितंबर' => 'September',
-        'अक्टूबर' => 'October',
-        'नवंबर' => 'November',
-        'दिसंबर' => 'December',
-    ];
+                                                $months = [
+                                                    'जनवरी' => 'January',
+                                                    'फ़रवरी' => 'February',
+                                                    'फरवरी' => 'February',
+                                                    'मार्च' => 'March',
+                                                    'अप्रैल' => 'April',
+                                                    'मई' => 'May',
+                                                    'जून' => 'June',
+                                                    'जुलाई' => 'July',
+                                                    'अगस्त' => 'August',
+                                                    'सितंबर' => 'September',
+                                                    'अक्टूबर' => 'October',
+                                                    'नवंबर' => 'November',
+                                                    'दिसंबर' => 'December',
+                                                ];
 
-    $dateText = str_replace(array_keys($months), array_values($months), $dateText);
+                                                $dateText = str_replace(
+                                                    array_keys($months),
+                                                    array_values($months),
+                                                    $dateText,
+                                                );
 
-    $formattedDate = 'N/A';
+                                                $formattedDate = 'N/A';
 
-    if (preg_match('/\b\d{1,2}\s+[A-Za-z]+\s+\d{4}\b/i', $dateText, $matches)) {
-        try {
-            $formattedDate = \Carbon\Carbon::parse($matches[0])->format('d M Y');
-        } catch (\Throwable $e) {
-            $formattedDate = 'N/A';
-        }
-    }
-@endphp
+                                                if (
+                                                    preg_match(
+                                                        '/\b\d{1,2}\s+[A-Za-z]+\s+\d{4}\b/i',
+                                                        $dateText,
+                                                        $matches,
+                                                    )
+                                                ) {
+                                                    try {
+                                                        $formattedDate = \Carbon\Carbon::parse($matches[0])->format(
+                                                            'd M Y',
+                                                        );
+                                                    } catch (\Throwable $e) {
+                                                        $formattedDate = 'N/A';
+                                                    }
+                                                }
+                                            @endphp
 
-{{ $formattedDate }}
+                                            {{ $formattedDate }}
                                         @endif
 
                                     </div>
