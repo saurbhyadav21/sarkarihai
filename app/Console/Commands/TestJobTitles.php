@@ -1041,6 +1041,251 @@ if (!$postName) {
 }
 
 
+// Format - Haryana HTET Vacancy Details / Post Column
+if (!$postName) {
+
+    if (preg_match(
+        '~<h6\b[^>]*>.*?Haryana\s+HTET.*?Vacancy\s+Details.*?</h6>(.*)~is',
+        $html,
+        $sectionMatch
+    )) {
+
+        // Heading ke baad tables
+        preg_match_all(
+            '~<table\b[^>]*>.*?</table>~is',
+            $sectionMatch[1],
+            $tableMatches
+        );
+
+        foreach ($tableMatches[0] as $tableHtml) {
+
+            // Table ki rows
+            preg_match_all(
+                '~<tr\b[^>]*>(.*?)</tr>~is',
+                $tableHtml,
+                $rowMatches
+            );
+
+            if (count($rowMatches[1]) < 2) {
+                continue;
+            }
+
+            // First row mein Post column identify karo
+            preg_match_all(
+                '~<(?:td|th)\b[^>]*>(.*?)</(?:td|th)>~is',
+                $rowMatches[1][0],
+                $headerCells
+            );
+
+            $postColumn = null;
+
+            foreach ($headerCells[1] as $index => $cellHtml) {
+
+                $label = html_entity_decode(
+                    strip_tags($cellHtml),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $label = trim(preg_replace('/\s+/u', ' ', $label));
+
+                if (strcasecmp($label, 'Post') === 0) {
+                    $postColumn = $index;
+                    break;
+                }
+            }
+
+            if ($postColumn === null) {
+                continue;
+            }
+
+            // Post column ki values extract karo
+            $postNames = [];
+
+            for ($i = 1; $i < count($rowMatches[1]); $i++) {
+
+                preg_match_all(
+                    '~<(?:td|th)\b[^>]*>(.*?)</(?:td|th)>~is',
+                    $rowMatches[1][$i],
+                    $cells
+                );
+
+                if (isset($cells[1][$postColumn])) {
+
+                    $value = html_entity_decode(
+                        strip_tags($cells[1][$postColumn]),
+                        ENT_QUOTES | ENT_HTML5,
+                        'UTF-8'
+                    );
+
+                    $value = trim(preg_replace('/\s+/u', ' ', $value));
+
+                    if ($value !== '') {
+                        $postNames[] = $value;
+                    }
+                }
+            }
+
+            if (!empty($postNames)) {
+
+                $postName = implode(', ', array_unique($postNames));
+
+                $matchedFormat = 'Haryana HTET - Vacancy Details / Post Column';
+
+                break;
+            }
+        }
+    }
+}
+
+
+// Format - NEET PG Course Details / Course Column
+if (!$postName) {
+
+    if (preg_match(
+        '~<h6\b[^>]*>.*?NEET\s+PG.*?Course\s+Details.*?</h6>(.*)~is',
+        $html,
+        $sectionMatch
+    )) {
+
+        if (preg_match(
+            '~<table\b[^>]*>(.*?)</table>~is',
+            $sectionMatch[1],
+            $tableMatch
+        )) {
+
+            preg_match_all(
+                '~<tr\b[^>]*>(.*?)</tr>~is',
+                $tableMatch[1],
+                $rowMatches
+            );
+
+            if (isset($rowMatches[1][1])) {
+
+                preg_match(
+                    '~<td\b[^>]*>(.*?)</td>~is',
+                    $rowMatches[1][1],
+                    $cellMatch
+                );
+
+                if (!empty($cellMatch[1])) {
+
+                    $postName = html_entity_decode(
+                        strip_tags($cellMatch[1]),
+                        ENT_QUOTES | ENT_HTML5,
+                        'UTF-8'
+                    );
+
+                    $postName = trim(preg_replace('/\s+/u', ' ', $postName));
+
+                    if ($postName !== '') {
+                        $matchedFormat = 'NEET PG - Course Details';
+                    } else {
+                        $postName = null;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Format - JEECUP Admission Details / Course Name Column
+if (!$postName) {
+
+    if (preg_match(
+        '~<h6\b[^>]*>.*?JEECUP.*?Admission\s+Details.*?</h6>(.*)~is',
+        $html,
+        $sectionMatch
+    )) {
+
+        preg_match_all(
+            '~<table\b[^>]*>.*?</table>~is',
+            $sectionMatch[1],
+            $tableMatches
+        );
+
+        foreach ($tableMatches[0] as $tableHtml) {
+
+            preg_match_all(
+                '~<tr\b[^>]*>(.*?)</tr>~is',
+                $tableHtml,
+                $rowMatches
+            );
+
+            if (count($rowMatches[1]) < 2) {
+                continue;
+            }
+
+            // Header row mein Course Name column find karo
+            preg_match_all(
+                '~<(?:td|th)\b[^>]*>(.*?)</(?:td|th)>~is',
+                $rowMatches[1][0],
+                $headerCells
+            );
+
+            $courseColumn = null;
+
+            foreach ($headerCells[1] as $index => $cellHtml) {
+
+                $label = html_entity_decode(
+                    strip_tags($cellHtml),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $label = trim(preg_replace('/\s+/u', ' ', $label));
+
+                if (strcasecmp($label, 'Course Name') === 0) {
+                    $courseColumn = $index;
+                    break;
+                }
+            }
+
+            if ($courseColumn === null) {
+                continue;
+            }
+
+            // Course Name column ki values nikalo
+            $courseNames = [];
+
+            for ($i = 1; $i < count($rowMatches[1]); $i++) {
+
+                preg_match_all(
+                    '~<(?:td|th)\b[^>]*>(.*?)</(?:td|th)>~is',
+                    $rowMatches[1][$i],
+                    $cells
+                );
+
+                if (isset($cells[1][$courseColumn])) {
+
+                    $value = html_entity_decode(
+                        strip_tags($cells[1][$courseColumn]),
+                        ENT_QUOTES | ENT_HTML5,
+                        'UTF-8'
+                    );
+
+                    $value = trim(preg_replace('/\s+/u', ' ', $value));
+
+                    if ($value !== '') {
+                        $courseNames[] = $value;
+                    }
+                }
+            }
+
+            if (!empty($courseNames)) {
+
+                $postName = implode(', ', array_unique($courseNames));
+
+                $matchedFormat = 'JEECUP - Admission Details / Course Name';
+
+                break;
+            }
+        }
+    }
+}
+
+
 
 
 //update the table with the extracted post title and set post_flag to 1
