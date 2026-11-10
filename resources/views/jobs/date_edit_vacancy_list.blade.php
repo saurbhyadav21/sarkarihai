@@ -79,15 +79,10 @@
                 </p>
 
                 @php
-    $chunks =$jobs->getCollection()->chunk(25);
+                    $chunks = $jobs->getCollection()->chunk(25);
 
-    foreach ($chunks as$chunk) {
-        // जॉब्स की आईडी और टाइटल्स की लिस्ट तैयार करना ताकि AI उन्हें सर्च कर सके
-        $jobDataList = $chunk->map(function ($job) {
-            return "ID: {$job->id}, Title: {$job->title}";
-        })->implode("\n");
-
-        $prompt = <<<PROMPT
+                    // Base Prompt Definition
+                    $basePrompt = <<<'PROMPT'
 You are an expert recruitment data extractor and deep research analyst.
 
 TASK:
@@ -107,7 +102,8 @@ Each object must contain these 12 fields:
     "correction_date": "[Correction Date or N/A with reason]",
     "exam_date": "[Exam Date or N/A with reason]",
     "result_date": "[Result Date status in Hindi or N/A with reason]",
-    "info_date": "[Info Date details or N/A with reason]"
+    "info_date": "[Info Date details or N/A with reason]",
+    "important_date": "[Key Highlighted Date or N/A with reason]"
 }
 
 INSTRUCTIONS & RULES:
@@ -117,15 +113,8 @@ INSTRUCTIONS & RULES:
 4. Copy exact ID. Never change IDs.
 5. Return exactly one object per supplied job, in the same order. Do not skip any job.
 6. Return valid JSON array only. No markdown formatting (no ```json ... ``` tags), no commentary.
-
-JOB DATA:
-{$jobDataList}
 PROMPT;
-
-        // यहाँ आप अपने AI API को कॉल कर सकते हैं:
-        // $response = AiService::generate($prompt);
-    }
-@endphp
+                @endphp
 
                 <div class="table-responsive">
 
@@ -142,92 +131,86 @@ PROMPT;
                         </thead>
 
                         <tbody>
-    @forelse($chunks as $chunkIndex => $chunk)
+                            @forelse($chunks as $chunkIndex => $chunk)
 
-        @php
-            $ids = $chunk->pluck('id')->implode(', ');
+                                @php
+                                    $jobDataList = $chunk->map(function ($job) {
+                                        return "ID: {$job->id}, Title: {$job->title}";
+                                    })->implode("\n");
 
-            $titles = $chunk
-                ->pluck('title')
-                ->map(fn($title) => trim($title ?? ''))
-                ->implode(', ');
+                                    $chunkPrompt = $basePrompt . "\n\nJOB DATA:\n" . $jobDataList;
+                                @endphp
 
-            $chunkPrompt = $prompt . "\n\nJOB IDs:\n" . $ids .
-                "\n\nJOB TITLES:\n" . $titles .
-                "\n\nFor each ID, extract dates from its corresponding job notification. Use the supplied job data below.";
-        @endphp
+                                <tr>
+                                    <td>
+                                        <strong>Chunk {{ $chunkIndex + 1 }}</strong>
+                                        <br>
+                                        <span class="badge bg-primary">{{ $chunk->count() }} Jobs</span>
+                                        <br>
+                                        <small>{{ $chunk->first()->id }} - {{ $chunk->last()->id }}</small>
+                                    </td>
 
-        <tr>
-            <td>
-                <strong>Chunk {{ $chunkIndex + 1 }}</strong>
-                <br>
-                <span class="badge bg-primary">{{ $chunk->count() }} Jobs</span>
-                <br>
-                <small>{{ $chunk->first()->id }} - {{ $chunk->last()->id }}</small>
-            </td>
+                                    <td>
+                                        @foreach($chunk as $job)
+                                            <div class="mb-2">
+                                                <a href="{{ $job->source_url ?? '#' }}" target="_blank" rel="noopener noreferrer">
+                                                    ID: {{ $job->id }} - {{ $job->source ?? 'Source' }}
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </td>
 
-            <td>
-                @foreach($chunk as $job)
-                    <div class="mb-2">
-                        <a href="{{ $job->source_url }}" target="_blank"
-                           rel="noopener noreferrer">
-                            ID: {{ $job->id }} - {{ $job->source ?? 'Source' }}
-                        </a>
-                    </div>
-                @endforeach
-            </td>
+                                    <td class="title-box">
+                                        {{ $chunk->pluck('title')->implode(', ') }}
 
-            <td class="title-box">
-                {{ $titles }}
+                                        <button type="button"
+                                            class="btn btn-sm btn-outline-primary mt-2"
+                                            onclick="copyText(this, @js($chunk->pluck('title')->implode(', ')))">
+                                            Copy All {{ $chunk->count() }} Titles
+                                        </button>
+                                    </td>
 
-                <button type="button"
-                    class="btn btn-sm btn-outline-primary mt-2"
-                    onclick="copyText(this, @js($titles))">
-                    Copy All {{ $chunk->count() }} Titles
-                </button>
-            </td>
+                                    <td class="prompt-box">
+                                        <textarea class="form-control mb-2" rows="12" readonly>{{ $chunkPrompt }}</textarea>
 
-            <td class="prompt-box">
-                <textarea class="form-control mb-2" rows="12" readonly>{{ $chunkPrompt }}</textarea>
+                                        <button type="button"
+                                            class="btn btn-sm btn-primary w-100"
+                                            onclick="copyText(this, this.parentElement.querySelector('textarea').value)">
+                                            Copy Prompt
+                                        </button>
+                                    </td>
 
-                <button type="button"
-                    class="btn btn-sm btn-primary w-100"
-                    onclick="copyText(this, this.parentElement.querySelector('textarea').value)">
-                    Copy Prompt
-                </button>
-            </td>
+                                    <td class="output-box">
+                                        <form action="{{ route('job.date.update') }}" method="POST">
+                                            @csrf
 
-            <td class="output-box">
-                <form action="{{ route('job.date.update') }}" method="POST">
-                    @csrf
+                                            <textarea name="date_json"
+                                                class="form-control"
+                                                rows="20"
+                                                placeholder="Paste Jobs JSON Array Here..."
+                                                required>{{ old('date_json') }}</textarea>
 
-                    <textarea name="date_json"
-                        class="form-control"
-                        rows="20"
-                        placeholder="Paste 10 Jobs JSON Array Here..."
-                        required>{{ old('date_json') }}</textarea>
+                                            <button type="submit" class="btn btn-success mt-2 w-100">
+                                                Submit & Update {{ $chunk->count() }} Jobs
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
 
-                    <button type="submit" class="btn btn-success mt-2 w-100">
-                        Submit & Update {{ $chunk->count() }} Jobs
-                    </button>
-                </form>
-            </td>
-        </tr>
-
-    @empty
-        <tr>
-            <td colspan="5" class="text-center text-success">
-                No pending records found.
-            </td>
-        </tr>
-    @endforelse
-</tbody>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center text-success">
+                                        No pending records found.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
 
                     </table>
 
                 </div>
 
-                {{ $jobs->appends(['limit' => $limit])->links('pagination::bootstrap-5') }}
+                {{ $jobs->appends(request()->query())->links('pagination::bootstrap-5') }}
 
             </div>
         </div>
@@ -236,17 +219,12 @@ PROMPT;
 
     <script>
         function copyText(button, text) {
-
             navigator.clipboard.writeText(text).then(function() {
-
                 let oldText = button.innerText;
-
                 button.innerText = 'Copied!';
-
                 setTimeout(function() {
                     button.innerText = oldText;
                 }, 1500);
-
             }).catch(function() {
                 alert('Copy failed. Please copy manually.');
             });
