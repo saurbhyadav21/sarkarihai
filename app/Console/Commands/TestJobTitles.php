@@ -1385,7 +1385,81 @@ if (!$postName) {
 
 
 
+// Format - UP TET Vacancy Details / Eligibility Criteria
+if (!$postName) {
 
+    if (preg_match(
+        '~<h6\b[^>]*>.*?Uttar\s+Pradesh\s+TET.*?Vacancy\s+Details.*?</h6>(.*)~is',
+        $html,
+        $sectionMatch
+    )) {
+
+        preg_match_all(
+            '~<table\b[^>]*>(.*?)</table>~is',
+            $sectionMatch[1],
+            $tableMatches
+        );
+
+        foreach ($tableMatches[1] as $tableHtml) {
+
+            // Table mein Eligibility Criteria wali heading honi chahiye
+            if (stripos($value, 'UPESSC Uttar Pradesh TET') !== false ||
+                stripos($value, 'Eligibility Criteria') !== false ||
+                stripos($value, 'TET Primary Teacher') === false &&
+                stripos($value, 'TET') === false) {
+                continue;
+            }
+
+            preg_match_all(
+                '~<tr\b[^>]*>(.*?)</tr>~is',
+                $tableHtml,
+                $rowMatches
+            );
+
+            $postNames = [];
+
+            foreach ($rowMatches[1] as $row) {
+
+                // First column ka text nikalo
+                if (!preg_match(
+                    '~<td\b[^>]*>(.*?)</td>~is',
+                    $row,
+                    $cellMatch
+                )) {
+                    continue;
+                }
+
+                $value = html_entity_decode(
+                    strip_tags($cellMatch[1]),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $value = trim(preg_replace('/\s+/u', ' ', $value));
+
+                // Header / blank rows skip karo
+                if (
+                    $value === '' ||
+                    stripos($value, 'UPESSC Uttar Pradesh TET') !== false ||
+                    stripos($value, 'Eligibility Criteria') !== false
+                ) {
+                    continue;
+                }
+
+                $postNames[] = $value;
+            }
+
+            if (!empty($postNames)) {
+
+                $postName = implode(', ', array_unique($postNames));
+
+                $matchedFormat = 'UP TET - Vacancy Details / First Column';
+
+                break;
+            }
+        }
+    }
+}
 
 
 
