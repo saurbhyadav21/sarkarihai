@@ -640,7 +640,81 @@ if (!$postName) {
 }
 
 
-          
+ // Format - H6 Vacancy Details / Multiple Tables / Post Name
+if (!$postName) {
+
+    $headings = $xpath->query(
+        "//h6[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'vacancy details')]"
+    );
+
+    foreach ($headings as $heading) {
+
+        $tables = $xpath->query("following::table", $heading);
+
+        foreach ($tables as $table) {
+
+            $rows = $xpath->query('./tbody/tr', $table);
+
+            if ($rows->length < 2) {
+                continue;
+            }
+
+            $headerCells = $xpath->query('./td | ./th', $rows->item(0));
+
+            $postColumn = null;
+
+            foreach ($headerCells as $index => $cell) {
+
+                $label = strtolower(trim(preg_replace(
+                    '/\s+/u',
+                    ' ',
+                    $cell->textContent
+                )));
+
+                if ($label === 'post name') {
+                    $postColumn = $index;
+                    break;
+                }
+            }
+
+            if ($postColumn !== null) {
+
+                $postNames = [];
+
+                for ($i = 1; $i < $rows->length; $i++) {
+
+                    $cells = $xpath->query(
+                        './td | ./th',
+                        $rows->item($i)
+                    );
+
+                    if ($cells->length > $postColumn) {
+
+                        $value = trim(preg_replace(
+                            '/\s+/u',
+                            ' ',
+                            $cells->item($postColumn)->textContent
+                        ));
+
+                        if ($value !== '') {
+                            $postNames[] = $value;
+                        }
+                    }
+                }
+
+                if (!empty($postNames)) {
+                    $postName = implode(', ', array_unique($postNames));
+                    $matchedFormat = 'H6 Vacancy Details - Post Name Column';
+                    break;
+                }
+            }
+        }
+
+        if ($postName) {
+            break;
+        }
+    }
+}         
 
 
 //update the table with the extracted post title and set post_flag to 1
