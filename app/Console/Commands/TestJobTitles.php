@@ -878,60 +878,97 @@ if (!$postName) {
     }
 }
 
-// Format - H6 Vacancy Details / District Wise Anganwadi Table
+// Format - District Name / Anganwadi District Wise Table
 if (!$postName) {
-    $headings = $xpath->query(
-        "//h6[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'vacancy details')]"
-    );
 
-    foreach ($headings as $heading) {
-        $tables = $xpath->query("following::table", $heading);
+    $tables = $xpath->query("//table");
 
-        foreach ($tables as $table) {
-            $rows = $xpath->query('.//tr', $table);
+    foreach ($tables as $table) {
 
-            if ($rows->length < 2) {
+        $rows = $xpath->query('.//tr', $table);
+
+        if ($rows->length < 2) {
+            continue;
+        }
+
+        $districtColumn = null;
+        $headerRowIndex = null;
+
+        // District Name header find karo
+        foreach ($rows as $rowIndex => $row) {
+
+            $cells = $xpath->query('./td | ./th', $row);
+            $columnIndex = 0;
+
+            foreach ($cells as $cell) {
+
+                $label = trim(preg_replace(
+                    '/\s+/u',
+                    ' ',
+                    $cell->textContent
+                ));
+
+                if (strcasecmp($label, 'District Name') === 0) {
+                    $districtColumn = $columnIndex;
+                    $headerRowIndex = $rowIndex;
+                    break 2;
+                }
+
+                $columnIndex++;
+            }
+        }
+
+        if ($districtColumn === null) {
+            continue;
+        }
+
+        $districtNames = [];
+
+        // Header ke baad first column se district names nikalo
+        foreach ($rows as $rowIndex => $row) {
+
+            if ($rowIndex <= $headerRowIndex) {
                 continue;
             }
 
-            $headerText = strtolower(trim(preg_replace(
+            $cells = $xpath->query('./td | ./th', $row);
+
+            if ($cells->length <= $districtColumn) {
+                continue;
+            }
+
+            $value = trim(preg_replace(
                 '/\s+/u',
                 ' ',
-                $rows->item(0)->textContent
-            )));
+                $cells->item($districtColumn)->textContent
+            ));
 
-            // Required headers check
+            $value = html_entity_decode(
+                $value,
+                ENT_QUOTES | ENT_HTML5,
+                'UTF-8'
+            );
+
             if (
-                strpos($headerText, 'no. of post') === false ||
-                strpos($headerText, 'last date') === false ||
-                strpos($headerText, 'notification') === false
+                $value !== '' &&
+                !in_array(strtolower($value), [
+                    'district name',
+                    'last date',
+                    'notification',
+                    'no. of post'
+                ])
             ) {
-                continue;
+                $districtNames[] = $value;
             }
+        }
 
-            $names = [];
+        if (!empty($districtNames)) {
 
-            for ($i = 1; $i < $rows->length; $i++) {
-                $cells = $xpath->query('./td | ./th', $rows->item($i));
+            $postName = implode(', ', array_unique($districtNames));
 
-                if ($cells->length > 0) {
-                    $value = trim(preg_replace(
-                        '/\s+/u',
-                        ' ',
-                        $cells->item(0)->textContent
-                    ));
+            $matchedFormat = 'Anganwadi - District Name Column';
 
-                    if ($value !== '') {
-                        $names[] = $value;
-                    }
-                }
-            }
-
-            if (!empty($names)) {
-                $postName = implode(', ', array_unique($names));
-                $matchedFormat = 'Anganwadi Format - Vacancy Details / First Column';
-                break 2;
-            }
+            break;
         }
     }
 }
