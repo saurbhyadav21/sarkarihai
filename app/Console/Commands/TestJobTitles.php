@@ -972,47 +972,77 @@ if (!$postName) {
         }
     }
 }
-// Format - Admission Details / First Column Value
+
+
+
+
+
+
+// Format - BSEB DELED Admission Details
 if (!$postName) {
 
-    $headings = $xpath->query(
-        "//h6[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'admission details')]"
-    );
+    // Admission Details heading ke baad ka HTML
+    if (preg_match(
+        '~<h6\b[^>]*>.*?Admission\s+Details.*?</h6>(.*)~is',
+        $html,
+        $sectionMatch
+    )) {
 
-    foreach ($headings as $heading) {
+        // Heading ke baad pehli table
+        if (preg_match(
+            '~<table\b[^>]*>(.*?)</table>~is',
+            $sectionMatch[1],
+            $tableMatch
+        )) {
 
-        $tables = $xpath->query("following::table[1]", $heading);
+            // Table ki rows
+            preg_match_all(
+                '~<tr\b[^>]*>(.*?)</tr>~is',
+                $tableMatch[1],
+                $rowMatches
+            );
 
-        if ($tables->length > 0) {
+            foreach ($rowMatches[1] as $row) {
 
-            $rows = $xpath->query('.//tr', $tables->item(0));
-
-            for ($i = 1; $i < $rows->length; $i++) {
-
-                $cells = $xpath->query('./td | ./th', $rows->item($i));
-
-                if ($cells->length < 2) {
+                // Candidate eligibility wali row identify karo
+                if (stripos($row, 'Candidates who have completed') === false) {
                     continue;
                 }
 
-                $value = trim(preg_replace(
-                    '/\s+/u',
-                    ' ',
-                    $cells->item(0)->textContent
-                ));
+                // Row ke cells nikalo
+                preg_match_all(
+                    '~<td\b[^>]*>(.*?)</td>~is',
+                    $row,
+                    $cellMatches
+                );
 
-                if (
-                    $value !== '' &&
-                    stripos($value, 'D.El.Ed') !== false
-                ) {
-                    $postName = $value;
-                    $matchedFormat = 'Admission Details - First Column';
-                    break 2;
+                if (!empty($cellMatches[1][0])) {
+
+                    $postName = html_entity_decode(
+                        strip_tags($cellMatches[1][0]),
+                        ENT_QUOTES | ENT_HTML5,
+                        'UTF-8'
+                    );
+
+                    $postName = preg_replace('/\x{00A0}/u', ' ', $postName);
+                    $postName = trim(preg_replace('/\s+/u', ' ', $postName));
+
+                    if ($postName !== '') {
+                        $matchedFormat = 'BSEB DELED - Admission Details';
+                    } else {
+                        $postName = null;
+                    }
                 }
+
+                break;
             }
         }
     }
 }
+
+
+
+
 //update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
 
