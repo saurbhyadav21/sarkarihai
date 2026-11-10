@@ -1536,6 +1536,103 @@ if (!$postName) {
 
 
 
+// Format - UPPSC Vacancy Details / Exam Column
+if (!$postName) {
+
+    if (preg_match(
+        '~<h6\b[^>]*>.*?UPPSC.*?Vacancy\s+Details.*?</h6>(.*)~is',
+        $html,
+        $sectionMatch
+    )) {
+
+        preg_match_all(
+            '~<table\b[^>]*>(.*?)</table>~is',
+            $sectionMatch[1],
+            $tableMatches
+        );
+
+        foreach ($tableMatches[1] as $tableHtml) {
+
+            preg_match_all(
+                '~<tr\b[^>]*>(.*?)</tr>~is',
+                $tableHtml,
+                $rowMatches
+            );
+
+            if (count($rowMatches[1]) < 2) {
+                continue;
+            }
+
+            // Header row mein Exam column identify karo
+            preg_match_all(
+                '~<(?:td|th)\b[^>]*>(.*?)</(?:td|th)>~is',
+                $rowMatches[1][0],
+                $headerCells
+            );
+
+            $examColumn = null;
+
+            foreach ($headerCells[1] as $index => $cellHtml) {
+
+                $label = html_entity_decode(
+                    strip_tags($cellHtml),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $label = trim(preg_replace('/\s+/u', ' ', $label));
+
+                if (strcasecmp($label, 'Exam') === 0) {
+                    $examColumn = $index;
+                    break;
+                }
+            }
+
+            if ($examColumn === null) {
+                continue;
+            }
+
+            // Exam column ki values extract karo
+            $examNames = [];
+
+            for ($i = 1; $i < count($rowMatches[1]); $i++) {
+
+                preg_match_all(
+                    '~<(?:td|th)\b[^>]*>(.*?)</(?:td|th)>~is',
+                    $rowMatches[1][$i],
+                    $cells
+                );
+
+                if (!isset($cells[1][$examColumn])) {
+                    continue;
+                }
+
+                $value = html_entity_decode(
+                    strip_tags($cells[1][$examColumn]),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $value = preg_replace('/\x{00A0}/u', ' ', $value);
+                $value = trim(preg_replace('/\s+/u', ' ', $value));
+
+                if ($value !== '') {
+                    $examNames[] = $value;
+                }
+            }
+
+            if (!empty($examNames)) {
+
+                $postName = implode(', ', array_unique($examNames));
+
+                $matchedFormat = 'UPPSC - Vacancy Details / Exam Column';
+
+                break;
+            }
+        }
+    }
+}
+
 
 
 
