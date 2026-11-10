@@ -751,6 +751,77 @@ if (!$postName) {
         }
     }
 }
+
+
+// Format - H6 Vacancy Details / Course Name Column
+if (!$postName) {
+    $headings = $xpath->query(
+        "//h6[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'vacancy details')]"
+    );
+
+    foreach ($headings as $heading) {
+        $tables = $xpath->query("following::table", $heading);
+
+        foreach ($tables as $table) {
+            $rows = $xpath->query('.//tr', $table);
+
+            if ($rows->length < 2) {
+                continue;
+            }
+
+            // First row ke column headings check karo
+            $headerCells = $xpath->query('./td | ./th', $rows->item(0));
+            $courseColumn = null;
+
+            foreach ($headerCells as $index => $cell) {
+                $label = strtolower(trim(preg_replace(
+                    '/\s+/u',
+                    ' ',
+                    $cell->textContent
+                )));
+
+                if ($label === 'course name') {
+                    $courseColumn = $index;
+                    break;
+                }
+            }
+
+            // Course Name column milne par saari rows se values lo
+            if ($courseColumn !== null) {
+                $names = [];
+
+                for ($i = 1; $i < $rows->length; $i++) {
+                    $cells = $xpath->query('./td | ./th', $rows->item($i));
+
+                    if ($cells->length > $courseColumn) {
+                        $value = trim(preg_replace(
+                            '/\s+/u',
+                            ' ',
+                            $cells->item($courseColumn)->textContent
+                        ));
+
+                        if ($value !== '') {
+                            $names[] = $value;
+                        }
+                    }
+                }
+
+                if (!empty($names)) {
+                    $postName = implode(', ', array_unique($names));
+                    $matchedFormat = 'H6 Vacancy Details - Course Name Column';
+                    break;
+                }
+            }
+        }
+
+        if ($postName) {
+            break;
+        }
+    }
+}
+
+
+
 //update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
 
