@@ -79,15 +79,23 @@
                 </p>
 
                 @php
-    $chunks = $jobs->getCollection()->chunk(25);
+    $chunks =$jobs->getCollection()->chunk(25);
 
-    $prompt = <<<'PROMPT'
+    foreach ($chunks as$chunk) {
+        // जॉब्स की आईडी और टाइटल्स की लिस्ट तैयार करना ताकि AI उन्हें सर्च कर सके
+        $jobDataList = $chunk->map(function ($job) {
+            return "ID: {$job->id}, Title: {$job->title}";
+        })->implode("\n");
+
+        $prompt = <<<PROMPT
 You are an expert recruitment data extractor and deep research analyst.
+
+TASK:
+For each Job ID and Title provided below, conduct a deep web search to locate the official recruitment notification and exact date details for 2026/2027. Do NOT leave fields as N/A unless the date truly does not exist in the official notification.
 
 Return strictly valid JSON as an array of objects.
 
 Each object must contain these 12 fields:
-
 {
     "id": "[JOB ID]",
     "notification_date": "[Exact Date with short context in Hindi or N/A with reason]",
@@ -103,19 +111,21 @@ Each object must contain these 12 fields:
     "important_date": "[Key Highlighted Date or N/A with reason]"
 }
 
-STRICT RULES:
-
-1. Extract information ONLY from supplied job text.
-2. Never guess or invent dates.
-3. If date is missing, return N/A with a short Hindi reason.
-4. Return valid JSON array only. No markdown.
-5. Preserve dates in DD Month YYYY format, with Hindi context.
-6. Copy exact ID. Never change IDs.
-7. Return exactly one object per supplied job, in the same order.
-8. Do not skip any job.
+INSTRUCTIONS & RULES:
+1. MANDATORY RESEARCH: You MUST search the web/online job portals for each job title and ID to extract accurate date information.
+2. DO NOT DEFAULT TO N/A: Only use N/A if a specific field (like Walk-in date or Correction date) is genuinely not applicable for that job type (e.g., Online-only jobs don't have Walk-in dates).
+3. ACCURACY: Preserve exact dates in "DD Month YYYY" format with short Hindi context (e.g., "15 November 2026 (आवेदन की अंतिम तिथि)").
+4. Copy exact ID. Never change IDs.
+5. Return exactly one object per supplied job, in the same order. Do not skip any job.
+6. Return valid JSON array only. No markdown formatting (no ```json ... ``` tags), no commentary.
 
 JOB DATA:
+{$jobDataList}
 PROMPT;
+
+        // यहाँ आप अपने AI API को कॉल कर सकते हैं:
+        // $response = AiService::generate($prompt);
+    }
 @endphp
 
                 <div class="table-responsive">
