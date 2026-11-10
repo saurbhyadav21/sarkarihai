@@ -1461,6 +1461,79 @@ if (!$postName) {
 }
 
 
+// Format - UPGET Admission Details / Course Name Column
+if (!$postName) {
+
+    if (preg_match(
+        '~<h6\b[^>]*>.*?UPGET.*?Admission\s+Details.*?</h6>(.*)~is',
+        $html,
+        $sectionMatch
+    )) {
+
+        preg_match_all(
+            '~<table\b[^>]*>(.*?)</table>~is',
+            $sectionMatch[1],
+            $tableMatches
+        );
+
+        foreach ($tableMatches[1] as $tableHtml) {
+
+            // Course Name header wali table identify karo
+            if (stripos(strip_tags($tableHtml), 'Course Name') === false) {
+                continue;
+            }
+
+            preg_match_all(
+                '~<tr\b[^>]*>(.*?)</tr>~is',
+                $tableHtml,
+                $rowMatches
+            );
+
+            $courseNames = [];
+
+            foreach ($rowMatches[1] as $row) {
+
+                // First column extract karo
+                if (!preg_match(
+                    '~<td\b[^>]*>(.*?)</td>~is',
+                    $row,
+                    $cellMatch
+                )) {
+                    continue;
+                }
+
+                $value = html_entity_decode(
+                    strip_tags($cellMatch[1]),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $value = preg_replace('/\x{00A0}/u', ' ', $value);
+                $value = trim(preg_replace('/\s+/u', ' ', $value));
+
+                // Header aur blank rows skip karo
+                if (
+                    $value === '' ||
+                    strcasecmp($value, 'Course Name') === 0
+                ) {
+                    continue;
+                }
+
+                $courseNames[] = $value;
+            }
+
+            if (!empty($courseNames)) {
+
+                $postName = implode(', ', array_unique($courseNames));
+
+                $matchedFormat = 'UPGET - Admission Details / Course Name';
+
+                break;
+            }
+        }
+    }
+}
+
 
 
 
