@@ -972,7 +972,47 @@ if (!$postName) {
         }
     }
 }
+// Format - Admission Details / First Column Value
+if (!$postName) {
 
+    $headings = $xpath->query(
+        "//h6[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'admission details')]"
+    );
+
+    foreach ($headings as $heading) {
+
+        $tables = $xpath->query("following::table[1]", $heading);
+
+        if ($tables->length > 0) {
+
+            $rows = $xpath->query('.//tr', $tables->item(0));
+
+            for ($i = 1; $i < $rows->length; $i++) {
+
+                $cells = $xpath->query('./td | ./th', $rows->item($i));
+
+                if ($cells->length < 2) {
+                    continue;
+                }
+
+                $value = trim(preg_replace(
+                    '/\s+/u',
+                    ' ',
+                    $cells->item(0)->textContent
+                ));
+
+                if (
+                    $value !== '' &&
+                    stripos($value, 'D.El.Ed') !== false
+                ) {
+                    $postName = $value;
+                    $matchedFormat = 'Admission Details - First Column';
+                    break 2;
+                }
+            }
+        }
+    }
+}
 //update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
 
