@@ -107,8 +107,7 @@ Each object must contain these 12 fields:
     "correction_date": "[Correction Date or N/A with reason]",
     "exam_date": "[Exam Date or N/A with reason]",
     "result_date": "[Result Date status in Hindi or N/A with reason]",
-    "info_date": "[Info Date details or N/A with reason]",
-    "important_date": "[Key Highlighted Date or N/A with reason]"
+    "info_date": "[Info Date details or N/A with reason]"
 }
 
 INSTRUCTIONS & RULES:
