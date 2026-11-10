@@ -820,7 +820,63 @@ if (!$postName) {
     }
 }
 
+// Format - Table Header Exam Name / Multiple Rows
+if (!$postName) {
+    $tables = $xpath->query("//table");
 
+    foreach ($tables as $table) {
+        $rows = $xpath->query('.//tr', $table);
+
+        if ($rows->length < 2) {
+            continue;
+        }
+
+        $headerCells = $xpath->query('./td | ./th', $rows->item(0));
+        $examColumn = null;
+        $columnIndex = 0;
+
+        foreach ($headerCells as $cell) {
+            $label = trim(preg_replace(
+                '/\s+/u',
+                ' ',
+                $cell->textContent
+            ));
+
+            if (strcasecmp($label, 'Exam Name') === 0) {
+                $examColumn = $columnIndex;
+                break;
+            }
+
+            $columnIndex++;
+        }
+
+        if ($examColumn !== null) {
+            $names = [];
+
+            for ($i = 1; $i < $rows->length; $i++) {
+                $cells = $xpath->query('./td | ./th', $rows->item($i));
+
+                if ($cells->length > $examColumn) {
+                    $value = trim(preg_replace(
+                        '/\s+/u',
+                        ' ',
+                        $cells->item($examColumn)->textContent
+                    ));
+
+                    if ($value !== '') {
+                        $names[] = $value;
+                    }
+                }
+            }
+
+            if (!empty($names)) {
+                $postName = implode(', ', array_unique($names));
+                $matchedFormat = 'Table Format - Exam Name Column';
+                break;
+            }
+        }
+    }
+}
 
 //update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
