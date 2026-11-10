@@ -1633,7 +1633,37 @@ if (!$postName) {
     }
 }
 
+// Format - Walk-in Interview Details / Post Label
+if (!$postName) {
+    $headings = $xpath->query(
+        "//h2[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'walk-in interview date, time and venue')]"
+    );
 
+    foreach ($headings as $heading) {
+        $tables = $xpath->query("following::table[1]", $heading);
+
+        if ($tables->length > 0) {
+            $rows = $xpath->query('.//tr', $tables->item(0));
+
+            foreach ($rows as $row) {
+                $cells = $xpath->query('./td | ./th', $row);
+
+                if ($cells->length >= 2) {
+                    $label = trim(preg_replace('/\s+/u', ' ', $cells->item(0)->textContent));
+
+                    if (strcasecmp($label, 'Post') === 0) {
+                        $postName = trim(preg_replace('/\s+/u', ' ', $cells->item(1)->textContent));
+
+                        if ($postName !== '') {
+                            $matchedFormat = 'Walk-in Interview - Post Label';
+                            break 2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 
 //update the table with the extracted post title and set post_flag to 1
