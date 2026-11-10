@@ -1385,6 +1385,7 @@ if (!$postName) {
 
 
 
+
 // Format - UP TET Vacancy Details / Eligibility Criteria
 if (!$postName) {
 
@@ -1402,11 +1403,8 @@ if (!$postName) {
 
         foreach ($tableMatches[1] as $tableHtml) {
 
-            // Table mein Eligibility Criteria wali heading honi chahiye
-            if (stripos($value, 'UPESSC Uttar Pradesh TET') !== false ||
-                stripos($value, 'Eligibility Criteria') !== false ||
-                stripos($value, 'TET Primary Teacher') === false &&
-                stripos($value, 'TET') === false) {
+            // Eligibility Criteria wali table identify karo
+            if (stripos(strip_tags($tableHtml), 'Eligibility Criteria') === false) {
                 continue;
             }
 
@@ -1435,9 +1433,10 @@ if (!$postName) {
                     'UTF-8'
                 );
 
+                $value = preg_replace('/\x{00A0}/u', ' ', $value);
                 $value = trim(preg_replace('/\s+/u', ' ', $value));
 
-                // Header / blank rows skip karo
+                // Blank aur heading rows skip karo
                 if (
                     $value === '' ||
                     stripos($value, 'UPESSC Uttar Pradesh TET') !== false ||
@@ -1460,6 +1459,7 @@ if (!$postName) {
         }
     }
 }
+
 
 
 
