@@ -1666,6 +1666,97 @@ if (!$postName) {
 }
 
 
+// Format - CGPSC Sub Inspector / Vacancy Details / Post Column
+if (!$postName) {
+    if (preg_match(
+        '~<h6\b[^>]*>.*?CGPSC.*?Sub\s+Inspector.*?Vacancy\s+Details.*?</h6>(.*)~is',
+        $html,
+        $sectionMatch
+    )) {
+        preg_match_all(
+            '~<table\b[^>]*>(.*?)</table>~is',
+            $sectionMatch[1],
+            $tableMatches
+        );
+
+        foreach ($tableMatches[1] as $tableHtml) {
+            preg_match_all(
+                '~<tr\b[^>]*>(.*?)</tr>~is',
+                $tableHtml,
+                $rowMatches
+            );
+
+            if (count($rowMatches[1]) < 2) {
+                continue;
+            }
+
+            // Header row mein Post column find karo
+            preg_match_all(
+                '~<(td|th)\b[^>]*>(.*?)</\1>~is',
+                $rowMatches[1][0],
+                $headerCells,
+                PREG_SET_ORDER
+            );
+
+            $postColumn = null;
+
+            foreach ($headerCells as $index => $cell) {
+                $label = html_entity_decode(
+                    strip_tags($cell[2]),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $label = trim(preg_replace('/\s+/u', ' ', $label));
+
+                if (strcasecmp($label, 'Post') === 0) {
+                    $postColumn = $index;
+                    break;
+                }
+            }
+
+            if ($postColumn === null) {
+                continue;
+            }
+
+            $postNames = [];
+
+            for ($i = 1; $i < count($rowMatches[1]); $i++) {
+                preg_match_all(
+                    '~<(td|th)\b[^>]*>(.*?)</\1>~is',
+                    $rowMatches[1][$i],
+                    $cells,
+                    PREG_SET_ORDER
+                );
+
+                if (!isset($cells[$postColumn])) {
+                    continue;
+                }
+
+                $value = html_entity_decode(
+                    strip_tags($cells[$postColumn][2]),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $value = preg_replace('/\x{00A0}/u', ' ', $value);
+                $value = trim(preg_replace('/\s+/u', ' ', $value));
+
+                if ($value !== '') {
+                    $postNames[] = $value;
+                }
+            }
+
+            if (!empty($postNames)) {
+                $postName = implode(', ', array_unique($postNames));
+                $matchedFormat = 'CGPSC SI - Vacancy Details / Post Column';
+                break;
+            }
+        }
+    }
+}
+
+
 //update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
 
