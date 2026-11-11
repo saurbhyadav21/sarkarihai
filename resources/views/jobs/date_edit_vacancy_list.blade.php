@@ -84,9 +84,29 @@
     $prompt = <<<'PROMPT'
 You are an expert recruitment data extractor and deep research analyst.
 
+TASK:
+For each Job ID and Title provided below, conduct deep web research to locate the official recruitment notification and extract accurate date details for the 2026 recruitment cycle.
+
+You must research each job individually using its Job ID, Job Title, recruitment authority, and available source information.
+
+MANDATORY RESEARCH INSTRUCTIONS:
+
+1. Search the official recruitment website, official notification PDF, recruitment authority website, and reliable job portals.
+2. Search using the exact Job ID and Job Title wherever possible.
+3. Verify dates from the official recruitment notification or official website whenever available.
+4. If the official notification is unavailable, consult reliable recruitment portals and other credible sources.
+5. Cross-check important dates from multiple sources wherever possible.
+6. Do not assume that all recruitment dates are the same as another year's recruitment.
+7. Give priority to the 2026 recruitment notification. If the 2026 notification is not available, do not use previous-year dates as 2026 dates.
+8. Do NOT leave fields as N/A without proper research.
+9. Do not invent, assume, or estimate any dates.
+10. If a date is genuinely unavailable after research, return N/A with a short Hindi explanation.
+
+OUTPUT REQUIREMENTS:
+
 Return strictly valid JSON as an array of objects.
 
-Each object must contain these 12 fields:
+Each object must contain exactly these 12 fields:
 
 {
     "id": "[JOB ID]",
@@ -99,20 +119,63 @@ Each object must contain these 12 fields:
     "correction_date": "[Correction Date or N/A with reason]",
     "exam_date": "[Exam Date or N/A with reason]",
     "result_date": "[Result Date status in Hindi or N/A with reason]",
-    "info_date": "[Info Date details or N/A with reason]",
-    "important_date": "[Key Highlighted Date or N/A with reason]"
+    "info_date": "[Info Date details or N/A with reason]"
 }
+
+DATE EXTRACTION RULES:
+
+1. notification_date:
+   Official notification publication date.
+
+2. start_date:
+   Online application starting date or registration start date.
+
+3. end_date:
+   Online application closing date or last application submission date.
+
+4. walkin_date:
+   Walk-in interview date, reporting time, and venue timing if officially available.
+
+5. interview_date:
+   Interview date, schedule, and time if officially available.
+
+6. last_fee_date:
+   Last date for application fee payment.
+
+7. correction_date:
+   Application form correction window start and end dates.
+
+8. exam_date:
+   Written examination, CBT, skill test, or other examination dates.
+
+9. result_date:
+   Result declaration date or current result status, with Hindi context.
+
+10. info_date:
+    Important information dates such as admit card release, answer key, document verification, or other important announcements.
 
 STRICT RULES:
 
-1. Extract information ONLY from supplied job text.
+1. Extract dates only from researched and verifiable information.
 2. Never guess or invent dates.
-3. If date is missing, return N/A with a short Hindi reason.
-4. Return valid JSON array only. No markdown.
-5. Preserve dates in DD Month YYYY format, with Hindi context.
-6. Copy exact ID. Never change IDs.
-7. Return exactly one object per supplied job, in the same order.
-8. Do not skip any job.
+3. Do not use previous-year dates as current 2026 recruitment dates.
+4. Preserve exact dates in DD Month YYYY format.
+5. Include short Hindi context with every available date.
+   Example: "15 November 2026 (आवेदन की अंतिम तिथि)"
+6. If a date is genuinely not applicable, return N/A with a short Hindi reason.
+   Example: "N/A (इस भर्ती में वॉक-इन इंटरव्यू नहीं है)"
+7. If a date has not yet been officially announced, mention:
+   "N/A (आधिकारिक तिथि अभी घोषित नहीं हुई है)"
+8. If reliable sources provide conflicting dates, prioritize the latest official notification.
+9. Do not confuse notification date, application start date, and application last date.
+10. Copy the exact Job ID. Never modify IDs.
+11. Return exactly one object per supplied job.
+12. Maintain the same order as the supplied Job IDs.
+13. Do not skip any job, even if information is unavailable.
+14. Every object must contain all 12 fields.
+15. Return valid JSON array only.
+16. Do not include Markdown, explanations, citations outside JSON, or commentary.
+17. Ensure the final JSON is syntactically valid and can be decoded using PHP json_decode().
 
 JOB DATA:
 PROMPT;
