@@ -176,6 +176,7 @@ STRICT RULES:
 15. Return valid JSON array only.
 16. Do not include Markdown, explanations, citations outside JSON, or commentary.
 17. Ensure the final JSON is syntactically valid and can be decoded using PHP json_decode().
+18. If exact 2026 dates are not officially declared, check for the most recent official notification/advt number schedule for this post and output that cycle's exact dates instead of returning N/A.
 
 JOB DATA:
 PROMPT;
