@@ -531,17 +531,17 @@ class JobController extends Controller
                             ->orWhereNull('interview_date')->orWhere('interview_date', '')
                             ->orWhereNull('walkin_date')->orWhere('walkin_date', '');
                     })
-                    ->orWhere(function ($q) {
-                        $q->where('notification_date', 'LIKE', 'N/A%')
-                            ->where('start_date', 'LIKE', 'N/A%')
-                            ->where('end_date', 'LIKE', 'N/A%')
-                            ->where('walkin_date', 'LIKE', 'N/A%')
-                            ->where('interview_date', 'LIKE', 'N/A%')
-                            ->where('last_fee_date', 'LIKE', 'N/A%')
-                            ->where('correction_date', 'LIKE', 'N/A%')
-                            ->where('exam_date', 'LIKE', 'N/A%')
-                            ->where('result_date', 'LIKE', 'N/A%')
-                            ->where('info_date', 'LIKE', 'N/A%');
+                    ->Where(function ($q) {
+                        $q->orWhere('notification_date', 'LIKE', 'N/A%')
+                            ->orWhere('start_date', 'LIKE', 'N/A%')
+                            ->orWhere('end_date', 'LIKE', 'N/A%')
+                            ->orWhere('walkin_date', 'LIKE', 'N/A%')
+                            ->orWhere('interview_date', 'LIKE', 'N/A%')
+                            ->orWhere('last_fee_date', 'LIKE', 'N/A%')
+                            ->orWhere('correction_date', 'LIKE', 'N/A%')
+                            ->orWhere('exam_date', 'LIKE', 'N/A%')
+                            ->orWhere('result_date', 'LIKE', 'N/A%')
+                            ->orWhere('info_date', 'LIKE', 'N/A%');
                     });
                 })
                 ->orderBy('id', 'desc')
@@ -549,6 +549,9 @@ class JobController extends Controller
 
         return view('jobs.date_edit_vacancy_list', compact('jobs', 'limit'));
     }
+
+
+
 
 
     
