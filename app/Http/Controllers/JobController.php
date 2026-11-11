@@ -519,17 +519,28 @@ class JobController extends Controller
         $limit = max(1, min((int) $limit, 100));
 
         $jobs = DB::table('job_details')
-            ->where(function ($query) {
-                $query->whereNull('start_date')->orWhere('start_date', '')
-                    ->orWhereNull('end_date')->orWhere('end_date', '')
-                    ->orWhereNull('last_fee_date')->orWhere('last_fee_date', '')
-                    ->orWhereNull('correction_date')->orWhere('correction_date', '')
-                    ->orWhereNull('exam_date')->orWhere('exam_date', '')
-                    ->orWhereNull('result_date')->orWhere('result_date', '')
-                    ->orWhereNull('notification_date')->orWhere('notification_date', '')
-                    ->orWhereNull('interview_date')->orWhere('interview_date', '')
-                    ->orWhereNull('walkin_date')->orWhere('walkin_date', '');
-            })
+    ->where(function ($query) {
+        $query->whereNull('start_date')->orWhere('start_date', '')
+            ->orWhereNull('end_date')->orWhere('end_date', '')
+            ->orWhereNull('last_fee_date')->orWhere('last_fee_date', '')
+            ->orWhereNull('correction_date')->orWhere('correction_date', '')
+            ->orWhereNull('exam_date')->orWhere('exam_date', '')
+            ->orWhereNull('result_date')->orWhere('result_date', '')
+            ->orWhereNull('notification_date')->orWhere('notification_date', '')
+            ->orWhereNull('interview_date')->orWhere('interview_date', '')
+            ->orWhereNull('walkin_date')->orWhere('walkin_date', '')
+            ->orWhereNull('info_date')->orWhere('info_date', '')
+            ->orWhere('notification_date', 'LIKE', 'N/A%')
+            ->orWhere('start_date', 'LIKE', 'N/A%')
+            ->orWhere('end_date', 'LIKE', 'N/A%')
+            ->orWhere('walkin_date', 'LIKE', 'N/A%')
+            ->orWhere('interview_date', 'LIKE', 'N/A%')
+            ->orWhere('last_fee_date', 'LIKE', 'N/A%')
+            ->orWhere('correction_date', 'LIKE', 'N/A%')
+            ->orWhere('exam_date', 'LIKE', 'N/A%')
+            ->orWhere('result_date', 'LIKE', 'N/A%')
+            ->orWhere('info_date', 'LIKE', 'N/A%');
+    })
             ->orderBy('id', 'desc')
             ->paginate($limit);
 
