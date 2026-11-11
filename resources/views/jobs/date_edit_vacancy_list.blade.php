@@ -158,6 +158,7 @@ STRICT RULES:
 
 1. Extract dates only from researched and verifiable information.
 2. Never guess or invent dates.
+3. Always provide a short Hindi context with every date or N/A with a reason in Hindi.
 4. Preserve exact dates in DD Month YYYY format.
 5. Include short Hindi context with every available date.
    Example: "15 November 2026 (आवेदन की अंतिम तिथि)"
