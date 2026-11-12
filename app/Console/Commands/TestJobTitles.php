@@ -1960,7 +1960,67 @@ if (!$postName) {
     }
 }
 
+// Format - Vacancy Details / Education Qualification List
+if (!$postName) {
 
+    preg_match_all(
+        '~<h[1-6]\b[^>]*>(.*?)</h[1-6]>~is',
+        $html,
+        $headings
+    );
+
+    $vacancyHeadingFound = false;
+
+    foreach ($headings[1] as $heading) {
+        $headingText = trim(preg_replace('/\s+/u', ' ', strip_tags($heading)));
+
+        if (preg_match('/Vacancy\s*Details/i', $headingText)) {
+            $vacancyHeadingFound = true;
+            break;
+        }
+    }
+
+    if ($vacancyHeadingFound) {
+
+        preg_match_all('~<table\b[^>]*>(.*?)</table>~is', $html, $tables);
+
+        foreach ($tables[1] as $tableHtml) {
+
+            if (!preg_match('/Education\s*Qualification/i', strip_tags($tableHtml))) {
+                continue;
+            }
+
+            preg_match_all('~<li\b[^>]*>(.*?)</li>~is', $tableHtml, $listItems);
+
+            $names = [];
+
+            foreach ($listItems[1] as $item) {
+
+                if (preg_match('~<strong\b[^>]*>(.*?)</strong>~is', $item, $match)) {
+
+                    $name = html_entity_decode(
+                        strip_tags($match[1]),
+                        ENT_QUOTES | ENT_HTML5,
+                        'UTF-8'
+                    );
+
+                    $name = trim(preg_replace('/\s+/u', ' ', $name));
+                    $name = trim($name, " \t\n\r\0\x0B:");
+
+                    if ($name !== '') {
+                        $names[] = $name;
+                    }
+                }
+            }
+
+            if (!empty($names)) {
+                $postName = implode(', ', array_unique($names));
+                $matchedFormat = 'Vacancy Details - Education Qualification List';
+                break;
+            }
+        }
+    }
+}
 
 
 
