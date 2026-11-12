@@ -2649,7 +2649,126 @@ if (!$postName) {
 }
 
 
+// Format - Vacancy Details / Entry Type + Post Code Columns
+if (!$postName) {
 
+    preg_match_all(
+        '~<h[1-6]\b[^>]*>(.*?)</h[1-6]>~is',
+        $html,
+        $headings
+    );
+
+    $vacancyHeadingFound = false;
+
+    foreach ($headings[1] as $heading) {
+
+        $headingText = html_entity_decode(
+            strip_tags($heading),
+            ENT_QUOTES | ENT_HTML5,
+            'UTF-8'
+        );
+
+        if (preg_match('/Vacancy\s*Details/i', $headingText)) {
+            $vacancyHeadingFound = true;
+            break;
+        }
+    }
+
+    if ($vacancyHeadingFound) {
+
+        preg_match_all('~<table\b[^>]*>(.*?)</table>~is', $html, $tables);
+
+        foreach ($tables[1] as $tableHtml) {
+
+            preg_match_all('~<tr\b[^>]*>(.*?)</tr>~is', $tableHtml, $rows);
+
+            $headerFound = false;
+            $names = [];
+            $rowspanEntry = '';
+
+            foreach ($rows[1] as $row) {
+
+                preg_match_all(
+                    '~<(?:td|th)\b([^>]*)>(.*?)</(?:td|th)>~is',
+                    $row,
+                    $cells,
+                    PREG_SET_ORDER
+                );
+
+                $cellTexts = [];
+
+                foreach ($cells as $cell) {
+
+                    $value = html_entity_decode(
+                        strip_tags($cell[2]),
+                        ENT_QUOTES | ENT_HTML5,
+                        'UTF-8'
+                    );
+
+                    $cellTexts[] = trim(preg_replace('/\s+/u', ' ', $value));
+                }
+
+                if (!$headerFound) {
+
+                    if (
+                        in_array('Entry Type', $cellTexts, true) &&
+                        in_array('Post Code', $cellTexts, true)
+                    ) {
+                        $headerFound = true;
+                    }
+
+                    continue;
+                }
+
+                if (empty($cellTexts)) {
+                    continue;
+                }
+
+                // Entry Type rowspan handle karo
+                $firstCell = $cells[0];
+
+                if (preg_match('/rowspan=["\']?(\d+)/i', $firstCell[1], $rowspanMatch)) {
+                    $rowspanEntry = $cellTexts[0];
+                }
+
+                // Post Code column identify karo
+                if (count($cellTexts) >= 2) {
+
+                    if (
+                        preg_match('/^(AFCAT|NCC Special Entry)/i', $cellTexts[0]) &&
+                        count($cellTexts) >= 2
+                    ) {
+                        $entry = $cellTexts[0];
+                        $postCode = $cellTexts[1];
+                    } else {
+                        $entry = $rowspanEntry;
+                        $postCode = $cellTexts[0];
+                    }
+
+                } else {
+                    continue;
+                }
+
+                if ($entry !== '' && $postCode !== '') {
+                    $names[] = $entry . ' - ' . $postCode;
+                }
+
+                if (preg_match('/rowspan=["\']?1/i', $firstCell[1])) {
+                    $rowspanEntry = '';
+                }
+            }
+
+            if (!empty($names)) {
+
+                $postName = implode(', ', array_unique($names));
+
+                $matchedFormat = 'Vacancy Details - Entry Type + Post Code';
+
+                break;
+            }
+        }
+    }
+}
 
 
 
