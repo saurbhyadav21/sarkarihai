@@ -2829,59 +2829,10 @@ if (!$postName) {
 
             // Extract Post Names
             $postNames = [];
-            
 
             if ($contentNode) {
 
-                $tableNodes = $contentNode->getElementsByTagName('table');
-
-                foreach ($tableNodes as $table) {
-
-                    foreach ($table->getElementsByTagName('tr') as $tr) {
-
-                        $cells = [];
-
-                        foreach ($tr->childNodes as $cell) {
-
-                            if (in_array($cell->nodeName, ['td', 'th'])) {
-
-                                $cells[] = trim(
-                                    preg_replace('/\s+/u', ' ', $cell->textContent)
-                                );
-                            }
-                        }
-
-                        if (empty($cells)) {
-                            continue;
-                        }
-
-                        // No. Of Post wali row identify karo
-                        if (
-                            isset($cells[0]) &&
-                            preg_match('/^no\.?\s*of\s*post$/i', $cells[0])
-                        ) {
-
-                            // First cell ke baad sabhi column headings post names hain
-                            foreach (array_slice($cells, 1) as $name) {
-
-                                $name = trim($name);
-
-                                if (
-                                    $name !== '' &&
-                                    !preg_match('/^[\d,]+$/', $name)
-                                ) {
-                                    $postNames[] = $name;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-    
-            // Additional format: No. of Post / Force Name table
-            if ($contentNode) {
-
-                $tableNodes = $contentNode->getElementsByTagName('table');
+                $tableNodes = $xpath->query('.//table', $contentNode);
 
                 foreach ($tableNodes as $table) {
 
@@ -2895,7 +2846,9 @@ if (!$postName) {
 
                             if (in_array($cell->nodeName, ['td', 'th'])) {
 
-                                $cells[] = trim(preg_replace('/\s+/u', ' ', $cell->textContent));
+                                $cells[] = trim(
+                                    preg_replace('/\s+/u', ' ', html_entity_decode($cell->textContent, ENT_QUOTES | ENT_HTML5, 'UTF-8'))
+                                );
                             }
                         }
 
@@ -2908,18 +2861,73 @@ if (!$postName) {
                         continue;
                     }
 
-                    // First row mein No. of Post identify karo
-                    $firstRow = $rows[0];
+                    // Format 1: No. Of Post wali row
+                    foreach ($rows as $rowIndex => $row) {
 
-                    if (
-                        isset($firstRow[0]) &&
-                        preg_match('/^no\.?\s*of\s*post$/i', trim($firstRow[0]))
-                    ) {
+                        $firstCell = strtolower(trim($row[0] ?? ''));
+                        $firstCell = preg_replace('/[^a-z0-9]+/', '', $firstCell);
 
-                        // First row ke baad wali rows se post names nikalo
-                        foreach (array_slice($rows, 1) as $row) {
+                        if (in_array($firstCell, ['noofpost', 'noofposts'])) {
 
-                            foreach ($row as $name) {
+                            // First cell ke baad post names
+                            foreach (array_slice($row, 1) as $name) {
+
+                                $name = trim($name);
+
+                                if (
+                                    $name !== '' &&
+                                    !preg_match('/^[\d,]+$/', $name)
+                                ) {
+                                    $postNames[] = $name;
+                                }
+                            }
+
+                            // Format 2: Next row mein post names
+                            if (empty($postNames) && isset($rows[$rowIndex + 1])) {
+
+                                foreach ($rows[$rowIndex + 1] as $name) {
+
+                                    $name = trim($name);
+
+                                    if (
+                                        $name !== '' &&
+                                        !preg_match('/^[\d,]+$/', $name)
+                                    ) {
+                                        $postNames[] = $name;
+                                    }
+                                }
+                            }
+                        }
+
+                        // Additional format: Force Name | No. of Post
+                        $firstCell = strtolower(trim($row[0] ?? ''));
+                        $firstCell = preg_replace('/[^a-z0-9]+/', '', $firstCell);
+
+                        if (in_array($firstCell, ['forcename', 'postname'])) {
+
+                            foreach (array_slice($row, 1) as $name) {
+
+                                $name = trim($name);
+
+                                if (
+                                    $name !== '' &&
+                                    !preg_match('/^[\d,]+$/', $name)
+                                ) {
+                                    $postNames[] = $name;
+                                }
+                            }
+                        }
+                    }
+
+                    // Additional format: First row headings, second row numbers
+                    if (isset($rows[0][0])) {
+
+                        $marker = strtolower(trim($rows[0][0]));
+                        $marker = preg_replace('/[^a-z0-9]+/', '', $marker);
+
+                        if (in_array($marker, ['noofpost', 'noofposts', 'forcename', 'postname'])) {
+
+                            foreach (array_slice($rows[0], 1) as $name) {
 
                                 $name = trim($name);
 
@@ -2934,13 +2942,20 @@ if (!$postName) {
                     }
                 }
             }
-            dd([
-    'contentNode_exists' => $contentNode ? true : false,
-    'contentNode_tag' => $contentNode ? $contentNode->nodeName : null,
-    'all_tables' => $xpath->query('//table')->length,
-    'all_h1' => $xpath->query('//h1')->length,
-    'html_length' => strlen($html),
-]);
+
+            // Final Post Name
+            if (!empty($postNames)) {
+
+                $postNames = array_values(array_unique($postNames));
+
+                $postName = implode(', ', $postNames);
+
+                $matchedFormat = 'SarkariResult Post Name Table';
+            }
+
+        }
+    }
+}
 
             dd($postNames);
             if (!empty($postNames)) {
