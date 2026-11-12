@@ -1903,7 +1903,62 @@ if (!$postName) {
 }
 
 
+// Format - Post Details Table / Job Role Column
+if (!$postName) {
 
+    preg_match_all('~<table\b[^>]*>(.*?)</table>~is', $html, $tables);
+
+    foreach ($tables[1] as $tableHtml) {
+
+        preg_match_all('~<tr\b[^>]*>(.*?)</tr>~is', $tableHtml, $rows);
+
+        $headerFound = false;
+        $names = [];
+
+        foreach ($rows[1] as $row) {
+
+            preg_match_all(
+                '~<(?:td|th)\b[^>]*>(.*?)</(?:td|th)>~is',
+                $row,
+                $cells
+            );
+
+            $cellTexts = [];
+
+            foreach ($cells[1] as $cell) {
+                $value = html_entity_decode(
+                    strip_tags($cell),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $cellTexts[] = trim(preg_replace('/\s+/u', ' ', $value));
+            }
+
+            if (!$headerFound) {
+                if (
+                    isset($cellTexts[0], $cellTexts[1]) &&
+                    preg_match('/^Job\s*Role$/i', $cellTexts[0]) &&
+                    preg_match('/^No\.?\s*of\s*Posts?$/i', $cellTexts[1])
+                ) {
+                    $headerFound = true;
+                }
+
+                continue;
+            }
+
+            if (!empty($cellTexts[0])) {
+                $names[] = $cellTexts[0];
+            }
+        }
+
+        if (!empty($names)) {
+            $postName = implode(', ', array_unique($names));
+            $matchedFormat = 'Post Details Table - Job Role Column';
+            break;
+        }
+    }
+}
 
 
 
