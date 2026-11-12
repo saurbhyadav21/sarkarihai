@@ -2877,6 +2877,69 @@ if (!$postName) {
                     }
                 }
             }
+    
+            // Additional format: No. of Post / Force Name table
+            if ($contentNode && empty($postNames)) {
+
+                $tableNodes = $contentNode->getElementsByTagName('table');
+
+                foreach ($tableNodes as $table) {
+
+                    foreach ($table->getElementsByTagName('tr') as $tr) {
+
+                        $cells = [];
+
+                        foreach ($tr->childNodes as $cell) {
+
+                            if (in_array($cell->nodeName, ['td', 'th'])) {
+
+                                $value = trim(preg_replace('/\s+/u', ' ', $cell->textContent));
+
+                                $cells[] = $value;
+                            }
+                        }
+
+                        if (count($cells) < 2) {
+                            continue;
+                        }
+
+                        // First cell No. of Post ya Force Name ho
+                        $firstCell = strtolower(trim($cells[0]));
+                        $firstCell = preg_replace('/[^a-z0-9]+/', '', $firstCell);
+
+                        if (
+                            in_array($firstCell, [
+                                'noofpost',
+                                'noofposts',
+                                'postname',
+                                'forcename'
+                            ])
+                        ) {
+
+                            foreach (array_slice($cells, 1) as $name) {
+
+                                $name = trim($name);
+
+                                // Vacancy number aur empty values ignore
+                                if (
+                                    $name !== '' &&
+                                    !preg_match('/^[\d,]+$/', $name) &&
+                                    !in_array(strtolower($name), [
+                                        'total',
+                                        'grand total',
+                                        'total posts',
+                                        'vacancy'
+                                    ])
+                                ) {
+                                    $postNames[] = $name;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
             dd($postNames);
             if (!empty($postNames)) {
 
