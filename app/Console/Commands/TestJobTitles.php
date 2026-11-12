@@ -2881,60 +2881,66 @@ if (!$postName) {
             // Additional format: No. of Post / Force Name table
             if ($contentNode) {
 
-    $tableNodes = $contentNode->getElementsByTagName('table');
+                $tableNodes = $contentNode->getElementsByTagName('table');
 
-    foreach ($tableNodes as $table) {
+                foreach ($tableNodes as $table) {
 
-        $rows = [];
+                    $rows = [];
 
-        foreach ($table->getElementsByTagName('tr') as $tr) {
+                    foreach ($table->getElementsByTagName('tr') as $tr) {
 
-            $cells = [];
+                        $cells = [];
 
-            foreach ($tr->childNodes as $cell) {
+                        foreach ($tr->childNodes as $cell) {
 
-                if (in_array($cell->nodeName, ['td', 'th'])) {
+                            if (in_array($cell->nodeName, ['td', 'th'])) {
 
-                    $cells[] = trim(preg_replace('/\s+/u', ' ', $cell->textContent));
-                }
-            }
+                                $cells[] = trim(preg_replace('/\s+/u', ' ', $cell->textContent));
+                            }
+                        }
 
-            if (!empty($cells)) {
-                $rows[] = $cells;
-            }
-        }
+                        if (!empty($cells)) {
+                            $rows[] = $cells;
+                        }
+                    }
 
-        if (empty($rows)) {
-            continue;
-        }
+                    if (empty($rows)) {
+                        continue;
+                    }
 
-        // First row mein No. of Post identify karo
-        $firstRow = $rows[0];
-
-        if (
-            isset($firstRow[0]) &&
-            preg_match('/^no\.?\s*of\s*post$/i', trim($firstRow[0]))
-        ) {
-
-            // First row ke baad wali rows se post names nikalo
-            foreach (array_slice($rows, 1) as $row) {
-
-                foreach ($row as $name) {
-
-                    $name = trim($name);
+                    // First row mein No. of Post identify karo
+                    $firstRow = $rows[0];
 
                     if (
-                        $name !== '' &&
-                        !preg_match('/^[\d,]+$/', $name)
+                        isset($firstRow[0]) &&
+                        preg_match('/^no\.?\s*of\s*post$/i', trim($firstRow[0]))
                     ) {
-                        $postNames[] = $name;
+
+                        // First row ke baad wali rows se post names nikalo
+                        foreach (array_slice($rows, 1) as $row) {
+
+                            foreach ($row as $name) {
+
+                                $name = trim($name);
+
+                                if (
+                                    $name !== '' &&
+                                    !preg_match('/^[\d,]+$/', $name)
+                                ) {
+                                    $postNames[] = $name;
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
-    }
-}
-
+            dd([
+    'contentNode_exists' => $contentNode ? true : false,
+    'contentNode_tag' => $contentNode ? $contentNode->nodeName : null,
+    'all_tables' => $xpath->query('//table')->length,
+    'all_h1' => $xpath->query('//h1')->length,
+    'html_length' => strlen($html),
+]);
 
             dd($postNames);
             if (!empty($postNames)) {
