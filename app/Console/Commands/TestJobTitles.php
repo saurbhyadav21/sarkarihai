@@ -2879,65 +2879,61 @@ if (!$postName) {
             }
     
             // Additional format: No. of Post / Force Name table
-            if ($contentNode && empty($postNames)) {
+            if ($contentNode) {
 
-                $tableNodes = $contentNode->getElementsByTagName('table');
+    $tableNodes = $contentNode->getElementsByTagName('table');
 
-                foreach ($tableNodes as $table) {
+    foreach ($tableNodes as $table) {
 
-                    foreach ($table->getElementsByTagName('tr') as $tr) {
+        $rows = [];
 
-                        $cells = [];
+        foreach ($table->getElementsByTagName('tr') as $tr) {
 
-                        foreach ($tr->childNodes as $cell) {
+            $cells = [];
 
-                            if (in_array($cell->nodeName, ['td', 'th'])) {
+            foreach ($tr->childNodes as $cell) {
 
-                                $value = trim(preg_replace('/\s+/u', ' ', $cell->textContent));
+                if (in_array($cell->nodeName, ['td', 'th'])) {
 
-                                $cells[] = $value;
-                            }
-                        }
+                    $cells[] = trim(preg_replace('/\s+/u', ' ', $cell->textContent));
+                }
+            }
 
-                        if (count($cells) < 2) {
-                            continue;
-                        }
+            if (!empty($cells)) {
+                $rows[] = $cells;
+            }
+        }
 
-                        // First cell No. of Post ya Force Name ho
-                        $firstCell = strtolower(trim($cells[0]));
-                        $firstCell = preg_replace('/[^a-z0-9]+/', '', $firstCell);
+        if (empty($rows)) {
+            continue;
+        }
 
-                        if (
-                            in_array($firstCell, [
-                                'noofpost',
-                                'noofposts',
-                                'postname',
-                                'forcename'
-                            ])
-                        ) {
+        // First row mein No. of Post identify karo
+        $firstRow = $rows[0];
 
-                            foreach (array_slice($cells, 1) as $name) {
+        if (
+            isset($firstRow[0]) &&
+            preg_match('/^no\.?\s*of\s*post$/i', trim($firstRow[0]))
+        ) {
 
-                                $name = trim($name);
+            // First row ke baad wali rows se post names nikalo
+            foreach (array_slice($rows, 1) as $row) {
 
-                                // Vacancy number aur empty values ignore
-                                if (
-                                    $name !== '' &&
-                                    !preg_match('/^[\d,]+$/', $name) &&
-                                    !in_array(strtolower($name), [
-                                        'total',
-                                        'grand total',
-                                        'total posts',
-                                        'vacancy'
-                                    ])
-                                ) {
-                                    $postNames[] = $name;
-                                }
-                            }
-                        }
+                foreach ($row as $name) {
+
+                    $name = trim($name);
+
+                    if (
+                        $name !== '' &&
+                        !preg_match('/^[\d,]+$/', $name)
+                    ) {
+                        $postNames[] = $name;
                     }
                 }
             }
+        }
+    }
+}
 
 
             dd($postNames);
