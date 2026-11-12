@@ -21,6 +21,7 @@ class TestJobTitles extends Command
             ->where('post_flag', 0)
             ->whereNotNull('source_url')
             ->where('source_url', '!=', '')
+            ->where('job_type', '=', 'job')
             ->orderBy('id', 'asc')
             // ->skip(10)
             // ->limit(25)
