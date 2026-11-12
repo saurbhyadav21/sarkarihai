@@ -2879,61 +2879,75 @@ if (!$postName) {
             }
     
             // Additional format: No. of Post / Force Name table
-            if ($contentNode) {
+            // Additional fallback: No. of Post table
+if (empty($postNames)) {
 
-                $tableNodes = $contentNode->getElementsByTagName('table');
+    $postNames = [];
 
-                foreach ($tableNodes as $table) {
+    $tableNodes = $xpath->query('//table');
 
-                    $rows = [];
+    foreach ($tableNodes as $table) {
 
-                    foreach ($table->getElementsByTagName('tr') as $tr) {
+        $rows = [];
 
-                        $cells = [];
+        foreach ($table->getElementsByTagName('tr') as $tr) {
 
-                        foreach ($tr->childNodes as $cell) {
+            $cells = [];
 
-                            if (in_array($cell->nodeName, ['td', 'th'])) {
+            foreach ($tr->childNodes as $cell) {
 
-                                $cells[] = trim(preg_replace('/\s+/u', ' ', $cell->textContent));
-                            }
-                        }
+                if (in_array($cell->nodeName, ['td', 'th'])) {
 
-                        if (!empty($cells)) {
-                            $rows[] = $cells;
-                        }
-                    }
+                    $cells[] = trim(
+                        preg_replace('/\s+/u', ' ', html_entity_decode($cell->textContent, ENT_QUOTES | ENT_HTML5, 'UTF-8'))
+                    );
+                }
+            }
 
-                    if (empty($rows)) {
-                        continue;
-                    }
+            if (!empty($cells)) {
+                $rows[] = $cells;
+            }
+        }
 
-                    // First row mein No. of Post identify karo
-                    $firstRow = $rows[0];
+        if (empty($rows)) {
+            continue;
+        }
 
-                    if (
-                        isset($firstRow[0]) &&
-                        preg_match('/^no\.?\s*of\s*post$/i', trim($firstRow[0]))
-                    ) {
+        // Har row mein No. of Post marker check karo
+        foreach ($rows as $rowIndex => $row) {
 
-                        // First row ke baad wali rows se post names nikalo
-                        foreach (array_slice($rows, 1) as $row) {
+            $marker = strtolower(trim($row[0] ?? ''));
 
-                            foreach ($row as $name) {
+            $marker = preg_replace('/[^a-z0-9]+/', '', $marker);
 
-                                $name = trim($name);
+            if (!in_array($marker, ['noofpost', 'noofposts'])) {
+                continue;
+            }
 
-                                if (
-                                    $name !== '' &&
-                                    !preg_match('/^[\d,]+$/', $name)
-                                ) {
-                                    $postNames[] = $name;
-                                }
-                            }
-                        }
+            // Marker ke baad same row ke cells
+            foreach (array_slice($row, 1) as $name) {
+
+                $name = trim($name);
+
+                if ($name !== '' && !preg_match('/^[\d,]+$/', $name)) {
+                    $postNames[] = $name;
+                }
+            }
+
+            // Agar marker row mein names nahi mile, next row bhi check karo
+            if (empty($postNames) && isset($rows[$rowIndex + 1])) {
+
+                foreach ($rows[$rowIndex + 1] as $name) {
+
+                    $name = trim($name);
+
+                    if ($name !== '' && !preg_match('/^[\d,]+$/', $name)) {
+                        $postNames[] = $name;
                     }
                 }
             }
+        }
+    }
             dd([
     'contentNode_exists' => $contentNode ? true : false,
     'contentNode_tag' => $contentNode ? $contentNode->nodeName : null,
