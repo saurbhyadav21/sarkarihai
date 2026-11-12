@@ -2829,7 +2829,8 @@ if (!$postName) {
 
             // Extract Post Names
             $postNames = [];
-
+            dd($contentNode);
+            
             if ($contentNode) {
 
                 $tableNodes = $contentNode->getElementsByTagName('table');
