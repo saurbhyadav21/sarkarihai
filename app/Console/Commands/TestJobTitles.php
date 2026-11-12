@@ -2829,8 +2829,8 @@ if (!$postName) {
 
             // Extract Post Names
             $postNames = [];
-            dd($contentNode);
             
+
             if ($contentNode) {
 
                 $tableNodes = $contentNode->getElementsByTagName('table');
@@ -2877,7 +2877,7 @@ if (!$postName) {
                     }
                 }
             }
-
+            dd($postNames);
             if (!empty($postNames)) {
 
                 $postName = implode(', ', array_unique($postNames));
