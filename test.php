@@ -1,5 +1,99 @@
 <?php
 
+
+
+$url = "https://sarkariresult.com.cm/ssc-constable-gd-2025/";
+
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL => $url,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_TIMEOUT => 60,
+    CURLOPT_SSL_VERIFYPEER => true,
+    CURLOPT_USERAGENT => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+]);
+
+$html = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    die(curl_error($ch));
+}
+
+curl_close($ch);
+
+libxml_use_internal_errors(true);
+
+$dom = new DOMDocument();
+$dom->loadHTML('<?xml encoding="UTF-8">' . $html);
+
+$xpath = new DOMXPath($dom);
+
+// Post title
+$title = $xpath->query('//h1')->item(0)?->textContent;
+
+// Post content
+$contentNode = $xpath->query(
+    '//*[contains(@class,"entry-content")]'
+)->item(0);
+
+if (!$contentNode) {
+    $contentNode = $xpath->query(
+        '//*[contains(@class,"post-content")]'
+    )->item(0);
+}
+
+// Complete HTML
+$contentHtml = '';
+
+if ($contentNode) {
+    foreach ($contentNode->childNodes as $child) {
+        $contentHtml .= $dom->saveHTML($child);
+    }
+}
+
+// All tables
+$tables = [];
+
+if ($contentNode) {
+    foreach ($contentNode->getElementsByTagName('table') as $table) {
+        $rows = [];
+
+        foreach ($table->getElementsByTagName('tr') as $tr) {
+            $row = [];
+
+            foreach ($tr->childNodes as $cell) {
+                if (in_array($cell->nodeName, ['td', 'th'])) {
+                    $row[] = trim($cell->textContent);
+                }
+            }
+
+            if ($row) {
+                $rows[] = $row;
+            }
+        }
+
+        $tables[] = $rows;
+    }
+}
+
+$result = [
+    'url' => $url,
+    'title' => trim($title ?? ''),
+    'content_html' => $contentHtml,
+    'tables' => $tables
+];
+
+header('Content-Type: application/json; charset=utf-8');
+
+echo json_encode(
+    $result,
+    JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE
+);
+
+
+die;
 // आगामी 7 दिनों का पंचांग निकालने के लिए स्क्रिप्ट
 $totalDays = 7;
 $startDate = new DateTime('2026-10-19'); // आगामी 7 दिनों की शुरुआत (19 अक्टूबर 2026)
