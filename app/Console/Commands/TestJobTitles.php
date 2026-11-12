@@ -1837,31 +1837,19 @@ if (!$postName) {
 
 
 // Format - Hindi Vacancy Table / पद का नाम Column
+// Format - Hindi Vacancy Table / पद का नाम Column
 if (!$postName) {
 
-    preg_match_all(
-        '~<table\b[^>]*>(.*?)</table>~is',
-        $html,
-        $tableMatches
-    );
+    preg_match_all('~<table\b[^>]*>(.*?)</table>~is', $html, $tables);
 
-    foreach ($tableMatches[1] as $tableHtml) {
+    foreach ($tables[1] as $tableHtml) {
 
-        preg_match_all(
-            '~<tr\b[^>]*>(.*?)</tr>~is',
-            $tableHtml,
-            $rowMatches
-        );
+        preg_match_all('~<tr\b[^>]*>(.*?)</tr>~is', $tableHtml, $rows);
 
-        if (count($rowMatches[1]) < 2) {
-            continue;
-        }
+        $headerFound = false;
+        $names = [];
 
-        $postColumn = null;
-        $headerRowIndex = null;
-
-        // Header row identify karo
-        foreach ($rowMatches[1] as $rowIndex => $row) {
+        foreach ($rows[1] as $row) {
 
             preg_match_all(
                 '~<(?:td|th)\b[^>]*>(.*?)</(?:td|th)>~is',
@@ -1869,67 +1857,67 @@ if (!$postName) {
                 $cells
             );
 
-            foreach ($cells[1] as $index => $cellHtml) {
+            $cellTexts = [];
 
-                $label = html_entity_decode(
-                    strip_tags($cellHtml),
+            foreach ($cells[1] as $cell) {
+                $text = html_entity_decode(
+                    strip_tags($cell),
                     ENT_QUOTES | ENT_HTML5,
                     'UTF-8'
                 );
 
-                $label = trim(preg_replace('/\s+/u', ' ', $label));
+                $cellTexts[] = trim(preg_replace('/\s+/u', ' ', $text));
+            }
 
-                if (
-                    preg_match('/^(पद\s*का\s*नाम|पद\s*का\s*विवरण|पोस्ट\s*का\s*नाम)$/u', $label)
-                ) {
-                    $postColumn = $index;
-                    $headerRowIndex = $rowIndex;
-                    break 2;
+            if (!$headerFound) {
+                foreach ($cellTexts as $cellText) {
+                    if (preg_match('/^पद\s*का\s*नाम$/u', $cellText)) {
+                        $headerFound = true;
+                        continue 2;
+                    }
                 }
             }
-        }
 
-        if ($postColumn === null) {
-            continue;
-        }
+            if ($headerFound && !empty($cellTexts[0])) {
 
-        $names = [];
+                $value = $cellTexts[0];
 
-        // Post Name column ki values
-        for ($i = $headerRowIndex + 1; $i < count($rowMatches[1]); $i++) {
-
-            preg_match_all(
-                '~<(?:td|th)\b[^>]*>(.*?)</(?:td|th)>~is',
-                $rowMatches[1][$i],
-                $cells
-            );
-
-            if (isset($cells[1][$postColumn])) {
-
-                $value = html_entity_decode(
-                    strip_tags($cells[1][$postColumn]),
-                    ENT_QUOTES | ENT_HTML5,
-                    'UTF-8'
-                );
-
-                $value = trim(preg_replace('/\s+/u', ' ', $value));
-
-                if ($value !== '') {
-                    $names[] = $value;
+                if (
+                    preg_match('/^(कुल पद|योग्यता|पद\s*का\s*नाम)$/u', $value) ||
+                    preg_match('/BSF Recruitment|BSF Vacancy|Height|Chest|Physical|Eligibility|PET/i', $value)
+                ) {
+                    continue;
                 }
+
+                $names[] = $value;
             }
         }
 
         if (!empty($names)) {
-
             $postName = implode(', ', array_unique($names));
-
             $matchedFormat = 'Hindi Vacancy Table - पद का नाम Column';
-
             break;
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
 
