@@ -4478,7 +4478,7 @@ $request->age < $job->minimum_age
 
     public function testx()
     {
-        $url = 'https://sarkariresult.com.cm/ssc-constable-gd-2025/';
+        $url = 'https://sarkariresult.com.cm/rssb-nhm-rajmes-2025/';
 
         $response = Http::timeout(40)
             ->retry(2, 1000)
