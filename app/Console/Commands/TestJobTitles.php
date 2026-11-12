@@ -2830,118 +2830,81 @@ if (!$postName) {
             // Extract Post Names
             $postNames = [];
 
-            if ($contentNode) {
+            // Extract Post Names
+$postNames = [];
 
-                $tableNodes = $xpath->query('.//table', $contentNode);
+if ($contentNode) {
 
-                foreach ($tableNodes as $table) {
+    $tableNodes = $xpath->query('//table');
 
-                    $rows = [];
+    foreach ($tableNodes as $table) {
 
-                    foreach ($table->getElementsByTagName('tr') as $tr) {
+        $rows = [];
 
-                        $cells = [];
+        foreach ($table->getElementsByTagName('tr') as $tr) {
 
-                        foreach ($tr->childNodes as $cell) {
+            $cells = [];
 
-                            if (in_array($cell->nodeName, ['td', 'th'])) {
+            foreach ($tr->childNodes as $cell) {
 
-                                $cells[] = trim(
-                                    preg_replace('/\s+/u', ' ', html_entity_decode($cell->textContent, ENT_QUOTES | ENT_HTML5, 'UTF-8'))
-                                );
-                            }
-                        }
+                if (in_array($cell->nodeName, ['td', 'th'])) {
 
-                        if (!empty($cells)) {
-                            $rows[] = $cells;
-                        }
-                    }
+                    $cells[] = trim(
+                        preg_replace('/\s+/u', ' ', $cell->textContent)
+                    );
+                }
+            }
 
-                    if (empty($rows)) {
-                        continue;
-                    }
+            if (!empty($cells)) {
+                $rows[] = $cells;
+            }
+        }
 
-                    // Format 1: No. Of Post wali row
-                    foreach ($rows as $rowIndex => $row) {
+        if (empty($rows)) {
+            continue;
+        }
 
-                        $firstCell = strtolower(trim($row[0] ?? ''));
-                        $firstCell = preg_replace('/[^a-z0-9]+/', '', $firstCell);
+        foreach ($rows as $i => $row) {
 
-                        if (in_array($firstCell, ['noofpost', 'noofposts'])) {
+            $marker = strtolower(trim($row[0] ?? ''));
+            $marker = preg_replace('/[^a-z0-9]+/', '', $marker);
 
-                            // First cell ke baad post names
-                            foreach (array_slice($row, 1) as $name) {
+            if (!in_array($marker, ['noofpost', 'noofposts', 'forcename', 'postname'])) {
+                continue;
+            }
 
-                                $name = trim($name);
+            // Same row mein post names
+            foreach (array_slice($row, 1) as $name) {
 
-                                if (
-                                    $name !== '' &&
-                                    !preg_match('/^[\d,]+$/', $name)
-                                ) {
-                                    $postNames[] = $name;
-                                }
-                            }
+                $name = trim($name);
 
-                            // Format 2: Next row mein post names
-                            if (empty($postNames) && isset($rows[$rowIndex + 1])) {
+                if ($name !== '' && !preg_match('/^[\d,]+$/', $name)) {
+                    $postNames[] = $name;
+                }
+            }
 
-                                foreach ($rows[$rowIndex + 1] as $name) {
+            // Agar same row mein names nahi mile,
+            // table ke header cells check karo
+            if (empty($postNames)) {
 
-                                    $name = trim($name);
+                $headers = $xpath->query('.//thead//th', $table);
 
-                                    if (
-                                        $name !== '' &&
-                                        !preg_match('/^[\d,]+$/', $name)
-                                    ) {
-                                        $postNames[] = $name;
-                                    }
-                                }
-                            }
-                        }
+                foreach ($headers as $header) {
 
-                        // Additional format: Force Name | No. of Post
-                        $firstCell = strtolower(trim($row[0] ?? ''));
-                        $firstCell = preg_replace('/[^a-z0-9]+/', '', $firstCell);
+                    $name = trim(preg_replace('/\s+/u', ' ', $header->textContent));
 
-                        if (in_array($firstCell, ['forcename', 'postname'])) {
-
-                            foreach (array_slice($row, 1) as $name) {
-
-                                $name = trim($name);
-
-                                if (
-                                    $name !== '' &&
-                                    !preg_match('/^[\d,]+$/', $name)
-                                ) {
-                                    $postNames[] = $name;
-                                }
-                            }
-                        }
-                    }
-
-                    // Additional format: First row headings, second row numbers
-                    if (isset($rows[0][0])) {
-
-                        $marker = strtolower(trim($rows[0][0]));
-                        $marker = preg_replace('/[^a-z0-9]+/', '', $marker);
-
-                        if (in_array($marker, ['noofpost', 'noofposts', 'forcename', 'postname'])) {
-
-                            foreach (array_slice($rows[0], 1) as $name) {
-
-                                $name = trim($name);
-
-                                if (
-                                    $name !== '' &&
-                                    !preg_match('/^[\d,]+$/', $name)
-                                ) {
-                                    $postNames[] = $name;
-                                }
-                            }
-                        }
+                    if (
+                        $name !== '' &&
+                        !preg_match('/^[\d,]+$/', $name) &&
+                        !in_array(strtolower($name), ['no. of post', 'no of post'])
+                    ) {
+                        $postNames[] = $name;
                     }
                 }
             }
+        }
+    }
+}
             
             // Final Post Name
             if (!empty($postNames)) {
