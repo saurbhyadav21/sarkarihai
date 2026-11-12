@@ -4475,4 +4475,122 @@ $request->age < $job->minimum_age
 
     return redirect()->back()->with('success', 'Job updated successfully.');
 }
+
+    public function testx()
+    {
+        $url = 'https://sarkariresult.com.cm/ssc-constable-gd-2025/';
+
+$response = Http::timeout(40)
+    ->retry(2, 1000)
+    ->withHeaders([
+        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36',
+        'Accept' => 'text/html,application/xhtml+xml',
+    ])
+    ->get($url);
+
+if (!$response->successful()) {
+    return response()->json([
+        'error' => 'Website response failed',
+        'status' => $response->status()
+    ]);
+}
+
+$html = $response->body();
+
+libxml_use_internal_errors(true);
+
+$dom = new \DOMDocument();
+$dom->loadHTML('<?xml encoding="UTF-8">' . $html, LIBXML_NONET);
+
+$xpath = new \DOMXPath($dom);
+
+// 1. Extract Title
+$title = '';
+
+$titleNode = $xpath->query(
+    "//h1[contains(concat(' ', normalize-space(@class), ' '), ' entry-title ')]"
+)->item(0);
+
+if (!$titleNode) {
+    $titleNode = $xpath->query('//h1')->item(0);
+}
+
+if ($titleNode) {
+    $title = trim($titleNode->textContent);
+}
+
+if (!$title) {
+    $meta = $xpath->query("//meta[@property='og:title']")->item(0);
+    if ($meta) {
+        $title = $meta->getAttribute('content');
+    }
+}
+
+// 2. Find actual WordPress post content
+$contentNode = null;
+
+$selectors = [
+    "//*[contains(concat(' ', normalize-space(@class), ' '), ' entry-content ')]",
+    "//*[contains(concat(' ', normalize-space(@class), ' '), ' post-content ')]",
+    "//*[contains(concat(' ', normalize-space(@class), ' '), ' article-content ')]",
+    "//article",
+    "//main"
+];
+
+foreach ($selectors as $selector) {
+    $nodes = $xpath->query($selector);
+
+    foreach ($nodes as $node) {
+        if (trim($node->textContent) !== '') {
+            $contentNode = $node;
+            break 2;
+        }
+    }
+}
+
+// 3. Extract content HTML and tables
+$contentHtml = '';
+$tables = [];
+
+if ($contentNode) {
+
+    // Remove unwanted elements
+    $removeNodes = $xpath->query(
+        ".//script | .//style | .//noscript | .//iframe | .//form | .//nav",
+        $contentNode
+    );
+
+    $toRemove = [];
+
+    foreach ($removeNodes as $node) {
+        $toRemove[] = $node;
+    }
+
+    foreach ($toRemove as $node) {
+        if ($node->parentNode) {
+            $node->parentNode->removeChild($node);
+        }
+    }
+
+    // Extract all tables
+    $tableNodes = $xpath->query('.//table', $contentNode);
+
+    foreach ($tableNodes as $table) {
+        $tables[] = $dom->saveHTML($table);
+    }
+
+    // Complete article HTML
+    $contentHtml = $dom->saveHTML($contentNode);
+}
+
+// 4. Final JSON
+$result = [
+    'url' => $url,
+    'title' => $title,
+    'content_html' => $contentHtml,
+    'tables' => $tables
+];
+
+return response()->json($result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
 }
