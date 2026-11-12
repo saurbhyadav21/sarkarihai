@@ -2772,10 +2772,16 @@ if (!$postName) {
 
 
 // Final Fallback - Complete testx extraction inside IF
+
 if (!$postName) {
-    if($job->source == 'sarkariresult.com.cm')
-    {
-        $url = $job->source_url; // Current job URL
+
+    if (
+        isset($job->source) &&
+        $job->source == 'sarkariresult.com.cm' &&
+        !empty($job->source_url)
+    ) {
+
+        $url = $job->source_url;
 
         $response = Http::timeout(40)
             ->retry(2, 1000)
@@ -2821,16 +2827,14 @@ if (!$postName) {
                 }
             }
 
-            // Extract Tables
-            $tables = [];
+            // Extract Post Names
+            $postNames = [];
 
             if ($contentNode) {
 
                 $tableNodes = $contentNode->getElementsByTagName('table');
 
                 foreach ($tableNodes as $table) {
-
-                    $tableData = [];
 
                     foreach ($table->getElementsByTagName('tr') as $tr) {
 
@@ -2846,83 +2850,27 @@ if (!$postName) {
                             }
                         }
 
-                        if (count($cells) >= 2) {
-
-                            $row = [];
-
-                            $firstCell = strtolower(trim($cells[0]));
-
-                            $firstCell = preg_replace(
-                                '/[^a-z0-9]+/',
-                                '_',
-                                $firstCell
-                            );
-
-                            $firstCell = trim($firstCell, '_');
-
-                            $row[$firstCell ?: 'post'] = $cells[1];
-
-                            foreach ($cells as $index => $value) {
-
-                                if ($index < 2) {
-                                    continue;
-                                }
-
-                                $key = 'column_' . ($index + 1);
-                                $row[$key] = $value;
-                            }
-
-                            $tableData[] = $row;
+                        if (empty($cells)) {
+                            continue;
                         }
-                    }
 
-                    if (!empty($tableData)) {
-                        $tables[] = $tableData;
-                    }
-                }
-            }
-
-            // Extract Post Names from JSON Table Data
-            $postNames = [];
-
-            foreach ($tables as $table) {
-
-                foreach ($table as $row) {
-
-                    if (!is_array($row)) {
-                        continue;
-                    }
-
-                    $markerFound = false;
-
-                    foreach (['post', 'post_name', 'no_of_post'] as $marker) {
-
+                        // No. Of Post wali row identify karo
                         if (
-                            isset($row[$marker]) &&
-                            preg_match('/^no\.?\s*of\s*post$/i', trim($row[$marker]))
+                            isset($cells[0]) &&
+                            preg_match('/^no\.?\s*of\s*post$/i', $cells[0])
                         ) {
-                            $markerFound = true;
-                            break;
-                        }
-                    }
 
-                    if ($markerFound) {
+                            // First cell ke baad sabhi column headings post names hain
+                            foreach (array_slice($cells, 1) as $name) {
 
-                        foreach ($row as $key => $value) {
+                                $name = trim($name);
 
-                            if (in_array($key, ['post', 'post_name', 'no_of_post'])) {
-                                continue;
-                            }
-
-                            if (
-                                is_scalar($value) &&
-                                preg_match('/^[\d,]+$/', trim((string) $value))
-                            ) {
-
-                                $name = str_replace('_', ' ', $key);
-                                $name = ucwords($name);
-
-                                $postNames[] = $name;
+                                if (
+                                    $name !== '' &&
+                                    !preg_match('/^[\d,]+$/', $name)
+                                ) {
+                                    $postNames[] = $name;
+                                }
                             }
                         }
                     }
@@ -2933,12 +2881,11 @@ if (!$postName) {
 
                 $postName = implode(', ', array_unique($postNames));
 
-                $matchedFormat = 'Complete HTML JSON Fallback';
+                $matchedFormat = 'SarkariResult No Of Post Table';
             }
         }
     }
 }
-
 
 
 
