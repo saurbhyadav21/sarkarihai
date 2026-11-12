@@ -115,7 +115,9 @@ $result = [
     'tables' => $tables
 ];
 
-return response()->json($result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+print_r($result);
+
+// return response()->json($result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 
 
