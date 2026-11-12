@@ -17,7 +17,7 @@ class TestJobTitles extends Command
     public function handle()
     {
         $jobs = DB::table('job_details')
-            ->select('id', 'source_url', 'title')
+            ->select('id', 'source_url', 'title','source')
             ->where('post_flag', 0)
             ->whereNotNull('source_url')
             ->where('source_url', '!=', '')
