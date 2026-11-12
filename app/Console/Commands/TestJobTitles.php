@@ -1757,6 +1757,84 @@ if (!$postName) {
 }
 
 
+// Common Format - Admission Details / First Column Course or Post Names
+if (!$postName) {
+
+    if (preg_match_all(
+        '~<h[1-6]\b[^>]*>(.*?)</h[1-6]>(.*?)(?=<h[1-6]\b|$)~is',
+        $html,
+        $sectionMatches,
+        PREG_SET_ORDER
+    )) {
+
+        foreach ($sectionMatches as $section) {
+
+            $heading = strtolower(
+                trim(preg_replace('/\s+/u', ' ', strip_tags($section[1]))
+            ));
+
+            // Admission Details section identify karo
+            if (strpos($heading, 'admission details') === false) {
+                continue;
+            }
+
+            preg_match_all(
+                '~<tr\b[^>]*>(.*?)</tr>~is',
+                $section[2],
+                $rowMatches
+            );
+
+            $names = [];
+
+            foreach ($rowMatches[1] as $row) {
+
+                preg_match_all(
+                    '~<td\b[^>]*>(.*?)</td>~is',
+                    $row,
+                    $cells
+                );
+
+                if (count($cells[1]) < 2) {
+                    continue;
+                }
+
+                $firstColumn = html_entity_decode(
+                    strip_tags($cells[1][0]),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $secondColumn = html_entity_decode(
+                    strip_tags($cells[1][1]),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $firstColumn = trim(preg_replace('/\s+/u', ' ', $firstColumn));
+                $secondColumn = strtolower(trim(preg_replace('/\s+/u', ' ', $secondColumn)));
+
+                // Eligibility / Qualification wali rows
+                if (
+                    $firstColumn !== '' &&
+                    (
+                        preg_match('/candidate|eligible|eligibility|qualification|intermediate|passed|marks|degree/i', $secondColumn)
+                    )
+                ) {
+                    $names[] = $firstColumn;
+                }
+            }
+
+            $names = array_values(array_unique($names));
+
+            if (!empty($names)) {
+                $postName = implode(', ', $names);
+                $matchedFormat = 'Common Admission Details - First Column';
+                break;
+            }
+        }
+    }
+}
+
 //update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
 
