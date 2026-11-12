@@ -2393,6 +2393,187 @@ if (!$postName) {
 
 
 
+// Format - Overview Table / Post Names Row (TH + TD)
+if (!$postName) {
+
+    preg_match_all(
+        '~<h[1-6]\b[^>]*>(.*?)</h[1-6]>~is',
+        $html,
+        $headings
+    );
+
+    $overviewFound = false;
+
+    foreach ($headings[1] as $heading) {
+
+        $headingText = html_entity_decode(
+            strip_tags($heading),
+            ENT_QUOTES | ENT_HTML5,
+            'UTF-8'
+        );
+
+        if (preg_match('/Overview/i', $headingText)) {
+            $overviewFound = true;
+            break;
+        }
+    }
+
+    if ($overviewFound) {
+
+        preg_match_all('~<table\b[^>]*>(.*?)</table>~is', $html, $tables);
+
+        foreach ($tables[1] as $tableHtml) {
+
+            preg_match_all('~<tr\b[^>]*>(.*?)</tr>~is', $tableHtml, $rows);
+
+            foreach ($rows[1] as $row) {
+
+                if (
+                    preg_match(
+                        '~<th\b[^>]*>\s*(?:<[^>]+>\s*)*Post\s*Names?\s*(?:</[^>]+>\s*)*</th>~is',
+                        $row
+                    ) &&
+                    preg_match('~<td\b[^>]*>(.*?)</td>~is', $row, $valueMatch)
+                ) {
+
+                    $value = html_entity_decode(
+                        strip_tags($valueMatch[1]),
+                        ENT_QUOTES | ENT_HTML5,
+                        'UTF-8'
+                    );
+
+                    $postName = trim(preg_replace('/\s+/u', ' ', $value));
+
+                    if ($postName !== '') {
+                        $matchedFormat = 'Overview - Post Names (TH + TD)';
+                        break 2;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Format - FJA Quick Summary / POST NAME
+if (!$postName) {
+
+    preg_match_all(
+        '~<div\b[^>]*class=["\'][^"\']*\bfja-summary\b[^"\']*["\'][^>]*>(.*?)</div>\s*</div>~is',
+        $html,
+        $summaryMatches
+    );
+
+    foreach ($summaryMatches[1] as $summaryHtml) {
+
+        preg_match_all(
+            '~<div\b[^>]*class=["\'][^"\']*\bfja-summary-item\b[^"\']*["\'][^>]*>(.*?)</div>~is',
+            $summaryHtml,
+            $items
+        );
+
+        foreach ($items[1] as $item) {
+
+            if (
+                preg_match('~<label\b[^>]*>\s*POST\s*NAME\s*</label>~is', $item) &&
+                preg_match('~<strong\b[^>]*>(.*?)</strong>~is', $item, $match)
+            ) {
+
+                $postName = html_entity_decode(
+                    strip_tags($match[1]),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $postName = trim(preg_replace('/\s+/u', ' ', $postName));
+
+                if ($postName !== '') {
+                    $matchedFormat = 'FJA Quick Summary - POST NAME';
+                    break 2;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+// Format - At a Glance Table / Post Row
+if (!$postName) {
+
+    preg_match_all(
+        '~<h[1-6]\b[^>]*>(.*?)</h[1-6]>~is',
+        $html,
+        $headings
+    );
+
+    $atGlanceFound = false;
+
+    foreach ($headings[1] as $heading) {
+
+        $headingText = html_entity_decode(
+            strip_tags($heading),
+            ENT_QUOTES | ENT_HTML5,
+            'UTF-8'
+        );
+
+        if (preg_match('/At\s+a\s+Glance/i', $headingText)) {
+            $atGlanceFound = true;
+            break;
+        }
+    }
+
+    if ($atGlanceFound) {
+
+        preg_match_all('~<table\b[^>]*>(.*?)</table>~is', $html, $tables);
+
+        foreach ($tables[1] as $tableHtml) {
+
+            preg_match_all('~<tr\b[^>]*>(.*?)</tr>~is', $tableHtml, $rows);
+
+            foreach ($rows[1] as $row) {
+
+                preg_match_all(
+                    '~<(?:td|th)\b[^>]*>(.*?)</(?:td|th)>~is',
+                    $row,
+                    $cells
+                );
+
+                if (count($cells[1]) < 2) {
+                    continue;
+                }
+
+                $label = html_entity_decode(
+                    strip_tags($cells[1][0]),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $label = trim(preg_replace('/\s+/u', ' ', $label));
+
+                if (preg_match('/^Post$/i', $label)) {
+
+                    $value = html_entity_decode(
+                        strip_tags($cells[1][1]),
+                        ENT_QUOTES | ENT_HTML5,
+                        'UTF-8'
+                    );
+
+                    $postName = trim(preg_replace('/\s+/u', ' ', $value));
+
+                    if ($postName !== '') {
+                        $matchedFormat = 'At a Glance - Post Row';
+                        break 2;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
 
 
