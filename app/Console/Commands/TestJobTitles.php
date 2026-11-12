@@ -2771,6 +2771,177 @@ if (!$postName) {
 }
 
 
+// Final Fallback - Complete testx extraction inside IF
+if (!$postName) {
+    if($job->source == 'sarkariresult.com.cm')
+    {
+        $url = $job->source_url; // Current job URL
+
+        $response = Http::timeout(40)
+            ->retry(2, 1000)
+            ->withHeaders([
+                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36',
+                'Accept' => 'text/html,application/xhtml+xml',
+            ])
+            ->get($url);
+
+        if ($response->successful()) {
+
+            $html = $response->body();
+
+            libxml_use_internal_errors(true);
+
+            $dom = new \DOMDocument();
+            $dom->loadHTML('<?xml encoding="UTF-8">' . $html, LIBXML_NONET);
+
+            $xpath = new \DOMXPath($dom);
+
+            // Find WordPress Content
+            $contentNode = null;
+
+            $selectors = [
+                "//*[contains(concat(' ', normalize-space(@class), ' '), ' entry-content ')]",
+                "//*[contains(concat(' ', normalize-space(@class), ' '), ' post-content ')]",
+                "//*[contains(concat(' ', normalize-space(@class), ' '), ' article-content ')]",
+                "//*[contains(concat(' ', normalize-space(@class), ' '), ' inside-article ')]",
+                "//article",
+                "//main"
+            ];
+
+            foreach ($selectors as $selector) {
+
+                $nodes = $xpath->query($selector);
+
+                foreach ($nodes as $node) {
+
+                    if (strlen(trim($node->textContent)) > 100) {
+                        $contentNode = $node;
+                        break 2;
+                    }
+                }
+            }
+
+            // Extract Tables
+            $tables = [];
+
+            if ($contentNode) {
+
+                $tableNodes = $contentNode->getElementsByTagName('table');
+
+                foreach ($tableNodes as $table) {
+
+                    $tableData = [];
+
+                    foreach ($table->getElementsByTagName('tr') as $tr) {
+
+                        $cells = [];
+
+                        foreach ($tr->childNodes as $cell) {
+
+                            if (in_array($cell->nodeName, ['td', 'th'])) {
+
+                                $cells[] = trim(
+                                    preg_replace('/\s+/u', ' ', $cell->textContent)
+                                );
+                            }
+                        }
+
+                        if (count($cells) >= 2) {
+
+                            $row = [];
+
+                            $firstCell = strtolower(trim($cells[0]));
+
+                            $firstCell = preg_replace(
+                                '/[^a-z0-9]+/',
+                                '_',
+                                $firstCell
+                            );
+
+                            $firstCell = trim($firstCell, '_');
+
+                            $row[$firstCell ?: 'post'] = $cells[1];
+
+                            foreach ($cells as $index => $value) {
+
+                                if ($index < 2) {
+                                    continue;
+                                }
+
+                                $key = 'column_' . ($index + 1);
+                                $row[$key] = $value;
+                            }
+
+                            $tableData[] = $row;
+                        }
+                    }
+
+                    if (!empty($tableData)) {
+                        $tables[] = $tableData;
+                    }
+                }
+            }
+
+            // Extract Post Names from JSON Table Data
+            $postNames = [];
+
+            foreach ($tables as $table) {
+
+                foreach ($table as $row) {
+
+                    if (!is_array($row)) {
+                        continue;
+                    }
+
+                    $markerFound = false;
+
+                    foreach (['post', 'post_name', 'no_of_post'] as $marker) {
+
+                        if (
+                            isset($row[$marker]) &&
+                            preg_match('/^no\.?\s*of\s*post$/i', trim($row[$marker]))
+                        ) {
+                            $markerFound = true;
+                            break;
+                        }
+                    }
+
+                    if ($markerFound) {
+
+                        foreach ($row as $key => $value) {
+
+                            if (in_array($key, ['post', 'post_name', 'no_of_post'])) {
+                                continue;
+                            }
+
+                            if (
+                                is_scalar($value) &&
+                                preg_match('/^[\d,]+$/', trim((string) $value))
+                            ) {
+
+                                $name = str_replace('_', ' ', $key);
+                                $name = ucwords($name);
+
+                                $postNames[] = $name;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (!empty($postNames)) {
+
+                $postName = implode(', ', array_unique($postNames));
+
+                $matchedFormat = 'Complete HTML JSON Fallback';
+            }
+        }
+    }
+}
+
+
+
+
 
 //update the table with the extracted post title and set post_flag to 1
                 if ($postName) {
@@ -2841,4 +3012,10 @@ if (!$postName) {
 
         return 0;
     }
+
+
+
+
+
+
 }
