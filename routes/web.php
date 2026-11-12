@@ -280,7 +280,7 @@ Route::post('/age-calculator', [JobController::class, 'calculate'])
     ->name('age.calculator.calculate');
 
 
-Route::get('/testx', [JobController::class, 'calculate'])
+Route::get('/testx', [JobController::class, 'testx'])
     ->name('testx');
 
 
