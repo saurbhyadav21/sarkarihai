@@ -4550,38 +4550,40 @@ $request->age < $job->minimum_age
 
         // 3. Extract content HTML and tables
         $contentHtml = '';
-        $tables = [];
+        
+$tables = [];
 
-        if ($contentNode) {
+if ($contentNode) {
 
-            // Remove unwanted elements
-            $removeNodes = $xpath->query(
-                ".//script | .//style | .//noscript | .//iframe | .//form | .//nav",
-                $contentNode
-            );
+    foreach ($contentNode->getElementsByTagName('table') as $table) {
 
-            $toRemove = [];
+        $data = [];
 
-            foreach ($removeNodes as $node) {
-                $toRemove[] = $node;
-            }
+        foreach ($table->getElementsByTagName('tr') as $tr) {
 
-            foreach ($toRemove as $node) {
-                if ($node->parentNode) {
-                    $node->parentNode->removeChild($node);
+            $cells = [];
+
+            foreach ($tr->childNodes as $cell) {
+
+                if (in_array($cell->nodeName, ['td', 'th'])) {
+                    $cells[] = trim($cell->textContent);
                 }
             }
 
-            // Extract all tables
-            $tableNodes = $xpath->query('.//table', $contentNode);
+            if (count($cells) >= 2) {
 
-            foreach ($tableNodes as $table) {
-                $tables[] = $dom->saveHTML($table);
+                $key = strtolower(trim($cells[0]));
+                $key = preg_replace('/[^a-z0-9]+/', '_', $key);
+                $key = trim($key, '_');
+
+                $data[$key] = $cells[1];
             }
-
-            // Complete article HTML
-            $contentHtml = $dom->saveHTML($contentNode);
         }
+
+        $tables[] = $data;
+    }
+}
+
 
         // 4. Final JSON
         $result = [
