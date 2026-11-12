@@ -2169,6 +2169,79 @@ if (!$postName) {
 
 
 
+// Format - Walk-in Details Table / Posts Row
+if (!$postName) {
+
+    preg_match_all(
+        '~<h[1-6]\b[^>]*>(.*?)</h[1-6]>~is',
+        $html,
+        $headings
+    );
+
+    $walkinHeadingFound = false;
+
+    foreach ($headings[1] as $heading) {
+
+        $headingText = html_entity_decode(
+            strip_tags($heading),
+            ENT_QUOTES | ENT_HTML5,
+            'UTF-8'
+        );
+
+        if (preg_match('/Walk[\s-]*in\s+Details/i', $headingText)) {
+            $walkinHeadingFound = true;
+            break;
+        }
+    }
+
+    if ($walkinHeadingFound) {
+
+        preg_match_all('~<table\b[^>]*>(.*?)</table>~is', $html, $tables);
+
+        foreach ($tables[1] as $tableHtml) {
+
+            preg_match_all('~<tr\b[^>]*>(.*?)</tr>~is', $tableHtml, $rows);
+
+            foreach ($rows[1] as $row) {
+
+                preg_match_all(
+                    '~<(?:td|th)\b[^>]*>(.*?)</(?:td|th)>~is',
+                    $row,
+                    $cells
+                );
+
+                if (count($cells[1]) < 2) {
+                    continue;
+                }
+
+                $label = html_entity_decode(
+                    strip_tags($cells[1][0]),
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+
+                $label = trim(preg_replace('/\s+/u', ' ', $label));
+
+                if (preg_match('/^Posts?$/i', $label)) {
+
+                    $value = html_entity_decode(
+                        strip_tags($cells[1][1]),
+                        ENT_QUOTES | ENT_HTML5,
+                        'UTF-8'
+                    );
+
+                    $postName = trim(preg_replace('/\s+/u', ' ', $value));
+
+                    if ($postName !== '') {
+                        $matchedFormat = 'Walk-in Details - Posts Row';
+                        break 2;
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 
 
