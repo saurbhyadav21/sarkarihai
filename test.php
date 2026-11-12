@@ -1,96 +1,134 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
 
+$url = 'https://sarkariresult.com.cm/ssc-constable-gd-2025/';
 
-$url = "https://sarkariresult.com.cm/ssc-constable-gd-2025/";
+$response = Http::timeout(40)
+    ->retry(2, 1000)
+    ->withHeaders([
+        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36',
+        'Accept' => 'text/html,application/xhtml+xml',
+    ])
+    ->get($url);
 
-$ch = curl_init();
-
-curl_setopt_array($ch, [
-    CURLOPT_URL => $url,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_TIMEOUT => 60,
-    CURLOPT_SSL_VERIFYPEER => true,
-    CURLOPT_USERAGENT => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
-]);
-
-$html = curl_exec($ch);
-
-if (curl_errno($ch)) {
-    die(curl_error($ch));
+if (!$response->successful()) {
+    return response()->json([
+        'error' => 'Website response failed',
+        'status' => $response->status()
+    ]);
 }
 
-curl_close($ch);
+$html = $response->body();
 
 libxml_use_internal_errors(true);
 
-$dom = new DOMDocument();
-$dom->loadHTML('<?xml encoding="UTF-8">' . $html);
+$dom = new \DOMDocument();
+$dom->loadHTML('<?xml encoding="UTF-8">' . $html, LIBXML_NONET);
 
-$xpath = new DOMXPath($dom);
+$xpath = new \DOMXPath($dom);
 
-// Post title
-$title = $xpath->query('//h1')->item(0)?->textContent;
+// 1. Extract Title
+$title = '';
 
-// Post content
-$contentNode = $xpath->query(
-    '//*[contains(@class,"entry-content")]'
+$titleNode = $xpath->query(
+    "//h1[contains(concat(' ', normalize-space(@class), ' '), ' entry-title ')]"
 )->item(0);
 
-if (!$contentNode) {
-    $contentNode = $xpath->query(
-        '//*[contains(@class,"post-content")]'
-    )->item(0);
+if (!$titleNode) {
+    $titleNode = $xpath->query('//h1')->item(0);
 }
 
-// Complete HTML
-$contentHtml = '';
+if ($titleNode) {
+    $title = trim($titleNode->textContent);
+}
 
-if ($contentNode) {
-    foreach ($contentNode->childNodes as $child) {
-        $contentHtml .= $dom->saveHTML($child);
+if (!$title) {
+    $meta = $xpath->query("//meta[@property='og:title']")->item(0);
+    if ($meta) {
+        $title = $meta->getAttribute('content');
     }
 }
 
-// All tables
+// 2. Find actual WordPress post content
+$contentNode = null;
+
+$selectors = [
+    "//*[contains(concat(' ', normalize-space(@class), ' '), ' entry-content ')]",
+    "//*[contains(concat(' ', normalize-space(@class), ' '), ' post-content ')]",
+    "//*[contains(concat(' ', normalize-space(@class), ' '), ' article-content ')]",
+    "//article",
+    "//main"
+];
+
+foreach ($selectors as $selector) {
+    $nodes = $xpath->query($selector);
+
+    foreach ($nodes as $node) {
+        if (trim($node->textContent) !== '') {
+            $contentNode = $node;
+            break 2;
+        }
+    }
+}
+
+// 3. Extract content HTML and tables
+$contentHtml = '';
 $tables = [];
 
 if ($contentNode) {
-    foreach ($contentNode->getElementsByTagName('table') as $table) {
-        $rows = [];
 
-        foreach ($table->getElementsByTagName('tr') as $tr) {
-            $row = [];
+    // Remove unwanted elements
+    $removeNodes = $xpath->query(
+        ".//script | .//style | .//noscript | .//iframe | .//form | .//nav",
+        $contentNode
+    );
 
-            foreach ($tr->childNodes as $cell) {
-                if (in_array($cell->nodeName, ['td', 'th'])) {
-                    $row[] = trim($cell->textContent);
-                }
-            }
+    $toRemove = [];
 
-            if ($row) {
-                $rows[] = $row;
-            }
-        }
-
-        $tables[] = $rows;
+    foreach ($removeNodes as $node) {
+        $toRemove[] = $node;
     }
+
+    foreach ($toRemove as $node) {
+        if ($node->parentNode) {
+            $node->parentNode->removeChild($node);
+        }
+    }
+
+    // Extract all tables
+    $tableNodes = $xpath->query('.//table', $contentNode);
+
+    foreach ($tableNodes as $table) {
+        $tables[] = $dom->saveHTML($table);
+    }
+
+    // Complete article HTML
+    $contentHtml = $dom->saveHTML($contentNode);
 }
 
+// 4. Final JSON
 $result = [
     'url' => $url,
-    'title' => trim($title ?? ''),
+    'title' => $title,
     'content_html' => $contentHtml,
     'tables' => $tables
 ];
 
-header('Content-Type: application/json; charset=utf-8');
+return response()->json($result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-echo json_encode(
-    $result,
-    JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE
-);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 die;
