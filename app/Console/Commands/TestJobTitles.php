@@ -2958,15 +2958,7 @@ if (!$postName) {
 }
 
             dd($postNames);
-            if (!empty($postNames)) {
-
-                $postName = implode(', ', array_unique($postNames));
-
-                $matchedFormat = 'SarkariResult No Of Post Table';
-            }
-        }
-    }
-}
+           
 
 
 
